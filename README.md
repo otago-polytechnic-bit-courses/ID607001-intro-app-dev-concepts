@@ -2,9 +2,6 @@
 
 This repository contains all information relating to this course, i.e., course directive & assessment documents.
 
-## Wiki
-To view content material, click on the **Wiki** tab located above.
-
 ## Indicative Content
 - ASP&#x2e;NET Core 5.0
 - React
@@ -13,4 +10,9 @@ To view content material, click on the **Wiki** tab located above.
 - NUnit
 - Cypress&#x2e;IO
 - Azure
+
+## Wiki
+To view indicative content material, click on the **Wiki** tab located above.
+
+
 

@@ -477,3 +477,11 @@ FodyWeavers.xsd
 *.synctex.gz
 *.toc
 *.vrb
+
+
+# latex
+*.aux
+*.fdb_latexmk
+*.fls
+*.out
+*.synctex.gz
