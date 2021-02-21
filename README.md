@@ -1,18 +1,10 @@
-# IN607: Introduction Application Development Concepts
+# IN607: Introductory Application Development Concepts
 
 This repository contains all information relating to this course, i.e., course directive & assessment documents.
 
-## Indicative Content
-- ASP&#x2e;NET Core 5.0
-- React
-- MongoDB
-- JSON Web Tokens
-- NUnit
-- Cypress&#x2e;IO
-- Azure
+## Repositories
+Here are the following assessment submission repositories:
 
-## Wiki
-To view indicative content material, click on the **Wiki** tab located above.
-
-
-
+* Practical - https://classroom.github.com/a/ww3bvOnY
+* Project 1 - https://classroom.github.com/a/AzmNCm2h
+* Project 2 - https://classroom.github.com/a/fqBug5Kt
