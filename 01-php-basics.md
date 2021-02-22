@@ -73,7 +73,7 @@ There are **four** main types of operators - arithmetic, assignment, comparison 
 
 **Resource:** https://www.php.net/manual/en/language.operators.php
 
-Other rules for PHP variables:
+Other rules for **PHP** variables:
 - Must start with a letter or the `_` underscore character.
 - Can not start with a number.
 Can only contain alpha numeric characters & underscores.
