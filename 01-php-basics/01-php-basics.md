@@ -249,13 +249,16 @@ Below are additional resources to other types of functions.
 ### Error Handling
 
 Firstly, we must answer the following questions:
-- What is an exception? 
+- What is an error? 
 
   An unexpected result that cannot be handled by the program itself. Errors are resolved by fixing the program. An example of error is an infinite loop. 
+
+- What is an exception?
 
   An exception is an unexpected result that can be handled by the program itself. An example of an exception is opening a file that does not exist. 
   
   **How do we handle this?** by either creating the file or giving the option to select a file from your file system.
+  
 - Why exception handling? 
 
   Avoid unexpected results that can annoy end users and improving security by not exposing information which malicious may use. 
