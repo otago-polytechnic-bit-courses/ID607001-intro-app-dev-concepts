@@ -52,8 +52,6 @@ echo $z; // 2
 ?> 
 ```
 
-**Question:** What is the difference between a compiler & interpreter?
-
 `var_dump` is use to check a variable's data type.
 
 ```php
