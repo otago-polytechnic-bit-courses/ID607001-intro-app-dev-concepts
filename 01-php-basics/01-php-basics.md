@@ -351,6 +351,3 @@ if (!unlink("sample.txt")) {
 ```
 
 **Resource:** https://www.php.net/manual/en/ref.filesystem.php
-
-## Practical
-The practical for this topic is available [here]().
