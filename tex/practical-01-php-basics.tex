@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this assessment, you will solve five coding problems using \textbf{PHP} in \textbf{Repl.it}. 
+In this assessment, you will solve 15 coding problems using \textbf{PHP} in \textbf{Repl.it}. 
 
 \section*{Learning Outcomes}
 At the successful completion of this course, learners will be able to: 
@@ -69,10 +69,10 @@ The school's process concerning submissions, extensions, resubmissions \& resits
 \section*{Submissions}
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/fqBug5Kt}. 
 
-\section*{Instructions - Learning Outcomes 2, 3}
+\section*{Instructions - Learning Outcomes 1}
 
 \subsection*{Problem 1:} 
-Declare two variables called name \& age with the values John \& 55. Use the two variables to display the expected output.
+Declare two variables called \textbf{name} \& \textbf{age} with the values John \& 55. Use the two variables to display the expected output.
 
 \begin{verbatim}
   <?php
@@ -83,7 +83,7 @@ Declare two variables called name \& age with the values John \& 55. Use the two
   ?>
 \end{verbatim}
 
-\subsection*{Problem 2:} Calculate the sum of the given integers \& display the expected output.
+\subsection*{Problem 2:} Calculate the \textbf{sum} of the given integers \& display the expected output.
 
 \begin{verbatim}
   <?php
@@ -98,7 +98,7 @@ Declare two variables called name \& age with the values John \& 55. Use the two
 \end{verbatim}
 
 \subsection*{Problem 3:} 
-Calculate the average of the given double array \& display the expected output.
+Calculate the \textbf{average} of the given \textbf{double array} \& display the expected output.
 
 \begin{verbatim}
   <?php
@@ -113,7 +113,7 @@ Calculate the average of the given double array \& display the expected output.
 \end{verbatim}
 
 \subsection*{Problem 4:}
-Create a function called \textbf{fizzBuzz} which has an \textbf{Int} parameter called \textbf{num}. If \textbf{num} is a multiple of three, return \textbf{Fizz}, if \textbf{num} is a multiple of five, return \textbf{Buzz} \& if \textbf{num} is a multiple of three \& five, return \textbf{FizzBuzz}. Call the \textbf{fizzBuzz} function in the for loop to display the expected output.
+Write a function called \textbf{fizzBuzz} which has a parameter called \textbf{num}. If \textbf{num} is a multiple of three, return \textbf{Fizz}, if \textbf{num} is a multiple of five, return \textbf{Buzz} \& if \textbf{num} is a multiple of three \& five, return \textbf{FizzBuzz}. Call the \textbf{fizzBuzz} function in the for loop to display the expected output.
 
 \begin{verbatim}
   <?php
@@ -136,11 +136,11 @@ Create a function called \textbf{fizzBuzz} which has an \textbf{Int} parameter c
 \end{verbatim}
 
 \subsection*{Problem 5:}
-You have been given an array of floats or doubles. Display \textbf{only} the odd numbers in the array. Sort by lowest to highest.
+You have been given an array of floats or doubles. Display \textbf{only} the odd numbers in the array. Sort from lowest to highest.
 
 \begin{verbatim}
   <?php  
-  $numbers = [21, 19, 68, 55, 42, 12]
+  $numbers = array(21, 19, 68, 55, 42, 12) 
   
   // Write your solution here
 
@@ -150,5 +150,126 @@ You have been given an array of floats or doubles. Display \textbf{only} the odd
   // 55
   ?>
 \end{verbatim}
+
+\subsection*{Problem 6:}
+Write a function called \textbf{is\_anagram} which has two parameters called \textbf{string\_one} \& \textbf{string\_two}. In the function block, write some code that checks whether or not \textbf{string\_one} \& \textbf{string\_two} are an anagram. An anagram is a word or phrase that made by arranging the letters of another word or phrase in a different order. If you are still unsure what an anagram is, here is an example:
+
+\begin{verbatim}
+  Input: is\_anagram("elvis", "lives")
+  Output: true
+
+  Input: is\_anagram("cat", "sat")
+  Output : false
+\end{verbatim}
+
+Call the \textbf{is\_anagram} function to display the expected output.
+
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  // Expected output:
+  // true
+  // false
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 7:}
+Write a function called \textbf{convert} which has two parameters called \textbf{hours} \& \textbf{minutes}. In the function block, write some code that converts both \textbf{hours} \& \textbf{minutes} to seconds, then adds them together.
+
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  convert(1, 3)
+
+  // Expected output:
+  // 3780
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 8:}
+Write a function called \textbf{factorial} which has a parameter called \textbf{num}. In the function block, write some code that returns the factorial of \textbf{num}. Assume all inputs are ≥ 0. 
+
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  factorial(3)
+  factorial(5)
+
+  // Expected output:
+  // 6
+  // 120
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 9:}
+Write a function called \textbf{palindrome} which has a parameter called \textbf{string}. In the function block, determine whether or not \textbf{string} is a palindrome. The function should return a boolean, i.e., true or false.
+
+\textbf{Additional constraints:}
+\begin{itemize}
+	\item Check for a case insensitive input.
+  \item Special characters \& spaces should be ignored.
+\end{itemize} 
+
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  palindrome("A man, a plan, a canal – Panama")
+  palindrome("Hello, World!")
+
+  // Expected output:
+  // true
+  // false
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 10:}
+Write a function called \textbf{is\_five\_letters} which has a parameter called \textbf{array}. In the function block, return the words that are exactly \textbf{five} letters.
+
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  is_five_letters(["car", "bike", "truck"])
+
+  // Expected output:
+  // ["truck"]
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 11:}
+Write a function called \textbf{remove\_one} which removes all occurrences of the number \textbf{1 (one)} in an array. 
+\begin{verbatim}
+  <?php  
+  // Write your solution here
+
+  remove\_one([1, 1, 1, 1, 1])
+  remove\_one([1, 2, 3, 4, 1])
+
+  // Expected output:
+  // []
+  // [2, 3, 4]
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 12:}
+
+https://edabit.com/challenge/7dF5QoA3Tg8xn4A2u
+
+\subsection*{Problem 13:}
+
+https://edabit.com/challenge/Xqi73dZ8kLDegRcwQ
+
+\subsection*{Problem 14:}
+
+https://edabit.com/challenge/Q5mYvvjj8HmzhQeCN
+
+\subsection*{Problem 15:}
+
+https://edabit.com/challenge/cX4ibRJ2amc992NNM
+
 
 \end{document}
