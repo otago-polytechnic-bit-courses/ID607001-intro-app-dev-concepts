@@ -20,28 +20,25 @@ $ php artisan make:model Learner -m
 Go to the `app` directory. A file called `Learner.php` has been created. In `Learner.php`, specify the database table you wish to interact with and its fields. For example:
 
 ```php
-<?php
+...
 
-namespace App;
-
-use Illuminate\Database\Eloquent\Model;
-
-class Learner extends Model
+class Student extends Model
 {
-    protected $table = 'learners';
+    use HasFactory;
+
+    protected $table = 'students';
 
     protected $fillable = ['first_name', 'last_name', 'phone_number', 'email_address'];
 }
-
 ```
 
-Also, a migration file has been created in the `database/migration` directory which generates a database table, i.e., `learners`. Modify your migration file by adding a column for `first_name`, `last_name`,`phone_number` & `email_address` which are of type `string`.
+Also, a migration file has been created in the `database/migrations` directory which generates a database table, i.e., `learners`. Modify your migration file by adding a column for `first_name`, `last_name`,`phone_number` & `email_address` which are of type `string`.
 
 ```php
 ...
 public function up()
 {
-    Schema::create('learners', function (Blueprint $table) {
+    Schema::create('students', function (Blueprint $table) {
         $table->increments('id');
         $table->string('first_name');
         $table->string('last_name');
@@ -87,21 +84,31 @@ $ php artisan make:controller ApiController
 
 ## Controller
 
-In the `app\http\controller` directory, you will find `ApiController.php`. In `ApiController.php`, add the following methods:
+In the `app\Http\Controllers` directory, you will find `ApiController.php`. In `ApiController.php`, add the following methods:
 
 ```php
 ...
 class ApiController extends Controller
 {
-    public function getAllLearners() {}
+    public function getAllStudents() 
+    {
+    }
     
-    public function getLearner($id) {}
+    public function getStudent($id)
+    {
+    }
 
-    public function createLearner(Request $request) {}
+    public function createStudent(Request $request)
+    {
+    }
 
-    public function updateLearner(Request $request, $id) {}
+    public function updateStudent(Request $request, $id)
+    {
+    }
 
-    public function deleteLearner($id) {}
+    public function deleteStudent($id)
+    {
+    }
 }
 ```
 
@@ -109,11 +116,23 @@ In the `routes` directory, open the `api.php` file & create the following API en
 
 ```php
 ...
-Route::get('learners', 'ApiController@getAllLearners');
-Route::get('learners/{id}', 'ApiController@getLearner');
-Route::post('learners', 'ApiController@createLearner');
-Route::put('learners/{id}', 'ApiController@updateLearner');
-Route::delete('learners/{id}','ApiController@deleteLearner');
+Route::get('students', 'ApiController@getAllStudents');
+Route::get('students/{id}', 'ApiController@getStudent');
+Route::post('students', 'ApiController@createStudent');
+Route::put('students/{id}', 'ApiController@updateStudent');
+Route::delete('students/{id}','ApiController@deleteStudent');
 ```
+
+In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
+
+### Create a Student
+
+### Get All Students
+
+### Get One Student
+
+### Update a Student
+
+### Delete a Student
 
 ## Postman
