@@ -21,7 +21,6 @@ Go to the `app` directory. A file called `Learner.php` has been created. In `Lea
 
 ```php
 ...
-
 class Student extends Model
 {
     use HasFactory;
