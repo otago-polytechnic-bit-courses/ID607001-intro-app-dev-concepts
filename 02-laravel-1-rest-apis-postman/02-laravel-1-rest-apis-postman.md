@@ -2,8 +2,6 @@
 
 ## Overview
 
-## What We Will Building
-
 ## Creating a Laravel Project
 
 ## Model
@@ -122,9 +120,30 @@ Route::put('students/{id}', 'ApiController@updateStudent');
 Route::delete('students/{id}','ApiController@deleteStudent');
 ```
 
+All routes in `api.php` are prefix with `/api`.
+
 In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
 
 ### Create a Student
+
+```php
+...
+public function createStudent(Request $request) {
+    $student = new Student;
+    $student->first_name = $request->first_name;
+    $student->last_name = $request->last_name;
+    $student->phone_number = $request->phone_number;
+    $student->email_address = $request->email_address;
+    $student->save();
+
+    return response()->json([
+        "message" => "Student successfully created."
+    ], 201);
+}
+...
+```
+
+**What is this code doing**
 
 ### Get All Students
 
