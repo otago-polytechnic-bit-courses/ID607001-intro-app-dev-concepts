@@ -3,7 +3,7 @@
 ## Creating a Laravel Project
 
 ## Model
-In **Laravel**, we can create a new model & migration by running the following:
+In [Laravel](https://laravel.com/), we can create a new model & migration by running the following:
 
 ```php
 // Windows
@@ -42,7 +42,7 @@ public function up() {
 }
 ```
 ## Connecting to MySQL
-In `.env` file, modify your database credentials so that your project connects to  **MySQL** locally. You will look at how to connect to a cloud database later on.
+In `.env` file, modify your database credentials so that your project connects to [MySQL](https://www.mysql.com/) locally. You will look at how to connect to a cloud database later on.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -65,7 +65,13 @@ $ php artisan migrate
 ```
 
 ## Controller
-Now that you have a basic application setup, you can create a controller that will contain the CRUD methods for your API. To create a new controller, run the following command:
+You can create a controller that will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a new controller, you must understand what it is.
+
+#### What is a controller?
+A [Controller
+](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. Theses action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
+
+To create a new controller, run the following command:
 
 ```php
 // Windows
@@ -74,10 +80,7 @@ Now that you have a basic application setup, you can create a controller that wi
 // macOS or Linux
 $ php artisan make:controller ApiController
 ```
-
-#### What is a controller?
-A [Controller
-](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieves the necessary model data & returns the appropriate responses.
+#### Where are controllers located?
 
 In the `app\Http\Controllers` directory, you will find `ApiController.php`. In `ApiController.php`, add the following methods:
 
@@ -115,6 +118,10 @@ public function createStudent(Request $request) {
 ```
 
 #### What is this code snippet doing?
+- A new `Request` is instantiated in the `createStudent()` parameter.
+- A new `Student` is instantiated in the `createStudent()` method block.
+- The `Student`'s data is fetched from the request & saved.
+- A [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` is returned containing a message & status response code of [201](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201).
 
 ### Update a Student
 
@@ -135,6 +142,11 @@ public function updateStudent(Request $request, $id) {
 ```
 
 #### What is this code snippet doing?
+- A new `Request` is instantiated in the `createStudent` parameter.
+- Retrieving the `id` in the `createStudent` parameter.
+- Checking if the `Student` to update exists:
+   - If `true`, its finds the `Student` which matches the `id` & checks if any of its data is `is_null()`. If `is_null()`, its replaces the request with an existing value. Otherwise, its replaces the request with a new value.  
+   - If `false`, a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` is returned containing a message & status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404).
 
 ### Delete a Student
 ```php
