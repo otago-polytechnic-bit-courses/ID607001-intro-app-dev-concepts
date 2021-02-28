@@ -20,6 +20,8 @@ Open the **Laragon** application. You will be presented with a window containing
 
 </br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
 
+**Note:** You can not create a new application until Apache & MySQL have been started.
+
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
     <figcaption style="text-align:center;">Fig.3 - Naming the Laravel application api.</figcaption>
@@ -34,16 +36,13 @@ Open the **Laragon** application. You will be presented with a window containing
 In Laravel, you can create a new model & migration by running the following command:
 
 ```php
-// Windows
-> php artisan make:model Learner -m
-
-// macOS or Linux
-$ php artisan make:model Learner -m
+php artisan make:model Student -m
 ```
 
 Go to the `app` directory. A file called `Learner.php` has been created. In `Learner.php`, specify the database table and its field you wish to interact with. For example:
 
 ```php
+...
 class Student extends Model {
     use HasFactory;
 
@@ -57,17 +56,20 @@ class Student extends Model {
 In the `database/migrations` directory, you will see a new migration file (newest timestamp) which has created a database table, i.e., `students`. 
 
 ```php
+...
 public function up() {
     Schema::create('students', function (Blueprint $table) {
         $table->increments('id');
         $table->timestamps();
     });
 }
+...
 ```
 
 Modify this migration file by adding a column for `first_name`, `last_name`,`phone_number` & `email_address`. All four columns are of type `string`.
 
 ```php
+...
 public function up() {
     Schema::create('students', function (Blueprint $table) {
         $table->increments('id');
@@ -78,6 +80,7 @@ public function up() {
         $table->timestamps();
     });
 }
+...
 ```
 
 ## Connecting to MySQL
@@ -96,11 +99,7 @@ DB_PASSWORD=
 If you make a change to any model, you must run a migration using the following command:
 
 ```php
-// Windows
-> php artisan migrate
-
-// macOS or Linux
-$ php artisan migrate
+php artisan migrate
 ```
 
 ## Controller
@@ -112,11 +111,7 @@ A [Controller
 To create a new controller, run the following command:
 
 ```php
-// Windows
-> php artisan make:controller ApiController
-
-// macOS or Linux
-$ php artisan make:controller ApiController
+php artisan make:controller ApiController
 ```
 
 In the `app\Http\Controllers` directory, you will find all your controllers including `ApiController.php`. 
@@ -124,6 +119,7 @@ In the `app\Http\Controllers` directory, you will find all your controllers incl
 In `ApiController.php`, add the following CRUD methods:
 
 ```php
+...
 class ApiController extends Controller {
     public function createStudent(Request $request) {
     }
@@ -141,10 +137,22 @@ class ApiController extends Controller {
     }
 }
 ```
+In order to use the `students` data table, you need to import the `Student` model. To do this, add the following line above the class declaration:
+
+```php
+...
+use App\Models\Student;
+
+class ApiController extends Controller {
+    ...
+}
+```
+
 
 ### Create a Student
 
 ```php
+...
 public function createStudent(Request $request) {
     $student = new Student;
     $student->first_name = $request->first_name;
@@ -154,6 +162,7 @@ public function createStudent(Request $request) {
     $student->save();
     return response()->json(["message" => "Student created."], 201);
 }
+...
 ```
 
 - Instantiates a new `Request` in the `createStudent()` parameter.
@@ -164,6 +173,7 @@ public function createStudent(Request $request) {
 ### Update a Student
 
 ```php
+...
 public function updateStudent(Request $request, $id) {
     if (Student::where('id', $id)->exists()) {
         $student = Student::find($id);
@@ -177,6 +187,7 @@ public function updateStudent(Request $request, $id) {
         return response()->json(["message" => "Student not found."], 404);    
     }
 }
+...
 ```
 
 - Instantiates a new `Request` in the `updateStudent()` parameter.
@@ -187,6 +198,7 @@ public function updateStudent(Request $request, $id) {
 
 ### Delete a Student
 ```php
+...
 public function deleteStudent($id) {
     if(Student::where('id', $id)->exists()) {
         $student = Student::find($id);
@@ -196,6 +208,7 @@ public function deleteStudent($id) {
         return response()->json(["message" => "Student not found."], 404);
     }
 }
+...
 ```
 
 - Retrieves the `id` in the `deleteStudent()` parameter.
@@ -205,10 +218,12 @@ public function deleteStudent($id) {
 
 ### Get All Students
 ```php
+...
 public function getAllStudents() {
     $students = Student::get()->toJson(JSON_PRETTY_PRINT);
     return response($students, 200);
 }
+...
 ```
 
 - Retrieves all `Students` & serializes its data into a JSON format.
@@ -217,6 +232,7 @@ public function getAllStudents() {
 ### Get One Student
 
 ```php
+...
 public function getStudent($id) {
     if (Student::where('id', $id)->exists()) {
         $student = Student::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
@@ -244,11 +260,19 @@ Route::get('students', 'ApiController@getAllStudents');
 Route::get('students/{id}', 'ApiController@getStudent');
 ```
 
+In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
+
 **Note:** All routes in `api.php` are prefix with `/api`.
+
+## Run Development Server
+You can run the development server by running the following command:
+```php
+php artisan serve
+```
+
 ## Postman
 
 #### What is Postman?
 
 #### How to test your API endpoints
 
-In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
