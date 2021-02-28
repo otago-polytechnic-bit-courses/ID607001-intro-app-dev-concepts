@@ -6,20 +6,23 @@
 ## Creating a Laravel Application
 Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1). 
 
-![Fig.1 - Laragon startup window.](../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG)
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
+    <figcaption style="text-align:center;">Fig.1 - Laragon startup window.</figcaption>
+</figure>
 
 Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon Start All Window" />
-    <figcaption>Fig.2 - Starting Apache & MySQL.</figcaption>
+    <figcaption style="text-align:center;">Fig.2 - Starting Apache & MySQL.</figcaption>
 </figure>
 
 **Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
-    <figcaption>Fig.3 - Naming Laravel application api.</figcaption>
+    <figcaption style="text-align:center;">Fig.3 - Naming Laravel application api.</figcaption>
 </figure>
 
 You will find all projects in the `laragon\www` directory.
