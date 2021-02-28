@@ -5,7 +5,9 @@
 
 Download the lastest version of Laragon [here](https://laragon.org/download/).
 
-## Creating a Laravel Project
+## Creating a Laravel Application
+Run Laragon & you will se this window:
+
 
 
 ## Model
