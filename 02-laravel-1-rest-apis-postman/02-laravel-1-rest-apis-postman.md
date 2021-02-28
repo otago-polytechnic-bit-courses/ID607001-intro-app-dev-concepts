@@ -6,9 +6,9 @@
 Download the lastest version of Laragon [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Run Laragon & you will se this window:
+Run Laragon & you will be presented with the following window:
 
-
+<img src="https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/master/tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Window" />
 
 ## Model
 In Laravel, you can create a new model & migration by running the following command:
