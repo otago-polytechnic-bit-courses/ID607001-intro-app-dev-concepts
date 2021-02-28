@@ -1,22 +1,30 @@
 # Laravel 1 - REST APIs & Postman
 
 ## Laragon
-[Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. You will use Laragon & [Laravel](https://laravel.com/) to build your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). 
-
-Download the lastest version of Laragon [here](https://laragon.org/download/).
+[Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Open Laragon & you will be presented with the following window:
+Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1). You will focus on the 
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
+    <figcaption>Fig.1 - Laragon startup window.</figcaption>
+</figure>
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon Start All Window" />
 
-Right-click > Quick app > Laravel
+Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon Start All Window" />
+    <figcaption>Fig.2 - Starting Apache & MySQL.</figcaption>
+</figure>
 
-Name your project, then click OK.
+**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
+    <figcaption>Fig.3 - Naming Laravel application api.</figcaption>
+</figure>
 
 You will find all projects in the `laragon\www` directory.
 
@@ -60,7 +68,7 @@ public function up() {
 }
 ```
 ## Connecting to MySQL
-In `.env` file, modify your database credentials so which your project connects to [MySQL](https://www.mysql.com/) locally. You will look at how to connect to a cloud database later on.
+In `.env` file, modify your database credentials so which your project connects to MySQL locally. You will look at how to connect to a cloud database later on.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -83,7 +91,7 @@ $ php artisan migrate
 ```
 
 ## Controller
-You can create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your API. However, before you create a new controller, you must understand what it is.
+You can create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API).. However, before you create a new controller, you must understand what it is.
 
 #### What is a controller?
 A [Controller
