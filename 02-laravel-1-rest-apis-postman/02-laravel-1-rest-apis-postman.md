@@ -1,10 +1,10 @@
 # Laravel 1 - REST APIs & Postman
 
 ## Laragon
-[Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
+Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1).
+Open the **Laragon** application. You will be presented with a window containing five buttons at the bottom (Fig.1).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
@@ -25,9 +25,12 @@ Open Laragon on your **Desktop**. You will be presented with a window containing
     <figcaption style="text-align:center;">Fig.3 - Naming the Laravel application api.</figcaption>
 </figure>
 
-</br>You will find all projects in the `laragon\www` directory.
+</br>You will find all applications in the `laragon\www` directory.
 
 ## Model
+
+## Write what a model is
+
 In Laravel, you can create a new model & migration by running the following command:
 
 ```php
@@ -37,8 +40,6 @@ In Laravel, you can create a new model & migration by running the following comm
 // macOS or Linux
 $ php artisan make:model Learner -m
 ```
-
-#### What is a model?
 
 Go to the `app` directory. A file called `Learner.php` has been created. In `Learner.php`, specify the database table and its field you wish to interact with. For example:
 
@@ -52,7 +53,19 @@ class Student extends Model {
 }
 ```
 
-Also, a migration file has been created in the `database/migrations` directory which generates a database table, i.e., `learners`. Modify your migration file by adding a column for `first_name`, `last_name`,`phone_number` & `email_address` which are of type `string`.
+## Migrations
+In the `database/migrations` directory, you will see a new migration file (newest timestamp) which has created a database table, i.e., `students`. 
+
+```php
+public function up() {
+    Schema::create('students', function (Blueprint $table) {
+        $table->increments('id');
+        $table->timestamps();
+    });
+}
+```
+
+Modify this migration file by adding a column for `first_name`, `last_name`,`phone_number` & `email_address`. All four columns are of type `string`.
 
 ```php
 public function up() {
@@ -66,8 +79,9 @@ public function up() {
     });
 }
 ```
+
 ## Connecting to MySQL
-In `.env` file, modify your database credentials so which your project connects to MySQL locally. You will look at how to connect to a cloud database later on.
+In `.env` file, modify your database credentials so which your project connects to MySQL locally. You will look at how to connect to a cloud database at a later date.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -79,7 +93,7 @@ DB_PASSWORD=
 
 **Note:** You **do not** need a password to use this database.
 
-Run your migration using the following command:
+If you make a change to any model, you must run a migration using the following command:
 
 ```php
 // Windows
@@ -90,11 +104,10 @@ $ php artisan migrate
 ```
 
 ## Controller
-You can create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API).. However, before you create a new controller, you must understand what it is.
+You will create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what it is.
 
-#### What is a controller?
 A [Controller
-](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. Theses action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
+](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
 
 To create a new controller, run the following command:
 
@@ -105,9 +118,10 @@ To create a new controller, run the following command:
 // macOS or Linux
 $ php artisan make:controller ApiController
 ```
-#### Where are my controllers located?
 
-In the `app\Http\Controllers` directory, you will find all your controllers including `ApiController.php`. In `ApiController.php`, add the following methods:
+In the `app\Http\Controllers` directory, you will find all your controllers including `ApiController.php`. 
+
+In `ApiController.php`, add the following CRUD methods:
 
 ```php
 class ApiController extends Controller {
@@ -142,7 +156,6 @@ public function createStudent(Request $request) {
 }
 ```
 
-#### What is this method doing?
 - Instantiates a new `Request` in the `createStudent()` parameter.
 - Instantiates a new `Student` in the `createStudent()` method block.
 - Fetches & saves the `Student`'s data from the request.
@@ -166,7 +179,6 @@ public function updateStudent(Request $request, $id) {
 }
 ```
 
-#### What is this method doing?
 - Instantiates a new `Request` in the `updateStudent()` parameter.
 - Retrieves the `id` in the `updateStudent()` parameter.
 - Checks if the `Student` to update exists:
@@ -186,7 +198,6 @@ public function deleteStudent($id) {
 }
 ```
 
-#### What is this method doing?
 - Retrieves the `id` in the `deleteStudent()` parameter.
 - Checks if the `Student` to retrieve exists:
    - If `true`, finds & deletes the `Student` which matches the `id`. Also, returns a JSON `Response` containing a message which indicates the `Student` was deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
@@ -199,7 +210,7 @@ public function getAllStudents() {
     return response($students, 200);
 }
 ```
-#### What is this method doing?
+
 - Retrieves all `Students` & serializes its data into a JSON format.
 - Returns a `Response` containing the retrieved `Students` & a status response code of 200. 
 
@@ -216,15 +227,12 @@ public function getStudent($id) {
 }
 ```
 
-#### What is this method doing?
 - Retrieves the `id` in the `getStudent()` parameter.
 - Checks if the `Student` to retrieve exists:
    - If `true`, retrieves the `Student` which matches the `id` & serialize its data into a JSON format. Also, returns a `Response` containing the retrieved `Student` & a status response code of 200.
    - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of 404. 
    
 ## Routes
-
-#### What is a route?
 
 In the `routes` directory, open the `api.php` file & create the following API endpoint:
 
