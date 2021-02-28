@@ -253,11 +253,14 @@ public function getStudent($id) {
 In the `routes` directory, open the `api.php` file & create the following API endpoint:
 
 ```php
-Route::post('students', 'ApiController@createStudent');
-Route::put('students/{id}', 'ApiController@updateStudent');
-Route::delete('students/{id}','ApiController@deleteStudent');
-Route::get('students', 'ApiController@getAllStudents');
-Route::get('students/{id}', 'ApiController@getStudent');
+Route::group(['prefix' => 'students'], function() {
+    Route::post('/', 'ApiController@createStudent');
+    Route::put('/{id}', 'ApiController@updateStudent');
+    Route::delete('/{id}', 'ApiController@deleteStudent');
+    Route::get('/', 'ApiController@getAllStudents');
+    Route::get('/{id}', 'ApiController@getStudent');
+});
+
 ```
 
 In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
