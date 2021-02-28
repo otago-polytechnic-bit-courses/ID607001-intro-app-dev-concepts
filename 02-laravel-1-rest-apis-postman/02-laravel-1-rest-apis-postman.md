@@ -4,28 +4,28 @@
 [Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1).</br>
+Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
     <figcaption style="text-align:center;">Fig.1 - Laragon startup window.</figcaption>
 </figure>
 
-Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).</br>
+</br>Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon Start All Window" />
     <figcaption style="text-align:center;">Fig.2 - Starting Apache & MySQL.</figcaption>
 </figure>
 
-**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).</br>
+</br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
     <figcaption style="text-align:center;">Fig.3 - Naming Laravel application api.</figcaption>
 </figure>
 
-You will find all projects in the `laragon\www` directory.
+</br>You will find all projects in the `laragon\www` directory.
 
 ## Model
 In Laravel, you can create a new model & migration by running the following command:
@@ -237,9 +237,6 @@ Route::get('students/{id}', 'ApiController@getStudent');
 ```
 
 **Note:** All routes in `api.php` are prefix with `/api`.
-
-## Going Beyond CRUD
-
 ## Postman
 
 #### What is Postman?
