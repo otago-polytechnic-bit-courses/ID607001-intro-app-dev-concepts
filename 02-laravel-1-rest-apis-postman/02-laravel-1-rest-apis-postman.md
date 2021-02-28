@@ -22,7 +22,7 @@ Open Laragon on your **Desktop**. You will be presented with a window containing
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
-    <figcaption style="text-align:center;">Fig.3 - Naming Laravel application api.</figcaption>
+    <figcaption style="text-align:center;">Fig.3 - Naming the Laravel application api.</figcaption>
 </figure>
 
 </br>You will find all projects in the `laragon\www` directory.
