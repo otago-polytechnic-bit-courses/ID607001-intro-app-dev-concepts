@@ -4,13 +4,9 @@
 [Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1). You will focus on the 
+Open Laragon on your **Desktop**. You will be presented with a window containing five buttons at the bottom (Fig.1). 
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
-    <figcaption>Fig.1 - Laragon startup window.</figcaption>
-</figure>
-
+![Fig.1 - Laragon startup window.](../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG)
 
 Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
 
