@@ -1,9 +1,15 @@
 # Laravel 1 - REST APIs & Postman
 
+## Laragon
+[Laragon](https://laragon.org/) like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. You will use Laragon & [Laravel](https://laravel.com/) to build your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). 
+
+Download the lastest version of Laragon [here](https://laragon.org/download/).
+
 ## Creating a Laravel Project
 
+
 ## Model
-In [Laravel](https://laravel.com/), you can create a new model & migration by running the following command:
+In Laravel, you can create a new model & migration by running the following command:
 
 ```php
 // Windows
@@ -65,7 +71,7 @@ $ php artisan migrate
 ```
 
 ## Controller
-You can create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a new controller, you must understand what it is.
+You can create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your API. However, before you create a new controller, you must understand what it is.
 
 #### What is a controller?
 A [Controller
@@ -145,8 +151,8 @@ public function updateStudent(Request $request, $id) {
 - Instantiates a new `Request` in the `updateStudent()` parameter.
 - Retrieves the `id` in the `updateStudent()` parameter.
 - Checks if the `Student` to update exists:
-   - If `true`, finds the `Student` which matches the `id` & checks if any of its data `is_null()`. If `is_null()`, replaces & saves the request with its existing value. Otherwise, replaces & saves the request with the new value. Also, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
-   - If `false`, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
+   - If `true`, finds the `Student` which matches the `id` & checks if any of its data `is_null()`. If `is_null()`, replaces & saves the request with its existing value. Otherwise, replaces & saves the request with the new value. Also, returns a JSON `Response` containing a message which indicates the `Student` was updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
+   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
 
 ### Delete a Student
 ```php
@@ -164,8 +170,8 @@ public function deleteStudent($id) {
 #### What is this method doing?
 - Retrieves the `id` in the `deleteStudent()` parameter.
 - Checks if the `Student` to retrieve exists:
-   - If `true`, finds & deletes the `Student` which matches the `id`. Also, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
-   - If `false`, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
+   - If `true`, finds & deletes the `Student` which matches the `id`. Also, returns a JSON `Response` containing a message which indicates the `Student` was deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
+   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of 404. 
 
 ### Get All Students
 ```php
@@ -175,8 +181,8 @@ public function getAllStudents() {
 }
 ```
 #### What is this method doing?
-- Retrieves all `Students` & serializes its data into a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) format.
-- Returns a `Response` containing the retrieved `Students` & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200). 
+- Retrieves all `Students` & serializes its data into a JSON format.
+- Returns a `Response` containing the retrieved `Students` & a status response code of 200. 
 
 ### Get One Student
 
@@ -194,8 +200,8 @@ public function getStudent($id) {
 #### What is this method doing?
 - Retrieves the `id` in the `getStudent()` parameter.
 - Checks if the `Student` to retrieve exists:
-   - If `true`, retrieves the `Student` which matches the `id` & serialize its data into a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) format. Also, returns a `Response` containing the retrieved `Student` & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).
-   - If `false`, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
+   - If `true`, retrieves the `Student` which matches the `id` & serialize its data into a JSON format. Also, returns a `Response` containing the retrieved `Student` & a status response code of 200.
+   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of 404. 
    
 ## Routes
 
