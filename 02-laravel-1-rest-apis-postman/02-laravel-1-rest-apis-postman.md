@@ -7,15 +7,15 @@ Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https
 Open the **Laragon** application. You will be presented with a window containing five buttons at the bottom (Fig.1).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon Startup Window" />
-    <figcaption style="text-align:center;">Fig.1 - Laragon startup window.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon startup window" />
+    <figcaption>Fig.1 - Laragon startup window.</figcaption>
 </figure>
 
 </br>Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon Start All Window" />
-    <figcaption style="text-align:center;">Fig.2 - Starting Apache & MySQL.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon start all" />
+    <figcaption>Fig.2 - Starting Apache & MySQL.</figcaption>
 </figure>
 
 </br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
@@ -23,8 +23,8 @@ Open the **Laragon** application. You will be presented with a window containing
 **Note:** You can not create a new application until Apache & MySQL have been started.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon Create Application Window" />
-    <figcaption style="text-align:center;">Fig.3 - Naming the Laravel application api.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon create application window" />
+    <figcaption>Fig.3 - Naming the Laravel application api.</figcaption>
 </figure>
 
 </br>You will find all applications in the `laragon\www` directory.
@@ -274,5 +274,34 @@ php artisan serve
 
 #### What is Postman?
 
-#### How to test your API endpoints
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.JPG" width="750" height="500" alt="Postman startup window" />
+    <figcaption>Fig.4 - Postman startup window.</figcaption>
+</figure>
 
+
+#### How to test your API endpoints
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
+</figure>
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <figcaption>Fig.6 - Updating John's first name & email address.</figcaption>
+</figure>
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <figcaption>Fig.7 - Deleting Jane.</figcaption>
+</figure>
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <figcaption>Fig.8 - Getting all students.</figcaption>
+</figure>
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <figcaption>Fig.9 - Getting the student with the id 3.</figcaption>
+</figure>
