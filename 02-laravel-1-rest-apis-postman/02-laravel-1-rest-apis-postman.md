@@ -3,7 +3,7 @@
 ## Creating a Laravel Project
 
 ## Model
-In [Laravel](https://laravel.com/), we can create a new model & migration by running the following:
+In [Laravel](https://laravel.com/), you can create a new model & migration by running the following command:
 
 ```php
 // Windows
@@ -15,7 +15,7 @@ $ php artisan make:model Learner -m
 
 #### What is a model?
 
-Go to the `app` directory. A file called `Learner.php` has been created. In `Learner.php`, specify the database table you wish to interact with and its fields. For example:
+Go to the `app` directory. A file called `Learner.php` has been created. In `Learner.php`, specify the database table and its field you wish to interact with. For example:
 
 ```php
 class Student extends Model {
@@ -80,9 +80,9 @@ To create a new controller, run the following command:
 // macOS or Linux
 $ php artisan make:controller ApiController
 ```
-#### Where are the controllers located?
+#### Where are my controllers located?
 
-In the `app\Http\Controllers` directory, you will find `ApiController.php`. In `ApiController.php`, add the following methods:
+In the `app\Http\Controllers` directory, you will find all your controllers including `ApiController.php`. In `ApiController.php`, add the following methods:
 
 ```php
 class ApiController extends Controller {
@@ -117,7 +117,7 @@ public function createStudent(Request $request) {
 }
 ```
 
-#### What is this code snippet doing?
+#### What is this method doing?
 - Instantiates a new `Request` in the `createStudent()` parameter.
 - Instantiates a new `Student` in the `createStudent()` method block.
 - Fetches & saves the `Student`'s data from the request.
@@ -141,7 +141,7 @@ public function updateStudent(Request $request, $id) {
 }
 ```
 
-#### What is this code snippet doing?
+#### What is this method doing?
 - Instantiates a new `Request` in the `updateStudent()` parameter.
 - Retrieves the `id` in the `updateStudent()` parameter.
 - Checks if the `Student` to update exists:
@@ -150,7 +150,7 @@ public function updateStudent(Request $request, $id) {
 
 ### Delete a Student
 ```php
-public function deleteStudent ($id) {
+public function deleteStudent($id) {
     if(Student::where('id', $id)->exists()) {
         $student = Student::find($id);
         $student->delete();
@@ -161,7 +161,11 @@ public function deleteStudent ($id) {
 }
 ```
 
-#### What is this code snippet doing?
+#### What is this method doing?
+- Retrieves the `id` in the `deleteStudent()` parameter.
+- Checks if the `Student` to retrieve exists:
+   - If `true`, finds & deletes the `Student` which matches the `id`. Also, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
+   - If `false`, returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
 
 ### Get All Students
 ```php
@@ -170,7 +174,7 @@ public function getAllStudents() {
     return response($students, 200);
 }
 ```
-#### What is this code snippet doing?
+#### What is this method doing?
 - Retrieves all `Students` & serializes its data into a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) format.
 - Returns a `Response` containing the retrieved `Students` & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200). 
 
@@ -187,7 +191,7 @@ public function getStudent($id) {
 }
 ```
 
-#### What is this code snippet doing?
+#### What is this method doing?
 - Retrieves the `id` in the `getStudent()` parameter.
 - Checks if the `Student` to retrieve exists:
    - If `true`, retrieves the `Student` which matches the `id` & serialize its data into a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) format. Also, returns a `Response` containing the retrieved `Student` & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).
@@ -208,6 +212,8 @@ Route::get('students/{id}', 'ApiController@getStudent');
 ```
 
 **Note:** All routes in `api.php` are prefix with `/api`.
+
+## Going Beyond CRUD
 
 ## Postman
 
