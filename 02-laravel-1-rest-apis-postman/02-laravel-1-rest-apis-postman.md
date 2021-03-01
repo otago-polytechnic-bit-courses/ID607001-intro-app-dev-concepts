@@ -295,14 +295,14 @@ To create a `Student`, change the HTTP method to `POST`, enter the URL - `http//
     <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
 </figure>
 
-</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http//127.0.0.1:8000/api/students/1`, update the `Student` data & click the **Send** button.
+</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http//127.0.0.1:8000/api/students/1`, update the `Student` data & click the **Send** button (Fig.6).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Update a student" />
     <figcaption>Fig.6 - Updating John's first name & email address.</figcaption>
 </figure>
 
-</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http//127.0.0.1:8000/api/students/1` & click the **Send** button.
+</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http//127.0.0.1:8000/api/students/1` & click the **Send** button (Fig.7).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Delete a student" />
@@ -311,14 +311,14 @@ To create a `Student`, change the HTTP method to `POST`, enter the URL - `http//
 
 </br>Now you know how to create a `Student`, add two `Students`.
 
-To get all `Students`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students` & click the **Send** button.
+To get all `Students`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students` & click the **Send** button (Fig.8).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Get all students" />
     <figcaption>Fig.8 - Getting all students.</figcaption>
 </figure>
 
-</br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students/2` & click the **Send** button.
+</br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students/2` & click the **Send** button (Fig.9).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Get a student" />
