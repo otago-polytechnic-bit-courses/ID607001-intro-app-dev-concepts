@@ -31,8 +31,6 @@ Open the Laragon application. You will be presented with the following window (F
 
 ## Model
 
-## Write what a model is
-
 In Laravel, you can create a new model & migration by running the following command:
 
 ```php
