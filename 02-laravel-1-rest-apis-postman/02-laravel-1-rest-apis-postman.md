@@ -37,7 +37,7 @@ In Laravel, you can create a new model & migration by running the following comm
 php artisan make:model Student -m
 ```
 
-Go to the `app` directory. A file called `Student.php` has been created. In `Student.php`, specify the database table and its field you wish to interact with. For example:
+Go to the `app\Models` directory. A file called `Student.php` has been created. In `Student.php`, specify the database table and its field you wish to interact with. For example:
 
 ```php
 ...
