@@ -4,7 +4,7 @@
 Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
 
 ## Creating a Laravel Application
-Open the **Laragon** application. You will be presented with a window containing five buttons at the bottom (Fig.1).
+Open the Laragon application. You will be presented with the following window (Fig.1).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon startup window" />
@@ -102,11 +102,13 @@ If you make a change to any model, you must run a migration using the following 
 php artisan migrate
 ```
 
+## REST APIs
+What is a REST API? This [YouTube video](https://www.youtube.com/watch?v=SLwpqD8n3d0) by [Programming with Mosh](https://programmingwithmosh.com/) explains it in six minutes.
+
 ## Controller
 You will create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what it is.
 
-A [Controller
-](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
+A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
 
 To create a new controller, run the following command:
 
@@ -148,6 +150,8 @@ class ApiController extends Controller {
 }
 ```
 
+### Eloquent
+[Eloquent](https://laravel.com/docs/8.x/eloquent)
 
 ### Create a Student
 
@@ -260,12 +264,11 @@ Route::group(['prefix' => 'students'], function() {
     Route::get('/', 'ApiController@getAllStudents');
     Route::get('/{id}', 'ApiController@getStudent');
 });
-
 ```
 
-In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
-
 **Note:** All routes in `api.php` are prefix with `/api`.
+
+In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
 
 ## Run Development Server
 You can run the development server by running the following command:
@@ -274,37 +277,38 @@ php artisan serve
 ```
 
 ## Postman
+[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. If you do not have Postman installed, you can download it [here](https://www.postman.com/downloads/).
 
-#### What is Postman?
+Open the Postman application. You will be presented with the following window (Fig.4).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.JPG" width="750" height="500" alt="Postman startup window" />
     <figcaption>Fig.4 - Postman startup window.</figcaption>
 </figure>
 
+### Test your API Endpoints
 
-#### How to test your API endpoints
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.JPG" width="750" height="500" alt="Create a student" />
     <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
 </figure>
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Update a student" />
     <figcaption>Fig.6 - Updating John's first name & email address.</figcaption>
 </figure>
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Delete a student" />
     <figcaption>Fig.7 - Deleting Jane.</figcaption>
 </figure>
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Get all students" />
     <figcaption>Fig.8 - Getting all students.</figcaption>
 </figure>
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Laragon Startup Window" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Get a student" />
     <figcaption>Fig.9 - Getting the student with the id 3.</figcaption>
 </figure>
