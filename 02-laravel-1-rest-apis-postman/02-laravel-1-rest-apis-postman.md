@@ -151,7 +151,7 @@ class ApiController extends Controller {
 ```
 
 ### Eloquent
-[Eloquent](https://laravel.com/docs/8.x/eloquent)
+[Eloquent](https://laravel.com/docs/8.x/eloquent) is an ORM that allows you to convert data between incompatible type systems using an OO programming language. 
 
 ### Create a Student
 
@@ -288,25 +288,39 @@ Open the Postman application. You will be presented with the following window (F
 
 ### Test your API Endpoints
 
+Click on the **+ (plus)** button to create a new request.
+
+To create a `Student`, change the HTTP method to `POST`, enter the URL - `http//127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.5).
+
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.JPG" width="750" height="500" alt="Create a student" />
     <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
 </figure>
+
+</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http//127.0.0.1:8000/api/students/1`, update the `Student` data & click the **Send** button.
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Update a student" />
     <figcaption>Fig.6 - Updating John's first name & email address.</figcaption>
 </figure>
 
+</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http//127.0.0.1:8000/api/students/1` & click the **Send** button.
+
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Delete a student" />
     <figcaption>Fig.7 - Deleting Jane.</figcaption>
 </figure>
 
+</br>Now you know how to create a `Student`, add two `Students`.
+
+To get all `Students`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students` & click the **Send** button.
+
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Get all students" />
     <figcaption>Fig.8 - Getting all students.</figcaption>
 </figure>
+
+</br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http//127.0.0.1:8000/api/students/2` & click the **Send** button.
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Get a student" />
