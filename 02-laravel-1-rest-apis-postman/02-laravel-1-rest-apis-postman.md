@@ -82,7 +82,7 @@ public function up() {
 ```
 
 ## Connecting to MySQL
-In `.env` file, modify your database credentials so which your project connects to MySQL locally. You will look at how to connect to a cloud database at a later date.
+In the `.env` file, modify your database credentials so your project connects to MySQL locally. You will look at how to connect to a cloud database at a later date.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -104,9 +104,9 @@ php artisan migrate
 What is a REST API? This [YouTube video](https://www.youtube.com/watch?v=SLwpqD8n3d0) by [Programming with Mosh](https://programmingwithmosh.com/) explains it in six minutes.
 
 ## Controller
-You will create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what it is.
+You will create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what a controller is.
 
-A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieve the necessary model data & return the appropriate response.
+A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary model data & return the appropriate response.
 
 To create a new controller, run the following command:
 
@@ -167,10 +167,10 @@ public function createStudent(Request $request) {
 ...
 ```
 
-- Instantiates a new `Request` in the `createStudent()` parameter.
-- Instantiates a new `Student` in the `createStudent()` method block.
-- Fetches & saves the `Student`'s data from the request.
-- Returns a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` was created & a status response code of [201](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201). 
+- Instantiate a new `Request` in the `createStudent()` parameter.
+- Instantiate a new `Student` in the `createStudent()` method block.
+- Fetch & save the `Student`'s data from the request.
+- Return a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` has been created & a status response code of [201](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201). 
 
 ### Update a Student
 
@@ -192,11 +192,11 @@ public function updateStudent(Request $request, $id) {
 ...
 ```
 
-- Instantiates a new `Request` in the `updateStudent()` parameter.
-- Retrieves the `id` in the `updateStudent()` parameter.
-- Checks if the `Student` to update exists:
-   - If `true`, finds the `Student` which matches the `id` & checks if any of its data `is_null()`. If `is_null()`, replaces & saves the request with its existing value. Otherwise, replaces & saves the request with the new value. Also, returns a JSON `Response` containing a message which indicates the `Student` was updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
-   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
+- Instantiate a new `Request` in the `updateStudent()` parameter.
+- Retrieve the `id` in the `updateStudent()` parameter.
+- Check if the `Student` to update exists:
+   - If `true`, find the `Student` which matches the `id` & check if any of its data `is_null()`. If `is_null()`, replace & save the request with its existing value. Otherwise, replace & save the request with the new value. Also, return a JSON `Response` containing a message which indicates the `Student` has been updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
+   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
 
 ### Delete a Student
 ```php
@@ -213,10 +213,10 @@ public function deleteStudent($id) {
 ...
 ```
 
-- Retrieves the `id` in the `deleteStudent()` parameter.
-- Checks if the `Student` to retrieve exists:
-   - If `true`, finds & deletes the `Student` which matches the `id`. Also, returns a JSON `Response` containing a message which indicates the `Student` was deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
-   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of 404. 
+- Retrieve the `id` in the `deleteStudent()` parameter.
+- Check if the `Student` to retrieve exists:
+   - If `true`, find & delete the `Student` which matches the `id`. Also, return a JSON `Response` containing a message which indicates the `Student` has been deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
+   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of 404. 
 
 ### Get All Students
 ```php
@@ -228,8 +228,8 @@ public function getAllStudents() {
 ...
 ```
 
-- Retrieves all `Students` & serializes its data into a JSON format.
-- Returns a `Response` containing the retrieved `Students` & a status response code of 200. 
+- Retrieve all `Students` & serializes its data into a JSON format.
+- Return a `Response` containing the retrieved `Students` & a status response code of 200. 
 
 ### Get One Student
 
@@ -245,10 +245,10 @@ public function getStudent($id) {
 }
 ```
 
-- Retrieves the `id` in the `getStudent()` parameter.
-- Checks if the `Student` to retrieve exists:
-   - If `true`, retrieves the `Student` which matches the `id` & serialize its data into a JSON format. Also, returns a `Response` containing the retrieved `Student` & a status response code of 200.
-   - If `false`, returns a JSON `Response` containing a message which indicates the `Student` was not found & a status response code of 404. 
+- Retrieve the `id` in the `getStudent()` parameter.
+- Check if the `Student` to retrieve exists:
+   - If `true`, retrieve the `Student` which matches the `id` & serialize its data into a JSON format. Also, return a `Response` containing the retrieved `Student` & a status response code of 200.
+   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of 404. 
    
 ## Routes
 
