@@ -339,4 +339,8 @@ Before you start, make sure you have created an database called **api**.
 5. Create a method which seeds the `cars` table with `database/data/cars-data.json`.
 6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it also queries for `Cars` that were manufactured before 1980. **Note:** you will need to use a query parameter.
 
+**Resources:**
+- https://laravel.com/docs/8.x/seeding
+- https://www.youtube.com/watch?v=TuPdEbEBvo0
+
 <hr />
