@@ -330,11 +330,13 @@ To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://
 ### Activity ✏️
 In this activity, you will extend the **api** project provided to you in this directory. 
 
+Before you start, make sure you have created an database called **api**. 
+
 1. Create a new model called `Car`. Make sure you use the command which also creates a migration file. Refer to the command in the **Model** section if you can not remember.
 2. In the **Car** migration file, add three columns for the name of the `Car` (string), year the `Car` was manufactured (integer) & price of the `Car` (double).
 3. In `app\Http\Controllers\ApiController.php`, create the appropriate CRUD methods for creating, updating, deleting & getting. 
 4. In `routes\api.php`, create the appropriate routes which map to the CRUD methods in `ApiController.php`.
-5. Create a method which seeds the `cars` table with `cars-data.json`.
+5. Create a method which seeds the `cars` table with `database/data/cars-data.json`.
 6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it also queries for `Cars` that were manufactured before 1980. **Note:** you will need to use a query parameter.
 
 <hr />
