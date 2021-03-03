@@ -275,13 +275,18 @@ php artisan serve
 ```
 
 ## Postman
-[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. If you do not have Postman installed, you can download it [here](https://www.postman.com/downloads/).
+[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. If you do not have Postman installed, you can download it [here](https://www.postman.com/downloads/). **Note:** the images below are from the online client.
 
-Open the Postman application. You will be presented with the following window (Fig.4).
+Navigate to https://web.postman.co/workspace/create. You may prompted to sign in. To create a new workspace, click the **New workspace** button (Fig.4).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.JPG" width="750" height="500" alt="Postman startup window" />
-    <figcaption>Fig.4 - Postman startup window.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" alt="Postman workspaces" />
+    <figcaption>Fig.4 - Postman workspaces.</figcaption>
+</figure>
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="700" height="400" alt="Postman workspaces" />
+    <figcaption>Fig.4 - Postman workspaces.</figcaption>
 </figure>
 
 ### Test your API Endpoints
@@ -291,7 +296,7 @@ Click on the **+ (plus)** button to create a new request.
 To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.5).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.JPG" width="750" height="500" alt="Create a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="750" height="500" alt="Create a student" />
     <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
 </figure>
 
