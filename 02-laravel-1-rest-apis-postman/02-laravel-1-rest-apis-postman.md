@@ -275,59 +275,59 @@ php artisan serve
 ```
 
 ## Postman
-[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. If you do not have Postman installed, you can download it [here](https://www.postman.com/downloads/). **Note:** the images below are from the online client.
+[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. 
 
-Navigate to https://web.postman.co/workspace/create. You may prompted to sign in. To create a new workspace, click the **New workspace** button (Fig.4).
-
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" alt="Postman workspaces" />
-    <figcaption>Fig.4 - Postman workspaces.</figcaption>
-</figure>
+Navigate to https://web.postman.co/workspace/create. You may prompted to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button (Fig.4). This will create a new workspace for you to test your **API** endpoints.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="700" height="400" alt="Postman workspaces" />
-    <figcaption>Fig.4 - Postman workspaces.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" alt="Create a Postman workspace" />
+    <figcaption>Fig.4 - Creating a new Postman workspace.</figcaption>
 </figure>
 
 ### Test your API Endpoints
 
-Click on the **+ (plus)** button to create a new request.
-
-To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.5).
+Click on the **+ (plus)** button next to the **Overview** tab to create a new request (Fig.5).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="750" height="500" alt="Create a student" />
-    <figcaption>Fig.5 - Creating a new student named John Doe.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="700" height="400" alt="Create a Postman request" />
+    <figcaption>Fig.5 - Creating a new Postman request.</figcaption>
 </figure>
 
-</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, update the `Student` data & click the **Send** button (Fig.6).
+To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.JPG" width="750" height="500" alt="Update a student" />
-    <figcaption>Fig.6 - Updating John's first name & email address.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="700" height="400" alt="Create a student" />
+    <figcaption>Fig.6 - Creating a new student named John Doe.</figcaption>
 </figure>
 
-</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button (Fig.7).
+</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, change to the **Params** tab, update the `Student` data & click the **Send** button (Fig.7).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.JPG" width="750" height="500" alt="Delete a student" />
-    <figcaption>Fig.7 - Deleting Jane.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="750" height="500" alt="Update a student" />
+    <figcaption>Fig.7 - Updating John's first name & institution.</figcaption>
 </figure>
 
-</br>Now you know how to create a `Student`, add two `Students`.
-
-To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button (Fig.8).
+</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button (Fig.8).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.JPG" width="750" height="500" alt="Get all students" />
-    <figcaption>Fig.8 - Getting all students.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="750" height="500" alt="Delete a student" />
+    <figcaption>Fig.8 - Deleting Jane.</figcaption>
+</figure>
+
+</br>Now you know how to create a `Student`, add two new `Students`.
+
+To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button (Fig.9).
+
+<figure>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="750" height="500" alt="Get all students" />
+    <figcaption>Fig.9 - Getting all students.</figcaption>
 </figure>
 
 </br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button (Fig.9).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.JPG" width="750" height="500" alt="Get a student" />
-    <figcaption>Fig.9 - Getting the student with the id 3.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.JPG" width="750" height="500" alt="Get a student" />
+    <figcaption>Fig.9 - Getting the student with the id 2.</figcaption>
 </figure>
 
 <hr />
