@@ -293,7 +293,7 @@ Click on the **+ (plus)** button next to the **Overview** tab to create a new re
     <figcaption>Fig.5 - Creating a new Postman request.</figcaption>
 </figure>
 
-To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
+</br>To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" alt="Create a student" />
