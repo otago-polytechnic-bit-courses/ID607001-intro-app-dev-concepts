@@ -326,7 +326,7 @@ To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://
 </br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button (Fig.9).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.JPG" width="800" height="500" alt="Get a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" alt="Get a student" />
     <figcaption>Fig.9 - Getting the student with the id 2.</figcaption>
 </figure>
 
