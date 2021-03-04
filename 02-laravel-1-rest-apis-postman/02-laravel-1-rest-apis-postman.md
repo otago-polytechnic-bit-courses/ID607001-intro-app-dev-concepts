@@ -277,7 +277,7 @@ php artisan serve
 ## Postman
 [Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. 
 
-Navigate to https://web.postman.co/workspace/create. You may prompted to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button (Fig.4). This will create a new workspace for you to test your **API** endpoints.
+Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button (Fig.4). This will create a new workspace for you to test your **API** endpoints.
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" alt="Create a Postman workspace" />
