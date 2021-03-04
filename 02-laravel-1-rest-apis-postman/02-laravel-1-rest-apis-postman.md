@@ -289,28 +289,28 @@ Navigate to https://web.postman.co/workspace/create. You may prompted to sign in
 Click on the **+ (plus)** button next to the **Overview** tab to create a new request (Fig.5).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="700" height="400" alt="Create a Postman request" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="800" height="500" alt="Create a Postman request" />
     <figcaption>Fig.5 - Creating a new Postman request.</figcaption>
 </figure>
 
 To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="700" height="400" alt="Create a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" alt="Create a student" />
     <figcaption>Fig.6 - Creating a new student named John Doe.</figcaption>
 </figure>
 
 </br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, change to the **Params** tab, update the `Student` data & click the **Send** button (Fig.7).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="750" height="500" alt="Update a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="800" height="500" alt="Update a student" />
     <figcaption>Fig.7 - Updating John's first name & institution.</figcaption>
 </figure>
 
 </br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button (Fig.8).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="750" height="500" alt="Delete a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="800" height="500" alt="Delete a student" />
     <figcaption>Fig.8 - Deleting Jane.</figcaption>
 </figure>
 
@@ -319,14 +319,14 @@ To create a `Student`, change the HTTP method to `POST`, enter the URL - `http:/
 To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button (Fig.9).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="750" height="500" alt="Get all students" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="800" height="500" alt="Get all students" />
     <figcaption>Fig.9 - Getting all students.</figcaption>
 </figure>
 
 </br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button (Fig.9).
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.JPG" width="750" height="500" alt="Get a student" />
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.JPG" width="800" height="500" alt="Get a student" />
     <figcaption>Fig.9 - Getting the student with the id 2.</figcaption>
 </figure>
 
