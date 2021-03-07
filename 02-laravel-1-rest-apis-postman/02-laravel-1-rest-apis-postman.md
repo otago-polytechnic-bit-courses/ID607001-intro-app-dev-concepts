@@ -192,16 +192,18 @@ VALUES (?, ?, ?, ?);
 ```php
 ...
 public function updateStudent(Request $request, $id) {
-    if (Student::where('id', $id)->exists()) {
-        $student = Student::find($id);
+    $students = Student::query();
+    if ($students->where('id', $id)->exists()) {
+        $student = $students->find($id);
         $student->first_name = is_null($request->first_name) ? $student->first_name : $request->first_name;
         $student->last_name = is_null($request->last_name) ? $student->last_name : $request->last_name;
         $student->phone_number = is_null($request->phone_number) ? $student->phone_number : $request->phone_number;
         $student->email_address = is_null($request->email_address) ? $student->email_address : $request->email_address;
+        $student->institution = is_null($request->institution) ? $student->institution : $request->institution;
         $student->save();
-        return response()->json(["message" => "Student updated."], 200);
+        return response()->json(['message' => 'Student updated.'], 200);
     } else {
-        return response()->json(["message" => "Student not found."], 404);    
+        return response()->json(['message' => 'Student not found.'], 404);
     }
 }
 ...
@@ -224,12 +226,13 @@ WHERE id=?;
 ```php
 ...
 public function deleteStudent($id) {
-    if(Student::where('id', $id)->exists()) {
-        $student = Student::find($id);
+    $students = Student::query();
+    if ($students->where('id', $id)->exists()) {
+        $student = $students->find($id);
         $student->delete();
-        return response()->json(["message" => "Student deleted."], 202);
+        return response()->json(['message' => 'Student deleted.'], 202);
     } else {
-        return response()->json(["message" => "Student not found."], 404);
+        return response()->json(['message' => 'Student not found.'], 404);
     }
 }
 ...
@@ -250,8 +253,8 @@ WHERE id=?;
 ```php
 ...
 public function getAllStudents() {
-    $students = Student::get()->toJson(JSON_PRETTY_PRINT);
-    return response($students, 200);
+    $students = Student::query();
+    return response($students->get(), 200);
 }
 ...
 ```
@@ -262,7 +265,7 @@ SELECT first_name, last_name, phone_number, email_address
 FROM students;
 ```
 
-- Retrieve all `Students` & serializes its data into a **JSON** format.
+- Retrieve all `Students` & serializes its data into **JSON** format.
 - Return a `Response` containing the retrieved `Students` & a status response code of **200**. 
 
 ### Get One Student
@@ -270,11 +273,12 @@ FROM students;
 ```php
 ...
 public function getStudent($id) {
-    if (Student::where('id', $id)->exists()) {
-        $student = Student::where('id', $id)->get()->toJson(JSON_PRETTY_PRINT);
+    $students = Student::query();
+    if ($students->where('id', $id)->exists()) {
+        $student = $students->where('id', $id)->get();
         return response($student, 200);
     } else {
-        return response()->json(["message" => "Student not found."], 404);
+        return response()->json(['message' => 'Student not found.'], 404);
     }
 }
 ```
@@ -288,7 +292,7 @@ WHERE id=?;
 
 - Retrieve the `id` in the `getStudent()` parameter.
 - Check if the `Student` to retrieve exists:
-   - If `true`, retrieve the `Student` which matches the `id` & serialize its data into a **JSON** format. Also, return a `Response` containing the retrieved `Student` & a status response code of **200**.
+   - If `true`, retrieve the `Student` which matches the `id` & serialize its data into **JSON** format. Also, return a `Response` containing the retrieved `Student` & a status response code of **200**.
    - If `false`, return a **JSON** `Response` containing a message which indicates the `Student` has not been found & a status response code of **404**. 
    
 ## Routing
@@ -362,7 +366,7 @@ In `ApiController.php`, update the `getAllStudents()` method as follows:
 public function getAllStudents(Request $request) {
     $students = Student::query();
     if ($request->get('first_name')) {
-        $students->where('first_name', '=', $request->get('first_name')->get());
+        $students->where('first_name', '=', $request->get('first_name'))->get();
     }
     return $students->get();
 }
@@ -371,6 +375,8 @@ public function getAllStudents(Request $request) {
 
 ## Seeding
 In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order.
+
+In the `database` directory, create a new directory called `data`. Copy the `student-data.json` file into the `data` directory.
 
 To create a new **seeder**, execute the following command:
 
@@ -389,24 +395,18 @@ In the `run()` method, add the following:
 ...
 public function run() {
     $json_file = File::get('database/data/student-data.json');
-
-    if (file_exists($json_file)) {
-        $data = json_decode($json_file);
-        foreach ($data as $obj) {
-            Student::create(array(
-                'first_name' => $obj->first_name,
-                'last_name' => $obj->last_name,
-                'phone_number' => $obj->phone_number,
-                'email_address' => $obj->email_address
-            ));
-        } 
-    } else {
-        echo 'File does not exist.';
-    }
+    DB::table('students')->delete();
+    $data = json_decode($json_file);
+    foreach ($data as $obj) {
+        Student::create(array(
+            'first_name' => $obj->first_name,
+            'last_name' => $obj->last_name,
+            'phone_number' => $obj->phone_number,
+            'email_address' => $obj->email_address
+        ));
+    } 
 }
 ```
-
-Before you seed your 
 
 The `run()` method is called when `php artisan db:seed` command is executed.
 
