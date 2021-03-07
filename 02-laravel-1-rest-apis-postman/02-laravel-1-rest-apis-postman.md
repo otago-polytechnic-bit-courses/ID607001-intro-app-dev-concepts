@@ -1,41 +1,46 @@
 # Laravel 1 - REST APIs & Postman
 
 ## Laragon
-Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). Laragon makes building and maintaining applications simple. If you do not have Laragon installed, you can download it [here](https://laragon.org/download/).
+Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). **Laragon** makes building and maintaining applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/).
+
+**Disclaimer:** The following documentation is specific for **Windows**. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no **Largon** client for **macOS** or **Linux**.
 
 ## Creating a Laravel Application
-Open the Laragon application. You will be presented with the following window (Fig.1).
+Open the **Laragon** application. You will be presented with the following window.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" alt="Laragon startup window" />
-    <figcaption>Fig.1 - Laragon startup window.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" />
 </figure>
 
-</br>Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database (Fig.2).
+</br>Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" alt="Laragon start all" />
-    <figcaption>Fig.2 - Starting Apache & MySQL.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" />
 </figure>
 
-</br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button (Fig.3).
+</br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button.
 
-**Note:** You can not create a new application until Apache & MySQL have been started.
+**Note:** You can not create a new application until **Apache** & **MySQL** have been started.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" alt="Laragon create application window" />
-    <figcaption>Fig.3 - Naming the Laravel application api.</figcaption>
+    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" />
 </figure>
 
 </br>You will find all applications in the `laragon\www` directory.
 
+`cd` to the **api** project.
+
 ## Model
 
-In Laravel, you can create a new model & migration by running the following command:
+A **Model** class represents the logical structure & relationship of a database table. In **Laravel**, each table corresponds to a [model](https://laravel.com/docs/8.x/eloquent#generating-model-classes). A **model** allows you to retrieve, create, update & delete data with your database table.
+
+To create a a new **model** & migration, execute the following command:
 
 ```php
 php artisan make:model Student -m
 ```
+
+The `-m` flag creates a migration. You will look at migrations later.
 
 Go to the `app\Models` directory. A file called `Student.php` has been created. In `Student.php`, specify the database table and its field you wish to interact with. For example:
 
@@ -51,7 +56,7 @@ class Student extends Model {
 ```
 
 ## Migrations
-In the `database/migrations` directory, you will see a new migration file (newest timestamp) which has created a database table, i.e., `students`. 
+In the `database\migrations` directory, you will see a new migration file (newest timestamp) which has created a database table, i.e., `students`. 
 
 ```php
 ...
@@ -82,7 +87,7 @@ public function up() {
 ```
 
 ## Connecting to MySQL
-In the `.env` file, modify your database credentials so your project connects to MySQL locally. You will look at how to connect to a cloud database at a later date.
+In the `.env` file, modify your database credentials so your project connects to **MySQL** locally. You will look at how to connect to a cloud database at a later date.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -94,29 +99,29 @@ DB_PASSWORD=
 
 **Note:** You **do not** need a password to use this database.
 
-If you make a change to any model, you must run a migration using the following command:
+If you make a change to any **model**, you must make a migration using the following command:
 
 ```php
 php artisan migrate
 ```
 
 ## REST APIs
-What is a REST API? This [YouTube video](https://www.youtube.com/watch?v=SLwpqD8n3d0) by [Programming with Mosh](https://programmingwithmosh.com/) explains it in six minutes.
+What is a **REST API**? This [YouTube video](https://www.youtube.com/watch?v=SLwpqD8n3d0) by [Programming with Mosh](https://programmingwithmosh.com/) explains it in six minutes.
 
 ## Controller
-You will create a controller which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what a controller is.
+You will create a **controller** which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what a controller is.
 
-A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary model data & return the appropriate response.
+A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary **model** data & return the appropriate response.
 
-To create a new controller, run the following command:
+To create a new **controller**, execute the following command:
 
 ```php
 php artisan make:controller ApiController
 ```
 
-In the `app\Http\Controllers` directory, you will find all your controllers including `ApiController.php`. 
+In the `app\Http\Controllers` directory, you will find all your **controllers** including `ApiController.php`. 
 
-In `ApiController.php`, add the following CRUD methods:
+In `ApiController.php`, add the following **CRUD** methods:
 
 ```php
 ...
@@ -137,7 +142,7 @@ class ApiController extends Controller {
     }
 }
 ```
-In order to use the `students` data table, you need to import the `Student` model. To do this, add the following line above the class declaration:
+In order to use the `students` data table, you need to import the `Student` **model**. To do this, add the following line above the class declaration:
 
 ```php
 ...
@@ -148,8 +153,12 @@ class ApiController extends Controller {
 }
 ```
 
+**Resource:** https://laravel.com/docs/8.x/controllers
+
 ### Eloquent
-[Eloquent](https://laravel.com/docs/8.x/eloquent) is an ORM that allows you to convert data between incompatible type systems using an OO programming language. 
+[Eloquent](https://laravel.com/docs/8.x/eloquent) is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data from a database using an **Object-Oriented** programming language.
+
+Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to us **SQL** anymore. You interact directly with an object in the same language you are using, i.e., **PHP**.
 
 ### Create a Student
 
@@ -165,6 +174,12 @@ public function createStudent(Request $request) {
     return response()->json(["message" => "Student created."], 201);
 }
 ...
+```
+
+```sql
+-- SQL equivalent:
+INSERT INTO students (first_name, last_name, phone_number, email_address) 
+VALUES (?, ?, ?, ?);
 ```
 
 - Instantiate a new `Request` in the `createStudent()` parameter.
@@ -192,11 +207,18 @@ public function updateStudent(Request $request, $id) {
 ...
 ```
 
+```sql
+-- SQL equivalent:
+UPDATE students
+SET first_name=?, SET last_name=?, SET phone_number=?, SET email_address=?
+WHERE id=?;
+```
+
 - Instantiate a new `Request` in the `updateStudent()` parameter.
 - Retrieve the `id` in the `updateStudent()` parameter.
 - Check if the `Student` to update exists:
-   - If `true`, find the `Student` which matches the `id` & check if any of its data `is_null()`. If `is_null()`, replace & save the request with its existing value. Otherwise, replace & save the request with the new value. Also, return a JSON `Response` containing a message which indicates the `Student` has been updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
-   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
+   - If `true`, find the `Student` which matches the `id` & check if any of its data `is_null()`. If `is_null()`, replace & save the request with its existing value. Otherwise, replace & save the request with the new value. Also, return a **JSON** `Response` containing a message which indicates the `Student` has been updated & a status response code of [200](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/200).  
+   - If `false`, return a **JSON** `Response` containing a message which indicates the `Student` has not been found & a status response code of [404](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404). 
 
 ### Delete a Student
 ```php
@@ -213,10 +235,16 @@ public function deleteStudent($id) {
 ...
 ```
 
+```sql
+-- SQL equivalent:
+DELETE FROM students 
+WHERE id=?;
+```
+
 - Retrieve the `id` in the `deleteStudent()` parameter.
 - Check if the `Student` to retrieve exists:
-   - If `true`, find & delete the `Student` which matches the `id`. Also, return a JSON `Response` containing a message which indicates the `Student` has been deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
-   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of 404. 
+   - If `true`, find & delete the `Student` which matches the `id`. Also, return a **JSON** `Response` containing a message which indicates the `Student` has been deleted & a status response code of [202](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/202). 
+   - If `false`, return a **JSON** `Response` containing a message which indicates the `Student` has not been found & a status response code of **404**. 
 
 ### Get All Students
 ```php
@@ -228,8 +256,14 @@ public function getAllStudents() {
 ...
 ```
 
-- Retrieve all `Students` & serializes its data into a JSON format.
-- Return a `Response` containing the retrieved `Students` & a status response code of 200. 
+```sql
+-- SQL equivalent:
+SELECT first_name, last_name, phone_number, email_address 
+FROM students;
+```
+
+- Retrieve all `Students` & serializes its data into a **JSON** format.
+- Return a `Response` containing the retrieved `Students` & a status response code of **200**. 
 
 ### Get One Student
 
@@ -245,14 +279,21 @@ public function getStudent($id) {
 }
 ```
 
+```sql
+-- SQL equivalent:
+SELECT first_name, last_name, phone_number, email_address 
+FROM students 
+WHERE id=?;
+```
+
 - Retrieve the `id` in the `getStudent()` parameter.
 - Check if the `Student` to retrieve exists:
-   - If `true`, retrieve the `Student` which matches the `id` & serialize its data into a JSON format. Also, return a `Response` containing the retrieved `Student` & a status response code of 200.
-   - If `false`, return a JSON `Response` containing a message which indicates the `Student` has not been found & a status response code of 404. 
+   - If `true`, retrieve the `Student` which matches the `id` & serialize its data into a **JSON** format. Also, return a `Response` containing the retrieved `Student` & a status response code of **200**.
+   - If `false`, return a **JSON** `Response` containing a message which indicates the `Student` has not been found & a status response code of **404**. 
    
-## Routes
+## Routing
 
-In the `routes` directory, open the `api.php` file & create the following API endpoint:
+In the `routes` directory, open the `api.php` file & create the following **API** endpoint:
 
 ```php
 Route::group(['prefix' => 'students'], function() {
@@ -264,88 +305,133 @@ Route::group(['prefix' => 'students'], function() {
 });
 ```
 
-**Note:** All routes in `api.php` are prefix with `/api`.
+**Note:** All [routes](https://laravel.com/docs/8.x/routing) in `api.php` are prefix with `/api`.
 
-In the `app\Providers\RouteServiceProvider` directory, uncomment line 29. Please read the comments for more detail.
+In the `app\Providers\RouteServiceProvider.php`, uncomment **line 29**. Please read the comments for more detail.
 
 ## Run Development Server
-You can run the development server by running the following command:
+You can run the development server by executing the following command:
 ```php
 php artisan serve
 ```
 
 ## Postman
-[Postman](https://www.postman.com/) is an API development environment that allows you to design, mock & test your APIs. 
+[Postman](https://www.postman.com/) is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **online client**. Alternatively, you can download the **desktop client** [here](https://www.postman.com/downloads/). The interface is much the same on both **clients**.
 
-Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button (Fig.4). This will create a new workspace for you to test your **API** endpoints.
+Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button. This will create a new workspace for you to test your **API** endpoints.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" alt="Create a Postman workspace" />
-    <figcaption>Fig.4 - Creating a new Postman workspace.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" />
 
 ### Test your API Endpoints
 
-Click on the **+ (plus)** button next to the **Overview** tab to create a new request (Fig.5).
+Click on the **+ (plus)** button next to the **Overview** tab to create a new request.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="800" height="500" alt="Create a Postman request" />
-    <figcaption>Fig.5 - Creating a new Postman request.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="800" height="500" />
 
-</br>To create a `Student`, change the HTTP method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
+</br>To create a `Student`, change the **HTTP** method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" alt="Create a student" />
-    <figcaption>Fig.6 - Creating a new student named John Doe.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" />
 
-</br>To update a `Student`, change the HTTP method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, change to the **Params** tab, update the `Student` data & click the **Send** button (Fig.7).
+</br>To update a `Student`, change the **HTTP** method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, change to the **Params** tab, update the `Student` data & click the **Send** button.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="800" height="500" alt="Update a student" />
-    <figcaption>Fig.7 - Updating John's first name & institution.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="800" height="500" />
 
-</br>To update a `Student`, change the HTTP method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button (Fig.8).
+</br>To update a `Student`, change the **HTTP** method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="800" height="500" alt="Delete a student" />
-    <figcaption>Fig.8 - Deleting Jane.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="800" height="500" />
 
 </br>Now you know how to create a `Student`, add two new `Students`.
 
-To get all `Students`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button (Fig.9).
+To get all `Students`, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="800" height="500" alt="Get all students" />
-    <figcaption>Fig.9 - Getting all students.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="800" height="500" />
 
-</br>To get a `Student`, change the HTTP method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button (Fig.9).
+</br>To get a `Student`, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button.
 
-<figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" alt="Get a student" />
-    <figcaption>Fig.9 - Getting the student with the id 2.</figcaption>
-</figure>
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" />
 
-<hr />
+## Query Parameters
+A **query parameter** is an extension of a **URL** used to sort/filter resources. It is a **key/value** pair appended to the end of a **URL** separated by a **question mark (?)**.
 
-### Activity ✏️
+Also, you can have multiple query parameters by separating each query by an **ampersand (&)**. This forms what is known as a **query string**.
+
+In `ApiController.php`, update the `getAllStudents()` method as follows:
+
+```php
+...
+public function getAllStudents(Request $request) {
+    $students = Student::query();
+    if ($request->get('first_name')) {
+        $students->where('first_name', '=', $request->get('first_name')->get());
+    }
+    return $students->get();
+}
+...
+```
+
+## Seeding
+In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order.
+
+To create a new **seeder**, execute the following command:
+
+```php
+php artisan make:seeder StudentSeeder
+```
+
+In `StudentSeeder.php`, add the following imports:
+```php
+use App\Models\Student;
+```
+
+In the `run()` method, add the following:
+
+```php
+...
+public function run() {
+    $json_file = File::get('database/data/student-data.json');
+
+    if (file_exists($json_file)) {
+        $data = json_decode($json_file);
+        foreach ($data as $obj) {
+            Student::create(array(
+                'first_name' => $obj->first_name,
+                'last_name' => $obj->last_name,
+                'phone_number' => $obj->phone_number,
+                'email_address' => $obj->email_address
+            ));
+        } 
+    } else {
+        echo 'File does not exist.';
+    }
+}
+```
+
+Before you seed your 
+
+The `run()` method is called when `php artisan db:seed` command is executed.
+
+To run all **seeder** classes, execute the following command:
+
+```php
+php artisan db:seed
+```
+
+To run an individual **seeder** class, i.e., `StudentSeeder`, execute the following command:
+
+```php
+php artisan db:seed --class=StudentSeeder
+```
+
+### Testing Your API GET Endpoint
+
+## Activity ✏️
 In this activity, you will extend the **api** project provided to you in this directory. 
 
-Before you start, make sure you have created an database called **api**. 
+Before you start, make sure you have created a database called **api**. 
 
 1. Create a new model called `Car`. Make sure you use the command which also creates a migration file. Refer to the command in the **Model** section if you can not remember.
 2. In the **Car** migration file, add three columns for the name of the `Car` (string), year the `Car` was manufactured (integer) & price of the `Car` (double).
-3. In `app\Http\Controllers\ApiController.php`, create the appropriate CRUD methods for creating, updating, deleting & getting. 
-4. In `routes\api.php`, create the appropriate routes which map to the CRUD methods in `ApiController.php`.
-5. Create a method which seeds the `cars` table with `database\data\cars-data.json`.
-6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it also queries for `Cars` that were manufactured before 1980. **Note:** you will need to use a query parameter.
-
-**Resources:**
-- https://laravel.com/docs/8.x/seeding
-- https://www.youtube.com/watch?v=TuPdEbEBvo0
-
-<hr />
+3. In `app\Http\Controllers\ApiController.php`, create the appropriate **CRUD** methods for retrieving, creating, updating & deleting cars. 
+4. In `routes\api.php`, create the appropriate routes which map to the **CRUD** methods in `ApiController.php`.
+5. Create a `Seeder` class which seeds the `cars` table with `cars-data.json`. This file is provided to you in this directory.
+6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it also queries for `Cars` that were manufactured before 1980. **Note:** you will need to use a **query parameter**.
