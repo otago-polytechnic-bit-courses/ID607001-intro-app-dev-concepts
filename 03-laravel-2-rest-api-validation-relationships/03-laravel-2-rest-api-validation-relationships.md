@@ -20,7 +20,7 @@ public function createStudent(Request $request) {
     }
 }
 ...
-``
+```
 
 ## Relationships
 
