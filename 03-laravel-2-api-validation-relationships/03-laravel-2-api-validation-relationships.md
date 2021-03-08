@@ -26,9 +26,7 @@ public function createStudent(Request $request) {
 ...
 ```
 
-The `make()` method accepts two arguments - the data under validation & an array of validation rules that are applied to the data.
-
-If a validation rule fails, return a **JSON** `Response` containing a message which indicates that a rule has failed & a status response code of [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403).
+The `make()` method accepts two arguments - the data under validation & an array of validation rules that are applied to the data. If a validation rule fails, return a **JSON** `Response` containing a message which indicates that a rule has failed & a status response code of [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403).
 
 ### Test Your API Validation
 
