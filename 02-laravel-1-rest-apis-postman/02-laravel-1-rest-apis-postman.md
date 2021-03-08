@@ -431,6 +431,10 @@ php artisan db:seed --class=StudentSeeder
 
 ### Testing Your API GET Endpoint
 
+Go back to **Postman**. To get all `Students` with the first name, for example, Keisha, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students?first_name=Keisha` & click the **Send** button.
+
+<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-8.png" width="800" height="500" />
+
 ## Activity ✏️
 In this activity, you will extend the **api** project provided to you in this directory. 
 
