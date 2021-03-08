@@ -1,9 +1,7 @@
 # Laravel 1 - REST APIs & Postman
 
 ## Laragon
-Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). **Laragon** makes building and maintaining applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/).
-
-**Disclaimer:** The following documentation is specific for **Windows**. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no **Largon** client for **macOS** or **Linux**.
+Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). **Laragon** makes building and maintaining applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/). **Note:** The following documentation is specific for **Windows**. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no **Largon** client for **macOS** or **Linux**.
 
 ## Creating a Laravel Application
 Open the **Laragon** application. You will be presented with the following window.
@@ -155,9 +153,7 @@ class ApiController extends Controller {
 ```
 
 ### Eloquent
-[Eloquent](https://laravel.com/docs/8.x/eloquent) is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language.
-
-Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
+[Eloquent](https://laravel.com/docs/8.x/eloquent) is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language. Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
 
 ### Create a Student
 
@@ -369,9 +365,7 @@ WHERE first_name=?;
 ```
 
 ## Seeding
-In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database tables with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order.
-
-In the `database` directory, create a new directory called `data`. Copy `student-data.json` into the `data` directory.
+In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database tables with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order. In the `database` directory, create a new directory called `data`. Copy `student-data.json` into the `data` directory.
 
 To create a new **seeder**, execute the following command:
 
