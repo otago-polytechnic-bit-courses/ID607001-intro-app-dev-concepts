@@ -165,12 +165,7 @@ Each **web framework** has one or more **ORMs** which encapsulate the code neede
 ```php
 ...
 public function createStudent(Request $request) {
-    $student = new Student;
-    $student->first_name = $request->first_name;
-    $student->last_name = $request->last_name;
-    $student->phone_number = $request->phone_number;
-    $student->email_address = $request->email_address;
-    $student->save();
+    Student::create($request->all());
     return response()->json(["message" => "Student created."], 201);
 }
 ...
