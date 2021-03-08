@@ -199,7 +199,6 @@ public function updateStudent(Request $request, $id) {
         $student->last_name = is_null($request->last_name) ? $student->last_name : $request->last_name;
         $student->phone_number = is_null($request->phone_number) ? $student->phone_number : $request->phone_number;
         $student->email_address = is_null($request->email_address) ? $student->email_address : $request->email_address;
-        $student->institution = is_null($request->institution) ? $student->institution : $request->institution;
         $student->save();
         return response()->json(['message' => 'Student updated.'], 200);
     } else {
