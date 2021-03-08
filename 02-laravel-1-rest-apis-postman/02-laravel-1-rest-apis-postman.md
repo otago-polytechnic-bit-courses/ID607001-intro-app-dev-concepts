@@ -34,7 +34,7 @@ Open the **Laragon** application. You will be presented with the following windo
 
 A **Model** class represents the logical structure & relationship of a database table. In **Laravel**, each table corresponds to a [model](https://laravel.com/docs/8.x/eloquent#generating-model-classes). A **model** allows you to retrieve, create, update & delete data.
 
-To create a a new **model** & migration, execute the following command:
+To create a new **model** & migration, execute the following command:
 
 ```php
 php artisan make:model Student -m
@@ -97,7 +97,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Note:** You **do not** need a password to use this database. Leave this field empty.
+**Note:** You **do not** need a password to use this database. 
 
 If you make a change to any **model**, you must make a migration using the following command:
 
@@ -109,9 +109,9 @@ php artisan migrate
 What is a **REST API**? This [YouTube video](https://www.youtube.com/watch?v=SLwpqD8n3d0) by [Programming with Mosh](https://programmingwithmosh.com/) explains it in six minutes.
 
 ## Controller
-You will create a **controller** which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what a controller is.
+You will create a **controller** which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a **controller**, you must have a general understanding on what a **controller** is.
 
-A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary **model** data & return the appropriate response. 
+A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data & return the appropriate responses. 
 
 To create a new **controller**, execute the following command:
 
@@ -143,7 +143,7 @@ class ApiController extends Controller {
 }
 ```
 
-In order to use the `students` data table, you need to import the `Student` **model**. To do this, add the following line above the class declaration:
+In order to use the `students` table, you need to import the `Student` **model**. To do this, add the following line above the class declaration:
 
 ```php
 ...
@@ -289,7 +289,7 @@ WHERE id=?;
    
 ## Routing
 
-In the `routes` directory, open the `api.php` file & create the following **API** endpoint:
+In the `routes` directory, open the `api.php` file & create the following **API** endpoints:
 
 ```php
 Route::group(['prefix' => 'students'], function() {
@@ -303,8 +303,6 @@ Route::group(['prefix' => 'students'], function() {
 
 **Note:** All [routes](https://laravel.com/docs/8.x/routing) in `api.php` are prefix with `/api`.
 
-In the `app\Providers\RouteServiceProvider.php`, uncomment **line 29**. Please read the comments for more detail.
-
 ## Run Development Server
 You can run the development server by executing the following command:
 ```php
@@ -314,7 +312,7 @@ php artisan serve
 ## Postman
 [Postman](https://www.postman.com/) is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **online client**. Alternatively, you can download the **desktop client** [here](https://www.postman.com/downloads/). The interface is much the same on both **clients**.
 
-Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**. Click on the **Create Workplace** button. This will create a new workspace for you to test your **API** endpoints.
+Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**, then click on the **Create Workplace** button. This will create a new workspace for you to test your **API** endpoints.
 
 <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" />
 
@@ -347,9 +345,7 @@ To get all `Students`, change the **HTTP** method to `GET`, enter the URL - `htt
 <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" />
 
 ## Query Parameters
-A **query parameter** is an extension of a **URL** used to sort/filter resources. It is a **key/value** pair appended to the end of a **URL** separated by a **question mark (?)**.
-
-Also, you can have multiple query parameters by separating each query by an **ampersand (&)**. This forms what is known as a **query string**.
+A **query parameter** is an extension of a **URL** used to sort/filter data. It is a **key/value** pair appended to the end of a **URL** separated by a **question mark (?)**. Also, you can have multiple query parameters by separating each query by an **ampersand (&)**. This forms what is known as a **query string**.
 
 In `ApiController.php`, update the `getAllStudents()` method as follows:
 
@@ -368,7 +364,7 @@ public function getAllStudents(Request $request) {
 ## Seeding
 In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database tables with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order.
 
-In the `database` directory, create a new directory called `data`. Copy the `student-data.json` file into the `data` directory.
+In the `database` directory, create a new directory called `data`. Copy `student-data.json` into the `data` directory.
 
 To create a new **seeder**, execute the following command:
 
@@ -401,7 +397,7 @@ public function run() {
     } 
 }
 ```
-The `run()` method is called when `php artisan db:seed` command is executed.
+The `run()` method is called when the `php artisan db:seed` command is executed.
 
 ### Seeding Your Students Table
 
