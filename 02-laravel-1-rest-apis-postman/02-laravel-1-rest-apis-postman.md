@@ -1,7 +1,9 @@
 # Laravel 1 - REST APIs & Postman
 
 ## Laragon
-Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). **Laragon** makes building and maintaining applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/). **Note:** The following documentation is specific for **Windows**. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no **Largon** client for **macOS** or **Linux**.
+Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https://www.apachefriends.org/index.html), [Laragon](https://laragon.org/) is a development environment for [PHP](https://www.php.net/). **Laragon** makes building and maintaining applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/). 
+
+**Note:** The following documentation is specific for **Windows**. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no **Largon** client for **macOS** or **Linux**.
 
 ## Creating a Laravel Application
 Open the **Laragon** application. You will be presented with the following window.
