@@ -403,12 +403,11 @@ public function run() {
     } 
 }
 ```
+The `run()` method is called when `php artisan db:seed` command is executed.
 
 ### Seeding Your Students Table
 
-The `run()` method is called when `php artisan db:seed` command is executed.
-
-In `DatabaseSeeder.php`, add the following to the `run()` method:
+In `DatabaseSeeder.php`, add the following in the `run()` method:
 
 ```php
 $this->call(StudentSeeder::class);
