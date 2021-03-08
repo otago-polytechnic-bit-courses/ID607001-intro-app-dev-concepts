@@ -404,6 +404,8 @@ public function run() {
 }
 ```
 
+### Seeding Your Students Table
+
 The `run()` method is called when `php artisan db:seed` command is executed.
 
 In `DatabaseSeeder.php`, add the following to the `run()` method:
