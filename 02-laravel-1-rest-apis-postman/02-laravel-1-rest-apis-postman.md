@@ -387,6 +387,8 @@ php artisan make:seeder StudentSeeder
 In `StudentSeeder.php`, add the following imports:
 ```php
 use App\Models\Student;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 ```
 
 In the `run()` method, add the following:
@@ -409,6 +411,12 @@ public function run() {
 ```
 
 The `run()` method is called when `php artisan db:seed` command is executed.
+
+In `DatabaseSeeder.php`, add the following to the `run()` method:
+
+```php
+$this->call(StudentSeeder::class);
+```
 
 To run all **seeder** classes, execute the following command:
 
