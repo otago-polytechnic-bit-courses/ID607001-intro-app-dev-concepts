@@ -3,7 +3,13 @@
 ## API Validation
 In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. However, you will look at [manually creating validators](https://laravel.com/docs/8.x/validation#manually-creating-validators) instead. **Laravel** also includes a range of validation rules that you can apply to your data.
 
-To create a validator instance manually, you will use a  `Validator` [facade](https://laravel.com/docs/8.x/facades). In `ApiController.php`, update the `createStudent()` method as follows:
+To create a validator instance manually, you will use a  `Validator` [facade](https://laravel.com/docs/8.x/facades).
+
+It is fine if you do not understand what a **facade** is, but basically, a **facade** provides a simplified interface to a complex subsystem.
+
+**Facades** in **Laravel** provide a static interface to classes that are available in the application's service container.
+
+In `ApiController.php`, update the `createStudent()` method as follows:
 
 ```php
 ...
