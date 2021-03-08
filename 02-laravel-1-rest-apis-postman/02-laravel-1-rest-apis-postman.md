@@ -178,7 +178,6 @@ VALUES (?, ?, ?, ?);
 ```
 
 - Instantiate a new `Request` in the `createStudent()` parameter.
-- Instantiate a new `Student` in the `createStudent()` method block.
 - Fetch & save the `Student`'s data from the request.
 - Return a [JSON](https://developer.mozilla.org/en-US/docs/Glossary/JSON) `Response` containing a message which indicates the `Student` has been created & a status response code of [201](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/201). 
 
