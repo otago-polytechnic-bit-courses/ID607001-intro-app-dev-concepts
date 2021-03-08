@@ -18,21 +18,21 @@ Open the **Laragon** application. You will be presented with the following windo
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" />
 </figure>
 
-</br>**Right-click > Quick app > Laravel**. You will be presented with another window asking you to name your application. Once you have named your application, click the **OK** button.
+</br>**Right-click > Quick app > Laravel**. You will be presented with another window prompting you to name the application. Once named, click the **OK** button.
 
-**Note:** You can not create a new application until **Apache** & **MySQL** have been started.
+**Note:** An application can not be created until **Apache** & **MySQL** have been started.
 
 <figure>
     <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" />
 </figure>
 
-</br>You will find all applications in the `laragon\www` directory.
+</br>All applications are in the `laragon\www` directory.
 
 `cd` to the **api** project.
 
 ## Model
 
-A **Model** class represents the logical structure & relationship of a database table. In **Laravel**, each table corresponds to a [model](https://laravel.com/docs/8.x/eloquent#generating-model-classes). A **model** allows you to retrieve, create, update & delete data with your database table.
+A **Model** class represents the logical structure & relationship of a database table. In **Laravel**, each table corresponds to a [model](https://laravel.com/docs/8.x/eloquent#generating-model-classes). A **model** allows you to retrieve, create, update & delete data.
 
 To create a a new **model** & migration, execute the following command:
 
@@ -40,9 +40,9 @@ To create a a new **model** & migration, execute the following command:
 php artisan make:model Student -m
 ```
 
-The `-m` flag creates a migration. You will look at migrations later.
+The `-m` flag creates a migration. 
 
-Go to the `app\Models` directory. A file called `Student.php` has been created. In `Student.php`, specify the database table and its field you wish to interact with. For example:
+In `app\Models\Student.php`, specify the database table and fields you wish to interact with. For example:
 
 ```php
 ...
@@ -56,7 +56,7 @@ class Student extends Model {
 ```
 
 ## Migrations
-In the `database\migrations` directory, you will see a new migration file (newest timestamp) which has created a database table, i.e., `students`. 
+In the `database\migrations` directory, you will see a new migration file which has created a database table, i.e., `students`. 
 
 ```php
 ...
@@ -87,7 +87,7 @@ public function up() {
 ```
 
 ## Connecting to MySQL
-In the `.env` file, modify your database credentials so your project connects to **MySQL** locally. You will look at how to connect to a cloud database at a later date.
+In the `.env` file, modify your database credentials so that your project connects to **MySQL**.
 ```php
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
@@ -97,7 +97,7 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Note:** You **do not** need a password to use this database.
+**Note:** You **do not** need a password to use this database. Leave this field empty.
 
 If you make a change to any **model**, you must make a migration using the following command:
 
@@ -111,7 +111,7 @@ What is a **REST API**? This [YouTube video](https://www.youtube.com/watch?v=SLw
 ## Controller
 You will create a **controller** which will contain the [CRUD](https://developer.mozilla.org/en-US/docs/Glossary/CRUD) methods for your [API](https://developer.mozilla.org/en-US/docs/Glossary/API). However, before you create a controller, you must have a general understanding on what a controller is.
 
-A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary **model** data & return the appropriate response.
+A [Controller](https://laravel.com/docs/8.x/controllers) class contains public action methods used to handle various [HTTP requests methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods), i.e., `GET`, `POST`, `PUT` & `DELETE`. These action methods handle an incoming request, retrieve the necessary **model** data & return the appropriate response. 
 
 To create a new **controller**, execute the following command:
 
@@ -142,6 +142,7 @@ class ApiController extends Controller {
     }
 }
 ```
+
 In order to use the `students` data table, you need to import the `Student` **model**. To do this, add the following line above the class declaration:
 
 ```php
@@ -153,12 +154,10 @@ class ApiController extends Controller {
 }
 ```
 
-**Resource:** https://laravel.com/docs/8.x/controllers
-
 ### Eloquent
-[Eloquent](https://laravel.com/docs/8.x/eloquent) is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data from a database using an **Object-Oriented** programming language.
+[Eloquent](https://laravel.com/docs/8.x/eloquent) is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language.
 
-Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to us **SQL** anymore. You interact directly with an object in the same language you are using, i.e., **PHP**.
+Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
 
 ### Create a Student
 
