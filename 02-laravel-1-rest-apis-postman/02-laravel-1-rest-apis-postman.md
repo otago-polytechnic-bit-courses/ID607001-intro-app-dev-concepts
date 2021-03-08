@@ -361,6 +361,13 @@ public function getAllStudents(Request $request) {
 ...
 ```
 
+```sql
+-- SQL equivalent:
+SELECT first_name, last_name, phone_number, email_address 
+FROM students
+WHERE first_name=?;
+```
+
 ## Seeding
 In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database tables with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order.
 
@@ -419,9 +426,9 @@ To run an individual **seeder** class, i.e., `StudentSeeder`, execute the follow
 php artisan db:seed --class=StudentSeeder
 ```
 
-### Testing Your API GET Endpoint
+### Testing Your Query Parameter
 
-Go back to **Postman**. To get all `Students` with the first name, for example, Keisha, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students?first_name=Keisha` & click the **Send** button.
+Go to **Postman**. To get all `Students` with the first name, for example, Keisha, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students?first_name=Keisha` & click the **Send** button.
 
 <img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-8.png" width="800" height="500" />
 
