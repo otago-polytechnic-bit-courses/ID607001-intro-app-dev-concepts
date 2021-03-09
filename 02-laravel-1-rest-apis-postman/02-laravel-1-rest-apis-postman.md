@@ -352,7 +352,7 @@ In `ApiController.php`, update the `getAllStudents()` method as follows:
 public function getAllStudents(Request $request) {
     $students = Student::query();
     if ($request->get('first_name')) {
-        $students->where('first_name', '=', $request->get('first_name'))->get();
+        $students->where('first_name', '=', $request->get('first_name'));
     }
     return $students->get();
 }
@@ -438,4 +438,4 @@ Before you start, make sure you have created a database called **api**.
 3. In `app\Http\Controllers\ApiController.php`, create the appropriate **CRUD** methods for retrieving, creating, updating & deleting cars. 
 4. In `routes\api.php`, create the appropriate routes which map to the **CRUD** methods in `ApiController.php`.
 5. Create a `Seeder` class which seeds the `cars` table with `cars-data.json`. This file is provided to you in this directory.
-6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it also queries for `Cars` that were manufactured before 1980. **Note:** you will need to use a **query parameter**.
+6. In `app\Http\Controllers\ApiController.php`, update the `getAllCars()` method so that it queries for `Cars` that were manufactured in a particular year. **Note:** you will need to use a **query parameter**.
