@@ -86,8 +86,8 @@ public function up() {
         $table->string('last_name');
         $table->string('phone_number');
         $table->string('email_address');
-        $table->integer('institution_id')->unsigned();
-        $table->foreign('institution_id')->references('id')->on('institutions');
+        $table->integer('institution_id');
+        $table->foreignId('institution_id')->constrained('institutions');
         $table->timestamps();
     });
 }
