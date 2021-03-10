@@ -129,7 +129,7 @@ foreach ($books as $book) {
 }
 ```
 
-This code would only ever execute two queries regardless on the number of books. A bit of magic...
+This code would only ever execute two queries regardless on the number of books. A bit of magic...not really, but remember to use a join wherever possible.
 
 ## Route
 In `routes\api.php`, create a new route group for `institutions`. You will only need one `GET` route as follows:
