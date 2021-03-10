@@ -73,9 +73,15 @@ public function up() {
 ```
 4. In `app\Models\Institution.php`, adding the following:
 ```php
+...
 protected $table = 'institutions';
 
 protected $fillable = ['name', 'city', 'state', 'country'];
+
+public function students() {
+    return $this->hasMany(Student::class);
+}
+...
 ```
 5. Make a migration.
 6. Copy `institution-data.json` & `student-data.json` into the `database\data` directory.
