@@ -41,23 +41,35 @@ In this activity, you will extend the **api** project.
 1. Create a new **model** & migration called `Institution`.
 2. In the `create_institutions_table.php` migration file, add the following columns in the `up()` method:
 ```php
-$table->increments('id');
-$table->string('name');
-$table->string('city');
-$table->string('state');
-$table->string('country');
-$table->timestamps();
+...
+public function up() {
+    Schema::create('institutions', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('name');
+        $table->string('city');
+        $table->string('state');
+        $table->string('country');
+        $table->timestamps();
+    });
+}
+...
 ```
 3. In the `create_students_table.php` migration file, add the following columns in the `up()` method:
 ```php
-$table->increments('id');
-$table->string('first_name');
-$table->string('last_name');
-$table->string('phone_number');
-$table->string('email_address');
-$table->integer('institution_id')->unsigned();
-$table->foreign('institution_id')->references('id')->on('institutions'); // Refers to the primary key in the institutions table.
-$table->timestamps();
+...
+public function up() {
+    Schema::create('students', function (Blueprint $table) {
+        $table->increments('id');
+        $table->string('first_name');
+        $table->string('last_name');
+        $table->string('phone_number');
+        $table->string('email_address');
+        $table->integer('institution_id')->unsigned();
+        $table->foreign('institution_id')->references('id')->on('institutions'); // Refers to the primary key in the institutions table.
+        $table->timestamps();
+    });
+}
+...
 ```
 4. In `app\Models\Institution.php`, adding the following:
 ```php
