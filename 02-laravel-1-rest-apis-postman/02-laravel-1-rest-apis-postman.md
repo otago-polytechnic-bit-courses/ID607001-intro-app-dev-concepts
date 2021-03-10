@@ -251,8 +251,7 @@ public function getAllStudents() {
 
 ```sql
 -- SQL equivalent:
-SELECT first_name, last_name, phone_number, email_address 
-FROM students;
+SELECT * FROM students;
 ```
 
 - Retrieve all `Students` & serializes its data into **JSON** format.
@@ -361,9 +360,7 @@ public function getAllStudents(Request $request) {
 
 ```sql
 -- SQL equivalent:
-SELECT first_name, last_name, phone_number, email_address 
-FROM students
-WHERE first_name=?;
+SELECT * FROM students WHERE first_name=?;
 ```
 
 ## Seeding
