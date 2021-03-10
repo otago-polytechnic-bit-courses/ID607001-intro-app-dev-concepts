@@ -76,7 +76,7 @@ public function up() {
 Thus far, this should be familiar. Make sure to migrate your changes by executing the following command:
 
 ```php
-php artisan migrate:refresh
+php artisan migrate
 ```
 
 You are going to create a relationships between the `students` & `institutions` database table. To do this, update `create_students_table.php` with the following:
