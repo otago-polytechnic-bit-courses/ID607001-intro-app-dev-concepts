@@ -55,7 +55,7 @@ class Student extends Model {
 }
 ```
 
-## Migrations
+## Migration
 In the `database\migrations` directory, you will see a new migration file which has created a database table, i.e., `students`. 
 
 ```php
@@ -370,7 +370,7 @@ public function getAllStudents(Request $request) {
 SELECT * FROM students WHERE first_name=?;
 ```
 
-## Seeding
+## Seeder
 In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.x/seeding) your database tables with test data. **Seeders** are stored in the `database\seeders` directory. By default, a `DatabaseSeeder.php` has been created for you. You can use this class to run other **seeders**, allowing you to control the seeding order. In the `database` directory, create a new directory called `data`. Copy `student-data.json` into the `data` directory.
 
 To create a new **seeder**, execute the following command:
