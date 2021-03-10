@@ -114,7 +114,7 @@ public function getAllInstitutions(Request $request) {
 
 When accessing relationships as properties, the relationship data is lazy loaded which means the data is not loaded until you access the property for the first time. However, **Eloquent** can eager load relationships at the time you query the parent model. Have you heard of the **N + 1 query problem**? The `with()` method is used to alleviates this. 
 
-Here is an example using a hypothetical `Author` & `Book` **model**:
+This is an hypothetical example using an `Author` & `Book` **model**:
 
 ```php
 $books = Book::all();
