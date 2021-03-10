@@ -284,7 +284,7 @@ WHERE id=?;
    - If `true`, retrieve the `Student` which matches the `id` & serialize its data into **JSON** format. Also, return a `Response` containing the retrieved `Student` & a status response code of **200**.
    - If `false`, return a **JSON** `Response` containing a message which indicates the `Student` has not been found & a status response code of **404**. 
    
-If you wish to retrieve specific values, you can pass an array into the `get()` method. For example:
+If you wish to retrieve specific values, you can pass an array of column names into the `get()` method. For example:
 ```php
 $students->get(['first_name', 'last_name', 'phone_number', 'email_address'])
 ```
