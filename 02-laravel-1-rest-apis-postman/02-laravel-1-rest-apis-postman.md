@@ -291,7 +291,7 @@ $students->get(['first_name', 'last_name', 'phone_number', 'email_address'])
 
 This does not return `created_at` & `updated_at`.
 
-## Routing
+## Route
 
 In the `routes` directory, open the `api.php` file & create the following **API** endpoints:
 
