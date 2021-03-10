@@ -96,7 +96,11 @@ public function up() {
 
 The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreign('institution_id')->references('id')->on('institutions');` refers to the primary key in the `institutions` database table. 
 
-Make sure to migrate your changes.
+Make sure to migrate your changes using the following command:
+
+```php
+php artisan migrate:refresh
+```
 
 ## Controller
 In `app\Http\Controllers\ApiController.php`, add the following:
