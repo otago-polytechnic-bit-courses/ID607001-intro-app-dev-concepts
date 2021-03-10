@@ -78,8 +78,14 @@ protected $table = 'institutions';
 
 protected $fillable = ['name', 'city', 'state', 'country'];
 
+protected $appends = ['students_count'];
+
 public function students() {
     return $this->hasMany(Student::class);
+}
+
+public function getStudentsCountAttribute() {
+    return $this->students()->count();
 }
 ...
 ```
@@ -87,4 +93,15 @@ public function students() {
 6. Copy `institution-data.json` & `student-data.json` into the `database\data` directory.
 7. Create a `Seeder` class which seeds the `institutions` which `institution-data.json`.
 8. Update `StudentSeeder.php` so that it also seeds `institution_id` with `student-data.json`.
-9. 
+9. In `routes\api.php`, add the following route group:
+```php
+Route::group(['prefix' => 'institutions'], function () {
+    Route::get('/', 'ApiController@getAllInstitutions');
+});
+```
+10. In `app\Http\Controllers\ApiController.php`, add the following:
+```php
+public function getAllInstitutions(Request $request) {
+    return Institution::with(['students'])->get();
+} 
+```
