@@ -73,7 +73,11 @@ public function up() {
 ...
 ```
 
-Thus far, this should be familiar.
+Thus far, this should be familiar. Make sure to migrate your changes by executing the following command:
+
+```php
+php artisan migrate:refresh
+```
 
 You are going to create a relationships between the `students` & `institutions` database table. To do this, update `create_students_table.php` with the following:
 
@@ -93,13 +97,10 @@ public function up() {
 }
 ...
 ```
-
-The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreign('institution_id')->references('id')->on('institutions');` refers to the primary key in the `institutions` database table. 
-
-Make sure to migrate your changes using the following command:
+The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreign('institution_id')->references('id')->on('institutions');` refers to the primary key in the `institutions` database table.  To make a migration to an existing table, execute the following command:
 
 ```php
-php artisan migrate:refresh
+php artisan make:migration --table=students
 ```
 
 ## Controller
@@ -113,7 +114,7 @@ public function getAllInstitutions(Request $request) {
 
 When accessing relationships as properties, the relationship data is lazy loaded which means the data is not loaded until you access the property for the first time. However, **Eloquent** can eager load relationships at the time you query the parent model. Have you heard of the **N + 1 query problem**? The `with()` method is used to alleviates this. 
 
-Here is an example:
+Here is an example using a hypothetical `Author` & `Book` **model**:
 
 ```php
 $books = Book::all();
@@ -133,7 +134,7 @@ foreach ($books as $book) {
 }
 ```
 
-This code would only ever execute two queries regardless on the number of books. A bit of magic...not really, but remember to use a join wherever possible.
+This code would only ever execute two queries regardless on the number of books. A bit of magic...not really, this code is using a `JOIN`. Remember, if you are using two or more tables, use a `JOIN` wherever possible.
 
 ## Route
 In `routes\api.php`, create a new route group for `institutions`. You will only need one `GET` route as follows:
