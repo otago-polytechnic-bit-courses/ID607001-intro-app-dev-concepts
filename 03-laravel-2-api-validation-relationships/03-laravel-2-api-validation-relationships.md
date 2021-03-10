@@ -159,3 +159,9 @@ class Institution extends Model {
     }
 }
 ```
+
+## Activity ✏️
+In this activity, you will extend the **api** project provided to you in this directory. 
+
+1. In `ApiController.php`, apply validation rules to the `createCar()` method. You **must** set two constraints with the required constraint.
+2. Create a relationship of your choice with the `cars` database table.
