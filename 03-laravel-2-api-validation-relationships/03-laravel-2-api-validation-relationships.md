@@ -3,7 +3,7 @@
 ## API Validation
 In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. However, you will look at [manually creating validators](https://laravel.com/docs/8.x/validation#manually-creating-validators) instead. **Laravel** also includes a range of validation rules that you can apply to your data.
 
-To create a validator instance manually, you will use a  `Validator` [facade](https://laravel.com/docs/8.x/facades). It is fine if you do not understand what a **facade** is, but basically, a **facade** provides a simplified interface to a complex subsystem. In **Laravel**, a **facade** provides a static interface to classes available in the application's service container.
+To create a validator instance manually, you will use a  `Validator` [facade](https://laravel.com/docs/8.x/facades). It is fine if you do not understand what a **facade** is, but basically, a **facade** provides a simplified interface to a complex subsystem. A **facade** in **Laravel** provides a static interface to classes available in the application's service container.
 
 In `ApiController.php`, update the `createStudent()` method as follows:
 ```php
@@ -35,11 +35,29 @@ The `make()` method accepts two arguments - the data under validation & an array
 ## Relationships
 Database tables are often related to each other. For example, an institution may have many students or a student may have many courses. 
 
-## Activity ✏️
-In this activity, you will extend the **api** project. 
+### Create a Relationship Between Two Tables
+Firstly, create a new **model** & migration called `Institution`. This database table will have a relationship with the `students` database table. 
 
-1. Create a new **model** & migration called `Institution`.
-2. In the `create_institutions_table.php` migration file, add the following columns in the `up()` method:
+In `app\Models\Institution.php`, specify the database table and fields you wish to interact with. For example:
+
+```php
+...
+class Institution extends Model {
+    use HasFactory;
+
+    protected $table = 'institutions';
+
+    protected $fillable = ['name', 'city', 'state', 'country'];
+    
+    public function students() {
+        return $this->hasMany(Student::class);
+    }
+}
+```
+
+The `students()` method is indicating that an `Institution` has many `Students`.
+
+In the `database\migrations` directory, update `create_institutions_table.php` with the following:
 ```php
 ...
 public function up() {
@@ -54,7 +72,11 @@ public function up() {
 }
 ...
 ```
-3. In the `create_students_table.php` migration file, add the following columns in the `up()` method:
+
+Thus far, this should be familiar.
+
+You are going to create a relationships between the `students` & `institutions` database table. To do this, update `create_students_table.php` with the following:
+
 ```php
 ...
 public function up() {
@@ -65,43 +87,75 @@ public function up() {
         $table->string('phone_number');
         $table->string('email_address');
         $table->integer('institution_id')->unsigned();
-        $table->foreign('institution_id')->references('id')->on('institutions'); // Refers to the primary key in the institutions table.
+        $table->foreign('institution_id')->references('id')->on('institutions');
         $table->timestamps();
     });
 }
 ...
 ```
-4. In `app\Models\Institution.php`, adding the following:
+
+The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreign('institution_id')->references('id')->on('institutions');` refers to the primary key in the `institutions` database table. 
+
+Make sure to migrate your changes.
+
+## Controller
+In `app\Http\Controllers\ApiController.php`, add the following:
+
 ```php
-...
-protected $table = 'institutions';
-
-protected $fillable = ['name', 'city', 'state', 'country'];
-
-protected $appends = ['students_count'];
-
-public function students() {
-    return $this->hasMany(Student::class);
-}
-
-public function getStudentsCountAttribute() {
-    return $this->students()->count();
-}
-...
+public function getAllInstitutions(Request $request) {
+    return Institution::with(['students'])->get();
+} 
 ```
-5. Make a migration.
-6. Copy `institution-data.json` & `student-data.json` into the `database\data` directory.
-7. Create a `Seeder` class which seeds the `institutions` which `institution-data.json`.
-8. Update `StudentSeeder.php` so that it also seeds `institution_id` with `student-data.json`.
-9. In `routes\api.php`, add the following route group:
+
+When accessing relationships as properties, the relationship data is lazy loaded which means the data is not loaded until you access the property for the first time. However, **Eloquent** can eager load relationships at the time you query the parent model. Have you heard of the **N + 1 query problem**? The `with()` method is used to alleviates this. 
+
+Here is an example:
+
+```php
+$books = Book::all();
+
+foreach ($books as $book) {
+    echo $book->author->name;
+}
+```
+
+This code will execute one query to retrieve all the books & one query for each book to retrieve the author. If there were 10 books, 11 queries would be executed.
+
+```php
+$books = Book::with('author')->get();
+
+foreach ($books as $book) {
+    echo $book->author->name;
+}
+```
+
+This code would only ever execute two queries regardless on the number of books. A bit of magic...
+
+## Route
+In `routes\api.php`, create a new route group for `institutions`. You will only need one `GET` route as follows:
+
 ```php
 Route::group(['prefix' => 'institutions'], function () {
     Route::get('/', 'ApiController@getAllInstitutions');
 });
 ```
-10. In `app\Http\Controllers\ApiController.php`, add the following:
+
+## Seeding
+Copy `institution-data.json` & `student-data.json` into the `database\data` directory. You may be prompt to override `student-data.json`. Create a `Seeder` class which seeds data in the `institutions` database table with `institution-data.json`. 
+
+Go & have a look at the contents in `student-data.json`. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. Also, you will need to update `StudentSeeder.php` so that it seeds `institution_id` into the `students` database table.
+
+## Inject
+This is example on how you inject data into the response. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
+
 ```php
-public function getAllInstitutions(Request $request) {
-    return Institution::with(['students'])->get();
-} 
+...
+class Institution extends Model {
+    ...
+    protected $appends = ['students_count'];
+    ...
+    public function getStudentsCountAttribute() {
+        return $this->students()->count();
+    }
+}
 ```
