@@ -36,7 +36,7 @@ A **Model** class represents the logical structure & relationship of a database 
 
 To create a new **model** & migration, execute the following command:
 
-```php
+```
 php artisan make:model Student -m
 ```
 
@@ -88,7 +88,7 @@ public function up() {
 
 ## Connecting to MySQL
 In the `.env` file, modify your database credentials so that your project connects to **MySQL**.
-```php
+```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -101,7 +101,7 @@ DB_PASSWORD=
 
 If you make a change to any **model**, you must make a migration using the following command:
 
-```php
+```
 php artisan migrate
 ```
 
@@ -115,7 +115,7 @@ A [Controller](https://laravel.com/docs/8.x/controllers) class contains public a
 
 To create a new **controller**, execute the following command:
 
-```php
+```
 php artisan make:controller ApiController
 ```
 
@@ -309,7 +309,7 @@ Route::group(['prefix' => 'students'], function() {
 
 ## Run Development Server
 You can run the development server by executing the following command:
-```php
+```
 php artisan serve
 ```
 
@@ -375,7 +375,7 @@ In **Laravel**, you can use `Seeder` class to [seed](https://laravel.com/docs/8.
 
 To create a new **seeder**, execute the following command:
 
-```php
+```
 php artisan make:seeder StudentSeeder
 ```
 
@@ -416,13 +416,13 @@ $this->call(StudentSeeder::class);
 
 To run all **seeder** classes, execute the following command:
 
-```php
+```
 php artisan db:seed
 ```
 
 To run an individual **seeder** class, i.e., `StudentSeeder`, execute the following command:
 
-```php
+```
 php artisan db:seed --class=StudentSeeder
 ```
 
