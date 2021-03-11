@@ -81,7 +81,7 @@ public function up() {
 
 Thus far, this should be familiar. Make sure to migrate your changes by executing the following command:
 
-```php
+```
 php artisan migrate
 ```
 
@@ -105,7 +105,7 @@ public function up() {
 ```
 The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreign('institution_id')->references('id')->on('institutions');` refers to the primary key in the `institutions` database table.  To make a migration to an existing table, execute the following command:
 
-```php
+```
 php artisan make:migration --table=students
 ```
 
