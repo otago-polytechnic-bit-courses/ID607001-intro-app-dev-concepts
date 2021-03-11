@@ -26,6 +26,12 @@ public function createStudent(Request $request) {
 ...
 ```
 
+Also, import the `Validator` **facade** by adding the following:
+
+```php
+use Validator;
+```
+
 The `make()` method accepts two arguments - the data under validation & an array of validation rules that are applied to the data. If a validation rule fails, return a **JSON** `Response` containing a message which indicates that a rule has failed & a status response code of [403](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/403).
 
 ### Test Your API Validation
@@ -150,8 +156,8 @@ Copy `institution-data.json` & `student-data.json` into the `database\data` dire
 
 Go & have a look at the contents in `student-data.json`. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. Also, you will need to update `StudentSeeder.php` so that it seeds `institution_id` into the `students` database table.
 
-## Inject
-This is example on how you inject data into the response. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
+## Appending Values To JSON
+This is example on how you [append](https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json) values to **JSON**. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
 
 ```php
 ...
