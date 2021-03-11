@@ -26,7 +26,7 @@ public function createStudent(Request $request) {
 ...
 ```
 
-Also, import the `Validator` **facade** by adding the following:
+In order to use the `Validator` **facade**, you must add the following import statement:
 
 ```php
 use Validator;
