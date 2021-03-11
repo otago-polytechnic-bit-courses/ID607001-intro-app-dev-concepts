@@ -151,7 +151,7 @@ Route::group(['prefix' => 'institutions'], function () {
 });
 ```
 
-## Seeding
+## Seeder
 Copy `institution-data.json` & `student-data.json` into the `database\data` directory. You may be prompt to override `student-data.json`. Create a `Seeder` class which seeds data in the `institutions` database table with `institution-data.json`. 
 
 Go & have a look at the contents in `student-data.json`. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. Also, you will need to update `StudentSeeder.php` so that it seeds `institution_id` into the `students` database table.
