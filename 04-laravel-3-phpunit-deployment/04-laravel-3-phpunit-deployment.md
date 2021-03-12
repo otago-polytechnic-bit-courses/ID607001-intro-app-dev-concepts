@@ -16,7 +16,7 @@ git init
 
 Create a [Procfile](https://devcenter.heroku.com/articles/procfile) in the root directory of your **api** project.
 
-In Procfile, add the following command:
+In **Procfile**, add the following command:
 
 ```
 web: vendor/bin/heroku-php-apache2 web/
