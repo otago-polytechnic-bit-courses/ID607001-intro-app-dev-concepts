@@ -6,7 +6,7 @@
 
 You are going to use [Heroku](https://www.heroku.com/) to deploy your **api** project. In order to do this, you must [signup](https://signup.heroku.com/) & download the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) for your respective operating system.
 
-In your **api** project, execute the following command:
+Open your terminal, change to your **api** project directory & execute the following command:
 
 ```
 git init
@@ -41,7 +41,7 @@ heroku create <name of your application>
 
 **Heroku** generates a random name for your application or you can pass a parameter to specify your own application name.
 
-### Setting Environment Variables
+### Set Environment Variables
 
 ```
 heroku config:set APP_DEBUG=true
@@ -88,7 +88,25 @@ Also, find the `pgsql` setting & change it to the following:
 
 These settings will allow you to interchange between **PostgreSQL** & **MySQL** as well local & production development.
 
-### Comitting Your Changes
+In `.env`, you need to specify the `DATABASE_URL` as your application will not know where to connect to your **PostgreSQL** database. To do this, execute the following command:
+
+```
+heroku config
+```
+
+This command lists all environment variables in your application. Copy & paste the value into `.env`. Your `.env` should look similar to the following:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=api
+DB_USERNAME=root
+DB_PASSWORD=
+DB_URL=<link your PostgreSQL database on Heroku>
+```
+
+### Commit Your Changes
 
 Since you have made changes, your git repository on **Heroku** will not be the same as your local repository, therefore, you need to commit those changes by executing the following commands:
 
@@ -98,13 +116,20 @@ git commit -m "<some message>"
 git push heroku main
 ```
 
-### Running Commands via Heroku
+### Run Commands via Heroku
 
 **Heroku** allows you to execute commands using `heroku run`. Commands are not limited to **PHP**. You can execute commands in languages that are supported by **Heroku**.
 
 ```
 heroku run php artisan migrate
 heroku run php artisan db:seed
+```
+
+### View Application
+To view your application on **Heroku**, execute the following command:
+
+```
+heroku open
 ```
 
 ## Activity ✏️
