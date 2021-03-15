@@ -135,5 +135,4 @@ heroku open
 ## Activity ✏️
 In this activity, you will extend the **api** project provided to you in this directory. 
 
-1. Write one unit test for each route in your **cars** group.
-2. Deploy your **api** project to **Heroku**.
+1. Deploy your **api** project to **Heroku**.
