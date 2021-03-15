@@ -1,6 +1,6 @@
 # Laravel 3 - PHPUnit & Deployment
 
-## PHPUnit
+<!-- ## PHPUnit -->
 
 ## Deployment
 
