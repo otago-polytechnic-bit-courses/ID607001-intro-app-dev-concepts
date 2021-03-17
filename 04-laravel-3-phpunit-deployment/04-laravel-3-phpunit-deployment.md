@@ -1,4 +1,141 @@
-# Laravel 3 - Deployment
+# Laravel 3 - API Testing & Deployment
+
+## API Testing
+
+**API testing** is a software testing practice which validates **APIs**. The purpose is to check the functionality, reliability & security of the **APIs**. **API testing** mainly concentrates in the business logic rather than the presentation logic.
+
+To create a new test, execute the following command:
+
+```php
+php artisan make:test ApiTest
+```
+
+By default, tests will be placed in the `Tests\Feature` directory
+
+```php
+<?php
+
+namespace Tests\Feature;
+
+use App\Models\Institution;
+use App\Models\Student;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class ApiTest extends TestCase
+{
+    public function setUp(): void {
+        parent::setUp();
+
+        Institution::create([
+            'id' => 1,
+            'name' => "Brown University",
+            'city' => "Providence",
+            'state' => "Rhode Island",
+            'country' => "United States of America"
+        ]);
+
+        Student::create([
+            'first_name' => "John",
+            'last_name' => "Doe",
+            'phone_number' => "910-123-3121",
+            'email_address' => "john.doe@gmail.com",
+            'institution_id' => 1
+        ]);
+    }
+
+    public function testPOSTStudents()
+    {
+        $payload = [
+            'first_name' => "Jane",
+            'last_name' => "Doe",
+            'phone_number' => "910-321-2131",
+            'email_address' => "jane.doe@gmail.com",
+            'institution_id' => 1
+        ];
+
+        $response = $this->post('/api/students', $payload);
+        $response
+            ->assertStatus(201)
+            ->assertJson([
+                "message" => "Student created."
+            ]);
+    }
+
+    public function testUpdateStudents()
+    {
+        $payload = [
+            'first_name' => "Joe",
+            'phone_number' => "910-123-4567",
+            'email_address' => 'joe.doe@gmail.com'
+        ];
+
+        $response = $this->put('/api/students/1', $payload);
+        $response
+            ->assertStatus(200)
+            ->assertJson([
+                "message" => "Student updated."
+            ]);
+    }
+
+    public function testGETStudents()
+    {
+        $response = $this->get('/api/students');
+        $response
+            ->assertStatus(200)
+            ->assertJsonStructure(
+                [
+                    '*' => [
+                        'id',
+                        'first_name',
+                        'last_name',
+                        'phone_number',
+                        'email_address'
+                    ]
+                ]
+            );
+    }
+
+    public function testGETStudent()
+    {
+        $response = $this->get('/api/students/1');
+        $response
+            ->assertStatus(200)
+            ->assertJsonFragment([
+                'first_name' => 'John',
+                'last_name' => 'Doe'
+            ]);
+    }
+
+    public function testDELETEStudent()
+    {
+        $response = $this->delete('/api/students/1');
+        $response
+            ->assertStatus(202)
+            ->assertJson([
+                "message" => "Student deleted."
+            ]);
+    }
+
+    public function testDELETEStudentNotFound()
+    {
+        $response = $this->delete('/api/students/2');
+        $response
+            ->assertStatus(404)
+            ->assertJson([
+                "message" => "Student not found."
+            ]);
+    }
+}
+```
+
+To run your test, exceute the following command:
+
+```php
+.\vendor\bin\phpunit
+```
+
+**Resource:**  https://laravel.com/docs/8.x/testing
 
 ## Deployment
 
