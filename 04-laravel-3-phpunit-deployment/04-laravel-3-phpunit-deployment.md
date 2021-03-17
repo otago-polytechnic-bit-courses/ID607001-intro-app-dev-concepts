@@ -119,6 +119,10 @@ class ApiControllerTest extends TestCase
 }
 ```
 
+```
+.\vendor\bin\phpunit
+```
+
 ## Deployment
 
 You are going to use [Heroku](https://www.heroku.com/) to deploy your **api** project. In order to do this, you must [signup](https://signup.heroku.com/) & download the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install) tool for your operating system.
