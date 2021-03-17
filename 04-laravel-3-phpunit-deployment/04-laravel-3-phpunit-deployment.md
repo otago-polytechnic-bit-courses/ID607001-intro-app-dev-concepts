@@ -2,7 +2,7 @@
 
 ## API Testing
 
-**API testing** is a software testing practice which validates **APIs**. The purpose is to check the functionality, reliability & security of the **APIs**. **API testing** mainly concentrates in the business logic rather than the presentation logic.
+**API testing** is a software testing practice which validates **APIs**. The purpose is to check the functionality, reliability & security of the **APIs**. **API testing** mainly concentrates on the business logic rather than the presentation logic.
 
 To create a new test, execute the following command:
 
