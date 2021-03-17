@@ -10,7 +10,9 @@ To create a new test, execute the following command:
 php artisan make:test ApiTest
 ```
 
-By default, tests will be placed in the `Tests\Feature` directory
+By default, tests will be placed in the `Tests\Feature` directory.
+
+Here is an example on how you would test your `Student` routes:
 
 ```php
 <?php
