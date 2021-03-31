@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this assessment, you will develop \& deploy an API of any theme using \textbf{Laravel} \& \textbf{Heroku}. Your could be something to do with sport, culture, food...the world is your oyster. Your API data will be stored in a \textbf{PostgreSQL} database on \textbf{Heroku} \& in a \textbf{MySQL} database locally. The main purpose of the assessment is to demonstrate your ability to develop a complex API using advanced features such as filtering, sorting \& paging. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
+In this assessment, you will develop \& deploy an \textbf{API} of any theme using \textbf{Laravel} \& \textbf{Heroku}. Your could be something to do with sport, culture, food...the world is your oyster. Your \textbf{API} data will be stored in a \textbf{PostgreSQL} database on \textbf{Heroku} \& in a \textbf{MySQL} database locally. The main purpose of the assessment is to demonstrate your ability to develop a complex \textbf{API} using advanced features such as filtering, sorting \& paging. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
 
 \section*{Learning Outcomes}
 At the successful completion of this course, learners will be able to:
@@ -87,10 +87,10 @@ You will need to submit an application \& documentation that meet the following 
 
 \subsection*{Functionality - Learning Outcomes 1 (40\%)}
 \begin{itemize}
-	\item \textbf{API} can run \& display data locally without modification.
-	\item Three \textbf{Models} which have create, read, write \& delete functionality. For deletion, if the child table has a foreign key, you must use an on cascade delete, i.e., if data from the parent table is deleted, then data from the child is automatically deleted.
+	\item \textbf{API} can run locally \& display data without modification.
+	\item Three \textbf{Models} which have at least create, read, write \& delete functionality. For deletion, if the child table has a foreign key, you must use an on cascade delete, i.e., if data from the parent table is deleted, then data from the child is automatically deleted.
 	\item Filter, sort \& page \textbf{API} data from two or more \textbf{Models} using query parameters.
-	\item Custom validation rules \& messages applied to each \textbf{Model} where appropriate, i.e., \textbf{first name }is required. Return a message if a value for \textbf{first name} is not provided.
+	\item Custom validation rules \& messages applied to each \textbf{Model}, i.e., \textbf{first name }is required. Return a validation message if a value for \textbf{first name} is not provided.
 	\item HTTP error handling, i.e., if a student does not exists, return a \textbf{404} HTTP status code.
 	\item At least \textbf{20} \textbf{API} tests which verify the correctness of the \textbf{API}.
 	\item Deployed to \textbf{Heroku}. The application must be usable i.e., a user should be able to interact with your \textbf{API}.
@@ -104,13 +104,13 @@ You will need to submit an application \& documentation that meet the following 
 	\item Idiomatic use of control flow, data structures \& in-built functions.
 	\item Sufficient code modularity, i.e., each \textbf{Model} should have their own \textbf{Controller} class.
 	\item Adheres to an \textbf{OO} architecture, i.e., classes, methods \& variable names are named appropriately. Methods are assigned to the correct class.
-	\item Efficient algorithmic approach. Use the appropriate \textbf{Eloquent} function when querying your \textbf{Models}.
+	\item Efficient algorithmic approach, i.e., using the appropriate \textbf{Eloquent} function when querying your \textbf{Models}.
 	\item \textbf{API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/students} not \textbf{/api/student}.
-	\item If necessary, in-line comments explaining complex logic, i.e., an \textbf{Eloquent} function may need an additional explanation.
-	\item Code files are code formatted.
+	\item If necessary, in-line comments explaining complex logic, i.e., an \textbf{Eloquent} function may need additional explanation.
+	\item Code files are formatted.
 	\item No dead or unused code.
 	\item Models contain the appropriate fields, behaviours \& relationships.
-	\item Database configured for development \& production environments.
+	\item Databases configured for development \& production environments.
 \end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcomes 1 (15\%)}
@@ -118,7 +118,7 @@ You will need to submit an application \& documentation that meet the following 
 	\item Provide the following in your repository \textbf{README.md} file:
 	      \begin{itemize}
 		      \item URL to your \textbf{API} on \textbf{Heroku}.
-		      \item \textbf{API} documentation on \textbf{Postman}.
+		      \item URL to your \textbf{API} documentation on \textbf{Postman}.
 		      \item How do you setup the environment for development, i.e., after the repository is cloned, what do I need to run the \textbf{API} locally?
 					\item How do you run the \textbf{API} tests?
 					\item How do you deploy the application to \textbf{Heroku}?
