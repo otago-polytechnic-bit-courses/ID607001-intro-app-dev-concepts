@@ -131,7 +131,7 @@ class ApiTest extends TestCase
 }
 ```
 
-To run your test, exceute the following command:
+To run your test, execute the following command:
 
 ```php
 .\vendor\bin\phpunit
@@ -156,7 +156,7 @@ Create a [Procfile](https://devcenter.heroku.com/articles/procfile) in the root 
 In **Procfile**, add the following command:
 
 ```
-web: vendor/bin/heroku-php-apache2 web/
+web: vendor/bin/heroku-php-apache2 public/
 ```
 
 This declares a single process type, web & the command needed to run the application. The **web:** part is important. This process type will be attached to the HTTP routing stack of **Heroku** & receive traffic when deployed.
@@ -250,7 +250,7 @@ Since you have made changes, your git repository on **Heroku** will not be the s
 ```
 git add .
 git commit -m "<some message>"
-git push heroku main
+git push heroku master
 ```
 
 ### Run Commands via Heroku
