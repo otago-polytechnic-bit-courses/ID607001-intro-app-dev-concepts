@@ -204,7 +204,7 @@ export default Game;
 **What is happening?**
 1. Declaring three states - `board` & `xIsNext` using the `useState` hook & fill it with initial data. Also, you will need a way of setting a state's value - `setBoard` & `setXIsNext`. 
 2. Declaring a function called `handleClick` which accepts a parameter called `idx`. Declaring a variable called `boardCopy` & assign its value to a shallow copy of the current `board` state using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) (horizontal ellipsis). Return if there is a winner or if a `Square` in `boardCopy` contains a value that is not `null`. Setting a `Square` in `boardCopy` to either **X** & **O** based on the current `xIsNext` state. Setting the `board` state to `boardCopy` using the `setBoard` function & `xIsNext` to `!xIsNext` using the `setXIsNext` function.
-3. Declaring a function called `startGame` which returns a `button`. The `button` has an `onClick` listener which reset the fills the `Array` of size 9 to `null`.
+3. Declaring a function called `startGame` which returns a `button`. The `button` has an `onClick` listener which resets & the fills the `Array` of size 9 to `null`.
 4. Return & render `Fragment` containing a `Board`. In the `div`, if `winner` is `true`, display the winning value (**X** or **O**). Otherwise, display the next value based on the current `xIsNext` state. Also, declare `startGame` which renders the button mentioned above.
 
 ```jsx
