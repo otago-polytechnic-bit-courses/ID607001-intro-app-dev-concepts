@@ -56,7 +56,7 @@ So, what is this funny **XML** looking syntax? This is called [JSX](https://reac
 
 **JSX** comes with the full power of **JavaScript**. You can put any **JavaScript** expression within a set of braces inside **JSX**. Each **React** element is a **JavaScript** object that you can assigned to a variable & pass around your application.
 
-The example above only renders built-in **DOM** elements such as `<div />` & `<li />`. But, you can compose & render custom **React** **components** too. For example, we can refer to the social media site by writing `<SocialMediaSite />` (see example above).
+The example above only renders built-in **DOM** elements such as `<div />` & `<li />`. But, you can compose & render custom **React** **components** too. For example, we can refer to the social media site by writing `<SocialMediaSite />`.
 
 ## Tic-Tac-Toe Tutorial...The Right Way
 In the `src` directory, create a new directory called **components**. Create three new **JavaScript** files called `Square`, `Board` & `Game`. 
