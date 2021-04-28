@@ -9,13 +9,13 @@ Like [Laravel Homestead](https://laravel.com/docs/8.x/homestead) & [XAMPP](https
 Open the **Laragon** application. You will be presented with the following window.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" />
+    <img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-laravel-1.JPG" />
 </figure>
 
 </br>Click the **Start All** button. This will start an [Apache](https://httpd.apache.org/) HTTP server & [MySQL](https://www.mysql.com/) database.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" />
+    <img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-laravel-2.JPG" />
 </figure>
 
 </br>**Right-click > Quick app > Laravel**. You will be presented with another window prompting you to name the application. Once named, click the **OK** button.
@@ -23,7 +23,7 @@ Open the **Laragon** application. You will be presented with the following windo
 **Note:** An application can not be created until **Apache** & **MySQL** have been started.
 
 <figure>
-    <img src="../tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" />
+    <img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-laravel-3.JPG" />
 </figure>
 
 </br>All applications are in the `laragon\www` directory.
@@ -318,35 +318,35 @@ php artisan serve
 
 Navigate to https://web.postman.co/workspace/create. You may be prompt to sign in. Fill in the **Name** & **Summary** fields. Also, change the visibility to **Personal**, then click on the **Create Workplace** button. This will create a new workspace for you to test your **API** endpoints.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-1.png" width="700" height="400" />
 
 ### Test your API Endpoints
 
 Click on the **+ (plus)** button next to the **Overview** tab to create a new request.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-2.png" width="800" height="500" />
 
 </br>To create a `Student`, change the **HTTP** method to `POST`, enter the URL - `http://127.0.0.1:8000/api/students`, change to the **Body** tab, click the **form-data** radio button, enter the `Student` data & click the **Send** button (Fig.6).
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-3.png" width="800" height="500" />
 
 </br>To update a `Student`, change the **HTTP** method to `PUT`, enter the URL - `http://127.0.0.1:8000/api/students/1`, change to the **Params** tab, update the `Student` data & click the **Send** button.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-4.png" width="800" height="500" />
 
 </br>To update a `Student`, change the **HTTP** method to `DELETE`, enter the URL - `http://127.0.0.1:8000/api/students/1` & click the **Send** button.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-5.png" width="800" height="500" />
 
 </br>Now you know how to create a `Student`, add two new `Students`.
 
 To get all `Students`, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students` & click the **Send** button.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-6.png" width="800" height="500" />
 
 </br>To get a `Student`, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students/2` & click the **Send** button.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-7.png" width="800" height="500" />
 
 ## Query Parameters
 A **query parameter** is an extension of a **URL** used to sort/filter data. It is a **key/value** pair appended to the end of a **URL** separated by a **question mark (?)**. Also, you can have multiple query parameters by separating each query by an **ampersand (&)**. This forms what is known as a **query string**.
@@ -430,7 +430,7 @@ php artisan db:seed --class=StudentSeeder
 
 Go to **Postman**. To get all `Students` with the first name, for example, Keisha, change the **HTTP** method to `GET`, enter the URL - `http://127.0.0.1:8000/api/students?first_name=Keisha` & click the **Send** button.
 
-<img src="../tex/img/02-laravel-1-rest-apis-postman/02-postman-8.png" width="800" height="500" />
+<img src="../resources/tex/img/02-laravel-1-rest-apis-postman/02-postman-8.png" width="800" height="500" />
 
 ## Activity ✏️
 In this activity, you will extend the **api** project provided to you in this directory. 

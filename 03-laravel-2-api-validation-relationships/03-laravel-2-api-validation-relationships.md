@@ -36,7 +36,7 @@ The `make()` method accepts two arguments - the data under validation & an array
 
 ### Test Your API Validation
 
-<img src="../tex/img/03-laravel-2-api-validation-relationships/03-postman-1.png" width="800" height="500" />
+<img src="../resources/tex/img/03-laravel-2-api-validation-relationships/03-postman-1.png" width="800" height="500" />
 
 ## Relationships
 Database tables are often related to each other. For example, an institution may have many students or a student may have many courses. 
