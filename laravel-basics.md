@@ -38,7 +38,7 @@
 
 ### Many to Many
 
-### Pagination
+## Pagination
 
 ## Requests
 
