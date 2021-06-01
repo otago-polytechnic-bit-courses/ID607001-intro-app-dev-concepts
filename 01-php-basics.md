@@ -18,9 +18,9 @@ A **PHP** page contains **HTML** with embedded **PHP** code, for example:
 </html>
 ```
 
-Much like the `<script>` & `</script>` in **JavaScript**, **PHP** uses `<?php` & `?>` to enclose its code. 
+Much like the `<script>` and `</script>` in **JavaScript**, **PHP** uses `<?php` and `?>` to enclose its code. 
 
-So, what is the difference between **PHP** & **JavaScript**?
+So, what is the difference between **PHP** and **JavaScript**?
 The code is executed on the server, generating **HTML** which is then sent to the client. The client receives the **HTML**, but does not know how it was generated or even the underlying code.
 
 ## Basic Syntax 
@@ -38,9 +38,9 @@ In **PHP**, a variable starts with the `$` sign, followed by the name of the var
 ?> 
 ```
 
-**Question:** What is one syntax difference between **C#** & **PHP**?
+**Question:** What is one syntax difference between **C#** and **PHP**?
 
-**PHP** also allows type casting or explicit casting & is handled by the interpreter. 
+**PHP** also allows type casting or explicit casting and is handled by the interpreter. 
 
 ```php
 <?php 
@@ -67,20 +67,20 @@ In **PHP**, a variable starts with the `$` sign, followed by the name of the var
 
 **Resource:** https://www.php.net/manual/en/language.variables.php
 
-There are **four** main types of operators - arithmetic, assignment, comparison & logical. 
+There are **four** main types of operators - arithmetic, assignment, comparison and logical. 
 
 **Resource:** https://www.php.net/manual/en/language.operators.php
 
 Other rules for **PHP** variables:
 - Must start with a letter or the `_` underscore character.
 - Can not start with a number.
-Can only contain alpha numeric characters & underscores.
-- Names are case sensitive, i.e., `$hello` & `$HELLO` are two different variables.
+Can only contain alpha numeric characters and underscores.
+- Names are case sensitive, i.e., `$hello` and `$HELLO` are two different variables.
 
 ### Control Structures
 Code is grouped into two categories:
-- sequential - executing the code in the order in which it is written.
-- decision - executing the code depending on the value of a condition.
+- **sequential** - executing the code in the order in which it is written.
+- **decision** - executing the code depending on the value of a condition.
 
 **Question:** What is a control structure?
 
@@ -101,7 +101,7 @@ Lets look at an example:
 - `else` is the fallback, if the condition is `false`.
 - block two - the code to be executed if the condition is `false`.
 
-As you can see, this is same as **C#** & **JavaScript**.
+As you can see, this is same as **C#** and **JavaScript**.
 
 Another example:
 
@@ -150,37 +150,36 @@ Another example:
 - `case` - the code to be executed depending on the value of the condition.
 - `default` - the code to be executed if the value of the condition is not met.
 
-
 Lets look at example:
 
 ```php
 <?php
-$today = "Wednesday";
+    $today = "Wednesday";
 
-switch ($today) {
-    case "Friday":
-        echo "I think it is time to quit my job";
-    break;
+    switch ($today) {
+        case "Friday":
+            echo "I think it is time to quit my job";
+        break;
 
-    case "Saturday":
-        echo "Time for some housework";
-    break;
+        case "Saturday":
+            echo "Time for some housework";
+        break;
 
-    case "Sunday":
-        echo "Oh man! Back to work tomorrow";
-    break;
+        case "Sunday":
+            echo "Oh man! Back to work tomorrow";
+        break;
 
-    default:
-        echo "Have a nice day at work";
-    break;
-}
+        default:
+            echo "Have a nice day at work";
+        break;
+    }
 ?>
 ```
 
 **Resource:** https://www.php.net/manual/en/control-structures.switch.php
 
 ### Loops
-For, for-each, do & do-while loop much the same as **C#** & **JavaScript**.
+For, for-each, do and do-while loop much the same as **C#** and **JavaScript**.
 
 Here are some examples:
 
@@ -242,7 +241,7 @@ You can define a function without a name. This called an **anonymous function** 
 
 **Resource:** https://www.php.net/manual/en/functions.anonymous.php
 
-Below are additional resources to other types of functions.
+Below are additional resources to other types of functions:
 - https://www.php.net/manual/en/functions.arrow.php
 - https://www.php.net/manual/en/functions.internal.php
 - https://www.php.net/manual/en/functions.variable-functions.php
@@ -250,17 +249,19 @@ Below are additional resources to other types of functions.
 ### Error Handling
 
 Firstly, we must answer the following questions:
-- What is an error? 
+- **What is an error?**
 
   An unexpected result that cannot be handled by the program itself. Errors are resolved by fixing the program. An example of error is an infinite loop. 
 
-- What is an exception?
+- **What is an exception?**
 
   An exception is an unexpected result that can be handled by the program itself. An example of an exception is opening a file that does not exist. 
   
-  **How do we handle this?** by either creating the file or giving the option to select a file from your file system.
+- **How do we handle this?** 
+
+    By either creating the file or giving the option to select a file from your file system.
   
-- Why exception handling? 
+- **Why exception handling?**
 
   Avoid unexpected results that can annoy end users and improving security by not exposing information which malicious may use. 
 
@@ -315,7 +316,7 @@ A more practical example:
 ?>
 ```
 
-From here, we will go on a small tangent...what is the `.` equivalent to in **C#** & **JavaScript**?
+From here, we will go on a small tangent...what is the `.` equivalent to in **C#** and **JavaScript**?
 
 **Resource:** https://www.php.net/manual/en/language.exceptions.php
 
