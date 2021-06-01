@@ -12,7 +12,7 @@ A **PHP** page contains **HTML** with embedded **PHP** code, for example:
   </head>
   <body>
     <?php
-    echo "Hello, World!"
+        echo "Hello, World!"
     ?>
   </body>
 </html>
@@ -30,11 +30,11 @@ In **PHP**, a variable starts with the `$` sign, followed by the name of the var
 
 ```php
 <?php 
-$a = "Hello, World!"; // string
-$b = 1; // integer
-$c = 1.5; // float or double
-$d = false; // boolean
-echo $a // Hello, World!
+    $a = "Hello, World!"; // string
+    $b = 1; // integer
+    $c = 1.5; // float or double
+    $d = false; // boolean
+    echo $a // Hello, World!
 ?> 
 ```
 
@@ -44,11 +44,11 @@ echo $a // Hello, World!
 
 ```php
 <?php 
-$x = 1;
-$y = 1.5;
-$z = $x + $y;
-$z = $x + (int) $y;
-echo $z; // 2
+    $x = 1;
+    $y = 1.5;
+    $z = $x + $y;
+    $z = $x + (int) $y;
+    echo $z; // 2
 ?> 
 ```
 
@@ -56,10 +56,10 @@ echo $z; // 2
 
 ```php
 <?php 
-$a = "Hello, World!";
-$b = 1; 
-var_dump($a); // string(13) "Hello, World!"
-var_dump($b); // int(1) 
+    $a = "Hello, World!";
+    $b = 1; 
+    var_dump($a); // string(13) "Hello, World!"
+    var_dump($b); // int(1) 
 ?> 
 ```
 
@@ -88,15 +88,15 @@ Lets look at an example:
 
 ```php
 <?php
-if (condition is true) { 
-    block one
-} else {
-    block two
-}
+    if (some condition) { 
+        block one
+    } else {
+        block two
+    }
 ?>
 ```
 
-- `if (condition is true)` - the control structure.
+- `if (some condition)` - the control structure.
 - block one - the code to be executed, if the condition is `true`.
 - `else` is the fallback, if the condition is `false`.
 - block two - the code to be executed if the condition is `false`.
@@ -130,18 +130,19 @@ Another example:
 
 ```php
 <?php
-switch (condition) {
-    case one:
-        block one
-    break;
+    switch (condition) {
+        case one:
+            // Some code
+        break;
 
-    case two:
-        block two
-    break;
+        case two:
+            // Some code
+        break;
 
-    default:
-    break;
-}
+        default:
+            // Some code
+        break;
+    }
 ?>
 ```
 
@@ -162,15 +163,15 @@ switch ($today) {
     break;
 
     case "Saturday":
-        echo "Lets do some housework";
+        echo "Time for some housework";
     break;
 
     case "Sunday":
-        echo "Church";
+        echo "Oh man! Back to work tomorrow";
     break;
 
     default:
-        echo "Have a nice day at work...ha";
+        echo "Have a nice day at work";
     break;
 }
 ?>
@@ -185,10 +186,10 @@ Here are some examples:
 
 ```php
 <?php
-for ($i = 0; $i < 10; $i++) {
-    $value = 10 * $i;
-    echo "$value \n";
-}
+    for ($i = 0; $i < 10; $i++) {
+        $value = 10 * $i;
+        echo "$value \n";
+    }
 ?>
 ```
 
@@ -196,12 +197,12 @@ for ($i = 0; $i < 10; $i++) {
 
 ```php
 <?php
-$numbers = array(0, 1, 2, 3, 4, 5);
+    $numbers = array(0, 1, 2, 3, 4, 5);
 
-foreach($numbers as $nums){
-    $value = 10 * $nums;
-    echo "$value \n";
-}
+    foreach($numbers as $nums){
+        $value = 10 * $nums;
+        echo "$value \n";
+    }
 ?>
 ```
 **Output:** `0 10 20 30 40 50`
@@ -217,11 +218,11 @@ foreach($numbers as $nums){
 You may define a function such as the following:
 ```php
 <?php
-function sum ($arg_one, $arg_two) {
-    return $arg_one + $arg_two;
-}
+    function sum ($arg_one, $arg_two) {
+        return $arg_one + $arg_two;
+    }
 
-echo sum(1, 2); // 3
+    echo sum(1, 2); // 3
 ?>
 ```
 
@@ -231,11 +232,11 @@ You can define a function without a name. This called an **anonymous function** 
 
 ```php
 <?php
-$greeting = function($name) {
-    printf("Hello my name is $name");
-};
+    $greeting = function($name) {
+        printf("Hello my name is $name");
+    };
 
-$greeting("John Doe"); // Hello my name is John Doe
+    $greeting("John Doe"); // Hello my name is John Doe
 ?>
 ```
 
@@ -267,8 +268,8 @@ Let look at a common example:
 
 ```php
 <?php
-$denominator = 0;
-echo 2 / $denominator;
+    $denominator = 0;
+    echo 2 / $denominator;
 ?>
 ```
 
@@ -278,13 +279,13 @@ Modified example:
 
 ```php
 <?php
-$denominator = 0;
+    $denominator = 0;
 
-if ($denominator != 0) {
-    echo 2 / $denominator;
-} else {
-    echo "Cannot divide by zero (0)";
-}
+    if ($denominator != 0) {
+        echo 2 / $denominator;
+    } else {
+        echo "Cannot divide by zero (0)";
+    }
 ?>
 ```
 
@@ -292,25 +293,25 @@ For more thorough exception handling, we will look at try/catch blocks:
 
 ```php
 <?php
-try {
-    // Code that could potentially throw an exception
-}
-catch (Exception $e) {
-    // Exception handling code
-}
+    try {
+        // Code that could potentially throw an exception
+    }
+    catch (Exception $e) {
+        // Exception handling code
+    }
 ?>
 ```
 
 A more practical example:
 ```php
 <?php
-try {
-    $some_msg = "Some exception message...";
-    throw new Exception($some_msg); // Throwing a new exception
-}
-catch (Exception $e) {
-    echo "Error message: " . $e->getMessage();
-}
+    try {
+        $some_msg = "Some exception message...";
+        throw new Exception($some_msg); // Throwing a new exception
+    }
+    catch (Exception $e) {
+        echo "Error message: " . $e->getMessage();
+    }
 ?>
 ```
 
@@ -325,11 +326,11 @@ The example below is checking if a file exists:
 
 ```php
 <?php
-if (file_exists("sample.txt")) {    
-    echo "sample.txt does exist";
-} else {
-    echo "sample.txt does not exist";
-} 
+    if (file_exists("sample.txt")) {    
+        echo "sample.txt does exist";
+    } else {
+        echo "sample.txt does not exist";
+    } 
 ?>
 ```
 
@@ -342,11 +343,11 @@ or deleting the file:
 
 ```php
 <?php
-if (!unlink("sample.txt")) {
-     echo "Could not delete sample.txt";
-} else {
-     echo "sample.txt successfully deleted"; 
-}
+    if (!unlink("sample.txt")) {
+        echo "Could not delete sample.txt";
+    } else {
+        echo "sample.txt successfully deleted"; 
+    }
 ?>
 ```
 
