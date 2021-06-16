@@ -32,6 +32,6 @@ In the **cypress** directory is another directory called **integrations**. This 
 ## How to run the Cypress tests?
 Run the command `npm run cypress`. A window should appear containing a list of tests.
 
-![image info](.\img\cypress-1.PNG)
+![cypress window](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/master/cypress-example/img/cypress-1.PNG?raw=true)
 
 Click on the desired test and it should automatically simulate an actual user.
