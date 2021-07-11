@@ -353,3 +353,7 @@ or deleting the file:
 ```
 
 **Resource:** https://www.php.net/manual/en/ref.filesystem.php
+
+### Classes
+
+### Interfaces
