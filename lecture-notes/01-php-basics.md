@@ -18,7 +18,7 @@ A **PHP** page contains **HTML** with embedded **PHP** code, for example:
 </html>
 ```
 
-Much like the `<script>` and `</script>` in **JavaScript**, **PHP** uses `<?php` and `?>` to enclose its code. 
+Much like the `<script>` and `</script>` in **JavaScript**, **PHP** uses `<?php` and `?>` to enclose its code.
 
 So, what is the difference between **PHP** and **JavaScript**?
 The code is executed on the server, generating **HTML** which is then sent to the client. The client receives the **HTML**, but does not know how it was generated or even the underlying code.
