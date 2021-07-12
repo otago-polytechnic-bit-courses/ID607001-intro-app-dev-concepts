@@ -6,5 +6,5 @@ This repository contains all information relating to this course, i.e., course d
 Here are the following assessment submission repositories:
 
 * Activities - https://classroom.github.com/a/P656imf2
-* Student Management System Project - https://classroom.github.com/a/PZJYGNeP
-* API Project - https://classroom.github.com/a/c1Wxock6
+* PHP API Project - https://classroom.github.com/a/c1Wxock6
+* React CRUD Project - https://classroom.github.com/a/PZJYGNeP
