@@ -115,10 +115,10 @@ Another example:
     } else {
         echo "$second_number is greater than $first_number";
     }
+    
+    // 10 is greater than 5
 ?>
 ```
-
-**Output:** `10 is greater than 5`
 
 **Resources:** 
 - https://www.php.net/manual/en/control-structures.if.php
@@ -158,7 +158,7 @@ Lets look at example:
 
     switch ($today) {
         case "Friday":
-            echo "I think it is time to quit my job";
+            echo "I am done for the week";
         break;
 
         case "Saturday":
@@ -189,10 +189,10 @@ Here are some examples:
         $value = 10 * $i;
         echo "$value \n";
     }
+    
+    // 0 10 20 30 40 50 60 70 80 90
 ?>
 ```
-
-**Output:** `0 10 20 30 40 50 60 70 80 90`
 
 ```php
 <?php
@@ -202,9 +202,10 @@ Here are some examples:
         $value = 10 * $nums;
         echo "$value \n";
     }
+    
+     // 0 10 20 30 40 50
 ?>
 ```
-**Output:** `0 10 20 30 40 50`
 
 **Resources:**
 - https://www.php.net/manual/en/control-structures.for.php
@@ -217,13 +218,15 @@ Here are some examples:
 You may define a function such as the following:
 ```php
 <?php
-    function sum ($arg_one, $arg_two) {
+    function sum($arg_one, $arg_two) {
         return $arg_one + $arg_two;
     }
 
     echo sum(1, 2); // 3
 ?>
 ```
+
+Function names use underscores between lowercased words, i.e., `some_function` not `someFunction`.
 
 **Resource:** https://www.php.net/manual/en/functions.user-defined.php
 
@@ -245,6 +248,42 @@ Below are additional resources to other types of functions:
 - https://www.php.net/manual/en/functions.arrow.php
 - https://www.php.net/manual/en/functions.internal.php
 - https://www.php.net/manual/en/functions.variable-functions.php
+
+### Classes
+
+Classes are very similar to what you saw in **Programming 2** with **C#**. Naming conventions are the same, i.e., `SomeClass` not `someClass`. Properties must be defined as public (default), private or protected. If you use `var`, the property will have public visibility.
+
+```php
+<?php
+    class Person {
+        private $first_name;
+        private $last_name;
+      
+        public function set_first_name($first_name) {
+            $this->first_name = $first_name;
+        }
+      
+        public function get_first_name() {
+            return $this->first_name;
+        }
+      
+        public function set_last_name($last_name) {
+            $this->last_name = $last_name;
+        }
+      
+        public function get_last_name() {
+           return $this->last_name;
+        }
+    }
+    
+    $person_one = new Person;
+    $person_one->set_first_name("John");
+    $person_one->set_last_name("Doe");
+    echo $person_one->get_first_name() . " " . $person_one->get_last_name(); // John Doe
+?>
+```
+
+**Question:** What happens when I directly try and access `first_name` or `last_name`?
 
 ### Error Handling
 
@@ -351,7 +390,3 @@ or deleting the file:
 ```
 
 **Resource:** https://www.php.net/manual/en/ref.filesystem.php
-
-### Classes
-
-### Interfaces
