@@ -198,7 +198,7 @@ Here are some examples:
 <?php
     $numbers = array(0, 1, 2, 3, 4, 5);
 
-    foreach($numbers as $nums){
+    foreach($numbers as $nums) {
         $value = 10 * $nums;
         echo "$value \n";
     }
@@ -296,8 +296,7 @@ For more thorough exception handling, we will look at try/catch blocks:
 <?php
     try {
         // Code that could potentially throw an exception
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         // Exception handling code
     }
 ?>
@@ -309,8 +308,7 @@ A more practical example:
     try {
         $some_msg = "Some exception message...";
         throw new Exception($some_msg); // Throwing a new exception
-    }
-    catch (Exception $e) {
+    } catch (Exception $e) {
         echo "Error message: " . $e->getMessage();
     }
 ?>
