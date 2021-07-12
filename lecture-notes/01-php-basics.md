@@ -390,3 +390,25 @@ or deleting the file:
 ```
 
 **Resource:** https://www.php.net/manual/en/ref.filesystem.php
+
+## Setting Up Your Development Environment
+In this course, we will be using **Visual Studio Code** and **Laragon**. **Laragon** makes building and maintaining **PHP** applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/). Going forward...the lecture notes, i.e., code snippets, screenshots, etc will be **Windows** specific. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no available **Laragon** client.
+
+Open a **Git Bash** terminal and run the following commands:
+
+```bash
+cd /c/laragon
+mkdir -p www
+cd www
+code .
+```
+
+When you open **Visual Studio Code**, you may be prompted with the following:
+
+<INSERT SCREENSHOT>
+  
+Click on the "Yes, I trust the authors" button.
+  
+Create a new file called `index.php`
+
+<INSERT SCREENSHOT>
