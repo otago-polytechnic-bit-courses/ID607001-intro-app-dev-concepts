@@ -386,7 +386,7 @@ cd www
 code .
 ```
   
-- `mkdir -p www` - create a new directory if does not exist called **www**. This is where your **PHP** files will go. 
+- `mkdir -p www` - if does not exist, create a new directory called **www**. This is where your **PHP** files will go. 
 - `cd www` - change to the **www** directory.
 - `code .` - open **Visual Studio Code** in the **www** directory.
 
