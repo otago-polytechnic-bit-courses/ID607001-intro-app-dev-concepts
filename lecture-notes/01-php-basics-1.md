@@ -365,7 +365,7 @@ cd /c/laragon
 ./laragon.exe
 ```
 
-- `cd /c/laragon` - navigate you to the laragon directory in the C drive.
+- `cd /c/laragon` - change to the laragon directory in the C drive.
 - `./laragon.exe` - run the laragon executable in the laragon directory.
 
 You should see the following window:
