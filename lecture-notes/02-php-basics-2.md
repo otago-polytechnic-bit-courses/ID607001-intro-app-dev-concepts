@@ -48,8 +48,8 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 ```php
 <?php
     class Fruit {
-        private $name;
-        private $colour;
+        protected $name;
+        protected $colour;
 
         public function __construct($name, $colour) {
             $this->name = $name;
@@ -57,15 +57,24 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
         }
     }
 
-    class Apple extends Fruit {
+    class Banana extends Fruit {
+        // Overriding the parent's ctor
+        public function __construct($name, $colour, $weight) {
+            $this->name = $name;
+            $this->colour = $colour;
+            $this->weight = $weight;
+        }
+
+        // Overriding the parent's some_message method
         public function some_message() {
-            echo "I am an apple."
+            echo "name => $this->name, colour => $this->colour, weight => $this->weight";
         }
     }
     
     $apple = new Fruit("apple", "red");
-    $apple->some_message();
-    $banana = new Fruit("banana", "yellow");
+    $apple->some_message(); // name => apple, colour => red
+    $banana = new Banana("banana", "yellow", 20);
+    $banana->some_message(); // name => banana, colour => yellow, weight => 20
 ?>
 ```
 
