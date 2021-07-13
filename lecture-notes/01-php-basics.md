@@ -406,15 +406,13 @@ cd /c/laragon
 
 You should see the following window:
 
-<INSERT SCREENSHOT>
-  
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-2.jpg?raw=true)
+
 Make sure the **PHP** version is set to 8.0.2. If it is not, right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64
-  
-<INSERT SCREENSHOT>
   
 Click the "Start All" button. This will start a new instance of **Apache** and **MySQL**.
   
-<INSERT SCREENSHOT>
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-1.jpg?raw=true)
   
 Go back to the **Git Bash** terminal and run the following commands:
 
@@ -424,13 +422,12 @@ cd www
 code .
 ```
   
-- `mkdir -p www` - create a new directory if does not exist called www. This is where you **PHP** files will go. 
+- `mkdir -p www` - create a new directory if does not exist called www. This is where your **PHP** files will go. 
 - `cd www` - change to the www directory.
 - `code .` - open **Visual Studio Code** in the www directory.
 
 When you open **Visual Studio Code**, you may be prompted with the following:
 
-<INSERT SCREENSHOT>
   
 Click on the "Yes, I trust the authors" button.
   
