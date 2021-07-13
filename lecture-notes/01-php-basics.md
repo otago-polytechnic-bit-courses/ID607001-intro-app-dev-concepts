@@ -412,7 +412,7 @@ Make sure the **PHP** version is set to 8.0.2. If it is not, right-click on the 
   
 Click the "Start All" button. This will start a new instance of **Apache** and **MySQL**.
   
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-1.jpg?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-2.jpg?raw=true)
   
 Go back to the **Git Bash** terminal and run the following commands:
 
