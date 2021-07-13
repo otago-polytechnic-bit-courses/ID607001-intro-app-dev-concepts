@@ -372,7 +372,7 @@ You should see the following window:
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics-1/01-laragon-1.jpg?raw=true)
 
-Make sure the **PHP** version is set to **8.0.2**. If it is not, **right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64**
+Make sure the **PHP** version is set to **7.4.15**. If it is not, **right-click on the window > PHP > Version > php-7.4.15-Win32-vc15-x64**
   
 Click the **Start All** button. This will start a new instance of an **Apache** web server and a **MySQL** database.
   
