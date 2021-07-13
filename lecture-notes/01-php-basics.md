@@ -428,12 +428,13 @@ code .
 
 When you open **Visual Studio Code**, you may be prompted with the following:
 
-  
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-vs-code-1.PNG?raw=true)
+
 Click on the "Yes, I trust the authors" button.
   
 Create a new file called `index.php`
 
-<INSERT SCREENSHOT>
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-vs-code-2.PNG?raw=true)
   
 Add some code from the lecture notes, then navigate to http://localhost:81
   
