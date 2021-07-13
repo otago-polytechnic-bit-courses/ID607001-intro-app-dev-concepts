@@ -283,7 +283,7 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 ?>
 ```
 
-**Question:** What happens when I directly try and access `first_name` or `last_name`?
+**Question:** What happens when I try and access `first_name` or `last_name` directly, i.e., $person_one->first_name;?
 
 ### Error Handling
 
