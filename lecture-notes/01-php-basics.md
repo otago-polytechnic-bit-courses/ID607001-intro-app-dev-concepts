@@ -406,7 +406,7 @@ cd /c/laragon
 
 You should see the following window:
 
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-2.jpg?raw=true)
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics/01-laragon-1.jpg?raw=true)
 
 Make sure the **PHP** version is set to 8.0.2. If it is not, right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64
   
