@@ -398,10 +398,35 @@ Open a **Git Bash** terminal and run the following commands:
 
 ```bash
 cd /c/laragon
+./laragon.exe
+```
+
+- `cd /c/laragon` - navigate you to the laragon directory in the C drive.
+- `./laragon.exe` - run the laragon executable in the laragon directory.
+
+You should see the following window:
+
+<INSERT SCREENSHOT>
+  
+Make sure the **PHP** version is set to 8.0.2. If it is not, right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64
+  
+<INSERT SCREENSHOT>
+  
+Click the "Start All" button. This will start a new instance of **Apache** and **MySQL**.
+  
+<INSERT SCREENSHOT>
+  
+Go back to the **Git Bash** terminal and run the following commands:
+
+```bash
 mkdir -p www
 cd www
 code .
 ```
+  
+- `mkdir -p www` - create a new directory if does not exist called www. This is where you **PHP** files will go. 
+- `cd www` - change to the www directory.
+- `code .` - open **Visual Studio Code** in the www directory.
 
 When you open **Visual Studio Code**, you may be prompted with the following:
 
@@ -412,3 +437,8 @@ Click on the "Yes, I trust the authors" button.
 Create a new file called `index.php`
 
 <INSERT SCREENSHOT>
+  
+Add some code from the lecture notes, then navigate to http://localhost:81
+  
+## Practical
+  
