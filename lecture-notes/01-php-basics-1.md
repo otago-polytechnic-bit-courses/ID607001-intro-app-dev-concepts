@@ -23,9 +23,7 @@ Much like the `<script>` and `</script>` in **JavaScript**, **PHP** uses `<?php`
 So, what is the difference between **PHP** and **JavaScript**?
 The code is executed on the server, generating **HTML** which is then sent to the client. The client receives the **HTML**, but does not know how it was generated or even the underlying code.
 
-## Basic Syntax 
-
-### Variables
+## Variables
 In **PHP**, a variable starts with the `$` sign, followed by the name of the variable:
 
 ```php
@@ -74,10 +72,10 @@ There are **four** main types of operators - arithmetic, assignment, comparison 
 Other rules for **PHP** variables:
 - Must start with a letter or the `_` underscore character.
 - Can not start with a number.
-Can only contain alpha numeric characters and underscores.
+- Can only contain alpha numeric characters and underscores.
 - Names are case sensitive, i.e., `$hello` and `$HELLO` are two different variables.
 
-### Control Structures
+## Control Structures
 Code is grouped into two categories:
 - **sequential** - executing the code in the order in which it is written.
 - **decision** - executing the code depending on the value of a condition.
@@ -178,7 +176,7 @@ Lets look at example:
 
 **Resource:** https://www.php.net/manual/en/control-structures.switch.php
 
-### Loops
+## Loops
 For, for-each, do and do-while loop much the same as **C#** and **JavaScript**.
 
 Here are some examples:
@@ -213,7 +211,7 @@ Here are some examples:
 - https://www.php.net/manual/en/control-structures.while.php
 - https://www.php.net/manual/en/control-structures.do.while.php
 
-### Functions
+## Functions
 **Resources:**
 You may define a function such as the following:
 ```php
@@ -249,43 +247,7 @@ Below are additional resources to other types of functions:
 - https://www.php.net/manual/en/functions.internal.php
 - https://www.php.net/manual/en/functions.variable-functions.php
 
-### Classes
-
-Classes are very similar to what you saw in **Programming 2** with **C#**. Naming conventions are the same, i.e., `SomeClass` not `someClass`. Properties must be defined as public (default), private or protected. If you use `var`, the property will have public visibility.
-
-```php
-<?php
-    class Person {
-        private $first_name;
-        private $last_name;
-      
-        public function set_first_name($first_name) {
-            $this->first_name = $first_name;
-        }
-      
-        public function get_first_name() {
-            return $this->first_name;
-        }
-      
-        public function set_last_name($last_name) {
-            $this->last_name = $last_name;
-        }
-      
-        public function get_last_name() {
-           return $this->last_name;
-        }
-    }
-    
-    $person_one = new Person;
-    $person_one->set_first_name("John");
-    $person_one->set_last_name("Doe");
-    echo $person_one->get_first_name() . " " . $person_one->get_last_name(); // John Doe
-?>
-```
-
-**Question:** What happens when I try and access `first_name` or `last_name` directly, i.e., $person_one->first_name;?
-
-### Error Handling
+## Error Handling
 
 Firstly, we must answer the following questions:
 - **What is an error?**
@@ -342,6 +304,7 @@ For more thorough exception handling, we will look at try/catch blocks:
 ```
 
 A more practical example:
+
 ```php
 <?php
     try {
@@ -357,7 +320,7 @@ From here, we will go on a small tangent...what is the `.` equivalent to in **C#
 
 **Resource:** https://www.php.net/manual/en/language.exceptions.php
 
-### File Processing
+## File Processing
 There may be a time where you need to create, update or delete a file. 
 
 The example below is checking if a file exists:
@@ -373,6 +336,7 @@ The example below is checking if a file exists:
 ```
 
 How about reading the contents:
+
 ```php
 echo file_get_contents("sample.txt");
 ```
@@ -439,4 +403,3 @@ Create a new file called `index.php`
 Add some code from the lecture notes, then navigate to http://localhost:81
   
 ## Practical
-This week you will work on a series of programming problems to familiarise yourself with **PHP**. 
