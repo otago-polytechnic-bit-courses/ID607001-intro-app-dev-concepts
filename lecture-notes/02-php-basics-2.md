@@ -11,7 +11,12 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
     class Person {
         private $first_name;
         private $last_name;
-      
+
+        public function __construct($first_name, $last_name) {
+            $this->first_name = $first_name;
+            $this->last_name = $last_name;
+        }
+                
         public function set_first_name($first_name) {
             $this->first_name = $first_name;
         }
@@ -29,10 +34,10 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
         }
     }
     
-    $person_one = new Person;
-    $person_one->set_first_name("John");
-    $person_one->set_last_name("Doe");
-    echo $person_one->get_first_name() . " " . $person_one->get_last_name(); // John Doe
+    $person_one = new Person("John", "Doe");
+    $person_one->set_first_name("Jane");
+    $person_one->set_last_name("Roe");
+    echo $person_one->get_first_name() . " " . $person_one->get_last_name(); // Jane Roe
 ?>
 ```
 
@@ -40,5 +45,28 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 
 ## Inheritance
 
+```php
+<?php
+    class Fruit {
+        private $name;
+        private $colour;
+
+        public function __construct($name, $colour) {
+            $this->name = $name;
+            $this->colour = $colour;
+        }
+    }
+
+    class Apple extends Fruit {
+        public function some_message() {
+            echo "I am an apple."
+        }
+    }
+    
+    $apple = new Fruit("apple", "red");
+    $apple->some_message();
+    $banana = new Fruit("banana", "yellow");
+?>
+```
 
 ## Practical
