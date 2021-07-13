@@ -70,15 +70,15 @@ There are **four** main types of operators - arithmetic, assignment, comparison 
 **Resource:** https://www.php.net/manual/en/language.operators.php
 
 Other rules for **PHP** variables:
-- Must start with a letter or the `_` underscore character.
-- Can not start with a number.
-- Can only contain alpha numeric characters and underscores.
-- Names are case sensitive, i.e., `$hello` and `$HELLO` are two different variables.
+* Must start with a letter or the `_` underscore character.
+* Can not start with a number.
+* Can only contain alpha numeric characters and underscores.
+* Names are case sensitive, i.e., `$hello` and `$HELLO` are two different variables.
 
 ## Control Structures
 Code is grouped into two categories:
-- **sequential** - executing the code in the order in which it is written.
-- **decision** - executing the code depending on the value of a condition.
+* **sequential** - executing the code in the order in which it is written.
+* **decision** - executing the code depending on the value of a condition.
 
 **Question:** What is a control structure?
 
@@ -94,10 +94,10 @@ Lets look at an example:
 ?>
 ```
 
-- `if (some condition)` - the control structure.
-- block one - the code to be executed, if the condition is `true`.
-- `else` is the fallback, if the condition is `false`.
-- block two - the code to be executed if the condition is `false`.
+* `if (some condition)` - the control structure.
+* block one - the code to be executed, if the condition is `true`.
+* `else` is the fallback, if the condition is `false`.
+* block two - the code to be executed if the condition is `false`.
 
 As you can see, this is same as **C#** and **JavaScript**.
 
@@ -119,10 +119,10 @@ Another example:
 ```
 
 **Resources:** 
-- https://www.php.net/manual/en/control-structures.if.php
-- https://www.php.net/manual/en/control-structures.else.php
-- https://www.php.net/manual/en/control-structures.elseif.php
-- https://www.php.net/manual/en/control-structures.alternative-syntax.php
+* https://www.php.net/manual/en/control-structures.if.php
+* https://www.php.net/manual/en/control-structures.else.php
+* https://www.php.net/manual/en/control-structures.elseif.php
+* https://www.php.net/manual/en/control-structures.alternative-syntax.php
 
 **PHP** also has a **switch statement**.
 
@@ -144,9 +144,9 @@ Another example:
 ?>
 ```
 
-- `switch (condition)` - the control structure.
-- `case` - the code to be executed depending on the value of the condition.
-- `default` - the code to be executed if the value of the condition is not met.
+* `switch (condition)` - the control structure.
+* `case` - the code to be executed depending on the value of the condition.
+* `default` - the code to be executed if the value of the condition is not met.
 
 Lets look at example:
 
@@ -206,10 +206,10 @@ Here are some examples:
 ```
 
 **Resources:**
-- https://www.php.net/manual/en/control-structures.for.php
-- https://www.php.net/manual/en/control-structures.foreach.php
-- https://www.php.net/manual/en/control-structures.while.php
-- https://www.php.net/manual/en/control-structures.do.while.php
+* https://www.php.net/manual/en/control-structures.for.php
+* https://www.php.net/manual/en/control-structures.foreach.php
+* https://www.php.net/manual/en/control-structures.while.php
+* https://www.php.net/manual/en/control-structures.do.while.php
 
 ## Functions
 **Resources:**
@@ -243,26 +243,26 @@ You can define a function without a name. This called an **anonymous function** 
 **Resource:** https://www.php.net/manual/en/functions.anonymous.php
 
 Below are additional resources to other types of functions:
-- https://www.php.net/manual/en/functions.arrow.php
-- https://www.php.net/manual/en/functions.internal.php
-- https://www.php.net/manual/en/functions.variable-functions.php
+* https://www.php.net/manual/en/functions.arrow.php
+* https://www.php.net/manual/en/functions.internal.php
+* https://www.php.net/manual/en/functions.variable-functions.php
 
 ## Error Handling
 
 Firstly, we must answer the following questions:
-- **What is an error?**
+* **What is an error?**
 
   An unexpected result that cannot be handled by the program itself. Errors are resolved by fixing the program. An example of error is an infinite loop. 
 
-- **What is an exception?**
+* **What is an exception?**
 
   An exception is an unexpected result that can be handled by the program itself. An example of an exception is opening a file that does not exist. 
   
-- **How do we handle this?** 
+* **How do we handle this?** 
 
     By either creating the file or giving the option to select a file from your file system.
   
-- **Why exception handling?**
+* **Why exception handling?**
 
   Avoid unexpected results that can annoy end users and improving security by not exposing information which malicious may use. 
 
@@ -365,16 +365,16 @@ cd /c/laragon
 ./laragon.exe
 ```
 
-- `cd /c/laragon` - change to the laragon directory in the C drive.
-- `./laragon.exe` - run the laragon executable in the laragon directory.
+* `cd /c/laragon` - change to the laragon directory in the **C drive**.
+* `./laragon.exe` - run the **laragon executable** in the **laragon** directory.
 
 You should see the following window:
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics-1/01-laragon-1.jpg?raw=true)
 
-Make sure the **PHP** version is set to 8.0.2. If it is not, right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64
+Make sure the **PHP** version is set to **8.0.2**. If it is not, **right-click on the window > PHP > Version > php-8.0.2-Win32-vs16-x64**
   
-Click the **Start All** button. This will start a new instance of **Apache** and **MySQL**.
+Click the **Start All** button. This will start a new instance of an **Apache** web server and a **MySQL** database.
   
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics-1/01-laragon-2.jpg?raw=true)
   
@@ -386,9 +386,9 @@ cd www
 code .
 ```
   
-- `mkdir -p www` - if does not exist, create a new directory called **www**. This is where your **PHP** files will go. 
-- `cd www` - change to the **www** directory.
-- `code .` - open **Visual Studio Code** in the **www** directory.
+* `mkdir -p www` - if does not exist, create a new directory called **www**. This is where your **PHP** files will go. 
+* `cd www` - change to the **www** directory.
+* `code .` - open **Visual Studio Code** in the **www** directory.
 
 When you open **Visual Studio Code**, you may be prompted with the following:
 
@@ -396,7 +396,7 @@ When you open **Visual Studio Code**, you may be prompted with the following:
 
 Click on the **Yes, I trust the authors** button.
   
-Create a new file called `index.php`
+Create a new file called `index.php`.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/01-php-basics-1/01-vs-code-2.PNG?raw=true)
   

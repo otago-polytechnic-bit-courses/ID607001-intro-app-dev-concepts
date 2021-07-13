@@ -1,7 +1,6 @@
 
 # 02: PHP Basics 2
 
-## Practical 
 ## Classes
 
 Classes are very similar to what you saw in **Programming 2** with **C#**. Naming conventions are the same, i.e., `SomeClass` not `someClass`. Properties must be defined as public (default), private or protected. If you use `var`, the property will have public visibility.
@@ -77,5 +76,11 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
     $banana->some_message(); // name => banana, colour => yellow, weight => 20
 ?>
 ```
+
+## Interfaces
+
+## Static Methods 
+
+## Static Properties
 
 ## Practical

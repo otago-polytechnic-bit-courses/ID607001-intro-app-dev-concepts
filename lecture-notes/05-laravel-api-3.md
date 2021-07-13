@@ -4,4 +4,8 @@
 
 ## Caching
 
-## Throttle and Rate Limits
+## Observer
+
+## Rate Limits
+
+## Practical
