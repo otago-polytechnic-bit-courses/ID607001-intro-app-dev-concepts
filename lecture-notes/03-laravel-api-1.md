@@ -1,7 +1,5 @@
 # 03: Laravel API 1
 
-## Laravel
-
 ## Create a Laravel Application
 
 Run the **laragon executable** in the **laragon** directory, then click the **Start All** button.
@@ -16,11 +14,27 @@ Run the **laragon executable** in the **laragon** directory, then click the **St
 
 Feel free to use this comand prompt window going forward. Once the project is created, open it in **Visual Studio Code**.
 
-## File Structure
+## Directory Structure
+
+We will not go through all of the directories. However, we will cover just the ones we will be using in this module.
+
+* `app` - contains the core code such as controllers, models, providers.
+* `config` - contains all of your project's configuration files such as auth, caching, database.
+* `routes` - contains all of your project's route definitions. We are only concerned with `api.php`. However, in **Studio 3**, you will use `web.php`.
+
+**Resource:** https://laravel.com/docs/8.x/structure
 
 ## Composer
 
+**Composer** is the dependency manager for **Laravel**. Just think of this as **NPM** for **Node**.
+
+**Resource:** https://getcomposer.org
+
 ## Artisan
+
+**Artisan** is the command line interface included with **Laravel**. It provides useful commands that can help you while your are building your project.
+
+**Resource:** https://laravel.com/docs/8.x/artisan
 
 ## Create a MySQL Database
 
@@ -213,6 +227,8 @@ public function destroy($id) {
 }
 ```
 
+We will look at returning more useful messages later.
+
 ## Route
 
 In the `routes` directory, open the `api.php` file & create the following **API** endpoints:
@@ -245,18 +261,32 @@ php artisan serve
 
 **Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
 
+If you do not have an account, please sign up. There are two options - **username/password** and **Google**.
+
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-1.PNG?raw=true)
+
+Click on **Create a Request**.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-2.PNG?raw=true)
 
+Lets send a `GET` request to the URL - http://127.0.0.1:8000/api/institutions. As you can see in the bottom panel, the response return is an empty array. Also, make note of the status code, i.e., 200.
+
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-3.PNG?raw=true)
+
+An empty array is not useful, so lets send a `POST` request to the same URL. Click on the **Body** tab, then the **form data** radio button. Add the appropriate key/value pairs, then click the **Send** button. Have a look at your **MySQL** database. You should now have a new row in your `institutions` tables. Alterntaively, you can make a `GET` request.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-4.PNG?raw=true)
 
+What happens if I want to update a row, i.e., institution? Lets send a `PUT` request to the same URL. Here we have changed the name from **Otago Polytechnic** to **Te Kura Matatini ki Otago** using the row's `id`. Just note that we are using the **Params** not the **Body** tab.
+
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-5.PNG?raw=true)
+
+What happens if I do not want an institution anymore? Lets send a `DELETE` request to the same URL. Much like the `PUT` request, we must specify the row's `id`. As you can, the response messages are not useful.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-6.PNG?raw=true)
 
 **Resources:**
 * https://www.postman.com
-* https://www.postman.com//downloads
+* https://www.postman.com/downloads
 
 ## Practical
