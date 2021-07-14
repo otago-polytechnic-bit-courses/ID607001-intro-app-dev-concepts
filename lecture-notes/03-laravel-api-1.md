@@ -12,65 +12,33 @@ Run the **laragon executable** in the **laragon** directory, then click the **St
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-laragon-1.PNG?raw=true)
 
-Change directory to your new application, then open it in **Visual Studio Code**.
+**Note:** A command prompt window will display. It will take a few minutes to create the project.
 
-## Model
+Feel free to use this comand prompt window going forward. Once the project is created, open it in **Visual Studio Code**.
 
-A **Model** class represents the logical structure and relationship of a database table. In **Laravel**, each table corresponds to a model. A model allows you to retrieve, create, update and delete data.
+## File Structure
 
-To create a new model and migration, run the following command:
+## Composer
 
-```xml
-php artisan make:model Student --migration
-```
-
-In `app\Models\Student.php`, specify the database table and fields you wish to interact with. For example:
-
-```php
-...
-class Student extends Model {
-    use HasFactory;
-
-    protected $fillable = ['first_name', 'last_name', 'phone_number', 'email_address'];
-}
-```
-
-**Resource:** https://laravel.com/docs/8.x/eloquent#generating-model-classes
-
-## Migration
-You can think of migrations like version control for your database. They allow you to define and share the application's schema definitions.
-
-In the `database\migrations` directory, you will see a migration file for the `Student` **Model** class.
-
-```php
-...
-public function up() {
-    Schema::create('students', function (Blueprint $table) {
-        $table->id();
-        $table->timestamps();
-    });
-}
-...
-```
-
-Modify this migration file by adding a column for `first_name`, `last_name`,`phone_number` and `email_address`. All four columns are of type `string`.
-
-```php
-...
-public function up() {
-    Schema::create('students', function (Blueprint $table) {
-        $table->id();
-        $table->string('first_name');
-        $table->string('last_name');
-        $table->string('phone_number');
-        $table->string('email_address');
-        $table->timestamps();
-    });
-}
-...
-```
+## Artisan
 
 ## Create a MySQL Database
+
+Go to the **Laragon** client window and click the **Database** button. You will be presented with the **Session Manager** window. Click the **Open** button to view all your databases.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-1.PNG?raw=true
+)
+
+By default, **Laragon** creates a **MySQL** database for your project. However, due to deep freeze on the lab computers, you will need to manually create a **MySQL** database everytime you come to class.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-2.PNG?raw=true
+)
+
+To create a **MySQL** database, **right-click on the Laragon tab > Create new > Database**.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-3.PNG?raw=true
+
+You will be presented with another window prompting you to name the database. To be consistent, name the database name the same as your project's name.
 
 ## Connecting to MySQL
 
@@ -80,12 +48,77 @@ In the `.env` file, modify your database credentials so that your project is con
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=grayson_api_db
+DB_DATABASE=graysono-laravel-api
 DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Note:** you do not need a password to use this database.
+**Note:** you do not need a password to use this database. Aslo, replace `graysono-laravel-api` with your project name.
+
+## Model
+
+A **Model** class represents the logical structure and relationship of a database table. In **Laravel**, each table corresponds to a model. A model allows you to retrieve, create, update and delete data.
+
+To create a new model and migration, run the following command:
+
+```xml
+php artisan make:model Institution --migration
+```
+
+In `app\Models\Institution.php`, specify the database table and fields you wish to interact with. For example:
+
+```php
+...
+class Institution extends Model {
+    use HasFactory;
+
+    protected $fillable = ['name', 'region', 'country'];
+}
+```
+
+**Resource:** https://laravel.com/docs/8.x/eloquent#generating-model-classes
+
+## Migration
+You can think of migrations like version control for your database. They allow you to define and share the application's schema definitions.
+
+In the `database\migrations` directory, you will see a migration file for the `Institution` **Model** class.
+
+```php
+...
+public function up() {
+    Schema::create('institutions', function (Blueprint $table) {
+        $table->id();
+        $table->timestamps();
+    });
+}
+...
+```
+
+Modify this migration file by adding a column for `name`, `region` and `country`. All three columns are of type `string`.
+
+```php
+...
+public function up() {
+    Schema::create('institutions', function (Blueprint $table) {
+        $table->id();
+        $table->string('name');
+        $table->string('region');
+        $table->string('country');
+        $table->timestamps();
+    });
+}
+...
+```
+
+If you change a migration file, you will have an outstanding migration. This means that your database schema will not reflect the columns specified in your migration file. To run all oustanding migrations, run the following command:
+
+```xml
+php artisan migrate
+```
+
+Go to your **MySQL** database and refresh the window. You should see five tables.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-4.PNG?raw=true
 
 ## Controller
 A **Controller** class contains public action methods used to handle various **HTTP methods**, i.e., `GET`, `POST`, `PUT` and `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data and return the appropriate responses. 
@@ -93,17 +126,16 @@ A **Controller** class contains public action methods used to handle various **H
 To create a new **controller**, execute the following command:
 
 ```xml
-php artisan make:controller StudentController --api
+php artisan make:controller InstitutionController --api
 ```
 
 In the `app\Http\Controllers` directory, you will find all your **controllers** including `StudentController.php`. 
 
-In `StudentController.php`, you will see the following **CRUD** methods:
+In `InstitutionController.php`, you will see the following **CRUD** methods:
 
 ```php
 ...
-class StudentController extends Controller
-{
+class InstitutionController extends Controller {
     public function index() {
         // Some code
     }
@@ -126,19 +158,86 @@ class StudentController extends Controller
 }
 ```
 
+In order to use the `institutions` table, you need to import the `Institution` model. To do this, add the following line above the class declaration:
+
+...
+use App\Models\Institution;
+
+class InstitutionController extends Controller {
+    ...
+}
+
 **Resource:** https://laravel.com/docs/8.x/controllers
 
+### Eloquent
+**Eloquent** is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language. Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
+
+**Resource:** https://laravel.com/docs/8.x/eloquent
+
 ### Read All
+```php
+public function index() {
+    return Institution::all();
+}
+```
 
 ### Read One
+```php
+public function show($id) {
+    return Institution::find($id);
+}
+```
 
 ### Create
+```php
+public function store(Request $request) {
+    return Institution::create($request->all());
+}
+```
 
 ### Update
+```php
+public function update(Request $request, $id) {
+    $institution = Institution::find($id);
+    $institution->update($request->all());
+    return $institution;
+}
+```
 
 ### Delete
+```php
+public function destroy($id) {
+    return Institution::destroy($id);
+}
+```
 
 ## Route
+
+In the `routes` directory, open the `api.php` file & create the following **API** endpoints:
+
+```php
+Route::group(['prefix' => 'institutions'], function() {
+    Route::get('/', [InstitutionController::class, 'index']);
+    Route::get('/{id}', [InstitutionController::class, 'show']);
+    Route::post('/', [InstitutionController::class, 'store']);
+    Route::put('/{id}', [InstitutionController::class, 'update']);
+    Route::delete('/{id}', [InstitutionController::class, 'destroy']);
+});
+```
+
+Make sure you import `InstitutionController`.
+
+**Note:** All routes in `api.php` are prefix with `/api`.
+
+**Resource:** https://laravel.com/docs/8.x/routing
+
+## Run Development Server
+
+Run the development server by running the following command:
+
+```
+php artisan serve
+```
 
 ## Postman
 
