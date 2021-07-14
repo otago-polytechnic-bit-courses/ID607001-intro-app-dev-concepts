@@ -72,9 +72,11 @@ public function up() {
 ...
 ```
 
-The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreignId('institutions_id')->constrained('institutions');` refers to the primary key in the `institutions` database table. 
+The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreignId('institutions_id')->constrained('institutions');` refers to the primary key in the `institutions` database table.
 
-Make sure to migrate using the following command:
+**Question:** What does `onUpdate('cascade')` and `onDelete('cascade')` do?
+
+Remember to migrate using the following command:
 
 ```xml
 php artisan migrate
@@ -103,22 +105,71 @@ Here we are only retrieving the student's first name, last name, and their insti
 
 ## Route
 
-Create a new route for the `index()` action method in `StudentController`.
+In `api.php`, create a new route for the `index()` action method in `StudentController`.
+
+## Seeder
+Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\seeders` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables seperately with the appropriate **JSON** file. To do this, run the following commands:
+
+```xml
+php artisan make:seeder InstitutionSeeder
+php artisan make:seeder StudentSeeder
+```
+
+Spend a minute looking through the contents of both **JSON** files. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. 
+
+In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. In this method, you will add the following code:
+
+```php
+public function run() {
+    $json_file = File::get('student-data.json');
+    DB::table('students')->delete();
+    $data = json_decode($json_file);
+    foreach ($data as $obj) {
+        Student::create(array(
+            'first_name' => $obj->first_name,
+            'last_name' => $obj->last_name,
+            'phone_number' => $obj->phone_number,
+            'email_address' => $obj->email_address,
+            'institution_id' => $obj->institution_id
+        ));
+    } 
+}
+```
+
+Also, you will need to include two imports:
+
+```php
+...
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
+
+class StudentSeeder extends Seeder {
+...
+```
+
+In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
+```php
+public function run() {
+    // \App\Models\User::factory(10)->create();
+    $this->call(InstitutionSeeder::class);
+    $this->call(StudentSeeder::class);
+}
+```
+
+Once you have done this, you can use the following command to seed your tables:
+
+```xml
+php artisan db:seed
+```
 
 Go **Postman** and test your new route.
 
-
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/04-laravel-api-2/04-postman-4.PNG?raw=true)
-
-## Seeder
-Copy `institution-data.json` & `student-data.json` into the `database\data` directory. You may be prompt to override `student-data.json`. Create a `Seeder` class which seeds data in the `institutions` database table with `institution-data.json`. 
-
-Go & have a look at the contents in `student-data.json`. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. Also, you will need to update `StudentSeeder.php` so that it seeds `institution_id` into the `students` database table.
 
 **Resource:** https://laravel.com/docs/8.x/seeding
 
 ## Appending Values To JSON
-This is example on how you append values to **JSON**. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
+You may want to add attributes that do not have a column in one of your tables. This is example on how you append values to **JSON**. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
 
 ```php
 ...
@@ -126,11 +177,17 @@ class Institution extends Model {
     ...
     protected $appends = ['students_count'];
     ...
+    public function students() {
+        return $this->hasMany(Student::class);
+    }
+
     public function getStudentsCountAttribute() {
         return $this->students()->count();
     }
 }
 ```
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/04-laravel-api-2/04-postman-5.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json
 
