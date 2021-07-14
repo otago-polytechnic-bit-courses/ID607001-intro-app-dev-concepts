@@ -234,6 +234,7 @@ We will look at returning more useful messages later.
 In the `routes` directory, open the `api.php` file & create the following **API** endpoints:
 
 ```php
+...
 Route::group(['prefix' => 'institutions'], function() {
     Route::get('/', [InstitutionController::class, 'index']);
     Route::get('/{id}', [InstitutionController::class, 'show']);
