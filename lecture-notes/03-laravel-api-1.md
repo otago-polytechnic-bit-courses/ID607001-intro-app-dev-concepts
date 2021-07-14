@@ -26,17 +26,15 @@ Feel free to use this comand prompt window going forward. Once the project is cr
 
 Go to the **Laragon** client window and click the **Database** button. You will be presented with the **Session Manager** window. Click the **Open** button to view all your databases.
 
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-1.PNG?raw=true
-)
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-1.PNG?raw=true)
 
 By default, **Laragon** creates a **MySQL** database for your project. However, due to deep freeze on the lab computers, you will need to manually create a **MySQL** database everytime you come to class.
 
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-2.PNG?raw=true
-)
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-2.PNG?raw=true)
 
 To create a **MySQL** database, **right-click on the Laragon tab > Create new > Database**.
 
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-3.PNG?raw=true
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-3.PNG?raw=true)
 
 You will be presented with another window prompting you to name the database. To be consistent, name the database name the same as your project's name.
 
@@ -118,9 +116,10 @@ php artisan migrate
 
 Go to your **MySQL** database and refresh the window. You should see five tables.
 
-![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-4.PNG?raw=true
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-mysql-4.PNG?raw=true)
 
 ## Controller
+
 A **Controller** class contains public action methods used to handle various **HTTP methods**, i.e., `GET`, `POST`, `PUT` and `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data and return the appropriate responses. 
 
 To create a new **controller**, execute the following command:
@@ -160,12 +159,15 @@ class InstitutionController extends Controller {
 
 In order to use the `institutions` table, you need to import the `Institution` model. To do this, add the following line above the class declaration:
 
+```php
 ...
 use App\Models\Institution;
 
 class InstitutionController extends Controller {
     ...
 }
+
+```
 
 **Resource:** https://laravel.com/docs/8.x/controllers
 
@@ -225,7 +227,7 @@ Route::group(['prefix' => 'institutions'], function() {
 });
 ```
 
-Make sure you import `InstitutionController`.
+Make sure you import `InstitutionController`. If you do not, you will not have access to these action methods.
 
 **Note:** All routes in `api.php` are prefix with `/api`.
 
@@ -240,5 +242,21 @@ php artisan serve
 ```
 
 ## Postman
+
+**Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-1.PNG?raw=true)
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-2.PNG?raw=true)
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-3.PNG?raw=true)
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-4.PNG?raw=true)
+
+![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-5.PNG?raw=true)
+
+**Resources:**
+* https://www.postman.com
+* https://www.postman.com//downloads
 
 ## Practical
