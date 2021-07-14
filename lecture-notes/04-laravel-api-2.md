@@ -120,8 +120,8 @@ Spend a minute looking through the contents of both **JSON** files. You will not
 In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. In this method, you will add the following code:
 
 ```php
+...
 // StudentSeeder.php
-
 public function run() {
     $json_file = File::get('student-data.json');
     DB::table('students')->delete();
@@ -148,6 +148,8 @@ use Illuminate\Support\Facades\File;
 class StudentSeeder extends Seeder {
 ...
 ```
+
+**Note:** you will need to add code to the `run()` method in `InstitutionSeeder` 
 
 In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
 ```php

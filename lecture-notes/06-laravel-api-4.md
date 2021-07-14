@@ -2,7 +2,9 @@
 
 ## Sanctum
 
-## Deployment
+## Heroku
+
+## PostgreSQL
 
 ## Postman Documentation
 
