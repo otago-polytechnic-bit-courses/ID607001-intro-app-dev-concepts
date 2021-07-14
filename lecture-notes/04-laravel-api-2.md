@@ -158,6 +158,8 @@ public function run() {
 }
 ```
 
+**Question:** Why is `InstitutionSeeder` called before `StudentSeeder`?
+
 Once you have done this, you can use the following command to seed your tables:
 
 ```xml
