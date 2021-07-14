@@ -136,7 +136,7 @@ Go to your **MySQL** database and refresh the window. You should see five tables
 
 A **Controller** class contains public action methods used to handle various **HTTP methods**, i.e., `GET`, `POST`, `PUT` and `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data and return the appropriate responses. 
 
-To create a new **controller**, execute the following command:
+Create a new **controller** by running the following command:
 
 ```xml
 php artisan make:controller InstitutionController --api
