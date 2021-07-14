@@ -277,7 +277,7 @@ An empty array is not useful, so lets send a `POST` request to the same URL. Cli
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-4.PNG?raw=true)
 
-What happens if I want to update a row, i.e., institution? Lets send a `PUT` request to the same URL. Here we have changed the name from **Otago Polytechnic** to **Te Kura Matatini ki Otago** using the row's `id`. Just note that we are using the **Params** not the **Body** tab.
+What happens if I want to update a row, i.e., institution? Lets send a `PUT` request to the same URL. Here we have changed the name from **Otago Polytechnic** to **Te Kura Matatini ki Otago** using the row's `id`. Just note that we are using the **Params** tab not the **Body** tab.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-5.PNG?raw=true)
 
