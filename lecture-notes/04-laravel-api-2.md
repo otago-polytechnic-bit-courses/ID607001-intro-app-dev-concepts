@@ -149,7 +149,7 @@ class StudentSeeder extends Seeder {
 ...
 ```
 
-**Note:** you will need to add code to the `run()` method in `InstitutionSeeder` 
+**Note:** you will need to add code to the `run()` method in `InstitutionSeeder`.
 
 In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
 ```php
