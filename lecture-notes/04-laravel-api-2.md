@@ -7,6 +7,7 @@ In **Laravel**, there are different ways to validate your data. The most common 
 In `InstitutionController.php`, update the `store()` method as follows:
 
 ```php
+...
 public function store(Request $request) {
     $request->validate([
         'name' => 'required',
@@ -16,6 +17,7 @@ public function store(Request $request) {
 
     return Institution::create($request->all());
 }
+...
 ```
 
 This means you can not create an **institution** without providing a `name`, `region` and `country`.
@@ -153,6 +155,7 @@ class StudentSeeder extends Seeder {
 
 In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
 ```php
+...
 public function run() {
     // \App\Models\User::factory(10)->create();
     $this->call(InstitutionSeeder::class);
