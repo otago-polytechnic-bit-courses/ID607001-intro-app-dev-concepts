@@ -123,7 +123,7 @@ In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method calle
 ...
 // StudentSeeder.php
 public function run() {
-    $json_file = File::get('student-data.json');
+    $json_file = File::get('database\seeders\student-data.json');
     DB::table('students')->delete();
     $data = json_decode($json_file);
     foreach ($data as $obj) {
