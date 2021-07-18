@@ -12,7 +12,7 @@ Run the **laragon executable** in the **laragon** directory, then click the **St
 
 **Note:** A command prompt window will display. It will take a few minutes to create the project.
 
-Feel free to use this comand prompt window going forward. Once the project is created, open it in **Visual Studio Code**.
+Feel free to use this command prompt window going forward. Once the project is created, open it in **Visual Studio Code**.
 
 ## Directory Structure
 
@@ -56,7 +56,7 @@ You will be presented with another window prompting you to name the database. To
 
 In the `.env` file, modify your database credentials so that your project is connected to **MySQL**.
 
-```xml
+```bash
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
@@ -65,15 +65,15 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-**Note:** you do not need a password to use this database. Aslo, replace `graysono-laravel-api` with your project name.
+**Note:** you do not need a password to use this database. Also, replace `graysono-laravel-api` with your project name.
 
 ## Model
 
-A **Model** class represents the logical structure and relationship of a database table. In **Laravel**, each table corresponds to a model. A model allows you to retrieve, create, update and delete data.
+A **model** class represents the logical structure and relationship of a database table. In **Laravel**, each table corresponds to a model. A model allows you to retrieve, create, update and delete data.
 
 To create a new model and migration, run the following command:
 
-```xml
+```bash
 php artisan make:model Institution --migration
 ```
 
@@ -93,7 +93,7 @@ class Institution extends Model {
 ## Migration
 You can think of migrations like version control for your database. They allow you to define and share the application's schema definitions.
 
-In the `database\migrations` directory, you will see a migration file for the `Institution` **Model** class.
+In the `database\migrations` directory, you will see a migration file for the `Institution` **model** class.
 
 ```php
 ...
@@ -122,9 +122,9 @@ public function up() {
 ...
 ```
 
-If you change a migration file, you will have an outstanding migration. This means that your database schema will not reflect the columns specified in your migration file. To run all oustanding migrations, run the following command:
+If you change a migration file, you will have an outstanding migration. This means that your database schema will not reflect the columns specified in your migration file. To run all outstanding migrations, run the following command:
 
-```xml
+```bash
 php artisan migrate
 ```
 
@@ -134,17 +134,15 @@ Go to your **MySQL** database and refresh the window. You should see five tables
 
 ## Controller
 
-A **Controller** class contains public action methods used to handle various **HTTP methods**, i.e., `GET`, `POST`, `PUT` and `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data and return the appropriate responses. 
+A **controller** class contains public action methods used to handle various **HTTP methods**, i.e., `GET`, `POST`, `PUT` and `DELETE`. These action methods handle incoming requests, retrieve the necessary **model** data and return the appropriate responses. 
 
 Create a new **controller** by running the following command:
 
-```xml
+```bash
 php artisan make:controller InstitutionController --api
 ```
 
-In the `app\Http\Controllers` directory, you will find all your **controllers** including `StudentController.php`. 
-
-In `InstitutionController.php`, you will see the following **CRUD** methods:
+In the `app\Http\Controllers` directory, you will find all your **controllers** including `InstitutionController.php`. In `InstitutionController.php`, you will see the following **CRUD** action methods:
 
 ```php
 ...
@@ -180,7 +178,6 @@ use App\Models\Institution;
 class InstitutionController extends Controller {
     ...
 }
-
 ```
 
 **Resource:** https://laravel.com/docs/8.x/controllers
@@ -254,7 +251,7 @@ Make sure you import `InstitutionController`. If you do not, you will not have a
 
 Run the development server by running the following command:
 
-```
+```bash
 php artisan serve
 ```
 
@@ -274,7 +271,7 @@ Lets send a `GET` request to the URL - http://127.0.0.1:8000/api/institutions. A
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-3.PNG?raw=true)
 
-An empty array is not useful, so lets send a `POST` request to the same URL. Click on the **Body** tab, then the **form data** radio button. Add the appropriate key/value pairs, then click the **Send** button. Have a look at your **MySQL** database. You should now have a new row in your `institutions` tables. Alterntaively, you can make a `GET` request.
+An empty array is not useful, so lets send a `POST` request to the same URL. Click on the **Body** tab, then the **form data** radio button. Add the appropriate key/value pairs, then click the **Send** button. Have a look at your **MySQL** database. You should now have a new row in your `institutions` tables. Alternatively, you can make a `GET` request.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-4.PNG?raw=true)
 
@@ -290,4 +287,21 @@ What happens if I do not want an institution anymore? Lets send a `DELETE` reque
 * https://www.postman.com
 * https://www.postman.com/downloads
 
-## Practical
+## Formative Assessment
+
+Click on the following **GitHub Classroom** link - https://classroom.github.com/a/c1Wxock6. You will be presented with the following:
+
+
+This will automatically create a new repository for your **Project 1: Laravel API**. Open a **terminal** or **cmd**, change to the `www` directory and clone your repository. Change to the repository's directory and create a new **Laravel** project using the following command:
+
+```bash
+composer create-project laravel/laravel <PROJECT NAME>
+```
+
+Add, commit and push your code to your remote repository. Create a new branch called **03-laravel-api-1** by running the command:
+
+```bash
+git checkout -b 03-laravel-api-1
+```
+
+Open your project in **Visual Studio Code**. Setup your **models**, **controllers** and **routes**.

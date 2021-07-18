@@ -2,7 +2,7 @@
 
 ## Validation
 
-In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. Aslo there  is a range of validation rules that you can apply to your data.
+In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. Also there  is a range of validation rules that you can apply to your data.
 
 In `InstitutionController.php`, update the `store()` method as follows:
 
@@ -80,7 +80,7 @@ The `students` or child database table contains a foreign key & the `institution
 
 Remember to migrate using the following command:
 
-```xml
+```bash
 php artisan migrate
 ```
 
@@ -110,9 +110,9 @@ Here we are only retrieving the student's first name, last name, and their insti
 In `api.php`, create a new route for the `index()` action method in `StudentController`.
 
 ## Seeder
-Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\seeders` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables seperately with the appropriate **JSON** file. To do this, run the following commands:
+Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\seeders` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables separately with the appropriate **JSON** file. To do this, run the following commands:
 
-```xml
+```bash
 php artisan make:seeder InstitutionSeeder
 php artisan make:seeder StudentSeeder
 ```
@@ -167,7 +167,7 @@ public function run() {
 
 Once you have done this, you can use the following command to seed your tables:
 
-```xml
+```bash
 php artisan db:seed
 ```
 

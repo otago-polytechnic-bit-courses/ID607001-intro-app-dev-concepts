@@ -5,7 +5,7 @@ When you are building an API, you want a transformation layer that sits between 
 
 To create a new **API Resource** class, run the following command:
 
-```xml
+```bash
 php artisan make:resource InstitutionResource
 ```
 
@@ -24,7 +24,7 @@ class InstitutionResource extends JsonResource {
 }
 ```
 
-We are only displaying an institutions's `name`, `region` and `country`. If you refer to earlier example, by default, it included `id`, `created_at` and `updated_at`.
+We are only displaying an institution's `name`, `region` and `country`. If you refer to earlier example, by default, it included `id`, `created_at` and `updated_at`.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/05-laravel-api-3/05-postman-1.PNG?raw=true)
 
@@ -34,7 +34,7 @@ We are only displaying an institutions's `name`, `region` and `country`. If you 
 
 Your application may perform CPU intensive tasks that take several seconds to complete, i.e., retrieving or processing data. When this happens, it is common to cache the data for a period of time, i.e., one hour or 24 hours so that it can be quickly retrieved on subsequent requests for the same data, i.e., retrieving all student data.
 
-It makes sense to cache data when retrieving and this is done in the `index()` action method in `InstitutionController`. Here we are using the `InstitutionResource` to return an institutions's `name`, `region` and `country`. The `Cache::remember()` function accepts three arguments - key, number of seconds and callback function. The callback function returns and caches all the `Institution` data. **Note:** this includes attributes not specified in `InstitutionResource`, i.e., `id`, `created_at` and `updated_at`.
+It makes sense to cache data when retrieving and this is done in the `index()` action method in `InstitutionController`. Here we are using the `InstitutionResource` to return an institution's `name`, `region` and `country`. The `Cache::remember()` function accepts three arguments - key, number of seconds and callback function. The callback function returns and caches all the `Institution` data. **Note:** this includes attributes not specified in `InstitutionResource`, i.e., `id`, `created_at` and `updated_at`.
 
 ```php
 ...
@@ -58,7 +58,7 @@ class InstitutionController extends Controller {
 
 If we add a new institution, we want to clear the cache. We can do this manually, but it is best that we observe these changes. To do this, we need to create an observer by running the following command:
 
-```xml
+```bash
 php artisan make:observer InstitutionObserver --model=Institution
 ```
 

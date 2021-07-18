@@ -5,7 +5,7 @@ This repository contains all information relating to this course, i.e., course d
 ## Repositories
 Here are the following assessment submission repositories:
 
-* Activities - https://classroom.github.com/a/P656imf2
-* API Testing - https://classroom.github.com/a/0kYlKqW8
-* PHP API Project - https://classroom.github.com/a/c1Wxock6
-* React CRUD Project - https://classroom.github.com/a/PZJYGNeP
+* In-Class Activities - https://classroom.github.com/a/P656imf2
+* Practical: API Testing Research - https://classroom.github.com/a/0kYlKqW8
+* Project 1: PHP API - https://classroom.github.com/a/c1Wxock6
+* Project 2: React CRUD - https://classroom.github.com/a/PZJYGNeP
