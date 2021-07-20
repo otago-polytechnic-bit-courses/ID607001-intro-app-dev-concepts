@@ -6,6 +6,4 @@
 
 ## PostgreSQL
 
-## Postman Documentation
-
 ## Practical
