@@ -3,6 +3,10 @@
 ## Sanctum
 
 ```xml
+composer self-update
+```
+
+```xml
 composer require laravel/sanctum
 ```
 
