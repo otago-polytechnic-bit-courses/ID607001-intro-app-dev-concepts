@@ -232,7 +232,7 @@ In the `routes` directory, open the `api.php` file & create the following **API*
 
 ```php
 ...
-Route::group(['prefix' => 'institutions'], function() {
+Route::group(['prefix' => 'institutions'], function () {
     Route::get('/', [InstitutionController::class, 'index']);
     Route::get('/{id}', [InstitutionController::class, 'show']);
     Route::post('/', [InstitutionController::class, 'store']);
