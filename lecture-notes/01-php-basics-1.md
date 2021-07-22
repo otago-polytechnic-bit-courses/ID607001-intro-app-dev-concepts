@@ -403,4 +403,4 @@ Create a new file called `index.php`.
 Add some code from the lecture notes, save the file, then navigate to http://localhost:81
   
 ## Formative Assessment
-Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-1.pdf).
+Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-1.pdf). If you finish all the problems in this activity, an extension activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-extension.pdf).
