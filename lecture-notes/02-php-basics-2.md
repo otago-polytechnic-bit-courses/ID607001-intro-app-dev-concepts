@@ -40,7 +40,7 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 ?>
 ```
 
-**Question:** What happens when I try and access `first_name` or `last_name` directly, i.e., $person_one->first_name;?
+**Question:** What happens when I try and access `first_name` or `last_name` directly, i.e., `$person_one->first_name;`?
 
 ## Inheritance
 
@@ -78,9 +78,5 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 ```
 
 ## Interfaces
-
-## Static Methods 
-
-## Static Properties
 
 ## Practical
