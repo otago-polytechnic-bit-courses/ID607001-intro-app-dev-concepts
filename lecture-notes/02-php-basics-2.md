@@ -1,6 +1,10 @@
 
 # 02: PHP Basics 2
 
+- Every question has more than one solution. It is important to think about different ways of solving a problem. Do not be comfortable writing code the same way you have in the previously.
+- With a new language like **PHP**, it will most likely have a language feature than can solve your problem in one line rather than three or four...good example is getting the sum of an array. If you do use a language feature, make sure you understand what it does.
+- Start becoming familiar with the principle of open for extension...good example is question five. What happens if we want to add new item or remove an existing item?
+
 ## Classes
 
 Classes are very similar to what you saw in **Programming 2** with **C#**. Naming conventions are the same, i.e., `SomeClass` not `someClass`. Properties must be defined as public (default), private or protected. If you use `var`, the property will have public visibility.
