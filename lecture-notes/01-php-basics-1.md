@@ -224,7 +224,7 @@ You may define a function such as the following:
 ?>
 ```
 
-Function names use underscores between lowercased words, i.e., `some_function` not `someFunction`.
+Function names use underscores between lowercase words, i.e., `some_function` not `someFunction`.
 
 **Resource:** https://www.php.net/manual/en/functions.user-defined.php
 
@@ -250,6 +250,7 @@ Below are additional resources to other types of functions:
 ## Error Handling
 
 Firstly, we must answer the following questions:
+
 * **What is an error?**
 
   An unexpected result that cannot be handled by the program itself. Errors are resolved by fixing the program. An example of error is an infinite loop. 
@@ -321,7 +322,8 @@ From here, we will go on a small tangent...what is the `.` equivalent to in **C#
 **Resource:** https://www.php.net/manual/en/language.exceptions.php
 
 ## File Processing
-There may be a time where you need to create, update or delete a file. 
+
+There may be a time where you need to create, update or delete a file.
 
 The example below is checking if a file exists:
 
@@ -356,6 +358,7 @@ or deleting the file:
 **Resource:** https://www.php.net/manual/en/ref.filesystem.php
 
 ## Setting Up Your Development Environment
+
 In this course, we will be using **Visual Studio Code** and **Laragon**. **Laragon** makes building and maintaining **PHP** applications simple. If you do not have **Laragon** installed, you can download it [here](https://laragon.org/download/). Going forward...the lecture notes, i.e., code snippets, screenshots, etc will be **Windows** specific. If you are using **macOS** or **Linux**, you will need to use **XAMMP** as there is no available **Laragon** client.
 
 Open a **Git Bash** terminal and run the following commands:
@@ -403,4 +406,5 @@ Create a new file called `index.php`.
 Add some code from the lecture notes, save the file, then navigate to http://localhost:81
   
 ## Formative Assessment
+
 Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-1.pdf). If you finish all the problems in this activity, an extension activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-1-extension.pdf).

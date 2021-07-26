@@ -34,170 +34,179 @@
 \maketitle
  
 \section*{Instructions}
-The purpose of this in-class activity to familiarise yourself with classes, inheritance \& interfaces in \textbf{PHP}. Next week, we will start the\textbf{Laravel} module. This web framework uses the \textbf{Object-Oriented} programming paradigm.
+The purpose of this in-class activity to familiarise yourself with classes, inheritance \& interfaces in \textbf{PHP}.
 
 \section*{Code Review}
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your code review – \href{https://classroom.github.com/a/P656imf2}{https://classroom.github.com/a/P656imf2}. Checkout from the \textbf{main} branch to the \textbf{02-in-class-activity} branch by running the command - \textbf{git checkout 02-in-class-activity}. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request \& assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer. \textbf{Do not} merge your own pull request.
 
 \subsection*{Problem 1:} 
-Create a \textbf{Cat} class with the private attributes name, age & breed. For each attribute, create a getter & setter. Create a \textbf{toString} special method which returns the following: My breed's name is name. S/he is age year(s) old.
-
-Create two \textbf{Cat} objects called \textbf{cat\_one} \& \textbf{cat\_two}. Using setters, change \textbf{cat\_one's} name to Fido & age to 10. Again, using a setter, change \textbf{cat\_two's}breed to poodle. For each \textbf{Cat} object, print its string representation.
+Create a \textbf{Cat} class with the private attributes name, age \& breed. For each attribute, create a getter \& setter. Also, create a \textbf{\_\_toString()} special method which returns the following:
 
 \begin{verbatim}
   <?php
-    // Write your solution here
+      My $this->breed's name is $this->name. S/he is $this->age year(s) old.
+  ?>
+\end{verbatim}
+
+Create two \textbf{Cat} objects called \textbf{cat\_one} \& \textbf{cat\_two}. Using setters, change \textbf{cat\_one's} name to Fido \& age to 10. Again, using a setter, change \textbf{cat\_two's} breed to \textbf{American Bobtail}. For each \textbf{Cat} object, print its string representation.
+
+\begin{verbatim}
+  <?php
+      // Write your solution here
   ?>
 \end{verbatim}
 
 \subsection*{Problem 2:} 
-Calculate the \textbf{sum} of the given \textbf{integers} \& display the expected output.
+Create a \textbf{SoftwareDeveloper} \& \textbf{AgileCoach} class which inherits from \textbf{Employee} class. \textbf{SoftwareDeveloper} class has one additional class attribute called \textbf{prog\_lang}. \textbf{AgileCoach} also has one additional class attribute called \textbf{employees} \& three class methods which \textbf{add}, \textbf{remove}, \textbf{search} \& \textbf{show\_all} employees managed by \textbf{AgileCoach}. \textbf{Note:} employees is a list of \textbf{SoftwareDeveloper} objects. \\
+
+Use the three \textbf{SoftwareDeveloper} objects \& \textbf{AgileCoach} object provided to display the expected output.
 
 \begin{verbatim}
   <?php
-    $x = 1957452;
-    $y = 2975635;
+      class Employee {
+          protected $first_name;
+          protected $last_name;
+          protected $salary;
 
-    // Write your solution here
+          public function __construct($first_name, $last_name, $salary) {
+              $this->first_name = $first_name;
+              $this->last_name = $last_name;
+              $this->salary = $salary;
+          }
 
-    // Expected output:
-    // The sum of 1957452 & 2975635 is 4933087
+          public function __toString() {
+              return $this->first_name . " " . $this->last_name;
+          }
+      }
+
+      $sft_dev_one = new SoftwareDeveloper("Alfredo", "Boyle", 50000, "C#");
+      $sft_dev_two = new SoftwareDeveloper("Malik", "Martin", 55000, "JavaScript");
+      $sft_dev_three = new SoftwareDeveloper("Livia", "Martin", 75000, "Kotlin");
+      $agile_coach = new AgileCoach("Lillian", "Cunningham", 100000, array($sft_dev_one, $sft_dev_two));
+
+      // Write your solution here
+
+      // Expected output:
+      // Malik Martin
+      // Livia Martin
+      // Alfredo Boyle not found
+      // Livia Martin found
   ?>
 \end{verbatim}
 
 \subsection*{Problem 3:} 
-Calculate the \textbf{average} of the given \textbf{array} of \textbf{doubles} \& display the expected output.
+\textbf{Language} class has no class attributes, but a class method called \textbf{good\_morning}. \textbf{Maori}, \textbf{Spanish} \& \textbf{German} class inherit from \textbf{Language} class. When you run the following code, what is happening \& why is it happening? Refactor the code to display the expected output.
 
 \begin{verbatim}
   <?php
-    $numbers = array(45.3, 67.5, -45.6, 20.34, -33.0, 45.6);
+      class Language {
+          public function good_morning() {
+              throw new Exception("good_morning not implemented");
+          }
+      }    
 
-    // Write your solution here
+      class Maori extends Language {
+          public function good_morning() {
+              echo "Morena";
+          }
+      }
 
-    // Expected output:
-    // Average: 16.69 
+      class Spanish extends Language {
+
+      }
+
+      class German extends Language {
+          public function good_morning() {
+              echo "Guten Morgen";
+          }
+      }
+          
+      $maori = new Maori();
+      $spanish = new Spanish();
+      $german = new German();
+      $maori->good_morning();
+      $spanish->good_morning();
+      $german->good_morning();
+
+      // Expected output:
+      // Morena
+      // Hola
+      // Guten Morgen
   ?>
-\end{verbatim}
+\end{verbatim} 
 
-\subsection*{Problem 4:}
-Write a function called \textbf{fizzBuzz} which accepts an \textbf{integer} \textbf{num}. If \textbf{num} is a multiple of three, return \textbf{Fizz}, if \textbf{num} is a multiple of five, return \textbf{Buzz} \& if \textbf{num} is a multiple of three \& five, return \textbf{FizzBuzz}. Call the \textbf{fizzBuzz} function in the for loop to display the expected output.
+\subsection*{Problem 4:} 
+Implement the \textbf{push()}, \textbf{pop()}, \textbf{peek()}, \textbf{size()} \& \textbf{show\_all()} methods in the \textbf{Stack} class. \textbf{Note:} \textbf{size()} method returns the length of a \textbf{stack} \& \textbf{show\_all()} method returns the items in a \textbf{stack}. \\
+
+You are probably wondering what a \textbf{stack} is. A \textbf{stack} is an \textbf{Abstract Data Type (ADT)} that is used to store elements in a \textbf{Last In First Out (LIFO)} manner. A \textbf{stack} is a collection of elements where the addition of elements is performed at the end \& the removal of elements is performed at the beginning. A \textbf{stack} has two methods: \textbf{push()} \& \textbf{pop()}. The push method adds an element to the \textbf{stack}. The pop method removes the last element added to the \textbf{stack}. \\
+
+Use the \textbf{Stack} object provided to display the expected output. 
 
 \begin{verbatim}
   <?php
-    // Write your fizzBuzz function here
-    
-    for ($i = 1; $i <= 15; $i += 2) {
+      class Stack {
+          private $stack;
+
+          public function __construct() {
+              $this->stack = array();
+          }
+
+          public function push($item) {
+              // Write your code here
+          }
+
+          public function pop() {
+              // Write your code here
+          }
+
+          public function peek() {
+              // Write your code here
+          }
+
+          public function is_empty() {
+              // Write your code here
+          }
+
+          public function size() {
+              // Write your code here
+          }
+
+          public function show_all() {
+              // Write your code here
+          }
+
+          public function __toString() {
+              return $this->stack;
+          }
+      }   
+          
+      $stack = new Stack();
+      $stack->push("Introductory App Dev Concepts");
+      $stack->push("Intermediate App Dev Concepts");
+      $stack->push("Advanced App Dev Concepts");
+
       // Write your solution here
-    }
 
-    // Expected output:
-    // 1
-    // Fizz 
-    // Buzz
-    // 7
-    // Fizz
-    // 11
-    // 13
-    // FizzBuzz
+      // Expected output:
+      // ["Introductory App Dev Concepts", "Intermediate App Dev Concepts"]
+      // Intermediate App Dev Concepts is at the top of the stack
+      // There are 2 item(s) in the stack
   ?>
 \end{verbatim}
 
-\subsection*{Problem 5:}
-You have been given an \textbf{array} of \textbf{floats} or \textbf{doubles}. Display \textbf{only} the odd numbers in the \textbf{array}. Sort from lowest to highest.
+\subsection*{Problem 5:} 
+Create an interface called \textbf{App}. This interface has three methods, \textbf{login()}, \textbf{register()} \& \textbf{logout()}. The \textbf{login()} method accepts two arguments, email \& password, \& the \textbf{register()} method accepts three arguments, email, password \& username. \\
 
+Create a class called \textbf{Facebook} which implements \textbf{App}. For each method implemented, echo the following:
 \begin{verbatim}
-  <?php  
-    $numbers = array(21, 19, 68, 55, 42, 12);
-    
-    // Write your solution here
-
-    // Expected output:
-    // 19
-    // 21
-    // 55
-  ?>
+  // login() - Logged in with the email - $this->email.
+  // register() - Registered with the email and username - $this->email and $this->username.
+  // logout() - User logged out.
 \end{verbatim}
 
-\subsection*{Problem 6:}
-Write a function called \textbf{is\_anagram} which accepts two parameters called \textbf{string\_one} \& \textbf{string\_two}. In the function block, write some code that checks whether or not \textbf{string\_one} \& \textbf{string\_two} are an anagram. An anagram is a word or phrase that made by arranging the letters of another word or phrase in a different order. If you are still unsure what an anagram is, here is an example:
-
 \begin{verbatim}
-  Input: is_anagram("elvis", "lives");
-  Output: true
-
-  Input: is_anagram("cat", "sat");
-  Output : false
-\end{verbatim}
-
-Call the \textbf{is\_anagram} function to display the expected output.
-
-\begin{verbatim}
-  <?php  
-    // Write your solution here
-
-    // Expected output:
-    // true
-    // false
-  ?>
-\end{verbatim}
-
-\subsection*{Problem 7:}
-Write a function called \textbf{convert} which accepts two parameters called \textbf{hours} \& \textbf{minutes}. In the function block, write some code that converts both \textbf{hours} \& \textbf{minutes} to seconds, then adds them together.
-
-\begin{verbatim}
-  <?php  
-    // Write your solution here
-
-    convert(1, 3);
-
-    // Expected output:
-    // 3780
-  ?>
-\end{verbatim}
-
-\subsection*{Problem 8:}
-Write a function called \textbf{palindrome} which accepts a single parameter called \textbf{string}. In the function block, determine whether or not \textbf{string} is a palindrome. The function should return a \textbf{boolean}.
-
-\begin{verbatim}
-  <?php  
-    // Write your solution here
-
-    palindrome("A man, a plan, a canal - Panama");
-    palindrome("Hello, World!");
-
-    // Expected output:
-    // true
-    // false
-  ?>
-\end{verbatim}
- 
-\subsection*{Problem 9:}
-Write a function called \textbf{is\_five\_letters} which accepts an \textbf{array} of \textbf{strings}. In the function block, return all words that are exactly \textbf{five} letters.
-
-\begin{verbatim}
-  <?php  
-    // Write your solution here
-
-    is_five_letters(["car", "bike", "truck"]);
-
-    // Expected output:
-    // ["truck"] 
-  ?>
-\end{verbatim}
-
-\subsection*{Problem 10:}
-Write a function that accepts an \textbf{integer}. If the \textbf{integer} is prime, return \textbf{true}, otherwise return \textbf{false}. 
-
-\begin{verbatim}
-  <?php  
-    // Write your solution here
-
-    is_prime(11);
-    is_prime(18);
-
-    // Expected output:
-    // true
-    // false
+  <?php
+      // Write your solution here
   ?>
 \end{verbatim}
 

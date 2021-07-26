@@ -42,6 +42,31 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 
 **Question:** What happens when I try and access `first_name` or `last_name` directly, i.e., `$person_one->first_name;`?
 
+## Magic Functions
+
+Instead of `$person_one->get_first_name() . " " . $person_one->get_last_name();`, we can create a special function called `__toString()`. This function does not accept any arguments and returns a **string**.
+
+Special functions in **PHP** are reserved and they can not be used for unintended purposes. **Note:** special functions that start with a double underscore are reserved for **Objects**.
+
+Lets look at how we can implement a `__toString()` function in our `Person` class.
+
+```php
+<?php
+    class Person {
+        ...
+
+        public function __toString() {
+            return $this->first_name . " " . $this->last_name;
+        }
+    }
+    
+    $person_one = new Person("John", "Doe");
+    $person_one->set_first_name("Jane");
+    $person_one->set_last_name("Roe");
+    echo $person_one // Jane Roe
+?>
+```
+
 ## Inheritance
 
 ```php
@@ -79,4 +104,42 @@ Classes are very similar to what you saw in **Programming 2** with **C#**. Namin
 
 ## Interfaces
 
+```php
+ <?php
+    interface Animal {
+        public function make_sound();
+    }
+
+    class Bear implements Animal {
+        public function make_sound() {
+            echo "Growl!";
+        }
+    }
+
+    class Lion implements Animal {
+        public function make_sound() {
+            echo "Roar!";
+        }
+    }
+
+    class Frog implements Animal {
+        public function make_sound() {
+            echo "Ribbit!";
+        }
+    }
+
+    $bear = new Bear();
+    $lion = new Lion();
+    $frog = new Frog();
+    $animals = array($bear, $lion, $frog);
+
+    foreach($animals as $animal) {
+        $animal->make_sound() . "<br>"; // Growl! 
+                               // Roar!
+                               // Ribbit!
+    }
+?>
+```
+
 ## Practical
+Today's in-class activity can be found [here]().
