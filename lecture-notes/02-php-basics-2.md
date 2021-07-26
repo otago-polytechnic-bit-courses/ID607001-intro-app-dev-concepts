@@ -69,6 +69,8 @@ Lets look at how we can implement a `__toString()` function in our `Person` clas
 
 ## Inheritance
 
+Very similar to what you have seen in the past. The `extends` keyword is used to derive a class from another class, i.e., `Banana` extends `Fruit`. 
+
 ```php
 <?php
     class Fruit {
@@ -81,7 +83,7 @@ Lets look at how we can implement a `__toString()` function in our `Person` clas
         }
     }
 
-    class Banana extends Fruit {
+    class Banana extends Fruit { // Note the extends keyword
         // Overriding the parent's ctor
         public function __construct($name, $colour, $weight) {
             $this->name = $name;
@@ -114,7 +116,7 @@ Lets take a look at a simple example:
         public function make_sound();
     }
 
-    class Bear implements Animal {
+    class Bear implements Animal { // Note the implements keyword
         public function make_sound() {
             echo "Growl!";
         }
@@ -146,4 +148,4 @@ Lets take a look at a simple example:
 ```
 
 ## Practical
-Today's in-class activity can be found [here]().
+Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/raw/master/in-class-activities/in-class-activity-php-basics-2.pdf).
