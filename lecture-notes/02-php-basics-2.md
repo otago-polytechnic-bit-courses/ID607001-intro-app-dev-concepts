@@ -104,6 +104,10 @@ Lets look at how we can implement a `__toString()` function in our `Person` clas
 
 ## Interfaces
 
+Given the scenario of driverless cars. I hate driving in town, but on the open road, I love it because I can go 100km. My requirements for a driverless car are very simple. I need it to accept a location, drive me to the destination and wake me up when it gets there. I do not care which company achieves this first or how it gets done. The car just has to be capable of performing my three tasks. You can think of these tasks as a contract of three methods, `set_location`, `drive` and `wake_up` for a class. That is what an interface is...it is a contract that states any class implementing this interface can be typed as the interface and guarantees the methods listed in the interface will be implemented.
+
+Lets take a look at a simple example:
+
 ```php
  <?php
     interface Animal {
@@ -135,8 +139,8 @@ Lets look at how we can implement a `__toString()` function in our `Person` clas
 
     foreach($animals as $animal) {
         $animal->make_sound() . "<br>"; // Growl! 
-                               // Roar!
-                               // Ribbit!
+                                        // Roar!
+                                        // Ribbit!
     }
 ?>
 ```
