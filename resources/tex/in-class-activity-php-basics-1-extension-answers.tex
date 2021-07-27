@@ -61,10 +61,12 @@
 \begin{verbatim}
   <?php
       function missing_num($nums) {
-          return 55 - array_sum($nums);
+          sort($nums); // Returns an empty array if given array, i.e., $nums is not sorted
+          $new_arr = range(1, max($nums)); // Alternatively, you can start with the lowest given element - $nums[0]                                                
+          return array_diff($new_arr, $nums); // Return missing number(s)
       }
-
-      echo missing_num([10, 3, 4, 8, 1, 7, 6, 9, 2]);
+        
+      print_r(missing_num(array(10, 3, 4, 8, 7, 9, 2, 1)));
   ?>
 \end{verbatim}
 
