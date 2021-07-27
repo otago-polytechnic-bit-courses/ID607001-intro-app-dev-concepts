@@ -62,7 +62,8 @@
   <?php
       function missing_num($nums) {
           sort($nums); // Returns an empty array if given array, i.e., $nums is not sorted
-          $new_arr = range(1, max($nums)); // Alternatively, you can start with the lowest given element - $nums[0]                                                
+          $new_arr = range(1, max($nums)); // Alternatively, you can start with the lowest 
+                                           // given element - $nums[0]                                                
           return array_diff($new_arr, $nums); // Return missing number(s)
       }
         
