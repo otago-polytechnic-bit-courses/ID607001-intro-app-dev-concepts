@@ -276,24 +276,18 @@ This is an okay solution, but we can limit the size of our \textbf{stack}. Also,
 \begin{verbatim}
   <?php
       interface App {
-          public function login();
-          public function register(); 
+          public function login($email, $password);
+          public function register($email, $password, $username); 
           public function logout(); 
       }
-      
-       class Facebook implements App {
-          public function __construct($email, $password, $username) {
-              $this->email = $email;
-              $this->password = $password;
-              $this->username = $username;
+
+      class Facebook implements App {
+          public function login($email, $password) {
+              echo "Logged in with the email - $email.";
           }
 
-          public function login() {
-              echo "Logged in with the email - $this->email.";
-          }
-
-          public function register() {
-              echo "Registered with the email and username - $this->email and $this->username.";
+          public function register($email, $password, $username) {
+              echo "Registered with the email and username - $email and $username.";
           }
 
           public function logout() {
@@ -301,9 +295,9 @@ This is an okay solution, but we can limit the size of our \textbf{stack}. Also,
           }
       }
 
-      $fb_user = new Facebook("john.doe@gmail.com", "P@ssw0rd123", "john.doe");
-
-      $fb_user->login() . "<br>";
+      $fb_user = new Facebook();
+      $fb_user->register("john.doe@gmail.com", "P@ssw0rd123", "john.doe") . "<br>";
+      $fb_user->login("john.doe@gmail.com", "P@ssw0rd123") . "<br>";
       $fb_user->register() . "<br>";
       $fb_user->logout() . "<br>";
   ?>
