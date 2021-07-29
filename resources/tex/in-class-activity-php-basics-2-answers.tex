@@ -273,7 +273,37 @@ This is an okay solution, but we can limit the size of our \texbf{stack}. Also, 
 
 \begin{verbatim}
   <?php
-    // Write your solution here
+      interface App {
+          public function login();
+          public function register(); 
+          public function logout(); 
+      }
+      
+       class Facebook implements App {
+          public function __construct($email, $password, $username) {
+              $this->email = $email;
+              $this->password = $password;
+              $this->username = $username;
+          }
+
+          public function login() {
+              echo "Logged in with the email - $this->email.";
+          }
+
+          public function register() {
+              echo "Registered with the email and username - $this->email and $this->username.";
+          }
+
+          public function logout() {
+              echo "User logged out.";
+          }
+      }
+
+      $fb_user = new Facebook("john.doe@gmail.com", "P@ssw0rd123", "john.doe");
+
+      $fb_user->login() . "<br>";
+      $fb_user->register() . "<br>";
+      $fb_user->logout() . "<br>";
   ?>
 \end{verbatim}
 
