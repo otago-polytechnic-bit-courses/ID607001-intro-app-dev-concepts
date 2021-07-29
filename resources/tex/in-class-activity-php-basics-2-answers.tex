@@ -200,6 +200,8 @@
 
 \subsection*{Problem 4:} 
 
+\texbf{Solution 1:} This is an okay solution, but we can limit the size of our \texbf{stack}. Also, there is an absence of error checking, in particular, when popping from the \texbf{stack}.
+
 \begin{verbatim}
   <?php
       class Stack {
@@ -210,23 +212,23 @@
           }
 
           public function push($item) {
-              array_push($this->stack, $item);
+              array_unshift($this->stack, $item);
           }
 
           public function pop() {
-
+              return array_shift($this->stack);
           }
 
           public function peek() {
-
+              return current($this->stack);
           }
 
           public function is_empty() {
-
+              return empty($this->stack);
           }
 
           public function size() {
-
+              return count($this->stack);
           }
 
           public function show_all() {
@@ -244,7 +246,10 @@
       $stack->push("Introductory App Dev Concepts");
       $stack->push("Intermediate App Dev Concepts");
       $stack->push("Advanced App Dev Concepts");
+      $stack->pop();
       $stack->show_all();
+      echo $stack->peek() . " is at the top of the stack" . "<br>";
+      echo "There are " . $stack->size() . " item(s) in the stack"
   ?>
 \end{verbatim}
 
