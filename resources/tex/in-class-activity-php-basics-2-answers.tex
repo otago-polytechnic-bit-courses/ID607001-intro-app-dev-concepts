@@ -200,7 +200,7 @@
 
 \subsection*{Problem 4:} 
 
-\texbf{Solution 1:} This is an okay solution, but we can limit the size of our \texbf{stack}. Also, there is an absence of error checking, in particular, when popping from the \texbf{stack}.
+This is an okay solution, but we can limit the size of our \texbf{stack}. Also, there is an absence of error checking, in particular, when pushing \& popping to \& from the \texbf{stack}.
 
 \begin{verbatim}
   <?php
@@ -212,11 +212,18 @@
           }
 
           public function push($item) {
-              array_unshift($this->stack, $item);
+            // Okay solution
+              array_unshift($this->stack, $item); 
+
+            // Better solution
           }
 
           public function pop() {
+              // Okay solution
               return array_shift($this->stack);
+
+              // Better solution
+              
           }
 
           public function peek() {
