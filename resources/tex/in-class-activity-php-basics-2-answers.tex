@@ -216,6 +216,11 @@ This is an okay solution, but we can limit the size of our \texbf{stack}. Also, 
               array_unshift($this->stack, $item); 
 
             // Better solution
+              if (count($this->stack) < $this->limit) {
+                  array_unshift($this->stack, $item);
+              } else {
+                  throw new RunTimeException("The stack is full. You can not add an item.");
+              }
           }
 
           public function pop() {
@@ -223,7 +228,11 @@ This is an okay solution, but we can limit the size of our \texbf{stack}. Also, 
               return array_shift($this->stack);
 
               // Better solution
-              
+              if ($this->isEmpty()) {
+                  throw new RunTimeException("The stack is empty. You can not remove a item.");
+              } else {
+                  return array_shift($this->stack); 
+              }
           }
 
           public function peek() {
