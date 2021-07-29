@@ -200,15 +200,17 @@
 
 \subsection*{Problem 4:} 
 
-This is an okay solution, but we can limit the size of our \texbf{stack}. Also, there is an absence of error checking, in particular, when pushing \& popping to \& from the \texbf{stack}.
+This is an okay solution, but we can limit the size of our \textbf{stack}. Also, there is an absence of error checking, in particular, when pushing \& popping to \& from the \textbf{stack}. 
 
 \begin{verbatim}
   <?php
       class Stack {
           private $stack;
+          private $limit;
 
           public function __construct() {
               $this->stack = array();
+              $this->limit = $limit;
           }
 
           public function push($item) {
@@ -228,7 +230,7 @@ This is an okay solution, but we can limit the size of our \texbf{stack}. Also, 
               return array_shift($this->stack);
 
               // Better solution
-              if ($this->isEmpty()) {
+              if ($this->is_empty()) {
                   throw new RunTimeException("The stack is empty. You can not remove a item.");
               } else {
                   return array_shift($this->stack); 
