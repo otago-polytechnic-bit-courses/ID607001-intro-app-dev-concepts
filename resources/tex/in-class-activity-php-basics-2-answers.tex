@@ -214,10 +214,10 @@ This is an okay solution, but we can limit the size of our \textbf{stack}. Also,
           }
 
           public function push($item) {
-            // Okay solution
+              // Okay solution
               array_unshift($this->stack, $item); 
 
-            // Better solution
+              // Better solution
               if (count($this->stack) < $this->limit) {
                   array_unshift($this->stack, $item);
               } else {
