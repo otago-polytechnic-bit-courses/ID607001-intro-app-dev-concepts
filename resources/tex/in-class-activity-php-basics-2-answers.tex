@@ -129,17 +129,17 @@
 
           public function remove($employee) {
               $key = array_search($employee, $this->employees);
-              if (!$key) {
+              if ($key !== false) {
                   unset($this->employees[$key]);
               }
           }
 
           public function search($employee) {
               $key = array_search($employee, $this->employees);
-              if ($key) {
-                  echo $employee . " found" . "<br>";
-              } else {
+              if ($key === false) {
                   echo $employee . " not found" . "<br>";
+              } else {
+                  echo $employee . " found" . "<br>";
               }
           }
 
