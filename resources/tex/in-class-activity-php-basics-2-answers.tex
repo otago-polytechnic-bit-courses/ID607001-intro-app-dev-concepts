@@ -210,7 +210,7 @@ This is an okay solution, but we can limit the size of our \textbf{stack}. Also,
 
           public function __construct() {
               $this->stack = array();
-              $this->limit = $limit;
+              $this->limit = 5; // Limit the number of elements to five
           }
 
           public function push($item) {
