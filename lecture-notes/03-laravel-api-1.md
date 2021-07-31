@@ -197,6 +197,7 @@ class InstitutionController extends Controller {
 ```php
 public function index() {
     return Institution::all();
+    // SQL equivalent: SELECT * FROM institutions;
 }
 ```
 
@@ -204,6 +205,7 @@ public function index() {
 ```php
 public function show($id) {
     return Institution::find($id);
+    // SQL equivalent: SELECT * FROM institutions WHERE id = $id;
 }
 ```
 
@@ -211,6 +213,7 @@ public function show($id) {
 ```php
 public function store(Request $request) {
     return Institution::create($request->all());
+    // SQL equivalent: SELECT * FROM institutions;
 }
 ```
 
@@ -220,6 +223,9 @@ public function update(Request $request, $id) {
     $institution = Institution::find($id);
     $institution->update($request->all());
     return $institution;
+    // UPDATE institutions
+    // SET name = $request->name, region = $request->region, country = $request->country
+    // WHERE id = $id;
 }
 ```
 
@@ -227,10 +233,12 @@ public function update(Request $request, $id) {
 ```php
 public function destroy($id) {
     return Institution::destroy($id);
+    // DELETE FROM institutions 
+    // WHERE id = $id;
 }
 ```
 
-We will look at returning more useful messages later.
+You will look at how to provide more useful messages in the **Project 1: Laravel API** assessment.
 
 ## Route
 
