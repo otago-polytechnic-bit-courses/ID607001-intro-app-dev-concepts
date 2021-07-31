@@ -64,10 +64,7 @@ public function up() {
         $table->string('last_name');
         $table->string('phone_number');
         $table->string('email_address');
-        $table->foreignId('institution_id')
-            ->constrained('institution')
-            ->onUpdate('cascade')
-            ->onDelete('cascade');
+        $table->foreignId('institution_id')->constrained('institution');
         $table->timestamps();
     });
 }
@@ -75,8 +72,6 @@ public function up() {
 ```
 
 The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreignId('institutions_id')->constrained('institutions');` refers to the primary key in the `institutions` database table.
-
-**Question:** What does `onUpdate('cascade')` and `onDelete('cascade')` do?
 
 Remember to migrate using the following command:
 

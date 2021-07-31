@@ -1,5 +1,9 @@
 # 03: Laravel API 1
 
+## Key Point From Last Session
+
+Do not make the assumption that your answer is correct. When you have solved a problem...take some to think to yourself...have I met all the possible test cases.
+
 ## Create a Laravel Application
 
 Run the **laragon executable** in the **laragon** directory, then click the **Start All** button.
@@ -28,13 +32,13 @@ We will not go through all of the directories. However, we will cover just the o
 
 **Composer** is the dependency manager for **Laravel**. Just think of this as **NPM** for **Node**.
 
-**Resource:** https://getcomposer.org
+**Resource:** <https://getcomposer.org>
 
 ## Artisan
 
 **Artisan** is the command line interface included with **Laravel**. It provides useful commands that can help you while your are building your project.
 
-**Resource:** https://laravel.com/docs/8.x/artisan
+**Resource:** <https://laravel.com/docs/8.x/artisan>
 
 ## Create a MySQL Database
 
@@ -88,9 +92,10 @@ class Institution extends Model {
 }
 ```
 
-**Resource:** https://laravel.com/docs/8.x/eloquent#generating-model-classes
+**Resource:** <https://laravel.com/docs/8.x/eloquent#generating-model-classes>
 
 ## Migration
+
 You can think of migrations like version control for your database. They allow you to define and share the application's schema definitions.
 
 In the `database\migrations` directory, you will see a migration file for the `Institution` **model** class.
@@ -164,7 +169,7 @@ class InstitutionController extends Controller {
     }
 
     public function destroy($id) {
-      // Some code
+        // Some code
     }
 }
 ```
@@ -183,6 +188,7 @@ class InstitutionController extends Controller {
 **Resource:** https://laravel.com/docs/8.x/controllers
 
 ### Eloquent
+
 **Eloquent** is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language. Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
 
 **Resource:** https://laravel.com/docs/8.x/eloquent
@@ -291,7 +297,6 @@ What happens if I do not want an institution anymore? Lets send a `DELETE` reque
 
 Click on the following **GitHub Classroom** link - https://classroom.github.com/a/c1Wxock6. You will be presented with the following:
 
-
 This will automatically create a new repository for your **Project 1: Laravel API**. Open a **terminal** or **cmd**, change to the `www` directory and clone your repository. Change to the repository's directory and create a new **Laravel** project using the following command:
 
 ```bash
@@ -304,4 +309,6 @@ Add, commit and push your code to your remote repository. Create a new branch ca
 git checkout -b 03-laravel-api-1
 ```
 
-Open your project in **Visual Studio Code**. Setup your **models**, **controllers** and **routes**.
+Open your project in **Visual Studio Code**. Setup your **models**, **controllers** and **routes** for those **entities** that do not have a **foreign key**. We will look at relationships next week.
+
+Once you have complete this, make a pull request and assign **grayson-orr** as a reviewer.
