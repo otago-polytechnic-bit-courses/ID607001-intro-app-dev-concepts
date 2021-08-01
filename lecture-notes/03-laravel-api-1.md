@@ -197,6 +197,7 @@ class InstitutionController extends Controller {
 ```php
 public function index() {
     return Institution::all();
+    
     // SQL equivalent: SELECT * FROM institutions;
 }
 ```
@@ -205,6 +206,7 @@ public function index() {
 ```php
 public function show($id) {
     return Institution::find($id);
+
     // SQL equivalent: SELECT * FROM institutions WHERE id = $id;
 }
 ```
@@ -213,6 +215,7 @@ public function show($id) {
 ```php
 public function store(Request $request) {
     return Institution::create($request->all());
+    
     // SQL equivalent: SELECT * FROM institutions;
 }
 ```
@@ -223,6 +226,8 @@ public function update(Request $request, $id) {
     $institution = Institution::find($id);
     $institution->update($request->all());
     return $institution;
+
+    // SQL equivalent:
     // UPDATE institutions
     // SET name = $request->name, region = $request->region, country = $request->country
     // WHERE id = $id;
@@ -233,6 +238,8 @@ public function update(Request $request, $id) {
 ```php
 public function destroy($id) {
     return Institution::destroy($id);
+    
+    // SQL equivalent:
     // DELETE FROM institutions 
     // WHERE id = $id;
 }
