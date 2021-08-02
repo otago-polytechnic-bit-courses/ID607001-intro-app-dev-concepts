@@ -2,7 +2,7 @@
 
 ## Validation
 
-In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. Also there  is a range of validation rules that you can apply to your data.
+In **Laravel**, there are different ways to validate your data. The most common way is to use the `validate()` method. Also, there  is a range of validation rules that you can apply to your data, not just what you see below. 
 
 In `InstitutionController.php`, update the `store()` method as follows:
 
@@ -20,7 +20,7 @@ public function store(Request $request) {
 ...
 ```
 
-This means you can not create an **institution** without providing a `name`, `region` and `country`.
+By providing these rules, you can not create an **institution** without providing a `name`, `region` and `country`.
 
 Go to **Postman** and test your validation rules. As you can see, the appropriate values are not provided. 
 
@@ -37,9 +37,11 @@ Click the **Send** button and you should see the following messages:
 **Resource:** https://laravel.com/docs/8.x/validation
 
 ## Relationships
+
 Database tables are often related to each other. For example, an institution may have many students or a student may have many courses. 
 
 ### Create a Relationship Between Two Tables
+
 Firstly, create a new **model** & migration called `Student`. This database table will have a relationship with the `institutions` database table. 
 
 In `app\Models\Student.php`, specify the database table and fields you wish to interact with. For example:
@@ -105,6 +107,7 @@ Here we are only retrieving the student's first name, last name, and their insti
 In `api.php`, create a new route for the `index()` action method in `StudentController`.
 
 ## Seeder
+
 Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\seeders` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables separately with the appropriate **JSON** file. To do this, run the following commands:
 
 ```bash
