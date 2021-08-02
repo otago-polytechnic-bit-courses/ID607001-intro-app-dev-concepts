@@ -226,7 +226,7 @@ public function show($id) {
 public function store(Request $request) {
     return Institution::create($request->all());
     
-    // SQL equivalent: SELECT * FROM institutions;
+    // SQL equivalent: INSERT INTO institutions VALUES ($request->name, $request->region, $request-country);
 }
 ```
 
