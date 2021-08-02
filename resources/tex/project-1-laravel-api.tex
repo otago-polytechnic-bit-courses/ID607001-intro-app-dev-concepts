@@ -89,16 +89,17 @@ You will need to submit an application \& documentation that meet the following 
 	\item \textbf{API} application can run locally without modification.
 	\item Five \textbf{Models} containing at least four columns of data which you can interact with. 
 	\begin{itemize}
-    \item You must have a range of different data types, i.e., all your columns of data can not be of type \textbf{string}.
-    \item \textbf{Independent Research:} For updating \& deleting, if the child table has a foreign key, you must use an on cascade update \& an on cascade delete. For example, if data in the parent table is updated, then data in the child/children table is updated as well.
+    \item You must have a range of different data types, i.e., all columns of data can not be of type \textbf{string}.
+    \item \textbf{Independent Research:} For updating \& deleting, if the child table has a foreign key, you must use an on cascade update \& on cascade delete. For example, if data in the parent table is updated or deleted, then data in the child/children table is updated or deleted as well.
   \end{itemize}
 	\item \textbf{Controller} for each \textbf{Model} which have \textbf{CRUD} (create, read, write \& delete) functionality. 
 	\item Custom validation when creating \& updating a record. 
 	\item Seed each table using a \textbf{Seeder} \& \textbf{JSON} file.
-	\item \textbf{Independent Research:} Return an appropriate status code \& message when performing CRUD actions. For example, when a record is created, return 200 \& record successfully created. 
+	\item \textbf{Independent Research:} Return an appropriate status code \& message when performing \textbf{CRUD} actions. For example, when a record is created, return 200 \& record successfully created. 
   \item \textbf{Independent Research:} Return an appropriate message if a query does not return any data.
 	\item Return data except for \textbf{id}, \textbf{created\_at} \& \textbf{updated\_at} using \textbf{API Resources}.
-	\item \textbf{Independent Research:} Return filtered, sorted \& paged \textbf{API} data from your \textbf{Models} using query parameters.
+	\item \textbf{Independent Research:} Filter \& sort \textbf{API} data on all columns using query parameters. A user should be able to sort \textbf{API} data in ascending \& descending order.
+	\item \textbf{Independent Research:} Paginate the \textbf{API} data so that 25 records are displayed per page.
 	\item Store data in the cache when a \textbf{GET} request is performed. 
 	\item Remove data from the cache when a \textbf{POST} request is performed.  
 	\item \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} routes are protected using \textbf{Sanctum}.
@@ -114,6 +115,7 @@ You will need to submit an application \& documentation that meet the following 
 	\item Adheres to an \textbf{OO} architecture, i.e., classes, methods \& variables are named appropriately.
 	\item Efficient algorithmic approach, i.e., using the appropriate \textbf{Eloquent} function when querying your \textbf{Models}.
 	\item \textbf{API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/students} not \textbf{/api/student}.
+	\item Header comments explain each \textbf{CRUD} action in a \textbf{Controller}.
 	\item In-line comments explaining complex logic, i.e., an \textbf{Eloquent} function that may need additional explanation.
 	\item Code files are formatted.
 	\item No dead or unused code.

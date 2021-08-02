@@ -2,7 +2,13 @@
 
 ## Key Point From Last Session
 
-Do not make the assumption that your answer is correct. When you have solved a problem...take some to think to yourself...have I met all the possible test cases.
+Do not make the assumption that your answer is correct. When you have solved a problem...take some time to think to yourself...have I met all the possible test cases.
+
+## Laravel
+
+**Laravel** is an **open-source** **PHP** web framework designed for creating web applications that follow the **Model–View–Controller (MVC)** architectural pattern. We will primarily use the **Model** and **Controller** in this module.
+
+I suggest reading the this article - https://developer.mozilla.org/en-US/docs/Glossary/MVC
 
 ## Create a Laravel Application
 
@@ -14,7 +20,7 @@ Run the **laragon executable** in the **laragon** directory, then click the **St
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-laragon-1.PNG?raw=true)
 
-**Note:** A command prompt window will display. It will take a few minutes to create the project.
+**Note:** A command prompt window will display in the background. It will take a few minutes to create the project.
 
 Feel free to use this command prompt window going forward. Once the project is created, open it in **Visual Studio Code**.
 
@@ -30,13 +36,13 @@ We will not go through all of the directories. However, we will cover just the o
 
 ## Composer
 
-**Composer** is the dependency manager for **Laravel**. Just think of this as **NPM** for **Node**.
+**Composer** is the dependency manager for **Laravel** much like **npm** for **Node**. This comes by default. You should not need to install additional packages.
 
 **Resource:** <https://getcomposer.org>
 
 ## Artisan
 
-**Artisan** is the command line interface included with **Laravel**. It provides useful commands that can help you while your are building your project.
+**Artisan** is the command line interface included with **Laravel**. It provides useful commands that can help you while your are building your project. You will be using a variety of commands in this class. There is no expectation to remember them all.
 
 **Resource:** <https://laravel.com/docs/8.x/artisan>
 
@@ -81,7 +87,7 @@ To create a new model and migration, run the following command:
 php artisan make:model Institution --migration
 ```
 
-In `app\Models\Institution.php`, specify the database table and fields you wish to interact with. For example:
+In `app\Models\Institution.php`, specify the columns you wish to interact with. For example:
 
 ```php
 ...
@@ -90,7 +96,7 @@ class Institution extends Model {
 
     protected $fillable = ['name', 'region', 'country'];
 }
-```
+``` 
 
 **Resource:** <https://laravel.com/docs/8.x/eloquent#generating-model-classes>
 
@@ -103,7 +109,9 @@ In the `database\migrations` directory, you will see a migration file for the `I
 ```php
 ...
 public function up() {
+    // institutions is the name of the table
     Schema::create('institutions', function (Blueprint $table) {
+        // institutions has two columns
         $table->id();
         $table->timestamps();
     });
@@ -126,6 +134,8 @@ public function up() {
 }
 ...
 ```
+
+**Question:** What does the `down()` method do?
 
 If you change a migration file, you will have an outstanding migration. This means that your database schema will not reflect the columns specified in your migration file. To run all outstanding migrations, run the following command:
 
@@ -189,7 +199,7 @@ class InstitutionController extends Controller {
 
 ### Eloquent
 
-**Eloquent** is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language. Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**.
+**Eloquent** is an **Object-Relational Mapping (ORM)** that allows you to query & manipulate data using an **Object-Oriented** programming language. Each **web framework** has one or more **ORMs** which encapsulate the code needed to query & manipulate data so that you do not need to use **SQL**. You interact directly with an object in the same programming language you are using, i.e., **PHP**. 
 
 **Resource:** https://laravel.com/docs/8.x/eloquent
 
@@ -294,13 +304,15 @@ Lets send a `GET` request to the URL - http://127.0.0.1:8000/api/institutions. A
 
 An empty array is not useful, so lets send a `POST` request to the same URL. Click on the **Body** tab, then the **form data** radio button. Add the appropriate key/value pairs, then click the **Send** button. Have a look at your **MySQL** database. You should now have a new row in your `institutions` tables. Alternatively, you can make a `GET` request.
 
+**Question:** How would I get one institution?
+
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-4.PNG?raw=true)
 
-What happens if I want to update a row, i.e., institution? Lets send a `PUT` request to the same URL. Here we have changed the name from **Otago Polytechnic** to **Te Kura Matatini ki Otago** using the row's `id`. Just note that we are using the **Params** tab not the **Body** tab.
+What happens if you want to update a row, i.e., institution? Lets send a `PUT` request to the same URL. Here we have changed the name from **Otago Polytechnic** to **Te Kura Matatini ki Otago** using the row's `id`. Just note that we are using the **Params** tab not the **Body** tab.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-5.PNG?raw=true)
 
-What happens if I do not want an institution anymore? Lets send a `DELETE` request to the same URL. Much like the `PUT` request, we must specify the row's `id`. As you can, the response messages are not useful.
+What happens if you do not want an institution anymore? Lets send a `DELETE` request to the same URL. Much like the `PUT` request, we must specify the row's `id`. As you can see, the response messages are not useful.
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/03-laravel-api-1/03-postman-6.PNG?raw=true)
 
@@ -327,3 +339,5 @@ git checkout -b 03-laravel-api-1
 Open your project in **Visual Studio Code**. Setup your **models**, **controllers** and **routes** for those **entities** that do not have a **foreign key**. We will look at relationships next week.
 
 Once you have complete this, make a pull request and assign **grayson-orr** as a reviewer.
+
+If you finish earlier, I recommend moving onto the next concept. 
