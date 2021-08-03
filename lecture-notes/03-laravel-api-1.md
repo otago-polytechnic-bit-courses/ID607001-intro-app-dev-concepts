@@ -281,7 +281,8 @@ Make sure you import `InstitutionController` by adding the following statement:
 ```php
 ...
 
-use App\Http\Controllers\InstitutionController; // If you do not, you will not have access to the action methods in this controller.
+use App\Http\Controllers\InstitutionController; // If you do not add this statement, you will 
+                                                // not have access to the action methods in this controller
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
