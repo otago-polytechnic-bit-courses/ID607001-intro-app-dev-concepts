@@ -94,7 +94,7 @@ In `app\Models\Institution.php`, specify the columns you wish to interact with. 
 ```php
 ...
 class Institution extends Model {
-    use HasFactory; // Omit if you have created the Models directory. You do not need this.
+    use HasFactory; // Omit this statement if you have created the Models directory
 
     protected $fillable = ['name', 'region', 'country'];
 }
