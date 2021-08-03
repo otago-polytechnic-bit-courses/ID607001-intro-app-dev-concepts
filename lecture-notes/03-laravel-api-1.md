@@ -87,12 +87,14 @@ To create a new model and migration, run the following command:
 php artisan make:model Institution --migration
 ```
 
+**Note:** this should create a directory called **Models**. If it does not, create the directory and copy `Institution.php` and `User.php` into it. Additionally, you will need to change the namespace from `App` to `App\Models`.
+
 In `app\Models\Institution.php`, specify the columns you wish to interact with. For example:
 
 ```php
 ...
 class Institution extends Model {
-    use HasFactory;
+    use HasFactory; // Omit if you have created the Models directory. You do not need this.
 
     protected $fillable = ['name', 'region', 'country'];
 }
@@ -226,7 +228,9 @@ public function show($id) {
 public function store(Request $request) {
     return Institution::create($request->all());
     
-    // SQL equivalent: INSERT INTO institutions VALUES ($request->name, $request->region, $request->country);
+    // SQL equivalent: 
+    // INSERT INTO institutions 
+    // VALUES ($request->name, $request->region, $request->country);
 }
 ```
 
@@ -272,7 +276,17 @@ Route::group(['prefix' => 'institutions'], function () {
 });
 ```
 
-Make sure you import `InstitutionController`. If you do not, you will not have access to these action methods.
+Make sure you import `InstitutionController` by adding the following statement:
+
+```php
+...
+
+use App\Http\Controllers\InstitutionController; // If you do not, you will not have access to the action methods in this controller.
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+...
+```
 
 **Note:** All routes in `api.php` are prefix with `/api`.
 
