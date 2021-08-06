@@ -22,6 +22,8 @@ Everytime you work on the lab computers, you will need to do the following:
 cp .env.example .env
 ```
 
+Remember, this file is ignored by our `.gitignore`.
+
 In `.env`, change the `DB_DATABASE` value to the name of your database.
 
 Also, we need to install our **Laravel** project's dependencies and migrate our database by running the following commands:
@@ -31,4 +33,4 @@ composer install
 php artisan migrate
 ```
 
-From here, you should be ready to go.
+From here, you are ready to develop :+1:.
