@@ -9,7 +9,8 @@ Here are the following assessment submission repositories:
 * Project 1: Laravel API - https://classroom.github.com/a/c1Wxock6
 * Project 2: React CRUD - https://classroom.github.com/a/PZJYGNeP
 
-# Setup
+# Computer Lab Setup
+
 Everytime you work on the lab computers, you will need to do the following:
 - Go to the `laragon` directory in the C drive and create the `www` directory
 - Create a new database and name is as specified [here](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/master/lecture-notes/03-laravel-api-1.md#create-a-mysql-database)
@@ -26,7 +27,7 @@ In `.env`, change the `DB_DATABASE` value to the name of your database.
 Also, we need to install our **Laravel** project's dependencies and migrate our database by running the following commands:
 
 ```xml
-composer self-update
+composer install
 php artisan migrate
 ```
 
