@@ -66,14 +66,14 @@ public function up() {
         $table->string('last_name');
         $table->string('phone_number');
         $table->string('email_address');
-        $table->foreignId('institution_id')->constrained('institution');
+        $table->foreignId('institution_id')->constrained('institutions');
         $table->timestamps();
     });
 }
 ...
 ```
 
-The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreignId('institutions_id')->constrained('institutions');` refers to the primary key in the `institutions` database table.
+The `students` or child database table contains a foreign key & the `institutions` or parent/referenced database table contains the candidate key. `$table->foreignId('institution_id')->constrained('institutions');` refers to the primary key in the `institutions` database table.
 
 Remember to migrate using the following command:
 
@@ -96,6 +96,11 @@ public function index() {
             'institutions.region',
             'institutions.country'
         ]);
+    
+    // SQL equivalent:
+    // SELECT students.first_name, students.last_name, institutions.name, institutions.region, institutions.country
+    // FROM students
+    // JOIN institutions ON students.institution_id = institutions.id;
 }
 ...
 ```
@@ -155,7 +160,7 @@ In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `Instit
 ```php
 ...
 public function run() {
-    // \App\Models\User::factory(10)->create();
+    // \App\Models\User::factory(10)->create(); 
     $this->call(InstitutionSeeder::class);
     $this->call(StudentSeeder::class);
 }
@@ -197,5 +202,3 @@ class Institution extends Model {
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/04-laravel-api-2/04-postman-5.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json
-
-## Practical
