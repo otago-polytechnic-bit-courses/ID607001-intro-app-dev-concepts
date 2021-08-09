@@ -96,6 +96,11 @@ public function index() {
             'institutions.region',
             'institutions.country'
         ]);
+
+    // SQL equivalent:
+    // SELECT students.first_name, students.last_name, institutions.name, institutions.region, institutions.country
+    // FROM students
+    // JOIN institutions on students.institution_id = institutions.id;
 }
 ...
 ```
@@ -115,7 +120,7 @@ php artisan make:seeder InstitutionSeeder
 php artisan make:seeder StudentSeeder
 ```
 
-Spend a minute looking through the contents of both **JSON** files. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, Stanford University is index is 1 & Dominykas Roy's `institution_id` is 1, so we can assume that Dominykas Roy attends Stanford University. 
+Spend a minute looking through the contents of both **JSON** files. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, **Stanford University** is index is 1 & **Dominykas Roy's** `institution_id` is 1, so we can assume that **Dominykas Roy** attends **Stanford University**. 
 
 In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. In this method, you will add the following code:
 
@@ -197,5 +202,3 @@ class Institution extends Model {
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/04-laravel-api-2/04-postman-5.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json
-
-## Practical
