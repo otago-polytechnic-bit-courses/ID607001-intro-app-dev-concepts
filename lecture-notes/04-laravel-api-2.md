@@ -66,7 +66,7 @@ public function up() {
         $table->string('last_name');
         $table->string('phone_number');
         $table->string('email_address');
-        $table->foreignId('institution_id')->constrained('institution');
+        $table->foreignId('institution_id')->constrained('institutions');
         $table->timestamps();
     });
 }
