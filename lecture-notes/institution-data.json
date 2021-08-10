@@ -1,0 +1,17 @@
+[
+    {
+      "name": "Stanford University",
+      "region": "California",
+      "country": "United States of America"
+    },
+    {
+      "name": "Harvard University",
+      "region": "Massachusetts",
+      "country": "United States of America"
+    },
+    {
+      "name": "University of Oxford",
+      "region": "Oxford",
+      "country": "United Kingdom"
+    }
+  ]
