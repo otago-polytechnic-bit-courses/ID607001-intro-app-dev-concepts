@@ -202,3 +202,16 @@ class Institution extends Model {
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/04-laravel-api-2/04-postman-5.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/eloquent-serialization#appending-values-to-json
+
+## Formative Assessment
+Create a new branch called **04-laravel-api-2** by running the command:
+
+```bash
+git checkout -b 04-laravel-api-2
+```
+
+Open your project in **Visual Studio Code**. Setup your relationships between models and start thinking about the **API** data you want to return.
+
+Once you have complete this, make a pull request and assign **grayson-orr** as a reviewer.
+
+If you finish earlier, I recommend moving onto the next concept.
