@@ -162,7 +162,7 @@ public function run() {
 }
 ```
 
-Also, you will need to include three imports:
+Also, you will need to include three new imports:
 
 ```php
 ...
@@ -182,12 +182,11 @@ In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `Instit
 ...
 public function run() {
     // \App\Models\User::factory(10)->create();
-    $this->call(InstitutionSeeder::class);
+    $this->call(InstitutionSeeder::class); // The Institution model is the parent of the Student model. The institutions 
+                                           // database table must be seeded before the students database table
     $this->call(StudentSeeder::class);
 }
 ```
-
-**Question:** Why is `InstitutionSeeder` called before `StudentSeeder`?
 
 Once you have done this, you can use the following command to seed your tables:
 
@@ -208,14 +207,16 @@ You may want to add attributes that do not have a column in one of your tables. 
 ...
 class Institution extends Model {
     ...
-    protected $appends = ['students_count'];
+    protected $appends = ['students_count']; // The value must match the name between the `get` and 
+                                             // `Attribute` keywords, and separated by an underscore. Note:
+                                             // It is case-sensitive.
     ...
     public function students() {
-        return $this->hasMany(Student::class);
+        return $this->hasMany(Student::class); // This is an example of a relationship - an institution can have many students
     }
 
     public function getStudentsCountAttribute() {
-        return $this->students()->count();
+        return $this->students()->count(); // Get the number of students per institution
     }
 }
 ```
