@@ -208,8 +208,8 @@ You may want to add attributes that do not have a column in one of your tables. 
 ...
 class Institution extends Model {
     ...
-    protected $appends = ['students_count']; // The value must match the name between the `get` and 
-                                             // `Attribute` keywords, and separated by an underscore. Note:
+    protected $appends = ['students_count']; // The value must match the name between the get and 
+                                             // Attribute keywords, and separated by an underscore. Note:
                                              // It is case-sensitive.
     ...
     public function students() {
