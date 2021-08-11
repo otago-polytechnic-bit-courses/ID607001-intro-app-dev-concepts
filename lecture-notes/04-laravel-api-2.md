@@ -138,7 +138,7 @@ public function run() {
     $data = json_decode($json_file); // Convert the JSON object in institution-data.json to a PHP variable
     foreach ($data as $obj) { // For each object (contains key/value pairs), create a new record in the institutions database table 
         Institution::create(array( // Remember an Institution has three values - name, region and country. Make 
-                                   // sure your JSON matches the schema of your database table
+                                   // sure your JSON file matches the schema of your database table
             'name' => $obj->name,
             'region' => $obj->region,
             'country' => $obj->country
