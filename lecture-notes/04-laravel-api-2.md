@@ -124,13 +124,32 @@ Spend a minute looking through the contents of both **JSON** files. You will not
 
 In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. In this method, you will add the following code:
 
+For the `run()` method in `InstitutionSeeder`, add the following code:
+```php
+public function run() {
+    $json_file = File::get('database\seeders\institution-data.json'); // Get institution-data.json 
+    DB::table('institutions')->delete(); // Delete all records from the institutions database table 
+    $data = json_decode($json_file); // Convert the JSON object in institution-data.json to a PHP variable
+    foreach ($data as $obj) { // For each object (contains key/value pairs), create a new record in the institutions database table 
+        Institution::create(array( // Remember an Institution has three values - name, region and country. Make 
+                                   // sure your JSON matches the schema of your database table
+            'name' => $obj->name,
+            'region' => $obj->region,
+            'country' => $obj->country
+        ));
+    } 
+}
+```
+
+For the `run()` method in `StudentSeeder`, add the following code:
+
+
 ```php
 ...
-// StudentSeeder.php
 public function run() {
-    $json_file = File::get('database\seeders\student-data.json');
-    DB::table('students')->delete();
-    $data = json_decode($json_file);
+    $json_file = File::get('database\seeders\student-data.json'); 
+    DB::table('students')->delete(); 
+    $data = json_decode($json_file); 
     foreach ($data as $obj) {
         Student::create(array(
             'first_name' => $obj->first_name,
@@ -147,16 +166,16 @@ Also, you will need to include three imports:
 
 ```php
 ...
-use App\Models\Student; // Include this import. Without this, you can not access the Student model
+use App\Models\Institution; // Include this import. Without this, you can not access the Institution model
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; // Include this import. Without this, you can not access the students database table
-use Illuminate\Support\Facades\File; // Include this import. Without this, you can not access the JSON file
+use Illuminate\Support\Facades\DB; // Include this import. Without this, you can not access the institutions database table
+use Illuminate\Support\Facades\File; // Include this import. Without this, you can not access institution-data.json 
 
-class StudentSeeder extends Seeder {
+class InstitutionSeeder extends Seeder {
 ...
 ```
 
-**Note:** you will need to add code to the `run()` method in `InstitutionSeeder`.
+**Note:** Make sure you import the `Student` model in `StudentSeeder`.
 
 In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
 ```php
