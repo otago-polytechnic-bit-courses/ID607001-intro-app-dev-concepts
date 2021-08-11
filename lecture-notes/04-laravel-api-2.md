@@ -122,9 +122,10 @@ php artisan make:seeder StudentSeeder
 
 Spend a minute looking through the contents of both **JSON** files. You will notice a new key called `institution_id`. The value maps to the object's index in `institution-data.json`. For example, **Stanford University** is index is 1 & **Dominykas Roy's** `institution_id` is 1, so we can assume that **Dominykas Roy** attends **Stanford University**. 
 
-In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. In this method, you will add the following code:
+In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method called `run()`. 
 
-For the `run()` method in `InstitutionSeeder`, add the following code:
+In the `run()` method in `InstitutionSeeder`, add the following code:
+
 ```php
 public function run() {
     $json_file = File::get('database\seeders\institution-data.json'); // Get institution-data.json 
@@ -141,7 +142,7 @@ public function run() {
 }
 ```
 
-For the `run()` method in `StudentSeeder`, add the following code:
+In the `run()` method in `StudentSeeder`, add the following code:
 
 
 ```php
@@ -167,7 +168,7 @@ Also, you will need to include three new imports:
 ```php
 ...
 use App\Models\Institution; // Include this import. Without this, you can not access the Institution model
-use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder; // This import comes by default
 use Illuminate\Support\Facades\DB; // Include this import. Without this, you can not access the institutions database table
 use Illuminate\Support\Facades\File; // Include this import. Without this, you can not access institution-data.json 
 
@@ -175,7 +176,7 @@ class InstitutionSeeder extends Seeder {
 ...
 ```
 
-**Note:** Make sure you import the `Student` model in `StudentSeeder`.
+**Note:** Make sure you import the `Student` model in `StudentSeeder`. If you do not, when you seed the students database table, you will get an error. The error is not obvious so please be careful.
 
 In `DatabaseSeeder.php`, you have also been given a `run()` method. Call `InstitutionSeeder` and `StudentSeeder` as follows:
 ```php
