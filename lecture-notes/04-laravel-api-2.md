@@ -147,8 +147,10 @@ Also, you will need to include two imports:
 
 ```php
 ...
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\File;
+use App\Models\Student; // Include this import. Without this, you can not access the Student model
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB; // Include this import
+use Illuminate\Support\Facades\File; // Include this import
 
 class StudentSeeder extends Seeder {
 ...
