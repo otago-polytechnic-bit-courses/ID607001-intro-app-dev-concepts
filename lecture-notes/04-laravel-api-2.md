@@ -143,14 +143,14 @@ public function run() {
 }
 ```
 
-Also, you will need to include two imports:
+Also, you will need to include three imports:
 
 ```php
 ...
 use App\Models\Student; // Include this import. Without this, you can not access the Student model
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB; // Include this import
-use Illuminate\Support\Facades\File; // Include this import
+use Illuminate\Support\Facades\DB; // Include this import. Without this, you can not access the students database table
+use Illuminate\Support\Facades\File; // Include this import. Without this, you can not access the JSON file
 
 class StudentSeeder extends Seeder {
 ...
