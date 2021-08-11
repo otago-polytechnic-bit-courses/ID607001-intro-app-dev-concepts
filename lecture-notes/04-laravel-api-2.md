@@ -49,9 +49,13 @@ In `app\Models\Student.php`, specify the database table and fields you wish to i
 ```php
 ...
 class Student extends Model {
-    use HasFactory;
+    use HasFactory; // Omit this if you had the issue with Laragon not creating the Models directory
 
     protected $fillable = ['first_name', 'last_name', 'phone_number', 'email_address'];
+    
+    public function students() {
+        return $this->hasMany(Student::class); // This is an example of a relationship - an institution can have many students
+    }
 }
 ```
 
@@ -127,6 +131,7 @@ In the `InstitutionSeeder` and `StudentSeeder`, you will be given a method calle
 In the `run()` method in `InstitutionSeeder`, add the following code:
 
 ```php
+...
 public function run() {
     $json_file = File::get('database\seeders\institution-data.json'); // Get institution-data.json 
     DB::table('institutions')->delete(); // Delete all records from the institutions database table 
@@ -211,11 +216,8 @@ class Institution extends Model {
     protected $appends = ['students_count']; // The value must match the name between the get and 
                                              // Attribute keywords, and separated by an underscore. Note:
                                              // It is case-sensitive.
-    ...
-    public function students() {
-        return $this->hasMany(Student::class); // This is an example of a relationship - an institution can have many students
-    }
-
+                                             
+    ...    
     public function getStudentsCountAttribute() {
         return $this->students()->count(); // Get the number of students per institution
     }
