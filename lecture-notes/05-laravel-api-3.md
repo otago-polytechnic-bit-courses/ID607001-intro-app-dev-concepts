@@ -26,6 +26,21 @@ class InstitutionResource extends JsonResource {
 
 We are only displaying an institution's `name`, `region` and `country`. If you refer to earlier example, by default, it included `id`, `created_at` and `updated_at`.
 
+An example of how to use the `InstitutionResource` in `InstitutionController`.
+
+```php
+...
+use App\Http\Resources\InstitutionResource;
+use App\Models\Institution;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+
+class InstitutionController extends Controller {
+    public function index() {
+        return InstitutionResource::collection(Institution::all());
+    }
+```
+
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/05-laravel-api-3/05-postman-1.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/eloquent-resources
@@ -38,10 +53,6 @@ It makes sense to cache data when retrieving and this is done in the `index()` a
 
 ```php
 ...
-use App\Http\Resources\InstitutionResource;
-use App\Models\Institution;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class InstitutionController extends Controller {
     public function index() {
@@ -116,5 +127,3 @@ class RouteServiceProvider extends ServiceProvider {
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/05-laravel-api-3/05-postman-2.PNG?raw=true)
 
 **Resource:** https://laravel.com/docs/8.x/routing#rate-limiting
-
-## Practical
