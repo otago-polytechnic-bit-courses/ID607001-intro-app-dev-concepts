@@ -44,21 +44,6 @@ Database tables are often related to each other. For example, an institution may
 
 Firstly, create a new **model** & migration called `Student`. This database table will have a relationship with the `institutions` database table. 
 
-In `app\Models\Student.php`, specify the database table and fields you wish to interact with. For example:
-
-```php
-...
-class Student extends Model {
-    use HasFactory; // Omit this if you had the issue with Laragon not creating the Models directory
-
-    protected $fillable = ['first_name', 'last_name', 'phone_number', 'email_address'];
-    
-    public function students() {
-        return $this->hasMany(Student::class); // This is an example of a relationship - an institution can have many students
-    }
-}
-```
-
 In the `database\migrations` directory, update `create_institutions_student.php` with the following:
 
 ```php
@@ -83,6 +68,23 @@ Remember to migrate using the following command:
 
 ```bash
 php artisan migrate
+```
+
+## Adding a Relationship
+
+In `app\Models\Institutions.php`, specify the database table and fields you wish to interact with. For example:
+
+```php
+...
+class Institutions extends Model {
+    use HasFactory; // Omit this if you had the issue with Laragon not creating the Models directory
+
+    protected $fillable = ['name', 'region', 'country'];
+    
+    public function students() {
+        return $this->hasMany(Student::class); // This is an example of a relationship - an institution can have many students
+    }
+}
 ```
 
 ## Controller
