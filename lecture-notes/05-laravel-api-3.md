@@ -33,7 +33,6 @@ An example of how to use the `InstitutionResource` in `InstitutionController`.
 use App\Http\Resources\InstitutionResource;
 use App\Models\Institution;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class InstitutionController extends Controller {
     public function index() {
