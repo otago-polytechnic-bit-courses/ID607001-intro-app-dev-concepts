@@ -38,7 +38,8 @@ use Illuminate\Support\Facades\Cache;
 class InstitutionController extends Controller {
     public function index() {
         return InstitutionResource::collection(Institution::all());
-    }
+    }  
+...
 ```
 
 ![](https://github.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/blob/s2-2021/resources/img/05-laravel-api-3/05-postman-1.PNG?raw=true)
@@ -53,6 +54,10 @@ It makes sense to cache data when retrieving and this is done in the `index()` a
 
 ```php
 ...
+use App\Http\Resources\InstitutionResource;
+use App\Models\Institution;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache; // New import
 
 class InstitutionController extends Controller {
     public function index() {
