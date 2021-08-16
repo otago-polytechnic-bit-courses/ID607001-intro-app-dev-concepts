@@ -208,6 +208,12 @@ Go **Postman** and test your new route.
 
 **Resource:** https://laravel.com/docs/8.x/seeding
 
+## Common Seeder Mistakes
+
+You will may get a failed integrity constraint with you run `php artisan db:seed`. There are several causes for this:
+- Your JSON data does match the columns in your database table. Common mistakes when learners copy and paste the example from the lecture notes.
+- The foreign keys are specified in your JSON data, but the auto increment has not reset back to zero. 
+
 ## Appending Values To JSON
 You may want to add attributes that do not have a column in one of your tables. This is example on how you append values to **JSON**. For each `Institution`, it will return the `Student` count as a new key/value pair. For example `student_count: 3`.
 
