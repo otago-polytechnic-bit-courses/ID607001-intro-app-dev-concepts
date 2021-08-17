@@ -71,6 +71,8 @@ class AuthController extends Controller {
 }
 ```
 
+### Register Function
+
 ```php
 public function register(Request $request) {
     // Validation rules
@@ -98,6 +100,8 @@ public function register(Request $request) {
     return response($response, 201); // Return a response with a status code
 }
 ```
+
+### Login Function
 
 ```php
 public function login(Request $request) {
@@ -128,6 +132,8 @@ public function login(Request $request) {
     return response($response, 201);
 }
 ```
+
+### Logout Function
 
 ```php
 public function logout(Request $request) {
