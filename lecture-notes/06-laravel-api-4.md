@@ -4,19 +4,25 @@
 
 **Laravel Sanctum** is an authentication systems for single-page applications, mobile applications and token-based APIs.
 
-
+**Composer** on the labs is not the lastest version and may not be able to install new dependencies. To update **Composer** to the lastest version, run the following command:
 
 ```xml
 composer self-update
 ```
 
+To install **Laravel Sanctum**, run the following command:
+
 ```xml
 composer require laravel/sanctum
 ```
 
+Publish **Sanctum's** configuration and migration files using the `vendor:publish` command. The configuration file will be located in your application's `config` directory:
+
 ```xml
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 ```
+
+Run your database migrations. **Sanctum** will create one database table to store your API tokens:
 
 ```xml
 php artisan migrate
