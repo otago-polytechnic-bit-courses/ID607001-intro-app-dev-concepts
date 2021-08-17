@@ -30,9 +30,9 @@ Add **Sanctum's** middleware to the `api` middleware group within your applicati
 
 ## Model
 
-**Sanctum** allows you to issue an access token that may be used to authenticate API requests. When making an API request using an access token, the access token is included in the **Authorization** header as a **Bearer** token.
+**Sanctum** allows you to issue an **API token** that may be used to authenticate API requests. When making an API request using an **API token**, the **API token** is included in the **Authorization** header as a **Bearer** token.
 
-Before we can create tokens for users, we need to make sure the `User` model is using the `HasApiTokens` trait.
+Before we can create an **API token** for a user, we need to make sure the `User` model is using the `HasApiTokens` trait.
 
 ```php
 ...
@@ -115,9 +115,9 @@ public function login(Request $request) {
             'message' => 'Bad Credentials.'
         ], 401);
     } else {
-        $token = $user->createToken('P@ssw0rd')->plainTextToken; // Return a new NewAccessToken instance. Note: an access token is hashed using the
+        $token = $user->createToken('P@ssw0rd')->plainTextToken; // Return a new NewAccessToken instance. Note: an API token is hashed using the
                                                                  // SHA-256 hashing algorithm before it is stored in your database. However, you may
-                                                                 // want to access the access token's plain-text value using the plainTextToken property
+                                                                 // want to access the API token's plain-text value using the plainTextToken property
     }
 
     $response = [
@@ -131,7 +131,7 @@ public function login(Request $request) {
 
 ```php
 public function logout(Request $request) {
-    auth()->user()->tokens()->delete(); // Delete the user's access token
+    auth()->user()->tokens()->delete(); // Revoking the user's API token
 
     return [
         'message' => 'Successfully Logged Out.'
@@ -141,13 +141,14 @@ public function logout(Request $request) {
 
 ## Route
 
-
+To protect specific **API routes**, attach **sanctum** authentication guard to your **API routes** in `routes/api.php` file. This gauard will ensure incoming requests are authenticated. **Note:** you must provide a valid **API token** in the **Authorization** header.
 
 ```php
 ...
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 
+// Non-protected routes
 Route::group(['prefix' => 'institutions'], function () {
     Route::get('/', [InstitutionController::class, 'index']);
     Route::get('/{id}', [InstitutionController::class, 'show']);
@@ -155,8 +156,9 @@ Route::group(['prefix' => 'institutions'], function () {
     Route::delete('/{id}', [InstitutionController::class, 'destroy']);
 });
 
+// Protected routes
 Route::group(['middleware' => ['auth:sanctum']], function () {
-    Route::post('/institutions', [InstitutionController::class, 'store']);
+    Route::post('/institutions', [InstitutionController::class, 'store']); // Can only make a POST request if the user is authenticated.
     Route::post('/logout', [AuthController::class, 'logout']);
 });
 
@@ -168,5 +170,3 @@ Route::group(['prefix' => 'students'], function () {
 ## Heroku
 
 ## PostgreSQL
-
-## Practical
