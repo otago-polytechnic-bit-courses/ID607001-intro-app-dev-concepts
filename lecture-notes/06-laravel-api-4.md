@@ -2,6 +2,10 @@
 
 ## Sanctum
 
+**Laravel Sanctum** is an authentication systems for single-page applications, mobile applications and token-based APIs.
+
+
+
 ```xml
 composer self-update
 ```
