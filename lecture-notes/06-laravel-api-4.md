@@ -183,6 +183,126 @@ Route::group(['prefix' => 'students'], function () {
 });
 ```
 
-## Heroku
+## Deployment
 
-## PostgreSQL
+You are going to use [Heroku](https://www.heroku.com/) to deploy your project. In order to do this, you must [signup](https://signup.heroku.com/) and login.
+
+### Procfile
+
+Create a [Procfile](https://devcenter.heroku.com/articles/procfile) in the root directory of your project.
+
+In **Procfile**, add the following command:
+
+```
+web: vendor/bin/heroku-php-apache2 public/
+```
+
+This declares a single process type, web & the command needed to run the application. The **web:** part is important. This process type will be attached to the HTTP routing stack of **Heroku** & receive traffic when deployed.
+
+## Create a New Application
+
+When you login, you will be presented with the **Heroku** dashboard. This will display all of your **Heroku** applications. If this is your first time using **Heroku**, you will not see any applications.
+
+To create a new application, click on the **New** button in the top right-hand corner. Choose the **Create new app** option.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-1.png" />
+
+Name the new application appropriately. 
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-2.png" />
+
+
+## Connecting with your GitHub Repository
+
+To connect your application with your **GitHub** repository, go to the **Deploy** tab and scroll down to the **Deployment method** section. Choose the **GitHub** method. Search for your repository, then click the **Connect** button.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-3.png" />
+
+## Automatic Deploy
+
+To make things streamlined, you will enable automatic deploys meaning every push to `main` branch will deploy a new version of your application.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-5.png" />
+
+### Set Environment Variables
+
+You will need to set configuration variables for your application since it does not have access to `.env`. Go to the **Settings** tab and scroll down to the **Config Vars** section. Click on the **Reveal Config Vars** button to show your application's configuration variables. Your application should not have any yet.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-4.png" />
+
+Add the following configuration variables:
+
+| Key      | Value |
+| ----------- | ----------- |
+| APP_DEBUG      | true       |
+| APP_ENV   | production        |
+| APP_KEY   | APP_KEY found in your project's .env file        |
+| APP_NAME   | Laravel       |
+| APP_URL   | https://**name of your application**.herokuapp.com/        |
+    
+## Heroku PostgreSQL
+
+[PostgreSQL](https://www.heroku.com/postgres) is another database management system similar to MySQL. To add a **PostgreSQL** database to your **Heroku**, go to https://elements.heroku.com/addons/heroku-postgresql and click the **Install Heroku Postgres** button. You will be redirected to the following:
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-6.png" />
+
+Search for the application to provision **Heroku Postgres**. Once you have done that click the **Submit Order Form** button.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-7.png" />
+
+By provisioning **Heroku Postgres**, it will create a new configuration variable called `DATABASE_URL`.
+
+## Connect Heroku PostgreSQL with your Application
+
+Go back to your **Laravel** project in **Visual Studio Code**. 
+
+In `config\database.php`, find the `default` setting & change it to the following:
+
+```php
+'default' => env('DB_CONNECTION', 'pgsql'), // It will look for a MySQL database first, then 
+                                            // a PostgreSQL database if a MySQL database is not found
+```
+
+Also, find the `pgsql` setting & change it to the following:
+
+```php
+'pgsql' => [
+    'driver' => 'pgsql',
+    'url' => env('DATABASE_URL'),
+    'host' => $DATABASE_URL['host'],
+    'port' => $DATABASE_URL['port'],
+    'database' => ltrim($DATABASE_URL['path'], '/'),
+    'username' => $DATABASE_URL['user'],
+    'password' => $DATABASE_URL['pass'],
+    'charset' => 'utf8',
+    'prefix' => '',
+    'prefix_indexes' => true,
+    'schema' => 'public',
+    'sslmode' => 'prefer',
+],
+```
+
+These settings will allow you to interchange between **PostgreSQL** & **MySQL** as well local & production development.
+
+In `.env`, you need to specify the `DATABASE_URL` as your application will not know where to connect to your **PostgreSQL** database. Go back to the **Config Vars** section on **Heroku**. Copy & paste the `DATABASE_URL` value into `.env`. 
+
+Your `.env` should look similar to the following:
+
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=api
+DB_USERNAME=root
+DB_PASSWORD=
+DB_URL=<link your PostgreSQL database on Heroku>
+```
+
+Make sure you commit and push your changes to your **GitHub** repository.
+
+## Migration
+
+
+
+## Seeder
+
