@@ -250,7 +250,7 @@ Search for the application to provision **Heroku Postgres**. Once you have done 
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-7.png" />
 
-By provisioning **Heroku Postgres**, it will create a new configuration variable called `DATABASE_URL`.
+By provisioning **Heroku Postgres**, it will create a new configuration variable called `DATABASE_URL`. The value can be read as `postgres://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`.
 
 ## Connect Heroku PostgreSQL with your Application
 
@@ -302,6 +302,10 @@ Make sure you commit and push your changes to your **GitHub** repository.
 
 ## Migration
 
+You can run artisan commands in **Heroku's** console. Click on the **More** button in the top right-hand corner next to the **Open app** button.
+
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
+
+Make sure you migrate and seed your database tables.
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-9.png" />
