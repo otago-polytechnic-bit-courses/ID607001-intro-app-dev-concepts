@@ -220,7 +220,7 @@ To connect your application with your **GitHub** repository, go to the **Deploy*
 
 ## Automatic Deploy
 
-To make things streamlined, you will enable automatic deploys meaning every push to `main` branch will deploy a new version of your application.
+To make things streamlined, you will enable automatic deploys meaning every push to `master` branch will deploy a new version of your application.
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-5.png" />
 
@@ -302,7 +302,6 @@ Make sure you commit and push your changes to your **GitHub** repository.
 
 ## Migration
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
 
-
-## Seeder
-
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-9.png" />
