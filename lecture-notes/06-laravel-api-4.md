@@ -122,7 +122,8 @@ public function register(Request $request) {
    
     $response = [
         'user' => $user,
-        'token' => $token
+        'message' => 'User created successfully',
+        'status' => 201
     ];
 
     return response($response, 201); // Return a response with a status code
@@ -155,7 +156,9 @@ public function login(Request $request) {
 
     $response = [
         'user' => $user,
-        'token' => $token
+        'token' => $token,
+        'message' => 'User logged in successfully',
+        'status' => 201
     ];
 
     return response($response, 201);
