@@ -88,7 +88,8 @@ public function register(Request $request) {
     // Validation rules
     $fields = $request->validate([
         'name' => 'required|string', // name is required and must be a string
-        'email' => 'required|email|unique:users', // email is required, must be formatted as email address and must be unique
+        'email' => 'required|string|unique:users,email', // email is required, must be a string, unique to the 
+                                                         // Users database table, i.e., you can not have the same email address
         'password' => 'required|string|confirmed' // password is required, must be a string and under validation
                                                   // must have a matching field of password_confirmation
     ]);
