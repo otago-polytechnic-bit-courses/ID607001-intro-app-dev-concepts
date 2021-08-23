@@ -130,6 +130,7 @@ public function login(Request $request) {
             'message' => 'Bad Credentials.'
         ], 401);
     } else {
+        // createToken argument -> name of the token
         $token = $user->createToken('P@ssw0rd')->plainTextToken; // Return a new NewAccessToken instance. Note: an API token is hashed using the
                                                                  // SHA-256 hashing algorithm before it is stored in your database. However, you may
                                                                  // want to access the API token's plain-text value using the plainTextToken property
