@@ -22,10 +22,27 @@ Publish **Sanctum's** configuration and migration files using the `vendor:publis
 php artisan vendor:publish --provider="Laravel\Sanctum\SanctumServiceProvider"
 ```
 
-Run your database migrations. **Sanctum** will create one database table to store your API tokens:
+Run your database migrations. **Sanctum** will create one database table called **PersonalAccessTokens** to store your API tokens:
 
 ```xml
 php artisan migrate
+```
+
+The `up()` function should look like this:
+
+```php
+    public function up()
+    {
+        Schema::create('personal_access_tokens', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->morphs('tokenable');
+            $table->string('name');
+            $table->string('token', 64)->unique();
+            $table->text('abilities')->nullable();
+            $table->timestamp('last_used_at')->nullable();
+            $table->timestamps();
+        });
+    }
 ```
 
 Add **Sanctum's** middleware to the `api` middleware group within your application's `app/Http/Kernel.php` file:
