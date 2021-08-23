@@ -37,7 +37,7 @@ The `up()` function should look like this:
             $table->bigIncrements('id');
             $table->morphs('tokenable');
             $table->string('name');
-            $table->string('token', 64)->unique();
+            $table->string('token', 64)->unique(); // Base64-encoded string 
             $table->text('abilities')->nullable();
             $table->timestamp('last_used_at')->nullable();
             $table->timestamps();
