@@ -326,7 +326,7 @@ Make sure you commit and push your changes to your **GitHub** repository.
 
 You can run artisan commands in **Heroku's** console. Click on the **More** button in the top right-hand corner next to the **Open app** button.
 
-<img width="550" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
+<img width="450" height="350" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
 
 Make sure you migrate and seed your database tables.
 
