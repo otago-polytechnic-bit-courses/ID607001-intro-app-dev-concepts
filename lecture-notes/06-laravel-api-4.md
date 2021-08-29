@@ -1,5 +1,9 @@
 # 06: Laravel API 4
 
+## Lecture Videos
+
+Lecture videos can be found here - https://bit.ly/38r8ZUF
+
 ## Sanctum
 
 **Laravel Sanctum** is an authentication systems for single-page applications, mobile applications and token-based APIs.
@@ -331,3 +335,32 @@ You can run artisan commands in **Heroku's** console. Click on the **More** butt
 Make sure you migrate and seed your database tables.
 
 <img width="600" height="450" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-9.png" />
+
+## Postman
+
+Go to **Postman** and test your API. 
+
+Register a new `User`. `name`, `email`, `password` and `password_confirmation` is the required form data.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-1.png" />
+
+Login a `User`. `email` and `password` is the required form data. **Note:** make sure to copy `token`. You will be required to include this in the request header when doing some action on a protected route.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-2.png" />
+
+Go to the **Authorization** tab. Select the **Bearer Token** type and paste the `User` `token` into the **Token** input.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-3.png" />
+
+Create a new `Institution`.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-4.png" />
+
+If you do not provide a `token`, you can not create a new `Institution`. When you make a request to a protected route, additional information such as a **Bearer Token** or **API Key** is required.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-5.png" />
+
+
+Logout the `User`. **Note:** it is also a protected route. If you do not provide a `token`, you will not be able to logout the `User`.
+
+<img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-postman-6.png" />
