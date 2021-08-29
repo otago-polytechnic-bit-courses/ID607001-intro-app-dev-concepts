@@ -227,24 +227,24 @@ When you login, you will be presented with the **Heroku** dashboard. This will d
 
 To create a new application, click on the **New** button in the top right-hand corner. Choose the **Create new app** option.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-1.png" />
+<img width="800" height="250" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-1.png" />
 
 Name the new application appropriately. 
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-2.png" />
+<img width="600" height="450" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-2.png" />
 
 
 ## Connecting with your GitHub Repository
 
 To connect your application with your **GitHub** repository, go to the **Deploy** tab and scroll down to the **Deployment method** section. Choose the **GitHub** method. Search for your repository, then click the **Connect** button.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-3.png" />
+<img width="600" height="450"  src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-3.png" />
 
 ## Automatic Deploy
 
 To make things streamlined, you will enable automatic deploys meaning every push to `master` branch will deploy a new version of your application.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-5.png" />
+<img width="650" height="450"  src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-5.png" />
 
 ### Set Environment Variables
 
@@ -266,11 +266,11 @@ Add the following configuration variables:
 
 [PostgreSQL](https://www.heroku.com/postgres) is another database management system similar to MySQL. To add a **PostgreSQL** database to your **Heroku**, go to https://elements.heroku.com/addons/heroku-postgresql and click the **Install Heroku Postgres** button. You will be redirected to the following:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-6.png" />
+<img width="600" height="450" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-6.png" />
 
 Search for the application to provision **Heroku Postgres**. Once you have done that click the **Submit Order Form** button.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-7.png" />
+<img width="600" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-7.png" />
 
 By provisioning **Heroku Postgres**, it will create a new configuration variable called `DATABASE_URL`. The value can be read as `postgres://USERNAME:PASSWORD@HOST:PORT/DATABASE_NAME`.
 
@@ -326,8 +326,8 @@ Make sure you commit and push your changes to your **GitHub** repository.
 
 You can run artisan commands in **Heroku's** console. Click on the **More** button in the top right-hand corner next to the **Open app** button.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
+<img width="550" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-8.png" />
 
 Make sure you migrate and seed your database tables.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-9.png" />
+<img width="600" height="450" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/06-laravel-api-4/06-heroku-9.png" />
