@@ -22,7 +22,7 @@ Here are the following steps:
 
 <img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/07-laravel-api-5/07-postman-4.png" />
 
-5. If required, add the appropriate form and response data for that **Heroku** API URL and endpoint. **Note:** you will not be required to provide form data for a `GET` and `DELETE` action.
+5. If required, add the appropriate form and response data for that **Heroku** API URL and endpoint. **Note:** you will not be required to provide form data for a `GET` and `DELETE` request.
 
 <img width="800" height="500" src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/07-laravel-api-5/07-postman-5.png" />
 
