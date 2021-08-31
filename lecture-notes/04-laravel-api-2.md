@@ -135,7 +135,7 @@ In the `run()` method in `InstitutionSeeder`, add the following code:
 ```php
 ...
 public function run() {
-    $json_file = File::get('database\data\institution-data.json'); // Get institution-data.json 
+    $json_file = File::get('database/data/institution-data.json'); // Get institution-data.json 
     DB::table('institutions')->delete(); // Delete all records from the institutions database table 
     $data = json_decode($json_file); // Convert the array of JSON objects in institution-data.json to a PHP variable
     foreach ($data as $obj) { // For each object (contains key/value pairs) in the PHP variable, create a new record in the institutions database table 
@@ -155,7 +155,7 @@ In the `run()` method in `StudentSeeder`, add the following code:
 ```php
 ...
 public function run() {
-    $json_file = File::get('database\data\student-data.json'); 
+    $json_file = File::get('database/data/student-data.json'); 
     DB::table('students')->delete(); 
     $data = json_decode($json_file); 
     foreach ($data as $obj) {
