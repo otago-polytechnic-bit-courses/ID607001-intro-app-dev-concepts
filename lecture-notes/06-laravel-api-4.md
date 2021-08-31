@@ -149,7 +149,7 @@ public function login(Request $request) {
     // Check if the given user's password matches the user's hashed password in the database
     if(!$user || !Hash::check($fields['password'], $user->password)) {
         return response([
-            'message' => 'Bad Credentials.'
+            'message' => 'Bad credentials'
         ], 401);
     } else {
         // createToken argument -> name of the token
