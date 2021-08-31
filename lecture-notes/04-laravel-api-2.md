@@ -119,7 +119,7 @@ In `api.php`, create a new route for the `index()` action method in `StudentCont
 
 ## Seeder
 
-Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\seeders` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables separately with the appropriate **JSON** file. To do this, run the following commands:
+In the `database` directory, create a new directory called `data`. Copy the two **JSON** files - `institution-data.json` & `student-data.json` into the `database\data` directory. Create two `Seeder` classes which will seed the `students` and `institutions` tables separately with the appropriate **JSON** file. To do this, run the following commands:
 
 ```bash
 php artisan make:seeder InstitutionSeeder
@@ -135,7 +135,7 @@ In the `run()` method in `InstitutionSeeder`, add the following code:
 ```php
 ...
 public function run() {
-    $json_file = File::get('database\seeders\institution-data.json'); // Get institution-data.json 
+    $json_file = File::get('database\data\institution-data.json'); // Get institution-data.json 
     DB::table('institutions')->delete(); // Delete all records from the institutions database table 
     $data = json_decode($json_file); // Convert the array of JSON objects in institution-data.json to a PHP variable
     foreach ($data as $obj) { // For each object (contains key/value pairs) in the PHP variable, create a new record in the institutions database table 
@@ -155,7 +155,7 @@ In the `run()` method in `StudentSeeder`, add the following code:
 ```php
 ...
 public function run() {
-    $json_file = File::get('database\seeders\student-data.json'); 
+    $json_file = File::get('database\data\student-data.json'); 
     DB::table('students')->delete(); 
     $data = json_decode($json_file); 
     foreach ($data as $obj) {
