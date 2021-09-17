@@ -15,19 +15,39 @@ Yes. You will use **React** in **Advanced Application Development**. If you choo
 
 ## create-react-app
 
+### File Structure
+
 ## JSX
+
+### Attributes
+
+### Nesting
+
+### Rendering
 
 ## Virtual DOM
 
 ## Components
 
-## Props
+### Class vs. Function Components
 
-## State
+### Props
+
+### State
+
+### Conditional Rendering
+
+### Keys
+
+## Styles
 
 ## Component Lifecycle Methods
 
 ## Hooks
+
+### State Hook
+
+### Effect Hook
 
 ## Reactstrap
 
