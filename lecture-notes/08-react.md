@@ -55,4 +55,6 @@ Yes. You will use **React** in **Advanced Application Development**. If you choo
 
 ## Axios
 
+### Headers
+
 ## Deployment
