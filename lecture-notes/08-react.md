@@ -25,7 +25,9 @@ Yes. You will use **React** in **Advanced Application Development**. If you choo
 
 ### Rendering
 
-## Virtual DOM
+### Virtual DOM
+
+### Activity
 
 ## Components
 
@@ -39,9 +41,15 @@ Yes. You will use **React** in **Advanced Application Development**. If you choo
 
 ### Keys
 
+### Activity
+
 ## Styles
 
+### Activity
+
 ## Component Lifecycle Methods
+
+### Activity
 
 ## Hooks
 
@@ -49,12 +57,22 @@ Yes. You will use **React** in **Advanced Application Development**. If you choo
 
 ### Effect Hook
 
+### Activity
+
 ## Reactstrap
 
+### Activity
+
 ## Forms
+
+### Activity
 
 ## Axios
 
 ### Headers
 
+### Activity
+
 ## Deployment
+
+### Activity
