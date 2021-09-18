@@ -116,6 +116,7 @@ It looks like **HTML**, but if you were to run the example in an **HTML** file, 
 #### Activity
 
 ### Resources
+- https://reactjs.org/docs/introducing-jsx.html
 
 ## Components
 
