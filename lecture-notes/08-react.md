@@ -78,6 +78,15 @@ Using the **folder structure** resource below and the **Internet**, answer the f
 3. What is `src/index.js`?
 4. Which directory does **Webpack** process?
 
+### Scripts
+
+Go to `package.json`. In the `scripts`, there are four default `scripts`:
+
+1. `npm start` -
+2. `npm test` - 
+3. `npm run build` - 
+4. `npm run eject` - 
+
 ### Resources
 - https://create-react-app.dev/docs/getting-started
 - https://developer.mozilla.org/en-US/docs/Glossary/SPA
@@ -88,6 +97,14 @@ Using the **folder structure** resource below and the **Internet**, answer the f
 
 ## JSX
 
+Here is an example of **JSX**:
+
+```jsx
+const some = <h1>Hello, World!</h1>;
+```
+
+It looks like **HTML**, but if you were to run the example in an **HTML** file, it would not work.
+
 ### Attributes
 
 ### Nesting
@@ -96,7 +113,9 @@ Using the **folder structure** resource below and the **Internet**, answer the f
 
 ### Virtual DOM
 
-### Activity
+#### Activity
+
+### Resources
 
 ## Components
 
@@ -126,11 +145,11 @@ Using the **folder structure** resource below and the **Internet**, answer the f
 
 ### Effect Hook
 
-### Activity
+#### Activity
 
 ## Reactstrap
 
-### Activity
+#### Activity
 
 ## Forms
 
