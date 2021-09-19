@@ -366,6 +366,8 @@ const App = () => {
 ...
 ```
 
+## Component lifecycle methods
+
 ### Props
 
 ```js
@@ -399,41 +401,58 @@ const App = () => {
 ...
 ```
 
-#### Activity
-
-### Resources
-- https://reactjs.org/docs/components-and-props.html
-
-<!-- ## Styles
-
-### Activity
-
-## Component Lifecycle Methods
-
-### Activity
-
 ## Hooks
 
 ### State Hook
 
+#### Axios
+
+```md
+npm i axios
+```
+
 ### Effect Hook
 
+```js
+import axios from 'axios'
+import React, { useState, useEffect } from 'react'
+
+const Post = () => {
+  const [post, setPost] = useState([])
+
+  useEffect(() => {
+    axios.get('https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => {
+      setPost(response.data)
+    })
+  }, [])
+
+  return (
+    <div>
+      <h1>{post.title}</h1>
+      <p>{post.body}</p>
+    </div>
+  )
+}
+
+export default Post
+```
+
 #### Activity
+
+### Resources
+- https://reactjs.org/docs/components-and-props.html
+- https://reactjs.org/docs/react-component.html
+- https://reactjs.org/docs/hooks-overview.html
+- https://reactjs.org/docs/hooks-state.html
+- https://reactjs.org/docs/hooks-effect.html
+
+## Styles
 
 ## Reactstrap
 
-#### Activity
-
 ## Forms
-
-### Activity
-
-## Axios
 
 ### Headers
 
-### Activity
-
 ## Deployment
-
-### Activity -->
