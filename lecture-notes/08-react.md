@@ -29,7 +29,7 @@ It is a web application that loads only a single web document. It updates the co
 
 Users can use a web application without loading whole new pages from the server. It results in better performance and user experience.
 
-### How to Create a React Web Application
+### How to create a React web application
 
 Run the following commands:
 
@@ -41,7 +41,7 @@ code .
 
 **Note:** replace `graysono` with your **Otago Polytechnic** username.
 
-### File Structure
+### File structure
 
 The following is your **React web application's** file structure: 
 
@@ -102,7 +102,7 @@ Go to `package.json`. In the `scripts`, there are four default `scripts`:
 Here is an example of **JSX**:
 
 ```js
-const element = <h1>Hello, World!</h1>; // Note: you can ommit the semi-colon
+const element = <h1>Hello, World!</h1> // Note: you can ommit the semi-colon
 ```
 
 It looks like **HTML**, but if you were to run the example in an **HTML** file, it would not work.
@@ -112,22 +112,22 @@ It looks like **HTML**, but if you were to run the example in an **HTML** file, 
 The following is an example on how you can embed an expression in **JSX**:
 
 ```js
-const name = 'John Doe';
-const element = <h1>Hello, World! My name is {name}</h1>;
+const name = 'John Doe'
+const element = <h1>Hello, World! My name is {name}</h1>
 ```
 
 Here we have declared a `const` variable called `name`. It can be used in **JSX** by enclosing it in curly braces. You can also embed any valid **JavaScript** expression as long as it is enclosed in curly braces. For example:
 
 ```js
 // Embedding an in-built JavaScript function 
-const element = <h1>{Math.random()}</h1>; 
+const element = <h1>{Math.random()}</h1>
 
 // Embedding a user defined JavaScript function
 function getRandomNumber(max) {
-  return Math.floor(Math.random() * max);
+  return Math.floor(Math.random() * max)
 }
 
-const element = <h1>{getRandomNumber(3)}</h1>;
+const element = <h1>{getRandomNumber(3)}</h1>
 ```
 
 ### Attributes
@@ -137,7 +137,7 @@ The following is an example on how you can embed an expression in an attribute:
 ```js
 const url = 'https://bit.ly/3CqHp70'
 const description = 'This image contains a cat wearing a surgical mask'
-const element = <img src={url} alt={description} />;
+const element = <img src={url} alt={description} />
 ```
 
 ### Nesting
@@ -150,7 +150,7 @@ const element = (
     <h1>Hello, World!</h1>
     <h2>My name is John Doe</h2>
   </div>
-);
+)
 ```
 
 If you are nesting **JSX**, enclose the **JSX** in parentheses.
@@ -170,6 +170,8 @@ This **DOM** element is the **root node**, meaning everything inside this elemen
 Go to `src/App.js`. Replace all the code in this file with the following:
 
 ```js
+import React from 'react'
+
 const App = () => {
   return (
     <div>
@@ -178,12 +180,14 @@ const App = () => {
   )
 }
 
-export default App;
+export default App
 ```
 
 You will learn the specifics of this code later. 
 
-Go to `src/index.js`. On lines 7-12, you should see the following:
+Go to `src/index.js`. Have a quick look at the imports on lines 1-5. You only need to care about lines 1, 2 and 4.
+
+On lines 7-12, you should see the following:
 
 ```js
 ReactDOM.render(
@@ -191,7 +195,7 @@ ReactDOM.render(
     <App />
   </React.StrictMode>,
   document.getElementById('root')
-);
+)
 ```
 
 A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`. **Note:** `App` returns:
@@ -202,7 +206,7 @@ A **React** component called `App` (first argument) is being render in the **roo
 </div>
 ```
 
-### Start the Development Server
+### Start the development server
 
 To start the **development server**, run the following command:
 
@@ -214,7 +218,7 @@ It will open a new browser session and navigate you to `localhost:3000`. You sho
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" width="350" />
 
-### Other Things to Know About
+### Other things to know about
 
 - `ReactDOM.render()` gets the element, i.e., `<div>` in `public/index.html` by its id, i.e., `id="root"`.
 - `ReactDOM.render()` only updates elements that have changed, i.e., it does not re-render the entire page, only the changed element(s). How it achieves this is by using the **virtual DOM**. More information here - https://reactjs.org/docs/faq-internals.html
@@ -238,7 +242,7 @@ const team = {
 
 Create a function called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). Iterate through the **JavaScript** object. For each key/pair in the the **JavaScript** object, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Under `<h1>Hello, World!</h1>` in the `return` block, call the `displayTeam()` in an `<ul>` element.
 
-**Expected Output:**
+**Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-2.png" width="350" />
 
@@ -246,7 +250,7 @@ Create a function called `displayTeam()` that accepts an argument called `team` 
 
 Refactor the `displayTeam()` function so if a `team` is not given as an argument, return **No team provided** in an `<h1>` element.
 
-**Expected Output:**
+**Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-3.png" width="350" />
 
@@ -267,7 +271,7 @@ const fruits = [
 
 Create a function called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). Iterate through the **JavaScript** array. For each item in the the **JavaScript** array, return a `<li>` containing the item if its length is greater than 5. Under **Task 1/2** in the `return` block, call the `filterFruits()` in an `<ul>` element.
 
-**Expected Output:**
+**Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-4.png" width="350" />
 
@@ -275,7 +279,7 @@ Create a function called `filterFruits()` that accepts an argument called `fruit
 
 Refactor the `filterFruits()` function so if a `fruits` is not given as an argument, return **No fruits provided** in an `<h1>` element.
 
-**Expected Output:**
+**Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-5.png" width="350" />
 
@@ -287,19 +291,118 @@ Refactor the `filterFruits()` function so if a `fruits` is not given as an argum
 
 ## Components
 
-### Class vs. Function Components
+**Components** allow you to split your **UI** into independent, reusable chunks of **JSX**.
+
+### Class vs. Function components
+
+In **React**, there are two ways to declare a **component**.
+
+**Class component** example:
+
+```js
+class App extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Hello, World!</h1>
+      </div>
+    )
+  }
+}
+
+export default App
+```
+
+**Function component** example:
+
+```js
+const App = () => {
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+    </div>
+  )
+}
+
+export default App
+```
+
+From **React's** point of view, the two ways are equivalent. In this module, you will use **function components**.
+
+### Create a new component
+
+In `src` a new directory called `components`, then create a new **JavaScript** file called `Welcome`. In this file add the following:
+
+```js
+import React from 'react'
+
+const Welcome = () => {
+  return (
+    <div>
+      <h1>Welcome</h1>
+    </div>
+  )
+}
+
+export default Welcome
+```
+
+```js
+import React from 'react'
+import Welcome from './components/Welcome'
+
+const App = () => {
+  ...
+  
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+      ...
+      <Welcome />
+    </div>
+  )
+}
+
+...
+```
 
 ### Props
 
-### State
+```js
+...
 
-### Conditional Rendering
+const Welcome = (props) => {
+  return (
+    <div>
+      <h1>Welcome {props.name}</h1> 
+    </div>
+  )
+}
 
-### Keys
+...
+```
 
-### Activity
+```js
+const App = () => {
+  ...
+  
+  return (
+    <div>
+      <h1>Hello, World!</h1>
+      ...
+      <Welcome />
+      <Welcome name="John" />
+    </div>
+  )
+}
+```
 
-## Styles
+#### Activity
+
+### Resources
+- https://reactjs.org/docs/components-and-props.html
+
+<!-- ## Styles
 
 ### Activity
 
@@ -331,4 +434,4 @@ Refactor the `filterFruits()` function so if a `fruits` is not given as an argum
 
 ## Deployment
 
-### Activity
+### Activity -->
