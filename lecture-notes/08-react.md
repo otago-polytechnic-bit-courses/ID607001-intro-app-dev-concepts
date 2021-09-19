@@ -395,6 +395,8 @@ const App = () => {
     </div>
   )
 }
+
+...
 ```
 
 #### Activity
