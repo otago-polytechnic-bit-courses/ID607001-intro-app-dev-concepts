@@ -212,7 +212,7 @@ npm start
 
 It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
-
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" />
 
 ### Other Things to Know About
 
@@ -240,11 +240,15 @@ Create a function called `displayTeam()` that accepts an argument called `team` 
 
 **Expected Output:**
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-2.png" />
+
 **Task 2:**
 
 Refactor the `displayTeam()` function so if a `team` is not given as an argument, return **No team provided** in an `<h1>` element.
 
 **Expected Output:**
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-3.png" />
 
 **Task 3:**
 
@@ -265,11 +269,15 @@ Create a function called `filterFruits()` that accepts an argument called `fruit
 
 **Expected Output:**
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-4.png" />
+
 **Task 4:**
 
 Refactor the `filterFruits()` function so if a `fruits` is not given as an argument, return **No fruits provided** in an `<h1>` element.
 
 **Expected Output:**
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-5.png" />
 
 ### Resources
 - https://reactjs.org/docs/introducing-jsx.html
