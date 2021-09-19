@@ -212,7 +212,7 @@ npm start
 
 It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" width="350" />
 
 ### Other Things to Know About
 
@@ -240,7 +240,7 @@ Create a function called `displayTeam()` that accepts an argument called `team` 
 
 **Expected Output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-2.png" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-2.png" width="350" />
 
 **Task 2:**
 
@@ -248,7 +248,7 @@ Refactor the `displayTeam()` function so if a `team` is not given as an argument
 
 **Expected Output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-3.png" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-3.png" width="350" />
 
 **Task 3:**
 
@@ -269,7 +269,7 @@ Create a function called `filterFruits()` that accepts an argument called `fruit
 
 **Expected Output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-4.png" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-4.png" width="350" />
 
 **Task 4:**
 
@@ -277,7 +277,7 @@ Refactor the `filterFruits()` function so if a `fruits` is not given as an argum
 
 **Expected Output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-5.png" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-5.png" width="350" />
 
 ### Resources
 - https://reactjs.org/docs/introducing-jsx.html
