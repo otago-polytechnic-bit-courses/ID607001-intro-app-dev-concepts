@@ -236,13 +236,40 @@ const team = {
 }
 ```
 
-Create a function called `displayTeam()` that accepts an argument called `team`. Iterate through the **JavaScript** object. For each key/pair in the the **JavaScript** object, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Under `<h1>Hello, World!</h1>` in the `return` block, call the `displayTeam()` in an `<ul>` element.
+Create a function called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). Iterate through the **JavaScript** object. For each key/pair in the the **JavaScript** object, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Under `<h1>Hello, World!</h1>` in the `return` block, call the `displayTeam()` in an `<ul>` element.
 
-
+**Expected Output:**
 
 **Task 2:**
 
-Refactor the `displayTeam()` function so if no `team` 
+Refactor the `displayTeam()` function so if a `team` is not given as an argument, return **No team provided** in an `<h1>` element.
+
+**Expected Output:**
+
+**Task 3:**
+
+Declare the following **JavaScript** array under the **JavaScript** object:
+
+```js
+const fruits = [
+  'strawberry', 
+  'banana', 
+  'apple', 
+  'blueberry', 
+  'orange', 
+  'grape'
+]
+```
+
+Create a function called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). Iterate through the **JavaScript** array. For each item in the the **JavaScript** array, return a `<li>` containing the item if its length is greater than 5. Under **Task 1/2** in the `return` block, call the `filterFruits()` in an `<ul>` element.
+
+**Expected Output:**
+
+**Task 4:**
+
+Refactor the `filterFruits()` function so if a `fruits` is not given as an argument, return **No fruits provided** in an `<h1>` element.
+
+**Expected Output:**
 
 ### Resources
 - https://reactjs.org/docs/introducing-jsx.html
