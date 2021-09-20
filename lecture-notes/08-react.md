@@ -387,7 +387,7 @@ App (parent) <- Welcome (child)
 
 Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
 
-If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle?s[]=%2Aclass>.
+If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
 ### Props
 
