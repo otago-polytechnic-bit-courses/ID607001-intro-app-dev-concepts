@@ -214,9 +214,7 @@ To start the **development server**, open the terminal in **Visual Studio Code**
 npm start
 ```
 
-It will run the `start` script as specified in `package.json`.
-
-It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
+It will run the `start` script as specified in `package.json`. It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" width="350" />
 
@@ -404,7 +402,7 @@ const Welcome = (props) => {
 ...
 ```
 
-Where this d
+This is an example of how you can reuse a **component**:
 
 ```js
 const App = () => {
