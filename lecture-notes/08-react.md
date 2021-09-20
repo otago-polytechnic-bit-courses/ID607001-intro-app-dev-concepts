@@ -349,6 +349,10 @@ const Welcome = () => {
 export default Welcome
 ```
 
+Your file structure should now look something like this:
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-6.png" width="350" />
+
 The following is how you import and use a **component**:
 
 ```js
@@ -402,6 +406,10 @@ const Welcome = (props) => {
 ...
 ```
 
+Here is an example output without `props`.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-7.png" width="350" />
+
 This is an example of how you can reuse a **component**:
 
 ```js
@@ -424,6 +432,10 @@ const App = () => {
 
 ...
 ```
+
+Here is an example output without and with `props`.
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-8.png" width="350" />
 
 ## Hooks
 
@@ -512,6 +524,11 @@ const Post = () => {
 export default Post
 ```
 
+Here is an example output of `useState`, `useEffect` and **Axios**:
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-9.png" height="350" />
+
+
 #### Activity
 
 **Task 1:**
@@ -523,23 +540,27 @@ Please answer the following:
 
 **Task 2:**
 
-
-
 **Expected output:**
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-10.png" height="390" width="700" />
 
 **Task 3:**
 
-
-
 **Expected output:**
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-11.png" height="175" width="750" />
 
 **Task 4:**
 
+**Expected output:**
 
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-12.png" height="175" />
+
+**Task 5:**
 
 **Expected output:**
+
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-13.png" height="350" />
 
 ### Resources
 - https://reactjs.org/docs/components-and-props.html
