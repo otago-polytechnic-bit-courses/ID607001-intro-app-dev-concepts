@@ -2,9 +2,10 @@
 
 ## What is React
 
-**React** is a **JavaScript** component-based library developed by **Facebook**. 
+**React** is a **JavaScript** component-based library developed by **Facebook**.
 
 Here are some reasons why people use **React**:
+
 - Applications can handle complex updates such as fetching large amounts of data and still feel fast and responsive.
 - You can write reusable and small pieces of code rather than large chunks of code. It solves the maintainability issue that you tend to have when writing vanilla **HTML**.
 - Performs well in large applications, particularly when you need to fetch, change and render data.
@@ -43,7 +44,7 @@ code .
 
 ### File structure
 
-The following is your **React web application's** file structure: 
+The following is your **React web application's** file structure:
 
 ```md
 graysono-react-playground
@@ -90,19 +91,20 @@ Go to `package.json`. In the `scripts`, there are four default `scripts`:
 4. `npm run eject` - removes the build tool, i.e., **Create React App**, copies build dependencies, configuration files, and scripts into your application as dependencies in `package.json`.
 
 ### Resources
-- https://create-react-app.dev/docs/getting-started
-- https://developer.mozilla.org/en-US/docs/Glossary/SPA
-- https://developer.mozilla.org/en-US/docs/Glossary/AJAX
-- https://create-react-app.dev/docs/getting-started
-- https://create-react-app.dev/docs/folder-structure
-- https://create-react-app.dev/docs/available-scripts
+
+- <https://create-react-app.dev/docs/getting-started>
+- <https://developer.mozilla.org/en-US/docs/Glossary/SPA>
+- <https://developer.mozilla.org/en-US/docs/Glossary/AJAX>
+- <https://create-react-app.dev/docs/getting-started>
+- <https://create-react-app.dev/docs/folder-structure>
+- <https://create-react-app.dev/docs/available-scripts>
 
 ## JSX
 
 Here is an example of **JSX**:
 
 ```js
-const element = <h1>Hello, World!</h1> // Note: you can ommit the semi-colon
+const element = <h1>Hello, World!</h1> // Note: you can omit the semi-colon
 ```
 
 It looks like **HTML**, but if you were to run the example in an **HTML** file, it would not work.
@@ -183,7 +185,7 @@ const App = () => {
 export default App
 ```
 
-You will learn the specifics of this code later. 
+You will learn the specifics of this code later.
 
 Go to `src/index.js`. Have a quick look at the imports on lines 1-5. You only need to care about lines 1, 2, and 4.
 
@@ -221,7 +223,7 @@ It will run the `start` script as specified in `package.json`. It will open a ne
 ### Other things to know about
 
 - `ReactDOM.render()` gets the element, i.e., `<div>` in `public/index.html` by its id, i.e., `id="root"`.
-- `ReactDOM.render()` only updates elements that have changed, i.e., it does not re-render the entire page, only the changed element(s). How it achieves this is by using the **virtual DOM**. More information here - https://reactjs.org/docs/faq-internals.html
+- `ReactDOM.render()` only updates elements that have changed, i.e., it does not re-render the entire page, only the changed element(s). How it achieves this is by using the **virtual DOM**. More information here - <https://reactjs.org/docs/faq-internals.html>
 - `React.StrictMode` is a tool that helps you find problems in your application. It only runs in development mode, meaning the production build is not impacted.
 
 #### Activity
@@ -286,10 +288,11 @@ Refactor the `filterFruits()` function so if a `fruits` is not given as an argum
 Once you have finished, add, commit and push your code to your **GitHub** in-class activities repository.
 
 ### Resources
-- https://reactjs.org/docs/introducing-jsx.html
-- https://reactjs.org/docs/rendering-elements.html
-- https://reactjs.org/docs/react-dom.html
-- https://reactjs.org/docs/strict-mode.html
+
+- <https://reactjs.org/docs/introducing-jsx.html>
+- <https://reactjs.org/docs/rendering-elements.html>
+- <https://reactjs.org/docs/react-dom.html>
+- <https://reactjs.org/docs/strict-mode.html>
 
 ## Components
 
@@ -382,15 +385,15 @@ App (parent) <- Welcome (child)
 
 ## Component lifecycle methods
 
-Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process. 
+Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
 
-If you are unsure what the **component lifecycle methods** are, please carefully read this resource - https://datacadamia.com/web/javascript/react/function/lifecycle?s[]=%2Aclass. 
+If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle?s>[]=%2Aclass.
 
 ### Props
 
-When you declare a **class** or **function** component, you must never modify its props (properties) or act like **pure functions**. It is a strict rule that all **components** must adhere to. 
+When you declare a **class** or **function** component, you must never modify its props (properties) or act like **pure functions**. It is a strict rule that all **components** must adhere to.
 
-If you are unsure of what a **pure function** is, please carefully read this resource - https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/ 
+If you are unsure of what a **pure function** is, please carefully read this resource - <https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/>
 
 ```js
 ...
@@ -439,11 +442,11 @@ Here is an example output without and with `props`.
 
 ## Hooks
 
-**Hooks** allow you to use **state** and other features without having to use **class components**. **Hooks** "hook into" **state** and the **component lifecycle** using **function components**. **Note:** you can not use **Hooks** with **class components**. 
+**Hooks** allow you to use **state** and other features without having to use **class components**. **Hooks** "hook into" **state** and the **component lifecycle** using **function components**. **Note:** you can not use **Hooks** with **class components**.
 
 ### State Hook
 
-Would you mind reading the following resource - https://reactjs.org/docs/hooks-state.html?
+Would you mind reading the following resource - <https://reactjs.org/docs/hooks-state.html>?
 
 Here is an example of how you can use the `useEffect` hook:
 
@@ -493,7 +496,7 @@ You can check the `dependencies` block in `package.json` to make sure you have i
 
 ### Effect Hook
 
-Would you mind reading the following resource - <https://reactjs.org/docs/hooks-effect.html>? 
+Would you mind reading the following resource - <https://reactjs.org/docs/hooks-effect.html>?
 
 Here is an example of how you can use the `useEffect` hook:
 
@@ -527,7 +530,6 @@ export default Post
 Here is an example output of `useState`, `useEffect` and **Axios**:
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-9.png" height="350" />
-
 
 #### Activity
 
@@ -579,7 +581,7 @@ Use the **response** data, i.e., a random **noun** and **adjective** and render 
 
 **Task 5:**
 
-In the previous assessment, you created an **API** using **Laravel**. You were required to deploy your **API** to **Heroku**. 
+In the previous assessment, you created an **API** using **Laravel**. You were required to deploy your **API** to **Heroku**.
 
 Create a new **function component** (name it whatever you like) that **requests** data from one **API** URL on **Heroku** using **Axios**. Using the **response** data, render it in a `<table>` element. Import and use the **function component** in `App`. **Note:** your data will be different to the **expected output** below.
 
