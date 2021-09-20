@@ -541,13 +541,6 @@ Please answer the following:
 
 **Expected output:**
 
-
-**Task 5:**
-
-
-
-**Expected output:**
-
 ### Resources
 - https://reactjs.org/docs/components-and-props.html
 - https://reactjs.org/docs/react-component.html
