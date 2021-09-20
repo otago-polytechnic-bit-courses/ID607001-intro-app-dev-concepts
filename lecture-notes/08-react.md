@@ -7,7 +7,7 @@
 Here are some reasons why people use **React**:
 - Applications can handle complex updates such as fetching large amounts of data and still feel fast and responsive.
 - You can write reusable and small pieces of code rather than large chunks of code. It solves the maintainability issue that you tend to have when writing vanilla **HTML**.
-- Performs well in large applications, particularly when you need to fetch, change and display data.
+- Performs well in large applications, particularly when you need to fetch, change and render data.
 
 ### Where else will I use React in the BIT degree?
 
@@ -420,11 +420,11 @@ const App = () => {
     <div>
       <h1>Hello, World!</h1>
       ...
-      <Welcome /> {/* This will render - Welcome in a h1. Note: a prop attribute is not given */}
+      <Welcome /> {/* This will render - Welcome an <h1> element. Note: a prop attribute is not given */}
       <Welcome firstName="John" /> {/* 
-                                     This will render - Welcome John in a h1. Note: a prop 
+                                     It will render - Welcome John in an <h1> element. Note: a prop 
                                      attribute is given. Make sure the prop attribute's name is the
-                                     same as what is specified in parent component, i.e., Welcome.js. 
+                                     same as what is specified in the parent component, i.e., Welcome.js. 
                                    */}
     </div>
   )
@@ -443,7 +443,7 @@ Here is an example output without and with `props`.
 
 ### State Hook
 
-Please read the following resource - https://reactjs.org/docs/hooks-state.html.
+Would you mind reading the following resource - https://reactjs.org/docs/hooks-state.html?
 
 Here is an example of how you can use the `useEffect` hook:
 
@@ -461,7 +461,7 @@ const Counter = () => {
   
   return (
     <div>
-      <p>You clicked {count} times</p> {/* Display the count state variable in a <p> element */}
+      <p>You clicked {count} times</p> {/* Rendering the count state variable in a <p> element */}
       <button onClick={() => setCount(count + 1)}> {/* Increment the count state variable by one */}
         Click me
       </button>
@@ -481,7 +481,7 @@ const ExampleWithManyStates = () => {
 
 #### Axios
 
-The following few examples will be using **Axios**. Many of you have probably used a **promise** based HTTP client before, i.e., **Fetch**. You can think of **Axios** as **Fetch** on steroids. For more information, please carefully read this resource - https://axios-http.com/docs/intro.
+The following few examples will be using **Axios**. Many of you have probably used a **promise** based HTTP client before, i.e., **Fetch**. You can think of **Axios** as **Fetch** on steroids. For more information, please carefully read this resource - <https://axios-http.com/docs/intro>.
 
 To install **Axios**, open the terminal in **Visual Studio Code**, and run the following command:
 
@@ -493,7 +493,7 @@ You can check the `dependencies` block in `package.json` to make sure you have i
 
 ### Effect Hook
 
-Please read the following resource - https://reactjs.org/docs/hooks-effect.html. 
+Would you mind reading the following resource - <https://reactjs.org/docs/hooks-effect.html>? 
 
 Here is an example of how you can use the `useEffect` hook:
 
@@ -514,7 +514,7 @@ const Post = () => {
 
   return (
     <div>
-      {/* Displaying the post's title and body */}
+      {/* Rendering the post's title and body */}
       <h1>{post.title}</h1>
       <p>{post.body}</p>
     </div>
@@ -540,11 +540,25 @@ Please answer the following:
 
 **Task 2:**
 
+Create a new **function component** (name it whatever you like) that has three `props` - `firstName`, `lastName` and `bandName`. You will render:
+
+- `firstName` in an `<h1>` element
+- `lastName` in an `<h2>` element
+- `bandName` in an `<h3>` element
+
+Import and use the **function component** in `App` to match the **expected output** below.
+
 **Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-10.png" height="390" width="700" />
 
 **Task 3:**
+
+Create a new **function component** (name it whatever you like) that **requests** data from the following **API** URL using **Axios**:
+
+- <https://api.chucknorris.io/jokes/random>
+
+Using the **response** data, render an **image** in an `<img>` element and **text** in a `<p>` element. Import and use the **function component** in `App` so that it matches the **expected output** below.
 
 **Expected output:**
 
@@ -552,20 +566,32 @@ Please answer the following:
 
 **Task 4:**
 
+Create a new **function component** (name it whatever you like) that **requests** data in **parallel** from the following **API** URLs using **Axios**:
+
+- <https://random-word-form.herokuapp.com/random/noun>
+- <https://random-word-form.herokuapp.com/random/adjective>
+
+Use the **response** data, i.e., a random **noun** and **adjective** and render it in a `<p>` element. Import and use the **function component** in `App`. **Note:** the **response** data will be random, but the point of this task, is to articulate how to **request** data in **parallel**.
+
 **Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-12.png" height="175" />
 
 **Task 5:**
 
+In the previous assessment, you created an **API** using **Laravel**. You were required to deploy your **API** to **Heroku**. 
+
+Create a new **function component** (name it whatever you like) that **requests** data from one **API** URL on **Heroku** using **Axios**. Using the **response** data, render it in a `<table>` element. Import and use the **function component** in `App`. **Note:** your data will be different to the **expected output** below.
+
 **Expected output:**
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-13.png" height="350" />
 
 ### Resources
-- https://reactjs.org/docs/components-and-props.html
-- https://reactjs.org/docs/react-component.html
-- https://reactjs.org/docs/hooks-overview.html
+
+- <https://reactjs.org/docs/components-and-props.html>
+- <https://reactjs.org/docs/react-component.html>
+- <https://reactjs.org/docs/hooks-overview.html>
 
 <!-- 
 ## Styles
