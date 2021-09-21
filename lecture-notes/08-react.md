@@ -228,6 +228,59 @@ It will run the `start` script as specified in `package.json`. It will open a ne
 
 #### Activity
 
+In the following tasks, you will use a functional construct called `map()`. How does a `map()` work? Lets look at example:
+
+You have given a **JavaScript** array of **JavaScript** objects. Each object represents a person, which contains an id, name and age.
+
+```js
+const people = [
+  { id: 1, name: 'John Doe', age: 55 },
+  { id: 2, name: 'Jane Doe', age: 50 },
+  { id: 3, name: 'Jeff Doe', age: 25 },
+  { id: 4, name: 'Jake Doe', age: 30 }
+]
+```
+
+The data I want to get is the age of each person. From here I can do all sorts of calculations, i.e., find the oldest person, find the youngest person, etc.
+
+```js
+[55, 50, 25, 30]
+```
+
+There are four or five different ways you can achieve this. You are probably use to the idea of creating an empty **JavaScript** array, then using either `for()`, `for(... of ...)` or `foreach()` to append each person's age to the array. For example:
+
+```js
+const ages = []
+
+people.forEach((person) => {
+  ages.push(person.age)
+})
+```
+
+This is okay, but we can be more concise using `map()`. Here are two examples:
+
+```js
+// Example one
+const ages = people.map(function(person) {
+  return person.age
+})
+
+// Example two
+const ages = people.map((person) => person.age)
+```
+
+What is happening here? `map()` must accept a callback function. The function is called for every element in an array. Each time the function is called, the returned value is added to a new array.
+
+This is a visualisation of what is happening:
+
+Each time the function is called, we are adding the person's age that is returned to the new array. 
+
+```md
+[55] => [55, 50] => [55, 50, 25] => [55, 50, 25, 30]
+```
+
+More information about `map()` can be found here - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
 **Task 1:**
 
 In `App.js`, declare the following **JavaScript** object inside of the `App` function:
