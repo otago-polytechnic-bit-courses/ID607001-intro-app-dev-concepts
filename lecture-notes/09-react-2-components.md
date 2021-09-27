@@ -1,9 +1,5 @@
 # React 2 - Components
 
-## Lecture Video
-
-Today's lecture video can be found here - 
-
 ## Components
 
 **Components** allow you to split your **UI** into independent, reusable chunks of **JSX**.
