@@ -1,5 +1,7 @@
 # **React 1 - Getting Started**
 
+Today's lecture video can be found here - https://bit.ly/2XUS1vC
+
 ## What is React
 
 **React** is a **JavaScript** component-based library developed by **Facebook**.
