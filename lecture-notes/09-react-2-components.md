@@ -1,4 +1,4 @@
-## React 2 - Components
+# React 2 - Components
 
 ### Lecture Video
 
