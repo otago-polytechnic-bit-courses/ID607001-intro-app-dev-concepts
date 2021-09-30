@@ -1,5 +1,6 @@
 import React from 'react'
 import Counter from './components/Counter'
+import Lifecycle from './components/Lifecycle'
 import Post from './components/Post'
 import Welcome from './components/Welcome'
 
@@ -15,6 +16,7 @@ const App = () => {
                                    */}
       <Counter />
       <Post />
+      <Lifecycle />
     </div>
   )
 }
