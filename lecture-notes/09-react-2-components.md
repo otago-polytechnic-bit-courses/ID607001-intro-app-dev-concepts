@@ -75,12 +75,12 @@ const App = () => {
     <div>
       <h1>Hello, World!</h1>
       ...
-      <Welcome />
+      <Welcome /> {/* Self-closing tag. <Welcome></Welcome> are equivalent */}
     </div>
   )
 }
 
-...
+export default Welcome
 ```
 
 When you nest **components** within **components**, you create a **component tree**. Currently, the **component tree** looks like this:
@@ -88,12 +88,6 @@ When you nest **components** within **components**, you create a **component tre
 ```md
 App (parent) <- Welcome (child)
 ```
-
-## Component lifecycle methods
-
-Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process. 
-
-If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
 ### Props
 
@@ -133,7 +127,7 @@ const App = () => {
       <Welcome firstName="John" /> {/* 
                                      It will render - Welcome John in an <h1> element. Note: a prop 
                                      attribute is given. Make sure the prop attribute's name is the
-                                     same as what is specified in the parent component, i.e., Welcome.js. 
+                                     same as what is specified in the child component, i.e., Welcome.js. 
                                    */}
     </div>
   )
@@ -170,12 +164,15 @@ const Counter = () => {
   
   return (
     <div>
-      <p>You clicked {count} times</p> {/* Rendering the count state variable in a <p> element */}
+      <p>You clicked {count} times</p> {/* Rendering the count state variable in a <p> element. Note: we do not re-render any of the other elements */}
       <button onClick={() => setCount(count + 1)}> {/* Increment the count state variable by one */}
         Click me
       </button>
     </div>
+  )
 }
+
+export default Counter
 ```
 
 You can declare as many state variables as you wish:
@@ -236,6 +233,12 @@ export default Post
 Here is an example output of `useState`, `useEffect` and **Axios**:
 
 <img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-9.png" height="350" />
+
+## Component lifecycle methods
+
+Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process. 
+
+If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
 #### Activity
 
