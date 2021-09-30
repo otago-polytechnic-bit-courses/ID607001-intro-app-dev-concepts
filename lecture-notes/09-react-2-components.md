@@ -91,7 +91,7 @@ App (parent) <- Welcome (child)
 
 ## Component lifecycle methods
 
-Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
+Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process. 
 
 If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
