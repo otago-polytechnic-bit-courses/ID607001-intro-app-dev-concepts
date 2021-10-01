@@ -80,7 +80,7 @@ const App = () => {
   )
 }
 
-export default Welcome
+export default App
 ```
 
 When you nest **components** within **components**, you create a **component tree**. Currently, the **component tree** looks like this:
@@ -157,7 +157,7 @@ const Counter = () => {
   const [count, setCount] = useState(0) // Local state variable called count. 
   
   // const [count, ...] - first argument allows you to get the state variable's value
-  // const [..., setCount - second argument allows you to set the state variables's value
+  // const [..., setCount] - second argument allows you to set the state variables's value
   // useState(0) - using the useState hook which sets an initial state value, i.e., 0
   
   // count can not be accessed outside this function component
