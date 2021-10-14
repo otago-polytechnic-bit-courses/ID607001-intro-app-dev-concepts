@@ -236,7 +236,7 @@ export default Navigation;
 - The `Router` component uses regular URL paths, i.e., `/institutions`.
 - `Switch` and `Route` are route matching components. When the `Switch` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` **prop** value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` **prop** value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `component` **prop**.
 
-After you done this, you should see the following:
+After you done this, you should see the following if you are on `/institutions`:
 
 ![image](https://user-images.githubusercontent.com/22671392/137408107-b356d157-c042-4f1b-9725-b2d384479252.png)
 
