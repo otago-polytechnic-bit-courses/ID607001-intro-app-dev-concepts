@@ -79,21 +79,37 @@ const App = () => {
 export default App
 ```
 
+After you done this, you should see the following:
+
+![image](https://user-images.githubusercontent.com/22671392/137407896-6d2d9e92-829a-4d47-acd9-b21fba3994f6.png)
+
 **What is happening in the Navigation component?** 
 - You have one `state` variable called `isOpen`, which will allow you to open and close a collapsed navigation bar.
 - This is a simple responsive navbar that contains two items (login and institutions).
 - The `Navbar` component has two **props** - `color` and `expand`. Change the `color` value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text. 
+
+![image](https://user-images.githubusercontent.com/22671392/137407975-e5aed07e-fe90-43fb-95b9-a9984380b85c.png)
+
 - How do you change the text color? Change the **light** style (not the `color` **prop** value). It should look something like this:
 
 ```jsx
 <Navbar color="dark" dark expand="md">
 ```
 
+![image](https://user-images.githubusercontent.com/22671392/137407990-9481d599-7c07-4f42-a75f-5bc2f89ae40e.png)
+
 - We will discuss the `expand` **prop** later.
 - The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
 - The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` **prop** value is `md` which is a screen width ≥ 768px. 
     - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html 
-- You will notice a hamburger menu on the left-hand side. By default, `isOpen` is set to `false` and when you click on this (`onClick` **prop** accepts a callback), it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar. 
+- You will notice a hamburger menu on the left-hand side. 
+
+![image](https://user-images.githubusercontent.com/22671392/137408027-53e183c7-cf2c-4f42-99c4-885abc5742be.png)
+
+- By default, `isOpen` is set to `false` and when you click on this (`onClick` **prop** accepts a callback), it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar. 
+
+![image](https://user-images.githubusercontent.com/22671392/137408048-6ebfbebf-1313-42b0-ac62-f9aba487c3ac.png)
+
 - The `Nav` component has a `className` **prop** with the value `mr-auto` (margin-right auto) and **navbar** style. These two are specific to **Bootstrap**.
 - Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href` **prop**. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element. 
 
@@ -214,9 +230,13 @@ export default Navigation;
 ```
 
 **What is happening in the Navigation component?** 
-You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
+- You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
 - The `Router` component uses regular URL paths, i.e., `/institutions`.
-- `Switch` and `Route` are route matching components. When the `Switch` component is rendered, it searches through its `Route` (children) components to find one whose path matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` **prop** value to the `Route` component's `path` **prop** value then render the component specified in the `component` **prop**.
+- `Switch` and `Route` are route matching components. When the `Switch` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` **prop** value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` **prop** value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `component` **prop**.
+
+After you done this, you should see the following:
+
+![image](https://user-images.githubusercontent.com/22671392/137408107-b356d157-c042-4f1b-9725-b2d384479252.png)
 
 **Resources:** 
 - https://reactrouter.com/web/guides/quick-start
