@@ -141,16 +141,82 @@ export default InstitutionsTable;
 
 **What is happening in the InstitutionTable component?** 
 
-It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component. There are obvious problems with this example, and if you have completed **task 5** in **09-react-2-components**, you will know how to make this example modular.
+- It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component. 
+- There are obvious problems with this example, and if you have completed **task 5** in **09-react-2-components**, you will know how to make this example modular.
 
 **Resource:** https://reactstrap.github.io/components/tables
 
 ## React Router
 
+**React Router DOM** is a the most popular routing library for **React**. It enables you to implement dynamic routing in your **SPA**.
+
+Install **React Router DOM** using **NPM**:
+
 ```md
-npm i react-router
+npm i react-router-dom
 ```
+
+**Note:** **React Router** has three packages (core, **DOM** bindings and **React Native** bindings). Make sure you choose the **DOM** bindings package.  
+
+```jsx
+import React, { useState } from 'react'
+
+// Import the following:
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from 'react-router-dom'
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from 'reactstrap'
+
+// Import the following component:
+import InstitutionsTable from './InstitutionsTable'
+
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggle = () => setIsOpen(!isOpen)
+
+  return (
+    <Router>
+      <Navbar color="dark" dark expand="md">
+        <NavbarBrand href="/">Student Management System</NavbarBrand>
+        <NavbarToggler onClick={toggle} /> 
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/login">Login</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/institutions">Institutions</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      <Switch>
+        <Route path="/login" /* Add component prop later */ />
+        <Route path="/institutions" component={InstitutionsTable} />
+      </Switch>
+    </Router>
+  )
+}
+
+export default Navigation;
+```
+
+**What is happening in the Navigation component?** 
+You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
+- The `Router` component uses regular URL paths, i.e., `/institutions`.
+- `Switch` and `Route` are route matching components. When the `Switch` component is rendered, it searches through its `Route` (children) components to find one whose path matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` **prop** value to the `Route` component's `path` **prop** value then render the component specified in the `component` **prop**.
 
 **Resources:** 
 - https://reactrouter.com/web/guides/quick-start
-
