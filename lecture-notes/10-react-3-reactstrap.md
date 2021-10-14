@@ -16,7 +16,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 
 You can find this file in the `node_modules/bootstrap/dist/css`.
 
-Once you have done this, start the development server. You will be automatically navigated to `localhost:3000`.
+Once you have done this, start the development server. A browser will open and navigate you to `localhost:3000`.
 
 **Question:** Do you notice anything different?
 
@@ -58,15 +58,30 @@ const Navigation = () => {
         </Nav>
       </Collapse>
     </Navbar>
-  );
+  )
 }
 
 export default Navigation
 ```
 
-**What is happening?** 
-- You have one `state` variable called `isOpen` and it will allow you to open and close a collapsed navigation bar.
-- This is a simple responsive nav bar which contains two items (login and institutions).
+Of course, in `App.js`, you need to import and declare the `Navigation` component:
+
+```jsx
+import React from 'react'
+import Navigation from './components/Navigation'
+
+const App = () => {
+  return (
+    <Navigation />
+  )
+}
+
+export default App
+```
+
+**What is happening in the Navigation component?** 
+- You have one `state` variable called `isOpen`, which will allow you to open and close a collapsed navigation bar.
+- This is a simple responsive navbar that contains two items (login and institutions).
 - The `Navbar` component has two **props** - `color` and `expand`. Change the `color` value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text. 
 - How do you change the text color? Change the **light** style (not the `color` **prop** value). It should look something like this:
 
@@ -76,13 +91,66 @@ export default Navigation
 
 - We will discuss the `expand` **prop** later.
 - The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
-- The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoint (refer to the resource below) that we can use. In the `Navbar` component, the `expand` **prop** value is `md` which is a screen width ≥ 768px. You will notice a hamburger menu on the left-hand side. By default, `isOpen` is set to `false` and when you click on this, it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar. 
-   - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html 
+- The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` **prop** value is `md` which is a screen width ≥ 768px. 
+    - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html 
+- You will notice a hamburger menu on the left-hand side. By default, `isOpen` is set to `false` and when you click on this (`onClick` **prop** accepts a callback), it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar. 
 - The `Nav` component has a `className` **prop** with the value `mr-auto` (margin-right auto) and **navbar** style. These two are specific to **Bootstrap**.
 - Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href` **prop**. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element. 
 
-## Create a form
+**Resource:** https://reactstrap.github.io/components/navbar
 
 ## Create a table
 
+```jsx
+import React from 'react'
+import { Table } from 'reactstrap'
+
+const InstitutionsTable = () => {
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Stanford University</td>
+          <td>California</td>
+          <td>United States of America</td>
+        </tr>
+        <tr>
+          <td>Harvard University</td>
+          <td>Massachusetts</td>
+          <td>United States of America</td>
+        </tr>
+        <tr>
+          <td>University of Oxford</td>
+          <td>Oxford</td>
+          <td>United Kingdom</td>
+        </tr>
+      </tbody>
+    </Table>
+  )
+}
+
+export default InstitutionsTable;
+```
+
+**What is happening in the InstitutionTable component?** 
+
+It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component. There are obvious problems with this example, and if you have completed **task 5** in **09-react-2-components**, you will know how to make this example modular.
+
+**Resource:** https://reactstrap.github.io/components/tables
+
 ## React Router
+
+```md
+npm i react-router
+```
+
+**Resources:** 
+- https://reactrouter.com/web/guides/quick-start
+
