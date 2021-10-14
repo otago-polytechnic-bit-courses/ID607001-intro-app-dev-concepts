@@ -242,3 +242,14 @@ After you done this, you should see the following if you are on `/institutions`:
 
 **Resources:** 
 - https://reactrouter.com/web/guides/quick-start
+
+## Activity
+**Task 1:** Use the example above as guide. Create a new **function component** (name it whatever you like) that **requests** data from one **API** URL on **Heroku** using **Axios**. Using the **response** data, render it in a **Bootstrap** table.
+
+**Task 2:** Create a route to render the function component created in **task 1**.
+
+**Task 3:** Create a new **function component** called Login, containing a **Bootstrap** with two inputs - email and password. 
+
+**Task 4:** Create a route to render the function component created in **task 3**.
+
+Once you completed this, you will have started the first part of **Project 2: React CRUD**. Next module, you will look at processing forms and authentication.
