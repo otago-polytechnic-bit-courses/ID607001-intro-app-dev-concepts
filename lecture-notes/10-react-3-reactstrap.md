@@ -248,7 +248,7 @@ After you done this, you should see the following if you are on `/institutions`:
 
 **Task 2:** Create a route to render the function component created in **task 1**.
 
-**Task 3:** Create a new **function component** called Login, containing a **Bootstrap** with two inputs - email and password. 
+**Task 3:** Create a new **function component** called Login, containing a **Bootstrap** form with two inputs - email and password. 
 
 **Task 4:** Create a route to render the function component created in **task 3**.
 
