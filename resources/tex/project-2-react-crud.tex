@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this assessment, you will develop a \textbf{CRUD} application using \textbf{React} \& deploy it to \textbf{Heroku}. This application will consume the \textbf{Laravel API} you created in the \textbf{Project 1: Laravel API} assessment. The main purpose of this assessment is not just to build a full-stack application, rather demonstrate an ability to decouple the presentation layer (\textbf{frontend}) from the business logic (\textbf{backend}). Also, you will be required to independently research and implement pagination, deployment \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this assessment, you will develop a \textbf{CRUD} application using \textbf{React} \& deploy it to \textbf{Heroku}. This application will consume an API from either the \textbf{Project 1: Laravel API} assessment or the \textbf{Practical: API Testing Research}. The main purpose of this assessment is not just to build a full-stack application, rather demonstrate an ability to decouple the presentation layer (\textbf{frontend}) from the business logic (\textbf{backend}). Also, you will be required to independently research and implement pagination, deployment \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -85,19 +85,20 @@ Resits \& reassessments are not applicable in \textbf{IN607: Introductory Applic
 You will need to submit an application \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcome 1 (40\%)}
-
 \begin{itemize}
+        \item Register a new user via a form.
+        \item User can login and logout by clicking on a link. 
         \item Request \textbf{API} data from at least three \textbf{API} resource groups using \textbf{Axios}.
         \item Create new \textbf{API} data via a form. You \textbf{must} display the form in a modal. 
         \item Update \textbf{API} data via a form. Similar to creating \textbf{API} data, you \textbf{must} display the form in a modal. 
         \item Delete \textbf{API} data. Prompt the user for deletion. You \textbf{can not} use the in-built \textbf{confirm() JavaScript} function. 
         \item \textbf{Independent Research:} View \textbf{API} data in a table using an id \& a variety of query parameters. 
         \item Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
-    \item Data automatically re-renders after creating, updating \& deleting, i.e., the user should not have to refresh the browser to see the created, updated and deleted data.
-    \item \textbf{Independent Research:} Paginate \textbf{API} data across several pages with \textbf{next} \& \textbf{previous} buttons or links.
+        \item Data automatically re-renders after creating, updating \& deleting, i.e., the user should not have to refresh the browser to see the created, updated and deleted data.
+        \item \textbf{Independent Research:} Paginate \textbf{API} data across several pages with \textbf{next} \& \textbf{previous} buttons or links.
         \item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Reactstrap}.
-      \item \textbf{Independent Research:} Application deployed to \textbf{Heroku}. 
-      \item Five component tests using \textbf{React Testing Library}.
+        \item \textbf{Independent Research:} Application deployed to \textbf{Heroku}. 
+        \item Five component tests using \textbf{React Testing Library}.
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (45\%)}
@@ -117,10 +118,10 @@ You will need to submit an application \& documentation that meet the following 
           \begin{itemize}
               \item URL to the application on \textbf{Heroku}.
               \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the application locally?
-                    \item How do you deploy the \textbf{React} application to \textbf{Heroku}?
+              \item How do you deploy the \textbf{React} application to \textbf{Heroku}?
           \end{itemize}
             \end{itemize}
-            \begin{itemize}
+        \begin{itemize}
     \item At least 10 feature branches excluding the \textbf{main} branch.
     \begin{itemize}
             \item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
