@@ -1,5 +1,7 @@
 # React 3 - Reactstrap
 
+**Lecture video** - https://bit.ly/3lRXVav
+
 **Reactstrap** is a library that provides you with predefined **Bootstrap** components that are stateless. The library does not depend on libraries like **jQuery** and **Bootstrap JS**. If you have not used **Bootstrap** before, have a look at this resource - https://developer.mozilla.org/en-US/docs/Glossary/Bootstrap.
 
 Install **reactstrap** and **Bootstrap** using **NPM**:
