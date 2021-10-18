@@ -55,21 +55,21 @@ graysono-react-playground
 ├── package.json
 ├── .gitignore
 ├── public
-│   ├── favicon.ico
-│   ├── index.html
-│   ├── logo192.png
-│   ├── logo512.png
-│   ├── manifest.json
-│   └── robots.txt
+│ ├── favicon.ico
+│ ├── index.html
+│ ├── logo192.png
+│ ├── logo512.png
+│ ├── manifest.json
+│ └── robots.txt
 └── src
-    ├── App.css
-    ├── App.js
-    ├── App.test.js
-    ├── index.css
-    ├── index.js
-    ├── logo.svg
-    ├── serviceWorker.js
-    └── setupTests.js
+├── App.css
+├── App.js
+├── App.test.js
+├── index.css
+├── index.js
+├── logo.svg
+├── serviceWorker.js
+└── setupTests.js
 ```
 
 #### Activity
@@ -106,7 +106,7 @@ Go to `package.json`. In the `scripts`, there are four default `scripts`:
 Here is an example of **JSX**:
 
 ```js
-const element = <h1>Hello, World!</h1> // Note: you can omit the semi-colon
+const element = <h1>Hello, World!</h1>; // Note: you can omit the semi-colon
 ```
 
 It looks like **HTML**, but if you were to run the example in an **HTML** file, it would not work.
@@ -116,22 +116,22 @@ It looks like **HTML**, but if you were to run the example in an **HTML** file, 
 The following is an example on how you can embed an expression in **JSX**:
 
 ```js
-const name = 'John Doe'
-const element = <h1>Hello, World! My name is {name}</h1>
+const name = "John Doe";
+const element = <h1>Hello, World! My name is {name}</h1>;
 ```
 
 Here we have declared a `const` variable called `name`. It can be used in **JSX** by enclosing it in curly braces. You can also embed any valid **JavaScript** expression as long as it is enclosed in curly braces. For example:
 
 ```js
-// Embedding an in-built JavaScript function 
-const element = <h1>{Math.random()}</h1>
+// Embedding an in-built JavaScript function
+const element = <h1>{Math.random()}</h1>;
 
 // Embedding a user defined JavaScript function
 const getRandomNumber = (max) => {
-  return Math.floor(Math.random() * max)
-}
+  return Math.floor(Math.random() * max);
+};
 
-const element = <h1>{getRandomNumber(3)}</h1>
+const element = <h1>{getRandomNumber(3)}</h1>;
 ```
 
 ### Attributes
@@ -139,9 +139,9 @@ const element = <h1>{getRandomNumber(3)}</h1>
 The following is an example on how you can embed an expression in an attribute:
 
 ```js
-const url = 'https://bit.ly/3CqHp70'
-const description = 'This image contains a cat wearing a surgical mask'
-const element = <img src={url} alt={description} />
+const url = "https://bit.ly/3CqHp70";
+const description = "This image contains a cat wearing a surgical mask";
+const element = <img src={url} alt={description} />;
 ```
 
 ### Nesting
@@ -154,7 +154,7 @@ const element = (
     <h1>Hello, World!</h1>
     <h2>My name is John Doe</h2>
   </div>
-)
+);
 ```
 
 If you are nesting **JSX**, enclose the **JSX** in parentheses.
@@ -174,17 +174,17 @@ This **DOM** element is the **root node**, meaning everything inside this elemen
 Go to `src/App.js`. Replace all the code in this file with the following:
 
 ```js
-import React from 'react'
+import React from "react";
 
 const App = () => {
   return (
     <div>
       <h1>Hello, World!</h1>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 You will learn the specifics of this code later.
@@ -198,8 +198,8 @@ ReactDOM.render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
-  document.getElementById('root')
-)
+  document.getElementById("root")
+);
 ```
 
 A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`. **Note:** `App` returns:
@@ -220,7 +220,7 @@ npm start
 
 It will run the `start` script as specified in `package.json`. It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-1.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-1.png" width="350" />
 
 ### Other things to know about
 
@@ -236,46 +236,46 @@ You have given a **JavaScript** array of **JavaScript** objects. Each object rep
 
 ```js
 const people = [
-  { id: 1, name: 'John Doe', age: 55 },
-  { id: 2, name: 'Jane Doe', age: 50 },
-  { id: 3, name: 'Jeff Doe', age: 25 },
-  { id: 4, name: 'Jake Doe', age: 30 }
-]
+  { id: 1, name: "John Doe", age: 55 },
+  { id: 2, name: "Jane Doe", age: 50 },
+  { id: 3, name: "Jeff Doe", age: 25 },
+  { id: 4, name: "Jake Doe", age: 30 },
+];
 ```
 
 The data I want to get is the age of each person. From here I can do all sorts of calculations, i.e., find the oldest person, find the youngest person, etc.
 
 ```js
-[55, 50, 25, 30]
+[55, 50, 25, 30];
 ```
 
 There are four or five different ways you can achieve this. You are probably use to the idea of creating an empty **JavaScript** array, then using either `for()`, `for(... of ...)` or `foreach()` to append each person's age to the array. For example:
 
 ```js
-const ages = []
+const ages = [];
 
 people.forEach((person) => {
-  ages.push(person.age)
-})
+  ages.push(person.age);
+});
 ```
 
 This is okay, but we can be more concise using `map()`. Here are two examples:
 
 ```js
 // Example one
-const ages = people.map(function(person) {
-  return person.age
-})
+const ages = people.map(function (person) {
+  return person.age;
+});
 
 // Example two
-const ages = people.map((person) => person.age)
+const ages = people.map((person) => person.age);
 ```
 
 What is happening here? `map()` must accept a callback function. The function is called for every element in an array. Each time the function is called, the returned value is added to a new array.
 
 This is a visualisation of what is happening:
 
-Each time the function is called, we are adding the person's age that is returned to the new array. 
+Each time the function is called, we are adding the person's age that is returned to the new array.
 
 ```md
 [55] => [55, 50] => [55, 50, 25] => [55, 50, 25, 30]
@@ -289,19 +289,19 @@ In `App.js`, declare the following **JavaScript** object inside of the `App` fun
 
 ```js
 const team = {
-  center: 'Joel Embiid',
-  powerForward: 'Anthony Davis',
-  smallForward: 'LeBron James',
-  shootingGuard: 'James Harden',
-  pointGuard: 'Stephen Curry'
-}
+  center: "Joel Embiid",
+  powerForward: "Anthony Davis",
+  smallForward: "LeBron James",
+  shootingGuard: "James Harden",
+  pointGuard: "Stephen Curry",
+};
 ```
 
 Create a function called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). Iterate through the **JavaScript** object. For each key/pair in the the **JavaScript** object, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Under `<h1>Hello, World!</h1>` in the `return` block, call the `displayTeam()` in an `<ul>` element.
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-2.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-2.png" width="350" />
 
 **Task 2:**
 
@@ -309,7 +309,7 @@ Refactor the `displayTeam()` function so if a `team` is not given as an argument
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-3.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-3.png" width="350" />
 
 **Task 3:**
 
@@ -317,20 +317,20 @@ Declare the following **JavaScript** array under the **JavaScript** object:
 
 ```js
 const fruits = [
-  'strawberry', 
-  'banana', 
-  'apple', 
-  'blueberry', 
-  'orange', 
-  'grape'
-]
+  "strawberry",
+  "banana",
+  "apple",
+  "blueberry",
+  "orange",
+  "grape",
+];
 ```
 
 Create a function called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). Iterate through the **JavaScript** array. For each item in the the **JavaScript** array, return a `<li>` containing the item if its length is greater than 5. Under **Task 1/2** in the `return` block, call the `filterFruits()` in an `<ul>` element.
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-4.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-4.png" width="350" />
 
 **Task 4:**
 
@@ -338,7 +338,7 @@ Refactor the `filterFruits()` function so if a `fruits` is not given as an argum
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-5.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-5.png" width="350" />
 
 Once you have finished, add, commit and push your code to your **GitHub** in-class activities repository.
 

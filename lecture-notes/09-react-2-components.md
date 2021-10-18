@@ -17,11 +17,11 @@ class App extends React.Component {
       <div>
         <h1>Hello, World!</h1>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
 ```
 
 **Function component** example:
@@ -32,10 +32,10 @@ const App = () => {
     <div>
       <h1>Hello, World!</h1>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 ```
 
 From **React's** point of view, the two ways are equivalent. In this module, you will use **function components**.
@@ -45,22 +45,22 @@ From **React's** point of view, the two ways are equivalent. In this module, you
 In `src` a new directory called `components`, then create a new **JavaScript** file called `Welcome`. In this file, add the following:
 
 ```js
-import React from 'react'
+import React from "react";
 
 const Welcome = () => {
   return (
     <div>
       <h1>Welcome</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Welcome
+export default Welcome;
 ```
 
 Your file structure should now look something like this:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-6.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-6.png" width="350" />
 
 The following is how you import and use a **component**:
 
@@ -70,7 +70,7 @@ import Welcome from './components/Welcome' // Importing the Welcome function com
 
 const App = () => {
   ...
-  
+
   return (
     <div>
       <h1>Hello, World!</h1>
@@ -111,23 +111,23 @@ const Welcome = (props) => {
 
 Here is an example output without `props`.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-7.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-7.png" width="350" />
 
 This is an example of how you can reuse a **component**:
 
 ```js
 const App = () => {
   ...
-  
+
   return (
     <div>
       <h1>Hello, World!</h1>
       ...
       <Welcome /> {/* This will render - Welcome an <h1> element. Note: a prop attribute is not given */}
-      <Welcome firstName="John" /> {/* 
-                                     It will render - Welcome John in an <h1> element. Note: a prop 
+      <Welcome firstName="John" /> {/*
+                                     It will render - Welcome John in an <h1> element. Note: a prop
                                      attribute is given. Make sure the prop attribute's name is the
-                                     same as what is specified in the child component, i.e., Welcome.js. 
+                                     same as what is specified in the child component, i.e., Welcome.js.
                                    */}
     </div>
   )
@@ -138,7 +138,7 @@ const App = () => {
 
 Here is an example output without and with `props`.
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-8.png" width="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-8.png" width="350" />
 
 ## Hooks
 
@@ -151,38 +151,41 @@ Would you mind reading the following resource - <https://reactjs.org/docs/hooks-
 Here is an example of how you can use the `useEffect` hook:
 
 ```js
-import React, { useState } from 'react' // Import the useState hook from the react dependency
+import React, { useState } from "react"; // Import the useState hook from the react dependency
 
 const Counter = () => {
-  const [count, setCount] = useState(0) // Local state variable called count. 
-  
+  const [count, setCount] = useState(0); // Local state variable called count.
+
   // const [count, ...] - first argument allows you to get the state variable's value
   // const [..., setCount] - second argument allows you to set the state variables's value
   // useState(0) - using the useState hook which sets an initial state value, i.e., 0
-  
+
   // count can not be accessed outside this function component
-  
+
   return (
     <div>
-      <p>You clicked {count} times</p> {/* Rendering the count state variable in a <p> element. Note: we do not re-render any of the other elements */}
-      <button onClick={() => setCount(count + 1)}> {/* Increment the count state variable by one */}
+      <p>You clicked {count} times</p>{" "}
+      {/* Rendering the count state variable in a <p> element. Note: we do not re-render any of the other elements */}
+      <button onClick={() => setCount(count + 1)}>
+        {" "}
+        {/* Increment the count state variable by one */}
         Click me
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default Counter
+export default Counter;
 ```
 
 You can declare as many state variables as you wish:
 
 ```js
 const ExampleWithManyStates = () => {
-  const [age, setAge] = useState(25)
-  const [fruit, setFruit] = useState('apple')
-  const [todos, setTodos] = useState([{ text: 'Learn new stuff' }])
-}
+  const [age, setAge] = useState(25);
+  const [fruit, setFruit] = useState("apple");
+  const [todos, setTodos] = useState([{ text: "Learn new stuff" }]);
+};
 ```
 
 #### Axios
@@ -204,19 +207,20 @@ Would you mind reading the following resource - <https://reactjs.org/docs/hooks-
 Here is an example of how you can use the `useEffect` hook:
 
 ```js
-import axios from 'axios'
-import React, { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
+import axios from "axios";
+import React, { useState, useEffect } from "react"; // Import the useEffect hook from the react dependency
 
 const Post = () => {
-  const [post, setPost] = useState([]) // State variables
+  const [post, setPost] = useState([]); // State variables
 
   useEffect(() => {
-    axios.get('https://jsonplaceholder.typicode.com/posts/1') // Making a request
-    .then((response) => {
-      setPost(response.data) // Set post to the response data
-    })
-  }, []) // The empty array means render once. If we pass in post, i.e., [post], 
-         // it will re-render the component if post's data changes
+    axios
+      .get("https://jsonplaceholder.typicode.com/posts/1") // Making a request
+      .then((response) => {
+        setPost(response.data); // Set post to the response data
+      });
+  }, []); // The empty array means render once. If we pass in post, i.e., [post],
+  // it will re-render the component if post's data changes
 
   return (
     <div>
@@ -224,19 +228,19 @@ const Post = () => {
       <h1>{post.title}</h1>
       <p>{post.body}</p>
     </div>
-  )
-}
+  );
+};
 
-export default Post
+export default Post;
 ```
 
 Here is an example output of `useState`, `useEffect` and **Axios**:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-9.png" height="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-9.png" height="350" />
 
 ## Component lifecycle methods
 
-Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process. 
+Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
 
 If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
@@ -261,7 +265,7 @@ Import and use the **function component** in `App` to match the **expected outpu
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-10.png" height="390" width="700" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-10.png" height="390" width="700" />
 
 **Task 3:**
 
@@ -273,7 +277,7 @@ Using the **response** data, render an **image** in an `<img>` element and **tex
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-11.png" height="175" width="750" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-11.png" height="175" width="750" />
 
 **Task 4:**
 
@@ -286,7 +290,7 @@ Use the **response** data, i.e., a random **noun** and **adjective** and render 
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-12.png" height="175" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-12.png" height="175" />
 
 **Task 5:**
 
@@ -296,7 +300,7 @@ Create a new **function component** (name it whatever you like) that **requests*
 
 **Expected output:**
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-react/08-react-13.png" height="350" />
+<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-13.png" height="350" />
 
 ### Resources
 
