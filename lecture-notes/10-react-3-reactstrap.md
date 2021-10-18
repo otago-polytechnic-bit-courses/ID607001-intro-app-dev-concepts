@@ -244,7 +244,7 @@ After you done this, you should see the following if you are on `/institutions`:
 - https://reactrouter.com/web/guides/quick-start
 
 ## Activity
-**Task 1:** Use the example above as guide. Create a new **function component** (name it whatever you like) that **requests** data from one **API** URL on **Heroku** using **Axios**. Using the **response** data, render it in a **Bootstrap** table.
+**Task 1:** Use the example above as a guide. Create a new **function component** (name it whatever you like) that **requests** data from one **API** URL on **Heroku** using **Axios**. Using the **response** data, render it in a **Bootstrap** table.
 
 **Task 2:** Create a route to render the function component created in **task 1**.
 
