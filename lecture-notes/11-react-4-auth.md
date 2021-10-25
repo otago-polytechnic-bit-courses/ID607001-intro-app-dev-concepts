@@ -3,8 +3,10 @@
 
 In today's session, you will look at how to implement authentication on the frontend. The following code snippets are an adaption from the code snippets found in this GitHub repository - https://github.com/unlikenesses/sanctum-react-spa. Hopefully, it will help with your current or next Studio 3 sprint.
 
-In your **Laravel API** application, 
+In your **Laravel API** application, update the following:
 
+- In `config/cors.php`, set `'supports_credentials' => false,` to `'supports_credentials' => true,`
+- In `routes/api.php`, change `Route::post('/logout', [AuthController::class, 'logout']);` to `Route::get('/logout', [AuthController::class, 'logout']);`
 
 In your **React** application, you will need to add the following:
 
@@ -33,9 +35,10 @@ const LoginForm = (props) => {
     setAuthError(false);
     setUnknownError(false);
     
-    /** Please read the following:
-      - https://laravel.com/docs/8.x/sanctum#csrf-protection
-      - https://owasp.org/www-community/attacks/csrf
+    /** 
+      Please read the following:
+        - https://laravel.com/docs/8.x/sanctum#csrf-protection
+        - https://owasp.org/www-community/attacks/csrf
     */
 
     axios.get(`${BASE_URL}/sanctum/csrf-cookie`).then((_) => {
@@ -74,7 +77,7 @@ const LoginForm = (props) => {
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
-        a method and action as you would normally do when dealing 
+        a method and action as you would typically do when dealing 
         with forms
       */}
       <Form onSubmit={handleSubmit}> 
@@ -124,6 +127,8 @@ const LoginForm = (props) => {
 
 export default LoginForm;
 ```
+
+**Note:** you will need to add this code to your existing `App.js`. It will not a simple copy and paste, so please be careful.
 
 ```jsx
 // App.js
@@ -193,7 +198,7 @@ const App = () => {
   );
 
   // Debugging purposes
-  if (isLoggedIn) alert("Logged in.");
+  if (isLoggedIn) alert("Logged in."); // You will most likely display your API data tables
 
   return (
     <Router>
