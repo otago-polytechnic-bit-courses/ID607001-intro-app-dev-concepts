@@ -8,6 +8,11 @@ In your **Laravel API** application, update the following:
 - In `config/cors.php`, set `'supports_credentials' => false,` to `'supports_credentials' => true,`
 - In `routes/api.php`, change `Route::post('/logout', [AuthController::class, 'logout']);` to `Route::get('/logout', [AuthController::class, 'logout']);`
 
+Please view the following resources:
+- https://laravel.com/docs/8.x/sanctum#cors-and-cookies
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+- https://www.youtube.com/watch?v=4KHiSt0oLJ0
+
 In your **React** application, you will need to add the following:
 
 Create a new component called `LoginForm`. This component will contain the login logic for your application.
