@@ -71,7 +71,7 @@ The school's process concerning submissions, extensions, resubmissions \& resits
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/PZJYGNeP}{https://classroom.github.com/a/PZJYGNeP}. The latest program files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{main} branch application before you submit. Partial marks \textbf{are not} given for functionality in other branches. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Extensions}
-Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a \textbf{five day} extension, a medical certificate or support letter from your manager may be needed.
 
 \section*{Resubmissions}
 Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
@@ -81,24 +81,40 @@ Resits \& reassessments are not applicable in \textbf{IN607: Introductory Applic
 
 \newpage
 
+\section*{Exemplar}
+You can find an exemplar here - \small\href{https://intro-app-dev-react-app.herokuapp.com}{https://intro-app-dev-react-app.herokuapp.com}
+
 \section*{Instructions}
 You will need to submit an application \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcome 1 (40\%)}
 \begin{itemize}
-        \item Register a new user via a form.
-        \item User can login and logout by clicking on a link. 
-        \item Request \textbf{API} data from at least three \textbf{API} resource groups using \textbf{Axios}.
-        \item Create new \textbf{API} data via a form. You \textbf{must} display the form in a modal. 
-        \item Update \textbf{API} data via a form. Similar to creating \textbf{API} data, you \textbf{must} display the form in a modal. 
-        \item Delete \textbf{API} data. Prompt the user for deletion. You \textbf{can not} use the in-built \textbf{confirm() JavaScript} function. 
-        \item \textbf{Independent Research:} View \textbf{API} data in a table using an id \& a variety of query parameters. 
-        \item Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
-        \item Data automatically re-renders after creating, updating \& deleting, i.e., the user should not have to refresh the browser to see the created, updated and deleted data.
-        \item \textbf{Independent Research:} Paginate \textbf{API} data across several pages with \textbf{next} \& \textbf{previous} buttons or links.
+        \item Authentication
+        \begin{itemize}
+            \item Register a new user via a form.
+            \item User can login and logout by clicking on a link. 
+            \item \textbf{Resource:} \small\href{https://github.com/unlikenesses/sanctum-react-spa}{https://github.com/unlikenesses/sanctum-react-spa}
+        \end{itemize}
+        \item CRUD
+        \begin{itemize}
+            \item Request \textbf{API} data from at least three \textbf{API} resource groups using \textbf{Axios}.
+            \item Create new \textbf{API} data via a form. You \textbf{must} display the form in a modal. 
+            \item View \textbf{API} data in a table.
+            \item \textbf{Independent Research:} View \textbf{API} data in a table using an id. For example, \textbf{/institutions/1} would return \textbf{API} data for that specific \textbf{Institutions} object.
+            \item Update \textbf{API} data via a form. Similar to creating \textbf{API} data, you \textbf{must} display the form in a modal. 
+            \item Delete \textbf{API} data. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+            \item Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
+            \item \textbf{Resource:} \small\href{https://github.com/olinations/crud-starter-frontend-hooks}{https://github.com/olinations/crud-starter-frontend-hooks}
+        \end{itemize}
+        \item \textbf{Independent Research:} Paginate \textbf{API} data across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{API} data per page.
         \item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Reactstrap}.
+        \begin{itemize}
+            \item \textbf{Resource:} \small\href{https://reactstrap.github.io}{https://reactstrap.github.io}
+        \end{itemize}
         \item \textbf{Independent Research:} Application deployed to \textbf{Heroku}. 
-        \item Five component tests using \textbf{React Testing Library}.
+        \begin{itemize}
+            \item \textbf{Resource:} \small\href{https://medium.com/make-it-heady/deploying-create-react-app-on-heroku-from-github-49447561f670}{https://medium.com/make-it-heady/deploying-create-react-app-on-heroku-from-github-49447561f670}
+        \end{itemize}
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (45\%)}
@@ -108,7 +124,12 @@ You will need to submit an application \& documentation that meet the following 
     \item Components written as functional, not class.
     \item Adheres to a client-server architecture, i.e., the presentation layer is separate from the business logic.
     \item Header \& in-line comments explaining complex logic.
-    \item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier}. You \textbf{must} declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process.
+    \item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier}. You \textbf{must} declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules include:
+    \begin{itemize}
+        \item Single quote is set to \textbf{true}.
+        \item Semi-colon is set to \textbf{false}.
+        \item Tab-width is set to \textbf{2}.
+    \end{itemize}
     \item No dead or unused code.
 \end{itemize}
 
