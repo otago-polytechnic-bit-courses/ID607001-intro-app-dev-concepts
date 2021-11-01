@@ -7,6 +7,12 @@ In your **Laravel API** application, update the following:
 - In `config/cors.php`, set `'supports_credentials' => false,` to `'supports_credentials' => true,`
 - In `routes/api.php`, change `Route::post('/logout', [AuthController::class, 'logout']);` to `Route::get('/logout', [AuthController::class, 'logout']);`
 
+Go to your application on **Heroku** and add the following environment variable:
+
+`SANCTUM_STATEFUL_DOMAINS` and `<YOUR APP NAME EXCLUDING PROTOCOL>.herokuapp.com`
+
+
+
 Please view the following resources:
 - https://laravel.com/docs/8.x/sanctum#cors-and-cookies
 - https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
