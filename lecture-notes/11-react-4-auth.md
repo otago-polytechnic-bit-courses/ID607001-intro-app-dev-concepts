@@ -1,6 +1,5 @@
 # React 4 - CRUD
 
-
 In today's session, you will look at how to implement authentication on the frontend. The following code snippets are an adaption from the code snippets found in this GitHub repository - https://github.com/unlikenesses/sanctum-react-spa. Hopefully, it will help with your current or next Studio 3 sprint.
 
 In your **Laravel API** application, update the following:
