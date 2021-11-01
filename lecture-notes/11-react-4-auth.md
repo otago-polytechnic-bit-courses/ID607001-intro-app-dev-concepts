@@ -5,6 +5,7 @@ In today's session, you will look at how to implement authentication on the fron
 In your **Laravel API** application, update the following:
 
 - In `config/cors.php`, set `'supports_credentials' => false,` to `'supports_credentials' => true,`
+- Also, in `config/cors.php`, add `'sanctum/csrf-cookie'` to the `paths` array.
 - In `routes/api.php`, change `Route::post('/logout', [AuthController::class, 'logout']);` to `Route::get('/logout', [AuthController::class, 'logout']);`
 
 Go to your application on **Heroku** and add the following environment variable:
