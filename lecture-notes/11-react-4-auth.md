@@ -10,9 +10,7 @@ In your **Laravel API** application, update the following:
 
 Go to your application on **Heroku** and add the following environment variable:
 
-`SANCTUM_STATEFUL_DOMAINS` and `<YOUR APP NAME EXCLUDING PROTOCOL>.herokuapp.com`
-
-
+`SANCTUM_STATEFUL_DOMAINS` and `<YOUR APP NAME EXCLUDING PROTOCOL, i.e., HTTPS>.herokuapp.com`
 
 Please view the following resources:
 - https://laravel.com/docs/8.x/sanctum#cors-and-cookies
@@ -98,12 +96,14 @@ const LoginForm = (props) => {
             name="email"
             placeholder="Email"
             value={email} 
-            {/* This attribute detects when the value of an input element changes */}
+            /*
+              This attribute detects when the value of an input element changes
+            */
             onChange={(e) => setEmail(e.target.value)} 
-            {/* 
+            /*
               You can fetch validation messages from the request. There are plenty 
               of resources that show you how to do this 
-            */}
+            */
             required 
           />
         </FormGroup>
@@ -177,6 +177,7 @@ const App = () => {
     // Set a new item called isLoggedIn in session storage. Note: here true 
     // is of type boolean. In session storage, true is of type string
     sessionStorage.setItem("isLoggedIn", true); 
+    alert("Logged in."); // Debugging purposes
   };
 
   const logout = () => {
@@ -208,9 +209,6 @@ const App = () => {
     <NavLink href="/login">Login</NavLink>
   );
 
-  // Debugging purposes
-  if (isLoggedIn) alert("Logged in."); // You will most likely display your API data tables
-
   return (
     <Router>
       <Navbar color="dark" dark expand="md">
@@ -226,7 +224,7 @@ const App = () => {
         <Switch>
           <Route
             path="/login"
-            render={(props) => <LoginForm {...props} login={login} />}
+            render={() => <LoginForm login={login} />}
           />
         </Switch>
       </Container>
