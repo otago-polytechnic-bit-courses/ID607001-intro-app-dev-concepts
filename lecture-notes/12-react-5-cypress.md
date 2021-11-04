@@ -86,12 +86,12 @@ It is a sample test to get you started. Please read the comments carefully. The 
 
 Now you have a test, how do you go about running it. If you have not already, run the command `npm run cypress`. It will open and navigate you to a new window. You see the following:
 
-<img src="../resources/img/12-react-5-cypress/react-cypress-1.png">
+<img src="../resources/img/12-react-5-cypress/react-cypress-1.png" width="500" height="350">
 
 Click on `auth.spec.js`. It will open a new browser. My default browser is **Firefox** but you may choose **Chrome**, **Edge**, etc.
 
 It will run all the tests (one at the moment) in `auth.spec.js`. As it executes each condition, you should see it live on the left-hand side.
 
-<img src="../resources/img/12-react-5-cypress/react-cypress-2.png">
+<img src="../resources/img/12-react-5-cypress/react-cypress-2.png" width="500" height="350">
 
 If you hover over each condition, it shows you a **DOM** snapshot at that specific point. It can help you debug an issue that may have occurred during testing.
