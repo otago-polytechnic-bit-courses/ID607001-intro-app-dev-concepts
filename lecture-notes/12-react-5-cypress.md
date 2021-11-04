@@ -92,6 +92,6 @@ Click on `auth.spec.js`. It will open a new browser. My default browser is **Fir
 
 It will run all the tests (one at the moment) in `auth.spec.js`. As it executes each condition, you should see it live on the left-hand side.
 
-<img src="../resources/img/12-react-5-cypress/react-cypress-2.png" width="500" height="350">
+<img src="../resources/img/12-react-5-cypress/react-cypress-2.png" width="750" height="500">
 
 If you hover over each condition, it shows you a **DOM** snapshot at that specific point. It can help you debug an issue that may have occurred during testing.
