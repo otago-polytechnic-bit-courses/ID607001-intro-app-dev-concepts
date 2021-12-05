@@ -1,0 +1,214 @@
+% Author: Grayson Orr
+% Course: IN607: Introductory Application Development Concept
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true, 
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
+\lfoot{In-Class Activity: PHP Basics 2\\Version 1, Semester Two, 2021}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=50mm]{../img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{In-Class Activity: PHP Basics 2}}
+\date{}
+\maketitle
+ 
+\section*{Instructions}
+The purpose of this in-class activity to familiarise yourself with classes, inheritance \& interfaces in \textbf{PHP}.
+
+\section*{Code Review}
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your code review – \href{https://classroom.github.com/a/P656imf2}{https://classroom.github.com/a/P656imf2}. Checkout from the \textbf{main} branch to the \textbf{02-in-class-activity} branch by running the command - \textbf{git checkout 02-in-class-activity}. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request \& assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer. \textbf{Do not} merge your own pull request.
+
+\subsection*{Problem 1:} 
+Create a \textbf{Cat} class with the private attributes name, age \& breed. For each attribute, create a getter \& setter. Also, create a \textbf{\_\_toString()} special method which returns the following:
+
+\begin{verbatim}
+  <?php
+      "My " . $this->breed . " 's name is " 
+          . $this->name. ". S/he is " . $this->age . " year(s) old.";  
+  ?>
+\end{verbatim}
+
+Create two \textbf{Cat} objects called \textbf{cat\_one} \& \textbf{cat\_two}. Using setters, change \textbf{cat\_one's} name to Fido \& age to 10. Again, using a setter, change \textbf{cat\_two's} breed to \textbf{American Bobtail}. For each \textbf{Cat} object, print its string representation.
+
+\begin{verbatim}
+  <?php
+      // Write your solution here
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 2:} 
+Create a \textbf{SoftwareDeveloper} \& \textbf{AgileCoach} class which inherits from \textbf{Employee} class. \textbf{SoftwareDeveloper} class has one additional class attribute called \textbf{prog\_lang}. \textbf{AgileCoach} also has one additional class attribute called \textbf{employees} \& three class methods which \textbf{add}, \textbf{remove}, \textbf{search} \& \textbf{show\_all} employees managed by \textbf{AgileCoach}. \textbf{Note:} employees is a list of \textbf{SoftwareDeveloper} objects. \\
+
+Use the three \textbf{SoftwareDeveloper} objects \& \textbf{AgileCoach} object provided to display the expected output.
+
+\begin{verbatim}
+  <?php
+      class Employee {
+          protected $first_name;
+          protected $last_name;
+          protected $salary;
+
+          public function __construct($first_name, $last_name, $salary) {
+              $this->first_name = $first_name;
+              $this->last_name = $last_name;
+              $this->salary = $salary;
+          }
+
+          public function __toString() {
+              return $this->first_name . " " . $this->last_name;
+          }
+      }
+
+      $sft_dev_one = new SoftwareDeveloper("Alfredo", "Boyle", 50000, "C#");
+      $sft_dev_two = new SoftwareDeveloper("Malik", "Martin", 55000, "JavaScript");
+      $sft_dev_three = new SoftwareDeveloper("Livia", "Martin", 75000, "Kotlin");
+      $agile_coach = new AgileCoach("Lillian", "Cunningham", 100000, array($sft_dev_one, $sft_dev_two));
+
+      // Write your solution here
+
+      // Expected output:
+      // Malik Martin
+      // Livia Martin
+      // Alfredo Boyle not found
+      // Livia Martin found
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 3:} 
+\textbf{Language} class has no class attributes, but a class method called \textbf{good\_morning}. \textbf{Maori}, \textbf{Spanish} \& \textbf{German} class inherit from \textbf{Language} class. When you run the following code, what is happening \& why is it happening? Refactor the code to display the expected output.
+
+\begin{verbatim}
+  <?php
+      class Language {
+          public function good_morning() {
+              throw new Exception("good_morning() function not implemented");
+          }
+      }    
+
+      class Maori extends Language {
+          public function good_morning() {
+              echo "Morena";
+          }
+      }
+
+      class Spanish extends Language {
+
+      }
+
+      class German extends Language {
+          public function good_morning() {
+              echo "Guten Morgen";
+          }
+      }
+          
+      $maori = new Maori();
+      $spanish = new Spanish();
+      $german = new German();
+      $maori->good_morning();
+      $spanish->good_morning();
+      $german->good_morning();
+
+      // Expected output:
+      // Morena
+      // Hola
+      // Guten Morgen
+  ?>
+\end{verbatim} 
+
+\subsection*{Problem 4:} 
+Implement the \textbf{push()}, \textbf{pop()}, \textbf{peek()}, \textbf{size()} \& \textbf{show\_all()} methods in the \textbf{Stack} class. \textbf{Note:} \textbf{size()} method returns the length of a \textbf{stack} \& \textbf{show\_all()} method returns the items in a \textbf{stack}. \\
+
+You are probably wondering what a \textbf{stack} is. A \textbf{stack} is an \textbf{Abstract Data Type (ADT)} that is used to store elements in a \textbf{Last In First Out (LIFO)} manner. A \textbf{stack} is a collection of elements where the addition of elements is performed at the end \& the removal of elements is performed at the beginning. A \textbf{stack} has two methods: \textbf{push()} \& \textbf{pop()}. The push method adds an element to the \textbf{stack}. The pop method removes the last element added to the \textbf{stack}. \\
+
+Use the \textbf{Stack} object provided to display the expected output. 
+
+\begin{verbatim}
+  <?php
+      class Stack {
+          private $stack;
+
+          public function __construct() {
+              $this->stack = array();
+          }
+
+          public function push($item) {
+              // Write your code here
+          }
+
+          public function pop() {
+              // Write your code here
+          }
+
+          public function peek() {
+              // Write your code here
+          }
+
+          public function is_empty() {
+              // Write your code here
+          }
+
+          public function size() {
+              // Write your code here
+          }
+
+          public function show_all() {
+              // Write your code here
+          }
+
+          public function __toString() {
+              return $this->stack;
+          }
+      }   
+          
+      $stack = new Stack();
+      $stack->push("Introductory App Dev Concepts");
+      $stack->push("Intermediate App Dev Concepts");
+      $stack->push("Advanced App Dev Concepts");
+
+      // Write your solution here
+
+      // Expected output:
+      // ["Introductory App Dev Concepts", "Intermediate App Dev Concepts"]
+      // Intermediate App Dev Concepts is at the top of the stack
+      // There are 2 item(s) in the stack
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 5:} 
+Create an interface called \textbf{App}. This interface has three methods, \textbf{login()}, \textbf{register()} \& \textbf{logout()}. The \textbf{login()} method accepts two arguments, email \& password, \& the \textbf{register()} method accepts three arguments, email, password \& username. \\
+
+Create a class called \textbf{Facebook} which implements \textbf{App}. For each method implemented, echo the following:
+\begin{verbatim}
+  // login() - Logged in with the email - $email.
+  // register() - Registered with the email and username - $email and $username.
+  // logout() - User logged out.
+\end{verbatim}
+
+\begin{verbatim}
+  <?php
+      // Write your solution here
+  ?>
+\end{verbatim}
+
+\end{document}

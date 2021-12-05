@@ -1,0 +1,122 @@
+% Author: Grayson Orr
+% Course: IN607: Introductory Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Practical: API Testing Research\\Version 1, Semester Two, 2021}
+\rfoot{\thepage}
+ 
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=50mm]{../img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Practical: API Testing Research}}
+\date{}
+\maketitle
+
+\section*{Assessment Overview}
+In this assessment, you will be given a \textbf{Laravel API} application to test. You will be required to independently research \& write at least 40 API tests using \textbf{PHPUnit} which verify the correctness of the given application. It includes \textbf{CRUD} functionality, query parameters, status codes \& the shape of response data. You will also check the coverage of your tests using \textbf{php-code-coverage}. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
+
+\section*{Learning Outcome}
+At the successful completion of this course, learners will be able to:
+\begin{enumerate}
+    \item Design \& build usable, secure \& attractive applications with dynamic database functionality following an appropriate software development methodology.
+\end{enumerate}
+
+\section*{Assessment Table}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcome}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
+
+    \hline
+
+    \small Practical: API Testing Research                                                      & \small 20\%        & \small 1                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+    \small Project 1: Laravel API                                                        & \small 30\%        & \small 1                                                        & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+    \small Project 2: React CRUD                                                        & \small 50\%        & \small 1                                                        & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+\end{tabular}
+
+\section*{Conditions of Assessment}
+You will complete this assessment during your learner-managed time. However, during the teaching sessions, there will be time to discuss the requirements \& your progress of this assessment. This assessment will need to be completed by \textbf{Wednesday, 20 October 2021 at 5:00 PM}.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{IN607: Introductory Application Development Concepts}.
+
+\section*{Authenticity}
+All parts of your submitted assessment must be completely your work \& any references must be cited appropriately. Provide your references in a \textbf{README.md} file. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Submissions}
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/0kYlKqW8}{https://classroom.github.com/a/0kYlKqW8}. The latest program files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{main} branch application before you submit. Partial marks \textbf{are not} given for functionality in other branches. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+
+\section*{Extensions}
+Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+
+\section*{Resubmissions}
+Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
+
+\section*{Resits}
+Resits \& reassessments are not applicable in \textbf{IN607: Introductory Application Development Concepts}. 
+
+\newpage
+
+\section*{Instructions}
+You will need to submit an application \& documentation that meet the following requirements:
+
+\subsection*{Functionality - Learning Outcome 1 (60\%)}
+\begin{itemize}
+    \item At least 40 API tests verifying the correctness of the following:
+    \begin{itemize}
+        \item CRUD (create, read, update \& delete) functionality.
+        \item Authentication (register, login \& logout) functionality.
+        \item Validation rules, i.e., checking if field is required, etc.
+        \item Query parameters, i.e., filtering \& sorting data.
+        \item Status codes, i.e., checking if a response returns 200, 404, etc.
+        \item Shape of the data, i.e., does the response data contain a specific column?
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Code Elegance - Learning Outcome 1 (30\%)}
+\begin{itemize}
+    \item Use of intermediate variables. No method calls as arguments.
+    \item Sufficient modularity, i.e., setup method at the beginning of each test case.
+    \item Idiomatic use of control flow, data structures \& in-built functions.
+    \item Adheres to an \textbf{OO} architecture, i.e., classes, methods \& variables are named appropriately.
+    \item Code files are formatted.
+    \item No dead or unused code.
+    \item Databases configured for testing environment.
+\end{itemize}
+
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
+\begin{itemize}
+    \item Provide the following in your repository \textbf{README.md} file:
+    \begin{itemize}
+        \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the tests locally?
+        \item How do you run the tests?
+    \end{itemize}
+\end{itemize}
+\begin{itemize}
+    \item Commit messages must reflect the context of each functional requirement change. \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
+\end{itemize}
+\end{document}

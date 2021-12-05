@@ -1,0 +1,184 @@
+% Author: Grayson Orr
+% Course: IN607: Introductory Application Development Concept
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true, 
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
+\lfoot{In-Class Activity: PHP Basics 1 Answers\\Version 2, Semester Two, 2021}
+\rfoot{\thepage}
+
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=50mm]{../img/logo.png} 
+\end{figure}
+
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{In-Class Activity: PHP Basics 1 Answers}}
+\date{}
+\maketitle
+
+\subsection*{Problem 1:} 
+\begin{verbatim}
+  <?php
+      $name = "John";
+      $age = 55;
+      echo "Hello my name is $name & I am $age years old.";
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 2:} 
+\begin{verbatim}
+  <?php
+      $x = 1957452;
+      $y = 2975635;
+      $sum = $x + $y;
+      echo "The sum of $x & $y is $sum";
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 3:} 
+\begin{verbatim}
+  <?php
+      $numbers = array(45.3, 67.5, -45.6, 20.34, -33.0, 45.6);
+      $average = array_sum($numbers) / count($numbers);
+      echo "Average: $average";
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 4:}
+\begin{verbatim}
+  <?php
+      function fizzBuzz($num) {
+          if ($num % 15 == 0) {
+              return "FizzBuzz";
+          } elseif ($num % 3 == 0) {
+              return "Fizz";
+          } elseif ($num % 5 == 0) {
+              return "Buzz";
+          }
+          return $num;
+      }
+
+      for ($i = 1; $i <= 15; $i += 2) {
+          echo fizzBuzz($i) . "<br>";
+      }
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 5:}
+\begin{verbatim}
+  <?php  
+      $numbers = array(21, 19, 68, 55, 42, 12);
+      sort($number);
+      foreach ($numbers as $num) {
+          if ($num % 2 != 0) {
+              echo $num . "<br>";
+          }
+      }
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 6:}
+\begin{verbatim}
+  <?php  
+      function is_anagram($string_one, $string_two) {
+          if (count_chars($string_one, 1) == count_chars($string_two, 1)) {
+              echo "true";
+          } else {
+              return "false";
+          }
+      }
+
+      echo is_anagram("elvis", "lives") . "<br>";
+      echo is_anagram("cat", "sat");
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 7:}
+\begin{verbatim}
+  <?php  
+      function convert($hours, $mins) {
+          $hours = $hours * 3600;
+          $mins = $mins * 60;
+          return $mins + $hours;
+      }
+
+      echo convert(1, 3);
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 8:}
+Write a function called \textbf{palindrome} which accepts a single parameter called \textbf{string}. In the function block, determine whether or not \textbf{string} is a palindrome. The function should return a \textbf{boolean}. 
+
+\begin{verbatim}
+  <?php  
+      function palindrome($string) {
+          $str = preg_replace('/\W/i', '', strtolower($string));
+          if (strrev($str) == $str) { 
+              return "true"; 
+          } else {
+              return "false";
+          }
+      }
+
+      echo palindrome("A man, a plan, a canal - Panama") . "<br>";
+      echo palindrome("Hello, World!");
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 9:}
+Write a function called \textbf{is\_five\_letters} which accepts an \textbf{array} of \textbf{strings}. In the function block, return all words that are exactly \textbf{five} letters.
+
+\begin{verbatim}
+  <?php  
+      function is_five_letters ($string) {
+          for($i = 0; $i < count($string); $i++) {
+              if(strlen($string[$i]) == 5) {
+                  echo $string[$i];
+              }
+          }
+      }
+
+      is_five_letters(["car", "bike", "truck"]);  
+  ?>
+\end{verbatim}
+
+\subsection*{Problem 10:}
+Write a function that accepts an \textbf{integer}. If the \textbf{integer} is prime, return \textbf{true}, otherwise return \textbf{false}. 
+
+\begin{verbatim}
+  <?php  
+      function is_prime($prime){
+          for($p = 2; $p < $prime; $p++) {
+              if($prime % $p == 0) {
+                  return "false";
+              }
+          
+              if($p >= sqrt($prime)) {
+                  return "true";
+              }
+          }
+      }
+      
+      echo is_prime(11);
+      echo is_prime(18);
+  ?>
+\end{verbatim}
+
+\end{document}
