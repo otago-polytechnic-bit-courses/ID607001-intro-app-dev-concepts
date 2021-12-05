@@ -1,0 +1,156 @@
+% Author: Grayson Orr
+% Course: IN607: Introductory Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Project 2: React\\Version 1, Summer School, 2021-2022}
+\rfoot{\thepage}
+ 
+\begin{document}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=50mm]{../img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\Year Two - Special Topic\\Level 6, Credits 15\\\textbf{Project 2: React}}
+\date{}
+\maketitle
+
+\section*{Assessment Overview}
+In this assessment, you will develop a \textbf{CRUD} application using \textbf{React} \& deploy it to \textbf{AWS Amplify}. This application will consume either your \textbf{REST} or \textbf{GraphQL} API from the \textbf{Project 1: REST/GraphQL APIs} assessment. The main purpose of this assessment is not just to build a full-stack application, rather demonstrate an ability to decouple the presentation layer (\textbf{frontend}) from the business logic (\textbf{backend}). Also, you will be required to research and implement pagination, deployment, automated code formatting \& end-to-end testing. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+
+\section*{Learning Outcome}
+At the successful completion of this course, learners will be able to:
+\begin{enumerate}
+    \item Design, create \& deploy microservices using a range of industry-relevant technologies. 
+    \item Critically reflect on \& evaluate own learning to identify ways of further personal development.  
+\end{enumerate}
+
+\section*{Assessment Table}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|l|l|l|}
+    \hline
+    \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcome}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
+
+    \hline
+
+    \small Project 1: REST/GraphQL APIs                                                        & \small 40\%        & \small 1                                                           & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+    \small Project 2: React                                                       & \small 40\%        & \small 1                                                        & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+    \small Evaluative Conversation                                                       & \small 20\%        & \small 2                                                        & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
+\end{tabular}
+
+\section*{Conditions of Assessment}
+You will complete this assessment during your learner-managed time, however, there will be availability during the weekly meetings to discuss the requirements. This assessment will need to be completed by \textbf{Friday, 11 February 2022 at 5:00 PM}.
+
+\section*{Pass Criteria}
+This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{Year Two - Special Topic}.
+
+\section*{Authenticity}
+All parts of your submitted assessment must be completely your work \& any references must be cited appropriately. Provide your references in a \textbf{README.md} file. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+
+\section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
+The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
+
+\section*{Submissions}
+You must submit all program files via \textbf{GitHub}. You will need to create a new repository \& add \textbf{grayson-orr} as a collaborator. The latest program files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for functionality in other branches. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+
+\section*{Extensions}
+Familiarise yourself with the assessment due date. If you need an extension, contact the course lecturer before the due date. If you require more than a week's extension, a medical certificate or support letter from your manager may be needed.
+
+\section*{Resubmissions}
+Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
+
+\section*{Resits}
+Resits \& reassessments are not applicable in \textbf{Year Two - Special Topic}. 
+
+\newpage
+
+\section*{Instructions}
+You will need to submit an application \& documentation that meet the following requirements:
+
+\subsection*{Functionality - Learning Outcome 1 (45\%)}
+\begin{itemize}
+        \item \textbf{Authentication}
+        \begin{itemize}
+            \item Register a new user via a form.
+            \item User can login and logout. 
+        \end{itemize}
+        \item \textbf{CRUD}
+        \begin{itemize}
+            \item Request \textbf{API} data from at least three \textbf{API} resource groups using \textbf{Axios}.
+            \item Create new \textbf{API} data via a form. You can display the form on the page or in a modal. 
+            \item View \textbf{API} data in a table.
+            \item View \textbf{API} data in a table using an id. For example, \textbf{/institutions/1} would return \textbf{API} data for that specific \textbf{Institutions} object.
+            \item Update \textbf{API} data via a form. Similar to creating \textbf{API} data, you can display the form on the page or in a modal. 
+            \item Delete \textbf{API} data. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+            \item Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
+        \end{itemize}
+        \item Paginate \textbf{API} data across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{API} data per page.
+        \item Search \textbf{API} data via a search bar.
+        \item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Material Design}.
+        \item Application deployed to \textbf{AWS Amplify}. 
+        \item \textbf{Cypress} end-to-end tests that test the register, login and logout functionality. You \textbf{must} declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process.
+\end{itemize}
+
+\subsection*{Code Elegance - Learning Outcome 1 (45\%)}
+\begin{itemize}
+    \item Idiomatic use of control flow, data structures \& in-built functions.
+    \item Sufficient code modularity, i.e., UI split into independent reusable pieces.
+    \item Components written as functional, not class.
+    \item Adheres to a client-server architecture, i.e., the presentation layer is separate from the business logic.
+    \item Function header \& in-line comments explaining complex logic.
+    \item Code files are formatted using \textbf{Prettier}. You \textbf{must} declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{must} include:
+    \begin{itemize}
+        \item Single quote is set to \textbf{true}.
+        \item Semi-colon is set to \textbf{false}.
+        \item Tab-width is set to \textbf{2}.
+    \end{itemize}
+    \item \textbf{Prettier} \& \textbf{Cypress} are installed as development dependencies.
+    \begin{itemize}
+        \item \textbf{Resource:} \small\href{https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file}{https://docs.npmjs.com/specifying-dependencies-and-devdependencies-in-a-package-json-file}
+    \end{itemize}
+    \item No dead or unused code.
+\end{itemize}
+
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
+\begin{itemize}
+    \item Provide the following in your repository \textbf{README.md} file:
+    \begin{itemize}
+        \item URL to the application on \textbf{AWS Amplify}.
+        \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the application locally?
+        \item How do you deploy the application to \textbf{AWS Amplify}?
+        \item How do you run the \textbf{Cypress} tests?
+    \end{itemize}
+    \item Commit messages \textbf{must}:
+    \begin{itemize}
+      \item Reflect the context of each functional requirement change. 
+      \item Be formatted using the naming conventions outlined in the following:
+      \begin{itemize}
+        \item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
+      \end{itemize} 
+    \end{itemize}
+  \end{itemize}
+  
+  \subsection*{Additional Information}
+  \begin{itemize}
+    \item You \textbf{must} commit at least \textbf{five} times per week. By the end of this assessment, you should have at least \textbf{50} commits.
+    \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
+  \end{itemize}
+\end{document}
