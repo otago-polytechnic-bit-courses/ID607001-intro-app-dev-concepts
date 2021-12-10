@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
+import React, { useEffect, useState } from 'react' // Import the useEffect and useState hook from the react dependency
 
 const Post = () => {
   const [post, setPost] = useState([]) // State variables
@@ -9,7 +9,7 @@ const Post = () => {
     .then((response) => {
       setPost(response.data) // Set post to the response data
     })
-  }, []) // The empty array means render once. If we pass in post, i.e., [post], 
+  }, []) // The empty array means render ONLY once. If we pass in post, i.e., [post], 
          // it will re-render the component if post's data changes
 
   return (
