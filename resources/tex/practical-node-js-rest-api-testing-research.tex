@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project 2: React CRUD\\Version 3, Semester One, 2022}
+\lfoot{Practical: Node.js REST API Testing Research\\Version 1, Semester One, 2022}
 \rfoot{\thepage}
  
 \begin{document}
@@ -29,12 +29,12 @@
 	\includegraphics[width=50mm]{../img/logo.png}
 \end{figure}
 
-\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Project 2: React CRUD}}
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Practical: API Testing Research}}
 \date{}
 \maketitle
 
 \section*{Assessment Overview}
-In this assessment, you will develop a \textbf{CRUD} application using \textbf{React} \& deploy it to \textbf{Heroku}. This application will consume an API from either the \textbf{Project 1: Node.js REST API} assessment or the \textbf{Practical: REST API Testing Research}. The main purpose of this assessment is not just to build a full-stack application, rather to demonstrate an ability to decouple the presentation layer (\textbf{frontend}) from the business logic (\textbf{backend}). Also, you will be required to independently research and implement pagination, deployment \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this assessment, you will be given a \textbf{Node.js REST API} to \textbf{API test}. You will be required to independently research \& write at least \textbf{50 API tests} using \textbf{Mocha} \& \textbf{Chai}. These will be used to verify the correctness of the given \textbf{Node.js REST API}. It includes \textbf{CRUD} operations, query parameters, status codes \& the shape of response data. You will also check the coverage of your \textbf{API tests} using \textbf{nyc}. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -47,22 +47,22 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|l|l|l|l|l|}
 	\hline
 	\vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcome}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
-	
+		
 	\hline
-	
+		
 	\small Practical: Node.js REST API Testing Research                     & \small 20\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
 	\small Project 1: Node.js REST API                                      & \small 30\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
 	\small Project 2: React CRUD                                            & \small 50\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
-You will complete this assessment during your learner-managed time. However, there will be time to discuss the requirements \& your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Tuesday, 21 June 2022 at 4.59 PM}.
+You will complete this assessment during your learner-managed time. However, there will be time to discuss the requirements \& your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Friday, 13 May 2022 at 4.59 PM}.
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{IN607: Introductory Application Development Concepts}.
 
 \section*{Submissions}
-You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/Vq7T0W6E}{https://classroom.github.com/a/Vq7T0W6E}. The latest program files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for functionality in other branches. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/Anc\_bYhn}{https://classroom.github.com/a/Anc\_bYhn}. The latest program files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for functionality in other branches. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
 All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resource, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
@@ -81,70 +81,48 @@ Resits \& reassessments are not applicable in \textbf{IN607: Introductory Applic
 
 \newpage
 
-\section*{Exemplar}
-You can find an exemplar here - \small\href{https://intro-app-dev-react-app.herokuapp.com}{https://intro-app-dev-react-app.herokuapp.com}. \textbf{Note:} this exemplar does not include registering a new user. \\ \\
-\textbf{Credentials to exemplar}
-\begin{itemize}
-	\item Email: admin@admin.com
-	\item Password: P@ssw0rd123
-\end{itemize}
-
 \section*{Instructions}
-You will need to submit an application \& documentation that meet the following requirements:
+You will need to submit a \textbf{testing suite} \& documentation that meet the following requirements:
 
-\subsection*{Functionality - Learning Outcome 1 (40\%)}
+\subsection*{Functionality - Learning Outcome 1 (60\%)}
 \begin{itemize}
-	\item Authentication
+	\item \textbf{API tests} are written using \textbf{Mocha} \& \textbf{Chai}.
+	\item At least \textbf{50 API tests} verifying the correctness of the following:
 	      \begin{itemize}
-	      	\item Register a new user via a form.
-	      	\item Login an existing user via a form.
-	      	\item Log out of the application.
+	      	\item CRUD (create, read, update \& delete) functionality.
+	      	\item Authentication (register, login \& logout) functionality.
+	      	\item Validation rules, i.e., checking if field is required, etc.
+	      	\item Query parameters, i.e., filtering \& sorting data.
+	      	\item Status codes, i.e., checking if a response returns 200, 404, etc.
+	      	\item Shape of the data, i.e., does the response data contain a specific column?
 	      \end{itemize}
-	\item CRUD
-	      \begin{itemize}
-	      	\item Request \textbf{REST API data} from at least three \textbf{API} resource groups using \textbf{Axios}.
-	      	\item Create new \textbf{REST API data} via a form. You can display the form on the page or in a modal. 
-	      	\item View \textbf{REST API data} in a table.
-	      	\item \textbf{Independent Research:} View \textbf{REST API data} in a table using an id. For example, \textbf{/institutions/1} would return \textbf{REST API data} for that specific \textbf{Institutions} object.
-	      	\item Update \textbf{REST API data} via a form. Similar to creating \textbf{REST API data}, you can display the form on the page or in a modal. 
-	      	\item Delete \textbf{REST API data}. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
-	      	\item Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
-	      \end{itemize}
-	\item \textbf{Independent Research:} Paginate \textbf{REST API data} across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{REST API data} per page.
-	\item \textbf{Independent Research:} Search \textbf{REST API data} via a search bar.
-	\item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Reactstrap}.
-	\item \textbf{Independent Research:} Application deployed to \textbf{Heroku}. 
-	\item End-to-end \textbf{Cypress} tests that ensures the register, login and logout functionality is working as expected. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process.
+	\item Code coverage using \textbf{nyc}. 
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (45\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (30\%)}
 \begin{itemize}
-    \item Use of intermediate variables. No method calls as arguments.
-    \item Idiomatic use of control flow, data structures \& in-built functions.
-	\item Sufficient modularity, i.e., UI split into independent reusable pieces.
+	\item Use of intermediate variables. No method calls as arguments.
+	\item Idiomatic use of control flow, data structures \& in-built functions.
+	\item Sufficient modularity, i.e., setup method at the beginning of each test case.
 	\item Functions \& variables are named appropriately.
-	\item Components written as functional, not class.
-	\item Adheres to a client-server architecture, i.e., the frontend is separate from the backend.
-	\item File header comment explaining the purpose of each \textbf{component} file.
-	\item In-line comments explaining complex logic.
+	\item File header comment explaining the purpose of each \textbf{API test} file.
 	\item Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process. Rules \textbf{must} include:
 	      \begin{itemize}
 	      	\item Single quote is set to \textbf{true}.
 	      	\item Semi-colon is set to \textbf{false}.
 	      	\item Tab-width is set to \textbf{2}.
 	      \end{itemize}
-	\item \textbf{Prettier} \& \textbf{Cypress} are installed as development dependencies.
+	\item \textbf{Prettier} is installed as a development dependency.
 	\item No dead or unused code.
+	\item Database configured for testing environment.
 \end{itemize}
 
-\subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
 \begin{itemize}
 	\item Provide the following in your repository \textbf{README.md} file:
 	      \begin{itemize}
-	      	\item URL to the application on \textbf{Heroku}.
-	      	\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the application locally?
-	      	\item How do you run the end-to-end \textbf{Cypress} tests?
-	      	\item How do you deploy the \textbf{React} application to \textbf{Heroku}?
+	      	\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the \textbf{API tests} locally?
+	      	\item How do you run the \textbf{API tests}?
 	      \end{itemize}
 \end{itemize}
 \begin{itemize}
@@ -156,16 +134,11 @@ You will need to submit an application \& documentation that meet the following 
 	      	      	\item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
 	      	      \end{itemize} 
 	      \end{itemize}
-	\item At least \textbf{10} feature branches excluding the \textbf{main} branch.
-	      \begin{itemize}
-	      	\item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
-	      	\item For each branch, merge your own pull request to the \textbf{main} branch. \textbf{Note:} if you want ongoing feedback, assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer.
-	      \end{itemize}
 \end{itemize}
           
 \subsection*{Additional Information}
 \begin{itemize}
-	\item Attempt to commit at least \textbf{10} times per week. By the end of this assessment, you should have at least \textbf{60} commits.
+	\item Attempt to commit at least \textbf{10} times per week. By the end of this assessment, you should have at least \textbf{40} commits.
 	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
 \end{itemize}
 \end{document}
