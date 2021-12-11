@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
-\lfoot{In-Class Activity: PHP Basics 2\\Version 1, Semester Two, 2021}
+\lfoot{In-Class Activity: ES6 Basics 2\\Version 1, Semester Two, 2021}
 \rfoot{\thepage}
 
 \begin{document}
@@ -29,186 +29,148 @@
     \includegraphics[width=50mm]{../img/logo.png}
 \end{figure}
 
-\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{In-Class Activity: PHP Basics 2}}
+\title{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology\\IN607: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{In-Class Activity: ES6 Basics 2}}
 \date{}
 \maketitle
  
 \section*{Instructions}
-The purpose of this in-class activity to familiarise yourself with classes, inheritance \& interfaces in \textbf{PHP}.
+The purpose of this in-class activity to familiarise yourself with functional programming constructs such as \textbf{map}, \textbf{filter} \& \textbf{reduce}. The following eight questions will require a little more thought than the previous in-class activity.
 
 \section*{Code Review}
-You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your code review – \href{https://classroom.github.com/a/P656imf2}{https://classroom.github.com/a/P656imf2}. Checkout from the \textbf{main} branch to the \textbf{02-in-class-activity} branch by running the command - \textbf{git checkout 02-in-class-activity}. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request \& assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer. \textbf{Do not} merge your own pull request.
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your code review – \href{https://classroom.github.com/a/P656imf2}{https://classroom.github.com/a/P656imf2}. Checkout from the \textbf{main} branch to the \textbf{02-in-class-activity} branch by running the command - \textbf{git checkout 02-in-class-activity}. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request \& assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer. \textbf{Do not} merge your pull request.
 
 \subsection*{Problem 1:} 
-Create a \textbf{Cat} class with the private attributes name, age \& breed. For each attribute, create a getter \& setter. Also, create a \textbf{\_\_toString()} special method which returns the following:
+For each element in \textbf{nums}, calculate its power of two using \& return as an \textbf{array} using the \textbf{map} function. 
 
 \begin{verbatim}
-  <?php
-      "My " . $this->breed . " 's name is " 
-          . $this->name. ". S/he is " . $this->age . " year(s) old.";  
-  ?>
-\end{verbatim}
+  const nums = [2, 4, 6, 8, 10]
 
-Create two \textbf{Cat} objects called \textbf{cat\_one} \& \textbf{cat\_two}. Using setters, change \textbf{cat\_one's} name to Fido \& age to 10. Again, using a setter, change \textbf{cat\_two's} breed to \textbf{American Bobtail}. For each \textbf{Cat} object, print its string representation.
+  const powOfTwo = // Write your solution here
+  console.log(powOfTwo)
 
-\begin{verbatim}
-  <?php
-      // Write your solution here
-  ?>
+  // Expected output:
+  // [4, 16, 36, 64, 100]
 \end{verbatim}
 
 \subsection*{Problem 2:} 
-Create a \textbf{SoftwareDeveloper} \& \textbf{AgileCoach} class which inherits from \textbf{Employee} class. \textbf{SoftwareDeveloper} class has one additional class attribute called \textbf{prog\_lang}. \textbf{AgileCoach} also has one additional class attribute called \textbf{employees} \& three class methods which \textbf{add}, \textbf{remove}, \textbf{search} \& \textbf{show\_all} employees managed by \textbf{AgileCoach}. \textbf{Note:} employees is a list of \textbf{SoftwareDeveloper} objects. \\
-
-Use the three \textbf{SoftwareDeveloper} objects \& \textbf{AgileCoach} object provided to display the expected output.
+For each element in \textbf{temps}, convert its value from fahrenheit to celsius and return as an \textbf{array} using the \textbf{map} function. Round each value to the nearest two decimal places using the \textbf{Math.round} function.
 
 \begin{verbatim}
-  <?php
-      class Employee {
-          protected $first_name;
-          protected $last_name;
-          protected $salary;
+  const temps = [65, 45, 25, 5]
 
-          public function __construct($first_name, $last_name, $salary) {
-              $this->first_name = $first_name;
-              $this->last_name = $last_name;
-              $this->salary = $salary;
-          }
+  const fahToCel = // Write your solution here
+  console.log(fahToCel)
 
-          public function __toString() {
-              return $this->first_name . " " . $this->last_name;
-          }
-      }
-
-      $sft_dev_one = new SoftwareDeveloper("Alfredo", "Boyle", 50000, "C#");
-      $sft_dev_two = new SoftwareDeveloper("Malik", "Martin", 55000, "JavaScript");
-      $sft_dev_three = new SoftwareDeveloper("Livia", "Martin", 75000, "Kotlin");
-      $agile_coach = new AgileCoach("Lillian", "Cunningham", 100000, array($sft_dev_one, $sft_dev_two));
-
-      // Write your solution here
-
-      // Expected output:
-      // Malik Martin
-      // Livia Martin
-      // Alfredo Boyle not found
-      // Livia Martin found
-  ?>
+  // Expected output:
+  // [18.33, 7.22, -3.89, -15.0]
 \end{verbatim}
 
 \subsection*{Problem 3:} 
-\textbf{Language} class has no class attributes, but a class method called \textbf{good\_morning}. \textbf{Maori}, \textbf{Spanish} \& \textbf{German} class inherit from \textbf{Language} class. When you run the following code, what is happening \& why is it happening? Refactor the code to display the expected output.
+Using the \textbf{filter} function, return countries that have a population of less than 1000000000 (one billion).
 
 \begin{verbatim}
-  <?php
-      class Language {
-          public function good_morning() {
-              throw new Exception("good_morning() function not implemented");
-          }
-      }    
+  const countries = [
+    { name: 'Brazil', population: 213445417 },
+    { name: 'China', population: 1339330514 },
+    { name: 'India', population: 1352642280 },
+    { name: 'Russia', population: 142320790 },
+    { name: 'United States of America', population: 332475723 }
+  ]
 
-      class Maori extends Language {
-          public function good_morning() {
-              echo "Morena";
-          }
-      }
+  const countriesWithPopLessThanOneBil = // Write your solution here
+  console.log(countriesWithPopLessThanOneBil)
 
-      class Spanish extends Language {
-
-      }
-
-      class German extends Language {
-          public function good_morning() {
-              echo "Guten Morgen";
-          }
-      }
-          
-      $maori = new Maori();
-      $spanish = new Spanish();
-      $german = new German();
-      $maori->good_morning();
-      $spanish->good_morning();
-      $german->good_morning();
-
-      // Expected output:
-      // Morena
-      // Hola
-      // Guten Morgen
-  ?>
+  // Expected output:
+  // [
+  //   { name: 'Brazil', population: 213445417 }, 
+  //   { name: 'Russia', population: 142320790 }, 
+  //   { name: 'United States of America', population: 332475723 }
+  // ]
 \end{verbatim} 
 
 \subsection*{Problem 4:} 
-Implement the \textbf{push()}, \textbf{pop()}, \textbf{peek()}, \textbf{size()} \& \textbf{show\_all()} methods in the \textbf{Stack} class. \textbf{Note:} \textbf{size()} method returns the length of a \textbf{stack} \& \textbf{show\_all()} method returns the items in a \textbf{stack}. \\
-
-You are probably wondering what a \textbf{stack} is. A \textbf{stack} is an \textbf{Abstract Data Type (ADT)} that is used to store elements in a \textbf{Last In First Out (LIFO)} manner. A \textbf{stack} is a collection of elements where the addition of elements is performed at the end \& the removal of elements is performed at the beginning. A \textbf{stack} has two methods: \textbf{push()} \& \textbf{pop()}. The push method adds an element to the \textbf{stack}. The pop method removes the last element added to the \textbf{stack}. \\
-
-Use the \textbf{Stack} object provided to display the expected output. 
+Using the \textbf{filter} function, return animals that are native to New Zealand.
 
 \begin{verbatim}
-  <?php
-      class Stack {
-          private $stack;
+  const animals = [
+    { name: "Cassowary", native_country: "Australia" },
+    { name: "Kiwi", native_country: "New Zealand" },
+    { name: "Little Blue Penguin", native_country: "New Zealand" },
+    { name: "Bald Eagle", native_country: "United States of America" }
+  ]
 
-          public function __construct() {
-              $this->stack = array();
-          }
+  const nativeAnimals = // Write your solution here
+  console.log(nativeAnimals)
 
-          public function push($item) {
-              // Write your code here
-          }
-
-          public function pop() {
-              // Write your code here
-          }
-
-          public function peek() {
-              // Write your code here
-          }
-
-          public function is_empty() {
-              // Write your code here
-          }
-
-          public function size() {
-              // Write your code here
-          }
-
-          public function show_all() {
-              // Write your code here
-          }
-
-          public function __toString() {
-              return $this->stack;
-          }
-      }   
-          
-      $stack = new Stack();
-      $stack->push("Introductory App Dev Concepts");
-      $stack->push("Intermediate App Dev Concepts");
-      $stack->push("Advanced App Dev Concepts");
-
-      // Write your solution here
-
-      // Expected output:
-      // ["Introductory App Dev Concepts", "Intermediate App Dev Concepts"]
-      // Intermediate App Dev Concepts is at the top of the stack
-      // There are 2 item(s) in the stack
-  ?>
-\end{verbatim}
+  // Expected output:
+  // [
+  //   { name: 'Kiwi', native_country: 'New Zealand' },
+  //   { name: 'Little Blue Penguin', native_country: 'New Zealand' }
+  // ]
+\end{verbatim} 
 
 \subsection*{Problem 5:} 
-Create an interface called \textbf{App}. This interface has three methods, \textbf{login()}, \textbf{register()} \& \textbf{logout()}. The \textbf{login()} method accepts two arguments, email \& password, \& the \textbf{register()} method accepts three arguments, email, password \& username. \\
 
-Create a class called \textbf{Facebook} which implements \textbf{App}. For each method implemented, echo the following:
 \begin{verbatim}
-  // login() - Logged in with the email - $email.
-  // register() - Registered with the email and username - $email and $username.
-  // logout() - User logged out.
+
 \end{verbatim}
 
+\subsection*{Problem 6:} 
+Using the \textbf{reduce} function, return an \textbf{object} where the \textbf{key} is the name of the ice cream flavour, i.e., chocolate \& the \textbf{value} is an \textbf{integer} that represents the total count for that flavour, i.e., 3. 
+
 \begin{verbatim}
-  <?php
-      // Write your solution here
-  ?>
+  const iceCreamFlavours = [
+    'vanilla', 'chocolate', 'strawberry', 
+    'vanilla', 'mango', 'vanilla', 
+    'chocolate', 'strawberry', 'mango', 
+    'orange', 'chocolate'
+  ]
+
+  const iceCreamFlavourTotal = // Write your solution here
+  console.log(iceCreamFlavourTotal)
+
+  // Expected output:
+  // { vanilla: 3, chocolate: 3, strawberry: 2, mongo: 2, orange: 1 }
+\end{verbatim}
+
+\subsection*{Problem 7:} 
+Using the \textbf{readFile} function, read \textbf{nursery-rhyme.txt} located in the \textbf{in-class activities} directory. For each word in \textbf{nursery-rhyme.txt}, convert it to \textbf{lowercase} using the \textbf{map} function.  
+
+\begin{verbatim}
+  // Expected output:
+  // [
+  //   'old',       'macdonald',  'had',
+  //   'a',         'farm,',      'e-i-e-i-o!',
+  //   'and',       'on',         'his',
+  //   'farm',      'he',         'had',
+  //   'a',         'cow,',       'e-i-e-i-o!',
+  //   'with',      'a',          'moo-moo',
+  //   'here',      'and',        'a',
+  //   'moo-moo',   'there,',     'here',
+  //   'a',         'moo,',       'there',
+  //   'a',         'moo,',       'everywhere',
+  //   'a',         'moo-moo,',   'old',
+  //   'macdonald', 'had',        'a',
+  //   'farm,',     'e-i-e-i-o!'
+  // ]
+\end{verbatim}
+
+\subsection*{Problem 8:} 
+Using the \textbf{readFile} function, read \textbf{users.json} located in the \textbf{in-class activities} directory. Using the \textbf{filter} function, return \textbf{users} who are \textbf{Senior Lecturers}.
+
+\begin{verbatim}
+  // [
+  //   {
+  //     first_name: 'Faisal',
+  //     last_name: 'Hassan',
+  //     position: 'Senior Lecturer'
+  //   },
+  //   {
+  //     first_name: 'Joy',
+  //     last_name: 'Gasson',
+  //     position: 'Senior Lecturer'
+  //   }
+  // [
 \end{verbatim}
 
 \end{document}
