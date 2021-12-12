@@ -1,4 +1,4 @@
-# IN607: Introductory Application Development Concepts
+# ID607001: Introductory Application Development Concepts
 
 This repository contains all information relating to this course, i.e., course directive & assessment documents.
 Repositories
