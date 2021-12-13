@@ -1,10 +1,12 @@
-# 01: ES6 Basics 1
+# 01: JavaScript Basics 1
 
-## What is ES6?
+## Refresher Activity
+
+For the next five-10 minutes, write down everything you know about **JavaScript**. Feel free to use any online resources.
 
 ## Block
 
-A **block** is used to group statements and is delimited by a pair of **curly braces**. I will talk more about this soon. 
+A **block** is used to group statements and is delimited by a pair of **curly braces**. I will talk more about this soon.
 
 **Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block
 
@@ -14,7 +16,7 @@ In **JavaScript**, there are three declarations you can use.
 
 ### var
 
-`var` is used to declare a global or function-scoped variable.
+`var` is used to declare a **global** or **function-scoped** variable.
 
 ```javascript
 var x // Not initialised
@@ -32,7 +34,7 @@ console.log(x) // 10
 
 ### let
 
-`let` is used to declare a block-scoped local variable.
+`let` is used to declare a **block-scoped** **local** variable.
 
 ```javascript
 let x = 5
@@ -47,7 +49,7 @@ console.log(x) // 5
 
 ### const
 
-`const` is used to declare a block-scoped local variable. It can not be reassigned nor be redeclared. **Note:** An **object** or **array** properties or items can be changed.
+`const` is used to declare a **block-scoped** **local** variable. It can not be reassigned nor be redeclared. **Note:** An **object** or **array** properties or items can be changed.
 
 The `const` example is much like the `let` example.
 
@@ -243,7 +245,7 @@ Also, look at `for...of` and `for...in`.
 
 ## Functions
 
-There are two ways to write a `function` in **JavaScript**:
+There are two ways to write a **function** in **JavaScript**:
 
 ```javascript
 // Default function
