@@ -28,7 +28,7 @@ if (typeof x === 'number') { // Note: === is the strict equality operator
 console.log(x) // 10
 ```
 
-**Interview Question:** What is **hoisting**?
+:question: **Interview Question:** What is **hoisting**?
 
 ### let
 
@@ -79,7 +79,7 @@ const x = 5
 const x = 10 // SyntaxError: redeclaration of const x
 ```
 
-**Interview Question:** What is the difference between **mutability** and **immutability**?
+:question: **Interview Question:** What is the difference between **mutability** and **immutability**?
 
 **Resources:**
 
@@ -234,7 +234,7 @@ do {
 console.log(result) // 12345
 ```
 
-Also, have a look at `for...of` and `for...in`.
+Also, look at `for...of` and `for...in`.
 
 **Resources:**
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
@@ -265,7 +265,7 @@ function convertFahToCel(x) {
 console.log(convertFahToCel(5)) // -15
 ```
 
-**Interview Question:** Convert `convertFahToCel` above into an **arrow** **function**.
+:question: **Interview Question:** Convert `convertFahToCel` above into an **arrow** **function**.
 
 **Resources:** 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function
@@ -273,7 +273,7 @@ console.log(convertFahToCel(5)) // -15
 
 ## Arrays
 
-An **array** is a list-like object that enables you to perform traversal and mutation operations. The length of an **array** is not fixed and can change at anytime. It means items can be stored at non-contiguous locations in an **array**.
+An **array** is a list-like object that enables you to perform traversal and mutation operations. The length of an **array** is not fixed and can change at any time. It means items can be stored at non-contiguous locations in an **array**.
 
 Here is an example of how to create an **array**:
 
@@ -297,10 +297,22 @@ console.log(fruits[fruits.length - 1]) // Banana
 
 :question: **Interview Question:** What type of **array** allows you to index with a **string**?
 
-Here is an example of how to iterate over an **array**:
+Here is an example of how to mutate an **array**:
 
 ```javascript
 let fruits = ['Apple', 'Banana']
+
+fruits[0] = 'Grape'
+
+console.log(fruits) // Array ["Grape", "Banana"]
+```
+
+**Note:** There are many ways to mutate an **array**. You will look other ways soon.
+
+Here is an example of how to iterate over an **array**:
+
+```javascript
+const fruits = ['Apple', 'Banana']
 
 // or 
 
@@ -317,9 +329,9 @@ for (let i = 0; i < fruits.length; i++) {
 }
 ```
 
-As you can see, there are many ways of how to iterate over an **array**.
+As you can see, there are many ways to iterate over an **array**.
 
-**Interview Question:** What do the following **array** operations do?
+:question: **Interview Question:** What do the following **array** operations do?
 
 - `push`
 - `pop`
@@ -331,7 +343,48 @@ As you can see, there are many ways of how to iterate over an **array**.
 
 ## Objects
 
+An **object** is a collection of properties where each property is an association between a **key** and a **value**. The concept of an **object** can be understood with real-life objects, i.e., a classroom of students is an **array** of student **objects**.
+
+Here is an example of how to create an **object**:
+
+```javascript
+const fruit = {
+    name: 'Apple',
+    color: 'Red'
+}
+
+// or
+
+const fruit = new Object()
+fruit.name = 'Apple'
+fruit.color = 'Red'
+```
+
+I **strongly** recommend using the first example.
+
+Here is an example of how to access an **object**:
+
+```javascript
+const fruit = {
+    name: 'Apple',
+    color: 'Red'
+}
+
+console.log(fruit.name) // Apple
+
+// or 
+
+console.log(fruit['name']) // Apple
+```
+
+**Note:** An **object** is sometimes called an **associative array**.
+
+:question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
+
 **Resources:**
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
   
 ## Formative Assessment
+
+Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.
