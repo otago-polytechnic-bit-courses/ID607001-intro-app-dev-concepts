@@ -23,7 +23,7 @@ There are a few others, but you will only be concerned with the four above.
 
 As described, **Express** is a lightweight **Node.js** web application framework that provides a set of robust features for creating applications.
 
-Assume you have **Node.js** installed. Create a new directory called **03-node-js-rest-api-1**. Change your current directory to **03-node-js-rest-api-1**. Now, it should be your working directory.
+Assume you have **Node.js** installed. Create a new directory called `03-node-js-rest-api-1`. Change your current directory to `03-node-js-rest-api-1`. Now, it should be your working directory.
 
 ```bash
 mkdir 03-node-js-rest-api-1
@@ -58,15 +58,16 @@ npm install express
 
 Majority of the online **Node.js** examples use **CommonJS**. You are going to use **Modules** instead. In `package.json`, you need to add `"type": "module",` under `"main": "app.js",`.
 
-**Resources:** 
-- https://expressjs.com
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
+**Resources:**
+
+- <https://expressjs.com>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules>
 
 ## In-Memory Storage
 
 You will explore **database storage** next week. For now, you will use **in-memory storage** via a local file.
 
-Create a new file called **data.js**. This file will contain an **array** of **objects**.
+Create a new file called `data.js`. This file will contain an **array** of **objects**.
 
 ```javascript
 const people = [
@@ -77,7 +78,7 @@ const people = [
 export { people }
 ```
 
-You need to export it to use `people` outside of **data.js**.
+You need to export it to use `people` outside of `data.js`.
 
 Feel free to add more **objects** to the **array** or even more properties.
 
@@ -125,19 +126,25 @@ const createPerson = (req, res) => {
 
 ### Update Function
 
+You need to find the `person` you want to update.
+
 ```javascript
 const updatePerson = (req, res) => {
     const { id } = req.params
     const { name } = req.body
 
-    const person = people.find((person) => person.id === Number(id))
+    const person = people.find(
+        (person) => person.id === Number(id)
+    )
 
+    // Check if person does exist
     if (!person) {
         return res
             .status(404)
             .json({ success: false, msg: `No person with the id ${id}` })
     }
 
+    // If person does exist, update its name
     const newPeople = people.map((person) => {
         if (person.id === Number(id)) {
             person.name = name
@@ -153,24 +160,34 @@ const updatePerson = (req, res) => {
 
 ### Delete Function
 
+Similar to the update function.
+
 ```javascript
 const deletePerson = (req, res) => {
-    const person = people.find((person) => person.id === Number(req.params.id))
+    const { id } = req.params
 
+    const person = people.find(
+        (person) => person.id === Number(id)
+    )
+
+    // Check if person does exist
     if (!person) {
         return res
             .status(404)
-            .json({ success: false, msg: `No person with the id ${req.params.id}` })
+            .json({ success: false, msg: `No person with the id ${id}` })
     }
 
+    // If person does exist, delete it
     const newPeople = people.filter(
-        (person) => person.id !== Number(req.params.id)
+        (person) => person.id !== Number(id)
     )
 
     return res
         .status(200)
         .json({ success: true, data: newPeople })
 ```
+
+You need to export these functions to use them outside of `people.js`.
 
 ```javascript
 export {
@@ -185,6 +202,83 @@ It may be hard to visualise at the moment, but it will become clearer soon.
 
 ## Routes
 
+Create a new directory called `routes`. In this directory, create a new file called `people.js`. In `people.js`, you will create four routes and map them to the functions imported from `controllers/people.js`.
+
+```javascript
+import { Router } from 'express'
+const router = Router() // Create a new router object. This allows to handle various requests
+
+// Importing the four functions
+import { 
+    getPeople, 
+    createPerson, 
+    updatePerson, 
+    deletePerson 
+} from '../controllers/people.js'
+
+// Four routes that are mapped to the functions above
+router.route('/').get(getPeople)
+router.route('/').post(createPerson)
+
+router.route('/:id').put(updatePerson)
+router.route('/:id').delete(deletePerson)
+
+// You can chain these if you wish. For example:
+// router.route('/').get(getPeople).post(createPerson)
+// router.route('/:id').put(updatePerson).delete(deletePerson)
+
+export default router // You do not need to enclose router in curly braces
+```
+
+## Entry Point
+
+`app.js` is the **REST API's** entry point. Open a terminal and run the following command:
+
+```bash
+node app.js
+```
+
+Nothing happened. Why? Well...it is because `app.js` is empty.
+
+You need to add the following:
+
+```javascript
+import express, { 
+    urlencoded, 
+    json 
+} from 'express'
+const app = express()
+const PORT = 5000
+
+// Access all the routes exported from routes/people.js
+import people from './routes/people.js'
+
+// Express middleware
+app.use(urlencoded({ extended: false }))
+app.use(json())
+
+// To make it clear to the consumer that the application is an API, prefix the endpoint with /api
+app.use('/api/people', people)
+
+// Listen on port 5000
+app.listen(PORT, (err) => {
+    if (err) console.log(err)
+    console.log(`Server is listening on port ${PORT}`)
+})
+```
+
+Run the following command again:
+
+```bash
+node app.js
+```
+
+Navigate to <http://localhost:5000/api/people>
+
 ## Postman
+
+**Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **web client**. Alternatively, you can use the **desktop client**. The interface is much the same on both **clients**.
+
+If you do not have an account, please sign up. There are two options - **username/password** and **Google**.
 
 ## Formative Assessment

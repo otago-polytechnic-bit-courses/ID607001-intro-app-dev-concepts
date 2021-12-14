@@ -9,7 +9,7 @@ Here is a practical example:
 ```javascript
 const nums = [2, 4, 6, 8]
 
-const triples = nums.map(x => x * 3)
+const triples = nums.map((x) => x * 3)
 
 console.log(triples) // Array [6, 12, 18, 24]
 ```
@@ -19,14 +19,14 @@ Here is another practical example:
 ```javascript
 const nums = [1, 4, 9]
 
-const roots = nums.map(num => Math.sqrt(num))
+const roots = nums.map((num) => Math.sqrt(num))
 
 console.log(roots) // Array [1, 2, 3]
 ```
 
 **Note:** Do not use `map` if you will not use the returned **array**.
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map>
 
 ## Filter
 
@@ -37,7 +37,7 @@ Here is a practical example:
 ```javascript
 const fruits = ['Apple', 'Banana', 'Grape', 'Kiwifruit', 'Lemon', 'Strawberry']
 
-const result = fruits.filter(fruit => fruit.length > 6)
+const result = fruits.filter((fruit) => fruit.length > 6)
 
 console.log(result) // Array ["Kiwifruit", "Strawberry"]
 ```
@@ -57,7 +57,7 @@ console.log(result) // Array [20]
 
 :question: **Interview Question:** What is **one** difference between the two practical examples above?
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
 
 ## Reduce
 
@@ -78,7 +78,7 @@ const reducer = (prevVal, currVal) => prevVal + currVal
 console.log(nums.reduce(reducer)) // 10
 ```
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
 
 ## Error Handling
 
@@ -115,7 +115,7 @@ catch (e) {
 }
 ```
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements>
 
 ## Reading in Data
 
@@ -132,7 +132,7 @@ readFile('someFile', (err, data) => {
 })
 ```
 
-**Resource:** https://nodejs.org/api/fs.html#fsreadfilepath-options-callback
+**Resource:** <https://nodejs.org/api/fs.html#fsreadfilepath-options-callback>
 
 ## Formative Assessment
 

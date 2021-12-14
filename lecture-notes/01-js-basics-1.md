@@ -8,7 +8,7 @@ For the next five-10 minutes, write down everything you know about **JavaScript*
 
 A **block** is used to group statements and is delimited by a pair of **curly braces**. I will talk more about this soon.
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/block>
 
 ## Declarations
 
@@ -85,9 +85,9 @@ const x = 10 // SyntaxError: redeclaration of const x
 
 **Resources:**
 
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const>
 
 ## Control Flow
 
@@ -157,8 +157,9 @@ switch (expression) {
 - `default` - if `expression` does not match any **cases**, execute the **block** associated to `default`.
 
 **Resources:**
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch
+
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch>
 
 ## Iterations
 
@@ -239,9 +240,10 @@ console.log(result) // 12345
 Also, look at `for...of` and `for...in`.
 
 **Resources:**
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while
+
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/while>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/do...while>
 
 ## Functions
 
@@ -269,9 +271,10 @@ console.log(convertFahToCel(5)) // -15
 
 :question: **Interview Question:** Convert `convertFahToCel` above into an **arrow** **function**.
 
-**Resources:** 
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return
+**Resources:**
+
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/function>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/return>
 
 ## Arrays
 
@@ -341,7 +344,7 @@ As you can see, there are many ways to iterate over an **array**.
 - `unshift`
 - `indexOf`
 
-**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array>
 
 ## Objects
 
@@ -384,8 +387,9 @@ console.log(fruit['name']) // Apple
 :question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
 
 **Resources:**
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects
+
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
+- <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
   
 ## Formative Assessment
 
