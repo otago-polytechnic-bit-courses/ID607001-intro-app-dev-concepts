@@ -24,7 +24,7 @@ const roots = nums.map(num => Math.sqrt(num))
 console.log(roots) // Array [1, 2, 3]
 ```
 
-**Note:** Do not use `map` if you are not going to use the returned **array**.
+**Note:** Do not use `map` if you will not use the returned **array**.
 
 **Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map
 
@@ -63,6 +63,8 @@ console.log(result) // Array [20]
 
 A `reduce` executes a given **callback function** or **reducer** on each element, in order, in a given **array**, passing in the return value from the calculation on the previous element. It results in a single value returned.
 
+Here is a practical example:
+
 ```javascript
 const nums = [1, 2, 3, 4]
 
@@ -80,8 +82,58 @@ console.log(nums.reduce(reducer)) // 10
 
 ## Error Handling
 
-## File Processing
+### try...catch
+
+A `try` block contains one or more statements and a `catch` block contains one or more statements that specify what to do if an exception is thrown in a `try` block.
+
+Here is a practical example:
+
+```javascript
+const getMonthName = (mo) => {
+    mo -= 1
+    
+    const months = [
+        'Jan', 'Feb', 'Mar', 'Apr', 
+        'May', 'Jun', 'Jul', 'Aug', 
+        'Sep', 'Oct', 'Nov', 'Dec'
+    ]
+    
+    if (months[mo]) {
+        return months[mo]
+    } else {
+        throw 'Invalid month number' // The throw statement is used to throw an exception
+    }
+}
+
+try { 
+    monthName = getMonthName(4) // getMonthName could throw an exception
+    console.log(monthName) // Apr
+}
+catch (e) {
+    monthName = 'Unknown month';
+    console.log(monthName)
+}
+```
+
+**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements
+
+## Reading in Data
+
+There are many ways to read data, i.e., from a database or an API. You will see these two methods in the next few weeks. However, you may just want to read data from a local file.
+
+Here is a practical example:
+
+```javascript
+const fs = require('fs')
+
+readFile('someFile', (err, data) => {
+  if (err) throw err
+  console.log(data)
+})
+```
+
+**Resource:** https://nodejs.org/api/fs.html#fsreadfilepath-options-callback
 
 ## Formative Assessment
 
-Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.
+You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.

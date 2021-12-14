@@ -34,10 +34,25 @@
 \maketitle
  
 \section*{Instructions}
-The purpose of this in-class activity to familiarise yourself with functional programming constructs such as \textbf{map}, \textbf{filter} \& \textbf{reduce}. The following eight questions will require a little more thought than the previous in-class activity.
+The purpose of this in-class activity to familiarise yourself with more complex constructs such as \textbf{map}, \textbf{filter} \& \textbf{reduce}. Also, you will look at how to read \& process data from a local file. The following eight questions will require a little more thought than the previous in-class activity.
 
 \section*{Code Review}
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your code review – \href{https://classroom.github.com/a/P656imf2}{https://classroom.github.com/a/P656imf2}. Checkout from the \textbf{main} branch to the \textbf{02-in-class-activity} branch by running the command - \textbf{git checkout 02-in-class-activity}. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request \& assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer. \textbf{Do not} merge your pull request.
+
+\section*{Getting Started}
+Open your repository in \textbf{Visual Studio Code}. Create a new file called \textbf{02-in-class-activity.js}. In \textbf{02-in-class-activity.js}, add the following:
+
+\begin{verbatim}
+  console.log('Hello, World!')
+\end{verbatim}
+
+Open a \textbf{terminal} \& run the following command:
+
+\begin{verbatim}
+  node 01-in-class-activity.js
+\end{verbatim}
+
+If the output is \textbf{Hello, World!}, then you are ready to start coding.
 
 \subsection*{Problem 1:} 
 For each element in \textbf{nums}, calculate its power of two using \& return as an \textbf{array} using the \textbf{map} function. 
@@ -70,11 +85,11 @@ Using the \textbf{filter} function, return countries that have a population of l
 
 \begin{verbatim}
   const countries = [
-    { name: 'Brazil', population: 213445417 },
-    { name: 'China', population: 1339330514 },
-    { name: 'India', population: 1352642280 },
-    { name: 'Russia', population: 142320790 },
-    { name: 'United States of America', population: 332475723 }
+      { name: 'Brazil', population: 213445417 },
+      { name: 'China', population: 1339330514 },
+      { name: 'India', population: 1352642280 },
+      { name: 'Russia', population: 142320790 },
+      { name: 'United States of America', population: 332475723 }
   ]
 
   const countriesWithPopLessThanOneBil = // Write your solution here
@@ -82,9 +97,9 @@ Using the \textbf{filter} function, return countries that have a population of l
 
   // Expected output:
   // [
-  //   { name: 'Brazil', population: 213445417 }, 
-  //   { name: 'Russia', population: 142320790 }, 
-  //   { name: 'United States of America', population: 332475723 }
+  //     { name: 'Brazil', population: 213445417 }, 
+  //     { name: 'Russia', population: 142320790 }, 
+  //     { name: 'United States of America', population: 332475723 }
   // ]
 \end{verbatim} 
 
@@ -93,10 +108,10 @@ Using the \textbf{filter} function, return animals that are native to New Zealan
 
 \begin{verbatim}
   const animals = [
-    { name: "Cassowary", native_country: "Australia" },
-    { name: "Kiwi", native_country: "New Zealand" },
-    { name: "Little Blue Penguin", native_country: "New Zealand" },
-    { name: "Bald Eagle", native_country: "United States of America" }
+      { name: "Cassowary", native_country: "Australia" },
+      { name: "Kiwi", native_country: "New Zealand" },
+      { name: "Little Blue Penguin", native_country: "New Zealand" },
+      { name: "Bald Eagle", native_country: "United States of America" }
   ]
 
   const nativeAnimals = // Write your solution here
@@ -104,15 +119,27 @@ Using the \textbf{filter} function, return animals that are native to New Zealan
 
   // Expected output:
   // [
-  //   { name: 'Kiwi', native_country: 'New Zealand' },
-  //   { name: 'Little Blue Penguin', native_country: 'New Zealand' }
+  //     { name: 'Kiwi', native_country: 'New Zealand' },
+  //     { name: 'Little Blue Penguin', native_country: 'New Zealand' }
   // ]
 \end{verbatim} 
 
 \subsection*{Problem 5:} 
+Using the \textbf{reduce} function, return the total \textbf{price} for the given \textbf{groceries} \textbf{array} of \textbf{objects}.
 
 \begin{verbatim}
+  const groceries = [
+      { name: 'Chicken', price: 10 },
+      { name: 'Butter', price: 5 },
+      { name: 'Lettuce', price: 2 },
+      { name: 'Steak', price: 20 },
+  ]
 
+  const groceriesTotal = // Write your solution here
+  console.log(groceriesTotal)
+
+  // Expected output:
+  // 37
 \end{verbatim}
 
 \subsection*{Problem 6:} 
@@ -120,14 +147,14 @@ Using the \textbf{reduce} function, return an \textbf{object} where the \textbf{
 
 \begin{verbatim}
   const iceCreamFlavours = [
-    'vanilla', 'chocolate', 'strawberry', 
-    'vanilla', 'mango', 'vanilla', 
-    'chocolate', 'strawberry', 'mango', 
-    'orange', 'chocolate'
+      'vanilla', 'chocolate', 'strawberry', 
+      'vanilla', 'mango', 'vanilla', 
+      'chocolate', 'strawberry', 'mango', 
+      'orange', 'chocolate'
   ]
 
-  const iceCreamFlavourTotal = // Write your solution here
-  console.log(iceCreamFlavourTotal)
+  const iceCreamFlavourCount = // Write your solution here
+  console.log(iceCreamFlavourCount)
 
   // Expected output:
   // { vanilla: 3, chocolate: 3, strawberry: 2, mongo: 2, orange: 1 }
@@ -139,19 +166,19 @@ Using the \textbf{readFile} function, read \textbf{nursery-rhyme.txt} located in
 \begin{verbatim}
   // Expected output:
   // [
-  //   'old',       'macdonald',  'had',
-  //   'a',         'farm,',      'e-i-e-i-o!',
-  //   'and',       'on',         'his',
-  //   'farm',      'he',         'had',
-  //   'a',         'cow,',       'e-i-e-i-o!',
-  //   'with',      'a',          'moo-moo',
-  //   'here',      'and',        'a',
-  //   'moo-moo',   'there,',     'here',
-  //   'a',         'moo,',       'there',
-  //   'a',         'moo,',       'everywhere',
-  //   'a',         'moo-moo,',   'old',
-  //   'macdonald', 'had',        'a',
-  //   'farm,',     'e-i-e-i-o!'
+  //     'old',       'macdonald',  'had',
+  //     'a',         'farm,',      'e-i-e-i-o!',
+  //     'and',       'on',         'his',
+  //     'farm',      'he',         'had',
+  //     'a',         'cow,',       'e-i-e-i-o!',
+  //     'with',      'a',          'moo-moo',
+  //     'here',      'and',        'a',
+  //     'moo-moo',   'there,',     'here',
+  //     'a',         'moo,',       'there',
+  //     'a',         'moo,',       'everywhere',
+  //     'a',         'moo-moo,',   'old',
+  //     'macdonald', 'had',        'a',
+  //     'farm,',     'e-i-e-i-o!'
   // ]
 \end{verbatim}
 
@@ -160,16 +187,16 @@ Using the \textbf{readFile} function, read \textbf{users.json} located in the \t
 
 \begin{verbatim}
   // [
-  //   {
-  //     first_name: 'Faisal',
-  //     last_name: 'Hassan',
-  //     position: 'Senior Lecturer'
-  //   },
-  //   {
-  //     first_name: 'Joy',
-  //     last_name: 'Gasson',
-  //     position: 'Senior Lecturer'
-  //   }
+  //     {
+  //         first_name: 'Faisal',
+  //         last_name: 'Hassan',
+  //         position: 'Senior Lecturer'
+  //     },
+  //     {
+  //         first_name: 'Joy',
+  //         last_name: 'Gasson',
+  //         position: 'Senior Lecturer'
+  //     }
   // [
 \end{verbatim}
 
