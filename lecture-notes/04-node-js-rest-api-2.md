@@ -1,6 +1,6 @@
 # 04: Node.js REST API 2
 
-## MongoDB Atlas 
+## MongoDB Atlas
 
 ## Validation
 

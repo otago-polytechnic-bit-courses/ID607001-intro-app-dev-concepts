@@ -247,8 +247,10 @@ import express, {
     urlencoded, 
     json 
 } from 'express'
+
 const app = express()
-const PORT = 5000
+
+const PORT = process.env.PORT || 3000
 
 // Access all the routes exported from routes/people.js
 import people from './routes/people.js'
@@ -260,9 +262,8 @@ app.use(json())
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
 app.use('/api/people', people)
 
-// Listen on port 5000
-app.listen(PORT, (err) => {
-    if (err) console.log(err)
+// Listen on port 3000
+app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
 })
 ```
