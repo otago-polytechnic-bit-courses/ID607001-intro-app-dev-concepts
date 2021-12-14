@@ -267,7 +267,7 @@ app.listen(PORT, (err) => {
 })
 ```
 
-Run the following command again:
+Rerun the following command:
 
 ```bash
 node app.js
@@ -277,7 +277,7 @@ Navigate to <http://localhost:5000/api/people>
 
 ## Postman
 
-**Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **web client**. Alternatively, you can use the **desktop client**. The interface is much the same on both **clients**.
+**Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
 
 If you do not have an account, please sign up. There are two options - **username/password** and **Google**.
 
