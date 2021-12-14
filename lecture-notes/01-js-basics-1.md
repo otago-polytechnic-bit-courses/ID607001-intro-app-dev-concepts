@@ -49,7 +49,7 @@ console.log(x) // 5
 
 ### const
 
-`const` is used to declare a **block-scoped** **local** variable. It can not be reassigned nor be redeclared. **Note:** An **object** or **array** properties or items can be changed.
+`const` is used to declare a **block-scoped** **local** variable. It can not be reassigned nor be redeclared. **Note:** An **object** or **array** properties or elements can be changed.
 
 The `const` example is much like the `let` example.
 
@@ -275,7 +275,7 @@ console.log(convertFahToCel(5)) // -15
 
 ## Arrays
 
-An **array** is a list-like object that enables you to perform traversal and mutation operations. The length of an **array** is not fixed and can change at any time. It means items can be stored at non-contiguous locations in an **array**.
+An **array** is a list-like object that enables you to perform traversal and mutation operations. The length of an **array** is not fixed and can change at any time. It means elements can be stored at non-contiguous locations in an **array**.
 
 Here is an example of how to create an **array**:
 
@@ -288,10 +288,10 @@ Here is an example of how to access an **array**:
 ```javascript
 let fruits = ['Apple', 'Banana']
 
-// First item in fruits
+// First element in fruits
 console.log(fruits[0]) // Apple
 
-// Last item in fruits
+// Last element in fruits
 console.log(fruits[fruits.length - 1]) // Banana
 ```
 
@@ -318,8 +318,8 @@ const fruits = ['Apple', 'Banana']
 
 // or 
 
-fruits.forEach((item, index) => {
-    console.log(`${item} => ${index}`) // Apple => 0
+fruits.forEach((el, index) => {
+    console.log(`${el} => ${index}`) // Apple => 0
                                        // Banana => 1 
 })
 
@@ -389,4 +389,4 @@ console.log(fruit['name']) // Apple
   
 ## Formative Assessment
 
-Today's in-class activity can be found [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.
+You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.

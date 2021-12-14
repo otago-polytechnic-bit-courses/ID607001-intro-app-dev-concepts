@@ -45,9 +45,11 @@ console.log(result) // Array ["Kiwifruit", "Strawberry"]
 Here is another practical example:
 
 ```javascript
+// Arrow function
 const isAnAdult = (age) => age >= 18
 
 const ages = [5, 10, 15, 20]
+
 const result = ages.filter(isAnAdult)
 
 console.log(result) // Array [20]
@@ -58,6 +60,23 @@ console.log(result) // Array [20]
 **Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter
 
 ## Reduce
+
+A `reduce` executes a given **callback function** or **reducer** on each element, in order, in a given **array**, passing in the return value from the calculation on the previous element. It results in a single value returned.
+
+```javascript
+const nums = [1, 2, 3, 4]
+
+const reducer = (prevVal, currVal) => prevVal + currVal
+
+// Simulation: 
+// No prevVal (assume the prevVal is 0) + 1 = 1 
+// 1 + 2 = 3
+// 3 + 3 = 6
+// 6 + 4 = 10
+console.log(nums.reduce(reducer)) // 10
+```
+
+**Resource:** https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce
 
 ## Error Handling
 
