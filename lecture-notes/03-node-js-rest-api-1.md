@@ -112,7 +112,7 @@ There is a little more going on here. When you make a **POST** request, you will
 const createInstitution = (req, res) => {
     const { name } = req.body
 
-    if (!first_name) {
+    if (!name) {
         return res
             .status(400)
             .json({ success: false, msg: 'Please provide a name' })
