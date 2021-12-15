@@ -185,6 +185,7 @@ const deleteInstitution = (req, res) => {
     return res
         .status(200)
         .json({ success: true, data: newInstitution })
+}
 ```
 
 You need to export these functions to use them outside of `institutions.js`.
