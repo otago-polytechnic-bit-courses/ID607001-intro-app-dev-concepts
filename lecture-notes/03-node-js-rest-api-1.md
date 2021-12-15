@@ -315,7 +315,7 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-8.JPG" />
 
-**Note**: When you create a new institution, it will not be stored in the `institutions` **array** of **objects** in `data.js`.
+**Note**: When you create a new institution, it will not mutate the `institutions` **array** of **objects** in `data.js`.
 
 **PUT** request example:
 
@@ -327,6 +327,6 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-10.JPG" />
 
-**Note:** Much like when you create a new institution.
+**Note:** Much like When you create a new institution, it will not mutate the `institutions` **array** of **objects** in `data.js`.
 
 ## Formative Assessment
