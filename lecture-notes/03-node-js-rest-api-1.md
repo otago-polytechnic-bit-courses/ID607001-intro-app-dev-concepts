@@ -249,12 +249,12 @@ import express, {
     json 
 } from 'express'
 
+// Access all the routes exported from routes/institutions.js
+import institutions from './routes/institutions.js'
+
 const app = express()
 
 const PORT = process.env.PORT || 3000
-
-// Access all the routes exported from routes/institutions.js
-import institutions from './routes/institutions.js'
 
 // Express middleware
 app.use(urlencoded({ extended: false }))
