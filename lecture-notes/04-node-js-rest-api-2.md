@@ -49,7 +49,7 @@ Name your **project** the same as your **Postman** **workspace**, i.e., `id60700
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-2.png" width="950" height="537">
 
-Do **not** change the default configurations. Click the **Create Project** button.
+By default, you will set to the **Project Owner**. Click the **Create Project** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-3.png" width="950" height="537">
 
@@ -57,25 +57,27 @@ To create a new **database**, click the **Build a Database** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-4.png" width="950" height="537">
 
-Click the **Shared** option, then the **Create Cluster** button.
+Click the **Shared** option, then the **Create** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-5.png" width="950" height="537">
 
-You will asked to create a **database** user. Provide a **username** and **password**. Do not include the **@** special character in your **password**.
+Do not change the default configuration. Click the **Create Cluster** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-6.png" width="950" height="537">
 
-Also, you will be asked to provide your **IP address**. **Note:** You will need to change it when you are working between home and campus. You can accept all **IP address**, i.e., `0.0.0.0` if you wish. 
+You will asked to create a **database** user. Provide a **username** and **password**. Do not include the **@** special character in your **password**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-7.png" width="950" height="537">
 
-Once you have added your **IP address**, click the **Finish and Close** button.
+Also, you will be asked to provide your **IP address**. **Note:** You will need to change it when you are working between home and campus. You can accept all **IP address**, i.e., `0.0.0.0` if you wish. 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-8.png" width="950" height="537">
 
-You will be presented with a modal congratulating you on setting up access rules. **Note:** You can change these access rules at anytime.
+Once you have added your **IP address**, click the **Finish and Close** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-9.png" width="950" height="537">
+
+You will be presented with a modal congratulating you on setting up access rules. **Note:** You can change these access rules at anytime.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-10.png" width="950" height="537">
 
