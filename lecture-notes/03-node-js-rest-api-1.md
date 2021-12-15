@@ -285,8 +285,48 @@ To use **Postman**, you need to create an account or sign in. There two sign in 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-1.JPG" />
 
+Once you sign in, you will be navigated to **Home**. 
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-2.JPG" />
 
+Next to the **Home** tab, is the **Workspaces** dropdown. Click on this and create a **New Workspace**.
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-3.JPG" />
+
+To keep things consistent with the **MongoDB Atlas** database you will create next week, name your new workspace `id607001-<Your OP username>`. One you have done this, click the **Create workspace and team** button in the bottom right-hand corner.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-4.JPG" />
+
+Click the **Go to Workspace** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-5.JPG" />
+
+You should see something like this:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-6.JPG" />
+
+Click the **+** button next to the **Overview** tab.
+
+Here you will make your first request. Enter a request URL, i.e., http://localhost:3000/api/institutions, then click the **Send** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-6.JPG" />
+
+**POST** request example:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-7.JPG" />
+
+**Note**: When you create a new institution, it will not be stored in the `institutions` **array** of **objects** in `data.js`.
+
+**PUT** request example:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-8.JPG" />
+
+**Note:** This will change the institution's name.
+
+**DELETE** request example:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-9.JPG" />
+
+**Note:** Much like when you create a new institution.
 
 ## Formative Assessment
