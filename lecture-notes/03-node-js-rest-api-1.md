@@ -192,7 +192,7 @@ You need to export these functions to use them outside of `institutions.js`.
 
 ```javascript
 export {
-    getInstitution,
+    getInstitutions,
     createInstitution,
     updateInstitution,
     deleteInstitution
