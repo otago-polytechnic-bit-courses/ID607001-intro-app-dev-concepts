@@ -252,7 +252,7 @@ const app = express()
 
 const PORT = process.env.PORT || 3000
 
-// Access all the routes exported from routes/people.js
+// Access all the routes exported from routes/institutions.js
 import institutions from './routes/institutions.js'
 
 // Express middleware
