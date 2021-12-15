@@ -77,9 +77,17 @@ Once you have added your **IP address**, click the **Finish and Close** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-9.png" width="950" height="537">
 
-You will be presented with a modal congratulating you on setting up access rules. **Note:** You can change these access rules at anytime.
+You will be presented with a modal congratulating you on setting up access rules. **Note:** You can change these access rules at anytime. Click the **Go to Database** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-10.png" width="950" height="537">
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-11.png" width="950" height="537">
+
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-12.png" width="950" height="537">
+
+
+### Connecting to your REST API
 
 ## Validation
 
