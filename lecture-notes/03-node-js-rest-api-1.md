@@ -281,19 +281,19 @@ Navigate to <http://localhost:5000/api/institutions>
 
 **Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
 
-To use **Postman**, you need to create an account or sign in. There two sign in options - username/password and **Google**.
+To use **Postman**, you need to create an account or sign in. There are two sign-in options - username/password and **Google**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-1.JPG" />
 
-Once you sign in, you will be navigated to **Home**. 
+Once you sign in, it will navigate you to **Home**. 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-2.JPG" />
 
-Next to the **Home** tab, is the **Workspaces** dropdown. Click on this and create a **New Workspace**.
+Next to the **Home** tab is the **Workspaces** dropdown. Click on this and create a **New Workspace**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-3.JPG" />
 
-To keep things consistent with the **MongoDB Atlas** database you will create next week, name your new workspace `id607001-<Your OP username>`. One you have done this, click the **Create workspace and team** button in the bottom right-hand corner.
+To keep things consistent with the **MongoDB Atlas** database, you will create next week, name your new workspace `id607001-<Your OP username>`. Once you have done this, click the **Create workspace and team** button in the bottom right-hand corner.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-4.JPG" />
 
