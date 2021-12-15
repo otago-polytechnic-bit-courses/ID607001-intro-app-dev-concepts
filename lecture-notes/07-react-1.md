@@ -42,8 +42,6 @@ cd <Your OP username>-react
 code .
 ```
 
-**Note:** replace `<Your OP username>` with your **Otago Polytechnic** username.
-
 ### File structure
 
 The following is your **React application's** file structure:
