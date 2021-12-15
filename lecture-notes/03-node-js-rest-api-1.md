@@ -70,26 +70,26 @@ You will explore **database storage** next week. For now, you will use **in-memo
 Create a new file called `data.js`. This file will contain an **array** of **objects**.
 
 ```javascript
-const people = [
-    { id: 1, first_name: "John Doe" },
-    { id: 2, name: "Jane Doe" }
+const institutions = [
+    { id: 1, name: "Otago Polytechnic" },
+    { id: 2, name: "Southern Institute of Technology" }
 ]
 
-export { people }
+export { institutions }
 ```
 
-You need to export it to use `people` outside of `data.js`.
+You need to export it to use `institutions` outside of `data.js`.
 
 Feel free to add more **objects** to the **array** or even more properties.
 
 ## Controllers
 
-Create a new directory called `controllers`. In this directory, create a new file called `people.js`. In `people.js`, you will write functions associated with the **HTTP methods** mentioned above.
+Create a new directory called `controllers`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will write functions associated with the **HTTP methods** mentioned above.
 
-To access `people` from `data.js`, you need to add the following:
+To access `institutions` from `data.js`, you need to add the following:
 
 ```javascript
-import { people } from '../data.js'
+import { institutions } from '../institutions.js'
 ```
 
 ### Get Function
@@ -97,10 +97,10 @@ import { people } from '../data.js'
 All functions have at least two parameters - `req` and `res`. If you go to the route that is mapped to this function, you will be presented with a **JSON** response that contains `success` and `data`.
 
 ```javascript
-const getPeople = (req, res) => {
+const getInstitutions = (req, res) => {
     res
         .status(200)
-        .json({ success: true, data: people })
+        .json({ success: true, data: institutions })
 }
 ```
 
@@ -109,7 +109,7 @@ const getPeople = (req, res) => {
 There is a little more going on here. When you make a **POST** request, you will send data with it. Also, it is important to validate the data before it is sent.
 
 ```javascript
-const createPerson = (req, res) => {
+const createInstitution = (req, res) => {
     const { name } = req.body
 
     if (!first_name) {
@@ -120,41 +120,41 @@ const createPerson = (req, res) => {
 
     res
         .status(201)
-        .send({ success: true, person: name })
+        .send({ success: true, institution: name })
 }
 ```
 
 ### Update Function
 
-You need to find the `person` you want to update.
+You need to find the `institution` you want to update.
 
 ```javascript
-const updatePerson = (req, res) => {
+const updateInstitution = (req, res) => {
     const { id } = req.params
     const { name } = req.body
 
-    const person = people.find(
-        (person) => person.id === Number(id)
+    const institution = institutions.find(
+        (institution) => institution.id === Number(id)
     )
 
     // Check if person does exist
-    if (!person) {
+    if (!institution) {
         return res
             .status(404)
-            .json({ success: false, msg: `No person with the id ${id}` })
+            .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
     // If person does exist, update its name
-    const newPeople = people.map((person) => {
-        if (person.id === Number(id)) {
-            person.name = name
+    const newInstitution = institutions.map((institution) => {
+        if (institution.id === Number(id)) {
+            institution.name = name
         }
-        return person
+        return institution
     })
 
     res
         .status(200)
-        .json({ success: true, data: newPeople })
+        .json({ success: true, data: newInstitution })
 }
 ```
 
@@ -163,38 +163,38 @@ const updatePerson = (req, res) => {
 Similar to the update function.
 
 ```javascript
-const deletePerson = (req, res) => {
+const deleteInstitution = (req, res) => {
     const { id } = req.params
 
-    const person = people.find(
-        (person) => person.id === Number(id)
+    const institution = institutions.find(
+        (institution) => institution.id === Number(id)
     )
 
     // Check if person does exist
-    if (!person) {
+    if (!institution) {
         return res
             .status(404)
-            .json({ success: false, msg: `No person with the id ${id}` })
+            .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
     // If person does exist, delete it
-    const newPeople = people.filter(
-        (person) => person.id !== Number(id)
+    const newInstitution = institutions.filter(
+        (institution) => institution.id !== Number(id)
     )
 
     return res
         .status(200)
-        .json({ success: true, data: newPeople })
+        .json({ success: true, data: newInstitution })
 ```
 
-You need to export these functions to use them outside of `people.js`.
+You need to export these functions to use them outside of `institutions.js`.
 
 ```javascript
 export {
-    getPeople,
-    createPerson,
-    updatePerson,
-    deletePerson
+    getInstitution,
+    createInstitution,
+    updateInstitution,
+    deleteInstitution
 }
 ```
 
@@ -210,22 +210,22 @@ const router = Router() // Create a new router object. This allows to handle var
 
 // Importing the four functions
 import { 
-    getPeople, 
-    createPerson, 
-    updatePerson, 
-    deletePerson 
+    getInstitution,
+    createInstitution,
+    updateInstitution,
+    deleteInstitution 
 } from '../controllers/people.js'
 
 // Four routes that are mapped to the functions above
-router.route('/').get(getPeople)
-router.route('/').post(createPerson)
+router.route('/').get(getInstitution)
+router.route('/').post(createInstitution)
 
-router.route('/:id').put(updatePerson)
-router.route('/:id').delete(deletePerson)
+router.route('/:id').put(updateInstitution)
+router.route('/:id').delete(deleteInstitution)
 
 // You can chain these if you wish. For example:
-// router.route('/').get(getPeople).post(createPerson)
-// router.route('/:id').put(updatePerson).delete(deletePerson)
+// router.route('/').get(getInstitution).post(createInstitution)
+// router.route('/:id').put(updateInstitution).delete(deleteInstitution)
 
 export default router // You do not need to enclose router in curly braces
 ```
@@ -253,14 +253,14 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Access all the routes exported from routes/people.js
-import people from './routes/people.js'
+import institutions from './routes/institutions.js'
 
 // Express middleware
 app.use(urlencoded({ extended: false }))
 app.use(json())
 
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
-app.use('/api/people', people)
+app.use('/api/institutions', institutions)
 
 // Listen on port 3000
 app.listen(PORT, () => {
@@ -274,7 +274,7 @@ Rerun the following command:
 node app.js
 ```
 
-Navigate to <http://localhost:5000/api/people>
+Navigate to <http://localhost:5000/api/institutions>
 
 ## Postman
 
