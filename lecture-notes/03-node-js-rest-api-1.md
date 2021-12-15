@@ -281,6 +281,12 @@ Navigate to <http://localhost:5000/api/institutions>
 
 **Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
 
-If you do not have an account, please sign up. There are two options - **username/password** and **Google**.
+To use **Postman**, you need to create an account or sign in. There two sign in options - username/password and **Google**.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-1.JPG" />
+
+
+
+
 
 ## Formative Assessment
