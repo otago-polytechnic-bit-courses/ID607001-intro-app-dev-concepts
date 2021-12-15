@@ -137,14 +137,14 @@ const updateInstitution = (req, res) => {
         (institution) => institution.id === Number(id)
     )
 
-    // Check if person does exist
+    // Check if institution does exist
     if (!institution) {
         return res
             .status(404)
             .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
-    // If person does exist, update its name
+    // If institution does exist, update its name
     const newInstitution = institutions.map((institution) => {
         if (institution.id === Number(id)) {
             institution.name = name
@@ -170,14 +170,14 @@ const deleteInstitution = (req, res) => {
         (institution) => institution.id === Number(id)
     )
 
-    // Check if person does exist
+    // Check if institution does exist
     if (!institution) {
         return res
             .status(404)
             .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
-    // If person does exist, delete it
+    // If institution does exist, delete it
     const newInstitution = institutions.filter(
         (institution) => institution.id !== Number(id)
     )
