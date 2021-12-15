@@ -89,7 +89,7 @@ Create a new directory called `controllers`. In this directory, create a new fil
 To access `institutions` from `data.js`, you need to add the following:
 
 ```javascript
-import { institutions } from '../institutions.js'
+import { institutions } from '../data.js'
 ```
 
 ### Get Function
@@ -211,14 +211,14 @@ const router = Router() // Create a new router object. This allows to handle var
 
 // Importing the four functions
 import { 
-    getInstitution,
+    getInstitutions,
     createInstitution,
     updateInstitution,
     deleteInstitution 
 } from '../controllers/institutions.js'
 
 // Four routes that are mapped to the functions above
-router.route('/').get(getInstitution)
+router.route('/').get(getInstitutions)
 router.route('/').post(createInstitution)
 
 router.route('/:id').put(updateInstitution)
