@@ -81,13 +81,11 @@ You will be presented with a modal congratulating you on setting up access rules
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-10.png" width="950" height="537">
 
+### Connecting to your REST API
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-11.png" width="950" height="537">
 
-
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-12.png" width="950" height="537">
-
-
-### Connecting to your REST API
 
 ## Validation
 
