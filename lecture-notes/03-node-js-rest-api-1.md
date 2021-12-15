@@ -202,7 +202,7 @@ It may be hard to visualise at the moment, but it will become clearer soon.
 
 ## Routes
 
-Create a new directory called `routes`. In this directory, create a new file called `people.js`. In `people.js`, you will create four routes and map them to the functions imported from `controllers/people.js`.
+Create a new directory called `routes`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will create four routes and map them to the functions imported from `controllers/institutions.js`.
 
 ```javascript
 import { Router } from 'express'
@@ -214,7 +214,7 @@ import {
     createInstitution,
     updateInstitution,
     deleteInstitution 
-} from '../controllers/people.js'
+} from '../controllers/institutions.js'
 
 // Four routes that are mapped to the functions above
 router.route('/').get(getInstitution)
