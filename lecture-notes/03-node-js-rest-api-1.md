@@ -309,7 +309,7 @@ Click the **+** button next to the **Overview** tab.
 
 Here you will make your first request. Enter a request URL, i.e., http://localhost:3000/api/institutions, then click the **Send** button.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-6.JPG" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-7.JPG" />
 
 **POST** request example:
 
