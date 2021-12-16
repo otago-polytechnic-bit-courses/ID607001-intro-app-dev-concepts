@@ -138,7 +138,6 @@ You need to find the `institution` you want to update.
 ```javascript
 const updateInstitution = (req, res) => {
     const { id } = req.params
-    const { name } = req.body
 
     const institution = institutions.find(
         (institution) => institution.id === Number(id)
@@ -153,7 +152,7 @@ const updateInstitution = (req, res) => {
 
     const newInstitutions = institutions.map((institution) => {
         if (institution.id === Number(id)) { // If institution does exist, update its name
-            institution.name = name
+            institution.name = req.body.name
         }
         return institution
     })
