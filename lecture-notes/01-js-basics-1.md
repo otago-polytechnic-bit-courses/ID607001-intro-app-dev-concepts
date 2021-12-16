@@ -1,6 +1,6 @@
 # 01: JavaScript Basics 1
 
-## Refresher Activity
+## Refresher activity
 
 For the next five-10 minutes, write down everything you know about **JavaScript**. Feel free to use any online resources.
 
@@ -89,7 +89,7 @@ const x = 10 // SyntaxError: redeclaration of const x
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const>
 
-## Control Flow
+## Control flow
 
 ### if...else...else if
 
@@ -391,6 +391,6 @@ console.log(fruit['name']) // Apple
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
   
-## Formative Assessment
+## Formative assessment
 
 You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.

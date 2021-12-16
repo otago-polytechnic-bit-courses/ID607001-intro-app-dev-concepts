@@ -80,7 +80,7 @@ console.log(nums.reduce(reducer)) // 10
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
 
-## Error Handling
+## Error handling
 
 ### try...catch
 
@@ -117,7 +117,7 @@ catch (e) {
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements>
 
-## Reading in Data
+## Reading in data
 
 There are many ways to read data, i.e., from a database or an API. You will see these two methods in the next few weeks. However, you may just want to read data from a local file.
 
@@ -134,6 +134,6 @@ readFile('someFile', (err, data) => {
 
 **Resource:** <https://nodejs.org/api/fs.html#fsreadfilepath-options-callback>
 
-## Formative Assessment
+## Formative assessment
 
 You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.

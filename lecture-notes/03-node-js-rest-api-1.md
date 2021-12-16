@@ -63,7 +63,7 @@ Majority of the online **Node.js** examples use **CommonJS**. You are going to u
 - <https://expressjs.com>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules>
 
-## In-Memory Storage
+## In-memory storage
 
 You will explore **database storage** next week. For now, you will use **in-memory storage** via a local file.
 
@@ -84,7 +84,7 @@ Feel free to add more **objects** to the **array** or even more properties.
 
 ## Controllers
 
-Create a new directory called `controllers`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will write functions associated with the **HTTP methods** mentioned above.
+In the root directory, create a new directory called `controllers`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will write functions associated with the **HTTP methods** mentioned above.
 
 To access `institutions` from `data.js`, you need to add the following:
 
@@ -92,7 +92,7 @@ To access `institutions` from `data.js`, you need to add the following:
 import { institutions } from '../data.js'
 ```
 
-### Get Function
+### Get function
 
 All functions have at least two parameters - `req` and `res`. If you go to the route that is mapped to this function, you will be presented with a **JSON** response that contains `success` and `data`.
 
@@ -104,7 +104,7 @@ const getInstitutions = (req, res) => {
 }
 ```
 
-### Create Function
+### Create function
 
 There is a little more going on here. When you make a **POST** request, you will send data with it. Also, it is important to validate the data before it is sent.
 
@@ -116,15 +116,22 @@ const createInstitution = (req, res) => {
         return res
             .status(400)
             .json({ success: false, msg: 'Please provide a name' })
-    }
+    } 
+
+    const id = institutions[institutions.length - 1].id + 1
+    
+    institutions.push({
+        id: id,
+        name: name
+    })
 
     res
         .status(201)
-        .send({ success: true, institution: name })
+        .send({ success: true, data: institutions })
 }
 ```
 
-### Update Function
+### Update function
 
 You need to find the `institution` you want to update.
 
@@ -144,9 +151,8 @@ const updateInstitution = (req, res) => {
             .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
-    // If institution does exist, update its name
-    const newInstitution = institutions.map((institution) => {
-        if (institution.id === Number(id)) {
+    const newInstitutions = institutions.map((institution) => {
+        if (institution.id === Number(id)) { // If institution does exist, update its name
             institution.name = name
         }
         return institution
@@ -154,11 +160,11 @@ const updateInstitution = (req, res) => {
 
     res
         .status(200)
-        .json({ success: true, data: newInstitution })
+        .json({ success: true, data: newInstitutions })
 }
 ```
 
-### Delete Function
+### Delete function
 
 Similar to the update function.
 
@@ -177,14 +183,13 @@ const deleteInstitution = (req, res) => {
             .json({ success: false, msg: `No institution with the id ${id}` })
     }
 
-    // If institution does exist, delete it
-    const newInstitution = institutions.filter(
-        (institution) => institution.id !== Number(id)
+    const newInstitutions = institutions.filter(
+        (institution) => institution.id !== Number(id) // If institution does exist, delete it
     )
 
     return res
         .status(200)
-        .json({ success: true, data: newInstitution })
+        .json({ success: true, data: newInstitutions })
 }
 ```
 
@@ -199,11 +204,13 @@ export {
 }
 ```
 
-It may be hard to visualise at the moment, but it will become clearer soon.
+It may be hard to visualise at the moment, but it will become clearer soon. 
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
 ## Routes
 
-Create a new directory called `routes`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will create four routes and map them to the functions imported from `controllers/institutions.js`.
+In the root directory, create a new directory called `routes`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will create four routes and map them to the functions imported from `controllers/institutions.js`.
 
 ```javascript
 import { Router } from 'express'
@@ -231,15 +238,15 @@ router.route('/:id').delete(deleteInstitution)
 export default router // You do not need to enclose router in curly braces
 ```
 
-## Entry Point
+## Entry point
 
-`app.js` is the **REST API's** entry point. Open a terminal and run the following command:
+In the root directory, create a new file called `app.js`. It is your **REST API's** entry point. Open a terminal and run the following command:
 
 ```bash
 node app.js
 ```
 
-Nothing happened. Why? Well...it is because `app.js` is empty.
+Nothing happened. Why? It is because `app.js` is empty.
 
 You need to add the following:
 
@@ -263,7 +270,7 @@ app.use(json())
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
 app.use('/api/institutions', institutions)
 
-// Listen on port 3000
+// Listening on port 3000
 app.listen(PORT, () => {
     console.log(`Server is listening on port ${PORT}`)
 })
@@ -275,7 +282,7 @@ Rerun the following command:
 node app.js
 ```
 
-Navigate to <http://localhost:5000/api/institutions>
+Navigate to <http://localhost:3000/api/institutions>
 
 ## Postman
 
@@ -285,11 +292,11 @@ To use **Postman**, you need to create an account or sign in. There are two sign
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-1.JPG" />
 
-Once you sign in, it will navigate you to **Home**. 
+Once you sign in, it will navigate you to **Home**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-2.JPG" />
 
-Next to the **Home** tab is the **Workspaces** dropdown. Click on this and create a **New Workspace**.
+Next to the **Home** tab is the **Workspaces** dropdown. Click this and create a **New Workspace**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-3.JPG" />
 
@@ -315,7 +322,7 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-8.JPG" />
 
-**Note**: When you create a new institution, it will not mutate the `institutions` **array** of **objects** in `data.js`.
+**Note**: Creating a new institution will not mutate the `institutions` **array** of **objects** in `data.js`. Though, it will mutate the copy imported.
 
 **PUT** request example:
 
@@ -327,6 +334,8 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/03-node-js-rest-api-1/03-node-js-rest-api-10.JPG" />
 
-**Note:** Much like When you create a new institution, it will not mutate the `institutions` **array** of **objects** in `data.js`.
+**Note:** Much like creating a new institution, it will not mutate the `institutions` **array** of **objects** in `data.js`.
 
-## Formative Assessment
+## Final thoughts
+
+## Formative assessment
