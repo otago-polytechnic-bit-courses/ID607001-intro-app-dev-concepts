@@ -177,20 +177,28 @@ export default app
 
 ### Schema and model
 
+The start point with **Mongoose** is the `Schema`. Each **schema** is mapped to a **collection** and defines the shape of a **document** within that **collection**.
+
+Īn the root directory, create a new directory called `models`. In this directory, create a new file called `institutions.js`. In `institutions.js`, add the following:
+
 ```javascript
 import mongoose from 'mongoose'
 
-const InstitutionsSchema = new mongoose.Schema({
+const institutionsSchema = new mongoose.Schema({
     name: {
         type: String
     }
 })
 
-export default mongoose.model('Institution', InstitutionsSchema)
+export default mongoose.model('Institution', institutionsSchema)
 ```
 
-- `mongoose.Schema`
-- `mongoose.model`
+- `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
+- `mongoose.model` - A constructor compiled from a `Schema` definition. An instance if a model is called a **document**. They are responsible for creating and reading documents from a **MongoDB database**.
+
+**Resources:** 
+- https://mongoosejs.com/docs/guide.html#schemas
+- https://mongoosejs.com/docs/models.html
 
 ## Controller
 
@@ -292,6 +300,10 @@ export {
     deleteInstitution
 }
 ```
+
+- `find()`
+- `findByIdAndUpdate()`
+- `findByIdAndRemov()`
 
 ## Validation
 
