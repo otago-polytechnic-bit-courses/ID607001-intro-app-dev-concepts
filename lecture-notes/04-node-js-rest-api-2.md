@@ -217,9 +217,7 @@ const getInstitutions = async (req, res) => {
 ```javascript
 const createInstitution = async (req, res) => {
     try {
-        const { name } = req.body
-
-        await Institution.create({ name })
+        await new Institution(req.body)
 
         const newInstitutions = await Institution.find({})
 
@@ -238,9 +236,8 @@ const createInstitution = async (req, res) => {
 const updateInstitution = async (req, res) => {
     try {
         const { id } = req.params
-        const { name } = req.body
 
-        const institution = await Institution.findByIdAndUpdate(id, { name }, { useFindAndModify: false })
+        const institution = await Institution.findByIdAndUpdate(id, req.body.name, { useFindAndModify: false })
         
         if (!institution) {
             return res
