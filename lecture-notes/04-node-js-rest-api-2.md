@@ -269,7 +269,7 @@ const updateInstitution = async (req, res) => {
     try {
         const { id } = req.params
 
-        const institution = await Institution.findByIdAndUpdate(id, req.body.name, { useFindAndModify: false })
+        const institution = await Institution.findByIdAndUpdate(id, req.body.name)
         
         if (!institution) {
             return res
@@ -289,6 +289,8 @@ const updateInstitution = async (req, res) => {
     }
 }
 ```
+
+**PUT** request example:
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.JPG" />
 
@@ -318,7 +320,11 @@ const deleteInstitution = async (req, res) => {
 }
 ```
 
+**DELETE** request example:
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG" />
+
+Exports remain unchanged.
 
 ```javascript
 export {
@@ -329,11 +335,14 @@ export {
 }
 ```
 
-- `find()`
-- `findByIdAndUpdate()`
-- `findByIdAndRemove()`
+**Resources:**
+- <https://mongoosejs.com/docs/api.html#model_Model.find>
+- <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate>
+- <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove>
 
 ## Validation
+
+Here is an example of how you can validate your **collection's** **fields**:
 
 ```javascript
 import mongoose from 'mongoose'
@@ -350,11 +359,21 @@ const institutionsSchema = new mongoose.Schema({
 export default mongoose.model('Institution', institutionsSchema)
 ```
 
+Here is an example: 
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.JPG" />
+
+Here is another example: The `unique` option is not a validator. It is a used to build **MongoDB** unique indexes.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.JPG" />
 
+**Resource:** <https://mongoosejs.com/docs/validation.html>
+
 ## Relationships
+
+The following example demonstrates a relationship `Institution` and `Department`.
+
+Here you are referencing `Institution`. In a nutshell, you are saying a department can belong to an institution. **Note:** You will need to create a new file called `departments.js` in the `models` directory.
 
 ```javascript
 import mongoose from 'mongoose'
@@ -374,6 +393,9 @@ const departmentsSchema = new mongoose.Schema({
 export default mongoose.model('Department', departmentsSchema)
 ```
 
+Here you are referencing `Department`. You are saying an institution can have many departments.
+
+
 ```javascript
 import mongoose from 'mongoose'
 
@@ -392,6 +414,8 @@ const institutionsSchema = new mongoose.Schema({
 
 export default mongoose.model('Institution', institutionsSchema)
 ```
+
+In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include **updateDepartment** and **deleteDepartment**.
 
 ```javascript
 import Department from '../models/departments.js'
@@ -416,6 +440,7 @@ const createDepartment = async (req, res) => {
         const department = new Department(req.body)
         department.save()
 
+        // Find a institution by its id, then push the created department to its list of departments. 
         const institution = await Institution.findById({ _id: department.institution })
         institution.departments.push(department)
         await institution.save()
@@ -438,8 +463,14 @@ export {
 }
 ```
 
+**Note:** You will create **routes** for these functions.
+
+Here is an example
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-21.JPG" />
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-22.JPG" />
+
+**Resource:** <https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents>
 
 ## Formative assessment
