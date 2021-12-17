@@ -202,9 +202,15 @@ export default mongoose.model('Institution', institutionsSchema)
 
 ## Controller
 
+You will need to make a few changes in `institutions.js`.
+
+Import the **model** from `models/institutions.js`.
+
 ```javascript
 import Institution from '../models/institutions.js'
 ```
+
+To get **all** institutions, use `Institution.find({})`. The `{}` inside `Institution.find()` represents **all**.
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -222,10 +228,12 @@ const getInstitutions = async (req, res) => {
 }
 ```
 
+To create an institution, use `Institution.create(req.body)`. 
+
 ```javascript
 const createInstitution = async (req, res) => {
     try {
-        await new Institution(req.body)
+        await Institution.create(req.body)
 
         const newInstitutions = await Institution.find({})
 
@@ -240,11 +248,21 @@ const createInstitution = async (req, res) => {
 }
 ```
 
+Time to test it out. Go to **Postman** and send a **POST** request.
+
+The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and **version**.
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG" />
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png" width="950" height="537">
+If you want to physically see the **collection**, go to **MongoDB Atlas** and click the **Browse Collections** button.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png" width="950" height="537">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png" width="950" height="537" />
+
+**Note:** `student-management` is the name of the **database**.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png" width="950" height="537" />
+
+To create an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`. 
 
 ```javascript
 const updateInstitution = async (req, res) => {
@@ -272,7 +290,7 @@ const updateInstitution = async (req, res) => {
 }
 ```
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.JPG" width="950" height="537">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.JPG" />
 
 ```javascript
 const deleteInstitution = async (req, res) => {
@@ -300,7 +318,7 @@ const deleteInstitution = async (req, res) => {
 }
 ```
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG" width="950" height="537">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG" />
 
 ```javascript
 export {
