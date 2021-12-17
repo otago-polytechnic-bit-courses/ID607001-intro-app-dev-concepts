@@ -240,6 +240,12 @@ const createInstitution = async (req, res) => {
 }
 ```
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.png" />
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png" width="950" height="537">
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png" width="950" height="537">
+
 ```javascript
 const updateInstitution = async (req, res) => {
     try {
@@ -265,6 +271,8 @@ const updateInstitution = async (req, res) => {
     }
 }
 ```
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.png" width="950" height="537">
 
 ```javascript
 const deleteInstitution = async (req, res) => {
@@ -292,6 +300,8 @@ const deleteInstitution = async (req, res) => {
 }
 ```
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.png" width="950" height="537">
+
 ```javascript
 export {
     getInstitutions,
@@ -303,14 +313,14 @@ export {
 
 - `find()`
 - `findByIdAndUpdate()`
-- `findByIdAndRemov()`
+- `findByIdAndRemove()`
 
 ## Validation
 
 ```javascript
 import mongoose from 'mongoose'
 
-const InstitutionsSchema = new mongoose.Schema({
+const institutionsSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
@@ -319,9 +329,99 @@ const InstitutionsSchema = new mongoose.Schema({
     }
 })
 
-export default mongoose.model('Institution', InstitutionsSchema)
+export default mongoose.model('Institution', institutionsSchema)
 ```
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.png" />
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.png" />
+
 ## Relationships
+
+```javascript
+import mongoose from 'mongoose'
+
+const departmentsSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        maxlength: 50
+    },
+    institution: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Institution'
+    }
+})
+
+export default mongoose.model('Department', departmentsSchema)
+```
+
+```javascript
+import mongoose from 'mongoose'
+
+const institutionsSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        required: true,
+        unique : true,
+        maxlength: 100
+    },
+    departments: [{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Department'
+    }]
+})
+
+export default mongoose.model('Institution', institutionsSchema)
+```
+
+```javascript
+import Department from '../models/departments.js'
+import Institution from '../models/institutions.js'
+
+const getDepartments = async (req, res) => {
+    try {
+        const departments = await Department.find({})
+
+        res
+            .status(200)
+            .json({ success: true, data: departments })
+    } catch (err) {
+        res
+            .status(500)
+            .send({ msg: err.message || 'Something went wrong while getting all departments' })
+    }
+}
+
+const createDepartment = async (req, res) => {
+    try {
+        const department = new Department(req.body)
+        department.save()
+
+        const institution = await Institution.findById({ _id: department.institution })
+        institution.departments.push(department)
+        await institution.save()
+
+        const newDepartments = await Department.find({})
+
+        res
+            .status(201)
+            .send({ success: true, data: newDepartments })
+    } catch (err) {
+        res
+            .status(500)
+            .send({ msg: err.message || 'Something went wrong while creating a department' })
+    }
+}
+
+export {
+    getDepartments,
+    createDepartment
+}
+```
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.png" />
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-21.png" />
 
 ## Formative assessment
