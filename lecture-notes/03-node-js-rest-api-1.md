@@ -250,10 +250,7 @@ Nothing happened. Why? It is because `app.js` is empty.
 You need to add the following:
 
 ```javascript
-import express, { 
-    urlencoded, 
-    json 
-} from 'express'
+import express, { urlencoded, json } from "express"
 
 // Access all the routes exported from routes/institutions.js
 import institutions from './routes/institutions.js'

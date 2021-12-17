@@ -122,16 +122,13 @@ export default conn
 ```
 
 - `import mongoose from 'mongoose'` - To use **Mongoose**, run the command: `npm install mongoose`.
-- `connect` - It allows you to connect to **MongoDB Atlas**.
+- `connect` - It allows you to connect to a **MongoDB Atlas** **cluster**.
 
 You will need to add a few things to `app.js`:
 
 ```javascript
 import dotenv from 'dotenv'
-import express, { 
-    urlencoded, 
-    json 
-} from 'express'
+import express, { urlencoded, json } from 'express'
 
 import conn from './db/connection.js'
 
@@ -167,7 +164,7 @@ export default app
 - `import dotenv from 'dotenv'` - To use **dotenv**, run the command: `npm install dotenv`.
 - `import conn from './db/connection.js'` - You need to import `conn`. It will be called in `start()`.
 - `dotenv.config()` - It will read your `.env` file, parse the contents, assign it to `process.env` and return an object.
-- `start()`
+- `start()` - It will connect to your **MongoDB Atlas** **cluster** and start a **development server**.
 
 **Resources:**
 
@@ -217,13 +214,13 @@ const getInstitutions = async (req, res) => {
     try {
         const institutions = await Institution.find({})
 
-        res
-            .status(200)
-            .json({ success: true, data: institutions })
+        res.status(200).json({ success: true, data: institutions })
     } catch (err) {
-        res
-            .status(500)
-            .send({ msg: err.message || 'Something went wrong while getting all institutions' })
+        res.status(500).send({
+            msg:
+                err.message ||
+                "Something went wrong while getting all institutions'
+        })
     }
 }
 ```
@@ -237,18 +234,18 @@ const createInstitution = async (req, res) => {
 
         const newInstitutions = await Institution.find({})
 
-        res
-            .status(201)
-            .send({ success: true, data: newInstitutions })
+        res.status(201).send({ success: true, data: newInstitutions })
     } catch (err) {
-        res
-            .status(500)
-            .send({ msg: err.message || 'Something went wrong while creating an institution' })
+        res.status(500).send({
+            msg:
+                err.message ||
+                'Something went wrong while creating an institution'
+        })
     }
 }
 ```
 
-Time to test it out. Go to **Postman** and send a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/institutions, then perform a **POST** request.
 
 The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and **version**.
 
@@ -262,30 +259,31 @@ If you want to view the **collections**, go to **MongoDB Atlas** and click the *
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png" width="950" height="537" />
 
-To create an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`. 
+To create an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`.
 
 ```javascript
 const updateInstitution = async (req, res) => {
     try {
         const { id } = req.params
 
-        const institution = await Institution.findByIdAndUpdate(id, req.body.name)
-        
+        const institution = await Institution.findByIdAndUpdate(id, req.body)
+
         if (!institution) {
-            return res
-                .status(404)
-                .json({ success: false, msg: `No institution with the id ${id}` })
+            return res.status(404).json({
+                success: false,
+                msg: `No institution with the id ${id}`
+            })
         }
 
         const newInstitutions = await Institution.find({})
 
-        res
-            .status(200)
-            .json({ success: true, data: newInstitutions })
+        res.status(200).json({ success: true, data: newInstitutions })
     } catch (err) {
-        res
-            .status(500)
-            .send({ msg: err.message || 'Something went wrong while updating an institution' })
+        res.status(500).send({
+            msg:
+                err.message ||
+                'Something went wrong while updating an institution'
+        })
     }
 }
 ```
@@ -300,23 +298,24 @@ const deleteInstitution = async (req, res) => {
         const { id } = req.params
 
         const institution = await Institution.findByIdAndRemove(id)
-    
+
         if (!institution) {
-            return res
-                .status(404)
-                .json({ success: false, msg: `No institution with the id ${id}` })
+            return res.status(404).json({
+                success: false,
+                msg: `No institution with the id ${id}`
+            })
         }
 
         const newInstitutions = await Institution.find({})
-        
-        return res
-            .status(200)
-            .json({ success: true, data: newInstitutions })
+
+        return res.status(200).json({ success: true, data: newInstitutions })
     } catch (err) {
-        res
-        .status(500)
-        .send({ msg: err.message || 'Something went wrong while deleting an institution' })
-    }  
+        res.status(500).send({
+            msg:
+                err.message ||
+                'Something went wrong while deleting an institution'
+        })
+    }
 }
 ```
 
@@ -359,7 +358,7 @@ const institutionsSchema = new mongoose.Schema({
 export default mongoose.model('Institution', institutionsSchema)
 ```
 
-Here is a **POST** request example: 
+Here is a **POST** request example:
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.JPG" />
 
@@ -395,7 +394,6 @@ export default mongoose.model('Department', departmentsSchema)
 
 Here you are referencing `Department`. You are saying an institution can have many departments.
 
-
 ```javascript
 import mongoose from 'mongoose'
 
@@ -406,10 +404,12 @@ const institutionsSchema = new mongoose.Schema({
         unique : true,
         maxlength: 100
     },
-    departments: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Department'
-    }]
+    departments: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Department'
+        }
+    ]
 })
 
 export default mongoose.model('Institution', institutionsSchema)
@@ -425,45 +425,44 @@ const getDepartments = async (req, res) => {
     try {
         const departments = await Department.find({})
 
-        res
-            .status(200)
-            .json({ success: true, data: departments })
+        res.status(200).json({ success: true, data: departments })
     } catch (err) {
-        res
-            .status(500)
-            .send({ msg: err.message || 'Something went wrong while getting all departments' })
+        res.status(500).send({
+            msg:
+                err.message ||
+                'Something went wrong while getting all departments'
+        })
     }
 }
 
 const createDepartment = async (req, res) => {
     try {
         const department = new Department(req.body)
-        department.save()
+        await department.save()
 
         // Find a institution by its id, then push the created department to its list of departments. 
-        const institution = await Institution.findById({ _id: department.institution })
+        const institution = await Institution.findById({
+            _id: department.institution
+        })
         institution.departments.push(department)
         await institution.save()
 
         const newDepartments = await Department.find({})
 
-        res
-            .status(201)
-            .send({ success: true, data: newDepartments })
+        res.status(201).send({ success: true, data: newDepartments })
     } catch (err) {
-        res
-            .status(500)
-            .send({ msg: err.message || 'Something went wrong while creating a department' })
+        res.status(500).send({
+            msg:
+                err.message ||
+                'Something went wrong while creating a department'
+        })
     }
 }
 
-export {
-    getDepartments,
-    createDepartment
-}
+export { getDepartments, createDepartment }
 ```
 
-**Note:** You will create **routes** for these functions.
+**Note:** You will create the appropriate **routes** for these functions.
 
 Here is a **POST** request example:
 
