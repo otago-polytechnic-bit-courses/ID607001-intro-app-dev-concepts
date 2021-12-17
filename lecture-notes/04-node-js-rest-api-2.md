@@ -99,7 +99,7 @@ Copy the connection string.
 
 Go back to `.env` and add the following environment variable:
 
-```md
+```bash
 MONGO_URI=<Your connection string>
 ```
 
@@ -179,7 +179,7 @@ export default app
 
 The start point with **Mongoose** is the `Schema`. Each **schema** is mapped to a **collection** and defines the shape of a **document** within that **collection**.
 
-Īn the root directory, create a new directory called `models`. In this directory, create a new file called `institutions.js`. In `institutions.js`, add the following:
+In the root directory, create a new directory called `models`. In this directory, create a new file called `institutions.js`. In `institutions.js`, add the following:
 
 ```javascript
 import mongoose from 'mongoose'
@@ -194,7 +194,7 @@ export default mongoose.model('Institution', institutionsSchema)
 ```
 
 - `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
-- `mongoose.model` - A constructor compiled from a `Schema` definition. An instance if a model is called a **document**. They are responsible for creating and reading documents from a **MongoDB database**.
+- `mongoose.model` - A constructor compiled from a `Schema` definition. An instance, if a model is called a **document**. They are responsible for creating and reading documents from a **MongoDB database**.
 
 **Resources:** 
 - https://mongoosejs.com/docs/guide.html#schemas
@@ -254,7 +254,7 @@ The response contains `success` and `data`. `data` contains the **document's** `
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG" />
 
-If you want to physically see the **collection**, go to **MongoDB Atlas** and click the **Browse Collections** button.
+If you want to view the **collections**, go to **MongoDB Atlas** and click the **Browse Collections** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png" width="950" height="537" />
 
@@ -359,11 +359,11 @@ const institutionsSchema = new mongoose.Schema({
 export default mongoose.model('Institution', institutionsSchema)
 ```
 
-Here is an example: 
+Here is a **POST** request example: 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.JPG" />
 
-Here is another example: The `unique` option is not a validator. It is a used to build **MongoDB** unique indexes.
+Here is another **POST** request example: The `unique` option is not a validator. It is used to build **MongoDB** unique indexes.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.JPG" />
 
@@ -371,7 +371,7 @@ Here is another example: The `unique` option is not a validator. It is a used to
 
 ## Relationships
 
-The following example demonstrates a relationship `Institution` and `Department`.
+The following example demonstrates a relationship between `Institution` and `Department`.
 
 Here you are referencing `Institution`. In a nutshell, you are saying a department can belong to an institution. **Note:** You will need to create a new file called `departments.js` in the `models` directory.
 
@@ -465,11 +465,15 @@ export {
 
 **Note:** You will create **routes** for these functions.
 
-Here is an example
+Here is a **POST** request example:
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-21.JPG" />
 
+Here is a **GET** request example:
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-22.JPG" />
+
+**Note:** You can see an institution's list of departments.
 
 **Resource:** <https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents>
 
