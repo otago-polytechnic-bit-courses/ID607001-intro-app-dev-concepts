@@ -93,7 +93,9 @@ App (parent) <- Welcome (child)
 
 ### Props
 
-When you declare a **class** or **function** component, you must never modify its props (properties) or act like **pure functions**. It is a strict rule that all **components** must adhere to.
+When you declare a **class** or **function** component, you must never modify its **props (properties)**. There is one strict rule that all **components** must adhere to:
+
+*All React components must act like pure functions with respect to their props.*
 
 If you are unsure of what a **pure function** is, please carefully read this resource - <https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/>
 
@@ -125,7 +127,7 @@ const App = () => {
     <div>
       <h1>Hello, World!</h1>
       ...
-      <Welcome /> {/* This will render - Welcome an <h1> element. Note: a prop attribute is not given */}
+      <Welcome /> {/* It will render - Welcome an <h1> element. Note: a prop attribute is not given */}
       <Welcome firstName="John" /> {/*
                                      It will render - Welcome John in an <h1> element. Note: a prop
                                      attribute is given. Make sure the prop attribute's name is the
@@ -146,7 +148,7 @@ Here is an example output without and with `props`:
 
 #### Axios
 
-The following few examples will be using **Axios**. Many of you have probably used a **promise** based HTTP client before, i.e., **Fetch**. You can think of **Axios** as **Fetch** on steroids. For more information, please carefully read this resource - <https://axios-http.com/docs/intro>.
+The following few examples will be using **Axios**. Many of you have probably used a **promise** based HTTP client before, i.e., **Fetch**. You can think of **Axios** as a better alternative to **Fetch**. For more information, please carefully read this resource - <https://axios-http.com/docs/intro>.
 
 To install **Axios**, open the terminal in **Visual Studio Code**, and run the following command:
 
