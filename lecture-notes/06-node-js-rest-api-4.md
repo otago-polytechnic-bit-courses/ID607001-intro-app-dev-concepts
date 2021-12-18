@@ -6,8 +6,6 @@
 
 ## Rate Limits
 
-## Formative Assessment
-
 ## Postman Documentation
 
 ## Formative Assessment
