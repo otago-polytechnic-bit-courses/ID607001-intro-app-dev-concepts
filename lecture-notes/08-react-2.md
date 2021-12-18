@@ -146,7 +146,13 @@ Here is an example output without and with `props`:
 
 **Resource:** <https://reactjs.org/docs/components-and-props.html>
 
-#### Axios
+### Component lifecycle methods
+
+Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
+
+If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
+
+## Axios
 
 The following few examples will be using **Axios**. Many of you have probably used a **promise** based HTTP client before, i.e., **Fetch**. You can think of **Axios** as a better alternative to **Fetch**. For more information, please carefully read this resource - <https://axios-http.com/docs/intro>.
 
@@ -244,11 +250,5 @@ Here is an example output of `useState`, `useEffect` and **Axios**:
 
 - <https://reactjs.org/docs/hooks-overview.html>
 - <https://reactjs.org/docs/hooks-effect.html>
-
-## Component lifecycle methods
-
-Each **function component** has several **lifecycle methods** that are run at particular times during the rendering and commit process.
-
-If you are unsure what the **component lifecycle methods** are, please carefully read this resource - <https://datacadamia.com/web/javascript/react/function/lifecycle>.
 
 ## Formative Assessment
