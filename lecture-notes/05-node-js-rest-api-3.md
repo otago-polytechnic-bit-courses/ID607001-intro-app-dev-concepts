@@ -1,9 +1,7 @@
 # 05: Node.js REST API 3
 
-## Seeders
+## JSON Web Tokens (JWT)
 
-## Caching
 
-## Rate Limits
 
-## Formative Assessment
+## Heroku

@@ -1,8 +1,12 @@
 # 06: Node.js REST API 4
 
-## JSON Web Tokens (JWT)
+## Seeders
 
-## Heroku
+## Caching
+
+## Rate Limits
+
+## Formative Assessment
 
 ## Postman Documentation
 

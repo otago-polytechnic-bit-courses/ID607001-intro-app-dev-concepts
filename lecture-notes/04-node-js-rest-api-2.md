@@ -323,7 +323,7 @@ const deleteInstitution = async (req, res) => {
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG" />
 
-Exports remain unchanged.
+Exports functions remain unchanged.
 
 ```javascript
 export {
@@ -340,6 +340,8 @@ export {
 - <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove>
 
 ## Validation
+
+**Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting** and **header injection**.
 
 Here is an example of how you can validate your **collection's** **fields**:
 
