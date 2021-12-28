@@ -204,7 +204,7 @@ const authRoute = async (req, res, next) => {
 export default authRoute
 ```
 
-Time to test it out. Firstly, start the development server, then go to Postman. Enter the URL - http://localhost:3000/api/register and data, then perform a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/register and data, then perform a **POST** request.
 
 Congrats, you have created your first user. Now, you can use this user to login.
 
@@ -218,7 +218,7 @@ You have successfully logged in. **Note:** The data is `email` and `password`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-3.JPG" />
 
-When you login, it will store the user's token in a **cookie**.
+When you log in, it will store the user's token in a **cookie**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-4.JPG" />
 
@@ -226,18 +226,56 @@ You are authorised to perform a **POST** request. **Note:** This route is protec
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-5.JPG" />
 
-What happens if you delete the user's token?
+What happens if you delete the cookie?
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-6.JPG" />
 
-Peform a **POST** request.
+Perform a **POST** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-7.JPG" />
 
-Logout the user. The user's token will expire.
+Logout the user. **Note:** The cookie will expire.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-8.JPG" />
 
 ## Heroku
+
+**Heroku** is a cloud-based **Platform as a Service (PaaS)** used by developers to deploy and manage modern applications. If you do not have an account, please sign up [here](https://signup.heroku.com). Once you have signed up and logged in, you will be presented with the **Heroku** dashboard. It displays all your **Heroku** applications. Your dashboard will be empty if it is your first time using **Heroku**.
+
+### Create a new application
+
+To create a new application, click the **New** button in the top right-hand corner, then choose the **Create new app** option.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-9.png" />
+
+Name the application `id607001-<Your OP username>`.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-10.png" />
+
+### Deployment
+
+Once you have created a new application, go to the **Deploy** tab. Choose the **GitHub** deployment method and search for the repository you want to connect to, i.e., your **Project 1: Node.js REST API** repository.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-11.png" />
+
+Enable automatic deploys and manually deploy the `master` or `main` branch.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-12.png" />
+
+Go to the **Settings** tab and click the **Reveal Config Vars** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-13.png" />
+
+Add the environment variables specified in `.env`.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-14.png" />
+
+Time to test it out. Go to **Postman** and log in.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-15.JPG" />
+
+Perform a **GET** request.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-16.JPG" />
 
 ## Formative Assessment
