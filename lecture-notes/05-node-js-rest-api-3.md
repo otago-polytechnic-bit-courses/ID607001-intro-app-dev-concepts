@@ -204,6 +204,40 @@ const authRoute = async (req, res, next) => {
 export default authRoute
 ```
 
+Time to test it out. Firstly, start the development server, then go to Postman. Enter the URL - http://localhost:3000/api/register and data, then perform a **POST** request.
+
+Congrats, you have created your first user. Now, you can use this user to login.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-1.JPG" />
+
+Whoops, you forgot to enter a `password`.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-2.JPG" />
+
+You have successfully logged in. **Note:** The data is `email` and `password`.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-3.JPG" />
+
+When you login, it will store the user's token in a **cookie**.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-4.JPG" />
+
+You are authorised to perform a **POST** request. **Note:** This route is protected. 
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-5.JPG" />
+
+What happens if you delete the user's token?
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-6.JPG" />
+
+Peform a **POST** request.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-7.JPG" />
+
+Logout the user. The user's token will expire.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-8.JPG" />
+
 ## Heroku
 
 ## Formative Assessment
