@@ -118,9 +118,9 @@ Here we have declared a `const` variable called `name`. It can be used in **JSX*
 // Embedding an in-built JavaScript function
 const element = <h1>{Math.random()}</h1>
 
-// Embedding a user defined JavaScript function
 const getRandomNumber = (max) => Math.floor(Math.random() * max)
 
+// Embedding a user defined JavaScript function
 const element = <h1>{getRandomNumber(3)}</h1>
 ```
 
