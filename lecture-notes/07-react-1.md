@@ -119,9 +119,7 @@ Here we have declared a `const` variable called `name`. It can be used in **JSX*
 const element = <h1>{Math.random()}</h1>
 
 // Embedding a user defined JavaScript function
-const getRandomNumber = (max) => {
-  return Math.floor(Math.random() * max)
-}
+const getRandomNumber = (max) => Math.floor(Math.random() * max)
 
 const element = <h1>{getRandomNumber(3)}</h1>
 ```
@@ -142,10 +140,10 @@ The following is an example of how you can nest **JSX**:
 
 ```javascript
 const element = (
-  <div>
+  <>
     <h1>Hello, World!</h1>
     <h2>My name is John Doe</h2>
-  </div>
+  </>
 )
 ```
 
@@ -170,9 +168,9 @@ import React from "react"
 
 const App = () => {
   return (
-    <div>
+    <>
       <h1>Hello, World!</h1>
-    </div>
+    </>
   )
 }
 
@@ -197,9 +195,9 @@ ReactDOM.render(
 A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`. **Note:** `App` returns:
 
 ```javascript
-<div>
+<>
   <h1>Hello, World!</h1>
-</div>
+</>
 ```
 
 **Resources:**
