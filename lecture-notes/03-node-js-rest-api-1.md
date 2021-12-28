@@ -250,7 +250,7 @@ Nothing happened. Why? It is because `app.js` is empty.
 You need to add the following:
 
 ```javascript
-import express, { urlencoded, json } from "express"
+import express from "express"
 
 // Access all the routes exported from routes/institutions.js
 import institutions from './routes/institutions.js'
@@ -260,8 +260,8 @@ const app = express()
 const PORT = process.env.PORT || 3000
 
 // Express middleware
-app.use(urlencoded({ extended: false }))
-app.use(json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
 app.use('/api/institutions', institutions)
