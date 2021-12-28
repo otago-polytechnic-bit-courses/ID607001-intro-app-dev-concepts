@@ -2,6 +2,8 @@
 
 ## JSON Web Tokens (JWT)
 
+https://blog.logrocket.com/jwt-authentication-best-practices/
+
 ### User model
 
 ```js
