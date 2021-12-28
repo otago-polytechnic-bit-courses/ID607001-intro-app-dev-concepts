@@ -206,6 +206,53 @@ const authRoute = async (req, res, next) => {
 export default authRoute
 ```
 
+In `app.js`:
+
+```javascript
+import cookieParser from 'cookie-parser'
+import dotenv from 'dotenv'
+import express from 'express'
+
+// Db
+import conn from './db/connection.js'
+
+// Routes
+import auth from './routes/auth.js'
+import departments from './routes/departments.js'
+import institutions from './routes/institutions.js'
+
+import authRoute from './middleware/auth.js'
+
+dotenv.config()
+
+const app = express()
+
+const PORT = process.env.PORT || 3000
+
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
+app.use(cookieParser(process.env.JWT_SECRET))
+
+app.use('/api', auth)
+app.use('/api/departments', departments)
+app.use('/api/institutions', authRoute, institutions)
+
+const start = async () => {
+    try {
+        await conn(process.env.MONGO_URI)
+        app.listen(PORT, () =>
+            console.log(`Server is listening on port ${PORT}`)
+        )
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+start()
+
+export default app
+```
+
 Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/register and data, then perform a **POST** request.
 
 Congrats, you have created your first user. Now, you can use this user to login.
@@ -253,6 +300,14 @@ To create a new application, click the **New** button in the top right-hand corn
 Name the application `id607001-<Your OP username>`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-10.png" />
+
+### Procfile
+
+In the root directory, create a new file called `Procfile`. In `Procfile`, add the following:
+
+```bash
+web: node app.js
+```
 
 ### Deployment
 
