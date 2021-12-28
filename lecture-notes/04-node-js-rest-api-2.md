@@ -417,7 +417,7 @@ const institutionsSchema = new mongoose.Schema({
 export default mongoose.model('Institution', institutionsSchema)
 ```
 
-In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include **updateDepartment** and **deleteDepartment**.
+In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include `updateDepartment` and `deleteDepartment`.
 
 ```javascript
 import Department from '../models/departments.js'
