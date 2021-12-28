@@ -270,7 +270,7 @@ Add the environment variables specified in `.env`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-14.png" />
 
-Time to test it out. Go to **Postman** and log in.
+Time to test it out. Go to **Postman**. Enter the URL - `http://<URL to your Heroku application>/api/login` and data, then perform a **POST** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-15.JPG" />
 
