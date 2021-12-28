@@ -245,7 +245,7 @@ const createInstitution = async (req, res) => {
 }
 ```
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/institutions, then perform a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/institutions and data, then perform a **POST** request.
 
 The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and **version**.
 
