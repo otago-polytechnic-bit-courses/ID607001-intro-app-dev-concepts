@@ -128,7 +128,7 @@ You will need to add a few things to `app.js`:
 
 ```javascript
 import dotenv from 'dotenv'
-import express, { urlencoded, json } from 'express'
+import express from 'express'
 
 import conn from './db/connection.js'
 
@@ -140,8 +140,8 @@ const app = express()
 
 const PORT = process.env.PORT || 3000
 
-app.use(urlencoded({ extended: false }))
-app.use(json())
+app.use(express.urlencoded({ extended: false }))
+app.use(express.json())
 
 app.use('/api/institutions', institutions)
 
