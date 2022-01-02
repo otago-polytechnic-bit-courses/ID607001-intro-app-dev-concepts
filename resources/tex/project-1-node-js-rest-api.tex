@@ -95,14 +95,14 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	\item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.
 	\item Each \textbf{collection} is seeded with a \textbf{JSON} file. \textbf{Note:} this is \textbf{only} for testing purposes.
 	\item \textbf{Independent Research:} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items}
-	\item Return an appropriate status code \& message when performing \textbf{CRUD} operations. For example, when a \textbf{document} is created, return 200 \& \textbf{document} successfully created.
+	\item Return success, i.e., true or false \& data when performing \textbf{CRUD} operations.
 	\item \textbf{Independent Research:} Return an appropriate message if a query does not return any \textbf{REST API data}.
 	\item \textbf{Independent Research:} Return an appropriate message if an endpoint does not exist.
 	\item \textbf{Independent Research:} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order.
-	\item \textbf{Independent Research:} Paginate the \textbf{REST API data} so that 25 records are displayed per page.
+	\item \textbf{Independent Research:} Paginate the \textbf{REST API data} so that any number of records can be displayed per page.
 	\item \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} routes are protected using \textbf{JSON Web Tokens (JWT)}.
 	\item \textbf{REST API} rate limit is set to 25 requests per minute.
-	\item \textbf{REST API} is deployed to \textbf{Heroku}. The \textbf{REST API} must be usable i.e., a consumer should be able to perform operations on your \textbf{REST API}.
+	\item \textbf{REST API} is deployed to \textbf{Heroku}. The \textbf{REST API} \textbf{should} be usable i.e., a consumer should be able to perform operations on your \textbf{REST API}.
 	\item \textbf{REST API data} is stored in a \textbf{MongoDB Atlas} database.
 \end{itemize}
 
@@ -110,13 +110,13 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \begin{itemize}
 	\item Use of intermediate variables. No method calls as arguments.
 	\item Idiomatic use of control flow, data structures \& in-built functions.
-  \item Sufficient modularity, i.e., reusable base URL.
+  	\item Sufficient modularity, i.e., reusable base URL.
 	\item Functions \& variables are named appropriately.
 	\item Efficient algorithmic approach, i.e., using the appropriate function(s) when querying your \textbf{collections}.
 	\item \textbf{REST API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}. 
 	\item File header comment explaining the purpose of each \textbf{controller} \& \textbf{route} file.
 	\item In-line comments explaining complex logic.
-	\item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{must} include:
+	\item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
 	      \begin{itemize}
 	      	\item Single quote is set to \textbf{true}.
 	      	\item Semi-colon is set to \textbf{false}.
@@ -129,7 +129,7 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
 \begin{itemize}
-  \item \textbf{REST API} is documented using \textbf{Postman}.
+	\item \textbf{REST API} is documented using \textbf{Postman}. You \textbf{should} provide an example for each route. Each example \textbf{should} contain a description, request \& response.
 	\item Provide the following in your repository \textbf{README.md} file:
 	      \begin{itemize}
 	      	\item URL to the documented \textbf{REST API} on \textbf{Postman}.
@@ -138,18 +138,18 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	      	\item How do you deploy the \textbf{REST API} to \textbf{Heroku}?
 	      \end{itemize}
 	\item Your \textbf{Git commit messages} should:
-	      \begin{itemize}
-	      	\item Reflect the context of each functional requirement change. 
-	      	\item Be formatted using the naming conventions outlined in the following:
-	      	      \begin{itemize}
-	      	      	\item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
-	      	      \end{itemize} 
+		\begin{itemize}
+		\item Reflect the context of each functional requirement change. 
+		\item Be formatted using the naming conventions outlined in the following:
+			\begin{itemize}
+				\item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
+			\end{itemize} 
 	      \end{itemize}
 	\item At least \textbf{10} feature branches excluding the \textbf{main} branch.
-	      \begin{itemize}
-	      	\item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
-	      	\item For each branch, merge your own pull request to the \textbf{main} branch. \textbf{Note:} if you want ongoing feedback, assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer.
-	      \end{itemize}
+		\begin{itemize}
+		\item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
+		\item For each branch, merge your own pull request to the \textbf{main} branch. \textbf{Note:} if you want ongoing feedback, assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer.
+		\end{itemize}
 \end{itemize}
   
 \subsection*{Additional Information}
