@@ -63,8 +63,7 @@ Remember to export.
 export default mongoose.model('User', usersSchema)
 ```
 
-**Resources:**
-- <https://www.npmjs.com/package/bcryptjs>
+**Resource:** <https://www.npmjs.com/package/bcryptjs>
 
 ### .env
 
