@@ -2,6 +2,10 @@
 
 ## Seeders
 
+Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an automatic way.
+
+In the **root** directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`. In this file, add the following:
+
 ```javascript
 const institutions = [
     { name: 'Otago Polytechnic', createdBy: '61bf993ee4c1c5d91af34521' },
@@ -10,6 +14,10 @@ const institutions = [
 
 export { institutions }
 ```
+
+**Note:** Change the `createdBy` value to an existing user's id. Using the `createdBy` will cause unexpected results.
+
+In the `db` directory, create a new file called `seeder.js`. In this file, add the following:
 
 ```javascript
 import dotenv from 'dotenv'
@@ -24,8 +32,8 @@ conn(process.env.MONGO_URI)
 
 const createdInstitutions = async () => {
     try {
-        await Institution.deleteMany()
-        await Institution.insertMany(institutions)
+        await Institution.deleteMany() 
+        await Institution.insertMany(institutions) 
         console.log('Institution data successfully created')
         process.exit()
     } catch (error) {
@@ -55,6 +63,8 @@ switch (process.argv[2]) {
     }
 }
 ```
+
+In `package.json`, add the following **scripts**:
 
 ```javascript
 "institutions:create": "node db/seeder",
