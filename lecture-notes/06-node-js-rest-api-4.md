@@ -71,7 +71,13 @@ In `package.json`, add the following **scripts**:
 "institutions:delete": "node db/seeder -d"
 ```
 
+Here is an example of creating institutions:
+
+Here is an example of deleting all institutions:
+
 ## Rate Limits
+
+**Rate limiting** is used to control of incoming/outgoing traffic to or from a network. For example, your **API** is configured to allow 50 requests per minute. If the number of requests exceeds that limit, then an error will be returned. Rate limiting mitigates against attacks such as DoS/DDoS resulting in better flow of data.
 
 `npm install express-rate-limit`
 
