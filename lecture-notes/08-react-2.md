@@ -1,4 +1,4 @@
-# React 2 - Components
+# 08: React 2
 
 ## Components
 
