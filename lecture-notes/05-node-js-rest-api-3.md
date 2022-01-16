@@ -76,7 +76,7 @@ JWT_LIFETIME=1h
 
 ### Utility functions
 
-In the root directory, create a new directory called `utils`. In `utils`, create two new files called `createTokenUser.js` and `jwt.js`
+In the **root** directory, create a new directory called `utils`. In `utils`, create two new files called `createTokenUser.js` and `jwt.js`
 
 In `createTokenUser.js`, add the following:
 
@@ -214,7 +214,7 @@ Remember to create the appropriate **routes** for the `register`, `login` and `l
 
 ### Middleware
 
-In the root directory, create a new directory called `middleware`. In `middleware`, create a new file called `auth.js`. In `auth.js`, add the following:
+In the **root** directory, create a new directory called `middleware`. In `middleware`, create a new file called `auth.js`. In `auth.js`, add the following:
 
 ```js
 import { isTokenValid } from '../utils/jwt.js'
