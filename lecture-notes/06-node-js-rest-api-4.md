@@ -2,7 +2,7 @@
 
 ## Seeders
 
-Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an automatic way. **Note:** Seeded data should be used for testing purposes **only**.
+Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an intuitive way. **Note:** Seeded data should be used for testing purposes **only**.
 
 In the **root** directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`. In this file, add the following:
 
@@ -87,11 +87,11 @@ Check **MongoDB Atlas** to see if the script deleted all institutions.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-4.png" width="950" height="537" />
 
-## Rate Limits
+## Rate-Limits
 
-**Rate limiting** is used to control of incoming/outgoing traffic to or from a network. For example, your **API** is configured to allow 50 requests per minute. If the number of requests exceeds that limit, then an error will be returned. **Rate limiting** mitigates against attacks such as **DoS/DDoS** resulting in better flow of data.
+**Ratelimiting** controls incoming/outgoing traffic to or from a network. For example, your **API** is configured to allow 50 requests per minute. If the number of requests exceeds that limit, an error will be returned. **Rate-limiting** mitigates attacks such as **DoS/DDoS** resulting in a better data flow.
 
-`express-rate-limit` is a popular **rate limiting** module. To install, run the command `npm install express-rate-limit`.
+`express-rate-limit` is a popular **rate-limiting** module. To install, run the command `npm install express-rate-limit`.
 
 In `app.js`, import `express-rate-limit`.
 
@@ -99,7 +99,7 @@ In `app.js`, import `express-rate-limit`.
 import rateLimit from 'express-rate-limit'
 ```
 
-Create a `rateLimit` object, with the following options:
+Create a `rateLimit` object with the following options:
 
 - `windowMs`- 10 minute window
 - `max` - Limit each IP address to 5 requests per window
@@ -116,29 +116,59 @@ Apply the middleware to all requests
 app.use(limit)
 ```
 
-To test it, go to **Postman** and perform **six** requests. On the sixth request, you should see the following error:
+Go to **Postman** and perform **six** requests to test it. On the sixth request, you should see the following error:
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-5.JPG" />
 
 ## Postman Documentation
 
+You can automatically generate documentation for your **API**. Your documentation is generated and hosted by **Postman** and based on the collections you create. You can share your documentation privately with your team members or publicly on the web.
+
+Here are the following steps:
+
+Click on the **Create Collection** button. Name the collection **id607001-<your OP username>-api**.
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-6.JPG" />
+
+A collection has been created. Click on the horizontal ellipsis (three circles) and click the **Add request** option.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-7.JPG" />
 
+Name the request, i.e., Registering a user, choose the method, i.e., **POST**, add the endpoint, i.e., `localhost:3000/api/register`, add the data and click the **Send** button. Copy the response. You will use it later.
+
+**Note:** Please use your **Heroku** application's URL instead of `localhost:3000`.
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-8.JPG" />
+
+Click on the horizontal ellipsis (for the request) and click the **Add example** option.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-9.JPG" />
 
+Name the example, i.e., Registering a user, paste the response you copied earlier, add a status code, i.e., 201 Created, and click the **Save** button.
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-10.JPG" />
+
+If you want to view your documentation, click on the horizontal ellipsis (for the collection) and click on the **View documentation** option.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-11.JPG" />
 
+It generated the following:
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-12.JPG" />
+
+Click on the **Publish** button.
+
+**Note:** You may want to add a description of the collection and requests.
+
+You can change the content, URL, and styling on this page. Click on the **Publish** button.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-13.png" width="950" height="537" />
 
+It will provide you with a link to your published documentation. Copy and paste this link in your **Project: Node.js REST API README** file.
+
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-14.png" width="950" height="537" />
+
+Now, you have professional-looking documentation.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-15.png" width="950" height="537" />
 
