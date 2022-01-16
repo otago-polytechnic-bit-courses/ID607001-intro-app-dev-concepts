@@ -2,7 +2,7 @@
 
 ## Seeders
 
-Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an automatic way.
+Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an automatic way. **Note:** Seeded data should be used for testing purposes **only**.
 
 In the **root** directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`. In this file, add the following:
 
