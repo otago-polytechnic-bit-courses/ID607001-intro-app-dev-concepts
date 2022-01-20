@@ -37,9 +37,9 @@ It is important to understand the terminology:
 
 ## MongoDB Atlas
 
-In this course, you will primarily use **cloud-based** services, i.e., **MongoDB Atlas** and **Heroku**. 
+In this course, you will primarily use **cloud-based** services, i.e., **MongoDB Atlas** and **Heroku**.
 
-To start using **MongDB Atlas**, sign up [here](https://www.mongodb.com/cloud/atlas/signup). 
+To start using **MongDB Atlas**, sign up [here](https://www.mongodb.com/cloud/atlas/signup).
 
 Once you have done this, it will navigate you to **Projects**. As you see, you do not have any **projects**. Click the **New Project** button.
 
@@ -69,7 +69,7 @@ You will be asked to create a **database** user. Provide a **username** and **pa
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-7.png" width="950" height="537">
 
-Also, you will be asked to provide your **IP address**. **Note:** You will need to change it when working between home and campus. If you wish, you can accept all **IP addresses**, i.e., ``0.0.0.0/0``. 
+Also, you will be asked to provide your **IP address**. **Note:** You will need to change it when working between home and campus. If you wish, you can accept all **IP addresses**, i.e., `0.0.0.0/0`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-8.png" width="950" height="537">
 
@@ -114,11 +114,11 @@ MONGO_URI=<Your connection string>
 In the root directory, create a new file called `connection.js`. In this file, add the following:
 
 ```javascript
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const conn = (url) => mongoose.connect(url)
+const conn = (url) => mongoose.connect(url);
 
-export default conn
+export default conn;
 ```
 
 - `import mongoose from 'mongoose'` - To use **Mongoose**, run the command: `npm install mongoose`.
@@ -127,38 +127,36 @@ export default conn
 You will need to add a few things to `app.js`:
 
 ```javascript
-import dotenv from 'dotenv'
-import express from 'express'
+import dotenv from "dotenv";
+import express from "express";
 
-import conn from './db/connection.js'
+import conn from "./db/connection.js";
 
-import institutions from './routes/institutions.js'
+import institutions from "./routes/institutions.js";
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
-app.use('/api/institutions', institutions)
+app.use("/api/institutions", institutions);
 
 const start = async () => {
-    try {
-        await conn(process.env.MONGO_URI) // Access the connection string in .env
-        app.listen(PORT, () =>
-            console.log(`Server is listening on port ${PORT}`)
-        )
-    } catch (error) {
-        console.log(error)
-    }
-}
+  try {
+    await conn(process.env.MONGO_URI); // Access the connection string in .env
+    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-start()
+start();
 
-export default app
+export default app;
 ```
 
 - `import dotenv from 'dotenv'` - To use **dotenv**, run the command: `npm install dotenv`.
@@ -179,21 +177,22 @@ The start point with **Mongoose** is the `Schema`. Each **schema** is mapped to 
 In the root directory, create a new directory called `models`. In this directory, create a new file called `institutions.js`. In `institutions.js`, add the following:
 
 ```javascript
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const institutionsSchema = new mongoose.Schema({
-    name: {
-        type: String
-    }
-})
+  name: {
+    type: String,
+  },
+});
 
-export default mongoose.model('Institution', institutionsSchema)
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
 - `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
 - `mongoose.model` - A constructor compiled from a `Schema` definition. An instance, if a model is called a **document**. They are responsible for creating and reading documents from a **MongoDB database**.
 
-**Resources:** 
+**Resources:**
+
 - https://mongoosejs.com/docs/guide.html#schemas
 - https://mongoosejs.com/docs/models.html
 
@@ -204,7 +203,7 @@ You will need to make a few changes in `institutions.js`.
 Import the **model** from `models/institutions.js`.
 
 ```javascript
-import Institution from '../models/institutions.js'
+import Institution from "../models/institutions.js";
 ```
 
 To get **all** institutions, use `Institution.find({})`. The `{}` inside `Institution.find()` represents **all**.
@@ -225,24 +224,22 @@ const getInstitutions = async (req, res) => {
 }
 ```
 
-To create an institution, use `Institution.create(req.body)`. 
+To create an institution, use `Institution.create(req.body)`.
 
 ```javascript
 const createInstitution = async (req, res) => {
-    try {
-        await Institution.create(req.body)
+  try {
+    await Institution.create(req.body);
 
-        const newInstitutions = await Institution.find({})
+    const newInstitutions = await Institution.find({});
 
-        res.status(201).send({ success: true, data: newInstitutions })
-    } catch (err) {
-        res.status(500).send({
-            msg:
-                err.message ||
-                'Something went wrong while creating an institution'
-        })
-    }
-}
+    res.status(201).send({ success: true, data: newInstitutions });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while creating an institution",
+    });
+  }
+};
 ```
 
 Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/institutions and data, then perform a **POST** request.
@@ -263,29 +260,27 @@ To create an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`
 
 ```javascript
 const updateInstitution = async (req, res) => {
-    try {
-        const { id } = req.params
+  try {
+    const { id } = req.params;
 
-        const institution = await Institution.findByIdAndUpdate(id, req.body)
+    const institution = await Institution.findByIdAndUpdate(id, req.body);
 
-        if (!institution) {
-            return res.status(404).json({
-                success: false,
-                msg: `No institution with the id ${id}`
-            })
-        }
-
-        const newInstitutions = await Institution.find({})
-
-        res.status(200).json({ success: true, data: newInstitutions })
-    } catch (err) {
-        res.status(500).send({
-            msg:
-                err.message ||
-                'Something went wrong while updating an institution'
-        })
+    if (!institution) {
+      return res.status(404).json({
+        success: false,
+        msg: `No institution with the id ${id}`,
+      });
     }
-}
+
+    const newInstitutions = await Institution.find({});
+
+    res.status(200).json({ success: true, data: newInstitutions });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while updating an institution",
+    });
+  }
+};
 ```
 
 **PUT** request example:
@@ -294,29 +289,27 @@ const updateInstitution = async (req, res) => {
 
 ```javascript
 const deleteInstitution = async (req, res) => {
-    try {
-        const { id } = req.params
+  try {
+    const { id } = req.params;
 
-        const institution = await Institution.findByIdAndRemove(id)
+    const institution = await Institution.findByIdAndRemove(id);
 
-        if (!institution) {
-            return res.status(404).json({
-                success: false,
-                msg: `No institution with the id ${id}`
-            })
-        }
-
-        const newInstitutions = await Institution.find({})
-
-        return res.status(200).json({ success: true, data: newInstitutions })
-    } catch (err) {
-        res.status(500).send({
-            msg:
-                err.message ||
-                'Something went wrong while deleting an institution'
-        })
+    if (!institution) {
+      return res.status(404).json({
+        success: false,
+        msg: `No institution with the id ${id}`,
+      });
     }
-}
+
+    const newInstitutions = await Institution.find({});
+
+    return res.status(200).json({ success: true, data: newInstitutions });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while deleting an institution",
+    });
+  }
+};
 ```
 
 **DELETE** request example:
@@ -327,14 +320,15 @@ Exports functions remain unchanged.
 
 ```javascript
 export {
-    getInstitutions,
-    createInstitution,
-    updateInstitution,
-    deleteInstitution
-}
+  getInstitutions,
+  createInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
 ```
 
 **Resources:**
+
 - <https://mongoosejs.com/docs/api.html#model_Model.find>
 - <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate>
 - <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove>
@@ -346,18 +340,18 @@ export {
 Here is an example of how you can validate your **collection's** **fields**:
 
 ```javascript
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const institutionsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique : true,
-        maxlength: 100
-    }
-})
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 100,
+  },
+});
 
-export default mongoose.model('Institution', institutionsSchema)
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
 Here is a **POST** request example:
@@ -377,91 +371,87 @@ The following example demonstrates a relationship between `Institution` and `Dep
 Here you are referencing `Institution`. In a nutshell, you are saying a department can belong to an institution. **Note:** You will need to create a new file called `departments.js` in the `models` directory.
 
 ```javascript
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const departmentsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        maxlength: 50
-    },
-    institution: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Institution'
-    }
-})
+  name: {
+    type: String,
+    required: true,
+    maxlength: 50,
+  },
+  institution: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Institution",
+  },
+});
 
-export default mongoose.model('Department', departmentsSchema)
+export default mongoose.model("Department", departmentsSchema);
 ```
 
 Here you are referencing `Department`. You are saying an institution can have many departments.
 
 ```javascript
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
 const institutionsSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        unique : true,
-        maxlength: 100
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 100,
+  },
+  departments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Department",
     },
-    departments: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Department'
-        }
-    ]
-})
+  ],
+});
 
-export default mongoose.model('Institution', institutionsSchema)
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
 In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include `updateDepartment` and `deleteDepartment`.
 
 ```javascript
-import Department from '../models/departments.js'
-import Institution from '../models/institutions.js'
+import Department from "../models/departments.js";
+import Institution from "../models/institutions.js";
 
 const getDepartments = async (req, res) => {
-    try {
-        const departments = await Department.find({})
+  try {
+    const departments = await Department.find({});
 
-        res.status(200).json({ success: true, data: departments })
-    } catch (err) {
-        res.status(500).send({
-            msg:
-                err.message ||
-                'Something went wrong while getting all departments'
-        })
-    }
-}
+    res.status(200).json({ success: true, data: departments });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while getting all departments",
+    });
+  }
+};
 
 const createDepartment = async (req, res) => {
-    try {
-        const department = new Department(req.body)
-        await department.save()
+  try {
+    const department = new Department(req.body);
+    await department.save();
 
-        // Find a institution by its id, then push the created department to its list of departments. 
-        const institution = await Institution.findById({
-            _id: department.institution
-        })
-        institution.departments.push(department)
-        await institution.save()
+    // Find a institution by its id, then push the created department to its list of departments.
+    const institution = await Institution.findById({
+      _id: department.institution,
+    });
+    institution.departments.push(department);
+    await institution.save();
 
-        const newDepartments = await Department.find({})
+    const newDepartments = await Department.find({});
 
-        res.status(201).send({ success: true, data: newDepartments })
-    } catch (err) {
-        res.status(500).send({
-            msg:
-                err.message ||
-                'Something went wrong while creating a department'
-        })
-    }
-}
+    res.status(201).send({ success: true, data: newDepartments });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while creating a department",
+    });
+  }
+};
 
-export { getDepartments, createDepartment }
+export { getDepartments, createDepartment };
 ```
 
 **Note:** You will create the appropriate **routes** for these functions.
@@ -479,3 +469,28 @@ Here is a **GET** request example:
 **Resource:** <https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents>
 
 ## Formative assessment
+
+In this **in-class activity**, you will use your plan from the previous **in-class activity** to develop an **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to enable **Cross-origin resource sharing (Cors)**, **Helmet** and **Morgan**.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/hWjmBeNq. Checkout from the **main** branch to the **04-in-class-activity** branch by running the command - **git checkout 04-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code**. Create an **API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
+
+### Cross-origin resource sharing (Cors)
+
+**Resources:**
+
+- https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
+- https://www.npmjs.com/package/cors
+
+### Helmet
+
+**Resource:** https://www.npmjs.com/package/helmet
+
+### Morgan
+
+**Resource:** https://www.npmjs.com/package/morgan

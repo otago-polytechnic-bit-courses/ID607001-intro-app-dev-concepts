@@ -13,54 +13,54 @@
 The following is a simple user model:
 
 ```js
-import mongoose from 'mongoose'
-import bcryptjs from 'bcryptjs'
+import mongoose from "mongoose";
+import bcryptjs from "bcryptjs";
 
 const usersSchema = new mongoose.Schema({
-    name: {
-        type: String,
-        required: true,
-        maxlength: 50,
-        minlength: 3
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
-    },
-    password: {
-        type: String,
-        required: true,
-        minlength: 6
-    }
-})
+  name: {
+    type: String,
+    required: true,
+    maxlength: 50,
+    minlength: 3,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  password: {
+    type: String,
+    required: true,
+    minlength: 6,
+  },
+});
 ```
 
-`bcryptjs` - You will use this dependency to encrypt a user's `password`. Install `bcryptjs` by running `npm install  bcryptjs`.
+`bcryptjs` - You will use this dependency to encrypt a user's `password`. Install `bcryptjs` by running `npm install bcryptjs`.
 
 ### Schema hooks
 
 Before a user is saved, the given `password` will be encrypted using `bcryptjs`.
 
 ```js
-usersSchema.pre('save', async function () {
-    const salt = await bcryptjs.genSalt(10) // Asynchronously generates a salt - defaults to 10 rounds if omitted
-    this.password = await bcryptjs.hash(this.password, salt) // Asynchronously generates a hash for the given string, i.e., password
-})
+usersSchema.pre("save", async function () {
+  const salt = await bcryptjs.genSalt(10); // Asynchronously generates a salt - defaults to 10 rounds if omitted
+  this.password = await bcryptjs.hash(this.password, salt); // Asynchronously generates a hash for the given string, i.e., password
+});
 ```
 
 It asynchronously tests string, i.e., the given `password` in the request with the user's `password` in the database.
 
 ```js
 usersSchema.methods.comparePassword = function (password) {
-    return bcryptjs.compare(password, this.password)
-}
+  return bcryptjs.compare(password, this.password);
+};
 ```
 
 Remember to export.
 
 ```js
-export default mongoose.model('User', usersSchema)
+export default mongoose.model("User", usersSchema);
 ```
 
 **Resource:** <https://www.npmjs.com/package/bcryptjs>
@@ -82,19 +82,18 @@ In `createTokenUser.js`, add the following:
 
 ```js
 const createTokenUser = (user) => {
-    return { name: user.name, userId: user._id }
-}
+  return { name: user.name, userId: user._id };
+};
 
-export default createTokenUser
+export default createTokenUser;
 ```
 
 In `jwt.js`, add the following:
 
 ```js
-import jwt from 'jsonwebtoken'
+import jwt from "jsonwebtoken";
 
-const isTokenValid = ({ token }) =>
-    jwt.verify(token, process.env.JWT_SECRET) // P@ssw0rd123
+const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET); // P@ssw0rd123
 ```
 
 ### How to securely store a JWT in a cookie
@@ -103,30 +102,30 @@ A **JWT** needs to be stored in a safe place in the user's browser. Do not store
 
 ```js
 const createJWT = ({ payload }) => {
-    const token = jwt.sign(payload, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_LIFETIME // 1hr
-    })
-    return token
-}
+  const token = jwt.sign(payload, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_LIFETIME, // 1hr
+  });
+  return token;
+};
 
 const attachCookiesToResponse = ({ res, user }) => {
-    const token = createJWT({ payload: user })
+  const token = createJWT({ payload: user });
 
-    const oneDay = 1000 * 60 * 60 * 24
+  const oneDay = 1000 * 60 * 60 * 24;
 
-    res.cookie('token', token, {
-        httpOnly: true,
-        expires: new Date(Date.now() + oneDay),
-        secure: process.env.NODE_ENV === 'production',
-        signed: true
-    })
-}
+  res.cookie("token", token, {
+    httpOnly: true,
+    expires: new Date(Date.now() + oneDay),
+    secure: process.env.NODE_ENV === "production",
+    signed: true,
+  });
+};
 ```
 
 Export `isTokenValid` and `attachCookiesToResponse`. You will use these later on.
 
 ```js
-export { isTokenValid, attachCookiesToResponse }
+export { isTokenValid, attachCookiesToResponse };
 ```
 
 ## Auth controller
@@ -134,78 +133,78 @@ export { isTokenValid, attachCookiesToResponse }
 In the `routes` directory, create a new file called `auth.js`. In `auth.js`, add the following:
 
 ```js
-import User from '../models/users.js'
-import createTokenUser from '../utils/createTokenUser.js'
-import { attachCookiesToResponse } from '../utils/jwt.js'
+import User from "../models/users.js";
+import createTokenUser from "../utils/createTokenUser.js";
+import { attachCookiesToResponse } from "../utils/jwt.js";
 ```
 
 Create/register a user.
 
 ```js
 const register = async (req, res) => {
-    try {
-        const user = await User.create(req.body)
-        const tokenUser = createTokenUser(user)
-        attachCookiesToResponse({ res, user: tokenUser })
-        res.status(201).send({ success: true, data: tokenUser })
-    } catch (err) {
-        res.status(500).send({
-            msg: err.message || 'Something went wrong while registering a user'
-        })
-    }
-}
+  try {
+    const user = await User.create(req.body);
+    const tokenUser = createTokenUser(user);
+    attachCookiesToResponse({ res, user: tokenUser });
+    res.status(201).send({ success: true, data: tokenUser });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while registering a user",
+    });
+  }
+};
 ```
 
 Login a user.
 
 ```js
 const login = async (req, res) => {
-    try {
-        const { email, password } = req.body
-        if (!email || !password) {
-            res.status(400).send({
-                success: false,
-                msg: 'Invalid email or password'
-            })
-        }
-
-        const user = await User.findOne({ email })
-        if (!user) {
-            res.status(401).send({ success: false, msg: 'Invalid credentials' })
-        }
-
-        const isPasswordCorrect = await user.comparePassword(password)
-        if (!isPasswordCorrect) {
-            res.status(401).send({ success: false, msg: 'Invalid credentials' })
-        }
-
-        const tokenUser = createTokenUser(user)
-        attachCookiesToResponse({ res, user: tokenUser })
-        res.status(201).send({ success: true, data: tokenUser })
-    } catch (err) {
-        res.status(500).send({
-            msg: err.message || 'Something went wrong while logging in a user'
-        })
+  try {
+    const { email, password } = req.body;
+    if (!email || !password) {
+      res.status(400).send({
+        success: false,
+        msg: "Invalid email or password",
+      });
     }
-}
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      res.status(401).send({ success: false, msg: "Invalid credentials" });
+    }
+
+    const isPasswordCorrect = await user.comparePassword(password);
+    if (!isPasswordCorrect) {
+      res.status(401).send({ success: false, msg: "Invalid credentials" });
+    }
+
+    const tokenUser = createTokenUser(user);
+    attachCookiesToResponse({ res, user: tokenUser });
+    res.status(201).send({ success: true, data: tokenUser });
+  } catch (err) {
+    res.status(500).send({
+      msg: err.message || "Something went wrong while logging in a user",
+    });
+  }
+};
 ```
 
 Logout a user.
 
 ```js
 const logout = async (req, res) => {
-    res.cookie('token', '', {
-        httpOnly: true,
-        expires: new Date(Date.now() + 1000)
-    })
-    res.status(200).json({ success: true, msg: 'Logged out' })
-}
+  res.cookie("token", "", {
+    httpOnly: true,
+    expires: new Date(Date.now() + 1000),
+  });
+  res.status(200).json({ success: true, msg: "Logged out" });
+};
 ```
 
 Export `register`, `login` and `logout`. You will use these later on.
 
 ```js
-export { register, login, logout }
+export { register, login, logout };
 ```
 
 ### Auth routes
@@ -217,73 +216,70 @@ Remember to create the appropriate **routes** for the `register`, `login` and `l
 In the **root** directory, create a new directory called `middleware`. In `middleware`, create a new file called `auth.js`. In `auth.js`, add the following:
 
 ```js
-import { isTokenValid } from '../utils/jwt.js'
+import { isTokenValid } from "../utils/jwt.js";
 
 const authRoute = async (req, res, next) => {
-    const token = req.signedCookies.token
+  const token = req.signedCookies.token;
 
-    if (!token) {
-        res.status(401).send({ success: false, msg: 'Invalid authentication' })
-    }
+  if (!token) {
+    res.status(401).send({ success: false, msg: "Invalid authentication" });
+  }
 
-    try {
-        const { userId } = isTokenValid({ token })
-        req.user = { userId: userId }
-        next()
-    } catch (error) {
-        res.status(401).send({ success: false, msg: 'Invalid authentication' })
+  try {
+    const { userId } = isTokenValid({ token });
+    req.user = { userId: userId };
+    next();
+  } catch (error) {
+    res.status(401).send({ success: false, msg: "Invalid authentication" });
+  }
+};
 
-    }
-}
-
-export default authRoute
+export default authRoute;
 ```
 
 In `app.js`:
 
 ```javascript
-import cookieParser from 'cookie-parser'
-import dotenv from 'dotenv'
-import express from 'express'
+import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+import express from "express";
 
 // Db
-import conn from './db/connection.js'
+import conn from "./db/connection.js";
 
 // Routes
-import auth from './routes/auth.js'
-import departments from './routes/departments.js'
-import institutions from './routes/institutions.js'
+import auth from "./routes/auth.js";
+import departments from "./routes/departments.js";
+import institutions from "./routes/institutions.js";
 
-import authRoute from './middleware/auth.js'
+import authRoute from "./middleware/auth.js";
 
-dotenv.config()
+dotenv.config();
 
-const app = express()
+const app = express();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
-app.use(cookieParser(process.env.JWT_SECRET))
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use(cookieParser(process.env.JWT_SECRET));
 
-app.use('/api', auth)
-app.use('/api/departments', departments)
-app.use('/api/institutions', authRoute, institutions)
+app.use("/api", auth);
+app.use("/api/departments", departments);
+app.use("/api/institutions", authRoute, institutions);
 
 const start = async () => {
-    try {
-        await conn(process.env.MONGO_URI)
-        app.listen(PORT, () =>
-            console.log(`Server is listening on port ${PORT}`)
-        )
-    } catch (error) {
-        console.log(error)
-    }
-}
+  try {
+    await conn(process.env.MONGO_URI);
+    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-start()
+start();
 
-export default app
+export default app;
 ```
 
 - `import cookieParser from 'cookie-parser'` - To store a **JWT** in a cookie, you need to install and import `cookie-parser`.
@@ -310,7 +306,7 @@ When you log in, it will store the user's token in a **cookie**.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-4.JPG" />
 
-You are authorised to perform a **POST** request. **Note:** This route is protected. 
+You are authorised to perform a **POST** request. **Note:** This route is protected.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-5.JPG" />
 
@@ -374,4 +370,20 @@ Perform a **GET** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-16.JPG" />
 
-## Formative Assessment
+## Formative assessment
+
+In this **in-class activity**, you will continue developing your **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to write comments using **JSDoc**.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/hWjmBeNq. Checkout from the **main** branch to the **05-in-class-activity** branch by running the command - **git checkout 05-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code**. Extend your **API** as described in the lecture notes above.
+
+### JSDoc
+
+**Resources:**
+
+- https://jsdoc.app

@@ -275,7 +275,7 @@ Navigate to <http://localhost:3000/api/institutions>
 
 ## Postman
 
-**Postman** is an **API** development environment that allows you to design, mock & test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
+**Postman** is an **API** development environment that allows you to design, mock and test your **APIs**. The examples below are using the **desktop client**. Alternatively, you can use the **web client**. The interface is much the same on both **clients**.
 
 To use **Postman**, you need to create an account or sign in. There are two sign-in options - username/password and **Google**.
 
@@ -331,4 +331,26 @@ You need to understand that there are many approaches to this. I encourage you t
 
 ## Formative assessment
 
-You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-node-js-rest-api-planning.pdf). Carefully read the **Code Review** section before you start coding.
+In this **in-class activity**, you will plan your **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to automatically restart your **API's** server using **Nodemon** and get an institution by its id.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/P656imf2. Checkout from the **main** branch to the **03-in-class-activity** branch by running the command - **git checkout 03-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code**. Create an **API** using **Express** and **in-memory storage** as described in the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md).
+
+### Nodemon
+
+**Nodemon** is a tool that helps you develop **Node.js** applications by automatically restarting the application when a file change is detected. It does not require additional changes to the application's code to get started. To use **Nodemon**, install it as a development dependency. In `package.json`, replace the `start` script value `node app.js` with `nodemon app.js`.
+
+**Resource:** https://www.npmjs.com/package/nodemon
+
+### Get an institution by its id
+
+In the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md), you looked at how to create, read, update and delete an institution. Extend your **API's** functionality by creating a **route** and **controller** function that enables a user to get an institution by its id. **Hint:** The approach is similar to updating and deleting an institution.
+
+### Project 1: Node.js REST API planning
+
+You will be starting your **Project 1: Node.js REST API** assessment next week. Before you start, you need to decide your **API's** theme and the data you are going to display to the user. You need at least **five collections** (**user collection** is included) with at least **three fields** of data. Also, show the relationships between **collections**. **Note:** You need at least **two relationships** between **collections**. You can display this anyway you wish, i.e., UML, text, etc. As long as it is clear to the **course lecturer** when reviewing.
