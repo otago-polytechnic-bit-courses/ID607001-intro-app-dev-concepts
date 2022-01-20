@@ -71,11 +71,11 @@ Create a new file called `data.js`. This file will contain an **array** of **obj
 
 ```javascript
 const institutions = [
-    { id: 1, name: "Otago Polytechnic" },
-    { id: 2, name: "Southern Institute of Technology" }
-]
+  { id: 1, name: "Otago Polytechnic" },
+  { id: 2, name: "Southern Institute of Technology" },
+];
 
-export { institutions }
+export { institutions };
 ```
 
 You need to export it to use `institutions` outside of `data.js`.
@@ -89,7 +89,7 @@ In the root directory, create a new directory called `controllers`. In this dire
 To access `institutions` from `data.js`, you need to add the following:
 
 ```javascript
-import { institutions } from '../data.js'
+import { institutions } from "../data.js";
 ```
 
 ### Get function
@@ -98,10 +98,8 @@ All functions have at least two parameters - `req` and `res`. If you go to the r
 
 ```javascript
 const getInstitutions = (req, res) => {
-    res
-        .status(200)
-        .json({ success: true, data: institutions })
-}
+  res.status(200).json({ success: true, data: institutions });
+};
 ```
 
 ### Create function
@@ -110,25 +108,23 @@ There is a little more going on here. When you make a **POST** request, you will
 
 ```javascript
 const createInstitution = (req, res) => {
-    const { name } = req.body
+  const { name } = req.body;
 
-    if (!name) {
-        return res
-            .status(400)
-            .json({ success: false, msg: 'Please provide a name' })
-    } 
+  if (!name) {
+    return res
+      .status(400)
+      .json({ success: false, msg: "Please provide a name" });
+  }
 
-    const id = institutions[institutions.length - 1].id + 1
-    
-    institutions.push({
-        id: id,
-        name: name
-    })
+  const id = institutions[institutions.length - 1].id + 1;
 
-    res
-        .status(201)
-        .send({ success: true, data: institutions })
-}
+  institutions.push({
+    id: id,
+    name: name,
+  });
+
+  res.status(201).send({ success: true, data: institutions });
+};
 ```
 
 ### Update function
@@ -137,30 +133,29 @@ You need to find the `institution` you want to update.
 
 ```javascript
 const updateInstitution = (req, res) => {
-    const { id } = req.params
+  const { id } = req.params;
 
-    const institution = institutions.find(
-        (institution) => institution.id === Number(id)
-    )
+  const institution = institutions.find(
+    (institution) => institution.id === Number(id)
+  );
 
-    // Check if institution does exist
-    if (!institution) {
-        return res
-            .status(404)
-            .json({ success: false, msg: `No institution with the id ${id}` })
+  // Check if institution does exist
+  if (!institution) {
+    return res
+      .status(404)
+      .json({ success: false, msg: `No institution with the id ${id}` });
+  }
+
+  const newInstitutions = institutions.map((institution) => {
+    if (institution.id === Number(id)) {
+      // If institution does exist, update its name
+      institution.name = req.body.name;
     }
+    return institution;
+  });
 
-    const newInstitutions = institutions.map((institution) => {
-        if (institution.id === Number(id)) { // If institution does exist, update its name
-            institution.name = req.body.name
-        }
-        return institution
-    })
-
-    res
-        .status(200)
-        .json({ success: true, data: newInstitutions })
-}
+  res.status(200).json({ success: true, data: newInstitutions });
+};
 ```
 
 ### Delete function
@@ -169,41 +164,39 @@ Similar to the update function.
 
 ```javascript
 const deleteInstitution = (req, res) => {
-    const { id } = req.params
+  const { id } = req.params;
 
-    const institution = institutions.find(
-        (institution) => institution.id === Number(id)
-    )
+  const institution = institutions.find(
+    (institution) => institution.id === Number(id)
+  );
 
-    // Check if institution does exist
-    if (!institution) {
-        return res
-            .status(404)
-            .json({ success: false, msg: `No institution with the id ${id}` })
-    }
-
-    const newInstitutions = institutions.filter(
-        (institution) => institution.id !== Number(id) // If institution does exist, delete it
-    )
-
+  // Check if institution does exist
+  if (!institution) {
     return res
-        .status(200)
-        .json({ success: true, data: newInstitutions })
-}
+      .status(404)
+      .json({ success: false, msg: `No institution with the id ${id}` });
+  }
+
+  const newInstitutions = institutions.filter(
+    (institution) => institution.id !== Number(id) // If institution does exist, delete it
+  );
+
+  return res.status(200).json({ success: true, data: newInstitutions });
+};
 ```
 
 You need to export these functions to use them outside of `institutions.js`.
 
 ```javascript
 export {
-    getInstitutions,
-    createInstitution,
-    updateInstitution,
-    deleteInstitution
-}
+  getInstitutions,
+  createInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
 ```
 
-It may be hard to visualise at the moment, but it will become clearer soon. 
+It may be hard to visualise at the moment, but it will become clearer soon.
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
@@ -212,29 +205,29 @@ It may be hard to visualise at the moment, but it will become clearer soon.
 In the root directory, create a new directory called `routes`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will create four routes and map them to the functions imported from `controllers/institutions.js`.
 
 ```javascript
-import { Router } from 'express'
-const router = Router() // Create a new router object. This allows to handle various requests
+import { Router } from "express";
+const router = Router(); // Create a new router object. This allows to handle various requests
 
 // Importing the four functions
-import { 
-    getInstitutions,
-    createInstitution,
-    updateInstitution,
-    deleteInstitution 
-} from '../controllers/institutions.js'
+import {
+  getInstitutions,
+  createInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../controllers/institutions.js";
 
 // Four routes that are mapped to the functions above
-router.route('/').get(getInstitutions)
-router.route('/').post(createInstitution)
+router.route("/").get(getInstitutions);
+router.route("/").post(createInstitution);
 
-router.route('/:id').put(updateInstitution)
-router.route('/:id').delete(deleteInstitution)
+router.route("/:id").put(updateInstitution);
+router.route("/:id").delete(deleteInstitution);
 
 // You can chain these if you wish. For example:
 // router.route('/').get(getInstitution).post(createInstitution)
 // router.route('/:id').put(updateInstitution).delete(deleteInstitution)
 
-export default router // You do not need to enclose router in curly braces
+export default router; // You do not need to enclose router in curly braces
 ```
 
 ## Entry point
@@ -250,26 +243,26 @@ Nothing happened. Why? It is because `app.js` is empty.
 You need to add the following:
 
 ```javascript
-import express from "express"
+import express from "express";
 
 // Access all the routes exported from routes/institutions.js
-import institutions from './routes/institutions.js'
+import institutions from "./routes/institutions.js";
 
-const app = express()
+const app = express();
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3000;
 
 // Express middleware
-app.use(express.urlencoded({ extended: false }))
-app.use(express.json())
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
-app.use('/api/institutions', institutions)
+app.use("/api/institutions", institutions);
 
 // Listening on port 3000
 app.listen(PORT, () => {
-    console.log(`Server is listening on port ${PORT}`)
-})
+  console.log(`Server is listening on port ${PORT}`);
+});
 ```
 
 Rerun the following command:
@@ -337,3 +330,5 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 You need to understand that there are many approaches to this. I encourage you to explore the internet for others.
 
 ## Formative assessment
+
+You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-node-js-rest-api-planning.pdf). Carefully read the **Code Review** section before you start coding.

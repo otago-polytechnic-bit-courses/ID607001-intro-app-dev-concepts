@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this assessment, you will develop a \textbf{REST API} using \textbf{Node.js} \& deploy it to \textbf{Heroku}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your \textbf{REST API} data will be stored in a \textbf{MongoDB Atlas} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, authentication, validation, seeding \& rate limits. However, you will be required to independently research and implement more complex concepts such as filtering, sorting, pagination \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
+In this assessment, you will develop a \textbf{REST API} using \textbf{Node.js} \& deploy it to \textbf{Heroku}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your \textbf{REST API} data will be stored in a \textbf{MongoDB Atlas} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, authentication, validation, seeding \& rate limits. However, you will be required to independently research and implement more complex concepts such as filtering, sorting, pagination \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -47,9 +47,9 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|l|l|l|l|l|}
 	\hline
 	\vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Activity}}} & \textbf{Weighting} & \vtop{\hbox{\strut \textbf{Learning}}\hbox{\strut \textbf{Outcome}}} & \vtop{\hbox{\strut \textbf{Assessment}}\hbox{\strut \textbf{Grading Scheme}}} & \vtop{\hbox{\strut \textbf{Completion}}\hbox{\strut \textbf{Requirements}}} \\
-	
+
 	\hline
-	
+
 	\small Practical: Node.js REST API Testing Research                     & \small 20\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
 	\small Project 1: Node.js REST API                                      & \small 30\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
 	\small Project 2: React CRUD                                            & \small 50\%        & \small 1                                                             & \small CRA                                                                    & \small Cumulative                                                           \\ \hline
@@ -77,7 +77,7 @@ Familiarise yourself with the assessment due date. If you need an extension, con
 Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame \& usually must be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity \& achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
 
 \section*{Resits}
-Resits \& reassessments are not applicable in \textbf{ID607001: Introductory Application Development Concepts}. 
+Resits \& reassessments are not applicable in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \newpage
 
@@ -88,8 +88,9 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \begin{itemize}
 	\item \textbf{REST API} is developed using \textbf{Node.js}.
 	\item \textbf{REST API} can run locally without modification.
-	\item \textbf{Five} \textbf{collections} containing at least \textbf{three fields} of data which you can interact with.
+	\item \textbf{Five} \textbf{collections} containing at least \textbf{three fields} of data which you can interact with. \textbf{Note:} It includes a \textbf{user collection}.
 	\item A range of different data types, i.e., all \textbf{fields} of data can not be of a single type.
+	\item \textbf{Two relationships} between \textbf{collections}.
 	\item Each \textbf{collection} has a separate \textbf{controller} \& \textbf{route} file.
 	\item A \textbf{controller} contains \textbf{CRUD} (Create, Read, Update \& Delete) operations.
 	\item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.
@@ -110,51 +111,51 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \begin{itemize}
 	\item Use of intermediate variables. No method calls as arguments.
 	\item Idiomatic use of control flow, data structures \& in-built functions.
-  	\item Sufficient modularity, i.e., reusable base URL.
+	\item Sufficient modularity, i.e., reusable base URL.
 	\item Functions \& variables are named appropriately.
 	\item Efficient algorithmic approach, i.e., using the appropriate function(s) when querying your \textbf{collections}.
-	\item \textbf{REST API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}. 
+	\item \textbf{REST API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
 	\item File header comment explaining the purpose of each \textbf{controller} \& \textbf{route} file.
 	\item In-line comments explaining complex logic.
 	\item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
 	      \begin{itemize}
-	      	\item Single quote is set to \textbf{true}.
-	      	\item Semi-colon is set to \textbf{false}.
-	      	\item Tab-width is set to \textbf{2}.
+		      \item Single quote is set to \textbf{true}.
+		      \item Semi-colon is set to \textbf{false}.
+		      \item Tab-width is set to \textbf{2}.
 	      \end{itemize}
 	\item \textbf{Independent Research:} \textbf{Prettier} is installed as a development dependency.
 	\item No dead or unused code.
 	\item Database configured for production environment.
-\end{itemize} 
+\end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
 \begin{itemize}
 	\item \textbf{REST API} is documented using \textbf{Postman}. You \textbf{should} provide an example for each route. Each example \textbf{should} contain a description, request \& response.
 	\item Provide the following in your repository \textbf{README.md} file:
 	      \begin{itemize}
-	      	\item URL to the documented \textbf{REST API} on \textbf{Postman}.
-	      	\item URL to the \textbf{REST API} on \textbf{Heroku}.
-	      	\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the \textbf{REST API} locally?
-	      	\item How do you deploy the \textbf{REST API} to \textbf{Heroku}?
+		      \item URL to the documented \textbf{REST API} on \textbf{Postman}.
+		      \item URL to the \textbf{REST API} on \textbf{Heroku}.
+		      \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the \textbf{REST API} locally?
+		      \item How do you deploy the \textbf{REST API} to \textbf{Heroku}?
 	      \end{itemize}
 	\item Your \textbf{Git commit messages} should:
-		\begin{itemize}
-		\item Reflect the context of each functional requirement change. 
-		\item Be formatted using the naming conventions outlined in the following:
-			\begin{itemize}
-				\item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
-			\end{itemize} 
+	      \begin{itemize}
+		      \item Reflect the context of each functional requirement change.
+		      \item Be formatted using the naming conventions outlined in the following:
+		            \begin{itemize}
+			            \item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
+		            \end{itemize}
 	      \end{itemize}
 	\item At least \textbf{10} feature branches excluding the \textbf{main} branch.
-		\begin{itemize}
-		\item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
-		\item For each branch, merge your own pull request to the \textbf{main} branch. \textbf{Note:} if you want ongoing feedback, assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer.
-		\end{itemize}
+	      \begin{itemize}
+		      \item Your branches must be prefix with \textbf{feature}, for example, \textbf{feature-$<$name of functional requirement$>$}.
+		      \item For each branch, merge your own pull request to the \textbf{main} branch. \textbf{Note:} if you want ongoing feedback, assign the \textbf{GitHub} user \textbf{grayson-orr} to a reviewer.
+	      \end{itemize}
 \end{itemize}
-  
+
 \subsection*{Additional Information}
 \begin{itemize}
 	\item Attempt to commit at least \textbf{10} times per week. By the end of this assessment, you should have at least \textbf{50} commits.
-	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
+	\item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time.
 \end{itemize}
 \end{document}
