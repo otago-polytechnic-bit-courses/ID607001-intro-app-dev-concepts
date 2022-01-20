@@ -108,8 +108,7 @@ const getMonthName = (mo) => {
 try { 
     monthName = getMonthName(4) // getMonthName could throw an exception
     console.log(monthName) // Apr
-}
-catch (e) {
+} catch (e) {
     monthName = 'Unknown month'
     console.log(monthName)
 }
