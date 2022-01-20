@@ -110,7 +110,7 @@ try {
     console.log(monthName) // Apr
 }
 catch (e) {
-    monthName = 'Unknown month';
+    monthName = 'Unknown month'
     console.log(monthName)
 }
 ```
