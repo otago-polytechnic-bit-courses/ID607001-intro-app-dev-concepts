@@ -334,4 +334,6 @@ Here you will make your first request. Enter a request URL, i.e., http://localho
 
 ## Final thoughts
 
+You need to understand that there are many approaches to this. I encourage you to explore the internet for others.
+
 ## Formative assessment
