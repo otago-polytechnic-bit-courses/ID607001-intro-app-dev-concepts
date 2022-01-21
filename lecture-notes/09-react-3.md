@@ -156,7 +156,7 @@ const InstitutionsTable = () => {
   )
 }
 
-export default InstitutionsTable;
+export default InstitutionsTable
 ```
 
 **What is happening in the InstitutionTable component?** 
@@ -172,7 +172,7 @@ export default InstitutionsTable;
 
 Install **React Router DOM** using **NPM**:
 
-```md
+```bash
 npm i react-router-dom
 ```
 
@@ -230,7 +230,7 @@ const Navigation = () => {
   )
 }
 
-export default Navigation;
+export default Navigation
 ```
 
 **What is happening in the Navigation component?** 

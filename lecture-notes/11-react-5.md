@@ -38,11 +38,11 @@ Your `scripts` block should look like the following:
 
 ### Example Time
 
-Lets now look at an example. Open `graysono-playground/react-example` in **Visual Studio Code**. You are going to use the login/logout example from the previous session. **Note:** this example already has **Cypress** as a development dependency.
+Lets now look at an example. Open `react-cypress-example` in **Visual Studio Code**. You are going to use the login/logout example from the previous session. **Note:** this example already has **Cypress** as a development dependency.
 
 Run the following command:
 
-```md
+```bash
 npm run cypress
 ```
 
@@ -62,18 +62,18 @@ beforeEach(() => {
      * have figured out how to deploy your React application
      * to Heroku.
      */
-    cy.visit('localhost:3000/login'); 
-});
+    cy.visit('localhost:3000/login') 
+})
 
 // The description of the test
 it('login a user with email and password', () => {
-    cy.get('.nav-link').contains('Login'); // The nav link text contains "Login"
-    cy.get('input[name="email"]').type('john.doe@email.com'); // Find the input with the name "email", then type a value
-    cy.get('input[name="password"]').type('P@ssw0rd123'); // Find the input with the name "password", then type a value
-    cy.get('.btn.btn-secondary').click(); // Find the element with the class .btn.btn-secondary, then click it
-    cy.get('.nav-link').contains('Logout'); // The nav link text contains "Logout"
-    cy.get('.nav-link').click(); // Log the user out
-});
+    cy.get('.nav-link').contains('Login') // The nav link text contains "Login"
+    cy.get('input[name="email"]').type('john.doe@email.com') // Find the input with the name "email", then type a value
+    cy.get('input[name="password"]').type('P@ssw0rd123') // Find the input with the name "password", then type a value
+    cy.get('.btn.btn-secondary').click() // Find the element with the class .btn.btn-secondary, then click it
+    cy.get('.nav-link').contains('Logout') // The nav link text contains "Logout"
+    cy.get('.nav-link').click() // Log the user out
+})
 ```
 
 It is a sample test to get you started. Please read the comments carefully. The tests are endless, and I do not expect you to cover every use case for your application. As mentioned in the **Project 2: React CRUD** assessment document, focus on the authentication. Think about how you would test if the user's credentials are incorrect.

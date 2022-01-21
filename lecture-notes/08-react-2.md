@@ -14,9 +14,7 @@ In **React**, there are two ways to declare a **component**.
 class App extends React.Component {
   render() {
     return (
-      <div>
-        <h1>Hello, World!</h1>
-      </div>
+      <h1>Hello, World!</h1>
     )
   }
 }
@@ -29,9 +27,7 @@ export default App
 ```js
 const App = () => {
   return (
-    <div>
-      <h1>Hello, World!</h1>
-    </div>
+    <h1>Hello, World!</h1>
   )
 }
 
@@ -49,9 +45,7 @@ import React from 'react'
 
 const Welcome = () => {
   return (
-    <div>
-      <h1>Welcome</h1>
-    </div>
+    <h1>Welcome</h1>
   )
 }
 
@@ -72,11 +66,11 @@ const App = () => {
   ...
 
   return (
-    <div>
+    <>
       <h1>Hello, World!</h1>
       ...
       <Welcome /> {/* Self-closing tag. <Welcome></Welcome> are equivalent */}
-    </div>
+    </>
   )
 }
 
@@ -104,9 +98,7 @@ If you are unsure of what a **pure function** is, please carefully read this res
 
 const Welcome = (props) => {
   return (
-    <div>
-      <h1>Welcome {props.firstName}</h1> {/* Pass a prop called firstName */}
-    </div>
+    <h1>Welcome {props.firstName}</h1> {/* Pass a prop called firstName */}
   )
 }
 
@@ -124,7 +116,7 @@ const App = () => {
   ...
 
   return (
-    <div>
+    <>
       <h1>Hello, World!</h1>
       ...
       <Welcome /> {/* It will render - Welcome an <h1> element. Note: a prop attribute is not given */}
@@ -133,7 +125,7 @@ const App = () => {
                                      attribute is given. Make sure the prop attribute's name is the
                                      same as what is specified in the child component, i.e., Welcome.js.
                                    */}
-    </div>
+    </>
   )
 }
 
