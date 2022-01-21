@@ -183,4 +183,3 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 ### Getting started
 
 Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above.
-
