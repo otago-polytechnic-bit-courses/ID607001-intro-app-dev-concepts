@@ -372,7 +372,7 @@ Perform a **GET** request.
 
 ## Formative assessment
 
-In this **in-class activity**, you will continue developing your **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to write comments using **JSDoc**.
+In this **in-class activity**, you will continue developing your **REST API** for the **Project 1: Node.js REST API** assessment.
 
 ### Code review
 
@@ -380,10 +380,4 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Extend your **API** as described in the lecture notes above.
-
-### JSDoc
-
-**Resources:**
-
-- https://jsdoc.app
+Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above.

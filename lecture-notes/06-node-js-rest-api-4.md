@@ -172,4 +172,15 @@ Now, you have professional-looking documentation.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-15.png" width="950" height="537" />
 
-## Formative Assessment
+## Formative assessment
+
+In this **in-class activity**, you will continue developing your **REST API** for the **Project 1: Node.js REST API** assessment.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/hWjmBeNq. Checkout from the **main** branch to the **06-in-class-activity** branch by running the command - **git checkout 06-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above.
+

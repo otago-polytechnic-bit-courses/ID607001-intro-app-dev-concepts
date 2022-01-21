@@ -331,7 +331,7 @@ You need to understand that there are many approaches to this. I encourage you t
 
 ## Formative assessment
 
-In this **in-class activity**, you will plan your **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to automatically restart your **API's** server using **Nodemon** and get an institution by its id.
+In this **in-class activity**, you will plan your **REST API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to automatically restart your **REST API's** server using **Nodemon** and get an institution by its id.
 
 ### Code review
 
@@ -339,7 +339,7 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create an **API** using **Express** and **in-memory storage** as described in the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md).
+Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **in-memory storage** as described in the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md).
 
 ### Nodemon
 
@@ -349,8 +349,8 @@ Open your repository in **Visual Studio Code**. Create an **API** using **Expres
 
 ### Get an institution by its id
 
-In the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md), you looked at how to create, read, update and delete an institution. Extend your **API's** functionality by creating a **route** and **controller** function that enables a user to get an institution by its id. **Hint:** The approach is similar to updating and deleting an institution.
+In the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md), you looked at how to create, read, update and delete an institution. Extend your **REST API's** functionality by creating a **route** and **controller** function that enables a user to get an institution by its id. **Hint:** The approach is similar to updating and deleting an institution.
 
 ### Project 1: Node.js REST API planning
 
-You will be starting your **Project 1: Node.js REST API** assessment next week. Before you start, you need to decide your **API's** theme and the data you are going to display to the user. You need at least **five collections** (**user collection** is included) with at least **three fields** of data. Also, show the relationships between **collections**. **Note:** You need at least **two relationships** between **collections**. You can display this anyway you wish, i.e., UML, text, etc. As long as it is clear to the **course lecturer** when reviewing.
+You will be starting your **Project 1: Node.js REST API** assessment next week. Before you start, you need to decide your **REST API's** theme and the data you are going to display to the user. You need at least **five collections** (**user collection** is included) with at least **three fields** of data. Also, show the relationships between **collections**. **Note:** You need at least **two relationships** between **collections**. You can display this anyway you wish, i.e., UML, text, etc. As long as it is clear to the **course lecturer** when reviewing.

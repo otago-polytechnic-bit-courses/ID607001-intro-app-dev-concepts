@@ -470,7 +470,7 @@ Here is a **GET** request example:
 
 ## Formative assessment
 
-In this **in-class activity**, you will use your plan from the previous **in-class activity** to develop an **API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to enable **Cross-origin resource sharing (Cors)**, **Helmet** and **Morgan**.
+In this **in-class activity**, you will use your previous **in-class activity** plan to create a **REST API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to enable **Cross-origin resource sharing (Cors)** and **Helmet**.
 
 ### Code review
 
@@ -478,9 +478,11 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create an **API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
+Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
 
 ### Cross-origin resource sharing (Cors)
+
+Carefully read the first resource below. It will provide you with an excellent explanation of how **cross-origin resource sharing** works. Using the second resource below, implement simple usage (enable all cors requests) when in a **development environment**. **Note:** You will install **cors** as a development dependency.
 
 **Resources:**
 
@@ -489,8 +491,6 @@ Open your repository in **Visual Studio Code**. Create an **API** using **Expres
 
 ### Helmet
 
+**Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **helmet**.
+
 **Resource:** https://www.npmjs.com/package/helmet
-
-### Morgan
-
-**Resource:** https://www.npmjs.com/package/morgan
