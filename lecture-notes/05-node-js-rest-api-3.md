@@ -380,5 +380,8 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above. Please review your changes against the **Project 1: Node.js REST API** assessment document and marking rubric.
+Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above. 
 
+### Final words
+
+Please review your changes against the **Project 1: Node.js REST API** assessment document and marking rubric.
