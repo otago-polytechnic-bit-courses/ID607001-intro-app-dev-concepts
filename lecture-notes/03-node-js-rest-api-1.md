@@ -339,7 +339,7 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **in-memory storage** as described in the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/lecture-notes/03-node-js-rest-api-1.md).
+Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **in-memory storage** as described in the lecture notes above.
 
 ### Nodemon
 
