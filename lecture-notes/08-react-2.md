@@ -41,8 +41,6 @@ From **React's** point of view, these two ways are equivalent. **Note:** Please 
 In `src`, create a new directory called `components`. In `components`, create a new file called `Welcome.js`. In this file, add the following:
 
 ```js
-import React from 'react'
-
 const Welcome = () => {
   return (
     <h1>Welcome</h1>
@@ -59,16 +57,12 @@ Your file structure should look something like this:
 Here is an example of how to import and use a **component**:
 
 ```js
-import React from 'react'
 import Welcome from './components/Welcome' // Importing the Welcome function component
 
 const App = () => {
-  ...
-
   return (
     <>
       <h1>Hello, World!</h1>
-      ...
       <Welcome /> {/* Self-closing tag. <Welcome></Welcome> are equivalent */}
     </>
   )
@@ -94,31 +88,24 @@ When you declare a **class** or **function** component, you must never modify it
 If you are unsure of what a **pure function** is, please carefully read this resource - <https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/>
 
 ```js
-...
-
 const Welcome = (props) => {
   return (
-    <h1>Welcome {props.firstName}</h1> {/* Pass a prop called firstName */}
+    <h1>Welcome {props.firstName}</h1> // Pass a prop called firstName
   )
 }
 
 ...
 ```
 
-Here is an example output without `props`:
-
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-7.png" width="350" />
-
 Here is an example of how you can reuse a **component**:
 
 ```js
-const App = () => {
-  ...
+...
 
+const App = () => {
   return (
     <>
       <h1>Hello, World!</h1>
-      ...
       <Welcome /> {/* It will render - Welcome an <h1> element. Note: a prop attribute is not given */}
       <Welcome firstName="John" /> {/*
                                      It will render - Welcome John in an <h1> element. Note: a prop
@@ -165,7 +152,7 @@ You can check the `dependencies` block in `package.json` to make sure you have i
 Here is an example of how you can use the `useState` hook:
 
 ```js
-import React, { useState } from 'react' // Import the useState hook from the react dependency
+import { useState } from 'react' // Import the useState hook from the react dependency
 
 const Counter = () => {
   const [count, setCount] = useState(0) // Local state variable called count.
@@ -206,7 +193,7 @@ Here is an example of how you can use the `useEffect` hook:
 
 ```js
 import axios from 'axios'
-import React, { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
+import { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
 
 const Post = () => {
   const [post, setPost] = useState([]) // State variables
@@ -217,8 +204,10 @@ const Post = () => {
       .then((response) => {
         setPost(response.data) // Set post to the response data
       })
-  }, []) // The empty array means render once. If we pass in post, i.e., [post],
-        // it will re-render the component if post's data changes
+  }, []) /*
+           The empty array means render once. If we pass in post, i.e., [post],
+           it will re-render the component if post's data changes
+         */
 
   return (
     <div>
