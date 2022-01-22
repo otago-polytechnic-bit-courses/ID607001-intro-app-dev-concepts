@@ -1,5 +1,5 @@
 # 09: React 3
 
-## Material Design
+## Reactstrap
 
 ## Formative Assessment

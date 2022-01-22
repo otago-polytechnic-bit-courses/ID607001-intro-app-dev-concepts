@@ -52,7 +52,31 @@ export default Welcome
 
 Your file structure should look something like this:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-6.png" width="350" />
+```bash
+<Your OP username>-react
+├── README.md
+├── node_modules
+├── package.json
+├── .gitignore
+├── public
+│ ├── favicon.ico
+│ ├── index.html
+│ ├── logo192.png
+│ ├── logo512.png
+│ ├── manifest.json
+│ └── robots.txt
+└── src
+│ ├── Components
+│ │  ├── Welcome.js
+│ ├── App.css
+│ ├── App.js
+│ ├── App.test.js
+│ ├── index.css
+│ ├── index.js
+│ ├── logo.svg
+│ ├── reportWebVitals.js
+│ ├── setupTests.js
+```
 
 Here is an example of how to import and use a **component**:
 
@@ -121,7 +145,7 @@ const App = () => {
 
 Here is an example output without and with `props`:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-8.png" width="350" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-1.png" width="950" height="537">
 
 **Resource:** <https://reactjs.org/docs/components-and-props.html>
 
@@ -193,7 +217,7 @@ Here is an example of how you can use the `useEffect` hook:
 
 ```js
 import axios from 'axios'
-import { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
+import { useEffect, useState } from 'react' // Import the useEffect hook from the react dependency
 
 const Post = () => {
   const [post, setPost] = useState([]) // State variables
@@ -223,7 +247,7 @@ export default Post
 
 Here is an example output of `useState`, `useEffect` and **Axios**:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-9.png" height="350" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-2.png" width="950" height="537">
 
 **Resources:**
 
