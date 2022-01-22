@@ -2,7 +2,7 @@
 
 ## Reactstrap
 
-**Reactstrap** is a library that provides you with predefined **Bootstrap** stateless components. The library does not depend on libraries like **jQuery** and **Bootstrap JS**. If you have not used **Bootstrap** before, have a look at this resource - https://developer.mozilla.org/en-US/docs/Glossary/Bootstrap.
+**Reactstrap** is a library that provides you with predefined **Bootstrap** stateless components. The library does not depend on libraries like **jQuery** and **Bootstrap JS**. If you have not used **Bootstrap** before, have a look at this resource - <https://developer.mozilla.org/en-US/docs/Glossary/Bootstrap>.
 
 Install **Bootstrap** and **reactstrap** using **NPM**:
 
@@ -81,16 +81,17 @@ export default App
 
 After you done this, you should see the following:
 
-![image](https://user-images.githubusercontent.com/22671392/137407896-6d2d9e92-829a-4d47-acd9-b21fba3994f6.png)
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-1.png" />
 
-**What is happening in the Navigation component?** 
+**What is happening in the Navigation component?**
+
 - You have one `state` variable called `isOpen`, which will allow you to open and close a collapsed navigation bar.
 - This is a simple responsive navbar that contains two items (login and institutions).
-- The `Navbar` component has two **props** - `color` and `expand`. Change the `color` value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text. 
+- The `Navbar` component has two values - `color` and `expand`. Change the `color` value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text.
 
 ![image](https://user-images.githubusercontent.com/22671392/137407975-e5aed07e-fe90-43fb-95b9-a9984380b85c.png)
 
-- How do you change the text color? Change the **light** style (not the `color` **prop** value). It should look something like this:
+- How do you change the text color? Change the **light** style (not the `color` value). It should look something like this:
 
 ```jsx
 <Navbar color="dark" dark expand="md">
@@ -100,9 +101,9 @@ After you done this, you should see the following:
 
 - We will discuss the `expand` later.
 - The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
-- The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` value is `md` which is a screen width ≥ 768px. 
+- The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` value is `md` which is a screen width ≥ 768px.
     - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html 
-- You will notice a hamburger menu on the left-hand side. 
+- You will notice a hamburger menu on the left-hand side.
 
 ![image](https://user-images.githubusercontent.com/22671392/137408027-53e183c7-cf2c-4f42-99c4-885abc5742be.png)
 
@@ -111,9 +112,9 @@ After you done this, you should see the following:
 ![image](https://user-images.githubusercontent.com/22671392/137408048-6ebfbebf-1313-42b0-ac62-f9aba487c3ac.png)
 
 - The `Nav` component has a `className` with the value `ms-auto` (margin-right auto) and **navbar** style. These two are specific to **Bootstrap**.
-- Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href`. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element. 
+- Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href`. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element.
 
-**Resource:** https://reactstrap.github.io/components/navbar
+**Resource:** <https://reactstrap.github.io/components/navbar>
 
 ## Create a table
 
@@ -159,7 +160,7 @@ export default InstitutionsTable
 - It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component. 
 - There are obvious problems with this example, and if you have completed **task 5** in **09-react-2-components**, you will know how to make this example modular.
 
-**Resource:** https://reactstrap.github.io/components/tables
+**Resource:** <https://reactstrap.github.io/components/tables>
 
 ## React Router
 
@@ -235,7 +236,6 @@ After you done this, you should see the following if you are on `/institutions`:
 
 ![image](https://user-images.githubusercontent.com/22671392/137408107-b356d157-c042-4f1b-9725-b2d384479252.png)
 
-**Resources:** 
-- https://reactrouter.com/web/guides/quick-start
+**Resource:** <https://reactrouter.com/web/guides/quick-start>
 
 ## Formative Assessment

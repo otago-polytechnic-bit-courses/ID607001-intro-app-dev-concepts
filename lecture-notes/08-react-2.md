@@ -109,7 +109,7 @@ When you declare a **class** or **function** component, you must never modify it
 
 *All React components must act like pure functions with respect to their props.*
 
-If you are unsure of what a **pure function** is, please carefully read this resource - <https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe/>
+If you are unsure of what a **pure function** is, please carefully read this resource - <https://www.freecodecamp.org/news/what-is-a-pure-function-in-javascript-acb887375dfe>
 
 ```js
 const Welcome = (props) => {
