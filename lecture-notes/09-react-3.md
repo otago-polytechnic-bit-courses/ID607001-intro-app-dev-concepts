@@ -151,7 +151,7 @@ const InstitutionsTable = () => {
   )
 }
 
-export default InstitutionsTable;
+export default InstitutionsTable
 ```
 
 **What is happening in the InstitutionTable component?**
@@ -174,12 +174,12 @@ npm i react-router-dom
 **Note:** **React Router** has three packages (core, **DOM** bindings and **React Native** bindings). Make sure you choose the **DOM** bindings package.  
 
 ```jsx
-import  useState } from 'react'
+import  { useState } from 'react'
 
 // Import the following:
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route
 } from 'react-router-dom'
 
@@ -214,22 +214,22 @@ const Navigation = () => {
           </Nav>
         </Collapse>
       </Navbar>
-      <Switch>
+      <Routes>
         <Route path="/login" />
-        <Route path="/institutions" component={InstitutionsTable} />
-      </Switch>
+        <Route path="/institutions" component={<InstitutionsTable />} />
+      </Routes>
     </Router>
   )
 }
 
-export default Navigation;
+export default Navigation
 ```
 
-**What is happening in the Navigation component?** 
+**What is happening in the Navigation component?**
 
 - You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
 - The `Router` component uses regular URL paths, i.e., `/institutions`.
-- `Switch` and `Route` are route matching components. When the `Switch` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` **prop** value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` **prop** value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `component` **prop**.
+- `Routes` and `Route` are route matching components. When the `Routes` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `component` value.
 
 After you done this, you should see the following if you are on `/institutions`:
 
