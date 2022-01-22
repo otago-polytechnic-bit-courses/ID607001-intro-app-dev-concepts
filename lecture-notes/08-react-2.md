@@ -150,7 +150,7 @@ The following few examples will be using **Axios**. Many of you have probably us
 
 To install **Axios**, open the terminal in **Visual Studio Code**, and run the following command:
 
-```md
+```bash
 npm i axios
 ```
 
@@ -208,7 +208,7 @@ Here is an example of how you can use the `useEffect` hook:
 
 ```js
 import axios from 'axios'
-import React, { useState, useEffect } from "react" // Import the useEffect hook from the react dependency
+import React, { useState, useEffect } from 'react' // Import the useEffect hook from the react dependency
 
 const Post = () => {
   const [post, setPost] = useState([]) // State variables
@@ -220,7 +220,7 @@ const Post = () => {
         setPost(response.data) // Set post to the response data
       })
   }, []) // The empty array means render once. If we pass in post, i.e., [post],
-  // it will re-render the component if post's data changes
+        // it will re-render the component if post's data changes
 
   return (
     <div>
