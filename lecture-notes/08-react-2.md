@@ -174,8 +174,6 @@ const Counter = () => {
   // const [..., setCount] - second argument allows you to set the state variables's value
   // useState(0) - using the useState hook which sets an initial state value, i.e., 0
 
-  // count can not be accessed outside this function component
-
   return (
     <div>
       <p>You clicked {count} times</p>{" "}
