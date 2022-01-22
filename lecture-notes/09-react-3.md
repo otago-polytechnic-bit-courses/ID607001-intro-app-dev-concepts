@@ -230,7 +230,7 @@ export default Navigation
 
 - You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
 - The `Router` component uses regular URL paths, i.e., `/institutions`.
-- `Routes` and `Route` are route matching components. When the `Routes` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `component` value.
+- `Routes` and `Route` are route matching components. When the `Routes` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `element` value.
 
 After you done this, you should see the following if you are on `/institutions`:
 
