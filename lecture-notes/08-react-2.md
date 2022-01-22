@@ -66,7 +66,7 @@ Your file structure should look something like this:
 │ ├── manifest.json
 │ └── robots.txt
 └── src
-│ ├── Components
+│ ├── components
 │ │  ├── Welcome.js
 │ ├── App.css
 │ ├── App.js
