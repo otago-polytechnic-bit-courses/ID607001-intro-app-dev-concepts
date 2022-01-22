@@ -96,7 +96,7 @@ Go to `package.json`. In the `scripts`, there are four default `scripts`:
 Here is an example of **JSX**:
 
 ```javascript
-const element = <h1>Hello, World!</h1>
+const elementOne = <h1>Hello, World!</h1>
 ```
 
 It looks like **HTML**, but if you were to run the example in an **HTML** file, it would not work.
@@ -109,19 +109,19 @@ The following is an example of how you can embed an expression in **JSX**:
 
 ```javascript
 const name = 'John Doe'
-const element = <h1>Hello, World! My name is {name}</h1>
+const elementTwo = <h1>Hello, World! My name is {name}</h1>
 ```
 
 Here we have declared a `const` variable called `name`. It can be used in **JSX** by enclosing it in curly braces. You can also embed any valid **JavaScript** expression as long as it is enclosed in curly braces. For example:
 
 ```javascript
 // Embedding an in-built JavaScript function
-const element = <h1>{Math.random()}</h1>
+const elementThree = <h1>{Math.random()}</h1>
 
 const getRandomNumber = (max) => Math.floor(Math.random() * max)
 
 // Embedding a user defined JavaScript function
-const element = <h1>{getRandomNumber(3)}</h1>
+const elementFour = <h1>{getRandomNumber(3)}</h1>
 ```
 
 ### Attributes
@@ -131,7 +131,7 @@ The following is an example of how you can embed an expression in an attribute:
 ```javascript
 const url = 'https://bit.ly/3CqHp70'
 const description = 'This image contains a cat wearing a surgical mask'
-const element = <img src={url} alt={description} />
+const elementFive = <img src={url} alt={description} width="500" height="350" />
 ```
 
 ### Nesting
@@ -139,7 +139,7 @@ const element = <img src={url} alt={description} />
 The following is an example of how you can nest **JSX**:
 
 ```javascript
-const element = (
+const elementSix = (
   <>
     <h1>Hello, World!</h1>
     <h2>My name is John Doe</h2>
@@ -165,8 +165,36 @@ Go to `src/App.js`. Replace all the code in this file with the following:
 
 ```javascript
 const App = () => {
+  const elementOne = <h1>Hello, World!</h1>
+
+  const name = 'John Doe'
+  const elementTwo = <h1>Hello, World! My name is {name}</h1>
+
+  const elementThree = <h1>{Math.random()}</h1>
+
+  const getRandomNumber = (max) => Math.floor(Math.random() * max)
+  const elementFour = <h1>{getRandomNumber(3)}</h1>
+
+  const url = 'https://bit.ly/3CqHp70'
+  const description = 'This image contains a cat wearing a surgical mask'
+  const elementFive = <img src={url} alt={description} width="500" height="350" />
+
+  const elementSix = (
+    <>
+      <h1>Hello, World!</h1>
+      <h2>My name is John Doe</h2>
+    </>
+  )
+
   return (
-    <h1>Hello, World!</h1>
+    <>
+      {elementOne}
+      {elementTwo}
+      {elementThree}
+      {elementFour}
+      {elementFive}
+      {elementSix}
+    </>
   )
 }
 
@@ -188,13 +216,7 @@ ReactDOM.render(
 )
 ```
 
-A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`. **Note:** `App` returns:
-
-```javascript
-<div id="root">
-  <h1>Hello, World!</h1>
-</div>
-```
+A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`.
 
 **Resources:**
 
