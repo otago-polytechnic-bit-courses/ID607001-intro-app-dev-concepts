@@ -212,7 +212,7 @@ npm start
 
 It will run the `start` script as specified in `package.json`. It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-1.png" width="500" height="150">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-1.png" width="750" height="350">
 
 ### Other things to know about
 
