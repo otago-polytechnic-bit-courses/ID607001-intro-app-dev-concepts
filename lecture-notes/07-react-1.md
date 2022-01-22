@@ -108,7 +108,7 @@ It looks like **HTML**, but if you were to run the example in an **HTML** file, 
 The following is an example of how you can embed an expression in **JSX**:
 
 ```javascript
-const name = "John Doe"
+const name = 'John Doe'
 const element = <h1>Hello, World! My name is {name}</h1>
 ```
 
@@ -129,8 +129,8 @@ const element = <h1>{getRandomNumber(3)}</h1>
 The following is an example of how you can embed an expression in an attribute:
 
 ```javascript
-const url = "https://bit.ly/3CqHp70"
-const description = "This image contains a cat wearing a surgical mask"
+const url = 'https://bit.ly/3CqHp70'
+const description = 'This image contains a cat wearing a surgical mask'
 const element = <img src={url} alt={description} />
 ```
 
@@ -164,13 +164,11 @@ This **DOM** element is the **root node**, meaning everything inside this elemen
 Go to `src/App.js`. Replace all the code in this file with the following:
 
 ```javascript
-import React from "react"
+import React from 'react'
 
 const App = () => {
   return (
-    <>
-      <h1>Hello, World!</h1>
-    </>
+    <h1>Hello, World!</h1>
   )
 }
 
@@ -195,9 +193,9 @@ ReactDOM.render(
 A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`. **Note:** `App` returns:
 
 ```javascript
-<>
+<div id="root">
   <h1>Hello, World!</h1>
-</>
+</div>
 ```
 
 **Resources:**
