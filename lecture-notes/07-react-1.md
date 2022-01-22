@@ -7,7 +7,7 @@
 Here are some reasons why people use **React**:
 
 - Applications can handle complex updates such as fetching large amounts of data and still feel fast and responsive.
-- You can write reusable and small pieces of code rather than large chunks of code. It solves the maintainability issue that you tend to have when writing vanilla **HTML**.
+- You can write reusable and small pieces of code rather than large chunks of code. It solves the maintainability issue that you tend to have when writing **HTML**.
 - Performs well in large applications, particularly when you need to fetch, change and render data.
 
 ### Where else will I use React in the BIT degree?
