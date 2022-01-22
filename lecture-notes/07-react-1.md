@@ -68,7 +68,7 @@ The following is your **React application's** file structure:
 ├── index.css
 ├── index.js
 ├── logo.svg
-├── serviceWorker.js
+├── reportWebVitals.js
 └── setupTests.js
 ```
 
@@ -164,8 +164,6 @@ This **DOM** element is the **root node**, meaning everything inside this elemen
 Go to `src/App.js`. Replace all the code in this file with the following:
 
 ```javascript
-import React from 'react'
-
 const App = () => {
   return (
     <h1>Hello, World!</h1>
@@ -214,7 +212,7 @@ npm start
 
 It will run the `start` script as specified in `package.json`. It will open a new browser session and navigate you to `localhost:3000`. You should see the following:
 
-<img src="https://raw.githubusercontent.com/otago-polytechnic-bit-courses/IN607-intro-app-dev-concepts/master/resources/img/08-09-react-1-2/08-react-1.png" width="350" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-1.png" width="950" height="537">
 
 ### Other things to know about
 
