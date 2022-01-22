@@ -62,14 +62,14 @@ The following is your **React application's** file structure:
 │ ├── manifest.json
 │ └── robots.txt
 └── src
-├── App.css
-├── App.js
-├── App.test.js
-├── index.css
-├── index.js
-├── logo.svg
-├── reportWebVitals.js
-└── setupTests.js
+│ ├── App.css
+│ ├── App.js
+│ ├── App.test.js
+│ ├── index.css
+│ ├── index.js
+│ ├── logo.svg
+│ ├── reportWebVitals.js
+│ ├── setupTests.js
 ```
 
 **Resource:** <https://create-react-app.dev/docs/folder-structure>
