@@ -478,7 +478,7 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
+Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **MongoDB Atlas** as described in the lecture notes above. 
 
 ### Cross-origin resource sharing (Cors)
 
@@ -494,3 +494,8 @@ Carefully read the first resource below. It will provide you with an excellent e
 **Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **helmet**.
 
 **Resource:** https://www.npmjs.com/package/helmet
+
+### Final words
+
+Please review your changes against the **Project 1: Node.js REST API** assessment document and marking rubric.
+
