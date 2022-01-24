@@ -19,15 +19,16 @@ In **JavaScript**, there are three declarations you can use.
 `var` is used to declare a **global** or **function-scoped** variable.
 
 ```javascript
-var x // Not initialised
-x = 5
+var x; // Not initialised
+x = 5;
 
-if (typeof x === 'number') { // Note: === is the strict equality operator
-    var x = 10
-    console.log(x) // 10
+if (typeof x === "number") {
+  // Note: === is the strict equality operator
+  var x = 10;
+  console.log(x); // 10
 }
 
-console.log(x) // 10
+console.log(x); // 10
 ```
 
 :question: **Interview Question:** What is **hoisting**?
@@ -37,14 +38,14 @@ console.log(x) // 10
 `let` is used to declare a **block-scoped** **local** variable.
 
 ```javascript
-let x = 5
+let x = 5;
 
-if (typeof x === 'number') { 
-    let x = 10
-    console.log(x) // 10
+if (typeof x === "number") {
+  let x = 10;
+  console.log(x); // 10
 }
 
-console.log(x) // 5
+console.log(x); // 5
 ```
 
 ### const
@@ -54,31 +55,31 @@ console.log(x) // 5
 The `const` example is much like the `let` example.
 
 ```javascript
-const x = 5
+const x = 5;
 
-if (typeof x === 'number') { 
-    const x = 10
-    console.log(x) // 10
+if (typeof x === "number") {
+  const x = 10;
+  console.log(x); // 10
 }
 
-console.log(x) // 5
+console.log(x); // 5
 ```
 
 Here are a few examples of errors commonly associated with `const`.
 
 ```javascript
-const x 
+const x
 x = 5 // SyntaxError: missing = in const declaration
 ```
 
 ```javascript
-const x = 5 
-x = 10 // TypeError: invalid assignment to const 'x'
+const x = 5;
+x = 10; // TypeError: invalid assignment to const "x"
 ```
 
 ```javascript
-const x = 5 
-const x = 10 // SyntaxError: redeclaration of const x
+const x = 5;
+const x = 10; // SyntaxError: redeclaration of const x
 ```
 
 :question: **Interview Question:** What is the difference between **mutability** and **immutability**?
@@ -96,10 +97,10 @@ const x = 10 // SyntaxError: redeclaration of const x
 Here is a skeleton example:
 
 ```javascript
-if (condition) { 
-    blockOne
+if (condition) {
+  blockOne;
 } else {
-    blockTwo
+  blockTwo;
 }
 ```
 
@@ -110,12 +111,12 @@ if (condition) {
 Here is a practical example:
 
 ```javascript
-const x = 'Hello, World!'
+const x = "Hello, World!";
 
-if (typeof x === 'number') { 
-    console.log(`${x} is a number`) 
+if (typeof x === "number") {
+  console.log(`${x} is a number`);
 } else {
-    console.log(`${x} is not a number`)
+  console.log(`${x} is not a number`);
 }
 ```
 
@@ -123,11 +124,11 @@ If you want to have multiple **conditions**, you can use `else if`.
 
 ```javascript
 if (conditionOne) {
-    blockOne
+  blockOne;
 } else if (conditionTwo) {
-    blockTwo
+  blockTwo;
 } else {
-    blockThree
+  blockThree;
 }
 ```
 
@@ -135,20 +136,20 @@ if (conditionOne) {
 
 ```javascript
 switch (expression) {
-    // Execute blockOne when the result of an expression matches one
-    case one:
-        blockOne
-    break
+  // Execute blockOne when the result of an expression matches one
+  case one:
+    blockOne;
+    break;
 
-    // Execute blockTwo when the result of an expression matches two
-    case two:
-        blockTwo
-    break
-    
-    // Execute blockThree when the result of an expression does not match one or two
-    default:
-        blockThree
-    break
+  // Execute blockTwo when the result of an expression matches two
+  case two:
+    blockTwo;
+    break;
+
+  // Execute blockThree when the result of an expression does not match one or two
+  default:
+    blockThree;
+    break;
 }
 ```
 
@@ -171,20 +172,20 @@ Here is a skeleton example:
 
 ```javascript
 for (initialisation; condition; expression) {
-    block
+  block;
 }
 ```
 
 Here is a practical example:
 
 ```javascript
-let x = ''
+let x = "";
 
 for (let i = 0; i <= 10; i++) {
-    x += i
+  x += i;
 }
 
-console.log(x) // 012345678910
+console.log(x); // 012345678910
 ```
 
 ### while
@@ -195,20 +196,20 @@ Here is a skeleton example:
 
 ```javascript
 while (condition) {
-    block
+  block;
 }
 ```
 
 Here is a practical example:
 
 ```javascript
-let x = 0
+let x = 0;
 
 while (x < 10) {
-  x++
+  x++;
 }
 
-console.log(x) // 10
+console.log(x); // 10
 ```
 
 ### do...while
@@ -219,22 +220,22 @@ Here is a skeleton example:
 
 ```javascript
 do {
-    block
-} while (condition)
+  block;
+} while (condition);
 ```
 
 Here is a practical example:
 
 ```javascript
-let result = ''
-let x = 0
+let result = "";
+let x = 0;
 
 do {
-  x++
-  result += x
-} while (x < 5)
+  x++;
+  result += x;
+} while (x < 5);
 
-console.log(result) // 12345
+console.log(result); // 12345
 ```
 
 Also, look at `for...of` and `for...in`.
@@ -251,22 +252,26 @@ There are two ways to write a **function** in **JavaScript**:
 
 ```javascript
 // Default function
-function x () { block }
+function x() {
+  block;
+}
 
 // or
 
 // Arrow function
-const x = () => { block }
+const x = () => {
+  block;
+};
 ```
 
 Here is a practical example:
 
 ```javascript
 function convertFahToCel(x) {
-  return (x - 32) * 5 / 9
+  return ((x - 32) * 5) / 9;
 }
 
-console.log(convertFahToCel(5)) // -15
+console.log(convertFahToCel(5)); // -15
 ```
 
 :question: **Interview Question:** Convert `convertFahToCel` above into an **arrow** **function**.
@@ -283,19 +288,19 @@ An **array** is a list-like object that enables you to perform traversal and mut
 Here is an example of how to create an **array**:
 
 ```javascript
-let fruits = ['Apple', 'Banana']
+let fruits = ["Apple", "Banana"];
 ```
 
 Here is an example of how to access an **array**:
 
 ```javascript
-let fruits = ['Apple', 'Banana']
+let fruits = ["Apple", "Banana"];
 
 // First element in fruits
-console.log(fruits[0]) // Apple
+console.log(fruits[0]); // Apple
 
 // Last element in fruits
-console.log(fruits[fruits.length - 1]) // Banana
+console.log(fruits[fruits.length - 1]); // Banana
 ```
 
 **Note:** An **array** can not be indexed using a **string**. You must use an **integer**.
@@ -305,11 +310,11 @@ console.log(fruits[fruits.length - 1]) // Banana
 Here is an example of how to mutate an **array**:
 
 ```javascript
-let fruits = ['Apple', 'Banana']
+let fruits = ["Apple", "Banana"];
 
-fruits[0] = 'Grape'
+fruits[0] = "Grape";
 
-console.log(fruits) // Array ["Grape", "Banana"]
+console.log(fruits); // Array ["Grape", "Banana"]
 ```
 
 **Note:** There are many ways to mutate an **array**. You will look other ways soon.
@@ -317,20 +322,20 @@ console.log(fruits) // Array ["Grape", "Banana"]
 Here is an example of how to iterate over an **array**:
 
 ```javascript
-const fruits = ['Apple', 'Banana']
+const fruits = ["Apple", "Banana"];
 
-// or 
+// or
 
 fruits.forEach((el, index) => {
-    console.log(`${el} => ${index}`) // Apple => 0
-                                       // Banana => 1 
-})
+  console.log(`${el} => ${index}`); // Apple => 0
+  // Banana => 1
+});
 
 // or
 
 for (let i = 0; i < fruits.length; i++) {
-    console.log(`${fruits[i]} => ${i}`) // Apple => 0
-                                        // Banana => 1 
+  console.log(`${fruits[i]} => ${i}`); // Apple => 0
+  // Banana => 1
 }
 ```
 
@@ -354,15 +359,15 @@ Here is an example of how to create an **object**:
 
 ```javascript
 const fruit = {
-    name: 'Apple',
-    color: 'Red'
-}
+  name: "Apple",
+  color: "Red",
+};
 
 // or
 
-const fruit = new Object()
-fruit.name = 'Apple'
-fruit.color = 'Red'
+const fruit = new Object();
+fruit.name = "Apple";
+fruit.color = "Red";
 ```
 
 I **strongly** recommend using the first example.
@@ -371,15 +376,15 @@ Here is an example of how to access an **object**:
 
 ```javascript
 const fruit = {
-    name: 'Apple',
-    color: 'Red'
-}
+  name: "Apple",
+  color: "Red",
+};
 
-console.log(fruit.name) // Apple
+console.log(fruit.name); // Apple
 
-// or 
+// or
 
-console.log(fruit['name']) // Apple
+console.log(fruit["name"]); // Apple
 ```
 
 **Note:** An **object** is sometimes called an **associative array**.
@@ -390,7 +395,7 @@ console.log(fruit['name']) // Apple
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
-  
+
 ## Formative assessment
 
 You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.

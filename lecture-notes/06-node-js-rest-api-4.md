@@ -8,11 +8,14 @@ In the **root** directory, create a new directory called `data`. In the `data` d
 
 ```javascript
 const institutions = [
-    { name: 'Otago Polytechnic', createdBy: '61bf993ee4c1c5d91af34521' },
-    { name: 'Southern Institute of Technology', createdBy: '61bf993ee4c1c5d91af34521' }
-]
+  { name: "Otago Polytechnic", createdBy: "61bf993ee4c1c5d91af34521" },
+  {
+    name: "Southern Institute of Technology",
+    createdBy: "61bf993ee4c1c5d91af34521",
+  },
+];
 
-export { institutions }
+export { institutions };
 ```
 
 **Note:** Change the `createdBy` value to an existing user's id. Using the `createdBy` will cause unexpected results.
@@ -20,47 +23,48 @@ export { institutions }
 In the `db` directory, create a new file called `seeder.js`. In this file, add the following:
 
 ```javascript
-import dotenv from 'dotenv'
+import dotenv from "dotenv";
 
-import Institution from '../models/institutions.js'
-import { institutions } from '../data/institutions.js'
-import conn from './connection.js'
+import Institution from "../models/institutions.js";
+import { institutions } from "../data/institutions.js";
+import conn from "./connection.js";
 
-dotenv.config()
+dotenv.config();
 
-conn(process.env.MONGO_URI) // Connect to MongoDB atlas
+conn(process.env.MONGO_URI); // Connect to MongoDB atlas
 
 const createdInstitutions = async () => {
-    try {
-        await Institution.deleteMany() // Delete all documents in the institutions collection
-        await Institution.insertMany(institutions) // Insert documents in the institutions collection
-        console.log('Institution data successfully created')
-        process.exit() // Exit the process
-    } catch (error) {
-        console.log(error)
-        process.exit(1) // Exit the process with an error
-    }
-}
+  try {
+    await Institution.deleteMany(); // Delete all documents in the institutions collection
+    await Institution.insertMany(institutions); // Insert documents in the institutions collection
+    console.log("Institution data successfully created");
+    process.exit(); // Exit the process
+  } catch (error) {
+    console.log(error);
+    process.exit(1); // Exit the process with an error
+  }
+};
 
 const deleteInstitutions = async () => {
-    try {
-        await Institution.deleteMany() // Delete all documents in the institutions collection
-        console.log('Institution data successfully deleted')
-        process.exit()
-    } catch (error) {
-        console.log(error)
-        process.exit(1)
-    }
-}
+  try {
+    await Institution.deleteMany(); // Delete all documents in the institutions collection
+    console.log("Institution data successfully deleted");
+    process.exit();
+  } catch (error) {
+    console.log(error);
+    process.exit(1);
+  }
+};
 
 switch (process.argv[2]) {
-    case '-d': { // This case is looking for a specific flag, i.e., -d
-        deleteInstitutions()
-        break
-    }
-    default: {
-        createdInstitutions()
-    }
+  case "-d": {
+    // This case is looking for a specific flag, i.e., -d
+    deleteInstitutions();
+    break;
+  }
+  default: {
+    createdInstitutions();
+  }
 }
 ```
 
@@ -96,7 +100,7 @@ Check **MongoDB Atlas** to see if the script deleted all institutions.
 In `app.js`, import `express-rate-limit`.
 
 ```javascript
-import rateLimit from 'express-rate-limit'
+import rateLimit from "express-rate-limit";
 ```
 
 Create a `rateLimit` object with the following options:
@@ -106,14 +110,15 @@ Create a `rateLimit` object with the following options:
 
 ```javascript
 const limit = rateLimit({
-    windowMs: 10 * 60 * 1000,
-    max: 5
-})
+  windowMs: 10 * 60 * 1000,
+  max: 5,
+});
 ```
 
 Apply the middleware to all requests
+
 ```javascript
-app.use(limit)
+app.use(limit);
 ```
 
 Go to **Postman** and perform **six** requests to test it. On the sixth request, you should see the following error:
@@ -183,7 +188,7 @@ You must submit all program files via **GitHub Classroom**. Here is the URL to t
 ### Getting started
 
 Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above.
-    
+
 ### Final words
 
 Please review your changes against the **Project 1: Node.js REST API** assessment document and marking rubric.

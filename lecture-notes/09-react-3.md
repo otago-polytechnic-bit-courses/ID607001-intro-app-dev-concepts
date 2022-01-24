@@ -13,7 +13,7 @@ npm i bootstrap reactstrap
 In `src/index.js`, import **Bootstrap**:
 
 ```md
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css"
 ```
 
 :question: **Interview Question:** What does `.min` mean?
@@ -30,7 +30,7 @@ Once you have done this, start the development server.
 
 Create a new component called `Navigation.js`. Add the following **JSX**:
 
-```jsx
+```js
 import { useState } from "react";
 import {
   Collapse,
@@ -67,7 +67,7 @@ export default Navigation;
 
 Of course, in `App.js`, you need to import and declare the `Navigation` component:
 
-```jsx
+```js
 import Navigation from "./components/Navigation";
 
 const App = () => {
@@ -79,7 +79,7 @@ export default App;
 
 After you done this, you should see the following:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-1.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-1.png' />
 
 **What is happening in the Navigation component?**
 
@@ -87,15 +87,15 @@ After you done this, you should see the following:
 - This is a simple responsive navbar that contains two items (login and institutions).
 - The `Navbar` component has two values - `color` and `expand`. Change the `color` attribute's value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-2.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-2.png' />
 
 - How do you change the text color? Change the **light** style (not the `color` attribute's value). It should look something like this:
 
-```jsx
+```js
 <Navbar color="dark" dark expand="md">
 ```
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-3.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-3.png' />
 
 - We will discuss the `expand` later.
 - The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
@@ -103,11 +103,11 @@ After you done this, you should see the following:
   - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html
 - You will notice a hamburger menu on the left-hand side.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-4.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-4.png' />
 
 - By default, `isOpen` is set to `false` and when you click on this (`onClick` accepts a callback), it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-5.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-5.png' />
 
 - The `Nav` component has a `className` attribute with the value `ms-auto` and **navbar** style. These two are specific to **Bootstrap**.
 - Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href` attribute. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element.
@@ -116,7 +116,7 @@ After you done this, you should see the following:
 
 ## Create a table
 
-```jsx
+```js
 import { Table } from "reactstrap";
 
 const InstitutionsTable = () => {
@@ -172,7 +172,7 @@ npm i react-router-dom
 
 **Note:** **React Router** has three packages (core, **DOM** bindings and **React Native** bindings). Make sure you choose the **DOM** bindings package.
 
-```jsx
+```js
 import { useState } from "react";
 
 // Import the following:
@@ -228,7 +228,7 @@ export default Navigation;
 
 After you done this, you should see the following if you are on `/institutions`:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-6.png" />
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-6.png' />
 
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
 
