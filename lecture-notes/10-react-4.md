@@ -49,7 +49,7 @@ const LoginForm = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser()
+    loginUser();
   };
 
   if (isHome === true) {
