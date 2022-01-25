@@ -193,8 +193,8 @@ export default mongoose.model("Institution", institutionsSchema);
 
 **Resources:**
 
-- https://mongoosejs.com/docs/guide.html#schemas
-- https://mongoosejs.com/docs/models.html
+- <https://mongoosejs.com/docs/guide.html#schemas>
+- <https://mongoosejs.com/docs/models.html>
 
 ## Controller
 
@@ -240,7 +240,7 @@ const createInstitution = async (req, res) => {
 };
 ```
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/institutions and data, then perform a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request.
 
 The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and **version**.
 
@@ -472,7 +472,7 @@ In this **in-class activity**, you will use your previous **in-class activity** 
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/hWjmBeNq. Checkout from the **main** branch to the **04-in-class-activity** branch by running the command - **git checkout 04-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the **main** branch to the **04-in-class-activity** branch by running the command - **git checkout 04-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
 ### Getting started
 
@@ -484,14 +484,14 @@ Carefully read the first resource below. It will provide you with an excellent e
 
 **Resources:**
 
-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS
-- https://www.npmjs.com/package/cors
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
+- <https://www.npmjs.com/package/cors>
 
 ### Helmet
 
 **Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **helmet**.
 
-**Resource:** https://www.npmjs.com/package/helmet
+**Resource:** <https://www.npmjs.com/package/helmet>
 
 ### Final words
 

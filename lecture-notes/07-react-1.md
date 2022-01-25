@@ -252,9 +252,9 @@ In this **in-class activity**, you will learn the basics of **React**.
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/ 6KSahyX. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/> 6KSahyX. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
-### Problem 1:
+### Problem 1
 
 In `App.js`, declare the following **JavaScript** object inside of the `App` function:
 
@@ -272,13 +272,13 @@ Create an **arrow function** called `displayTeam()` that accepts an argument cal
 
 **Expected output:**
 
-### Problem 2:
+### Problem 2
 
 Refactor the `displayTeam()` function so that if `team` is not given, return **No team provided** in an `<h1>` element.
 
 **Expected output:**
 
-### Problem 3:
+### Problem 3
 
 Declare the following **JavaScript** array below `basketballTeam` (**JavaScript** object):
 
@@ -297,7 +297,7 @@ Create an **arrow function** called `filterFruits()` that accepts an argument ca
 
 **Expected output:**
 
-### Problem 4:
+### Problem 4
 
 Refactor the `filterFruits()` function so that if `fruits` is not given, return **No fruits provided** in an `<h1>` element.
 

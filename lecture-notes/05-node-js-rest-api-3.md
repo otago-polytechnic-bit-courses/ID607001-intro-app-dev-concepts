@@ -288,7 +288,7 @@ export default app;
 - `app.use(cookieParser(process.env.JWT_SECRET))` - Create new `cookieParser` middleware function using the given `JWT_SECRET` secret. The secret is used for signing cookies.
 - `app.use("/api/institutions", authRoute, institutions)` - Protect route using the given `authRoute` middleware.
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - http://localhost:3000/api/register and data, then perform a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/register> and data, then perform a **POST** request.
 
 Congrats, you have created your first user. Now, you can use this user to login.
 
@@ -376,7 +376,7 @@ In this **in-class activity**, you will continue developing your **REST API** fo
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/hWjmBeNq. Checkout from the **main** branch to the **05-in-class-activity** branch by running the command - **git checkout 05-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the **main** branch to the **05-in-class-activity** branch by running the command - **git checkout 05-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
 ### Getting started
 
