@@ -260,7 +260,7 @@ In `App.js`, declare the following **JavaScript** object inside of the `App` fun
 
 ```js
 const basketballTeam = {
-  center: "Joel Embiid",
+  center: "Nikola Jokic",
   powerForward: "Anthony Davis",
   smallForward: "LeBron James",
   shootingGuard: "James Harden",
