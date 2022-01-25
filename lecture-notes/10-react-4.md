@@ -8,12 +8,12 @@ Create a new component called `LoginForm`. This component will contain the login
 // LoginForm.js
 
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = (props) => {
-  const BASE_URL = "https://intro-app-dev-laravel-app.herokuapp.com";
+  const BASE_URL = "https://id607001-graysono.herokuapp.com";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,55 +21,48 @@ const LoginForm = (props) => {
   const [authError, setAuthError] = useState(false); // Used for authentication errors
   const [unknownError, setUnknownError] = useState(false); // Used for network errors
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const loginUser = async () => {
     setAuthError(false);
     setUnknownError(false);
 
-    /**
-      Please read the following:
-        - https://laravel.com/docs/8.x/sanctum#csrf-protection
-        - https://owasp.org/www-community/attacks/csrf
-    */
-
-    axios.get(`${BASE_URL}/sanctum/csrf-cookie`).then((_) => {
-      axios
-        .post(`${BASE_URL}/api/v1/login`, {
+    try {
+      const response = await axios
+        .post(`${BASE_URL}/api/login`, {
           email: email,
           password: password,
         })
-        .then((response) => {
-          if (response.status === 201) {
-            props.login();
-            setIsHome(true);
-            // Set a new item called token in session storage. You will send
-            // it in the request header later on
-            sessionStorage.setItem("token", response.data.token);
-          }
-        })
-        .catch((error) => {
-          // Authentication error as specified in your Laravel API application
-          if (error.response.status === 401) {
-            setAuthError(true);
-          } else {
-            setUnknownError(true);
-          }
-        });
-    });
+
+      if (response.status === 201) {
+        props.login();
+        setIsHome(true);
+      }
+    } catch (error) {
+      console.log(error)
+
+      if (error.response.status === 401) {
+        setAuthError(true);
+      } else {
+        setUnknownError(true);
+      }
+    }
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser()
   };
 
   if (isHome === true) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (
     <>
       <h1 style={{ marginTop: "10px" }}>Login</h1>
-      {/*
-        When the form is submitted, it will call the handleSubmit
+      {/* 
+        When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
-        a method and action as you would typically do when dealing
+        a method and action as you would typically do when dealing 
         with forms
       */}
       <Form onSubmit={handleSubmit}>
@@ -79,12 +72,14 @@ const LoginForm = (props) => {
             name="email"
             placeholder="Email"
             value={email}
-            {/* This attribute detects when the value of an input element changes */}
+            /*
+              This attribute detects when the value of an input element changes
+            */
             onChange={(e) => setEmail(e.target.value)}
-            {/*
-              You can fetch validation messages from the request. There are plenty
-              of resources that show you how to do this
-            */}
+            /*
+              You can fetch validation messages from the request. There are plenty 
+              of online resources that show you how to do this 
+            */
             required
           />
         </FormGroup>
@@ -98,7 +93,7 @@ const LoginForm = (props) => {
             required
           />
         </FormGroup>
-        {/*
+        {/* 
           Display an alert message if there is either an authentication or network error
         */}
         {authError ? (
@@ -120,14 +115,14 @@ const LoginForm = (props) => {
 export default LoginForm;
 ```
 
-**Note:** you will need to add this code to your existing `App.js`. It will not a simple copy and paste, so please be careful.
+In `Navigation.js`, replace the existing code with the following:
 
 ```jsx
-// App.js
+// Navigation.js
 
-import axios from "axios";
+import axios from "axios"
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
   Collapse,
   Container,
@@ -138,46 +133,30 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import LoginForm from "./components/Forms/LoginForm";
+import LoginForm from "./LoginForm";
 
-const App = () => {
-  const BASE_URL = "https://intro-app-dev-laravel-app.herokuapp.com";
+const Navigation = () => {
+  const BASE_URL = "https://id607001-graysono.herokuapp.com";
 
   const [isOpen, setIsOpen] = useState(false);
-
-  // State variable for checking if the user is logged in
-  const [isLoggedIn, setIsLoggedIn] = useState(
-    // In session/local storage, all values are of type string
-    sessionStorage.getItem("isLoggedIn") === "true" || false
-  );
 
   const toggle = () => setIsOpen(!isOpen);
 
   const login = () => {
-    setIsLoggedIn(true);
-    // Set a new item called isLoggedIn in session storage. Note: here true
-    // is of type boolean. In session storage, true is of type string
-    sessionStorage.setItem("isLoggedIn", true);
+    alert("Logged in."); // Debugging purposes
   };
 
-  const logout = () => {
-    axios
-      // You will notice that the logout route is no longer POST. I had a
-      // lot of issues dealing with POST and found that GET works the same
-      .get(`${BASE_URL}/api/v1/logout`, {
-        // This is how you send a bearer token in the request header. You only
-        // need to do this for protected routes
-        headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("token")}`,
-        },
-      })
-      .then((response) => {
-        if (response.status === 200) {
-          setIsLoggedIn(false);
-          sessionStorage.clear(); // Clear all items in session storage
-          alert("Logged out."); // Debugging purposes
-        }
-      });
+  const logout = async () => {
+    try {
+      const response = await axios
+        .post(`${BASE_URL}/api/logout`);
+        
+      if (response.status === 200) {
+        alert("Logged out."); // Debugging purposes
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Render a NavLink based on whether a user is logged in or out
@@ -189,33 +168,28 @@ const App = () => {
     <NavLink href="/login">Login</NavLink>
   );
 
-  // Debugging purposes
-  if (isLoggedIn) alert("Logged in."); // You will most likely display your API data tables
-
   return (
     <Router>
       <Navbar color="dark" dark expand="md">
         <NavbarBrand href="/">Student Management System</NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
-          <Nav className="mr-auto" navbar>
+          <Nav className="ms-auto" navbar>
             <NavItem>{authLink}</NavItem>
           </Nav>
         </Collapse>
       </Navbar>
       <Container>
-        <Switch>
-          <Route
-            path="/login"
-            render={(props) => <LoginForm {...props} login={login} />}
-          />
-        </Switch>
+        <Routes>
+          <Route path="/login" element={<LoginForm login={login}/>} />
+          <Route path="/institutions" element={<InstitutionsTable />} />
+        </Routes>
       </Container>
     </Router>
   );
 };
 
-export default App;
+export default Navigation;
 ```
 
 ## Formative Assessment
