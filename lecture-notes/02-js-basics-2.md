@@ -144,4 +144,4 @@ readFile("someFile", (err, data) => {
 
 ## Formative assessment
 
-You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/in-class-activities/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.
+You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/formative-assessments/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.
