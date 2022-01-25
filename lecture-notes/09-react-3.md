@@ -155,8 +155,7 @@ export default InstitutionsTable;
 
 **What is happening in the InstitutionTable component?**
 
-- It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component.
-- There are obvious problems with this example, and if you have completed the previous formative assessment, you will know how to make this example modular.
+It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component.
 
 **Resource:** <https://reactstrap.github.io/components/tables>
 
