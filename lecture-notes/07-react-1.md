@@ -245,3 +245,60 @@ It will run the `start` script as specified in `package.json`. It will open a ne
 - `ReactDOM.render()` gets the element, i.e., `<div>` in `public/index.html` by its id, i.e., `id="root"`.
 - `ReactDOM.render()` only updates elements that have changed, i.e., it does not re-render the entire page, only the changed element(s). How it achieves this is by using the **virtual DOM**. More information here - <https://reactjs.org/docs/faq-internals.html>
 - `React.StrictMode` is a tool that helps you find problems in your application. It only runs in development mode, meaning the production build is not impacted.
+
+## Formative assessment
+
+In this **in-class activity**, you will learn the basics of **React**.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – https://classroom.github.com/a/ 6KSahyX. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Problem 1:
+
+In `App.js`, declare the following **JavaScript** object inside of the `App` function:
+
+```js
+const basketballTeam = {
+  center: "Joel Embiid",
+  powerForward: "Anthony Davis",
+  smallForward: "LeBron James",
+  shootingGuard: "James Harden",
+  pointGuard: "Stephen Curry",
+};
+```
+
+Create an **arrow function** called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). For each key/value pair in `team`, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Call the `displayTeam()` function in an `<ul>` element.
+
+**Expected output:**
+
+### Problem 2:
+
+Refactor the `displayTeam()` function so that if `team` is not given, return **No team provided** in an `<h1>` element.
+
+**Expected output:**
+
+### Problem 3:
+
+Declare the following **JavaScript** array below `basketballTeam` (**JavaScript** object):
+
+```js
+const fruits = [
+  "strawberry",
+  "banana",
+  "apple",
+  "blueberry",
+  "orange",
+  "grape",
+];
+```
+
+Create an **arrow function** called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). For each item in `fruits`, return a `<li>` containing the item if its length is greater than 5. Call the `filterFruits()` function in an `<ul>` element under **problem 1** and **2**.
+
+**Expected output:**
+
+### Problem 4:
+
+Refactor the `filterFruits()` function so that if `fruits` is not given, return **No fruits provided** in an `<h1>` element.
+
+**Expected output:**
