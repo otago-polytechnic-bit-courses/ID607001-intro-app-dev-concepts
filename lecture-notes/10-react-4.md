@@ -24,18 +24,17 @@ const LoginForm = (props) => {
     setUnknownError(false);
 
     try {
-      const response = await axios
-        .post(`${BASE_URL}/api/login`, {
-          email: email,
-          password: password,
-        })
+      const response = await axios.post(`${BASE_URL}/api/login`, {
+        email: email,
+        password: password,
+      });
 
       if (response.status === 201) {
         props.login();
         setIsHome(true);
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
 
       if (error.response.status === 401) {
         setAuthError(true);
@@ -43,7 +42,7 @@ const LoginForm = (props) => {
         setUnknownError(true);
       }
     }
-  }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -113,16 +112,10 @@ const LoginForm = (props) => {
 export default LoginForm;
 ```
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-1.png" width="950" height="537">
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-2.png" width="950" height="537">
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-3.png" width="950" height="537">
-
 In `Navigation.js`, replace the existing code with the following:
 
 ```js
-import axios from "axios"
+import axios from "axios";
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {
@@ -136,7 +129,7 @@ import {
   NavLink,
 } from "reactstrap";
 import LoginForm from "./forms/LoginForm";
-import InstitutionsTable from './tables/InstitutionsTable'
+import InstitutionsTable from "./tables/InstitutionsTable";
 
 const Navigation = () => {
   const BASE_URL = "https://id607001-graysono.herokuapp.com";
@@ -156,9 +149,8 @@ const Navigation = () => {
 
   const logout = async () => {
     try {
-      const response = await axios
-        .post(`${BASE_URL}/api/logout`);
-        
+      const response = await axios.post(`${BASE_URL}/api/logout`);
+
       if (response.status === 200) {
         setIsLoggedIn(false);
         sessionStorage.clear();
@@ -198,7 +190,7 @@ const Navigation = () => {
       </Navbar>
       <Container>
         <Routes>
-          <Route path="/login" element={<LoginForm login={login}/>} />
+          <Route path="/login" element={<LoginForm login={login} />} />
           <Route path="/institutions" element={<InstitutionsTable />} />
         </Routes>
       </Container>
@@ -208,6 +200,30 @@ const Navigation = () => {
 
 export default Navigation;
 ```
+
+Here is an example of logging in with invalid credentials:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-1.png" width="950" height="537">
+
+Here are examples of logging in with valid credentials:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-2.png" width="950" height="537">
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-3.png" width="950" height="537">
+
+Once you are logged in, you should see the **Institutions** and **Logout** navigation links.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-4.png" width="950" height="537">
+
+Click the **Institutions** navigation link. You should see the table of institutions.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-5.png" width="950" height="537">
+
+Here is an example of logging out.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-5.png" width="950" height="537">
+
+**Note:** The alerts are for debugging purposes. Remove it once you have the login and logout working.
 
 ## Formative Assessment
 
