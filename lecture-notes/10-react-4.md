@@ -221,7 +221,7 @@ Click the **Institutions** navigation link. You should see the table of institut
 
 Here is an example of logging out.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-5.png" width="950" height="537">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-6.png" width="950" height="537">
 
 **Note:** The alerts are for debugging purposes. Remove it once you have the login and logout working.
 
