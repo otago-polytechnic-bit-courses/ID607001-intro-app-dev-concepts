@@ -1,6 +1,6 @@
 # 10: React 4
 
-In today's session, you will look at how to implement **authentication** on the **frontend**. Hopefully, it will help with your current or next **Studio 3** sprint.
+In today's session, you will look at how to implement **authentication** and deploy to **Heroku**. Hopefully, it will help with your current or next **Studio 3** sprint.
 
 In the `src` directory, create a new directory called `forms`. In the `form` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
 
