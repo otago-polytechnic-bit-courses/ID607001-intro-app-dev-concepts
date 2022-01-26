@@ -28,7 +28,7 @@ Once you have done this, start the development server.
 
 ## Create a navigation bar
 
-Create a new component called `Navigation.js`. Add the following **JSX**:
+In the `src` directory, create a new directory called `components`. In the `components` directory, create a new component called `Navigation.js`. Add the following **JSX**:
 
 ```js
 import { useState } from "react";
@@ -116,6 +116,8 @@ After you done this, you should see the following:
 
 ## Create a table
 
+In the `components` directory, create a new directory called `tables`. In the `tables` directory, create a new component called `InstitutionsTable.js`. Add the following **JSX**:
+
 ```js
 import { Table } from "reactstrap";
 
@@ -188,7 +190,7 @@ import {
 } from "reactstrap";
 
 // Import the following component:
-import InstitutionsTable from "./components/InstitutionsTable";
+import InstitutionsTable from "./components/tables/InstitutionsTable";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
