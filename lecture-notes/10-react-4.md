@@ -2,11 +2,9 @@
 
 In today's session, you will look at how to implement **authentication** on the **frontend**. Hopefully, it will help with your current or next **Studio 3** sprint.
 
-Create a **function component** called `LoginForm`. This component will contain the **login** logic for your application.
+In the `src` directory, create a new directory called `forms`. In the `form` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
 
 ```js
-// LoginForm.js
-
 import axios from "axios";
 import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
@@ -115,11 +113,15 @@ const LoginForm = (props) => {
 export default LoginForm;
 ```
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-1.png" width="950" height="537">
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-2.png" width="950" height="537">
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-3.png" width="950" height="537">
+
 In `Navigation.js`, replace the existing code with the following:
 
 ```js
-// Navigation.js
-
 import axios from "axios"
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
@@ -133,16 +135,22 @@ import {
   NavItem,
   NavLink,
 } from "reactstrap";
-import LoginForm from "./LoginForm";
+import LoginForm from "./forms/LoginForm";
+import InstitutionsTable from './tables/InstitutionsTable'
 
 const Navigation = () => {
   const BASE_URL = "https://id607001-graysono.herokuapp.com";
 
   const [isOpen, setIsOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(
+    sessionStorage.getItem("isLoggedIn") === "true" || false
+  );
 
   const toggle = () => setIsOpen(!isOpen);
 
   const login = () => {
+    setIsLoggedIn(true);
+    sessionStorage.setItem("isLoggedIn", true);
     alert("Logged in."); // Debugging purposes
   };
 
@@ -152,6 +160,8 @@ const Navigation = () => {
         .post(`${BASE_URL}/api/logout`);
         
       if (response.status === 200) {
+        setIsLoggedIn(false);
+        sessionStorage.clear();
         alert("Logged out."); // Debugging purposes
       }
     } catch (error) {
@@ -161,9 +171,16 @@ const Navigation = () => {
 
   // Render a NavLink based on whether a user is logged in or out
   const authLink = isLoggedIn ? (
-    <NavLink onClick={logout} style={{ cursor: "pointer" }}>
-      Logout
-    </NavLink>
+    <>
+      <NavItem>
+        <NavLink href="/institutions">Institutions</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink onClick={logout} style={{ cursor: "pointer" }}>
+          Logout
+        </NavLink>
+      </NavItem>
+    </>
   ) : (
     <NavLink href="/login">Login</NavLink>
   );
@@ -175,7 +192,7 @@ const Navigation = () => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
-            <NavItem>{authLink}</NavItem>
+            {authLink}
           </Nav>
         </Collapse>
       </Navbar>
