@@ -261,4 +261,40 @@ In this **in-class activity**, you will continue to learn the basics of **React*
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/> 6KSahyX. Checkout from the **main** branch to the **08-in-class-activity** branch by running the command - **git checkout 08-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/6KSahyX>. Checkout from the **main** branch to the **08-in-class-activity** branch by running the command - **git checkout 08-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code** and solve the following four problems.
+
+### Problem 1
+
+At the top of `App.js` and in a comment, answer the following:
+
+1. What is happening when you call `useEffect`?
+2. Write a code example of how you can destructure `props` in a function component.
+
+### Problem 2
+
+Create a new **function component** (name it whatever you like) that has three `props` - `firstName`, `lastName` and `bandName`. Render `firstName` in an `<h1>` element, `lastName` in an `<h2>` element and `bandName` in an `<h3>` element. Import and use the **function component** in `App.js`.
+
+**Expected output:**
+
+### Problem 3
+
+Create a new **function component** (name it whatever you like) that performs a **GET** request using **Axios** to the following URL - <https://api.chucknorris.io/jokes/random>.
+
+Using the response, render an **image** in an `<img>` element and **text** in a `<p>` element. Import and use the **function component** in `App.js`.
+
+**Expected output:**
+
+### Problem 4
+
+Create a new **function component** (name it whatever you like) that performs **GET** requests using **Axios** in **parallel** to the following URLs:
+
+- <https://random-word-form.herokuapp.com/random/noun>
+- <https://random-word-form.herokuapp.com/random/adjective>
+
+Using the response, render the random noun and adjective in a `<p>` element. Import and use the **function component** in `App.js`.
+
+**Expected output:**

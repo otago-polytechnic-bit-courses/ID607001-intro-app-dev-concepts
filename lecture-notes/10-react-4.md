@@ -1,10 +1,10 @@
 # 10: React 4
 
-In today's session, you will look at how to implement authentication on the frontend. Hopefully, it will help with your current or next Studio 3 sprint.
+In today's session, you will look at how to implement **authentication** on the **frontend**. Hopefully, it will help with your current or next **Studio 3** sprint.
 
-Create a new component called `LoginForm`. This component will contain the login logic for your application.
+Create a **function component** called `LoginForm`. This component will contain the **login** logic for your application.
 
-```jsx
+```js
 // LoginForm.js
 
 import axios from "axios";
@@ -117,7 +117,7 @@ export default LoginForm;
 
 In `Navigation.js`, replace the existing code with the following:
 
-```jsx
+```js
 // Navigation.js
 
 import axios from "axios"
@@ -193,3 +193,21 @@ export default Navigation;
 ```
 
 ## Formative Assessment
+
+In this **in-class activity**, you will start developing your **CRUD** application for the **Project 2: React CRUD** assessment.
+
+### Code review
+
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/Vq7T0W6E>. Checkout from the **main** branch to the **10-in-class-activity** branch by running the command - **git checkout 10-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code**. Create a **React** application and implement authentication as described above.
+
+### Starter code
+
+After you have implemented authentication, have a look at this online resource - <https://github.com/olinations/crud-starter-frontend-hooks>. It is an excellent example on how to implement **CRUD** functionality. **Note:** This is example uses **fetch** instead of **Axios**.
+
+### Final words
+
+Please review your changes against the **Project 2: React CRUD** assessment document and marking rubric.

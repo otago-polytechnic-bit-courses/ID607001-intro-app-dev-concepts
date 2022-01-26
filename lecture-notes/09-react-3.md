@@ -100,7 +100,7 @@ After you done this, you should see the following:
 - We will discuss the `expand` later.
 - The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
 - The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` attribute's value is `md` which is a screen width ≥ 768px.
-  - **Resource**: https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html
+  - **Resource**: <https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html>
 - You will notice a hamburger menu on the left-hand side.
 
 <img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-4.png' />
@@ -232,3 +232,5 @@ After you done this, you should see the following if you are on `/institutions`:
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
 
 ## Formative Assessment
+
+No formative assessment today. However, I encourage you to try out the examples above.

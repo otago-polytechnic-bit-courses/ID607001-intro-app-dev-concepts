@@ -252,7 +252,11 @@ In this **in-class activity**, you will learn the basics of **React**.
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/> 6KSahyX. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/_6KSahyX>. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+
+### Getting started
+
+Open your repository in **Visual Studio Code** and solve the following four problems.
 
 ### Problem 1
 
@@ -268,7 +272,7 @@ const basketballTeam = {
 };
 ```
 
-Create an **arrow function** called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). For each key/value pair in `team`, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Call the `displayTeam()` function in an `<ul>` element.
+Create an **arrow function** called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). For each key/value pair in `team`, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Render the `displayTeam()` function in an `<ul>` element.
 
 **Expected output:**
 
@@ -293,7 +297,7 @@ const fruits = [
 ];
 ```
 
-Create an **arrow function** called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). For each item in `fruits`, return a `<li>` containing the item if its length is greater than 5. Call the `filterFruits()` function in an `<ul>` element under **problem 1** and **2**.
+Create an **arrow function** called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). For each item in `fruits`, return a `<li>` containing the item if its length is greater than 5. Render the `filterFruits()` function in an `<ul>` element under **problem 1** and **2**.
 
 **Expected output:**
 
