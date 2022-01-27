@@ -276,7 +276,7 @@ Create an **arrow function** called `displayTeam()` that accepts an argument cal
 
 **Expected output:**
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-2.png" width="450" height="500" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-2.png" width="450" height="350" />
 
 ### Problem 2
 
@@ -284,7 +284,7 @@ Refactor the `displayTeam()` function so that if `team` is not given, return **N
 
 **Expected output:**
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-3.png" width="450" height="500" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-3.png" width="450" height="350" />
 
 ### Problem 3
 
@@ -305,7 +305,7 @@ Create an **arrow function** called `filterFruits()` that accepts an argument ca
 
 **Expected output:**
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-4.png" width="450" height="500" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-4.png" width="450" height="350" />
 
 ### Problem 4
 
@@ -313,4 +313,4 @@ Refactor the `filterFruits()` function so that if `fruits` is not given, return 
 
 **Expected output:**
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-5.png" width="450" height="500" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-5.png" width="450" height="350" />
