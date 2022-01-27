@@ -183,7 +183,7 @@ In this **in-class activity**, you will continue developing your **REST API** fo
 
 ### Submission
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/hWjmBeNq>. If you wish to have your code reviewed, message me on **Microsoft Teams**. 
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/hWjmBeNq>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
 
 ### Getting started
 

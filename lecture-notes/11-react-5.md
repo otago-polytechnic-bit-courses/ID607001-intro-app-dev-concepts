@@ -90,7 +90,7 @@ In this **in-class activity**, you will continue developing your **CRUD** applic
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/Vq7T0W6E>. If you wish to have your code reviewed, message me on **Microsoft Teams**. 
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/Vq7T0W6E>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
 
 ### Getting started
 
