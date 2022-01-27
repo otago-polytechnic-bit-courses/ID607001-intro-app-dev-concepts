@@ -280,7 +280,7 @@ Create a new **function component** (name it whatever you like) that has three `
 
 **Expected output:**
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-3.png" width="450" height="325" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-3.png" width="450" height="350" />
 
 ### Problem 3
 
