@@ -244,7 +244,7 @@ Name the application `id607001-<Your OP username>-react`. Once you have create t
 
 Go to the **Settings** tab and click on the **Add buildpack** button.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-7.png" width="537" height="950">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-7.png" width="650" height="950">
 
 Add the following **buildpack** - <https://github.com/mars/create-react-app-buildpack>, then click the **Add changes** button.
 
@@ -252,7 +252,7 @@ Add the following **buildpack** - <https://github.com/mars/create-react-app-buil
 
 Once you have done this, you see the following:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-9.png" width="537" height="950">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-9.png" width="650" height="950">
 
 ### Starter code
 

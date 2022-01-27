@@ -272,9 +272,11 @@ const basketballTeam = {
 };
 ```
 
-Create an **arrow function** called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). For each key/value pair in `team`, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Joel Embiid**. Render the `displayTeam()` function in an `<ul>` element.
+Create an **arrow function** called `displayTeam()` that accepts an argument called `team` (**JavaScript** object). For each key/value pair in `team`, return a `<li>` containing the key, i.e., **center** and the value, i.e., **Nikola Jokic**. Render the `displayTeam()` function in an `<ul>` element.
 
 **Expected output:**
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-2.png" />
 
 ### Problem 2
 
@@ -282,9 +284,11 @@ Refactor the `displayTeam()` function so that if `team` is not given, return **N
 
 **Expected output:**
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-3.png" />
+
 ### Problem 3
 
-Declare the following **JavaScript** array below `basketballTeam` (**JavaScript** object):
+Declare the following **JavaScript** array below `fruits` (**JavaScript** object):
 
 ```js
 const fruits = [
@@ -297,12 +301,16 @@ const fruits = [
 ];
 ```
 
-Create an **arrow function** called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). For each item in `fruits`, return a `<li>` containing the item if its length is greater than 5. Render the `filterFruits()` function in an `<ul>` element under **problem 1** and **2**.
+Create an **arrow function** called `filterFruits()` that accepts an argument called `fruits` (**JavaScript** array). For each item in `fruits`, return a `<li>` containing the item if its length is ≤ 6. Render the `filterFruits()` function in an `<ul>` element under **problem 1** and **2**.
 
 **Expected output:**
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-4.png" />
 
 ### Problem 4
 
 Refactor the `filterFruits()` function so that if `fruits` is not given, return **No fruits provided** in an `<h1>` element.
 
 **Expected output:**
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/07-react-1/07-react-5.png" />
