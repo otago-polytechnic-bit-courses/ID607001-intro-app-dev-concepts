@@ -131,7 +131,7 @@ You can automatically generate documentation for your **API**. Your documentatio
 
 Here are the following steps:
 
-Click on the **Create Collection** button. Name the collection **id607001-<your OP username>-api**.
+Click on the **Create Collection** button. Name the collection `id607001-<your OP username>-api`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-6.JPG" />
 
@@ -183,7 +183,7 @@ In this **in-class activity**, you will continue developing your **REST API** fo
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the **main** branch to the **06-in-class-activity** branch by running the command - **git checkout 06-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the `master` or `main` branch to the **06-in-class-activity** branch by running the command - **git checkout 06-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
 ### Getting started
 

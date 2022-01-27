@@ -231,15 +231,32 @@ In this **in-class activity**, you will start developing your **CRUD** applicati
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/Vq7T0W6E>. Checkout from the **main** branch to the **10-in-class-activity** branch by running the command - **git checkout 10-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/Vq7T0W6E>. Checkout from the `master` or `main` branch to the **10-in-class-activity** branch by running the command - **git checkout 10-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
 ### Getting started
 
 Open your repository in **Visual Studio Code**. Create a **React** application and implement authentication as described above.
 
+### Deployment
+
+Go to **Heroku** and create a new application.
+Name the application `id607001-<Your OP username>-react`. Once you have create the application, enable automatic deploys and manually deploy the `master` or `main` branch.
+
+Go to the **Settings** tab and click on the **Add buildpack** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-7.png" width="537" height="950">
+
+Add the following **buildpack** - <https://github.com/mars/create-react-app-buildpack>, then click the **Add changes** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-8.png" width="950" height="537">
+
+Once you have done this, you see the following:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-9.png" width="537" height="950">
+
 ### Starter code
 
-After you have implemented authentication, have a look at this online resource - <https://github.com/olinations/crud-starter-frontend-hooks>. It is an excellent example on how to implement **CRUD** functionality. **Note:** This is example uses **fetch** instead of **Axios**.
+After you have implemented authentication and deployment, have a look at this online resource - <https://github.com/olinations/crud-starter-frontend-hooks>. It is an excellent example on how to implement **CRUD** functionality. **Note:** This is example uses **fetch** instead of **Axios**.
 
 ### Final words
 

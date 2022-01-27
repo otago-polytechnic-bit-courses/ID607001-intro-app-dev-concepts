@@ -472,7 +472,7 @@ In this **in-class activity**, you will use your previous **in-class activity** 
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the **main** branch to the **04-in-class-activity** branch by running the command - **git checkout 04-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/hWjmBeNq>. Checkout from the `master` or `main` branch to the **04-in-class-activity** branch by running the command - **git checkout 04-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
 
 ### Getting started
 
