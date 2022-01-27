@@ -1,12 +1,10 @@
-// LoginForm.js
-
 import axios from "axios";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Alert, Button, Form, FormGroup, Input } from "reactstrap";
-import { Redirect } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 const LoginForm = (props) => {
-  const BASE_URL = "https://intro-app-dev-laravel-app.herokuapp.com";
+  const BASE_URL = "https://id607001-graysono.herokuapp.com";
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -14,46 +12,38 @@ const LoginForm = (props) => {
   const [authError, setAuthError] = useState(false); // Used for authentication errors
   const [unknownError, setUnknownError] = useState(false); // Used for network errors
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const loginUser = async () => {
     setAuthError(false);
     setUnknownError(false);
-    
-    /** 
-      Please read the following:
-        - https://laravel.com/docs/8.x/sanctum#csrf-protection
-        - https://owasp.org/www-community/attacks/csrf
-    */
 
-    axios.get(`${BASE_URL}/sanctum/csrf-cookie`).then((_) => {
-      axios
-        .post(`${BASE_URL}/api/v1/login`, {
-          email: email,
-          password: password,
-        })
-        .then((response) => {
-          if (response.status === 201) {
-            props.login();
-            setIsHome(true);
-            // Set a new item called token in session storage. You will send 
-            // it in the request header later on
-            sessionStorage.setItem("token", response.data.token); 
-          }
-        })
-        .catch((error) => {
-          // Authentication error as specified in your Laravel API application
-          if (error.response.status === 401) {
-            setAuthError(true);
-          } else {
-            setUnknownError(true);
-          }
-        });
-    });
+    try {
+      const response = await axios.post(`${BASE_URL}/api/login`, {
+        email: email,
+        password: password,
+      });
+
+      if (response.status === 201) {
+        props.login();
+        setIsHome(true);
+      }
+    } catch (error) {
+      console.log(error);
+
+      if (error.response.status === 401) {
+        setAuthError(true);
+      } else {
+        setUnknownError(true);
+      }
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    loginUser();
   };
 
   if (isHome === true) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 
   return (
@@ -65,22 +55,22 @@ const LoginForm = (props) => {
         a method and action as you would typically do when dealing 
         with forms
       */}
-      <Form onSubmit={handleSubmit}> 
+      <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Input
             type="email"
             name="email"
             placeholder="Email"
-            value={email} 
+            value={email}
             /*
               This attribute detects when the value of an input element changes
             */
-            onChange={(e) => setEmail(e.target.value)} 
+            onChange={(e) => setEmail(e.target.value)}
             /*
               You can fetch validation messages from the request. There are plenty 
-              of resources that show you how to do this 
+              of online resources that show you how to do this 
             */
-            required 
+            required
           />
         </FormGroup>
         <FormGroup>
