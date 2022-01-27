@@ -250,9 +250,9 @@ It will run the `start` script as specified in `package.json`. It will open a ne
 
 In this **in-class activity**, you will learn the basics of **React**.
 
-### Code review
+### Submission
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/_6KSahyX>. Checkout from the **main** branch to the **07-in-class-activity** branch by running the command - **git checkout 07-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/_6KSahyX>. If you wish to have your code reviewed, message me on **Microsoft Teams**. 
 
 ### Getting started
 

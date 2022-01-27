@@ -333,9 +333,9 @@ You need to understand that there are many approaches to this. I encourage you t
 
 In this **in-class activity**, you will plan your **REST API** for the **Project 1: Node.js REST API** assessment. In addition, you will explore how to automatically restart your **REST API's** server using **Nodemon** and get an institution by its id.
 
-### Code review
+### Submission
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for your code review – <https://classroom.github.com/a/P656imf2>. Checkout from the `master` or `main` branch to the **03-in-class-activity** branch by running the command - **git checkout 03-in-class-activity**. This branch will be your development branch for this activity. Once you have completed this activity, create a pull request and assign the **GitHub** user **grayson-orr** to a reviewer. **Do not** merge your pull request.
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/_6KSahyX>. If you wish to have your code reviewed, message me on **Microsoft Teams**. 
 
 ### Getting started
 
