@@ -280,6 +280,8 @@ Create a new **function component** (name it whatever you like) that has three `
 
 **Expected output:**
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-3.png" width="450" height="350" />
+
 ### Problem 3
 
 Create a new **function component** (name it whatever you like) that performs a **GET** request using **Axios** to the following URL - <https://api.chucknorris.io/jokes/random>.
@@ -287,6 +289,8 @@ Create a new **function component** (name it whatever you like) that performs a 
 Using the response, render an **image** in an `<img>` element and **text** in a `<p>` element. Import and use the **function component** in `App.js`.
 
 **Expected output:**
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-4.png" width="450" height="350" />
 
 ### Problem 4
 
@@ -298,3 +302,5 @@ Create a new **function component** (name it whatever you like) that performs **
 Using the response, render the random noun and adjective in a `<p>` element. Import and use the **function component** in `App.js`.
 
 **Expected output:**
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/08-react-2/08-react-5.png" width="450" height="350" />
