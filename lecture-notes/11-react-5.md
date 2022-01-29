@@ -38,7 +38,7 @@ Your `scripts` block should look like the following:
 
 ### Example
 
-Open `react-cypress-example` in **Visual Studio Code**. You are going to use the **authentication** example from the previous session. **Note:** This example already has **Cypress** installed as a development dependency.
+Open `react-cypress-example` in **Visual Studio Code**. You are going to use the **authentication** example from the previous session.
 
 Run the following command:
 
@@ -56,31 +56,32 @@ In `auth.spec.js`, add the following:
 
 ```js
 beforeEach(() => {
-    cy.visit('localhost:3000/login') 
-})
+  cy.visit("localhost:3000");
+});
 
 // The description of the test
-it('login a user with email and password', () => {
-    cy.get('.nav-link').contains('Login') // The nav link text contains "Login"
-    cy.get('input[name="email"]').type('graysono@op.ac.nz') // Find the input with the name "email", then type a value
-    cy.get('input[name="password"]').type('P@ssw0rd123') // Find the input with the name "password", then type a value
-    cy.get('.btn.btn-secondary').click() // Find the element with the class .btn.btn-secondary, then click it
-    cy.get('.nav-link').contains('Logout') // The nav link text contains "Logout"
-    cy.get('.nav-link').click() // Log the user out
-})
+it("login a user with email and password", () => {
+  cy.get(".nav-link").contains("Login"); // The nav link text contains "Login"
+  cy.get(".nav-link").click(); // Click on the Login nav link
+  cy.get('input[name="email"]').type("graysono@op.ac.nz"); // Find the input with the name "email", then type a value
+  cy.get('input[name="password"]').type("P@ssw0rd123"); // Find the input with the name "password", then type a value
+  cy.get(".btn.btn-secondary").click(); // Find the element with the class .btn.btn-secondary, then click it
+  cy.get(".nav-link").contains("Logout"); // The nav link text contains "Logout"
+  cy.get(".nav-link").click(); // Log the user out
+});
 ```
 
 It is a sample test to get you started. Please read the comments carefully. The tests are endless. You will only cover a few cases in the **Project 2: React CRUD** assessment. Think about how you would test if the user's credentials are incorrect.
 
 Now you have a test, how do you go about running it. If you have not already, run the command `npm run cypress`. It will open and navigate you to a new window.
 
-<img src="../resources/img/12-react-5-cypress/react-cypress-1.png" width="500" height="350">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/11-react-5/11-react-1.png" width="950" height="537" />
 
 Click on `auth.spec.js`. It will open a new browser. My default browser is **Firefox** but you may choose **Chrome**, **Edge**, etc.
 
 It will run all the tests (one at the moment) in `auth.spec.js`. As it executes each condition, you should see it live on the left-hand side.
 
-<img src="../resources/img/12-react-5-cypress/react-cypress-2.png" width="750" height="500">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/11-react-5/11-react-2.png" width="950" height="537" />
 
 If you hover over each condition, it shows you a **DOM** snapshot at that specific point. It can help you debug an issue that may have occurred during testing.
 
@@ -90,7 +91,7 @@ In this **in-class activity**, you will continue developing your **CRUD** applic
 
 ### Code review
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/Vq7T0W6E>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/Vq7T0W6E>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**.
 
 ### Getting started
 
