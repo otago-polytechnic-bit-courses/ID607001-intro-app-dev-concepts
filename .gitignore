@@ -137,3 +137,4 @@ dist
 *.synctex.gz
 *.toc
 *.vrb
+*.xdv
