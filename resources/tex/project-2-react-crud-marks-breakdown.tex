@@ -1,0 +1,102 @@
+% Author: Grayson Orr
+% Course: ID607001: Introductory Application Development Concepts
+
+\documentclass{article}
+\author{}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{enumerate}
+\usepackage{hyperref}
+\usepackage[margin = 2.25cm]{geometry}
+\usepackage[table]{xcolor}
+\usepackage{fancyhdr}
+\hypersetup{
+  colorlinks = true,
+  urlcolor = blue
+}
+\setlength\parindent{0pt}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
+\lfoot{Project 2: React CRUD Marks Breakdown\\Version 3, Semester One, 2022}
+\rfoot{\thepage}
+ 
+\begin{document}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=50mm]{../img/logo.png}
+\end{figure}
+
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\ID607001: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Project 2: React CRUD Marks Breakdown}}
+\date{}
+\maketitle
+
+\subsection*{Functionality - Learning Outcome 1 (40\%)}
+\begin{itemize}
+	\item Authentication
+	      \begin{itemize}
+	      	\item \textbf{Independent Research:} Register a new user via a form.
+	      	\item Login an existing user via a form.
+	      	\item Log out of the application.
+	      \end{itemize}
+	\item CRUD
+	      \begin{itemize}
+	      	\item Request \textbf{REST API data} from at least three \textbf{API} resource groups using \textbf{Axios}.
+	      	\item Create new \textbf{REST API data} via a form. You can display the form on the page or in a modal. 
+	      	\item View \textbf{REST API data} in a table.
+	      	\item \textbf{Independent Research:} View \textbf{REST API data} in a table using an id. For example, \textbf{/institutions/1} would return \textbf{REST API data} for that specific \textbf{Institutions} object.
+	      	\item \textbf{Independent Research:} Update \textbf{REST API data} via a form. Similar to creating \textbf{REST API data}, you can display the form on the page or in a modal. 
+	      	\item \textbf{Independent Research:} Delete \textbf{REST API data}. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+	      	\item \textbf{Independent Research:} Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
+	      \end{itemize}
+	\item \textbf{Independent Research:} Paginate \textbf{REST API data} across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{REST API data} per page.
+	\item \textbf{Independent Research:} Search \textbf{REST API data} via a search bar.
+	\item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Reactstrap}.
+	\item Application deployed to \textbf{Heroku}. 
+	\item End-to-end \textbf{Cypress} tests that ensures the register, login and logout functionality is working as expected. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process.
+\end{itemize}
+
+\subsection*{Code Elegance - Learning Outcome 1 (45\%)}
+\begin{itemize}
+    \item Use of intermediate variables. No method calls as arguments.
+    \item Idiomatic use of control flow, data structures \& in-built functions.
+	\item Sufficient modularity, i.e., UI split into independent reusable pieces.
+	\item Functions \& variables are named appropriately.
+	\item Components written as functional, not class.
+	\item Adheres to a client-server architecture, i.e., the frontend is separate from the backend.
+	\item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each \textbf{component} file.
+	\item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic.
+	\item Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
+	      \begin{itemize}
+	      	\item Single quote is set to \textbf{true}.
+	      	\item Semi-colon is set to \textbf{false}.
+	      	\item Tab-width is set to \textbf{2}.
+	      \end{itemize}
+	\item \textbf{Prettier} \& \textbf{Cypress} are installed as development dependencies.
+	\item No dead or unused code.
+\end{itemize}
+
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
+\begin{itemize}
+	\item Project board to help you organise \& prioritise your work. 
+	\item Provide the following in your repository \textbf{README.md} file:
+	      \begin{itemize}
+	      	\item URL to the application on \textbf{Heroku}.
+	      	\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the application locally?
+	      	\item How do you run the end-to-end \textbf{Cypress} tests?
+	      	\item How do you deploy the \textbf{React} application to \textbf{Heroku}?
+	      \end{itemize}
+\end{itemize}
+\begin{itemize}
+	\item Your \textbf{Git commit messages} should:
+	      \begin{itemize}
+	      	\item Reflect the context of each functional requirement change. 
+	      	\item Be formatted using the naming conventions outlined in the following:
+	      	      \begin{itemize}
+	      	      	\item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
+	      	      \end{itemize} 
+	      \end{itemize}
+\end{itemize}
+\end{document}
