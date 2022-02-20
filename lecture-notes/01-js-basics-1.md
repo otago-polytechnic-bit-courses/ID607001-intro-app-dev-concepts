@@ -387,7 +387,7 @@ console.log(fruit.name); // Apple
 console.log(fruit["name"]); // Apple
 ```
 
-**Note:** An **object** is sometimes called an **associative array**.
+**Note:** An **object** is sometimes called an **associative array** or **map**.
 
 :question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
 
