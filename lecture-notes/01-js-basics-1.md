@@ -19,7 +19,7 @@ In **JavaScript**, there are three declarations you can use.
 `var` is used to declare a **global** or **function-scoped** variable.
 
 ```javascript
-var x; // Not initialised
+var x; // Not initialised. Default value is undefined
 x = 5;
 
 if (typeof x === "number") {
