@@ -105,7 +105,8 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \item Idiomatic use of control flow, data structures \& in-built functions.
     \item Sufficient modularity, i.e., setup method at the beginning of each test case.
     \item Functions \& variables are named appropriately.
-    \item File header comment explaining the purpose of each \textbf{API test} file.
+    \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file..
+    \item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
     \item Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process. Rules \textbf{must} include:
           \begin{itemize}
             \item Single quote is set to \textbf{true}.
@@ -115,25 +116,26 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \item \textbf{Prettier} \& \textbf{nyc} are installed as development dependencies.
     \item No dead or unused code.
     \item Database configured for testing environment.
+    \item Application's environment variables are stored in a \textbf{.env} file.
 \end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
 \begin{itemize}
     \item Provide the following in your repository \textbf{README.md} file:
-          \begin{itemize}
-            \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the \textbf{API tests} locally?
-            \item How do you run the \textbf{API tests}?
-          \end{itemize}
-\end{itemize}
-\begin{itemize}
+    \begin{itemize} 
+      \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the \textbf{API tests} locally?
+      \item How do you run the \textbf{API tests}?
+    \end{itemize}
+    \item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
+    \item Correct spelling \& grammar.
     \item Your \textbf{Git commit messages} should:
-          \begin{itemize}
-            \item Reflect the context of each functional requirement change. 
-            \item Be formatted using the naming conventions outlined in the following:
-                  \begin{itemize}
-                    \item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
-                  \end{itemize} 
-          \end{itemize}
+    \begin{itemize}
+      \item Reflect the context of each functional requirement change. 
+      \item Be formatted using the naming conventions outlined in the following:
+            \begin{itemize}
+              \item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
+            \end{itemize} 
+    \end{itemize}
 \end{itemize}
           
 \subsection*{Additional Information}

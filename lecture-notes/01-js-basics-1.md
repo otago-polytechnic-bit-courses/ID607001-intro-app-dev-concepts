@@ -19,7 +19,7 @@ In **JavaScript**, there are three declarations you can use.
 `var` is used to declare a **global** or **function-scoped** variable.
 
 ```javascript
-var x; // Not initialised
+var x; // Not initialised. Default value is undefined
 x = 5;
 
 if (typeof x === "number") {
@@ -387,7 +387,7 @@ console.log(fruit.name); // Apple
 console.log(fruit["name"]); // Apple
 ```
 
-**Note:** An **object** is sometimes called an **associative array**.
+**Note:** An **object** is sometimes called an **associative array** or **map**.
 
 :question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
 
