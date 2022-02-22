@@ -433,7 +433,7 @@ How do I distinguish between the two?
 
 ```js
 const { name, color } = fruit;
-const { name: vegeName, color: vegeColor } = vege; // Note the alias, i.e., vegeName and vegeColor
+const { name: vegeName, color: vegeColor } = vege; // Note the aliases, i.e., vegeName and vegeColor
 
 console.log(name); // Apple
 console.log(color); // Red
