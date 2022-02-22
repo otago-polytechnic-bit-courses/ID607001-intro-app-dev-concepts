@@ -258,7 +258,7 @@ function x() {
 
 // or
 
-// Arrow function
+// Arrow/anonymous function
 const x = () => {
   block;
 };
@@ -391,10 +391,69 @@ console.log(fruit["name"]); // Apple
 
 :question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
 
+
 **Resources:**
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
+
+## Destructuring 
+
+A **JavaScript** expression that enables you to **unpack** items from an **array** and properties from an **object** into distinct variables.
+
+Here is an example of how to **unpack** properties from an **object**:
+
+```js
+const fruit = {
+  name: "Apple",
+  color: "Red",
+};
+
+const { name, color } = fruit;
+
+console.log(name); // Apple
+console.log(color); // Red
+```
+
+What happens if I have two objects with the same properties?
+
+```js
+const fruit = {
+  name: "Apple",
+  color: "Red",
+};
+
+const vege = {
+  name: "Carrot",
+  color: "Orange"
+};
+```
+
+How do I distinguish between the two?
+
+```js
+const { name, color } = fruit;
+const { name: vegeName, color: vegeColor } = vege; // Note the alias, i.e., vegeName and vegeColor
+
+console.log(name); // Apple
+console.log(color); // Red
+console.log(vegeName); // Carrot
+console.log(vegeColor); // Orange
+```
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
+
+## Development Workflow
+
+Here is a list of useful **VS Code** extensions:
+
+- Auto Rename Tag
+- Bracket Pair Colorizer
+- Code 
+- Code Spell Checker
+- GitLens
+- Prettier
+
 
 ## Formative assessment
 
