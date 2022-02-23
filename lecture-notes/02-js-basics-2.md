@@ -1,5 +1,28 @@
 # 02: JavaScript Basics 2
 
+## Functional Programming Paradigm
+
+Before we start, I want to discuss what is not **functional programming**...loops, `var` & `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
+
+### Pure Functions
+
+A program can have multiple **functions**, but it does not mean you are doing **functional programming**. Most of the time, you are writing **impure functions**. However, **functional programming** encourages you to write **pure functions**. In order for a **function** to be **pure**, it must satisfy the following:
+
+- A function gives the same return value for the same arguments. It means that the function can not depend on any mutable state.
+- A function can not cause any side effects, i.e., reassignment & mutation.
+
+Here are some examples:
+
+```js
+const multiply = (x, y) => x * y
+```
+
+This is a example of a pure function. It always returns the same output for the same input, subsequently, causing no side effects.
+
+```js
+let heightReq = 50
+```
+
 ## Map
 
 A `map` creates a new **array** populated with the results of calling a given **function** on every **element** in a given **array**.
