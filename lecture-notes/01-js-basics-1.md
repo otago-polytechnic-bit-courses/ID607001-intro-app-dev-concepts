@@ -258,7 +258,7 @@ function x() {
 
 // or
 
-// Arrow/anonymous function
+// Arrow function
 const x = () => {
   block;
 };
