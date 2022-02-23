@@ -454,7 +454,6 @@ Here is a list of useful **VS Code** extensions:
 - GitLens
 - Prettier
 
-
 ## Formative assessment
 
 You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/formative-assessments/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.

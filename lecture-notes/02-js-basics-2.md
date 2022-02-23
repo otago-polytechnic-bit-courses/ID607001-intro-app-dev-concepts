@@ -4,24 +4,58 @@
 
 Before we start, I want to discuss what is not **functional programming**...loops, `var` & `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
 
-### Pure Functions
+### Pure functions
 
 A program can have multiple **functions**, but it does not mean you are doing **functional programming**. Most of the time, you are writing **impure functions**. However, **functional programming** encourages you to write **pure functions**. In order for a **function** to be **pure**, it must satisfy the following:
 
-- A function gives the same return value for the same arguments. It means that the function can not depend on any mutable state.
-- A function can not cause any side effects, i.e., reassignment & mutation.
+- A **function** gives the **same return value** for the **same arguments**. It means that the **function** can not depend on any mutable state.
+- A **function** can not cause any **side-effects**, i.e., **reassignment** & **mutation**.
 
 Here are some examples:
 
-```js
-const multiply = (x, y) => x * y
+```javascript
+const multiply = (x, y) => x * y;
 ```
 
-This is a example of a pure function. It always returns the same output for the same input, subsequently, causing no side effects.
+This is a example of a **pure function**. It always returns the same output for the same input, subsequently, causing no **side-effects**.
 
-```js
-let heightReq = 50
+```javascript
+let heightReq = 50;
+
+// Impure fun because it relies on let (mutable var)
+const isMinHeight (height) => height >= heightReq;
+
+// Impure fun because by logging to the console, it causes a side-effect
+const multiply = (x, y) => {
+  console.log(x, y);
+  return x * y;
+}
 ```
+
+:question: **Interview Question:** Why are the **in-built functions** `Math.random` and `Date.now` impure?
+
+How can we take the first **impure function** example above and make it **pure**?
+
+```javascript
+const heightReq = 50;
+
+const isMinHeight (height) => height >= heightReq;
+```
+
+It is as simple as that!
+
+### First-class functions
+
+In **JavaScript**, **functions** are **first-class objects/citizens**. This means a function can be:
+
+- Stored in a variable
+- Passed as an argument to a function
+- Returned by a function
+- Stored in a data structure
+
+### Higher-order functions
+
+A **higher-order function** is a **function** that has a **function** as an argument or returns a **function**.
 
 ## Map
 
@@ -32,8 +66,14 @@ Here is a practical example:
 ```javascript
 const nums = [2, 4, 6, 8];
 
-const triples = nums.map((x) => x * 3);
+const tripleNum = (num) => num * 3;
 
+// Using an anonymous function as an argument
+const triples = nums.map((x) => x * 3);
+console.log(triples); // Array [6, 12, 18, 24]
+
+// Using a named callback function as an argument
+const otherTriples = nums.map(tripleNum);
 console.log(triples); // Array [6, 12, 18, 24]
 ```
 
