@@ -449,7 +449,7 @@ Here is a list of useful **VS Code** extensions:
 
 - Auto Rename Tag
 - Bracket Pair Colorizer
-- Code 
+- Code Runner
 - Code Spell Checker
 - GitLens
 - Prettier
