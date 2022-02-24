@@ -23,7 +23,7 @@ This is a example of a **pure function**. It always returns the same output for 
 let heightReq = 50;
 
 // Impure fun because it relies on let (mutable var)
-const isMinHeight (height) => height >= heightReq;
+const isMinHeight = (height) => height >= heightReq;
 
 // Impure fun because by logging to the console, it causes a side-effect
 const multiply = (x, y) => {
@@ -39,7 +39,7 @@ How can we take the first **impure function** example above and make it **pure**
 ```javascript
 const heightReq = 50;
 
-const isMinHeight (height) => height >= heightReq;
+const isMinHeight = (height) => height >= heightReq;
 ```
 
 It is as simple as that!
@@ -69,7 +69,7 @@ const nums = [2, 4, 6, 8];
 const tripleNum = (num) => num * 3;
 
 // Using an anonymous function as an argument
-const triples = nums.map((x) => x * 3);
+const triples = nums.map((num) => num * 3);
 console.log(triples); // Array [6, 12, 18, 24]
 
 // Using a named callback function as an argument
@@ -195,7 +195,7 @@ There are many ways to read data, i.e., from a database or an API. You will see 
 Here is a practical example:
 
 ```javascript
-const fs = require("fs");
+const { readFile } = require("fs");
 
 readFile("someFile", (err, data) => {
   if (err) throw err;
