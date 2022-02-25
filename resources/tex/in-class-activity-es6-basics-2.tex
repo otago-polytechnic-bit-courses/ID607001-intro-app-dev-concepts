@@ -68,7 +68,7 @@ For each element in \textbf{nums}, calculate its power of two using \& return as
 \end{verbatim}
 
 \subsection*{Problem 2:}
-For each element in \textbf{temps}, convert its value from fahrenheit to celsius and return as an \textbf{array} using the \textbf{map} function. Round each value to the nearest two decimal places using the \textbf{Math.round} function.
+For each element in \textbf{temps}, convert its value from fahrenheit to celsius and return as an \textbf{array} using the \textbf{map} function. Round each value to the nearest two decimal places using the \textbf{toFixed} function.
 
 \begin{verbatim}
   const temps = [65, 45, 25, 5]
@@ -77,7 +77,7 @@ For each element in \textbf{temps}, convert its value from fahrenheit to celsius
   console.log(fahToCel)
 
   // Expected output:
-  // [18.33, 7.22, -3.89, -15.0]
+  // [18.33, 7.22, -3.89, -15.00]
 \end{verbatim}
 
 \subsection*{Problem 3:}
@@ -136,14 +136,14 @@ Using the \textbf{reduce} function, return the total \textbf{price} for the give
   ]
 
   const groceriesTotal = // Write your solution here
-  console.log(groceriesTotal)
+  console.log(groceriesTotal) 
 
   // Expected output:
   // 37
 \end{verbatim}
 
 \subsection*{Problem 6:}
-Using the \textbf{reduce} function, return an \textbf{object} where the \textbf{key} is the name of the ice cream flavour, i.e., chocolate \& the \textbf{value} is an \textbf{integer} that represents the total count for that flavour, i.e., 3.
+Using the \textbf{reduce} function, return an \textbf{object} where the \textbf{key} is the name of the ice cream flavour, i.e., chocolate \& the \textbf{value} is an \textbf{integer} that represents the total count for that flavour, i.e., 3. 
 
 \begin{verbatim}
   const iceCreamFlavours = [
@@ -161,7 +161,7 @@ Using the \textbf{reduce} function, return an \textbf{object} where the \textbf{
 \end{verbatim}
 
 \subsection*{Problem 7:}
-Using the \textbf{readFile} function, read \textbf{nursery-rhyme.txt} located in the \textbf{in-class activities} directory. For each word in \textbf{nursery-rhyme.txt}, convert it to \textbf{lowercase} using the \textbf{map} function.
+Using the \textbf{readFile} function, read \textbf{nursery-rhyme.txt} located in the \textbf{in-class activities} directory. For each word in \textbf{nursery-rhyme.txt}, convert it to \textbf{lowercase} using the \textbf{map} function. 
 
 \begin{verbatim}
   // Expected output:
