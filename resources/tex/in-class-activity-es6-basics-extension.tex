@@ -112,17 +112,83 @@ You are given the length of a song in minutes. The format is \textbf{mm:ss}, i.e
 \end{verbatim}
 
 \subsection*{Problem 4:}
+Explain the difference between \textbf{const} \& \textbf{Object.freeze()} using the following example:
+
+\begin{verbatim}
+  // const example
+  const fruit = { name: 'Apple' }
+  let vege = { name: 'Carrot' }
+  fruit = vege
+
+  // Object.freeze() example
+  let person = { name: 'John' }
+  Object.freeze(person)
+  person.name = 'Jane'
+  console.log(person)
+\end{verbatim}
 
 \subsection*{Problem 5:}
+Explain the difference between \textbf{implicit} \& \textbf{explicit} type coercion.
 
-\subsection*{Problem 6:}
+\subsection*{Problem 6:} 
+Explain what an \textbf{Immediately Invoked Function Expression (IIFE)} is. Provide an example in your answer.
 
 \subsection*{Problem 7:}
+Explain what a \textbf{generator} is. Provide an example in your answer.
 
 \subsection*{Problem 8:}
+Explain difference between an \textbf{undeclared}, \textbf{undefined} \& \textbf{null} variable.
 
 \subsection*{Problem 9:}
+Provide \textbf{three} examples on how you can empty an \textbf{array}.
 
 \subsection*{Problem 10:}
+Explain the expected output for the following example:
+
+\begin{verbatim}
+  const progLangsOne = ['C#', 'JavaScript', 'Kotlin', 'OCaml']
+  delete progLangsOne[2]
+  console.log(progLangsOne)
+\end{verbatim}
+
+\subsection*{Problem 11:}
+Explain the operators used \& expected output in the following example:
+
+\begin{verbatim}
+  +true
+  !'John'
+\end{verbatim}
+
+\subsection*{Problem 12:}
+Explain the difference between \textbf{prefix} \& \textbf{postfix} increment/decrement operators.
+
+\subsection*{Problem 13:}
+Explain what \textbf{currying} is using the following example:
+
+\begin{verbatim}
+  const makeSandwich = (ingredientOne) => {
+      return (ingredientTwo) => {
+          return (ingredientThree) => {
+              return `${ingredientOne}, ${ingredientTwo}, ${ingredientThree}`
+          }
+      }
+  }
+
+  const sandwich = makeSandwich('Bacon')('Lettuce')('Tomato')
+  console.log(sandwich) // Bacon, Lettuce, Tomato
+\end{verbatim}
+
+\subsection*{Problem 14:}
+Explain the following \textbf{expressions} \& \textbf{operators}:
+\begin{itemize}
+  \item Exponentiation assignment (**=)
+  \item Logical nullish assignment (??=)
+  \item Nullish coalescing operator (??)
+  \item Optional chaining (?.)
+  \item Remainder assignment (\%=)
+\end{itemize}
+
+\subsection*{Problem 15:}
+Explain what a \textbf{Set} is. Provide an example in your answer.
 
 \end{document}

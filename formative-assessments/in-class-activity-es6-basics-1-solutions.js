@@ -54,6 +54,7 @@
     if (el % 2 !== 0) console.log(el);
   });
 }
+
 /**
  * Question 6
  */
