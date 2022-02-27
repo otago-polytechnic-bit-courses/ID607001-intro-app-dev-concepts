@@ -147,7 +147,8 @@
     // Guard clause
 
     let res = 0;
-    for (let i = 0; i <= nums.length; i++) res += i;
+    const max = Math.max(...nums);
+    for (let i = 0; i <= max; i++) res += i;
 
     let sum = 0;
     for (let i = 0; i < nums.length; i++) sum += nums[i];
