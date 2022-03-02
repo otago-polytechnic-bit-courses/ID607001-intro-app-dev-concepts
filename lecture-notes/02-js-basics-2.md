@@ -197,7 +197,7 @@ Here is a practical example:
 ```javascript
 const { readFile } = require("fs");
 
-readFile("someFile", (err, data) => {
+readFile("someFile", "utf8", (err, data) => {
   if (err) throw err;
   console.log(data);
 });
