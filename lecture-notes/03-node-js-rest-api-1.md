@@ -181,7 +181,7 @@ const deleteInstitution = (req, res) => {
     (institution) => institution.id !== Number(id) // If institution does exist, delete it
   );
 
-  return res.status(200).json({ success: true, data: newInstitutions });
+  res.status(200).json({ success: true, data: newInstitutions });
 };
 ```
 
