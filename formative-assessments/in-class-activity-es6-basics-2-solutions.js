@@ -17,6 +17,7 @@
   const fahToCel = temps.map((temp) => (((temp - 32) * 5) / 9).toFixed(2));
   console.log(fahToCel);
 }
+
 /**
  * Question 3
  */
