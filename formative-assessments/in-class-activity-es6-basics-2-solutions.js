@@ -116,6 +116,7 @@ const { readFile } = require("fs");
     console.log(words);
   });
 }
+
 /**
  * Question 8
  */
