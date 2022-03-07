@@ -254,7 +254,7 @@ If you want to view the **collections**, go to **MongoDB Atlas** and click the *
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png" width="950" height="537" />
 
-To create an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`.
+To update an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`.
 
 ```javascript
 const updateInstitution = async (req, res) => {
