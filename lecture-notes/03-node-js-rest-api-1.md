@@ -6,16 +6,22 @@ You consume **APIs** daily. They enable applications to communicate with each ot
 
 The type of **API** you will develop and eventually consume is **REST** or **RESTful**. It is a set of architectural constraints. What it is not is a protocol or a standard. When a request is sent, it transfers a representation of the resource's state to the endpoint. This representation is delivered in one of many formats via **HTTP** such as **JSON**, **HTML**, etc.
 
+### REST vs. RESTful
+
+**REST** stands for **Representational State Transfer** and is a set of constraints. These constraints include client-server, stateless, uniform interface and cacheable. In essence, if an **API** adheres to these constraints, then the **API** is **RESTful**.
+
+**Resource:** <https://blog.devmountain.com/what-is-the-difference-between-rest-and-restful-apis>
+
 ### Anatomy of a REST API
 
 The following table describes the different **HTTP methods**:
 
-| HTTP Method | Description                              |
-| ----------- | ---------------------------------------- |
-| GET         | Provides read-only access to a resource. |
-| POST        | Creates a new resource.                  |
-| PUT         | Updates an existing resource.            |
-| DELETE      | Removes a resource.                      |
+| Operation | HTTP Method | Description                              |
+| --------- | ----------- | ---------------------------------------- |
+| Create    | POST        | Creates a new resource.                  |
+| Read      | GET         | Provides read-only access to a resource. |
+| Update    | PUT         | Updates an existing resource.            |
+| Delete    | DELETE      | Removes a resource.                      |
 
 There are a few others, but you will only be concerned with the four above.
 
@@ -75,10 +81,16 @@ const institutions = [
   { id: 2, name: "Southern Institute of Technology" },
 ];
 
-export { institutions };
+export { institutions }; // This is an example of a named 
+                        // export. It means that when we import
+                        // institutions in /controllers/institutions.js,
+                        // we must use this name. However, if you want to
+                        // change the 
 ```
 
-You need to export it to use `institutions` outside of `data.js`.
+You need to export it to use `institutions` outside of `data.js`. `export { institutions };` is an example of a named export. It means that when you import `institutions` in `controllers/institutions.js`, you **must** use `institutions` as the import name. However, if you want to change `institutions`, you can use an alias.
+
+**Resource:** JavaScript ES6 Modules - <https://www.youtube.com/watch?v=RMl-ystfzoY&t=246s>
 
 Feel free to add more **objects** to the **array** or even more properties.
 
@@ -89,7 +101,11 @@ In the root directory, create a new directory called `controllers`. In this dire
 To access `institutions` from `data.js`, you need to add the following:
 
 ```javascript
+// Importing institutions. Note institutions is enclosed in curly braces
 import { institutions } from "../data.js";
+
+// Importing institutions with an alias
+// import { institutions as randomName } from "../data.js";
 ```
 
 ### Get function
@@ -230,6 +246,8 @@ router.route("/:id").delete(deleteInstitution);
 export default router; // You do not need to enclose router in curly braces
 ```
 
+`export default router;` is an example of a default export. It means that when you import `routes/institutions.js` in `app.js`, you can use whatever name you want as the import name. Also, much like the name export, you can change the name using an alias.
+
 ## Entry point
 
 In the root directory, create a new file called `app.js`. It is your **REST API's** entry point. Open a terminal and run the following command:
@@ -335,7 +353,7 @@ In this **in-class activity**, you will plan your **REST API** for the **Project
 
 ### Submission
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/_6KSahyX>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
+You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/_6KSahyX>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**.
 
 ### Getting started
 
@@ -353,4 +371,4 @@ In the [lecture notes](https://github.com/otago-polytechnic-bit-courses/ID607001
 
 ### Project 1: Node.js REST API planning
 
-You will be starting your **Project 1: Node.js REST API** assessment next week. Before you start, you need to decide your **REST API's** theme and the data you are going to display to the user. You need at least **five collections** (**user collection** is included) with at least **three fields** of data. Also, show the relationships between **collections**. **Note:** You need at least **two relationships** between **collections**. You can display this anyway you wish, i.e., UML, text, etc. As long as it is clear to the **course lecturer** when reviewing.
+You will be starting your **Project 1: Node.js REST API** assessment next week. Before you start, you need to decide your **REST API's** theme and the data you are going to display to the user. You need at least **five collections** (**user collection** is included) with at least **three fields** of data. Also, show the relationships between **collections**. **Note:** You need at least **two relationships** between **collections**. You can display this anyway you wish, i.e., UML, text, etc, as long as it is clear to the **course lecturer** when reviewing. Please email your plan before you start coding.
