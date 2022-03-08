@@ -267,8 +267,8 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Express middleware
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+app.use(express.urlencoded({ extended: false })); // Parses incoming requests with urlencoded payloads
+app.use(express.json()); // Parses incoming requests with JSON payloads
 
 // To make it clear to the consumer that the application is an API, prefix the endpoint with /api
 app.use("/api/institutions", institutions);
