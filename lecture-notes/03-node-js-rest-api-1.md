@@ -81,14 +81,10 @@ const institutions = [
   { id: 2, name: "Southern Institute of Technology" },
 ];
 
-export { institutions }; // This is an example of a named 
-                        // export. It means that when we import
-                        // institutions in /controllers/institutions.js,
-                        // we must use this name. However, if you want to
-                        // change the 
+export { institutions }; 
 ```
 
-You need to export it to use `institutions` outside of `data.js`. `export { institutions };` is an example of a named export. It means that when you import `institutions` in `controllers/institutions.js`, you **must** use `institutions` as the import name. However, if you want to change `institutions`, you can use an alias.
+You need to export it to use `institutions` outside of `data.js`. `export { institutions };` is an example of a named export. It means that when you import `institutions` in `controllers/institutions.js`, you **must** use `institutions` as the import name. However, if you want to change `institutions`, you can use an alias. **Note:** Named exports are enclosed in curly braces.
 
 **Resource:** JavaScript ES6 Modules - <https://www.youtube.com/watch?v=RMl-ystfzoY&t=246s>
 
@@ -246,7 +242,7 @@ router.route("/:id").delete(deleteInstitution);
 export default router; // You do not need to enclose router in curly braces
 ```
 
-`export default router;` is an example of a default export. It means that when you import `routes/institutions.js` in `app.js`, you can use whatever name you want as the import name. Also, much like the name export, you can change the name using an alias.
+`export default router;` is an example of a default export. It means that when you import `routes/institutions.js` in `app.js`, you can use whatever name you want as the import name. Also, much like the name export, you can change the name using an alias. **Note:** Default exports are not enclosed in curly braces.
 
 ## Entry point
 
