@@ -145,7 +145,6 @@ const register = async (req, res) => {
   try {
     const user = await User.create(req.body);
     const tokenUser = createTokenUser(user);
-    attachCookiesToResponse({ res, user: tokenUser });
     res.status(201).send({ success: true, data: tokenUser });
   } catch (err) {
     res.status(500).send({
