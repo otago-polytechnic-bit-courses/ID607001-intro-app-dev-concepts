@@ -1,0 +1,15 @@
+{
+  "name": "rest-api-example",
+  "version": "1.0.0",
+  "description": "Simple Node.js REST API",
+  "main": "app.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Grayson Orr",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
+}
