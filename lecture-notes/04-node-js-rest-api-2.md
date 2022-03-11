@@ -134,7 +134,7 @@ import conn from "./db/connection.js";
 
 import institutions from "./routes/institutions.js";
 
-dotenv.config();
+dotenv.config(); // Loads .env in to process.env
 
 const app = express();
 
