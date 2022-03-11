@@ -262,6 +262,7 @@ import express from "express";
 // Access all the routes exported from routes/institutions.js
 import institutions from "./routes/institutions.js";
 
+// Create an Express application
 const app = express();
 
 const PORT = process.env.PORT || 3000;
