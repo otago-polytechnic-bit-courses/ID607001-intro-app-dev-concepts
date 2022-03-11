@@ -57,13 +57,17 @@ const deleteInstitutions = async () => {
 };
 
 switch (process.argv[2]) {
-  case "-d": {
-    // This case is looking for a specific flag, i.e., -d
+  case "create-institutions": {
+    // This case is looking for a specific flag, i.e., create-institution
+    createdInstitutions();
+    break;
+  }
+  case "delete-institutions": {
     deleteInstitutions();
     break;
   }
   default: {
-    createdInstitutions();
+    // Default action
   }
 }
 ```
@@ -71,8 +75,8 @@ switch (process.argv[2]) {
 In `package.json`, add the following **scripts**:
 
 ```javascript
-"institutions:create": "node db/seeder",
-"institutions:delete": "node db/seeder -d"
+"institutions:create": "node db/seeder create-institutions",
+"institutions:delete": "node db/seeder delete-institutions"
 ```
 
 Here is an example of creating institutions:
