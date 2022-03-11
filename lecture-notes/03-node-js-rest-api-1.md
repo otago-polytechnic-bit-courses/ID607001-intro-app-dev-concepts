@@ -130,9 +130,10 @@ const createInstitution = (req, res) => {
 
   const id = institutions[institutions.length - 1].id + 1;
 
+  // Key names are identical to assignment variables, so use property value shorthand
   institutions.push({
-    id: id,
-    name: name,
+    id,
+    name,
   });
 
   res.status(201).send({ success: true, data: institutions });
