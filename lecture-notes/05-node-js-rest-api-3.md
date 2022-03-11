@@ -145,9 +145,9 @@ const register = async (req, res) => {
   try {
     const user = await User.create(req.body);
     const tokenUser = createTokenUser(user);
-    res.status(201).send({ success: true, data: tokenUser });
+    res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while registering a user",
     });
   }
@@ -161,7 +161,7 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
     if (!email || !password) {
-      res.status(400).send({
+      res.status(400).json({
         success: false,
         msg: "Invalid email or password",
       });
@@ -169,19 +169,19 @@ const login = async (req, res) => {
 
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(401).send({ success: false, msg: "Invalid credentials" });
+      res.status(401).json({ success: false, msg: "Invalid credentials" });
     }
 
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-      res.status(401).send({ success: false, msg: "Invalid credentials" });
+      res.status(401).json({ success: false, msg: "Invalid credentials" });
     }
 
     const tokenUser = createTokenUser(user);
     attachCookiesToResponse({ res, user: tokenUser });
-    res.status(201).send({ success: true, data: tokenUser });
+    res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while logging in a user",
     });
   }
@@ -221,7 +221,7 @@ const authRoute = async (req, res, next) => {
   const token = req.signedCookies.token;
 
   if (!token) {
-    res.status(401).send({ success: false, msg: "Invalid authentication" });
+    res.status(401).json({ success: false, msg: "Invalid authentication" });
   }
 
   try {
@@ -229,7 +229,7 @@ const authRoute = async (req, res, next) => {
     req.user = { userId: userId };
     next();
   } catch (error) {
-    res.status(401).send({ success: false, msg: "Invalid authentication" });
+    res.status(401).json({ success: false, msg: "Invalid authentication" });
   }
 };
 
