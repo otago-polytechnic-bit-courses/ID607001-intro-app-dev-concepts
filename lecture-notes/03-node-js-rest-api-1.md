@@ -136,7 +136,7 @@ const createInstitution = (req, res) => {
     name,
   });
 
-  res.status(201).send({ success: true, data: institutions });
+  res.status(201).json({ success: true, data: institutions });
 };
 ```
 
