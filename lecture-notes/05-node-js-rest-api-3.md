@@ -76,16 +76,16 @@ JWT_LIFETIME=1h
 
 ### Utility functions
 
-In the **root** directory, create a new directory called `utils`. In `utils`, create two new files called `createTokenUser.js` and `jwt.js`
+In the **root** directory, create a new directory called `utils`. In `utils`, create two new files called `getTokenUserData.js` and `jwt.js`
 
-In `createTokenUser.js`, add the following:
+In `getTokenUserData.js`, add the following:
 
 ```js
-const createTokenUser = (user) => {
+const getTokenUserData = (user) => {
   return { name: user.name, userId: user._id };
 };
 
-export default createTokenUser;
+export default getTokenUserData;
 ```
 
 In `jwt.js`, add the following:
@@ -134,7 +134,7 @@ In the `controller` directory, create a new file called `auth.js`. In `auth.js`,
 
 ```js
 import User from "../models/users.js";
-import createTokenUser from "../utils/createTokenUser.js";
+import getTokenUserData from "../utils/getTokenUserData.js";
 import { attachCookiesToResponse } from "../utils/jwt.js";
 ```
 
@@ -144,7 +144,7 @@ Create/register a user.
 const register = async (req, res) => {
   try {
     const user = await User.create(req.body);
-    const tokenUser = createTokenUser(user);
+    const tokenUser = getTokenUserData(user);
     res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
     res.status(500).json({
@@ -177,7 +177,7 @@ const login = async (req, res) => {
       res.status(401).json({ success: false, msg: "Invalid credentials" });
     }
 
-    const tokenUser = createTokenUser(user);
+    const tokenUser = getTokenUserData(user);
     attachCookiesToResponse({ res, user: tokenUser });
     res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
