@@ -149,8 +149,8 @@ const start = async () => {
   try {
     await conn(process.env.MONGO_URI); // Access the connection string in .env
     app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
   }
 };
 
