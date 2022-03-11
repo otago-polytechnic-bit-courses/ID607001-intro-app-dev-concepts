@@ -130,7 +130,7 @@ export { isTokenValid, attachCookiesToResponse };
 
 ## Auth controller
 
-In the `routes` directory, create a new file called `auth.js`. In `auth.js`, add the following:
+In the `controller` directory, create a new file called `auth.js`. In `auth.js`, add the following:
 
 ```js
 import User from "../models/users.js";
@@ -208,7 +208,7 @@ export { register, login, logout };
 
 ### Auth routes
 
-Remember to create the appropriate **routes** for the `register`, `login` and `logout` functions in `controller/auth.js`.
+Remember to create the appropriate **routes** for the `register`, `login` and `logout` functions in `route/auth.js`.
 
 ### Middleware
 
