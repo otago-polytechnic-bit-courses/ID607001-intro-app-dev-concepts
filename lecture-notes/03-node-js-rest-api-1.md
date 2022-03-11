@@ -218,7 +218,7 @@ In the root directory, create a new directory called `routes`. In this directory
 
 ```javascript
 import { Router } from "express";
-const router = Router(); // Create a new router object. This allows to handle various requests
+const router = Router(); // Accessing the Router() object from express. This allows to handle various requests
 
 // Importing the four functions
 import {
