@@ -264,7 +264,7 @@ app.use(express.json());
 app.use(cookieParser(process.env.JWT_SECRET));
 
 app.use("/api", auth);
-app.use("/api/departments", departments);
+app.use("/api/departments", authRoute, departments);
 app.use("/api/institutions", authRoute, institutions);
 
 const start = async () => {
