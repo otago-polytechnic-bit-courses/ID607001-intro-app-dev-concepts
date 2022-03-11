@@ -111,7 +111,7 @@ MONGO_URI=<Your connection string>
 
 ### Connection
 
-In the root directory, create a new file called `connection.js`. In this file, add the following:
+In the root directory, create a new directory called `db`. In `db`, create a new file called `connection.js`. In this file, add the following:
 
 ```javascript
 import mongoose from "mongoose";
@@ -189,7 +189,7 @@ export default mongoose.model("Institution", institutionsSchema);
 ```
 
 - `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
-- `mongoose.model` - A constructor compiled from a `Schema` definition. An instance, if a model is called a **document**. They are responsible for creating and reading documents from a **MongoDB database**.
+- `mongoose.model` - A constructor compiled from a `Schema` definition.  An instance of a model is called a **document**. Models are responsible for creating and reading documents from a **MongoDB database**.
 
 **Resources:**
 
@@ -215,7 +215,7 @@ const getInstitutions = async (req, res) => {
 
     res.status(200).json({ success: true, data: institutions });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while getting all institutions",
     });
   }
@@ -231,9 +231,9 @@ const createInstitution = async (req, res) => {
 
     const newInstitutions = await Institution.find({});
 
-    res.status(201).send({ success: true, data: newInstitutions });
+    res.status(201).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while creating an institution",
     });
   }
@@ -274,7 +274,7 @@ const updateInstitution = async (req, res) => {
 
     res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while updating an institution",
     });
   }
@@ -303,7 +303,7 @@ const deleteInstitution = async (req, res) => {
 
     return res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while deleting an institution",
     });
   }
@@ -421,7 +421,7 @@ const getDepartments = async (req, res) => {
 
     res.status(200).json({ success: true, data: departments });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while getting all departments",
     });
   }
@@ -441,9 +441,9 @@ const createDepartment = async (req, res) => {
 
     const newDepartments = await Department.find({});
 
-    res.status(201).send({ success: true, data: newDepartments });
+    res.status(201).json({ success: true, data: newDepartments });
   } catch (err) {
-    res.status(500).send({
+    res.status(500).json({
       msg: err.message || "Something went wrong while creating a department",
     });
   }
