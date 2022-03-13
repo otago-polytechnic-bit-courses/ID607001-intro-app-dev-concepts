@@ -129,13 +129,11 @@ const createInstitution = (req, res) => {
   }
 
   const id = institutions[institutions.length - 1].id + 1;
-
   // Key names are identical to assignment variables, so use property value shorthand
   institutions.push({
     id,
     name,
   });
-
   res.status(201).json({ success: true, data: institutions });
 };
 ```
@@ -147,7 +145,6 @@ You need to find the `institution` you want to update.
 ```javascript
 const updateInstitution = (req, res) => {
   const { id } = req.params;
-
   const institution = institutions.find(
     (institution) => institution.id === Number(id)
   );
@@ -178,7 +175,6 @@ Similar to the update function.
 ```javascript
 const deleteInstitution = (req, res) => {
   const { id } = req.params;
-
   const institution = institutions.find(
     (institution) => institution.id === Number(id)
   );
@@ -193,7 +189,6 @@ const deleteInstitution = (req, res) => {
   const newInstitutions = institutions.filter(
     (institution) => institution.id !== Number(id) // If institution does exist, delete it
   );
-
   res.status(200).json({ success: true, data: newInstitutions });
 };
 ```

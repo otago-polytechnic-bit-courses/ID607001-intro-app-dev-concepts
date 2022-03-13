@@ -212,7 +212,6 @@ To get **all** institutions, use `Institution.find({})`. The `{}` inside `Instit
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await Institution.find({});
-
     res.status(200).json({ success: true, data: institutions });
   } catch (err) {
     res.status(500).json({
@@ -228,9 +227,7 @@ To create an institution, use `Institution.create(req.body)`.
 const createInstitution = async (req, res) => {
   try {
     await Institution.create(req.body);
-
     const newInstitutions = await Institution.find({});
-
     res.status(201).json({ success: true, data: newInstitutions });
   } catch (err) {
     res.status(500).json({
@@ -260,7 +257,6 @@ To update an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`
 const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
-
     const institution = await Institution.findByIdAndUpdate(id, req.body);
 
     if (!institution) {
@@ -271,7 +267,6 @@ const updateInstitution = async (req, res) => {
     }
 
     const newInstitutions = await Institution.find({});
-
     res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
     res.status(500).json({
@@ -289,7 +284,6 @@ const updateInstitution = async (req, res) => {
 const deleteInstitution = async (req, res) => {
   try {
     const { id } = req.params;
-
     const institution = await Institution.findByIdAndRemove(id);
 
     if (!institution) {
@@ -300,7 +294,6 @@ const deleteInstitution = async (req, res) => {
     }
 
     const newInstitutions = await Institution.find({});
-
     return res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
     res.status(500).json({
@@ -360,7 +353,11 @@ Here is another **POST** request example: The `unique` option is not a validator
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.JPG" />
 
-**Resource:** <https://mongoosejs.com/docs/validation.html>
+**Resources:** 
+- <https://mongoosejs.com/docs/validation.html>
+- <https://en.wikipedia.org/wiki/SQL_injection>
+- <https://en.wikipedia.org/wiki/Cross-site_scripting>
+- <https://en.wikipedia.org/wiki/HTTP_header_injection>
 
 ## Relationships
 
@@ -418,7 +415,6 @@ import Institution from "../models/institutions.js";
 const getDepartments = async (req, res) => {
   try {
     const departments = await Department.find({});
-
     res.status(200).json({ success: true, data: departments });
   } catch (err) {
     res.status(500).json({
@@ -440,7 +436,6 @@ const createDepartment = async (req, res) => {
     await institution.save();
 
     const newDepartments = await Department.find({});
-
     res.status(201).json({ success: true, data: newDepartments });
   } catch (err) {
     res.status(500).json({
