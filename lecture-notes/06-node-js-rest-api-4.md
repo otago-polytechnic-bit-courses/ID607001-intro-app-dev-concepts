@@ -36,8 +36,8 @@ const createdInstitutions = async () => {
     await Institution.insertMany(institutions); // Insert documents in the institutions collection
     console.log("Institution data successfully created");
     process.exit(); // Exit the process
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     process.exit(1); // Exit the process with an error
   }
 };
@@ -47,8 +47,8 @@ const deleteInstitutions = async () => {
     await Institution.deleteMany(); // Delete all documents in the institutions collection
     console.log("Institution data successfully deleted");
     process.exit();
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     process.exit(1);
   }
 };
