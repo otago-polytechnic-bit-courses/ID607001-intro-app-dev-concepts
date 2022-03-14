@@ -8,11 +8,8 @@ In the **root** directory, create a new directory called `data`. In the `data` d
 
 ```javascript
 const institutions = [
-  { name: "Otago Polytechnic", createdBy: "61bf993ee4c1c5d91af34521" },
-  {
-    name: "Southern Institute of Technology",
-    createdBy: "61bf993ee4c1c5d91af34521",
-  },
+  { name: "Otago Polytechnic" },
+  { name: "Southern Institute of Technology" }
 ];
 
 export { institutions };
@@ -39,8 +36,8 @@ const createdInstitutions = async () => {
     await Institution.insertMany(institutions); // Insert documents in the institutions collection
     console.log("Institution data successfully created");
     process.exit(); // Exit the process
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     process.exit(1); // Exit the process with an error
   }
 };
@@ -50,8 +47,8 @@ const deleteInstitutions = async () => {
     await Institution.deleteMany(); // Delete all documents in the institutions collection
     console.log("Institution data successfully deleted");
     process.exit();
-  } catch (error) {
-    console.log(error);
+  } catch (err) {
+    console.log(err);
     process.exit(1);
   }
 };
