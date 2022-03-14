@@ -8,11 +8,8 @@ In the **root** directory, create a new directory called `data`. In the `data` d
 
 ```javascript
 const institutions = [
-  { name: "Otago Polytechnic", createdBy: "61bf993ee4c1c5d91af34521" },
-  {
-    name: "Southern Institute of Technology",
-    createdBy: "61bf993ee4c1c5d91af34521",
-  },
+  { name: "Otago Polytechnic" },
+  { name: "Southern Institute of Technology" }
 ];
 
 export { institutions };
