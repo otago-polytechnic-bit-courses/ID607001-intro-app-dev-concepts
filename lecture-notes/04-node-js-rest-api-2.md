@@ -39,7 +39,7 @@ It is important to understand the terminology:
 
 In this course, you will primarily use **cloud-based** services, i.e., **MongoDB Atlas** and **Heroku**.
 
-To start using **MongDB Atlas**, sign up [here](https://www.mongodb.com/cloud/atlas/signup).
+To start using **MongoDB Atlas**, sign up [here](https://www.mongodb.com/cloud/atlas/signup).
 
 Once you have done this, it will navigate you to **Projects**. As you see, you do not have any **projects**. Click the **New Project** button.
 
