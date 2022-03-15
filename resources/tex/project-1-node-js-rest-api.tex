@@ -65,7 +65,7 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of \te
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/hWjmBeNq}{https://classroom.github.com/a/hWjmBeNq}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
-All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resource, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resources, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
 
 \section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
 The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
@@ -93,7 +93,9 @@ Here are some useful request URLs:
 	\item Get institutions - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions}{https://id607001-graysono.herokuapp.com/api/v1/institutions}
 	\item Get institution by id - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions/622f3f79f234941a786417c3}{https://id607001-graysono.herokuapp.com/api/v1/institutions/622f3f79f234941a786417c3}
 	\item Get institution sorted by name \& order by ascending - \\ \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=name\&order\_by=asc}{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=name\&order\_by=asc}
+	\item Get institution sorted by region \& order by descending - \\ \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=region\&order\_by=desc}{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=region\&order\_by=desc}
 	\item Get first three institutions - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?limit=3}{https://id607001-graysono.herokuapp.com/api/v1/institutions?limit=3}
+	\item Get institutions on page 2 - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?page=2}{https://id607001-graysono.herokuapp.com/api/v1/institutions?page=2}
 	\item Get all institutions in the Otago region - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?region=Otago}{https://id607001-graysono.herokuapp.com/api/v1/institutions?region=Otago}
 	\item Endpoint not found - \href{https://id607001-graysono.herokuapp.com/api/v1/hello}{https://id607001-graysono.herokuapp.com/api/v1/hello}
 \end{itemize}
@@ -131,10 +133,10 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \begin{itemize}
 	\item Use of intermediate variables. No method calls as arguments.
 	\item Idiomatic use of control flow, data structures \& in-built functions.
-	\item Sufficient modularity, i.e., reusable base URL.
+	\item Sufficient modularity.
 	\item Functions \& variables are named appropriately.
 	\item Efficient algorithmic approach, i.e., using the appropriate function(s) when querying your \textbf{collections}.
-	\item \textbf{REST API} resource groups named with a plural noun instead of a verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
+	\item \textbf{REST API} resource groups named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
 	\item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each \textbf{controller} \& \textbf{route} file.
 	\item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
 	\item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
