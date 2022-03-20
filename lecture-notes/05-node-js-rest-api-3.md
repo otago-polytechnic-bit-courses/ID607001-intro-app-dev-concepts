@@ -160,21 +160,15 @@ Login a user.
 const login = async (req, res) => {
   try {
     const { email, password } = req.body;
-    if (!email || !password) {
-      res.status(400).json({
-        success: false,
-        msg: "Invalid email or password",
-      });
-    }
-
+    
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(401).json({ success: false, msg: "Invalid credentials" });
+      res.status(401).json({ success: false, msg: "Invalid email" });
     }
 
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-      res.status(401).json({ success: false, msg: "Invalid credentials" });
+      res.status(401).json({ success: false, msg: "Invalid password" });
     }
 
     const tokenUser = getTokenUserData(user);
@@ -194,7 +188,7 @@ Logout a user.
 const logout = async (req, res) => {
   res.cookie("token", "", {
     httpOnly: true,
-    expires: new Date(Date.now() + 1000),
+    expires: new Date(Date.now() + 1000), // 1000 milliseconds = 1 second
   });
   res.status(200).json({ success: true, msg: "Logged out" });
 };
