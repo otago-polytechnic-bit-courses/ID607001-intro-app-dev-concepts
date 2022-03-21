@@ -96,6 +96,8 @@ import jwt from "jsonwebtoken";
 const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET); // P@ssw0rd123
 ```
 
+`jsonwebtoken` - You will use this dependency for creating a **JWT**. Install `bcryptjs` by running `npm install bcryptjs`.
+
 ### How to securely store a JWT in a cookie
 
 A **JWT** needs to be stored in a safe place in the user's browser. Do not store it inside **local storage** or **session storage** as it vulnerable to an **XSS (cross-site scripting) attack**. This attack could give attackers access to the token. You should always store **JWTs** in an `httpOnly` cookie. It is a special kind of cookies that is **only** send in requests to the **server**. **JavaScript** in the browser can not accessed it preventing **XSS attacks**.
