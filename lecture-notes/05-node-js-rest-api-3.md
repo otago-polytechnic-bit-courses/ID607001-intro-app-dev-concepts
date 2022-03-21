@@ -96,7 +96,7 @@ import jwt from "jsonwebtoken";
 const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET); // P@ssw0rd123
 ```
 
-`jsonwebtoken` - You will use this dependency for creating a **JWT**. Install `bcryptjs` by running `npm install bcryptjs`.
+`jsonwebtoken` - You will use this dependency for creating a **JWT**. Install `jsonwebtoken` by running `npm install jsonwebtoken`.
 
 ### How to securely store a JWT in a cookie
 
