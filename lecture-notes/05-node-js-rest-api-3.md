@@ -165,19 +165,19 @@ const login = async (req, res) => {
     
     const user = await User.findOne({ email });
     if (!user) {
-      res.status(401).json({ success: false, msg: "Invalid email" });
+      return res.status(401).json({ success: false, msg: "Invalid email" });
     }
 
     const isPasswordCorrect = await user.comparePassword(password);
     if (!isPasswordCorrect) {
-      res.status(401).json({ success: false, msg: "Invalid password" });
+      return res.status(401).json({ success: false, msg: "Invalid password" });
     }
 
     const tokenUser = getTokenUserData(user);
     attachCookiesToResponse({ res, user: tokenUser });
-    res.status(201).json({ success: true, data: tokenUser });
+    return res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while logging in a user",
     });
   }
@@ -192,7 +192,7 @@ const logout = async (req, res) => {
     httpOnly: true,
     expires: new Date(Date.now() + 1000), // 1000 milliseconds = 1 second
   });
-  res.status(200).json({ success: true, msg: "Logged out" });
+  return res.status(200).json({ success: true, msg: "Logged out" });
 };
 ```
 
@@ -217,7 +217,7 @@ const authRoute = async (req, res, next) => {
   const token = req.signedCookies.token;
 
   if (!token) {
-    res.status(401).json({ success: false, msg: "Invalid authentication" });
+    return res.status(401).json({ success: false, msg: "Invalid authentication" });
   }
 
   try {
@@ -225,7 +225,7 @@ const authRoute = async (req, res, next) => {
     req.user = { userId: userId };
     next();
   } catch (error) {
-    res.status(401).json({ success: false, msg: "Invalid authentication" });
+    return res.status(401).json({ success: false, msg: "Invalid authentication" });
   }
 };
 
