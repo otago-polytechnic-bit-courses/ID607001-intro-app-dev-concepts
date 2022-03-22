@@ -212,9 +212,9 @@ To get **all** institutions, use `Institution.find({})`. The `{}` inside `Instit
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await Institution.find({});
-    res.status(200).json({ success: true, data: institutions });
+    return res.status(200).json({ success: true, data: institutions });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while getting all institutions",
     });
   }
@@ -228,9 +228,9 @@ const createInstitution = async (req, res) => {
   try {
     await Institution.create(req.body);
     const newInstitutions = await Institution.find({});
-    res.status(201).json({ success: true, data: newInstitutions });
+    return res.status(201).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while creating an institution",
     });
   }
@@ -267,9 +267,9 @@ const updateInstitution = async (req, res) => {
     }
 
     const newInstitutions = await Institution.find({});
-    res.status(200).json({ success: true, data: newInstitutions });
+    return res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while updating an institution",
     });
   }
@@ -296,7 +296,7 @@ const deleteInstitution = async (req, res) => {
     const newInstitutions = await Institution.find({});
     return res.status(200).json({ success: true, data: newInstitutions });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while deleting an institution",
     });
   }
@@ -415,9 +415,9 @@ import Institution from "../models/institutions.js";
 const getDepartments = async (req, res) => {
   try {
     const departments = await Department.find({});
-    res.status(200).json({ success: true, data: departments });
+    return res.status(200).json({ success: true, data: departments });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while getting all departments",
     });
   }
@@ -436,9 +436,9 @@ const createDepartment = async (req, res) => {
     await institution.save();
 
     const newDepartments = await Department.find({});
-    res.status(201).json({ success: true, data: newDepartments });
+    return res.status(201).json({ success: true, data: newDepartments });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while creating a department",
     });
   }
