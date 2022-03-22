@@ -147,9 +147,9 @@ const register = async (req, res) => {
   try {
     const user = await User.create(req.body);
     const tokenUser = getTokenUserData(user);
-    res.status(201).json({ success: true, data: tokenUser });
+    return res.status(201).json({ success: true, data: tokenUser });
   } catch (err) {
-    res.status(500).json({
+    return res.status(500).json({
       msg: err.message || "Something went wrong while registering a user",
     });
   }
