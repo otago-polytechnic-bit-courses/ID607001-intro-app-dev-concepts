@@ -15,8 +15,6 @@ const institutions = [
 export { institutions };
 ```
 
-**Note:** Change the `createdBy` value to an existing user's id. Using the `createdBy` will cause unexpected results.
-
 In the `db` directory, create a new file called `seeder.js`. In this file, add the following:
 
 ```javascript
@@ -166,7 +164,7 @@ You can change the content, URL, and styling on this page. Click on the **Publis
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-13.png" width="950" height="537" />
 
-It will provide you with a link to your published documentation. Copy and paste this link in your **Project: Node.js REST API README** file.
+It will provide you with a link to your published documentation. Copy and paste this link in your **Project 1: Node.js REST API README** file.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-14.png" width="950" height="537" />
 
