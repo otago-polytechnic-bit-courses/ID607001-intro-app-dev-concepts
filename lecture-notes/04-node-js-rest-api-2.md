@@ -198,7 +198,7 @@ export default mongoose.model("Institution", institutionsSchema);
 
 ## Controller
 
-You will need to make a few changes in `institutions.js`.
+You will need to make a few changes in `controllers/institutions.js`.
 
 Import the **model** from `models/institutions.js`.
 
