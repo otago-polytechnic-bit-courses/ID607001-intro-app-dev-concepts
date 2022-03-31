@@ -28,7 +28,7 @@ dotenv.config();
 
 conn(process.env.MONGO_URI); // Connect to MongoDB atlas
 
-const createdInstitutions = async () => {
+const createInstitutions = async () => {
   try {
     await Institution.deleteMany(); // Delete all documents in the institutions collection
     await Institution.insertMany(institutions); // Insert documents in the institutions collection
@@ -58,7 +58,7 @@ switch (process.argv[2]) {
     break;
   }
   default: {
-    createdInstitutions();
+    createInstitutions();
   }
 }
 ```
