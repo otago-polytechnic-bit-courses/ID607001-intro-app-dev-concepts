@@ -33,7 +33,6 @@ const createInstitutions = async () => {
     await Institution.deleteMany(); // Delete all documents in the institutions collection
     await Institution.insertMany(institutions); // Insert documents in the institutions collection
     console.log("Institution data successfully created");
-    process.exit(); // Exit the process
   } catch (err) {
     console.log(err);
     process.exit(1); // Exit the process with an error
@@ -44,7 +43,6 @@ const deleteInstitutions = async () => {
   try {
     await Institution.deleteMany(); // Delete all documents in the institutions collection
     console.log("Institution data successfully deleted");
-    process.exit();
   } catch (err) {
     console.log(err);
     process.exit(1);
@@ -54,13 +52,15 @@ const deleteInstitutions = async () => {
 switch (process.argv[2]) {
   case "-d": {
     // This case is looking for a specific flag, i.e., -d
-    deleteInstitutions();
+    await deleteInstitutions();
     break;
   }
   default: {
-    createInstitutions();
+    await createInstitutions();
   }
 }
+
+process.exit();
 ```
 
 In `package.json`, add the following **scripts**:
