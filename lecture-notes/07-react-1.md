@@ -44,6 +44,8 @@ cd <Your OP username>-react
 code .
 ```
 
+**Note:** You may be prompt to install `create-reat-app`
+
 ### File structure
 
 The following is your **React application's** file structure:
