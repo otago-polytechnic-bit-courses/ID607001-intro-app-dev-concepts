@@ -44,7 +44,7 @@ cd <Your OP username>-react
 code .
 ```
 
-**Note:** You may be prompt to install `create-reat-app`
+**Note:** You may be prompt to install `create-react-app`
 
 ### File structure
 
