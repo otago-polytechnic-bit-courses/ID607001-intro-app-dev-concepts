@@ -207,6 +207,9 @@ const Navigation = () => {
             <NavItem>
               <NavLink href="/login">Login</NavLink>
             </NavItem>
+            <NavItem>
+              <NavLink href="/institutions">Institutions</NavLink>
+            </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
