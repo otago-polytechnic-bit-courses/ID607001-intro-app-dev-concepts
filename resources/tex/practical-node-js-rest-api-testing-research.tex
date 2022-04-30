@@ -98,6 +98,7 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
           \end{itemize}
     \item \textbf{Code coverage } using \textbf{nyc}. 
 \end{itemize}
+\textbf{Note:} Example test cases are provided at the end of this document.
 
 \subsection*{Code Elegance - Learning Outcome 1 (30\%)}
 \begin{itemize}
@@ -107,6 +108,7 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \item Functions \& variables are named appropriately.
     \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file.
     \item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
+    \item Test files are stored a directory called \textbf{tests} located in the root directory \& have the extension \textbf{.test.js}.
     \item Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
     \begin{itemize}
       \item Single quote is set to \textbf{true}.
@@ -147,4 +149,18 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \item Attempt to commit at least \textbf{10} times per week.
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
 \end{itemize} 
+
+\subsection*{Example Test Cases}
+\begin{itemize}
+  \item Reading a resource => three tests
+  \item Invalid inputs when creating or updating a resource => at least nine tests
+  \item Deleting a resource => three tests
+  \item Valid \& invalid inputs when registering \& logging in a user => at least four tests
+  \item Logging out a user => one test
+  \item Endpoint not found => one test
+  \item The number of available base endpoints => three tests
+  \item Query parameters for each resource => at least 15 tests
+  \item Status codes for each resource => at least six tests
+  \item Shape of the data => at least five tests
+\end{itemize}
 \end{document}
