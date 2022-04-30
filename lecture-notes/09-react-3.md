@@ -190,7 +190,7 @@ import {
 } from "reactstrap";
 
 // Import the following component:
-import InstitutionsTable from "./components/tables/InstitutionsTable";
+import InstitutionsTable from "./tables/InstitutionsTable";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
