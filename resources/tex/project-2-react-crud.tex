@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage[margin = 2.25cm]{geometry}
 \usepackage[table]{xcolor}
+\usepackage{soul}
 \usepackage{fancyhdr}
 \hypersetup{
   colorlinks = true,
@@ -95,11 +96,13 @@ You can find an exemplar here - \small\href{https://id607001-graysono-frontend.h
 \section*{Instructions}
 You will need to submit an application \& documentation that meet the following requirements:
 
+\textbf{Note:} Independent research tasks are \hl{highlighted yellow}.
+
 \subsection*{Functionality - Learning Outcome 1 (40\%)}
 \begin{itemize}
 	\item Authentication
 	      \begin{itemize}
-	      	\item \textbf{Independent Research:} Register a new user via a form.
+	      	\item \hl{\textbf{Independent Research:}} Register a new user via a form.
 	      	\item Login an existing user via a form.
 	      	\item Log out of the application.
 	      \end{itemize}
@@ -108,15 +111,15 @@ You will need to submit an application \& documentation that meet the following 
 	      	\item Request \textbf{REST API data} from at least three \textbf{API} resource groups using \textbf{Axios}.
 	      	\item Create new \textbf{REST API data} via a form. You can display the form on the page or in a modal. 
 	      	\item View \textbf{REST API data} in a table.
-	      	\item \textbf{Independent Research:} View \textbf{REST API data} in a table using an id. For example, \textbf{/institutions/1} would return \textbf{REST API data} for that specific \textbf{Institutions} object.
-	      	\item \textbf{Independent Research:} Update \textbf{REST API data} via a form. Similar to creating \textbf{REST API data}, you can display the form on the page or in a modal. 
-	      	\item \textbf{Independent Research:} Delete \textbf{REST API data}. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
-	      	\item \textbf{Independent Research:} Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
+	      	\item \hl{\textbf{Independent Research:}} View \textbf{REST API data} in a table using an id. For example, \textbf{/institutions/1} would return \textbf{REST API data} for that specific \textbf{Institutions} object.
+	      	\item \hl{\textbf{Independent Research:}} Update \textbf{REST API data} via a form. Similar to creating \textbf{REST API data}, you can display the form on the page or in a modal. 
+	      	\item \hl{\textbf{Independent Research:}} Delete \textbf{REST API data}. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+	      	\item \hl{\textbf{Independent Research:}} Incorrectly formatted form field values handled gracefully using validation error messages, i.e., \textbf{first name} form field is required.
 	      \end{itemize}
-	\item \textbf{Independent Research:} Paginate \textbf{REST API data} across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{REST API data} per page.
+	\item \hl{\textbf{Independent Research:}} Paginate \textbf{REST API data} across several pages with \textbf{next} \& \textbf{previous} buttons or links. You can choose the number of \textbf{REST API data} per page.
 	\item User-interface is visually attractive with a coherent graphical theme \& style using \textbf{Reactstrap}.
 	\item Application deployed to \textbf{Heroku}. 
-	\item End-to-end \textbf{Cypress} tests that ensures the register, login \& logout functionality is working as expected. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process.
+	\item User-interface \textbf{Cypress} tests that ensures the register, login \& logout functionality is working as expected. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process.
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (45\%)}
@@ -146,8 +149,9 @@ You will need to submit an application \& documentation that meet the following 
 		\begin{itemize}
 		\item URL to the application on \textbf{Heroku}.
 		\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the application locally?
-		\item How do you run the end-to-end \textbf{Cypress} tests?
+		\item How do you run the user-interface \textbf{Cypress} tests?
 		\item How do you deploy the \textbf{React} application to \textbf{Heroku}?
+		\item How do you format the code?
 		\end{itemize}
 		\item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
 		\item Correct spelling \& grammar. 

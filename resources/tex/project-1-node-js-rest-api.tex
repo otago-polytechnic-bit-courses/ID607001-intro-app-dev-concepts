@@ -10,6 +10,7 @@
 \usepackage{hyperref}
 \usepackage[margin = 2.25cm]{geometry}
 \usepackage[table]{xcolor}
+\usepackage{soul}
 \usepackage{fancyhdr}
 \hypersetup{
   colorlinks = true,
@@ -19,7 +20,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction \& Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project 1: Node.js REST API\\Version 1, Semester One, 2022}
+\lfoot{Project 1: Node.js REST API\\Version 2, Semester Two, 2022}
 \rfoot{\thepage} 
  
 \begin{document}
@@ -65,7 +66,7 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of \te
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/hWjmBeNq}{https://classroom.github.com/a/hWjmBeNq}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
-All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resources, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
+All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resources, you must reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
 
 \section*{Policy on Submissions, Extensions, Resubmissions \& Resits}
 The school's process concerning submissions, extensions, resubmissions \& resits complies with \textbf{Otago Polytechnic} policies. Learners can view policies on the \textbf{Otago Polytechnic} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}.
@@ -82,7 +83,7 @@ Resits \& reassessments are not applicable in \textbf{ID607001: Introductory App
 \newpage
 
 \section*{Exemplar}
-You can find an exemplar here - \small\href{https://id607001-graysono.herokuapp.com/api/v1}{https://id607001-graysono.herokuapp.com/api}. \\
+You can find an exemplar here - \small\href{https://id607001-graysono.herokuapp.com/api/v1}{https://id607001-graysono.herokuapp.com/api} \\
 
 Here are some useful request URLs:
 \begin{itemize}
@@ -101,35 +102,39 @@ Here are some useful request URLs:
 \end{itemize}
 
 \section*{Instructions}
-You will need to submit a \textbf{REST API} \& documentation that meet the following requirements:
+You will need to submit a \textbf{REST API} \& documentation that meet the following requirements: \\
+
+\textbf{Note:} Independent research tasks are \hl{highlighted yellow}.
 
 \subsection*{Functionality - Learning Outcome 1 (40\%)}
 \begin{itemize}
 	\item \textbf{REST API} is developed using \textbf{Node.js}.
 	\item \textbf{REST API} can run locally without modification.
 	\item \textbf{Five} \textbf{collections} containing at least \textbf{three fields} of data which you can interact with. \textbf{Note:} It includes a \textbf{user collection}.
+	\item \hl{\textbf{Independent Research:}} The \textbf{user collection} must contain the following fields - \textbf{first\_name}, \textbf{last\_name}, \textbf{email} \& \textbf{password}. The \textbf{password} is salted and hashed.
 	\item A range of different data types, i.e., all \textbf{fields} of data can not be of a single type.
 	\item \textbf{Two relationships} between \textbf{collections}.
 	\item Each \textbf{collection} has a separate \textbf{controller} \& \textbf{route} file.
-	\item A \textbf{controller} file for \textbf{authentication}. This file \textbf{must} contain operations for register, login \& logout.
-	\item A \textbf{controller} file for each collection except \textbf{User}. Each file must contain operations for \textbf{CRUD} (Create, Read, Update \& Delete).
+	\item A \textbf{controller} \& \textbf{route} file for \textbf{authentication}. The \textbf{controller} file must contain operations for register, login \& logout.
+	\item A \textbf{controller} \& \textbf{route} file for each collection except \textbf{User}. Each \textbf{controller} file must contain operations for \textbf{CRUD} (Create, Read, Update \& Delete).
+	\item \hl{\textbf{Independent Research:}} The \textbf{index route}, i.e., \textbf{localhost:3000/} must display all of the available \textbf{routes} in the application.
 	\item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.
-	\item Each \textbf{collection} is seeded with a \textbf{JSON} file. \textbf{Note:} This is \textbf{only} for testing purposes.
-	\item \textbf{Independent Research:} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items}
+	\item Each \textbf{collection} is seeded with a \textbf{.js} file. \textbf{Note:} This is \textbf{only} for testing purposes.
+	\item \hl{\textbf{Independent Research:}} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items}
 	\item Return success, i.e., true or false \& data when performing \textbf{authentication} \& \textbf{CRUD} operations.
-	\item \textbf{Independent Research:} Return a success \& failure message when performing \textbf{authentication} \& \textbf{CRUD} operations.
-	\item \textbf{Independent Research:} Return an appropriate message if a request does not return any \textbf{REST API data}, i.e., empty array.
-	\item \textbf{Independent Research:} Return an appropriate message if an endpoint does not exist.
-	\item \textbf{Independent Research:} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order.
-	\item \textbf{Independent Research:} Paginate the \textbf{REST API data} so that any number of records can be displayed per page.
+	\item \hl{\textbf{Independent Research:}} Return a success \& failure message when performing \textbf{authentication} \& \textbf{CRUD} operations.
+	\item \hl{\textbf{Independent Research:}} Return an appropriate message if a request does not return any \textbf{REST API data}, i.e., empty array.
+	\item \hl{\textbf{Independent Research:}} Return an appropriate message if an endpoint does not exist.
+	\item \hl{\textbf{Independent Research:}} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order.
+	\item \hl{\textbf{Independent Research:}} Paginate the \textbf{REST API data} so that any number of records can be displayed per page. The default number is 10 records per page. 
 	\item \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} routes are protected using \textbf{JSON Web Tokens (JWT)}.
-	\item \textbf{REST API} rate limit is set to 25 requests per minute.
+	\item \textbf{REST API} rate limit is set to 25 requests per minute. You must display the following message if the user exceeds the 25 requests per minute - \textbf{"You have exceeded the number of requests per minute: 25. Please try again later."}
 	\item Secure \textbf{HTTP} headers using \textbf{Helmet}. 
 	\item \textbf{REST API} is deployed to \textbf{Heroku}. The \textbf{REST API} \textbf{should} be usable i.e., a consumer should be able to perform operations on your \textbf{REST API}.
 	\item \textbf{REST API data} is stored in a \textbf{MongoDB Atlas} database.
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (45\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (40\%)}
 \begin{itemize}
 	\item Use of intermediate variables. No method calls as arguments.
 	\item Idiomatic use of control flow, data structures \& in-built functions.
@@ -139,21 +144,22 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	\item \textbf{REST API} resource groups named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
 	\item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each \textbf{controller} \& \textbf{route} file.
 	\item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
-	\item \textbf{Independent Research:} Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
+	\item \hl{\textbf{Independent Research:}} Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
 	      \begin{itemize}
 		      \item Single quote is set to \textbf{true}.
 		      \item Semi-colon is set to \textbf{false}.
 		      \item Tab-width is set to \textbf{2}.
 	      \end{itemize}
-	\item \textbf{Independent Research:} \textbf{Prettier} is installed as a development dependency.
+	\item \hl{\textbf{Independent Research:}} \textbf{Prettier} is installed as a development dependency.
+	\item Declare a \textbf{npm} script in your application's \textbf{package.json} file which seeds the \textbf{collections}.
 	\item No dead or unused code.
-	\item Database configured for production environment.
-	\item Application's environment variables are stored in a \textbf{.env} file.
+	\item Database configured for development \& production environments.
+	\item Application's environment variables are stored in a \textbf{.env} file. Create \textbf{example.env} file containing all of the application's environment variables' keys. Do not include the environment variables' value.    
 \end{itemize}
 
-\subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (20\%)}
 \begin{itemize}
-	\item Project board to help you organise \& prioritise your work. 
+	\item \hl{\textbf{Independent Research:}} Project board to help you organise \& prioritise your work. 
 	\item \textbf{REST API} is documented using \textbf{Postman}. You \textbf{should} provide an example for each route. Each example \textbf{should} contain a description, request \& response.
 	\item Provide the following in your repository \textbf{README.md} file:
 	\begin{itemize}
@@ -161,6 +167,8 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 		\item URL to the \textbf{REST API} on \textbf{Heroku}.
 		\item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the \textbf{REST API} locally?
 		\item How do you deploy the \textbf{REST API} to \textbf{Heroku}?
+		\item How do you format the code?
+		\item How do you seed the \textbf{collections}?
 	\end{itemize}
 	\item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
 	\item Correct spelling \& grammar. 

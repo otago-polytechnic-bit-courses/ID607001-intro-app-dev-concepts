@@ -96,7 +96,7 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
             \item Status codes, i.e., checking if a response returns 200, 404, etc.
             \item Shape of the data, i.e., does the response data contain a specific column?
           \end{itemize}
-    \item Code coverage using \textbf{nyc}. 
+    \item \textbf{Code coverage } using \textbf{nyc}. 
 \end{itemize}
 
 \subsection*{Code Elegance - Learning Outcome 1 (30\%)}
@@ -105,18 +105,19 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \item Idiomatic use of control flow, data structures \& in-built functions.
     \item Sufficient modularity, i.e., setup method at the beginning of each test case.
     \item Functions \& variables are named appropriately.
-    \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file..
+    \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file.
     \item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
-    \item Code files are formatted using \textbf{Prettier}. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file that automates this process. Rules \textbf{must} include:
-          \begin{itemize}
-            \item Single quote is set to \textbf{true}.
-            \item Semi-colon is set to \textbf{false}.
-            \item Tab-width is set to \textbf{2}.
-          \end{itemize}
-    \item \textbf{Prettier} \& \textbf{nyc} are installed as development dependencies.
+    \item Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
+    \begin{itemize}
+      \item Single quote is set to \textbf{true}.
+      \item Semi-colon is set to \textbf{false}.
+      \item Tab-width is set to \textbf{2}.
+    \end{itemize}
+    \item Declare a \textbf{npm} script in your application's \textbf{package.json} file that runs the \textbf{API test} \& \textbf{code coverage} sequentially.
+    \item \textbf{Prettier}, \textbf{Chai}, \textbf{Mocha} \& \textbf{nyc} are installed as development dependencies.
     \item No dead or unused code.
     \item Database configured for testing environment.
-    \item Application's environment variables are stored in a \textbf{.env} file.
+    \item Application's environment variables are stored in a \textbf{.env} file. Create \textbf{example.env} file containing all of the application's environment variables' keys. Do not include the environment variables' value.
 \end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
@@ -125,6 +126,9 @@ You will need to submit a \textbf{suite of tests} \& documentation that meet the
     \begin{itemize} 
       \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the \textbf{API tests} locally?
       \item How do you run the \textbf{API tests}?
+      \item How do you run the \textbf{code coverage}?
+      \item How do you format the code?
+      \item How do you seed the \textbf{collections}?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
     \item Correct spelling \& grammar.

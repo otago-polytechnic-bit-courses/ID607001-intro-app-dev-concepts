@@ -42,12 +42,13 @@
   \item A range of different data types, i.e., all \textbf{fields} of data can not be of a single type. \hl{2\%}
   \item \textbf{Two relationships} between \textbf{collections}. \hl{2\%}
   \item Each \textbf{collection} has a separate \textbf{controller} \& \textbf{route} file. \hl{1\%}
-  \item A \textbf{controller} contains \textbf{CRUD} (Create, Read, Update \& Delete) operations. \hl{3\%}
+  \item A \textbf{controller} file for \textbf{authentication}. This file \textbf{must} contain operations for register, login \& logout. \hl{1\%}
+  \item A \textbf{controller} file for each collection except \textbf{User}. Each file must contain operations for \textbf{CRUD} (Create, Read, Update \& Delete). \hl{2\%}
   \item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.  \hl{3\%}
   \item Each \textbf{collection} is seeded with a \textbf{JSON} file. \textbf{Note:} This is \textbf{only} for testing purposes. \hl{3\%}
   \item \textbf{Independent Research:} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items} \hl{0.5\%}
-  \item Return success, i.e., true or false \& data when performing \textbf{CRUD} operations. \hl{2\%}
-  \item \textbf{Independent Research:} Return an appropriate message if a query does not return any \textbf{REST API data}. \hl{2\%}
+  \item Return success, i.e., true or false \& data when performing \textbf{authentication} \& \textbf{CRUD} operations. \hl{2\%}
+  \item \textbf{Independent Research:} Return an appropriate message if a request does not return any \textbf{REST API data}, i.e., empty array. \hl{2\%}
   \item \textbf{Independent Research:} Return an appropriate message if an endpoint does not exist. \hl{2\%}
   \item \textbf{Independent Research:} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order. \hl{5\%}
   \item \textbf{Independent Research:} Paginate the \textbf{REST API data} so that any number of records can be displayed per page. \hl{3\%}
