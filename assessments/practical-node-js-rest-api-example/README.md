@@ -2,13 +2,21 @@
 
 ## Setup
 
-### .env
+### .env.testing
 
-In your `.env`, adding the following environment variable:
+Copy `example.env.testing` into a new file called `.env.testing` by running the command:
+
+```
+cp example.env.testing .env.testing
+```
+
+In your `.env.testing`, adding the following environment variable:
 
 ```
 NODE_ENV=test
 ```
+
+Make sure you provide values for `MONGO_URI`, `JWT_SECRET` and `JWT_LIFETIME`.
 
 ### Dependencies
 
@@ -16,7 +24,6 @@ Install the following dependencies as development dependencies:
 
 - chai
 - chai-http
-- cross-env
 - mocha
 
 ### Test Directory
@@ -115,10 +122,10 @@ it('should register user with valid input and login user', (done) => {
 
 ### Scripts
 
-In `package.json`, add the following script:
+In `package.json`, add the following **npm** script:
 
 ```json
-"test": "cross-env NODE_ENV=test mocha --recursive --exit"
+
 ```
 
 To run your tests, run the command: `npm run test`.

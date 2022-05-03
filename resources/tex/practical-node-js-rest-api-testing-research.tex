@@ -62,7 +62,7 @@ You will complete this assessment during your learner-managed time. However, the
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \section*{Submission}
-You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/Anc\_bYhn}{https://classroom.github.com/a/Anc\_bYhn}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/Anc\_bYhn}{https://classroom.github.com/a/Anc\_bYhn}. Create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
 All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resource, you \textbf{must} reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
@@ -82,7 +82,11 @@ Resits \& reassessments are not applicable in \textbf{ID607001: Introductory App
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{suite of API tests} \& documentation that meet the following requirements:
+You will need to submit a \textbf{suite of API tests} \& documentation that meet the following requirements: \\
+
+\textbf{Note:} The given \textbf{Node.js REST API} application is located in the \textbf{course materials repository > assessments}.
+
+application called \textbf{practical-node-js-rest-api-example} in the \textbf{assessments} directory in the course materials repository.
 
 \subsection*{Functionality - Learning Outcome 1 (60\%)}
 \begin{itemize}
@@ -92,12 +96,12 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
             \item CRUD (create, read, update \& delete) operations.
             \item Authentication (register, login \& logout).
             \item Validation rules, i.e., checking if field is required, etc.
-            \item Query parameters, i.e., filtering \& sorting data.
+            \item Query parameters, i.e., filtering, sorting \& paging data.
             \item Status codes, i.e., checking if a response returns 200, 404, etc.
             \item Shape of the data, i.e., does the response data contain a specific column?
           \end{itemize}
 \end{itemize}
-\textbf{Note:} Example test cases are provided at the end of this document.
+\textbf{Note:} Test case examples are provided at the end of this document.
 
 \subsection*{Code Elegance - Learning Outcome 1 (30\%)}
 \begin{itemize}
@@ -114,11 +118,19 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
       \item Semi-colon is set to \textbf{false}.
       \item Tab-width is set to \textbf{2}.
     \end{itemize}
-    \item Declare a \textbf{npm} script in your application's \textbf{package.json} file that runs the \textbf{API tests} in a test environment.
-    \item \textbf{Prettier}, \textbf{Chai} \textbf{Chai HTTP}, \textbf{Mocha} \& \textbf{Cross Env} are installed as development dependencies.
+    \item Declare a \textbf{npm} script in your application's \textbf{package.json} file that runs the \textbf{API tests} in the test environment.
+    \item \textbf{Prettier}, \textbf{Chai}, \textbf{Chai HTTP} \& \textbf{Mocha} are installed as development dependencies.
     \item No dead or unused code.
-    \item Database configured for testing environment.
-    \item Application's environment variables are stored in a \textbf{.env} file. Create a \textbf{example.env} file containing all of the application's environment variables' key. Do not include the environment variables' value.
+    \item Database configured for the testing environment.
+    \begin{itemize}
+      \item Create a new database in \textbf{MongoDB Atlas} specifically for the testing environment. 
+      \item Do \textbf{not} use the database from \textbf{Project 1: Node.js REST API}.
+    \end{itemize}
+    \item Application's environment variables are stored in a \textbf{.env.testing} file.
+    \begin{itemize}
+      \item Create a \textbf{example.env.testing} file containing all of the application's environment variables' key. It is for the testing environment.
+      \item Do not include the environment variables' value.
+    \end{itemize}
 \end{itemize}
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
@@ -126,9 +138,9 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
       \item What is API testing \& why is it important?
-      \item How do you setup the environment for development, i.e., after the repository is cloned, what do you need to run the the \textbf{API tests} locally?
+      \item How do you setup the testing environment, i.e., after the repository is cloned, what do you need to do \textbf{before} you run the \textbf{API tests}?
       \item How do you run the \textbf{API tests}?
-      \item How do you format the code?
+      \item How do you format the code using \textbf{Prettier}?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
     \item Correct spelling \& grammar.
@@ -151,14 +163,14 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
 \subsection*{Example Test Cases}
 \begin{itemize}
   \item Reading a resource => three tests
-  \item Invalid inputs when creating or updating a resource => at least nine tests
+  \item Invalid inputs when creating or updating a resource => nine tests
   \item Deleting a resource => three tests
-  \item Valid \& invalid inputs when registering \& logging in a user => at least four tests
+  \item Valid \& invalid inputs when registering \& logging in a user => four tests
   \item Logging out a user => one test
   \item Endpoint not found => one test
   \item The number of available base endpoints => three tests
-  \item Query parameters for each resource => at least 15 tests
-  \item Status codes for each resource => at least six tests
-  \item Shape of the data => at least five tests
+  \item Query parameters for each resource => 15 tests
+  \item Status codes for each resource => six tests
+  \item Shape of the data => five tests
 \end{itemize}
 \end{document}

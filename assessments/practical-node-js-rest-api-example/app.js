@@ -31,7 +31,7 @@ const limit = rateLimit({
 app.use(urlencoded({ extended: false }))
 app.use(json())
 
-if (process.env.NODE_ENV === 'development') app.use(cors())
+app.use(cors())
 
 app.use(cookieParser(process.env.JWT_SECRET))
 
