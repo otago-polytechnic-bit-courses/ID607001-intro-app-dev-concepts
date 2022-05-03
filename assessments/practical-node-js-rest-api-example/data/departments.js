@@ -1,14 +1,14 @@
-import { itId, nursingId } from './ids.js'
+import { itId, nursingId } from "./ids.js";
 
 const departments = [
   {
     _id: itId,
-    name: 'Information Technology'
+    name: "Information Technology",
   },
   {
     _id: nursingId,
-    name: 'Nursing'
-  }
-]
+    name: "Nursing",
+  },
+];
 
-export { departments }
+export { departments };

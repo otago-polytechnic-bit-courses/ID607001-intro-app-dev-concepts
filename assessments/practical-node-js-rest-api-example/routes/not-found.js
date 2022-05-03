@@ -1,9 +1,9 @@
-import { Router } from 'express'
+import { Router } from "express";
 
-const router = Router()
+const router = Router();
 
-import { notFound } from '../controllers/not-found.js'
+import { notFound } from "../controllers/not-found.js";
 
-router.route('/').get(notFound)
+router.route("/").get(notFound);
 
-export default router
+export default router;

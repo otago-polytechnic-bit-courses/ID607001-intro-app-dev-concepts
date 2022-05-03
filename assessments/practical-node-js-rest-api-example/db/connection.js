@@ -1,5 +1,5 @@
-import mongoose from 'mongoose'
+import mongoose from "mongoose";
 
-const conn = (url) => mongoose.connect(url)
+const conn = (url) => mongoose.connect(url);
 
-export default conn
+export default conn;
