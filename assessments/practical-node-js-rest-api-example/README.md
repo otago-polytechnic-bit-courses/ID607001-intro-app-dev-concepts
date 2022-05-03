@@ -115,7 +115,7 @@ it('should register user with valid input and login user', (done) => {
           chai.expect(res.body).to.be.a('object')
           chai.expect(res.body.msg).to.be.equal('User successfully logged in')
         })
-      done() /** Call the afterEach() function after the test has passed or failed, then move onto the next test */
+      done() /** Call the afterEach() function then move onto the next test */
     })
 })
 ```
