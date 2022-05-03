@@ -63,7 +63,7 @@ You will complete this assessment during your learner-managed time. However, the
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \section*{Submission}
-You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/hWjmBeNq}{https://classroom.github.com/a/hWjmBeNq}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/hWjmBeNq}{https://classroom.github.com/a/hWjmBeNq}.  Create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
 All parts of your submitted assessment must be completely your work. If you use code snippets from \textbf{GitHub}, \textbf{StackOverflow} or other online resources, you must reference it appropriately using \textbf{APA 7th edition}. Provide your references in the \textbf{README.md} file in your repository. Failure to do this will result in a mark of \textbf{zero} for this assessment.
@@ -82,25 +82,6 @@ Resits \& reassessments are not applicable in \textbf{ID607001: Introductory App
 
 \newpage
 
-\section*{Exemplar}
-You can find an exemplar here - \small\href{https://id607001-graysono.herokuapp.com/api/v1}{https://id607001-graysono.herokuapp.com/api} \\
-
-Here are some useful request URLs:
-\begin{itemize}
-	\item Register - \href{https://id607001-graysono.herokuapp.com/api/register}{https://id607001-graysono.herokuapp.com/api/register}
-	\item Login - \href{https://id607001-graysono.herokuapp.com/api/login}{https://id607001-graysono.herokuapp.com/api/login}
-	\item Logout - \href{https://id607001-graysono.herokuapp.com/api/logout}{https://id607001-graysono.herokuapp.com/api/logout}
-	\item Get departments - \href{https://id607001-graysono.herokuapp.com/api/v1/departments}{https://id607001-graysono.herokuapp.com/api/v1/departments}
-	\item Get institutions - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions}{https://id607001-graysono.herokuapp.com/api/v1/institutions}
-	\item Get institution by id - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions/622f3f79f234941a786417c3}{https://id607001-graysono.herokuapp.com/api/v1/institutions/622f3f79f234941a786417c3}
-	\item Get institution sorted by name \& order by ascending - \\ \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=name\&order\_by=asc}{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=name\&order\_by=asc}
-	\item Get institution sorted by region \& order by descending - \\ \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=region\&order\_by=desc}{https://id607001-graysono.herokuapp.com/api/v1/institutions?sort\_by=region\&order\_by=desc}
-	\item Get first three institutions - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?limit=3}{https://id607001-graysono.herokuapp.com/api/v1/institutions?limit=3}
-	\item Get institutions on page 2 - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?page=2}{https://id607001-graysono.herokuapp.com/api/v1/institutions?page=2}
-	\item Get all institutions in the Otago region - \href{https://id607001-graysono.herokuapp.com/api/v1/institutions?region=Otago}{https://id607001-graysono.herokuapp.com/api/v1/institutions?region=Otago}
-	\item Endpoint not found - \href{https://id607001-graysono.herokuapp.com/api/v1/hello}{https://id607001-graysono.herokuapp.com/api/v1/hello}
-\end{itemize}
-
 \section*{Instructions}
 You will need to submit a \textbf{REST API} \& documentation that meet the following requirements: \\
 
@@ -117,7 +98,7 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	\item Each \textbf{collection} has a separate \textbf{controller} \& \textbf{route} file.
 	\item A \textbf{controller} \& \textbf{route} file for \textbf{authentication}. The \textbf{controller} file must contain operations for register, login \& logout.
 	\item A \textbf{controller} \& \textbf{route} file for each collection except \textbf{User}. Each \textbf{controller} file must contain operations for \textbf{CRUD} (Create, Read, Update \& Delete).
-	\item \hl{\textbf{Independent Research:}} The \textbf{index route}, i.e., \textbf{localhost:3000/} must display all of the available \textbf{routes} in the application.
+	\item \hl{\textbf{Independent Research:}} The \textbf{index route}, i.e., \textbf{localhost:3000/api} must display all of the available \textbf{routes} in the application.
 	\item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.
 	\item Each \textbf{collection} is seeded with a \textbf{.js} file. \textbf{Note:} This is \textbf{only} for testing purposes.
 	\item \hl{\textbf{Independent Research:}} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items}
@@ -156,7 +137,7 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	\item Database configured for the development \& production environments.
 	\item Application's environment variables are stored in a \textbf{.env} file.
 	\begin{itemize}
-		\item Create \textbf{example.env} file containing all of the application's environment variables' key. It is for the development environment.
+		\item Create \textbf{example.env} file containing all of the application's environment variables' key. 
 		\item Do not include the environment variables' value.  
 	\end{itemize}  
 \end{itemize}
