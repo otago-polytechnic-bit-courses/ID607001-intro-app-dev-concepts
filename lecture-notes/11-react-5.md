@@ -10,11 +10,7 @@ You can read a little bit more about how **Cypress** works here - <https://www.c
 
 You can install **Cypress** via **npm**, but it is important to install it as a development dependency. Development dependencies do not serve many purposes in production, and they will be excluded from the final build. It is the same for dependencies that handle linting and code formatting.
 
-To install **Cypress**, run the following command:
-
-```md
-npm i --dev cypress
-```
+To install **Cypress** as a development dependency.
 
 It might take around 30 seconds to one minute to install. It is a large dependency, so avoid including it in your production build.
 
@@ -63,8 +59,8 @@ beforeEach(() => {
 it("login a user with email and password", () => {
   cy.get(".nav-link").contains("Login"); // The nav link text contains "Login"
   cy.get(".nav-link").click(); // Click on the Login nav link
-  cy.get('input[name="email"]').type("graysono@op.ac.nz"); // Find the input with the name "email", then type a value
-  cy.get('input[name="password"]').type("P@ssw0rd123"); // Find the input with the name "password", then type a value
+  cy.get('input[name="email"]').type("john.doe@op.ac.nz"); // Find the input with the name "email", then type a value
+  cy.get('input[name="password"]').type("P@ssw0rd"); // Find the input with the name "password", then type a value
   cy.get(".btn.btn-secondary").click(); // Find the element with the class .btn.btn-secondary, then click it
   cy.get(".nav-link").contains("Logout"); // The nav link text contains "Logout"
   cy.get(".nav-link").click(); // Log the user out

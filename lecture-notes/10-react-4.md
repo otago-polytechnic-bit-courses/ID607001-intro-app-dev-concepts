@@ -177,6 +177,12 @@ const Navigation = () => {
     <NavLink href="/login">Login</NavLink>
   );
 
+  const authResources = isLoggedIn ? (
+    <Route path="/institutions" element={<InstitutionsTable />} />
+  ) : (
+    <></>
+  );
+
   return (
     <Router>
       <Navbar color="dark" dark expand="md">
@@ -191,7 +197,7 @@ const Navigation = () => {
       <Container>
         <Routes>
           <Route path="/login" element={<LoginForm login={login} />} />
-          <Route path="/institutions" element={<InstitutionsTable />} />
+          {authResources}
         </Routes>
       </Container>
     </Router>
