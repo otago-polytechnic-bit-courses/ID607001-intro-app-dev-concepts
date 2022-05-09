@@ -60,7 +60,10 @@ before((done) => {
 });
 
 after((done) => {
-  /** Hint: Close the agent */
+  /**
+  * Hint: Refer to this resource - https://www.chaijs.com/plugins/chai-http, specifically 
+  * the "Retaining cookies with each request" section. Call the agent's close function
+  */
   done();
 });
 ```
