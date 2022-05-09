@@ -98,17 +98,9 @@ it('should register user with valid input', (done) => {
     .post('/api/register')
     .send(user)
     .end((error, res) => {
-      chai
-        .expect(res.status)
-        .to.be.equal(201)
-      chai
-        .expect(res.body)
-        .to.be.a('object')
-      chai
-        .expect(res.body.msg)
-        .to.be.equal(
-          'User successfully registered'
-        )
+      chai.expect(res.status).to.be.equal(201)
+      chai.expect(res.body).to.be.a('object')
+      chai.expect(res.body.msg).to.be.equal('User successfully registered')
       done()
     })
 })
