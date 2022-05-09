@@ -41,8 +41,7 @@ import Department from "../models/departments.js";
 import Course from "../models/courses.js";
 
 /**
- * Delete all resources. If you want to mock your data,
- * avoid using seeder.js
+ * Delete all resources
  */
 const deleteResources = () => {
   User.deleteMany({}, (error) => {});
@@ -52,20 +51,16 @@ const deleteResources = () => {
 };
 
 /**
- * Delete all resources before each test. This method is
+ * Delete all resources before the tests are run. This method is
  * commonly called setUp in other programming languages, i.e., Python
  */
-beforeEach((done) => {
+before((done) => {
   deleteResources();
   done();
 });
 
-/**
- * Delete all resources after each test. This method is
- * commonly called tearDown in other programming languages, i.e., Python
- */
-afterEach((done) => {
-  deleteResources();
+after((done) => {
+  /** Hint: Close the agent */
   done();
 });
 ```
@@ -73,64 +68,66 @@ afterEach((done) => {
 In `auth.test.js`, add the following code:
 
 ```js
-import chai from "chai";
-import chaiHttp from "chai-http";
-import app from "../app.js";
+import chai from 'chai'
+import chaiHttp from 'chai-http'
+import app from '../app.js'
 
-process.env.NODE_ENV = "testing";
+process.env.NODE_ENV = 'testing'
 
-/** Provide an interface for live testing */
-chai.use(chaiHttp);
+chai.use(chaiHttp)
 
-/**
- * Sample test. The it() function's first argument is
- * a description of the test
- */
-it("should register user with valid input and login user", (done) => {
-  /**
-   * Payload that is sent with when registering a user
-   */
-  let user = {
-    name: {
-      first: "John",
-      last: "Doe",
-    },
-    email: "john.doe@email.com",
-    password: "P@ssw0rd123",
-  };
 
-  chai
-    .request(app) /** Chai needs to run the Express server */
-    .post("/api/register") /** Making a request to the register route */
+
+const agent = /**
+              * Hint: Refer to this resource - https://www.chaijs.com/plugins/chai-http, specifically 
+              * the "Retaining cookies with each request" section
+              */
+
+const user = {
+  name: {
+    first: 'John',
+    last: 'Doe'
+  },
+  email: 'john.doe@email.com',
+  password: 'P@ssw0rd123'
+}
+
+it('should register user with valid input', (done) => {
+  agent
+    .post('/api/register')
     .send(user)
     .end((error, res) => {
       chai
         .expect(res.status)
-        .to.be.equal(201); /** Checking if the status is 201: Created */
+        .to.be.equal(201)
       chai
         .expect(res.body)
-        .to.be.a("object"); /** We expect the response to be an object */
+        .to.be.a('object')
       chai
         .expect(res.body.msg)
         .to.be.equal(
-          "User successfully registered"
-        ); /** We expect the msg's value to be as described */
-      chai
-        .request(app)
-        .post("/api/login") /** Making a request to the login route */
-        .send({
-          /** Sending only the user's email and password */ email: user.email,
-          password: user.password,
-        })
-        .end((error, res) => {
-          /** Much the same as above */
-          chai.expect(res.status).to.be.equal(200);
-          chai.expect(res.body).to.be.a("object");
-          chai.expect(res.body.msg).to.be.equal("User successfully logged in");
-        });
-      done(); /** Call the afterEach() function then move onto the next test */
-    });
-});
+          'User successfully registered'
+        )
+      done()
+    })
+})
+
+it('should login user with valid input', (done) => {
+  agent
+    .post('/api/login')
+    .send({
+      email: user.email,
+      password: user.password
+    })
+    .end((error, res) => {
+      chai.expect(res.status).to.be.equal(201)
+      chai.expect(res.body).to.be.a('object')
+      chai.expect(res.body.msg).to.be.equal('User successfully logged in')
+      done()
+    })
+})
+
+/** Export agent variable so it can used in other test files */
 ```
 
 ### Scripts
@@ -138,7 +135,7 @@ it("should register user with valid input and login user", (done) => {
 In `package.json`, add the following **npm** script:
 
 ```json
-"test": "mocha --timeout 10000 --recursive --exit"
+"test": "mocha --timeout 10000 --exit"
 ```
 
 To run your tests, run the command: `npm run test`.
