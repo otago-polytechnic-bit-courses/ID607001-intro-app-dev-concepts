@@ -241,7 +241,7 @@ const Navigation = () => {
 
   const logout = async () => {
     try {      
-      const res = await axios.get('https://httpbin.org/get', {
+      const res = await axios.post(`${BASE_URL}/api/logout`, {
         headers: {
           'Authorization' : `Bearer ${localStorage.getItem("token")}`
         }
