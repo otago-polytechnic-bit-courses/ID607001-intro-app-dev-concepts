@@ -35,6 +35,20 @@ const authRoute = async (req, res, next) => {
 export default authRoute;
 ```
 
+In `models/User.js`, add the following schema method:
+
+```js
+usersSchema.methods.createJWT = function () {
+  return jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_LIFETIME,
+    }
+  )
+}
+```
+
 In `controllers/auth.js`, replace the `login()` function with the following:
 
 ```js
@@ -67,23 +81,15 @@ const login = async (req, res) => {
 };
 ```
 
-In `models/User.js`, add the following schema method:
-
-```js
-usersSchema.methods.createJWT = function () {
-  return jwt.sign(
-    { userId: this._id, name: this.name },
-    process.env.JWT_SECRET,
-    {
-      expiresIn: process.env.JWT_LIFETIME,
-    }
-  )
-}
-```
-
 Go to **Postman** and test it.
 
+Login as per usual. Make sure to copy the `token` value.
 
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-10.png" width="950" height="537">
+
+Go to the **headers** tab and enter the **Authorization** key and `token` value. Click the **Send** button to send a request.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-11.png" width="950" height="537">
 
 ## React Application
 
