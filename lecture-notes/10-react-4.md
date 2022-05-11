@@ -115,14 +115,15 @@ const LoginForm = (props) => {
     setUnknownError(false);
 
     try {
-      const response = await axios.post(`${BASE_URL}/api/login`, {
+      const res = await axios.post(`${BASE_URL}/api/login`, {
         email: email,
         password: password,
       });
 
-      if (response.status === 201) {
+      if (res.status === 201) {
         props.login();
         setIsHome(true);
+        sessionStorage.setItem("token", res.data.token)
       }
     } catch (error) {
       console.log(error);
@@ -239,10 +240,14 @@ const Navigation = () => {
   };
 
   const logout = async () => {
-    try {
-      const response = await axios.post(`${BASE_URL}/api/logout`);
+    try {      
+      const res = await axios.get('https://httpbin.org/get', {
+        headers: {
+          'Authorization' : `Bearer ${localStorage.getItem("token")}`
+        }
+      });
 
-      if (response.status === 200) {
+      if (res.status === 200) {
         setIsLoggedIn(false);
         sessionStorage.clear();
         alert("Logged out."); // Debugging purposes
