@@ -85,12 +85,12 @@ Go to **Postman** and test it.
 
 Login as per usual. Make sure to copy the `token` value.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-10.png" width="950" height="537">
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-10.png" width="950" height="500">
 
-Go to the **headers** tab and enter the **Authorization** key and `token` value. Click the **Send** button to send a request.
+Go to the **headers** tab and enter the **Authorization** key and `token` value. Make sure you add **Bearer** before the `token` value. Click the **Send** button to send a request.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-11.png" width="950" height="537">
-
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-11.png" width="950" height="500">
+ 
 ## React Application
 
 In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
