@@ -2,6 +2,82 @@
 
 In today's session, you will look at how to implement **authentication** and deploy to **Heroku**. Hopefully, it will help with your current or next **Studio 3** sprint.
 
+
+In `middleware/auth.js`, replace the existing code with the following:
+
+```js
+import jwt from 'jsonwebtoken'
+
+const authRoute = async (req, res, next) => {
+  const authHeader = req.headers.authorization /** Please read this resource - https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization */
+
+  /** Check if a bearer token is given or a token starts with bearer */
+  if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    console.log('No token provided')
+  }
+
+  /** Verify only the token */
+  const token = authHeader.split(' ')[1]
+
+  /** You have seen this before **/
+  try {
+    const payload = jwt.verify(token, process.env.JWT_SECRET)
+    req.user = { userId: payload.userId, name: payload.name }
+    next()
+  } catch (error) {
+    console.log('Not authorized to access this route')
+  }
+};
+
+export default authRoute;
+```
+
+In `controllers/auth.js`, replace the `login()` function with the following:
+
+```js
+const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({ success: false, msg: "Invalid email" });
+    }
+
+    const isPasswordCorrect = await user.comparePassword(password);
+    if (!isPasswordCorrect) {
+      return res.status(401).json({ success: false, msg: "Invalid password" });
+    }
+
+    const token = user.createJWT() /** Calling the createJWT() in Users.js */
+
+    return res.status(201).json({
+      success: true,
+      token: token,
+      msg: "User successfully logged in",
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message || "Something went wrong while logging in a user",
+    });
+  }
+};
+```
+
+In `models/User.js`, add the following schema method:
+
+```js
+usersSchema.methods.createJWT = function () {
+  return jwt.sign(
+    { userId: this._id, name: this.name },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: process.env.JWT_LIFETIME,
+    }
+  )
+}
+```
+
 In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
 
 ```js
