@@ -1,7 +1,10 @@
 # 10: React 4
 
-In today's session, you will look at how to implement **authentication** and deploy to **Heroku**. Hopefully, it will help with your current or next **Studio 3** sprint.
+In today's session, you will look at how to implement **authentication** using the **authorization request header** and deploy to **Heroku**. Hopefully, it will help with your current or next **Studio 3** sprint.
 
+## Node.js Application
+
+Firstly, you will need to update your **Project 1: Node.js REST API** application.
 
 In `middleware/auth.js`, replace the existing code with the following:
 
@@ -77,6 +80,12 @@ usersSchema.methods.createJWT = function () {
   )
 }
 ```
+
+Go to **Postman** and test it.
+
+
+
+## React Application
 
 In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
 
