@@ -48,18 +48,18 @@ In `auth.spec.js`, add the following:
 
 ```js
 beforeEach(() => {
-  cy.visit("localhost:3000");
+    cy.visit("localhost:3000");
 });
 
 // The description of the test
 it("login a user with email and password", () => {
-  cy.get(".nav-link").contains("Login"); // The nav link text contains "Login"
-  cy.get(".nav-link").click(); // Click on the Login nav link
-  cy.get('input[name="email"]').type("graysono@op.ac.nz"); // Find the input with the name "email", then type a value
-  cy.get('input[name="password"]').type("P@ssw0rd123"); // Find the input with the name "password", then type a value
-  cy.get(".btn.btn-secondary").click(); // Find the element with the class .btn.btn-secondary, then click it
-  cy.get(".nav-link").contains("Logout"); // The nav link text contains "Logout"
-  cy.get(".nav-link").click(); // Log the user out
+    cy.get(".nav-link").contains("Login"); // The nav link text contains "Login"
+    cy.get(".nav-link").click(); // Click on the Login nav link
+    cy.get('input[name="email"]').type("graysono@op.ac.nz"); // Find the input with the name "email", then type a value
+    cy.get('input[name="password"]').type("P@ssw0rd123"); // Find the input with the name "password", then type a value
+    cy.get(".btn.btn-secondary").click(); // Find the element with the class .btn.btn-secondary, then click it
+    cy.get("li").eq(1).get(".nav-link").contains("Logout"); // The nav link text contains "Logout"
+    cy.get(".nav-link").eq(1).click(); // Log the user out
 });
 ```
 
