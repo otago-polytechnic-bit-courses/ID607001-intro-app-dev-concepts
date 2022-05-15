@@ -372,13 +372,17 @@ const InstitutionsTable = () => {
 
   useEffect(() => {
     const getInstitutionsData = async () => {
-      const res = await axios.get(`${BASE_URL}/api/v1/institutions`, {
-        headers: {
-          "Authorization": `Bearer ${sessionStorage.getItem("token")}`
-        }
-      })
+      try {
+        const res = await axios.get(`${BASE_URL}/api/v1/institutions`, {
+          headers: {
+            "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+          }
+        })
 
-      setData(res.data.data)
+        setData(res.data.data)
+      } catch (error) {
+        console.log(error)
+      }   
     }
     getInstitutionsData()
   }, [])
