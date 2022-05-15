@@ -356,6 +356,66 @@ Once you have done this, you see the following:
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-9.png" width="650" height="950">
 
+### Fetching Institutions data
+
+In `InstitutionsTable.js`, replace the exisiting code with the following:
+
+```jsx
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Table } from "reactstrap";
+
+const InstitutionsTable = () => {
+  const BASE_URL = "https://id607001-graysono.herokuapp.com";
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const getInstitutionsData = async () => {
+      const res = await axios.get(`${BASE_URL}/api/v1/institutions`, {
+        headers: {
+          "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+        }
+      })
+
+      setData(res.data.data)
+    }
+    getInstitutionsData()
+  }, [])
+
+  const displayInstutitionData = (
+    data.map((d) => {
+      return (
+        <tr key={d._id}>
+          <td>{d.name}</td>
+          <td>{d.region}</td>
+          <td>{d.country}</td>
+        </tr>
+      )
+    })
+  )
+
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {displayInstutitionData}
+      </tbody>
+    </Table>
+  );
+};
+
+export default InstitutionsTable;
+```
+
+Now apply the same thing to your other two resources.
+
 ### Starter code
 
 After you have implemented authentication and deployment, have a look at this online resource - <https://github.com/olinations/crud-starter-frontend-hooks>. It is an excellent example on how to implement **CRUD** functionality. **Note:** This is example uses **fetch** instead of **Axios**.
