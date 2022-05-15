@@ -32,11 +32,7 @@ Your `scripts` block should look like the following:
 },
 ```
 
-### Example
-
-Open `react-cypress-example` in **Visual Studio Code**. You are going to use the **authentication** example from the previous session.
-
-Run the following command:
+Once you have done this, run the following command:
 
 ```bash
 npm run cypress
