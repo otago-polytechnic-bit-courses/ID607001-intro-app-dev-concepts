@@ -387,7 +387,7 @@ const InstitutionsTable = () => {
     getInstitutionsData()
   }, [])
 
-  const displayInstutitionData = (
+  const displayInstutitionsData = (
     data.map((d) => {
       return (
         <tr key={d._id}>
@@ -409,7 +409,7 @@ const InstitutionsTable = () => {
         </tr>
       </thead>
       <tbody>
-        {displayInstutitionData}
+        {displayInstutitionsData}
       </tbody>
     </Table>
   );
