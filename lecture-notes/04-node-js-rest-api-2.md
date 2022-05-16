@@ -100,7 +100,9 @@ Copy the connection string.
 Go back to `.env` and add the following environment variable:
 
 ```bash
-MONGO_URI=<Your connection string>
+MONGO_URI_DEV=
+MONGO_URI_TEST=
+NODE_ENV=development
 ```
 
 **Note:** You will need to add your database user's **password**.
@@ -139,6 +141,12 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const DB =
+  process.env.NODE_ENV === "development"
+    ? process.env.MONGO_URI_DEV
+    : process.env.NODE_ENV === "testing"
+    ? process.env.MONGO_URI_TEST
+    : process.env.MONGO_URI_PROD; // You will set this in Heroku instead of in .env
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -147,10 +155,11 @@ app.use("/api/institutions", institutions);
 
 const start = async () => {
   try {
-    await conn(process.env.MONGO_URI); // Access the connection string in .env
+    await conn(DB);
+    console.log(`Server is using the ${process.env.NODE_ENV} database`);
     app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-  } catch (err) {
-    console.log(err);
+  } catch (error) {
+    console.log(error);
   }
 };
 
