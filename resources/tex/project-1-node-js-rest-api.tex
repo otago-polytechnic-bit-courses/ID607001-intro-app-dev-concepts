@@ -35,7 +35,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js} \& deploy it to \textbf{Heroku}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your \textbf{REST API} data will be stored in a \textbf{MongoDB Atlas} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, authentication, validation, seeding \& rate limits. However, you will be required to independently research \& implement more complex concepts such as filtering, sorting, pagination \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js} \& deploy it to \textbf{Heroku}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your \textbf{REST API} data will be stored in a \textbf{MongoDB Atlas} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, authentication, validation \& rate limits. However, you will be required to independently research \& implement more complex concepts such as filtering, sorting, pagination \& automated code formatting. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -91,25 +91,24 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \begin{itemize}
 	\item \textbf{REST API} is developed using \textbf{Node.js}.
 	\item \textbf{REST API} can run locally without modification.
-	\item \textbf{Five} \textbf{collections} containing at least \textbf{three fields} of data which you can interact with. \textbf{Note:} It includes a \textbf{user collection}.
-	\item \hl{\textbf{Independent Research:}} The \textbf{user collection} must contain the following fields - \textbf{first\_name}, \textbf{last\_name}, \textbf{email} \& \textbf{password}. The \textbf{password} is salted and hashed.
+	\item \textbf{Five} \textbf{collections} containing at least \textbf{three fields} of data which you can interact with. \textbf{Note:} It includes a \textbf{Users collection}.
+	\item \hl{\textbf{Independent Research:}} The \textbf{Users collection} must contain the following fields - \textbf{first\_name}, \textbf{last\_name}, \textbf{email} \& \textbf{password}. The \textbf{password} is salted and hashed.
 	\item A range of different data types, i.e., all \textbf{fields} of data can not be of a single type.
 	\item \textbf{Two relationships} between \textbf{collections}.
 	\item Each \textbf{collection} has a separate \textbf{controller} \& \textbf{route} file.
 	\item A \textbf{controller} \& \textbf{route} file for \textbf{authentication}. The \textbf{controller} file must contain operations for register, login \& logout.
-	\item A \textbf{controller} \& \textbf{route} file for each collection except \textbf{User}. Each \textbf{controller} file must contain operations for \textbf{CRUD} (Create, Read, Update \& Delete).
+	\item A \textbf{controller} \& \textbf{route} file for each collection except \textbf{User}. Each \textbf{controller} file must contain operations for \textbf{CRUD} (Create, Read one, Read all, Update \& Delete).
 	\item \hl{\textbf{Independent Research:}} The \textbf{index route}, i.e., \textbf{localhost:3000/api} must display all of the available \textbf{routes} in the application.
 	\item Each \textbf{field} of data has custom validation when creating \& updating a \textbf{document}.
-	\item Each \textbf{collection} is seeded with a \textbf{.js} file. \textbf{Note:} This is \textbf{only} for testing purposes.
 	\item \hl{\textbf{Independent Research:}} \textbf{REST API} version is set to \textbf{v1}. For example, an endpoint should look like \textbf{/api/v1/items}
 	\item Return success, i.e., true or false \& data when performing \textbf{authentication} \& \textbf{CRUD} operations.
-	\item \hl{\textbf{Independent Research:}} Return a success \& failure message when performing \textbf{authentication} \& \textbf{CRUD} operations.
+	\item \hl{\textbf{Independent Research:}} Return a success \& failure message when performing \textbf{authentication} \& \textbf{CRUD} operations, i.e., \textbf{"Successfully logged in"} or \textbf{"Successfully created an institution"}.
+	\item \hl{\textbf{Independent Research:}} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order.
 	\item \hl{\textbf{Independent Research:}} Return an appropriate message if a request does not return any \textbf{REST API data}, i.e., empty array.
 	\item \hl{\textbf{Independent Research:}} Return an appropriate message if an endpoint does not exist.
-	\item \hl{\textbf{Independent Research:}} Filter \& sort \textbf{REST API data} using query parameters. A consumer should be able to filter all \textbf{fields} of data \& sort \textbf{fields} of data in ascending/descending order.
 	\item \hl{\textbf{Independent Research:}} Paginate the \textbf{REST API data} so that any number of records can be displayed per page. The default number is 10 records per page. 
 	\item \textbf{GET}, \textbf{POST}, \textbf{PUT} \& \textbf{DELETE} routes are protected using \textbf{JSON Web Tokens (JWT)}.
-	\item \textbf{REST API} rate limit is set to 25 requests per minute. You must display the following message if the user exceeds the 25 requests per minute - \textbf{"You have exceeded the number of requests per minute: 25. Please try again later."}
+	\item \textbf{REST API} rate limit is set to 50 requests per minute. You must display the following message if the user exceeds the 50 requests per minute - \textbf{"You have exceeded the number of requests per minute: 50. Please try again later."}
 	\item Secure \textbf{HTTP} headers using \textbf{Helmet}. 
 	\item \textbf{REST API} is deployed to \textbf{Heroku}. The \textbf{REST API} \textbf{should} be usable i.e., a consumer should be able to perform operations on your \textbf{REST API}.
 	\item \textbf{REST API data} is stored in a \textbf{MongoDB Atlas} database.
@@ -145,9 +144,10 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (20\%)}
 \begin{itemize}
 	\item \hl{\textbf{Independent Research:}} Project board to help you organise \& prioritise your work. 
+	\item \textbf{GitHub} repository contains a \textbf{Node.js .gitignore}.
 	\item \textbf{REST API} is documented using \textbf{Postman}.
 	\begin{itemize}
-		\item You \textbf{should} provide an example for each route. 
+		\item You \textbf{should} provide an example for each route. However, you \textbf{should} provide \textbf{one} example of filtering, sorting \& paging. 
 		\item Each example \textbf{should} contain a description, request \& response.
 	\end{itemize}
 	\item Provide the following in your repository \textbf{README.md} file:
@@ -157,7 +157,6 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 		\item How do you setup the development environment, i.e., after the repository is cloned, what do you need to do before you run the \textbf{REST API}?
 		\item How do you deploy the \textbf{REST API} to \textbf{Heroku}?
 		\item How do you format the code using \textbf{Prettier}?
-		\item How do you seed the \textbf{collections}?
 	\end{itemize}
 	\item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
 	\item Correct spelling \& grammar. 

@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will be given a \textbf{Node.js REST API} to \textbf{API test}. You will be required to independently research \& write at least \textbf{50 API tests} using \textbf{Chai} \& \textbf{Mocha}. You will use these dependencies to verify the correctness of the given \textbf{Node.js REST API}. It includes \textbf{CRUD} operations, authentication, query parameters, status codes \& the shape of response data. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
+In this \textbf{individual} assessment, you will be given a \textbf{Node.js REST API} to \textbf{API test}. You will be required to independently research \& write at least \textbf{40 API tests} using \textbf{Chai} \& \textbf{Mocha}. You will use these dependencies to verify the correctness of the given \textbf{Node.js REST API}. It includes \textbf{CRUD} operations, authentication, query parameters, status codes \& the shape of response data. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -82,30 +82,27 @@ Resits \& reassessments are not applicable in \textbf{ID607001: Introductory App
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{suite of API tests} \& documentation that meet the following requirements: \\
-
-\textbf{Note:} The given \textbf{Node.js REST API} application is located in the \textbf{course materials repository > assessments > practical-node-js-rest-api-example}.
+You will need to submit a \textbf{suite of API tests} \& documentation that meet the following requirements:
 
 \subsection*{Functionality - Learning Outcome 1 (60\%)}
 \begin{itemize}
     \item \textbf{API tests} are written using \textbf{Mocha} \& \textbf{Chai}.
-    \item At least \textbf{50 API tests} verifying the correctness of the following:
+    \item At least \textbf{40 API tests} verifying the correctness of the following:
           \begin{itemize}
             \item CRUD (create, read, update \& delete) operations.
             \item Authentication (register, login \& logout).
             \item Validation rules, i.e., checking if field is required, etc.
             \item Query parameters, i.e., filtering, sorting \& paging data.
             \item Status codes, i.e., checking if a response returns 200, 404, etc.
-            \item Shape of the data, i.e., does the response data contain a specific column?
+            \item Shape of the data, i.e., does the response data contain a specific field?
           \end{itemize}
 \end{itemize}
-\textbf{Note:} Test case examples are provided at the end of this document.
 
 \subsection*{Code Elegance - Learning Outcome 1 (30\%)}
 \begin{itemize}
     \item Use of intermediate variables. No method calls as arguments.
     \item Idiomatic use of control flow, data structures \& in-built functions.
-    \item Sufficient modularity, i.e., \textbf{beforeTest()} \& \textbf{afterTest()} functions.
+    \item Sufficient modularity, i.e., \textbf{before()} \& \textbf{after()} functions.
     \item Functions \& variables are named appropriately.
     \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file.
     \item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
@@ -133,6 +130,7 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
 
 \subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
 \begin{itemize}
+    \item \textbf{GitHub} repository contains a \textbf{Node.js .gitignore}.
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
       \item What is API testing \& why is it important?
@@ -158,17 +156,4 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
 \end{itemize} 
 
-\subsection*{Example Test Cases}
-\begin{itemize}
-  \item Reading a resource => three tests
-  \item Invalid inputs when creating or updating a resource => nine tests
-  \item Deleting a resource => three tests
-  \item Valid \& invalid inputs when registering \& logging in a user => four tests
-  \item Logging out a user => one test
-  \item Endpoint not found => one test
-  \item The number of available base endpoints => three tests
-  \item Query parameters for each resource => 15 tests
-  \item Status codes for each resource => six tests
-  \item Shape of the data => five tests
-\end{itemize}
 \end{document}
