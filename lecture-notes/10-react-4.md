@@ -49,7 +49,7 @@ usersSchema.methods.createJWT = function () {
 }
 ```
 
-**Note:** Make sure to import `jsonwebtokens`.
+**Note:** Make sure to import `jsonwebtoken`.
 
 In `controllers/auth.js`, replace the `login()` function with the following:
 
