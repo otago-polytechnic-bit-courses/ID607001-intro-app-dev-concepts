@@ -49,8 +49,8 @@ const getCourses = async (req, res) => {
    */
   const sort = {};
   if (sort_by && order_by)
-    sort.sort_by =
-      order_by === "asc" ? -1 : (sort.sort_by = order_by === "desc" ? 1 : "");
+    sort[sort_by] =
+      order_by === "asc" ? -1 : (sort[sort_by] = order_by === "desc" ? 1 : "");
 
   try {
     const courses = await Course.find(query)
