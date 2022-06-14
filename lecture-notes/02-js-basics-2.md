@@ -72,7 +72,7 @@ const tripleNum = (num) => num * 3;
 const triples = nums.map((num) => num * 3);
 console.log(triples); // Array [6, 12, 18, 24]
 
-// Using a named callback function as an argument
+// Using a named function as an argument
 const otherTriples = nums.map(tripleNum);
 console.log(triples); // Array [6, 12, 18, 24]
 ```
