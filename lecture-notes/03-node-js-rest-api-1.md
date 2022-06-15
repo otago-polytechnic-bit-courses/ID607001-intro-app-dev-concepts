@@ -415,7 +415,7 @@ const deleteInstitution = async (req, res) => {
 
 **DELETE** request example:
 
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.png)
+[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG)
 
 Exports functions remain unchanged.
 
