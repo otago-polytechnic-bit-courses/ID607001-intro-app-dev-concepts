@@ -1,321 +1,127 @@
 # 05: Node.js REST API 3
 
-## JSON Web Tokens (JWT)
+## Seeders
 
-**JWT** is a **JSON-encoded** representation of a claim or claims that be transferred between two parties, i.e., **client** and **server**. It is a mechanism used to verify the owner of data, i.e., **JSON** data. It is a **URL-safe** string that can contain an unlimited amount of data and is cryptographically signed. When the **server** receives a **JWT**, it can guarantee the data it contains can be trusted. A **JWT** can not be modified once it is sent. **Note:** A **JWT** guarantee ownership of the data but not encryption. The data can be viewed by anyone that intercepts the **token** because it is serialized, not encrypted.
+Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an intuitive way. **Note:** Seeded data should be used for testing purposes **only**.
 
-### Using JWT for API authentication
-
-**JWT** is commonly used for **API** authentication. The basic idea is the you create the **token** on the **client** using the **secret** to sign it. When you send it as part of a request, the **server** will know it is that specific **client** because the request is signed with an unique identifier.
-
-### User model
-
-The following is a simple user model:
-
-```js
-import mongoose from "mongoose";
-import bcryptjs from "bcryptjs";
-
-const usersSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 50,
-    minlength: 3,
-  },
-  email: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  password: {
-    type: String,
-    required: true,
-    minlength: 6,
-  },
-});
-```
-
-`bcryptjs` - You will use this dependency to encrypt a user's `password`. Install `bcryptjs` by running `npm install bcryptjs`.
-
-### Schema hooks
-
-Before a user is saved, the given `password` will be encrypted using `bcryptjs`.
-
-```js
-usersSchema.pre("save", async function () {
-  const salt = await bcryptjs.genSalt(10); // Asynchronously generates a salt - defaults to 10 rounds if omitted
-  this.password = await bcryptjs.hash(this.password, salt); // Asynchronously generates a hash for the given string, i.e., password
-});
-```
-
-It asynchronously tests string, i.e., the given `password` in the request with the user's `password` in the database.
-
-```js
-usersSchema.methods.comparePassword = function (password) {
-  return bcryptjs.compare(password, this.password);
-};
-```
-
-Remember to export.
-
-```js
-export default mongoose.model("User", usersSchema);
-```
-
-**Resource:** <https://www.npmjs.com/package/bcryptjs>
-
-### .env
-
-In `.env`, add the following environment variables:
-
-```bash
-JWT_SECRET=P@ssw0rd123
-JWT_LIFETIME=1h
-```
-
-### Utility functions
-
-In the **root** directory, create a new directory called `utils`. In `utils`, create two new files called `getTokenUserData.js` and `jwt.js`
-
-In `getTokenUserData.js`, add the following:
-
-```js
-const getTokenUserData = (user) => {
-  return { name: user.name, userId: user._id };
-};
-
-export default getTokenUserData;
-```
-
-In `jwt.js`, add the following:
-
-```js
-import jwt from "jsonwebtoken";
-
-const isTokenValid = ({ token }) => jwt.verify(token, process.env.JWT_SECRET); // P@ssw0rd123
-```
-
-`jsonwebtoken` - You will use this dependency for creating a **JWT**. Install `jsonwebtoken` by running `npm install jsonwebtoken`.
-
-### How to securely store a JWT in a cookie
-
-A **JWT** needs to be stored in a safe place in the user's browser. Do not store it inside **local storage** or **session storage** as it vulnerable to an **XSS (cross-site scripting) attack**. This attack could give attackers access to the token. You should always store **JWTs** in an `httpOnly` cookie. It is a special kind of cookies that is **only** send in requests to the **server**. **JavaScript** in the browser can not accessed it preventing **XSS attacks**.
-
-```js
-const createJWT = ({ payload }) => {
-  const token = jwt.sign(payload, process.env.JWT_SECRET, {
-    expiresIn: process.env.JWT_LIFETIME, // 1hr
-  });
-  return token;
-};
-
-const attachCookiesToResponse = ({ res, user }) => {
-  const token = createJWT({ payload: user });
-
-  const oneDay = 1000 * 60 * 60 * 24;
-
-  res.cookie("token", token, {
-    httpOnly: true,
-    expires: new Date(Date.now() + oneDay),
-    secure: process.env.NODE_ENV === "production",
-    signed: true,
-  });
-};
-```
-
-Export `isTokenValid` and `attachCookiesToResponse`. You will use these later on.
-
-```js
-export { isTokenValid, attachCookiesToResponse };
-```
-
-## Auth controller
-
-In the `controller` directory, create a new file called `auth.js`. In `auth.js`, add the following:
-
-```js
-import User from "../models/users.js";
-import getTokenUserData from "../utils/getTokenUserData.js";
-import { attachCookiesToResponse } from "../utils/jwt.js";
-```
-
-Create/register a user.
-
-```js
-const register = async (req, res) => {
-  try {
-    const user = await User.create(req.body);
-    const tokenUser = getTokenUserData(user);
-    return res.status(201).json({ success: true, data: tokenUser });
-  } catch (err) {
-    return res.status(500).json({
-      msg: err.message || "Something went wrong while registering a user",
-    });
-  }
-};
-```
-
-Login a user.
-
-```js
-const login = async (req, res) => {
-  try {
-    const { email, password } = req.body;
-    
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(401).json({ success: false, msg: "Invalid email" });
-    }
-
-    const isPasswordCorrect = await user.comparePassword(password);
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ success: false, msg: "Invalid password" });
-    }
-
-    const tokenUser = getTokenUserData(user);
-    attachCookiesToResponse({ res, user: tokenUser });
-    return res.status(201).json({ success: true, data: tokenUser });
-  } catch (err) {
-    return res.status(500).json({
-      msg: err.message || "Something went wrong while logging in a user",
-    });
-  }
-};
-```
-
-Logout a user.
-
-```js
-const logout = async (req, res) => {
-  res.cookie("token", "", {
-    httpOnly: true,
-    expires: new Date(Date.now() + 1000), // 1000 milliseconds = 1 second
-  });
-  return res.status(200).json({ success: true, msg: "Logged out" });
-};
-```
-
-Export `register`, `login` and `logout`. You will use these later on.
-
-```js
-export { register, login, logout };
-```
-
-### Auth routes
-
-Remember to create the appropriate **routes** for the `register`, `login` and `logout` functions in `route/auth.js`.
-
-### Middleware
-
-In the **root** directory, create a new directory called `middleware`. In `middleware`, create a new file called `auth.js`. In `auth.js`, add the following:
-
-```js
-import { isTokenValid } from "../utils/jwt.js";
-
-const authRoute = async (req, res, next) => {
-  const token = req.signedCookies.token;
-
-  if (!token) {
-    return res.status(401).json({ success: false, msg: "Invalid authentication" });
-  }
-
-  try {
-    const { userId } = isTokenValid({ token });
-    req.user = { userId: userId };
-    next();
-  } catch (error) {
-    return res.status(401).json({ success: false, msg: "Invalid authentication" });
-  }
-};
-
-export default authRoute;
-```
-
-In `app.js`:
+In the **root** directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`. In this file, add the following:
 
 ```javascript
-import cookieParser from "cookie-parser";
+const institutions = [
+  { name: "Otago Polytechnic" },
+  { name: "Southern Institute of Technology" }
+];
+
+export { institutions };
+```
+
+In the `db` directory, create a new file called `seeder.js`. In this file, add the following:
+
+```javascript
 import dotenv from "dotenv";
-import express from "express";
 
-// Db
-import conn from "./db/connection.js";
-
-// Routes
-import auth from "./routes/auth.js";
-import departments from "./routes/departments.js";
-import institutions from "./routes/institutions.js";
-
-import authRoute from "./middleware/auth.js";
+import Institution from "../models/institutions.js";
+import { institutions } from "../data/institutions.js";
+import conn from "./connection.js";
 
 dotenv.config();
 
-const app = express();
+conn(process.env.MONGO_URI); // Connect to MongoDB atlas
 
-const PORT = process.env.PORT || 3000;
-
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cookieParser(process.env.JWT_SECRET));
-
-app.use("/api", auth);
-app.use("/api/departments", authRoute, departments);
-app.use("/api/institutions", authRoute, institutions);
-
-const start = async () => {
+const createInstitutions = async () => {
   try {
-    await conn(process.env.MONGO_URI);
-    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-  } catch (error) {
-    console.log(error);
+    await Institution.deleteMany(); // Delete all documents in the institutions collection
+    await Institution.insertMany(institutions); // Insert documents in the institutions collection
+    console.log("Institution data successfully created");
+  } catch (err) {
+    console.log(err);
+    process.exit(1); // Exit the process with an error
   }
 };
 
-start();
+const deleteInstitutions = async () => {
+  try {
+    await Institution.deleteMany();
+    console.log("Institution data successfully deleted");
+  } catch (err) {
+    console.log(err);
+    process.exit(1);
+  }
+};
 
-export default app;
+switch (process.argv[2]) {
+  case "-d": {
+    await deleteInstitutions();
+    break;
+  }
+  default: {
+    await createInstitutions();
+  }
+}
+
+process.exit();
 ```
 
-- `import cookieParser from "cookie-parser"` - To store a **JWT** in a cookie, you need to install and import `cookie-parser`.
-- `import auth from "./routes/auth.js"` - Import routes from `auth.js`.
-- `import authRoute from "./middleware/auth.js"` - Import `authRoute` middleware.
-- `app.use(cookieParser(process.env.JWT_SECRET))` - Create new `cookieParser` middleware function using the given `JWT_SECRET` secret. The secret is used for signing cookies.
-- `app.use("/api/institutions", authRoute, institutions)` - Protect route using the given `authRoute` middleware.
+In `package.json`, add the following **scripts**:
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/register> and data, then perform a **POST** request.
+```javascript
+"institutions:create": "node db/seeder",
+"institutions:delete": "node db/seeder -d"
+```
 
-Congrats, you have created your first user. Now, you can use this user to login.
+Here is an example of creating institutions:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-1.JPG" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-1.JPG" />
 
-Whoops, you forgot to enter a `password`.
+Check **MongoDB Atlas** to see if the script created institutions.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-2.JPG" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-2.png" width="950" height="537" />
 
-You have successfully logged in. **Note:** The data is `email` and `password`.
+Here is an example of deleting all institutions:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-3.JPG" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-3.JPG" />
 
-When you log in, it will store the user's token in a **cookie**.
+Check **MongoDB Atlas** to see if the script deleted all institutions.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-4.JPG" />
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-4.png" width="950" height="537" />
 
-You are authorised to perform a **POST** request. **Note:** This route is protected.
+---
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-5.JPG" />
+## Rate-Limits
 
-What happens if you delete the cookie?
+**Ratelimiting** controls incoming/outgoing traffic to or from a network. For example, your **API** is configured to allow 50 requests per minute. If the number of requests exceeds that limit, an error will be returned. **Rate-limiting** mitigates attacks such as **DoS/DDoS** resulting in a better data flow.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-6.JPG" />
+`express-rate-limit` is a popular **rate-limiting** module. To install, run the command `npm install express-rate-limit`.
 
-Perform a **POST** request.
+In `app.js`, import `express-rate-limit`.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-7.JPG" />
+```javascript
+import rateLimit from "express-rate-limit";
+```
 
-Logout the user. **Note:** The cookie will expire.
+Create a `rateLimit` object with the following options:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-8.JPG" />
+- `windowMs`- 10 minute window
+- `max` - Limit each IP address to 5 requests per window
+
+```javascript
+const limit = rateLimit({
+  windowMs: 10 * 60 * 1000,
+  max: 5,
+});
+```
+
+Apply the middleware to all requests.
+
+```javascript
+app.use(limit);
+```
+
+Go to **Postman** and perform **six** requests to test it. On the sixth request, you should see the following error:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-5.JPG" />
+
+---
 
 ## Heroku
 
@@ -327,7 +133,7 @@ To create a new application, click the **New** button in the top right-hand corn
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-9.png" />
 
-Name the application `id607001-<Your OP username>`.
+Name the application `id607001-backend-<Your OP username>`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-10.png" />
 
@@ -357,7 +163,7 @@ Add the environment variables specified in `.env`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-14.png" />
 
-Time to test it out. Go to **Postman**. Enter the URL - `http://<URL to your Heroku application>/api/login` and data, then perform a **POST** request.
+Time to test it out. Go to **Postman**. Enter the URL - `https://<URL to your Heroku application>/api/login` and data, then perform a **POST** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-15.JPG" />
 
@@ -365,18 +171,56 @@ Perform a **GET** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-16.JPG" />
 
-## Formative assessment
+---
 
-In this **in-class activity**, you will continue developing your **REST API** for the **Project 1: Node.js REST API** assessment.
+## Postman Documentation
 
-### Submission
+You can automatically generate documentation for your **API**. Your documentation is generated and hosted by **Postman** and based on the collections you create. You can share your documentation privately with your team members or publicly on the web.
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/hWjmBeNq>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
+Here are the following steps:
 
-### Getting started
+Click on the **Create Collection** button. Name the collection `id607001-<your OP username>-api`.
 
-Open your repository in **Visual Studio Code**. Extend your **REST API** as described in the lecture notes above.
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-6.JPG" />
 
-### Final words
+A collection has been created. Click on the horizontal ellipsis (three circles) and click the **Add request** option.
 
-Please review your changes against the **Project 1: Node.js REST API** assessment document and marking rubric.
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-7.JPG" />
+
+Name the request, i.e., Registering a user, choose the method, i.e., **POST**, add the endpoint, i.e., `localhost:3000/api/register`, add the data and click the **Send** button. Copy the response. You will use it later.
+
+**Note:** Please use your **Heroku** application's URL instead of `localhost:3000`.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-8.JPG" />
+
+Click on the horizontal ellipsis (for the request) and click the **Add example** option.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-9.JPG" />
+
+Name the example, i.e., Registering a user, paste the response you copied earlier, add a status code, i.e., 201 Created, and click the **Save** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-10.JPG" />
+
+If you want to view your documentation, click on the horizontal ellipsis (for the collection) and click on the **View documentation** option.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-11.JPG" />
+
+It generated the following:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-12.JPG" />
+
+Click on the **Publish** button.
+
+**Note:** You may want to add a description of the collection and requests.
+
+You can change the content, URL, and styling on this page. Click on the **Publish** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-13.png" width="950" height="537" />
+
+It will provide you with a link to your published documentation. Copy and paste this link in your **Project 1: Node.js REST API README** file.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-14.png" width="950" height="537" />
+
+Now, you have professional-looking documentation.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-15.png" width="950" height="537" />

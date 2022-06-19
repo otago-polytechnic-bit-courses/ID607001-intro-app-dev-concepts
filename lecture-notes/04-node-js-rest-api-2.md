@@ -2,7 +2,7 @@
 
 ## Validation
 
-**Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting** and **header injection**.
+**Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting (XSS)** and **header injection**.
 
 Here is an example of how you can validate your **collection's** **fields**:
 
@@ -18,7 +18,7 @@ const institutionsSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("institution", institutionsSchema);
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
 Here is a **POST** request example:
@@ -35,6 +35,8 @@ Here is another **POST** request example: The `unique` option is not a validator
 - <https://en.wikipedia.org/wiki/SQL_injection>
 - <https://en.wikipedia.org/wiki/Cross-site_scripting>
 - <https://en.wikipedia.org/wiki/HTTP_header_injection>
+
+---
 
 ## Relationships
 
@@ -53,14 +55,14 @@ const departmentsSchema = new mongoose.Schema({
   },
   institution: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "institution",
+    ref: "Institution",
   },
 });
 
-export default mongoose.model("department", departmentsSchema);
+export default mongoose.model("Department", departmentsSchema);
 ```
 
-Here you are referencing `department`. You are saying an institution can have many departments.
+Here you are referencing `department`. You are saying an institution can have **many** departments.
 
 ```javascript
 import mongoose from "mongoose";
@@ -75,15 +77,15 @@ const institutionsSchema = new mongoose.Schema({
   departments: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "department",
+      ref: "Department",
     },
   ],
 });
 
-export default mongoose.model("institution", institutionsSchema);
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
-In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include `updateDepartment` and `deleteDepartment`.
+In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include `updateDepartment` and `deleteDepartment`. However, do not forget to implement these.
 
 ```javascript
 import Department from "../models/departments.js";
@@ -99,7 +101,9 @@ const getDepartments = async (req, res) => {
     });
   }
 };
+```
 
+```javascript
 const createDepartment = async (req, res) => {
   try {
     const department = new Department(req.body);
@@ -124,7 +128,7 @@ const createDepartment = async (req, res) => {
 export { getDepartments, createDepartment };
 ```
 
-**Note:** You will create the appropriate **routes** for these functions.
+**Note:** You will create the appropriate **routes** for these functions. 
 
 Here is a **POST** request example:
 
@@ -138,23 +142,31 @@ Here is a **GET** request example:
 
 **Resource:** <https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents>
 
-## Formative assessment
+---
 
-In this **in-class activity**, you will use your previous **in-class activity** plan to create a **REST API** for the **Project 1: REST API** assessment. In addition, you will explore how to enable **Cross-origin resource sharing (Cors)** and **Helmet**.
+## Formative assessment
 
 ### Submission
 
-You must submit all program files via **GitHub Classroom**. Here is the URL to the repository you will use for this **in-class activity** – <https://classroom.github.com/a/hWjmBeNq>. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
+You must submit all program files via **GitHub Classroom**. If you wish to have your code reviewed, message the course lecturer on **Microsoft Teams**. 
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
+Open your repository in **Visual Studio Code**. Extend your student management system **REST API** by implementing the concepts, i.e., **validation** and **relationships** as described in the lecture notes above.
+
+---
 
 ## Additional assessment tasks
 
+### Populate
+
+You will notice when a **document**, i.e., **department** is referenced in a **collection**, i.e., **institution**, it returns the **document's** `_id`. **Mongoose** has a function called `populate()` which replaces the **document's** `_id` with its full **document**. Using the resource below, implement the `populate()` function in both `institutions.js` and `departments.js` in the `controllers` directory.
+
+**Resource:** <https://mongoosejs.com/docs/populate.html#population>
+
 ### Cross-origin resource sharing (Cors)
 
-Carefully read the first resource below. It will provide you with an excellent explanation of how **cross-origin resource sharing** works. Using the second resource below, implement simple usage (enable all cors requests) when in a **development environment**. 
+Carefully read the first resource below. It will provide you with an excellent explanation of how **cross-origin resource sharing** works. Using the second resource below, implement simple usage (enable all cors requests). 
 
 **Resources:**
 
@@ -163,10 +175,6 @@ Carefully read the first resource below. It will provide you with an excellent e
 
 ### Helmet
 
-**Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **helmet**.
+**Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **Helmet**.
 
 **Resource:** <https://www.npmjs.com/package/helmet>
-
-### Final words
-
-Please review your changes against the **Project 1: REST API** assessment document and marking rubric.

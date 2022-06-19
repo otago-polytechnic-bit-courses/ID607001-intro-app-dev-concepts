@@ -264,7 +264,7 @@ const institutionsSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("institution", institutionsSchema);
+export default mongoose.model("Institution", institutionsSchema);
 ```
 
 - `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
@@ -274,6 +274,8 @@ export default mongoose.model("institution", institutionsSchema);
 
 - <https://mongoosejs.com/docs/guide.html#schemas>
 - <https://mongoosejs.com/docs/models.html>
+
+---
 
 ## Postman
 
@@ -305,6 +307,8 @@ You should see something like this:
 
 Click the **+** button next to the **Overview** tab. You will look at how to send a request soon.
 
+---
+
 ## Controller
 
 In the root directory, create a new directory called `controllers`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will write functions associated with the **HTTP methods** mentioned above.
@@ -315,7 +319,7 @@ Import the **model** from `models/institutions.js`.
 import Institution from "../models/institutions.js";
 ```
 
-To get **all** institutions, use `Institution.find({})`. The `{}` inside `Institution.find()` represents **all**.
+To get **all** institutions, use `Institution.find({})`. The `{}` inside `Institution.find()` is used to return **all** institutions.
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -330,7 +334,7 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-To create an institution, use `Institution.create(req.body)`.
+To create an institution, use `Institution.create(req.body)`. 
 
 ```javascript
 const createInstitution = async (req, res) => {
@@ -346,9 +350,9 @@ const createInstitution = async (req, res) => {
 };
 ```
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request.
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request. **Note:** `req.body` is the payload sent with the request, i.e., `{ "name": "Otago Polytechnic" }`.
 
-The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and **version**.
+The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and `__v` (version).
 
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG)
 
@@ -357,7 +361,7 @@ If you want to view the **collections**, go to **MongoDB Atlas** and click the *
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png)
 
 
-**Note:** `student-management-system` is the name of the **database**.
+**Note:** `student-management` is the name of the **database**.
 
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png)
 
@@ -389,6 +393,8 @@ const updateInstitution = async (req, res) => {
 **PUT** request example:
 
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.JPG)
+
+The `id` (destructured) or `req.params.id` (not destructured) is the 24 characters string after `http://localhost:3000/api/institutions/`.
 
 ```javascript
 const deleteInstitution = async (req, res) => {
@@ -434,15 +440,17 @@ export {
 - <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate>
 - <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove>
 
+---
+
 ## Routes
 
 In the root directory, create a new directory called `routes`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will create four routes and map them to the functions imported from `controllers/institutions.js`.
 
 ```javascript
 import { Router } from "express";
-const router = Router(); // Accessing the Router() object from express. This allows to handle various requests
+const router = Router(); // Accessing the Router() object from express. It allows you to handle various requests
 
-// Importing the four functions
+// Importing the four CRUD functions
 import {
   getInstitutions,
   createInstitution,
@@ -450,21 +458,21 @@ import {
   deleteInstitution,
 } from "../controllers/institutions.js";
 
-// Four routes that are mapped to the functions above
-router.route("/").get(getInstitutions);
-router.route("/").post(createInstitution);
-
-router.route("/:id").put(updateInstitution);
-router.route("/:id").delete(deleteInstitution);
-
-// You can chain these if you wish. For example:
-// router.route("/").get(getInstitution).post(createInstitution)
-// router.route("/:id").put(updateInstitution).delete(deleteInstitution)
+router.route("/").get(getInstitution).post(createInstitution)
+router.route("/:id").put(updateInstitution).delete(deleteInstitution)
 
 export default router; // You do not need to enclose router in curly braces
 ```
 
 `export default router;` is an example of a default export. It means that when you import `routes/institutions.js` in `app.js`, you can use whatever name you want as the import name. Also, much like the name export, you can change the name using an alias. **Note:** Default exports are not enclosed in curly braces.
+
+---
+
+## Final thoughts
+
+As you extend your **REST API**, you will find that you are duplicating a lot of code, particularly in your `controllers`. I encourage you to explore and come up with a solution. However, if you are not confident in doing so, you will look more into this in **IN608: Intermediate Application Development** next semester.
+
+---
 
 ## Formative assessment
 
@@ -474,7 +482,9 @@ You must submit all program files via **GitHub Classroom**. If you wish to have 
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Create a **REST API** using **Express** and **MongoDB Atlas** as described in the lecture notes above.
+Open your repository in **Visual Studio Code**. Create a student management system **REST API** using **Node.js**, **Express** and **MongoDB Atlas** Implement the concepts as described in the lecture notes above.
+
+---
 
 ## Additional assessment tasks
 
