@@ -1,4 +1,4 @@
-# 02: JavaScript Basics 2
+# 01: JavaScript Basics
 
 ## Functional Programming Paradigm
 

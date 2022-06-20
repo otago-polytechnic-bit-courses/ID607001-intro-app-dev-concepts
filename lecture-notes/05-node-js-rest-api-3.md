@@ -26,7 +26,7 @@ import conn from "./connection.js";
 
 dotenv.config();
 
-conn(process.env.MONGO_URI); // Connect to MongoDB atlas
+conn(process.env.MONGO_URI_DEV); // Connect to MongoDB atlas
 
 const createInstitutions = async () => {
   try {
@@ -84,42 +84,6 @@ Here is an example of deleting all institutions:
 Check **MongoDB Atlas** to see if the script deleted all institutions.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-4.png" width="950" height="537" />
-
----
-
-## Rate-Limits
-
-**Ratelimiting** controls incoming/outgoing traffic to or from a network. For example, your **API** is configured to allow 50 requests per minute. If the number of requests exceeds that limit, an error will be returned. **Rate-limiting** mitigates attacks such as **DoS/DDoS** resulting in a better data flow.
-
-`express-rate-limit` is a popular **rate-limiting** module. To install, run the command `npm install express-rate-limit`.
-
-In `app.js`, import `express-rate-limit`.
-
-```javascript
-import rateLimit from "express-rate-limit";
-```
-
-Create a `rateLimit` object with the following options:
-
-- `windowMs`- 10 minute window
-- `max` - Limit each IP address to 5 requests per window
-
-```javascript
-const limit = rateLimit({
-  windowMs: 10 * 60 * 1000,
-  max: 5,
-});
-```
-
-Apply the middleware to all requests.
-
-```javascript
-app.use(limit);
-```
-
-Go to **Postman** and perform **six** requests to test it. On the sixth request, you should see the following error:
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-5.JPG" />
 
 ---
 
