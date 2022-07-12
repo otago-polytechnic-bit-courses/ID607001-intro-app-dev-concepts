@@ -1,4 +1,4 @@
-# 03: Node.js REST API 1
+# 02: Node.js REST API 1
 
 ## Introduction to APIs
 
