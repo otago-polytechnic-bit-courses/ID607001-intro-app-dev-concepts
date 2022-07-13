@@ -40,7 +40,7 @@ You need to create a `package.json` file. This file will contain information abo
 To create a `package.json` file, run the following command:
 
 ```bash
-npm init
+$ npm init
 ```
 
 It will prompt you to enter your **REST API's** name, version, etc. For now, you can press <kbd>enter</kbd> to accept the default values except for the following:
@@ -54,7 +54,7 @@ Enter `app.js` and press <kbd>enter</kbd>.
 Install **Express** as a dependency. You can check whether it has been installed in `package.json`.
 
 ```bash
-npm install express
+$ npm i express
 ```
 
 Majority of the online **Node.js** examples use **CommonJS**. You are going to use **Modules** instead. In `package.json`, you need to add `"type": "module",` under `"main": "app.js",`.
@@ -73,9 +73,9 @@ Majority of the online **Node.js** examples use **CommonJS**. You are going to u
 To get started, run the following commands:
 
 ```bash
-npm install @prisma/client
-npm install prisma --save-dev
-npx prisma init
+$ npm i @prisma/client
+$ npm i prisma --save-dev
+$ npx prisma init
 ```
 
 Check the `package.json` file to ensure you have installed `@prisma/client` and `prisma`.
@@ -116,8 +116,6 @@ model Department {
 }
 ```
 
-The schema structure should look familiar from **ID607001: Introductory Application Development Concepts**.
-
 ### SQLite
 
 You are going to use **SQLite** for the data source. The easy way to create an **SQLite** database is to download the **SQLite** command-line tool - <https://www.sqlite.com/2022/sqlite-tools-win32-x86-3390000.zip>. Run `sqlite3.exe` and run the following command:
@@ -133,7 +131,7 @@ This command will create a new database file called `dev.db`. Copy and paste `de
 You need to create a migration from the `prisma.schema` file and apply them to the `dev.db` file. To do this, run the following command:
 
 ```bash
-npx prisma migrate dev
+$ npx prisma migrate dev
 ```
 
 You will be prompt to enter a name for the new migration. Do not worry about this and press the <kbd>Enter</kbd> key. You will find the new migration in the `migrations` directory. Your database is in sync with your `schema.prisma` file.
