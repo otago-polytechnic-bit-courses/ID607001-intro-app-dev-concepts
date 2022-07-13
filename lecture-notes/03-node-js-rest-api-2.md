@@ -263,3 +263,5 @@ Open your repository in **Visual Studio Code**. Extend your student management s
 ---
 
 ## Additional assessment tasks
+
+Implement a new route (and controller) to get a specific institution. You will pass the institution id via a route parameter (like the DELETE example), and fetch that single record from the database; return the record, or an error message if not found. Use the examples already done above to figure out how to get a single institution.
