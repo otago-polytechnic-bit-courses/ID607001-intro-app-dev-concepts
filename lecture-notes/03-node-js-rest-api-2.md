@@ -219,7 +219,7 @@ const PORT = process.env.PORT;
 app.use(urlencoded({ extended: false }));
 app.use(json());
 
-app.use(`${BASE_URL}/institutions`, institutions);
+app.use(`/${BASE_URL}/institutions`, institutions);
 
 app.listen(PORT, () => {
   console.log(`Server is listening on port ${PORT}`);
