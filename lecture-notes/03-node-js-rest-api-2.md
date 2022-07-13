@@ -232,13 +232,9 @@ Once you have added the lines of code, run your server - `node app.js`.
 
 Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request. **Note:** `req.body` is the payload sent with the request, i.e., `{ "name": "Otago Polytechnic" }`.
 
-The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and `__v` (version).
+The response contains a `msg` and the created `data`:
 
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG)
-
-**DELETE** request example:
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG)
+[](04-node-js-rest-api-2.md) ![](../resources/img/successfulPostman.JPG)
 
 ---
 
