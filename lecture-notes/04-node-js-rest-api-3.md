@@ -1,43 +1,5 @@
 # 04: Node.js REST API 2
 
-## Validation
-
-**Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting (XSS)** and **header injection**.
-
-Here is an example of how you can validate your **collection's** **fields**:
-
-```javascript
-import mongoose from "mongoose";
-
-const institutionsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    maxlength: 100,
-  },
-});
-
-export default mongoose.model("Institution", institutionsSchema);
-```
-
-Here is a **POST** request example:
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.JPG)
-
-
-Here is another **POST** request example: The `unique` option is not a validator. It is used to build **MongoDB** unique indexes.
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.JPG)
-
-**Resources:** 
-- <https://mongoosejs.com/docs/validation.html>
-- <https://en.wikipedia.org/wiki/SQL_injection>
-- <https://en.wikipedia.org/wiki/Cross-site_scripting>
-- <https://en.wikipedia.org/wiki/HTTP_header_injection>
-
----
-
 ## Relationships
 
 The following example demonstrates a relationship between `institution` and `department`.
@@ -127,6 +89,44 @@ Here is a **GET** request example:
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-22.JPG)
 
 **Note:** You can see an institution's list of departments.
+
+---
+
+## Validation
+
+**Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting (XSS)** and **header injection**.
+
+Here is an example of how you can validate your **collection's** **fields**:
+
+```javascript
+import mongoose from "mongoose";
+
+const institutionsSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+    unique: true,
+    maxlength: 100,
+  },
+});
+
+export default mongoose.model("Institution", institutionsSchema);
+```
+
+Here is a **POST** request example:
+
+[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-19.JPG)
+
+
+Here is another **POST** request example: The `unique` option is not a validator. It is used to build **MongoDB** unique indexes.
+
+[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-20.JPG)
+
+**Resources:** 
+- <https://mongoosejs.com/docs/validation.html>
+- <https://en.wikipedia.org/wiki/SQL_injection>
+- <https://en.wikipedia.org/wiki/Cross-site_scripting>
+- <https://en.wikipedia.org/wiki/HTTP_header_injection>
 
 ---
 
