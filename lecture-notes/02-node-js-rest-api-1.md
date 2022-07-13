@@ -142,6 +142,26 @@ You will be prompt to enter a name for the new migration. Do not worry about thi
 
 ---
 
+## dotenv
+
+You will see that when we initialised our Prisma, it created a file called `.env` - this is where we can store our **environment variables** or things we need to configure our app.
+
+To use the `.env` file we need to install a package called `dotenv`:
+
+```bash
+$ npm i dotenv
+```
+
+Open the `.env` file in VS Code and add this line to it:
+
+```
+PORT=3000
+```
+
+Later, we'll use this file for more configuration options, but for now we'll just define the PORT number we want to run the app on.
+
+---
+
 ## Formative assessment
 
 ### Submission
