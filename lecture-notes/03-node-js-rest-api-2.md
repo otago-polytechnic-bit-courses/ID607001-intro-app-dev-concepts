@@ -200,12 +200,15 @@ export default router; // You do not need to enclose router in curly braces
 
 ## App.js
 
-Go to `app.js` and add the following:
+Create a file called `app.js` in the root directory and add the following:
 
 ```javascript
+import dotenv from "dotenv";
 import express, { urlencoded, json } from "express";
 
 import institutions from `./routes/institutions.js`;
+
+dotenv.config();
 
 const app = express();
 
