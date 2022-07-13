@@ -42,90 +42,78 @@ Here is another **POST** request example: The `unique` option is not a validator
 
 The following example demonstrates a relationship between `institution` and `department`.
 
-Here you are referencing `institution`. In a nutshell, you are saying a department can belong to an institution. **Note:** You will need to create a new file called `departments.js` in the `models` directory.
-
-```javascript
-import mongoose from "mongoose";
-
-const departmentsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    maxlength: 50,
-  },
-  institution: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Institution",
-  },
-});
-
-export default mongoose.model("Department", departmentsSchema);
-```
-
-Here you are referencing `department`. You are saying an institution can have **many** departments.
-
-```javascript
-import mongoose from "mongoose";
-
-const institutionsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-    unique: true,
-    maxlength: 100,
-  },
-  departments: [
-    {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Department",
-    },
-  ],
-});
-
-export default mongoose.model("Institution", institutionsSchema);
-```
-
 In the `controllers` directory, create a new file called `departments.js`. **Note:** The example below does not include `updateDepartment` and `deleteDepartment`. However, do not forget to implement these.
 
 ```javascript
-import Department from "../models/departments.js";
-import Institution from "../models/institutions.js";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
+
+const getDepartment = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const department = await prisma.department.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!department) {
+      return res
+        .status(200)
+        .json({ msg: `No department with the id: ${id} found` });
+    }
+
+    return res.json({ data: department });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
 
 const getDepartments = async (req, res) => {
   try {
-    const departments = await Department.find({});
-    return res.status(200).json({ success: true, data: departments });
+    const departments = await prisma.department.findMany();
+
+    if (departments.length === 0) {
+      return res.status(200).json({ msg: "No departments found" });
+    }
+
+    return res.json({ data: departments });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
-```
 
-```javascript
 const createDepartment = async (req, res) => {
   try {
-    const department = new Department(req.body);
-    await department.save();
+    const { name, institutionId } = req.body;
 
-    // Find a institution by its id, then push the created department to its list of departments.
-    const institution = await Institution.findById({
-      _id: department.institution,
+    await prisma.department.create({
+      data: { name, institutionId },
     });
-    institution.departments.push(department);
-    await institution.save();
 
-    const newDepartments = await Department.find({});
-    return res.status(201).json({ success: true, data: newDepartments });
+    const newDepartments = await prisma.department.findMany();
+
+    return res.status(201).json({
+      msg: "Department successfully created",
+      data: newDepartments,
+    });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
 
-export { getDepartments, createDepartment };
+/* TODO updateDepartment, deleteDepartment */
+
+export {
+  getDepartment,
+  getDepartments,
+  createDepartment
+};
 ```
 
 **Note:** You will create the appropriate **routes** for these functions. 
@@ -139,8 +127,6 @@ Here is a **GET** request example:
 [](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-22.JPG)
 
 **Note:** You can see an institution's list of departments.
-
-**Resource:** <https://docs.mongodb.com/manual/tutorial/model-referenced-one-to-many-relationships-between-documents>
 
 ---
 
@@ -172,9 +158,3 @@ Carefully read the first resource below. It will provide you with an excellent e
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
 - <https://www.npmjs.com/package/cors>
-
-### Helmet
-
-**Helmet** is a dependency that helps you secure you **REST API** by setting various **HTTP headers**. These are an important part of **HTTP** and provide metadata about a request or response. **HTTP headers** can leak sensitive information about your **REST API** such as **X-Powered-By**. This header informs the browser which server vendor and version you are using, i.e., **Express**. It makes your **REST API** a prime target where this information can be cross-referenced with publicly known vulnerabilities. Using the resource below, implement **Helmet**.
-
-**Resource:** <https://www.npmjs.com/package/helmet>
