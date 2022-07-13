@@ -16,7 +16,7 @@ Next to the **Home** tab is the **Workspaces** dropdown. Click this and create a
 
 ![](../resources/img/03-node-js-rest-api-1/03-node-js-rest-api-3.JPG)
 
-To keep things consistent with the **MongoDB Atlas** database, you will create next week, name your new workspace `id607001-<Your OP username>`. Once you have done this, click the **Create workspace and team** button in the bottom right-hand corner.
+Name your new workspace `id607001-<Your OP username>`. Once you have done this, click the **Create workspace and team** button in the bottom right-hand corner.
 
 ![](../resources/img/03-node-js-rest-api-1/03-node-js-rest-api-4.JPG)
 
@@ -32,162 +32,143 @@ Click the **+** button next to the **Overview** tab. You will look at how to sen
 
 ---
 
-## Models
-
-The start point with **Mongoose** is the `Schema`. Each **schema** is mapped to a **collection** and defines the shape of a **document** within that **collection**.
-
-In the root directory, create a new directory called `models`. In this directory, create a new file called `institutions.js`. In `institutions.js`, add the following:
-
-```javascript
-import mongoose from "mongoose";
-
-const institutionsSchema = new mongoose.Schema({
-  name: {
-    type: String,
-  },
-});
-
-export default mongoose.model("Institution", institutionsSchema);
-```
-
-- `mongoose.Schema` - Each key in `institutionsSchema` defines a property in a **document** which will be cast to a `SchemaType`, i.e., `name` will be cast to the `String` `SchemaType`.
-- `mongoose.model` - A constructor compiled from a `Schema` definition.  An instance of a model is called a **document**. Models are responsible for creating and reading documents from a **MongoDB database**.
-
-**Resources:**
-
-- <https://mongoosejs.com/docs/guide.html#schemas>
-- <https://mongoosejs.com/docs/models.html>
-
 ## Controllers
 
 In the root directory, create a new directory called `controllers`. In this directory, create a new file called `institutions.js`. In `institutions.js`, you will write functions associated with the **HTTP methods** mentioned above.
 
-Import the **model** from `models/institutions.js`.
+To get **all** institutions, we create a function, and use `prisma.institution.findMany`.
 
-```javascript
-import Institution from "../models/institutions.js";
-```
+```js
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-To get **all** institutions, use `Institution.find({})`. The `{}` inside `Institution.find()` is used to return **all** institutions.
-
-```javascript
 const getInstitutions = async (req, res) => {
   try {
-    const institutions = await Institution.find({});
-    return res.status(200).json({ success: true, data: institutions });
+    const institutions = await prisma.institution.findMany({
+      include: {
+        departments: true,
+      },
+    });
+
+    if (institutions.length === 0) {
+      return res.status(200).json({ msg: "No institutions found" });
+    }
+
+    return res.json({ data: institutions });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
 ```
 
-To create an institution, use `Institution.create(req.body)`. 
+To create an institution, use `prisma.institution.create`. 
 
-```javascript
+```js
 const createInstitution = async (req, res) => {
   try {
-    await Institution.create(req.body);
-    const newInstitutions = await Institution.find({});
-    return res.status(201).json({ success: true, data: newInstitutions });
+    const { name, region, country } = req.body; // destructuring object
+
+    await prisma.institution.create({
+      data: { name, region, country },
+    });
+
+    const newInstitutions = await prisma.institution.findMany({
+      include: {
+        departments: true,
+      },
+    });
+
+    return res.status(201).json({
+      msg: "Institution successfully created",
+      data: newInstitutions,
+    });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
 ```
 
-Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request. **Note:** `req.body` is the payload sent with the request, i.e., `{ "name": "Otago Polytechnic" }`.
+To update an institution, use `prisma.institution.update`.
 
-The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and `__v` (version).
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG)
-
-If you want to view the **collections**, go to **MongoDB Atlas** and click the **Browse Collections** button.
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-15.png)
-
-
-**Note:** `student-management` is the name of the **database**.
-
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-16.png)
-
-To update an institution, use `Institution.findByIdAndUpdate(id, req.body.name)`.
-
-```javascript
+```js
 const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
-    const institution = await Institution.findByIdAndUpdate(id, req.body);
+    const { name, region, country } = req.body;
+
+    let institution = await prisma.institution.findUnique({
+      where: { id: Number(id) },
+    });
 
     if (!institution) {
-      return res.status(404).json({
-        success: false,
-        msg: `No institution with the id ${id}`,
-      });
+      return res
+        .status(200)
+        .json({ msg: `No institution with the id: ${id} found` });
     }
 
-    const newInstitutions = await Institution.find({});
-    return res.status(200).json({ success: true, data: newInstitutions });
+    institution = await prisma.institution.update({
+      where: { id: Number(id) },
+      data: { name, region, country },
+    });
+
+    return res.json({
+      msg: `Institution with the id: ${id} successfully update`,
+      data: institution,
+    });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
 ```
 
-**PUT** request example:
+To delete an institution, use `prisma.institution.delete`.
 
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-17.JPG)
-
-The `id` (destructured) or `req.params.id` (not destructured) is the 24 characters string after `http://localhost:3000/api/institutions/`.
-
-```javascript
+```js
 const deleteInstitution = async (req, res) => {
   try {
     const { id } = req.params;
-    const institution = await Institution.findByIdAndRemove(id);
+
+    const institution = await prisma.institution.findUnique({
+      where: { id: Number(id) },
+    });
 
     if (!institution) {
-      return res.status(404).json({
-        success: false,
-        msg: `No institution with the id ${id}`,
-      });
+      return res
+        .status(200)
+        .json({ msg: `No institution with the id: ${id} found` });
     }
 
-    const newInstitutions = await Institution.find({});
-    return res.status(200).json({ success: true, data: newInstitutions });
+    await prisma.institution.delete({
+      where: { id: Number(id) },
+    });
+
+    return res.json({
+      msg: `Institution with the id: ${id} successfully deleted`,
+    });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message
+      msg: err.message,
     });
   }
 };
 ```
 
-**DELETE** request example:
+At the bottom of this file, add this code:
 
-[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG)
-
-Exports functions remain unchanged.
-
-```javascript
+```js
 export {
   getInstitutions,
   createInstitution,
   updateInstitution,
-  deleteInstitution,
+  deleteInstitution
 };
 ```
-
-**Resources:**
-
-- <https://mongoosejs.com/docs/api.html#model_Model.find>
-- <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndUpdate>
-- <https://mongoosejs.com/docs/api.html#model_Model.findByIdAndRemove>
 
 ---
 
@@ -221,46 +202,47 @@ export default router; // You do not need to enclose router in curly braces
 
 Go to `app.js` and add the following:
 
-- `import institutions from "./routes/institutions.js";` - It will import the four routes.
-- `app.use("/api/institutions", institutions);` - Add new middleware for your institutions endpoint. It will be the same for your four routes, i.e., `localhost:3000/api/institutions`.
-
 ```javascript
 import dotenv from "dotenv";
-import express from "express";
+import express, { urlencoded, json } from "express";
 
-import conn from "./db/connection.js";
+import institutions from `./routes/institutions.js`;
+import departments from `./routes/departments.js`;
 
-import institutions from "./routes/institutions.js"; // New import
-
-dotenv.config(); 
+dotenv.config();
 
 const app = express();
 
-const PORT = process.env.PORT || 3000;
-const DB =
-  process.env.NODE_ENV === "development"
-    ? process.env.MONGO_URI_DEV
-    : process.env.MONGO_URI_PROD; 
+const BASE_URL = "api";
 
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
+const PORT = process.env.PORT;
 
-app.use("/api/institutions", institutions); // New middleware
+app.use(urlencoded({ extended: false }));
+app.use(json());
 
-const start = async () => {
-  try {
-    await conn(DB);
-    console.log(`Server is using the ${process.env.NODE_ENV} database`);
-    app.listen(PORT, () => console.log(`Server is listening on port ${PORT}`));
-  } catch (error) {
-    console.log(error)
-  }
-};
+app.use(`${BASE_URL}/institutions`, institutions);
+app.use(`${BASE_URL}/departments`, departments);
 
-start();
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
 ```
 
 Once you have added the lines of code, run your server - `node app.js`.
+
+---
+
+Time to test it out. Firstly, start the development server, then go to **Postman**. Enter the URL - <http://localhost:3000/api/institutions> and data, then perform a **POST** request. **Note:** `req.body` is the payload sent with the request, i.e., `{ "name": "Otago Polytechnic" }`.
+
+The response contains `success` and `data`. `data` contains the **document's** `id`, `name` and `__v` (version).
+
+[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-14.JPG)
+
+**DELETE** request example:
+
+[](04-node-js-rest-api-2.md) ![](../resources/img/04-node-js-rest-api-2/04-node-js-rest-api-18.JPG)
+
+---
 
 ## Final thoughts
 
@@ -276,12 +258,8 @@ You must submit all program files via **GitHub Classroom**. If you wish to have 
 
 ### Getting started
 
-Open your repository in **Visual Studio Code**. Extend your student management system **REST API** by implementing the concepts, i.e., **models**, **controllers** and **routes** as described in the lecture notes above.
+Open your repository in **Visual Studio Code**. Extend your student management system **REST API** by implementing the concepts, i.e., **controllers** and **routes** as described in the lecture notes above.
 
 ---
 
 ## Additional assessment tasks
-
-### Nodemon
-
-### Get an institution by its id
