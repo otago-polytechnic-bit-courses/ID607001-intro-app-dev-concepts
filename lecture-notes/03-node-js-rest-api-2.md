@@ -188,7 +188,7 @@ import {
   deleteInstitution,
 } from "../controllers/institutions.js";
 
-router.route("/").get(getInstitution).post(createInstitution)
+router.route("/").get(getInstitutions).post(createInstitution)
 router.route("/:id").put(updateInstitution).delete(deleteInstitution)
 
 export default router; // You do not need to enclose router in curly braces
