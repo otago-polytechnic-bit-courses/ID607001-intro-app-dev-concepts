@@ -1,4 +1,4 @@
-# 04: Node.js REST API 2
+# 04: Node.js REST API 3
 
 ## Relationships
 
