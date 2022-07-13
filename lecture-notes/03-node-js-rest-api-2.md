@@ -206,7 +206,7 @@ Create a file called `app.js` in the root directory and add the following:
 import dotenv from "dotenv";
 import express, { urlencoded, json } from "express";
 
-import institutions from `./routes/institutions.js`;
+import institutions from "./routes/institutions.js";
 
 dotenv.config();
 
