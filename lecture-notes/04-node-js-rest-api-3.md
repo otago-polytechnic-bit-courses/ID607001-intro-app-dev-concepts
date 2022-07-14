@@ -158,12 +158,6 @@ Open your repository in **Visual Studio Code**. Extend your student management s
 
 ## Additional assessment tasks
 
-### Populate
-
-You will notice when a **document**, i.e., **department** is referenced in a **collection**, i.e., **institution**, it returns the **document's** `_id`. **Mongoose** has a function called `populate()` which replaces the **document's** `_id` with its full **document**. Using the resource below, implement the `populate()` function in both `institutions.js` and `departments.js` in the `controllers` directory.
-
-**Resource:** <https://mongoosejs.com/docs/populate.html#population>
-
 ### Cross-origin resource sharing (Cors)
 
 Carefully read the first resource below. It will provide you with an excellent explanation of how **cross-origin resource sharing** works. Using the second resource below, implement simple usage (enable all cors requests). 
