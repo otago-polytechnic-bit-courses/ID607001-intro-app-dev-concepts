@@ -138,35 +138,21 @@ A collection has been created. Click on the horizontal ellipsis (three circles) 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-7.JPG" />
 
-Name the request, i.e., Registering a user, choose the method, i.e., **POST**, add the endpoint, i.e., `localhost:3000/api/register`, add the data and click the **Send** button. Copy the response. You will use it later.
+Name the request, i.e., Registering a user, choose the method, i.e., **POST**, add the endpoint, i.e., `localhost:3000/api/institutions`, add the data and click the **Send** button. Copy the response. You will use it later.
 
 **Note:** Please use your **Heroku** application's URL instead of `localhost:3000`.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-8.JPG" />
-
 Click on the horizontal ellipsis (for the request) and click the **Add example** option.
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-9.JPG" />
-
-Name the example, i.e., Registering a user, paste the response you copied earlier, add a status code, i.e., 201 Created, and click the **Save** button.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-10.JPG" />
+Name the example, i.e., Get all institutions, paste the response you copied earlier, add a status code, i.e., 200 OK, and click the **Save** button.
 
 If you want to view your documentation, click on the horizontal ellipsis (for the collection) and click on the **View documentation** option.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-11.JPG" />
-
-It generated the following:
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-12.JPG" />
 
 Click on the **Publish** button.
 
 **Note:** You may want to add a description of the collection and requests.
 
 You can change the content, URL, and styling on this page. Click on the **Publish** button.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-13.png" width="950" height="537" />
 
 It will provide you with a link to your published documentation. Copy and paste this link in your **Project 1: Node.js REST API README** file.
 
