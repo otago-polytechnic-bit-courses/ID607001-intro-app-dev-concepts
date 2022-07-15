@@ -118,19 +118,7 @@ Enable automatic deploys and manually deploy the `master` or `main` branch.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-12.png" />
 
-Go to the **Settings** tab and click the **Reveal Config Vars** button.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-13.png" />
-
-Add the environment variables specified in `.env`.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-14.png" />
-
-Time to test it out. Go to **Postman**. Enter the URL - `https://<URL to your Heroku application>/api/login` and data, then perform a **POST** request.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-15.JPG" />
-
-Perform a **GET** request.
+Time to test it out. Go to **Postman**. Perform a **GET** request.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-16.JPG" />
 
