@@ -138,7 +138,7 @@ A collection has been created. Click on the horizontal ellipsis (three circles) 
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-7.JPG" />
 
-Name the request, i.e., Registering a user, choose the method, i.e., **POST**, add the endpoint, i.e., `localhost:3000/api/institutions`, add the data and click the **Send** button. Copy the response. You will use it later.
+Name the request, i.e., Getting data, choose the method, i.e., **GET**, add the endpoint, i.e., `localhost:3000/api/institutions`, add the data and click the **Send** button. Copy the response. You will use it later.
 
 **Note:** Please use your **Heroku** application's URL instead of `localhost:3000`.
 
