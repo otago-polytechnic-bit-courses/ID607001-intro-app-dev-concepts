@@ -2,7 +2,7 @@
 
 ## Seeders
 
-Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **collections** in an intuitive way. **Note:** Seeded data should be used for testing purposes **only**.
+Thus far, you have had to manually create data via a `POST` **HTTP** request. To save you a lot of time, you can **seed** your **database** in an intuitive way. **Note:** Seeded data should be used for testing purposes **only**.
 
 In the **root** directory, create a new directory called `data`. In the `data` directory, create a new file called `institutions.js`. In this file, add the following:
 
@@ -15,23 +15,29 @@ const institutions = [
 export { institutions };
 ```
 
-In the `db` directory, create a new file called `seeder.js`. In this file, add the following:
+In the `prisma` directory, create a new file called `seed.js`. In this file, add the following:
 
 ```javascript
 import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
+const prisma = new PrismaClient();
 
-import Institution from "../models/institutions.js";
 import { institutions } from "../data/institutions.js";
-import conn from "./connection.js";
 
 dotenv.config();
 
-conn(process.env.MONGO_URI_DEV); // Connect to MongoDB atlas
-
 const createInstitutions = async () => {
   try {
-    await Institution.deleteMany(); // Delete all documents in the institutions collection
-    await Institution.insertMany(institutions); // Insert documents in the institutions collection
+    await prisma.institution.deleteMany({}); // Delete all records in the institutions table
+
+    const createMany = institutions.map(institution => {
+      return prisma.institution.create({
+        data: institution 
+      });
+    });
+
+    await Promise.all(createMany); // Insert records in the institutions table
+
     console.log("Institution data successfully created");
   } catch (err) {
     console.log(err);
@@ -41,7 +47,7 @@ const createInstitutions = async () => {
 
 const deleteInstitutions = async () => {
   try {
-    await Institution.deleteMany();
+    await prisma.institution.deleteMany({});
     console.log("Institution data successfully deleted");
   } catch (err) {
     console.log(err);
@@ -65,25 +71,18 @@ process.exit();
 In `package.json`, add the following **scripts**:
 
 ```javascript
-"institutions:create": "node db/seeder",
-"institutions:delete": "node db/seeder -d"
+"institutions:create": "node prisma/seed.js",
+"institutions:delete": "node prisma/seed.js -d"
 ```
 
-Here is an example of creating institutions:
+We can now call this scripts with:
 
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-1.JPG" />
+```bash
+$ npm run institutions:create
+$ npm run institutions:delete
+```
 
-Check **MongoDB Atlas** to see if the script created institutions.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-2.png" width="950" height="537" />
-
-Here is an example of deleting all institutions:
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-3.JPG" />
-
-Check **MongoDB Atlas** to see if the script deleted all institutions.
-
-<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/06-node-js-rest-api-4/06-node-js-rest-api-4.png" width="950" height="537" />
+You will notice both our scripts run the `seed.js` file, but one with an optional argument `-d`... looking at the code in `seed.js` above, you can see a simple `switch` statement that checks for this argument or not.
 
 ---
 
@@ -101,12 +100,12 @@ Name the application `id607001-backend-<Your OP username>`.
 
 <img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/05-node-js-rest-api-3/05-node-js-rest-api-10.png" />
 
-### Procfile
+### Start script
 
-In the root directory, create a new file called `Procfile`. In `Procfile`, add the following:
+In your `package.json` file you need to add a **start script**:
 
 ```bash
-web: node app.js
+"start" : "node app.js"
 ```
 
 ### Deployment
