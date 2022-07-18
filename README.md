@@ -1,4 +1,6 @@
-# ID607001: Introductory Application Development Concepts
+# ID607001: Introductory application development concepts
+
+## Pia o te taupānga tukutuku
 
 This repository contains all information relating to this course, i.e., course directive & assessment documents.
 
