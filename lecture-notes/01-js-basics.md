@@ -74,7 +74,7 @@ console.log(triples); // Array [6, 12, 18, 24]
 
 // Using a named function as an argument
 const otherTriples = nums.map(tripleNum);
-console.log(triples); // Array [6, 12, 18, 24]
+console.log(otherTriples); // Array [6, 12, 18, 24]
 ```
 
 Here is another practical example:
