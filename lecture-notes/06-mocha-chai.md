@@ -9,3 +9,5 @@ First, we need to install **Mocha** as a dependency:
 ```bash
 $ npm i mocha
 ```
+
+Then we'll create a new folder in the root called `test` and put a file inside called `test.js`.
