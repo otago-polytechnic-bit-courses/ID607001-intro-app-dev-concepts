@@ -136,3 +136,19 @@ Run your tests using:
 ```bash
 $ npm test
 ```
+
+### before and after
+
+You can define functions that will fire `before` and `after` your tests, for example, creating all your test data before, and then deleting all your test data after. You can add these before the first `describe` and then also at the very end of the test file, e.g.:
+
+```js
+before(async function() {
+    await createInstitutions()
+});
+
+...
+
+after(async function() {
+    await deleteInstitutions()
+});
+```
