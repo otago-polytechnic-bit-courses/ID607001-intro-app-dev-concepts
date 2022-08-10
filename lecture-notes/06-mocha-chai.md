@@ -1,6 +1,6 @@
 # 06: Node.js Mocha & Chai
 
-## Mocha
+## Mocha + Chai = delicious testing
 
 **Mocha** is a feature-rich JavaScript test framework running on Node.js and in the browser. It works hand-in-hand with **Chai** which is an assertion framework. You need **Chai** to assert things (true or false), and **Mocha** to run the tests.
 
