@@ -58,4 +58,13 @@ To test your API routes, we also need to install another dependency that will ma
 $ npm i chai-http
 ```
 
-Now, before we begin writing our API tests, we need to refactor some code... specifically, we want to reuse some of the seed functions we wrote last time.
+Now, before we begin writing our API tests, we need to refactor some code... specifically, we want to reuse some of the seed functions we wrote last time. Inside the `prisma` folder, create a new folder called `seed`. Inside this folder, create a file called `institutions.js`. Cut and paste the two functions `createInstitutions` and `deleteInstitutions` into this new file, along with the `PrismaClient` lines, and the line that loads the institution data (note: you'll have to change the path to the data file slightly, as we are inside another folder now).
+
+Finally, at the bottom of `seed/institutions.js`, export the two functions:
+
+```js
+export {
+  createInstitutions,
+  deleteInstitutions
+}
+```
