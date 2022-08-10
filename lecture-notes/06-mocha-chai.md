@@ -84,7 +84,7 @@ Try running your seed commands to test that everything still works:
 $ npm run institutions:create
 ```
 
-Replace everything in `test.js` with the following code:
+Replace everything in `test.js` with the following code, and **rename** the file to `institutions.test.js`:
 
 ```js
 import chai from "chai"
