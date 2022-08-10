@@ -38,3 +38,14 @@ Now, in the terminal, you should be able to run this command:
 ```bash
 $ npm test
 ```
+
+And see this sort of output:
+
+```bash
+  Array
+    #indexOf()
+      ✔ should return -1 when the value is not present
+
+
+  1 passing (7ms)
+```
