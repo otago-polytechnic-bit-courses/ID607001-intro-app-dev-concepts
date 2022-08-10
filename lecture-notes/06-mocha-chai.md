@@ -77,3 +77,48 @@ import {
     deleteInstitutions 
 } from "./seed/institutions.js"
 ```
+
+Try running your seed commands to test that everything still works:
+
+```bash
+$ npm run institutions:create
+```
+
+Replace everything in `test.js` with the following code:
+
+```js
+import chai from "chai"
+import chaiHttp from "chai-http"
+import app from "../app.js";
+
+const { expect } = chai
+chai.use(chaiHttp)
+
+import { 
+    createInstitutions, 
+    deleteInstitutions 
+} from "../prisma/seed/institutions.js";
+
+describe('api', () => {
+  describe('GET /api/institutions', () => {    
+    it('should return a message that no institutions are found', async () => {
+        await deleteInstitutions()
+        chai.request(app).get("/api/institutions").end((_, res) => {
+            expect(res.body.msg).to.be.equal("No institutions found")
+            expect(res.status).to.be.equal(200)
+        })             
+    })
+  })
+
+  describe('GET /api/institutions', () => {    
+    it('should return an array of institutions', async () => {
+        await createInstitutions()        
+        chai.request(app).get("/api/institutions").end((_, res) => {
+            expect(res.body.data).to.be.a("array")
+            expect(res.body.data).to.have.lengthOf.above(0)
+            expect(res.status).to.be.equal(200)
+        })             
+    })
+  })
+})
+```
