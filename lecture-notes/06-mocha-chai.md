@@ -152,3 +152,15 @@ after(async function() {
     await deleteInstitutions()
 });
 ```
+
+### A testing db
+
+You should ideally create a new db for your tests, separate from your dev and production databases. Copy and paste your `dev.db` file and rename it `test.db`. Now in your `schema.prisma` file you can keep a new line commented out, to toggle between your databases:
+
+```js
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+  /*url      = "file:./test.db"*/
+}
+```
