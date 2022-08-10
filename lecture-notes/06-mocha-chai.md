@@ -2,7 +2,7 @@
 
 ## Mocha
 
-Mocha is a feature-rich JavaScript test framework running on Node.js and in the browser.
+**Mocha** is a feature-rich JavaScript test framework running on Node.js and in the browser. It works hand-in-hand with **Chai** which is an assertion framework. You need **Chai** to assert things (true or false), and **Mocha** to run the tests.
 
 To get started we first need to install **Mocha** as a dependency:
 
@@ -10,12 +10,18 @@ To get started we first need to install **Mocha** as a dependency:
 $ npm i mocha
 ```
 
+Then install **Chai**:
+
+```bash
+$ npm i chai
+```
+
 Then we'll create a new folder in the root called `test` and put a file inside called `test.js`.
 
 Inside `test.js` add the following example code:
 
 ```js
-var assert = require('assert');
+import { assert } from "chai";
 describe('Array', function () {
   describe('#indexOf()', function () {
     it('should return -1 when the value is not present', function () {
@@ -23,4 +29,12 @@ describe('Array', function () {
     });
   });
 });
+```
+
+Finally, in `package.json` add (or edit) your "test" script: `"test" : "mocha"`.
+
+Now, in the terminal, you should be able to run this command:
+
+```bash
+$ npm test
 ```
