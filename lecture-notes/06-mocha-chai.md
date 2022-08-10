@@ -68,3 +68,12 @@ export {
   deleteInstitutions
 }
 ```
+
+Back in `seed.js`, simply fill where the functions *used* to be with:
+
+```js
+import { 
+    createInstitutions, 
+    deleteInstitutions 
+} from "./seed/institutions.js"
+```
