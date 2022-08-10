@@ -161,6 +161,6 @@ You should ideally create a new db for your tests, separate from your dev and pr
 datasource db {
   provider = "sqlite"
   url      = "file:./dev.db"
-  /*url      = "file:./test.db"*/
+  //url      = "file:./test.db"
 }
 ```
