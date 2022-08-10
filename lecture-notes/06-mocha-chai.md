@@ -49,3 +49,13 @@ And see this sort of output:
 
   1 passing (7ms)
 ```
+
+### Testing API routes
+
+To test your API routes, we also need to install another dependency that will make the HTTP calls for us: **chai-http**
+
+```bash
+$ npm i chai-http
+```
+
+Now, before we begin writing our API tests, we need to refactor some code... specifically, we want to reuse some of the seed functions we wrote last time.
