@@ -122,3 +122,17 @@ describe('api', () => {
   })
 })
 ```
+
+One more change to `app.js`, add this line at the very bottom:
+
+```js
+export default app
+```
+
+This allows us to import app into our test files so we can get at the routes that have been defined.
+
+Run your tests using:
+
+```bash
+$ npm test
+```
