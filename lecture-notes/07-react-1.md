@@ -12,7 +12,7 @@ Here are some reasons why people use **React**:
 
 ### Where else will I use React in the BIT degree?
 
-Yes. You will use **React** in **Advanced Application Development**. If you choose to do **Mobile** or **Web** in **Studio 5/6**, you will use **React** or **React Native**.
+Yes. You will use **React** in **Intermediate Application Development** and **Advanced Application Development**. If you choose to do **Mobile** or **Web** in **Studio 5/6**, you will use **React** or **React Native**.
 
 ### Additional information
 
