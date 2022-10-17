@@ -312,7 +312,7 @@ export default InstitutionsTable;
 
 ## Forms
 
-In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
+In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `InsitutionsForm.js`. Add the following **JSX**:
 
 ```js
 import axios from "axios";
@@ -323,50 +323,37 @@ import { Navigate } from "react-router-dom";
 const InstitutionCreateForm = (props) => {
   const BASE_URL = "https://id607001-graysono.herokuapp.com"; // replace with your heroku app
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [isHome, setIsHome] = useState(false);
-  const [authError, setAuthError] = useState(false); // Used for authentication errors
-  const [unknownError, setUnknownError] = useState(false); // Used for network errors
+  const [name, setName] = useState("");
+  const [region, setRegion] = useState("");
+  const [country, setCountry] = useState("");
+  const [isError, setIsError] = useState(false);
 
-  const loginUser = async () => {
-    setAuthError(false);
-    setUnknownError(false);
+  const createInstitution = async () => {
 
     try {
-      const res = await axios.post(`${BASE_URL}/api/login`, {
-        email: email,
-        password: password,
+      const res = await axios.post(`${BASE_URL}/api/institutions`, {
+        name: name,
+        region: region,
+        country: country
       });
 
       if (res.status === 201) {
-        props.login();
-        setIsHome(true);
-        sessionStorage.setItem("token", res.data.token)
+        // refresh the institution table data here
       }
     } catch (error) {
       console.log(error);
-
-      if (error.response.status === 401) {
-        setAuthError(true);
-      } else {
-        setUnknownError(true);
-      }
+      setIsError(true);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    loginUser();
+    createInstitution();
   };
-
-  if (isHome === true) {
-    return <Navigate to="/" />;
-  }
 
   return (
     <>
-      <h1 style={{ marginTop: "10px" }}>Login</h1>
+      <h1 style={{ marginTop: "10px" }}>Create Institution</h1>
       {/* 
         When the form is submitted, it will call the handleSubmit 
         function above. You do not need to worry about specifying
@@ -376,14 +363,14 @@ const InstitutionCreateForm = (props) => {
       <Form onSubmit={handleSubmit}>
         <FormGroup>
           <Input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={email}
+            type="text"
+            name="name"
+            placeholder="Name"
+            value={name}
             /*
               This attribute detects when the value of an input element changes
             */
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setName(e.target.value)}
             /*
               You can fetch validation messages from the request. There are plenty 
               of online resources that show you how to do this 
@@ -393,25 +380,30 @@ const InstitutionCreateForm = (props) => {
         </FormGroup>
         <FormGroup>
           <Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            type="text"
+            name="region"
+            placeholder="Region"
+            value={region}
+            onChange={(e) => setRegion(e.target.value)}
+            required
+          />
+        </FormGroup>
+        <FormGroup>
+          <Input
+            type="text"
+            name="country"
+            placeholder="Country"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
             required
           />
         </FormGroup>
         {/* 
-          Display an alert message if there is either an authentication or network error
+          Display an alert message if there is an error
         */}
-        {authError ? (
+        {isError ? (
           <Alert color="danger">
-            Cannot recognize your credentials. Please try again.
-          </Alert>
-        ) : null}
-        {unknownError ? (
-          <Alert color="danger">
-            There was a problem submitting your credentials.
+            Something went wrong. Please try again.
           </Alert>
         ) : null}
         <Button>Submit</Button>
@@ -420,5 +412,5 @@ const InstitutionCreateForm = (props) => {
   );
 };
 
-export default LoginForm;
+export default InstitutionCreateForm;
 ```
