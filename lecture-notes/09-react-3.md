@@ -236,7 +236,7 @@ After you done this, you should see the following if you are on `/institutions`:
 
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
 
-### Your React Assignment
+## Your React Assignment
 
 Go to **Heroku** and create a new application.
 Name the application `id607001-<Your OP username>-react`. Once you have create the application, enable automatic deploys and manually deploy the `master` or `main` branch.
@@ -310,7 +310,7 @@ const InstitutionsTable = () => {
 export default InstitutionsTable;
 ```
 
-### Forms
+## Forms
 
 In the `components` directory, create a new directory called `forms`. In the `forms` directory, create a new component called `LoginForm.js`. Add the following **JSX**:
 
