@@ -236,3 +236,76 @@ After you done this, you should see the following if you are on `/institutions`:
 
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
 
+### Your React Assignment
+
+Go to **Heroku** and create a new application.
+Name the application `id607001-<Your OP username>-react`. Once you have create the application, enable automatic deploys and manually deploy the `master` or `main` branch.
+
+Go to the **Settings** tab and click on the **Add buildpack** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-7.png" width="650" height="950">
+
+Add the following **buildpack** - <https://github.com/mars/create-react-app-buildpack>, then click the **Add changes** button.
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-8.png" width="950" height="537">
+
+Once you have done this, you see the following:
+
+<img src="https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/10-react-4/10-react-9.png" width="650" height="950">
+
+### Fetching Institutions data
+
+In `InstitutionsTable.js`, replace the exisiting code with the following:
+
+```jsx
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Table } from "reactstrap";
+
+const InstitutionsTable = () => {
+  const BASE_URL = "https://id607001-graysono.herokuapp.com"; // replace with your deployed Heroku Node app
+
+  const [data, setData] = useState([])
+
+  useEffect(() => {
+    const getInstitutionsData = async () => {
+      try {
+        const res = await axios.get(`${BASE_URL}/api/v1/institutions`)
+        setData(res.data.data)
+      } catch (error) {
+        console.log(error)
+      }   
+    }
+    getInstitutionsData()
+  }, [])
+
+  const displayInstutitionsData = (
+    data.map((d) => {
+      return (
+        <tr key={d._id}>
+          <td>{d.name}</td>
+          <td>{d.region}</td>
+          <td>{d.country}</td>
+        </tr>
+      )
+    })
+  )
+
+  return (
+    <Table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Region</th>
+          <th>Country</th>
+        </tr>
+      </thead>
+      <tbody>
+        {displayInstutitionsData}
+      </tbody>
+    </Table>
+  );
+};
+
+export default InstitutionsTable;
+```
