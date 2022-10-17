@@ -26,6 +26,94 @@ Once you have done this, start the development server.
 
 **Note:** **Bootstrap** will override your custom **CSS**.
 
+## Create a navigation bar
+
+In the `src` directory, create a new directory called `components`. In the `components` directory, create a new component called `Navigation.js`. Add the following **JSX**:
+
+```js
+import { useState } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
+
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <Navbar color="light" light expand="lg">
+      <NavbarBrand href="/">Student Management System</NavbarBrand>
+      <NavbarToggler onClick={toggle} />
+      <Collapse isOpen={isOpen} navbar>
+        <Nav className="ms-auto" navbar>
+          <NavItem>
+            <NavLink href="/login">Login</NavLink>
+          </NavItem>
+        </Nav>
+      </Collapse>
+    </Navbar>
+  );
+};
+
+export default Navigation;
+```
+
+Of course, in `App.js`, you need to import and declare the `Navigation` component:
+
+```js
+import Navigation from "./components/Navigation";
+
+const App = () => {
+  return <Navigation />;
+};
+
+export default App;
+```
+
+After you done this, you should see the following:
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-1.png' />
+
+**What is happening in the Navigation component?**
+
+- You have one `state` variable called `isOpen`, which will allow you to open and close a collapsed navigation bar.
+- This is a simple responsive navbar that contains two items (login and institutions).
+- The `Navbar` component has two values - `color` and `expand`. Change the `color` attribute's value to **dark**. Now, your `Navbar` has a **charcoal** background with **black** text.
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-2.png' />
+
+- How do you change the text color? Change the **light** style (not the `color` attribute's value). It should look something like this:
+
+```js
+<Navbar color="dark" dark expand="md">
+```
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-3.png' />
+
+- We will discuss the `expand` later.
+- The `NavbarBrand` component contains the name of your company or product. Usually, the value is text or a logo. When you click on this, it navigates you to the **index** page.
+- The `NavbarToggler` and `Collapse` components are **Bootstrap** responsive design specific. The navigation bar will only collapse when the screen width is a specific breakpoint. How do we specify a breakpoint? There are five breakpoints (refer to the resource below) that we can use. In the `Navbar` component, the `expand` attribute's value is `md` which is a screen width ≥ 768px.
+  - **Resource**: <https://bootstrap.themes.guide/how-to-responsive-design-with-bootstrap.html>
+- You will notice a hamburger menu on the left-hand side.
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-4.png' />
+
+- By default, `isOpen` is set to `false` and when you click on this (`onClick` accepts a callback), it will call the `toggle()` function and set `isOpen` to `true`. If `isOpen` is true, then open the collapsed navigation bar.
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-5.png' />
+
+- The `Nav` component has a `className` attribute with the value `ms-auto` and **navbar** style. These two are specific to **Bootstrap**.
+- Each `NavLink` component is enclosed in a `NavItem` component. A `NavLink` has an `href` attribute. Have a look at the **DOM** tree. It is just an `a` element enclosed in a `li` element.
+
+**Resource:** <https://reactstrap.github.io/components/navbar>
+
 ## Create a table
 
 In the `components` directory, create a new directory called `tables`. In the `tables` directory, create a new component called `InstitutionsTable.js`. Add the following **JSX**:
@@ -69,6 +157,82 @@ export default InstitutionsTable;
 
 **What is happening in the InstitutionTable component?**
 
-It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component.
+It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component.
 
 **Resource:** <https://reactstrap.github.io/components/tables>
+
+## React Router
+
+**React Router DOM** is a the most popular routing library for **React**. It enables you to implement dynamic routing in your **SPA**.
+
+Install **React Router DOM** using **NPM**:
+
+```bash
+npm i react-router-dom
+```
+
+**Note:** **React Router** has three packages (core, **DOM** bindings and **React Native** bindings). Make sure you choose the **DOM** bindings package.
+
+```js
+import { useState } from "react";
+
+// Import the following:
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+} from "reactstrap";
+
+// Import the following component:
+import InstitutionsTable from "./tables/InstitutionsTable";
+
+const Navigation = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <Router>
+      <Navbar color="dark" dark expand="md">
+        <NavbarBrand href="/">Student Management System</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="ms-auto" navbar>
+            <NavItem>
+              <NavLink href="/login">Login</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/institutions">Institutions</NavLink>
+            </NavItem>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      <Routes>
+        <Route path="/login" />
+        <Route path="/institutions" element={<InstitutionsTable />} />
+      </Routes>
+    </Router>
+  );
+};
+
+export default Navigation;
+```
+
+**What is happening in the Navigation component?**
+
+- You enclose the `Navbar` component and its children, i.e., `NavbarBrand`, `NavbarToggler`, etc. in the `Router` component.
+- The `Router` component uses regular URL paths, i.e., `/institutions`.
+- `Routes` and `Route` are route matching components. When the `Routes` component is rendered, it searches through its `Route` (children) components to find a path that matches the current URL. For example, when you click on a `NavLink` component, it will map its `href` attribute's value, i.e., `/institutions` in the `NavLink` component to the `Route` component's `path` attribute's value, i.e., `/institutions` in the `Route` component then render the component, i.e., `InstitutionsTable` specified in the `element` attribute's value.
+
+After you done this, you should see the following if you are on `/institutions`:
+
+<img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-6.png' />
+
+**Resource:** <https://reactrouter.com/web/guides/quick-start>
+
