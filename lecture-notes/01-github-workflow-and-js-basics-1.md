@@ -1,6 +1,118 @@
-# 01: JavaScript Basics 1
+# 01 A: GitHub Workflow
 
-## Refresher activity
+By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
+
+## Create a README
+
+Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
+
+## Create a .gitignore File
+
+Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
+
+**Resources:**
+
+- <https://git-scm.com/docs/gitignore>
+- <https://github.com/github/gitignore>
+
+## Clone a Repository
+
+Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
+
+**Resource:**
+
+- <https://git-scm.com/docs/git-clone>
+
+## Create a Local Branch
+
+`cd` into your formative assessments repository and create a branch using the command `git branch <name of the branch>`. Checkout from the `main` branch to the new branch using the command `git checkout <name of the branch>`. Alternatively, you can create and checkout a branch using the command `git checkout -b <name of the branch>`.
+
+For each formative assessment, create a new branch, i.e., branch name `01-formative assessment`. When you create a new branch, make sure you are creating it from the branch you last worked on.
+
+**Resources:**
+- <https://git-scm.com/docs/git-branch>
+- <https://git-scm.com/docs/git-checkout>
+
+## Push Local Branch to Remote Repository
+
+Push your local branch, i.e., `01-formative-assessment`, to your remote repository using the command `git push -u origin <name of branch>`. You will continue working on your formative assessment code until you are ready to submit it.
+
+## Create a Pull Request
+
+Once you have completed a formative assessment, create a pull request. Go to your formative assessments repository on GitHub. Click on the **Pull requests** tab, then click on the **New pull request** button. You will see two dropdowns (base and compare). Click the compare dropdown, select the formative assessments branch you want to compare with the `main` branch, and then click the **Create pull request** button.
+
+On the right side of the screen, you will see **Reviewers**. Click on the **Reviewers** section. Add **grayson-orr** as reviewers, then click the **Create pull request** button.
+
+**Grayson** will receive an email. **Grayson** will review your formative assessment code, and you will receive feedback. You may be asked to reflect on your feedback and fix your formative assessment code. You will receive an email when your formative assessment code has been reviewed or approved.
+
+## Commit Message Naming Conventions
+
+You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, and it only takes a little bit of care. We will discuss a message convention (not a standard) heavily adopted in the industry.
+
+A message is broken down into five components - type, scope (optional), subject, extended description (optional) & footer (optional).
+
+List of types:
+* build: build related change, i.e., installing application dependencies.
+* chore: change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting & version control.
+* feat: a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
+* fix: a bug fix, i.e. an issue with the register or login page.
+* docs: documentation related change, i.e., changing **README.md** file.
+* refactor: something that is neither a feat nor fix, i.e., a semantic code change.
+* style: style-related change, i.e., formatting a file or piece of code.
+* test: an automation test change, i.e., adding a new test file or updating an existing test file.
+
+What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
+
+Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills & knowledge.
+
+You are probably wondering, how do I write a message using this convention. A **Git** commit looks like this:
+
+```bash
+git commit -m "<type> (optional scope): <subject>" -m "<optional extended description>" -m "<optional footer>"
+```
+
+Let us see this in action!
+
+Here is a **Git** commit example:
+
+```bash
+git commit -m "style (login): format jsx"
+```
+
+Here is a **Git** commit example with an extended description & footer:
+
+```bash
+git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
+```
+
+When should I use an extended description? When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
+
+What happens if I want view a commit with a specific type? 
+
+```bash
+git log --oneline --grep <type>
+```
+
+- --oneline - Display the output as one commit per line
+
+Here is a **Git**  log example:
+
+```bash
+git log --oneline --grep feat
+```
+
+Here is a **Git**  example with multiple types:
+ 
+```bash
+git log --oneline --grep "^build\|^feat\|^style"
+```
+
+**Resource:** <https://git-scm.com/docs/git-log>
+
+
+# 01 B: JavaScript Basics 1
+
+## Refresher Activity
 
 For the next five-10 minutes, write down everything you know about **JavaScript**. Feel free to use any online resources.
 
@@ -90,7 +202,7 @@ const x = 10; // SyntaxError: redeclaration of const x
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const>
 
-## Control flow
+## Control Flow
 
 ### if...else...else if
 
@@ -442,18 +554,3 @@ console.log(vegeColor); // Orange
 ```
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
-
-## Development Workflow
-
-Here is a list of useful **VS Code** extensions:
-
-- Auto Rename Tag
-- Bracket Pair Colorizer
-- Code Runner
-- Code Spell Checker
-- GitLens
-- Prettier
-
-## Formative assessment
-
-You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/formative-assessments/in-class-activity-es6-basics-1.pdf). Carefully read the **Code Review** section before you start coding.

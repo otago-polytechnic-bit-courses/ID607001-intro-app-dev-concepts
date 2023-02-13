@@ -1,10 +1,10 @@
-# 02: JavaScript Basics 2
+# 02 A: JavaScript Basics 2
 
 ## Functional Programming Paradigm
 
 Before we start, I want to discuss what is not **functional programming**...loops, `var` & `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
 
-### Pure functions
+### Pure Functions
 
 A program can have multiple **functions**, but it does not mean you are doing **functional programming**. Most of the time, you are writing **impure functions**. However, **functional programming** encourages you to write **pure functions**. In order for a **function** to be **pure**, it must satisfy the following:
 
@@ -53,7 +53,7 @@ In **JavaScript**, **functions** are **first-class objects/citizens**. This mean
 - Returned by a function
 - Stored in a data structure
 
-### Higher-order functions
+### Higher-Order Functions
 
 A **higher-order function** is a **function** that has a **function** as an argument or returns a **function**.
 
@@ -143,7 +143,7 @@ console.log(nums.reduce(reducer)); // 10
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
 
-## Error handling
+## Error Handling
 
 ### try...catch
 
@@ -188,7 +188,7 @@ try {
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#exception_handling_statements>
 
-## Reading in data
+## Reading in Data
 
 There are many ways to read data, i.e., from a database or an API. You will see these two methods in the next few weeks. However, you may just want to read data from a local file.
 
@@ -204,7 +204,3 @@ readFile("someFile", "utf8", (err, data) => {
 ```
 
 **Resource:** <https://nodejs.org/api/fs.html#fsreadfilepath-options-callback>
-
-## Formative assessment
-
-You can find today's in-class activity [here](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/formative-assessments/in-class-activity-es6-basics-2.pdf). Carefully read the **Code Review** section before you start coding.
