@@ -554,3 +554,120 @@ console.log(vegeColor); // Orange
 ```
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
+
+# Formative Assessment
+
+Before you start, create a new branch called **01-formative-assessment**.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+## Task 1:
+
+Calculate the **sum** of the given **integers** and use **string interpolation** to display the expected output.
+
+```js
+const x = 1957452
+const y = 2975635
+
+// Write your solution here
+
+// Expected output:
+// The sum of 1957452 & 2975635 is 4933087
+```
+
+## Task 2:
+
+Declare two **immutable** **variables** called `name` and `age` with the values `Jane` and `45`. Use the two **variables** and **string interpolation** to display the expected output.
+
+```js
+// Write your solution here
+
+// Expected output:
+// Hello my name is Jane & I am 45 years old.
+```
+
+## Task 3:
+
+Calculate the **average** of the given **array** of **doubles** called `nums` and use **string interpolation** to display the expected output.
+
+```js
+const nums = [45.3, 67.5, -45.6, 20.34, -33.0, 45.6]
+
+// Write your solution here
+
+// Expected output:
+// Average: 16.69
+```
+
+## Task 4:
+
+Write an arrow function called fizzBuzz which accepts an integer num. If num is a multiple of three, return
+Fizz, if num is a multiple of five, return Buzz & if num is a multiple of three & five, return FizzBuzz. Call
+the fizzBuzz function in the for loop to display the expected output.
+
+```js
+// Write your fizzBuzz function here
+
+for (let i = 1; i <= 15; i += 2) {
+ // Write your solution here
+}
+
+// Expected output:
+// 1
+// Fizz
+// Buzz
+// 7
+// Fizz
+// 11
+// 13
+// FizzBuzz
+```
+
+## Task 5:
+
+You have been given an **array** of **integers** called `nums`. Display **only** the odd numbers in `nums`. Sort from lowest to highest.
+
+```js
+const nums = [21, 19, 68, 55, 42, 12]
+
+// Write your solution here
+
+// Expected output:
+// 19
+// 21
+// 55
+```
+
+## Task 6:
+
+Write an **arrow function** called `isAnagram` which accepts two **parameters** called `someStrOne` and someStrTwo.
+
+In the **function** block, write some code that checks whether or not `someStrOne` and `someStrTwo` are an anagram. **Note:** An anagram is a word or phrase that made by arranging the letters of another word or phrase in a different order. If you are still unsure what an anagram is, here are some examples:
+
+```
+Input: isAnagram('elvis', 'lives')
+Output: true
+
+Input: isAnagram('cat', 'sat')
+Output : false
+```
+
+Call the `isAnagram` function to display the expected output.
+
+```js
+// Write your solution here
+
+// Expected output:
+// true
+// false
+```
+
+
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
