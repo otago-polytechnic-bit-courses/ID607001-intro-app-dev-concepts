@@ -565,6 +565,18 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
+## Getting Started
+
+Create a new file called `01-formative-assessment.js`. In `01-formative-assessment.js`, add the following:
+
+`console.log('Hello, World!')`
+
+Open a terminal & run the following command:
+
+`node 01-formative-assessment.js`
+
+If the output is **Hello, World!**, then you are ready to start coding.
+
 ## Task 1:
 
 Calculate the **sum** of the given **integers** and use **string interpolation** to display the expected output.
@@ -794,8 +806,8 @@ In this problem you are going to use the `abs()` **function**. Write an **arrow 
 ```js
 // Write your solution here
 
-console.log(calcDist(-1, 4))
-console.log(calcDist(4, -1))
+console.log(calcDist(-1, 4));
+console.log(calcDist(4, -1));
 
 // Expected output:
 // 5

@@ -2,14 +2,14 @@
 
 ## Functional Programming Paradigm
 
-Before we start, I want to discuss what is not **functional programming**...loops, `var` & `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
+Before we start, I want to discuss what is not **functional programming**...loops, `var` and `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
 
 ### Pure Functions
 
 A program can have multiple **functions**, but it does not mean you are doing **functional programming**. Most of the time, you are writing **impure functions**. However, **functional programming** encourages you to write **pure functions**. In order for a **function** to be **pure**, it must satisfy the following:
 
 - A **function** gives the **same return value** for the **same arguments**. It means that the **function** can not depend on any mutable state.
-- A **function** can not cause any **side-effects**, i.e., **reassignment** & **mutation**.
+- A **function** can not cause any **side-effects**, i.e., **reassignment** and **mutation**.
 
 Here are some examples:
 
@@ -29,7 +29,7 @@ const isMinHeight = (height) => height >= heightReq;
 const multiply = (x, y) => {
   console.log(x, y);
   return x * y;
-}
+};
 ```
 
 :question: **Interview Question:** Why are the **in-built functions** `Math.random` and `Date.now` impure?
@@ -215,7 +215,135 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
+## Getting Started
+
+Create a new file called `02-formative-assessment.js`. In `02-formative-assessment.js`, add the following:
+
+`console.log('Hello, World!')`
+
+Open a terminal and run the following command:
+
+`node 02-formative-assessment.js`
+
+If the output is **Hello, World!**, then you are ready to start coding.
+
+## Task 1:
+
+For each element in `nums`, calculate its power of two and return as an **array** using the `map` **function**.
+
+```js
+const nums = [2, 4, 6, 8, 10];
+
+const powOfTwo = console.log(powOfTwo); // Write your solution here
+
+// Expected output:
+// [4, 16, 36, 64, 100]
+```
+
+## Task 2:
+
+For each element in `temps`, convert its value from **fahrenheit** to **celsius** and return as an **array** using the `map`
+**function**. Round each value to the nearest **two decimal places** using the `toFixed` **function**.
+
+```js
+const temps = [65, 45, 25, 5];
+
+const fahToCel = console.log(fahToCel); // Write your solution here
+
+// Expected output:
+// [18.33, 7.22, -3.89, -15.00]
+```
+
+## Task 3:
+
+Using the `filter` **function**, return countries that have a population of less than 1000000000 (one billion).
+
+```js
+const countries = [
+  { name: "Brazil", population: 213445417 },
+  { name: "China", population: 1339330514 },
+  { name: "India", population: 1352642280 },
+  { name: "Russia", population: 142320790 },
+  { name: "United States of America", population: 332475723 },
+];
+
+const countriesWithPopLessThanOneBil = // Write your solution here
+  console.log(countriesWithPopLessThanOneBil);
+
+// Expected output:
+// [
+//    { name: 'Brazil', population: 213445417 },
+//    { name: 'Russia', population: 142320790 },
+//    { name: 'United States of America', population: 332475723 }
+// ]
+```
+
+## Task 4:
+
+Using the `filter` **function**, return animals that are native to New Zealand.
+
+```js
+const animals = [
+  { name: "Cassowary", native_country: "Australia" },
+  { name: "Kiwi", native_country: "New Zealand" },
+  { name: "Little Blue Penguin", native_country: "New Zealand" },
+  { name: "Bald Eagle", native_country: "United States of America" },
+];
+
+const nativeAnimals = console.log(nativeAnimals); // Write your solution here
+
+// Expected output:
+// [
+//    { name: 'Kiwi', native_country: 'New Zealand' },
+//    { name: 'Little Blue Penguin', native_country: 'New Zealand' }
+// ]
+```
+
+## Task 5:
+
+Using the `reduce` **function**, return the total price for the given groceries array of objects.
+
+```js
+const groceries = [
+  { name: "Chicken", price: 10 },
+  { name: "Butter", price: 5 },
+  { name: "Lettuce", price: 2 },
+  { name: "Steak", price: 20 },
+];
+
+const groceriesTotal = console.log(groceriesTotal); // Write your solution here
+
+// Expected output:
+// 37
+```
+
+## Task 6:
+
+Using the `reduce` **function**, return an object where the key is the name of the ice cream flavour, i.e., chocolate
+and the value is an integer that represents the total count for that flavour, i.e., 3.
+
+```js
+const iceCreamFlavours = [
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "vanilla",
+  "mango",
+  "vanilla",
+  "chocolate",
+  "strawberry",
+  "mango",
+  "orange",
+  "chocolate",
+];
+
+const iceCreamFlavourCount = console.log(iceCreamFlavourCount); // Write your solution here
+
+// Expected output:
+// { vanilla: 3, chocolate: 3, strawberry: 2, mongo: 2, orange: 1 }
+```
 
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
+```
