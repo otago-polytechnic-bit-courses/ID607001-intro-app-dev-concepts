@@ -30,6 +30,7 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 For each formative assessment, create a new branch, i.e., branch name `01-formative assessment`. When you create a new branch, make sure you are creating it from the branch you last worked on.
 
 **Resources:**
+
 - <https://git-scm.com/docs/git-branch>
 - <https://git-scm.com/docs/git-checkout>
 
@@ -49,21 +50,22 @@ On the right side of the screen, you will see **Reviewers**. Click on the **Revi
 
 You have written many commit messages thus far in your **BIT** degree. However, based on my observations, you could format your messages more concisely, and it only takes a little bit of care. We will discuss a message convention (not a standard) heavily adopted in the industry.
 
-A message is broken down into five components - type, scope (optional), subject, extended description (optional) & footer (optional).
+A message is broken down into five components - type, scope (optional), subject, extended description (optional) and footer (optional).
 
 List of types:
-* build: build related change, i.e., installing application dependencies.
-* chore: change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting & version control.
-* feat: a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
-* fix: a bug fix, i.e. an issue with the register or login page.
-* docs: documentation related change, i.e., changing **README.md** file.
-* refactor: something that is neither a feat nor fix, i.e., a semantic code change.
-* style: style-related change, i.e., formatting a file or piece of code.
-* test: an automation test change, i.e., adding a new test file or updating an existing test file.
 
-What is a scope? A noun referring to functionality in your codebase, i.e., authentication. 
+- build: build related change, i.e., installing application dependencies.
+- chore: change that an end-user will not see, i.e., configuring files for but not limited to code formatting, code linting and version control.
+- feat: a new feature or piece of functionality that an end-user will see, i.e., a register or login page.
+- fix: a bug fix, i.e. an issue with the register or login page.
+- docs: documentation related change, i.e., changing **README.md** file.
+- refactor: something that is neither a feat nor fix, i.e., a semantic code change.
+- style: style-related change, i.e., formatting a file or piece of code.
+- test: an automation test change, i.e., adding a new test file or updating an existing test file.
 
-Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills & knowledge.
+What is a scope? A noun referring to functionality in your codebase, i.e., authentication.
+
+Familiarise yourself with this convention, particularly if you are currently enrolled in my courses. However, if you are not, then it is something you should consider adding to your existing **Git** skills and knowledge.
 
 You are probably wondering, how do I write a message using this convention. A **Git** commit looks like this:
 
@@ -79,7 +81,7 @@ Here is a **Git** commit example:
 git commit -m "style (login): format jsx"
 ```
 
-Here is a **Git** commit example with an extended description & footer:
+Here is a **Git** commit example with an extended description and footer:
 
 ```bash
 git commit -m "style (login): format jsx" -m "additional information" -m "PR Close #12345"
@@ -87,7 +89,7 @@ git commit -m "style (login): format jsx" -m "additional information" -m "PR Clo
 
 When should I use an extended description? When a message is greater than 50 characters. **Note:** This convention is recommended by **GitHub**. However, this can vary from company to company.
 
-What happens if I want view a commit with a specific type? 
+What happens if I want view a commit with a specific type?
 
 ```bash
 git log --oneline --grep <type>
@@ -95,20 +97,19 @@ git log --oneline --grep <type>
 
 - --oneline - Display the output as one commit per line
 
-Here is a **Git**  log example:
+Here is a **Git** log example:
 
 ```bash
 git log --oneline --grep feat
 ```
 
-Here is a **Git**  example with multiple types:
- 
+Here is a **Git** example with multiple types:
+
 ```bash
 git log --oneline --grep "^build\|^feat\|^style"
 ```
 
 **Resource:** <https://git-scm.com/docs/git-log>
-
 
 # 01 B: JavaScript Basics 1
 
@@ -503,13 +504,12 @@ console.log(fruit["name"]); // Apple
 
 :question: **Interview Question:** Provide an example of mutating and iterating over an **object**.
 
-
 **Resources:**
 
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
 
-## Destructuring 
+## Destructuring
 
 A **JavaScript** expression that enables you to **unpack** items from an **array** and properties from an **object** into distinct variables.
 
@@ -537,7 +537,7 @@ const fruit = {
 
 const vege = {
   name: "Carrot",
-  color: "Orange"
+  color: "Orange",
 };
 ```
 
@@ -570,13 +570,13 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 Calculate the **sum** of the given **integers** and use **string interpolation** to display the expected output.
 
 ```js
-const x = 1957452
-const y = 2975635
+const x = 1957452;
+const y = 2975635;
 
 // Write your solution here
 
 // Expected output:
-// The sum of 1957452 & 2975635 is 4933087
+// The sum of 1957452 and 2975635 is 4933087
 ```
 
 ## Task 2:
@@ -587,7 +587,7 @@ Declare two **immutable** **variables** called `name` and `age` with the values 
 // Write your solution here
 
 // Expected output:
-// Hello my name is Jane & I am 45 years old.
+// Hello my name is Jane and I am 45 years old.
 ```
 
 ## Task 3:
@@ -595,7 +595,7 @@ Declare two **immutable** **variables** called `name` and `age` with the values 
 Calculate the **average** of the given **array** of **doubles** called `nums` and use **string interpolation** to display the expected output.
 
 ```js
-const nums = [45.3, 67.5, -45.6, 20.34, -33.0, 45.6]
+const nums = [45.3, 67.5, -45.6, 20.34, -33.0, 45.6];
 
 // Write your solution here
 
@@ -605,13 +605,13 @@ const nums = [45.3, 67.5, -45.6, 20.34, -33.0, 45.6]
 
 ## Task 4:
 
-Write an arrow function called fizzBuzz which accepts an integer num. If num is a multiple of three, return Fizz, if num is a multiple of five, return Buzz & if num is a multiple of three & five, return FizzBuzz. Call the fizzBuzz function in the for loop to display the expected output.
+Write an **arrow function** called `fizzBuzz` which accepts an **integer** num. If num is a multiple of three, return **Fizz**, if num is a multiple of five, return **Buzz** and if num is a multiple of three and five, return **FizzBuzz**. Call the `fizzBuzz` **function** in the **for loop** to display the expected output.
 
 ```js
 // Write your fizzBuzz function here
 
 for (let i = 1; i <= 15; i += 2) {
- // Write your solution here
+  // Write your solution here
 }
 
 // Expected output:
@@ -630,7 +630,7 @@ for (let i = 1; i <= 15; i += 2) {
 You have been given an **array** of **integers** called `nums`. Display **only** the odd numbers in `nums`. Sort from lowest to highest.
 
 ```js
-const nums = [21, 19, 68, 55, 42, 12]
+const nums = [21, 19, 68, 55, 42, 12];
 
 // Write your solution here
 
@@ -654,7 +654,7 @@ Input: isAnagram('cat', 'sat')
 Output : false
 ```
 
-Call the `isAnagram` function to display the expected output.
+Call the `isAnagram` **function** to display the expected output.
 
 ```js
 // Write your solution here
@@ -664,7 +664,143 @@ Call the `isAnagram` function to display the expected output.
 // false
 ```
 
+**Task 7:**
+Write an **arrow function** called `convert` which accepts two **parameters** called `hours` and `minutes`. In the **function** block, write some code that converts both `hours` and `minutes` to `seconds`, then adds them together.
 
+```js
+// Write your solution here
+
+console.log(convert(1, 3));
+
+// Expected output:
+// 3780
+```
+
+**Task 8:**
+Write an **arrow function** called `isPalindrome` which accepts a single **parameter** called `someStr`. In the **function** block, determine whether or not `someStr` is a palindrome. The function should return a **boolean**.
+
+```js
+// Write your solution here
+
+console.log(isPalindrome("A man, a plan, a canal - Panama"));
+console.log(isPalindrome("Hello, World!"));
+
+// Expected output:
+// true
+// false
+```
+
+## Task 9:
+
+Write an **arrow function** called `lessThanFiveLetters` which accepts an **array** of **strings**. In the **function** block, return all words that are less than five letters. Sort from A to Z.
+
+```js
+// Write your solution here
+
+const transport = ["scooter", "skateboard", "truck", "car", "walk", "bike"];
+
+// Expected output:
+// bike
+// car
+// walk
+```
+
+## Task 10:
+
+Write an **arrow function** called `findBreed` which accepts an unsorted **array** of **strings** called `breeds`. Your code needs to search breeds for Afghan Hound and return its location in the **array**, i.e., **index**. If Afghan Hound is not in breeds, return -1.
+
+```js
+// Write your solution here
+
+const breeds = ["Poodle", "Afghan Hound" /** Add your other breeds here */];
+
+console.log(findBreed(breeds));
+
+// Expected output:
+// 1
+```
+
+## Task 11:
+
+Write an **arrow function** called `removeVowels` which accepts a **string** called word and returns a new **string** with all vowels removed. Also, how would you handle the edge case where word does not contain vowels.
+
+```js
+// Write your solution here
+
+const word = // Add your word here
+  console.log(removeVowels(word));
+```
+
+## Task 12:
+
+Write an **arrow function** called `missingNum` which accepts an unsorted **array** of **integers** called `nums` and returns the missing number.
+
+```js
+// Write your solution here
+
+const nums = [10, 3, 4, 8, 1, 7, 6, 9, 5];
+
+console.log(missingNum(nums));
+
+// Expected output:
+// 2
+```
+
+## Task 13:
+
+Write an **arrow function** called `fileExtensions` which accepts an **array** of **objects** called `files` and returns their extension names.
+
+```js
+// Write your solution here
+
+const files = [
+  { name: "index", extension: "html" },
+  { name: "main", extension: "js" },
+  { name: "sample", extension: "txt" },
+  { name: "data", extension: "json" },
+];
+
+console.log(fileExtensions(files));
+
+// Expected output:
+// html
+// js
+// txt
+// json
+```
+
+## Task 14:
+
+What is a substring? It is a portion of a string, i.e., **Hello** is a substring of **Hello, World!** and **el** is a substring of **Hello**. String manipulation is commonly used and working with substrings is something you will often do. You have been given the following sentence as a string:
+
+**The anemone, the wild violet, the hepatica, and the funny little curled-up.**
+
+Write code that returns the number of occurrences of the word **the** in the sentence above.
+
+```js
+const sentence =
+  "The anemone, the wild violet, the hepatica, and the funny little curled-up.";
+
+// Write your solution here
+
+// Expected output:
+// 4
+```
+
+## Task 15:
+
+In this problem you are going to use the `abs()` **function**. Write an **arrow function** called `calcDist` which calculates the distance between two **integers**. It does not matter which order the parameters are given; it should still return the same result.
+
+```js
+// Write your solution here
+
+console.log(calcDist(-1, 4))
+console.log(calcDist(4, -1))
+
+// Expected output:
+// 5
+// 5
+```
 
 # Formative Assessment Submission
 
