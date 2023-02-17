@@ -605,9 +605,7 @@ const nums = [45.3, 67.5, -45.6, 20.34, -33.0, 45.6]
 
 ## Task 4:
 
-Write an arrow function called fizzBuzz which accepts an integer num. If num is a multiple of three, return
-Fizz, if num is a multiple of five, return Buzz & if num is a multiple of three & five, return FizzBuzz. Call
-the fizzBuzz function in the for loop to display the expected output.
+Write an arrow function called fizzBuzz which accepts an integer num. If num is a multiple of three, return Fizz, if num is a multiple of five, return Buzz & if num is a multiple of three & five, return FizzBuzz. Call the fizzBuzz function in the for loop to display the expected output.
 
 ```js
 // Write your fizzBuzz function here
