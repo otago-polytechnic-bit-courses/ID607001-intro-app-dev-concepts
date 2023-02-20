@@ -676,7 +676,7 @@ Call the `isAnagram` **function** to display the expected output.
 // false
 ```
 
-**Task 7:**
+## Task 7:
 Write an **arrow function** called `convert` which accepts two **parameters** called `hours` and `minutes`. In the **function** block, write some code that converts both `hours` and `minutes` to `seconds`, then adds them together.
 
 ```js
@@ -688,7 +688,7 @@ console.log(convert(1, 3));
 // 3780
 ```
 
-**Task 8:**
+## Task 8:
 Write an **arrow function** called `isPalindrome` which accepts a single **parameter** called `someStr`. In the **function** block, determine whether or not `someStr` is a palindrome. The function should return a **boolean**.
 
 ```js
