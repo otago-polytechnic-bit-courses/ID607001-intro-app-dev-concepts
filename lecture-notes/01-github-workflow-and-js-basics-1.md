@@ -27,7 +27,7 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 
 `cd` into your formative assessments repository and create a branch using the command `git branch <name of the branch>`. Checkout from the `main` branch to the new branch using the command `git checkout <name of the branch>`. Alternatively, you can create and checkout a branch using the command `git checkout -b <name of the branch>`.
 
-For each formative assessment, create a new branch, i.e., branch name `01-formative assessment`. When you create a new branch, make sure you are creating it from the branch you last worked on.
+For each formative assessment, create a new branch, i.e., branch name `01-formative-assessment`. When you create a new branch, make sure you are creating it from the branch you last worked on.
 
 **Resources:**
 
