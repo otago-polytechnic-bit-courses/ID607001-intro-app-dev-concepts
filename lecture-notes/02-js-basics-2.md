@@ -234,7 +234,8 @@ For each element in `nums`, calculate its power of two and return as an **array*
 ```js
 const nums = [2, 4, 6, 8, 10];
 
-const powOfTwo = console.log(powOfTwo); // Write your solution here
+const powOfTwo = // Write your solution here
+console.log(powOfTwo);
 
 // Expected output:
 // [4, 16, 36, 64, 100]
@@ -248,7 +249,8 @@ For each element in `temps`, convert its value from **fahrenheit** to **celsius*
 ```js
 const temps = [65, 45, 25, 5];
 
-const fahToCel = console.log(fahToCel); // Write your solution here
+const fahToCel = // Write your solution here
+console.log(fahToCel);
 
 // Expected output:
 // [18.33, 7.22, -3.89, -15.00]
@@ -268,7 +270,7 @@ const countries = [
 ];
 
 const countriesWithPopLessThanOneBil = // Write your solution here
-  console.log(countriesWithPopLessThanOneBil);
+console.log(countriesWithPopLessThanOneBil);
 
 // Expected output:
 // [
@@ -290,7 +292,8 @@ const animals = [
   { name: "Bald Eagle", native_country: "United States of America" },
 ];
 
-const nativeAnimals = console.log(nativeAnimals); // Write your solution here
+const nativeAnimals = // Write your solution here
+console.log(nativeAnimals);
 
 // Expected output:
 // [
@@ -311,7 +314,8 @@ const groceries = [
   { name: "Steak", price: 20 },
 ];
 
-const groceriesTotal = console.log(groceriesTotal); // Write your solution here
+const groceriesTotal = // Write your solution here
+console.log(groceriesTotal);
 
 // Expected output:
 // 37
@@ -337,7 +341,8 @@ const iceCreamFlavours = [
   "chocolate",
 ];
 
-const iceCreamFlavourCount = console.log(iceCreamFlavourCount); // Write your solution here
+const iceCreamFlavourCount = // Write your solution here
+console.log(iceCreamFlavourCount);
 
 // Expected output:
 // { vanilla: 3, chocolate: 3, strawberry: 2, mongo: 2, orange: 1 }
