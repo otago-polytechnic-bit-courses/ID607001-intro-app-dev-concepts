@@ -725,7 +725,6 @@ Write an **arrow function** called `findBreed` which accepts an unsorted **array
 // Write your solution here
 
 const breeds = ["Poodle", "Afghan Hound" /** Add your other breeds here */];
-
 console.log(findBreed(breeds));
 
 // Expected output:
@@ -740,7 +739,7 @@ Write an **arrow function** called `removeVowels` which accepts a **string** cal
 // Write your solution here
 
 const word = // Add your word here
-  console.log(removeVowels(word));
+console.log(removeVowels(word));
 ```
 
 ## Task 12:
