@@ -353,4 +353,3 @@ console.log(iceCreamFlavourCount);
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
-```
