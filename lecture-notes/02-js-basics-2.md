@@ -1,5 +1,7 @@
 # 02 A: JavaScript Basics 2
 
+Lecture video can be found here - https://otagopoly.sharepoint.com/:v:/r/sites/IN607IntroductoryApplicationDevelopment2022-s1-2023/Shared%20Documents/Recordings/Meeting%20in%20_s1-2023_-20230227_131003-Meeting%20Recording.mp4?csf=1&web=1&e=nG4qjd
+
 ## Functional Programming Paradigm
 
 Before we start, I want to discuss what is not **functional programming**...loops, `var` and `let` declarations, **array**, **object**, **map** and **set** mutators. You are probably thinking, how can you write a program without these **language features**? It will be become clear soon.
