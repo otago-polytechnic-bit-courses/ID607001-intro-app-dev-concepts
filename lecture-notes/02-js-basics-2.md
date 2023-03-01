@@ -347,7 +347,7 @@ const iceCreamFlavourCount = // Write your solution here
 console.log(iceCreamFlavourCount);
 
 // Expected output:
-// { vanilla: 3, chocolate: 3, strawberry: 2, mongo: 2, orange: 1 }
+// { vanilla: 3, chocolate: 3, strawberry: 2, mango: 2, orange: 1 }
 ```
 
 # Formative Assessment Submission
