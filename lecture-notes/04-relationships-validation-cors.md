@@ -1,4 +1,4 @@
-# 04: Relationships, Validation and Cross-Origin Resource Sharing
+# 04: Relationships and Validation
 
 ## Relationships
 
@@ -130,8 +130,6 @@ npx prisma migrate dev
 ```
 
 Now, if you try posting multiple Institutions with the same name, you will get an error back telling you the names must be unique.
-
-## Cross-Origin Resource Sharing
 
 # Formative Assessment
 
