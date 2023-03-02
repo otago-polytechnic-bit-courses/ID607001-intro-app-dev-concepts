@@ -370,7 +370,7 @@ Click the **Go to Workspace** button.
 
 ![](../resources/img/03-node-js-rest-api-5.JPG)
 
-You should see something like this:
+You should see something like this. Click on the button to prepare to perform your first request.
 
 ![](../resources/img/03-node-js-rest-api-6.JPG)
 
