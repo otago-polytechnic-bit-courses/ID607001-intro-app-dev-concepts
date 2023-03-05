@@ -228,7 +228,7 @@ const updateInstitution = async (req, res) => {
 
     if (!institution) {
       return res
-        .status(200)
+        .status(201)
         .json({ msg: `No institution with the id: ${id} found` });
     }
 
