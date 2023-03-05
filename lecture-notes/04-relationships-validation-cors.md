@@ -131,6 +131,57 @@ npx prisma migrate dev
 
 Now, if you try posting multiple Institutions with the same name, you will get an error back telling you the names must be unique.
 
+### Joi
+
+**Joi** is a popular tool to validate data. It has **APIs** to validate various types such as strings, numbers, dates, objects, arrays, and more.
+
+To get started, run the following command - `npm install joi`.
+
+Once installed, you can update the `createInstitution` function.
+
+```js
+import Joi from "joi";
+
+const institutionSchema = Joi.object({
+  name: Joi.string().required(),
+  region: Joi.string().required(),
+  country: Joi.string().required(),
+});
+
+const createInstitution = async (req, res) => {
+  try {
+    const { error, value } = institutionSchema.validate(req.body);
+
+    if (error) {
+      return res.status(400).json({
+        msg: error.details[0].message,
+      });
+    }
+
+    const { name, region, country } = value; // destructuring validated object
+
+    await prisma.institution.create({
+      data: { name, region, country },
+    });
+
+    const newInstitutions = await prisma.institution.findMany({
+      include: {
+        departments: true,
+      },
+    });
+
+    return res.status(201).json({
+      msg: "Institution successfully created",
+      data: newInstitutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
+```
+
 # Formative Assessment
 
 Continue working on the **formative assessments** branch.
@@ -146,6 +197,8 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 Add the code above.
 
 ## Task 2 (Independent Research)
+
+Create a new **model** called **Course**. This **model** has the fields - `code`, `name`, `credits` and a reference to `Department`.
 
 # Formative Assessment Submission
 
