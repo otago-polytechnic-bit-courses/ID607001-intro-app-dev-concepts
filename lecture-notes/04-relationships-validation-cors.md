@@ -198,7 +198,11 @@ Add the code above.
 
 ## Task 2 (Independent Research)
 
-Create a new **model** called **Course**. This **model** has the fields - `code`, `name`, `credits` and a reference to `Department`.
+Create a new **model** called `Course`. This **model** has the fields - `code`, `name`, `credits` and a reference to `Department`.
+
+## Task 3
+
+Using **Joi**, validate all the fields/data in the `Department` and `Course` models.
 
 # Formative Assessment Submission
 
