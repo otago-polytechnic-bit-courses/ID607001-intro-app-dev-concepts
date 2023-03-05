@@ -396,6 +396,14 @@ In **Postman**, perform a **POST**, **GET**, **PUT** and **DELETE** request.
 
 Implement a new controller and route to get a specific institution. You will pass the an id via a route parameter like the **PUT** and **DELETE** examples, and fetch that single record from the database. Return the record, or an error message if not found. 
 
+## Task 4 (Independent Research)
+
+In this task, you will setup **Nodemon** which is a tool that automatically restarts a **Node.js** application whenever a change is made to the source code. Install **Nodemon** by running the following command - `npm install nodemon --save-dev`. In the `package.json` file, add a new script to run the application using **Nodemon**.
+
+## Task 5 (Independent Research)
+
+In this task, you will setup **Prisma Studio** which is a visual database editor for **Prisma**. This allows you to **CRUD** data without having to write **SQL** queries or use a **CLI**. Install **Prisma Studio** by running the following command - `npm install @prisma/studio --save-dev`. In the `package.json` file, add a new script to run **Prisma Studio**.
+
 # Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
