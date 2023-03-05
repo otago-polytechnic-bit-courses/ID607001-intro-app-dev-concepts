@@ -182,6 +182,8 @@ const createInstitution = async (req, res) => {
 };
 ```
 
+**Resource:** <https://joi.dev/api/?v=17.8.3>
+
 # Formative Assessment
 
 Continue working on the **formative assessments** branch.
