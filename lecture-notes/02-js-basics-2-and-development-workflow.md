@@ -1,6 +1,6 @@
 # 02 A: JavaScript Basics 2
 
-Lecture video can be found here - https://bit.ly/3ZLLY7k
+Lecture video can be found here - [https://bit.ly/3ZLLY7k](https://bit.ly/3F1LJgE)
 
 ## Functional Programming Paradigm
 
