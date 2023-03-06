@@ -29,7 +29,7 @@ There are a few others, but you will only be concerned with the four above.
 
 **Express** is a lightweight **Node.js** web application framework that provides a set of robust features for creating applications.
 
-Assume you have **Node.js** installed. Click [here](https://classroom.github.com/a/hWjmBeNq) to create a new repository via **GitHub Classroom**. You will use this repository for the first assessment - **Project 1: REST API**. Clone the repository and open it in **Visual Studio Code**. 
+Assume you have **Node.js** installed. Click [here](https://classroom.github.com/a/4w4EqOUZ) to create a new repository via **GitHub Classroom**. You will use this repository for the first assessment - **Project 1: REST API**. Clone the repository and open it in **Visual Studio Code**. 
 
 Open a terminal in **Visual Studio Code** using the command <kbd>ctrl</kbd> + <kbd>~</kbd>.
 
@@ -61,10 +61,6 @@ Majority of the online **Node.js** examples use **CommonJS**. You are going to u
 
 - <https://expressjs.com>
 - <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules>
-
-## Create a PostgreSQL Database
-
-
 
 ## Prisma
 
