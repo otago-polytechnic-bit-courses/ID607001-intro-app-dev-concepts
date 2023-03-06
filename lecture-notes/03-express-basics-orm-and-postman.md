@@ -113,8 +113,10 @@ datasource db {
 model Institution {
   id         Int          @id @default(autoincrement())
   name       String
+  region     String
+  country    String
   createdAt  DateTime     @default(now())
-  departments Department[]
+  Department Department[]
 }
 
 model Department {
