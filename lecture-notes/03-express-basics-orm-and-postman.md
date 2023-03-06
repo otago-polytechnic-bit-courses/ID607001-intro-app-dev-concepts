@@ -1,5 +1,7 @@
 # 03: Express Basics and Postman
 
+Lecture video can be found here - https://otagopoly.sharepoint.com/sites/id511001-programming-2-s1-23/Shared%20Documents/Recordings/Meeting%20in%20_s1-23_-20230306_130915-Meeting%20Recording.mp4?web=1
+
 ## Introduction to APIs
 
 You consume **APIs (Application Programming Interfaces)** daily. They enable applications to communicate with each other, internally or externally.
