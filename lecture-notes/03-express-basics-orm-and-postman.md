@@ -131,7 +131,7 @@ model Department {
 You are going to use **SQLite** for the data source. The easy way to create an **SQLite** database is to download the **SQLite** command-line tool - <https://www.sqlite.com/2022/sqlite-tools-win32-x86-3390000.zip>. Run `sqlite3.exe` and run the following command:
 
 ```bash
-.open dev
+.open dev.db
 ```
 
 This command will create a new database file called `dev.db`. Copy and paste `dev.db` into the `prisma` directory.
