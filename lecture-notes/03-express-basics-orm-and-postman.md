@@ -188,6 +188,15 @@ const getInstitutions = async (req, res) => {
 To create an institution, use `prisma.institution.create`. 
 
 ```js
+// Sample HTTP POST request for Postman
+
+/*
+{
+  "name": "Test",
+  "region": "Test",
+  "country": "Test"
+}
+*/
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body; // destructuring object
@@ -217,6 +226,15 @@ const createInstitution = async (req, res) => {
 To update an institution, use `prisma.institution.update`.
 
 ```js
+
+// Sample HTTP PUT request for Postman
+
+/*
+{
+  "name": "Test"
+}
+*/
+
 const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
