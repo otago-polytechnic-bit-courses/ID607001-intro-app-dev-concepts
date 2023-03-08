@@ -118,7 +118,7 @@ model Institution {
   region     String
   country    String
   createdAt  DateTime     @default(now())
-  Department Department[]
+  departments Department[]
 }
 
 model Department {
