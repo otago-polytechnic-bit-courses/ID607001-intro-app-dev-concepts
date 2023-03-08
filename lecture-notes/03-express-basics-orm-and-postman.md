@@ -451,6 +451,8 @@ Create an **Express** application and add the code above.
 
 In **Postman**, perform a **POST**, **GET**, **PUT** and **DELETE** request.
 
+You can find the sample video here - https://bit.ly/3F73kUi
+
 ## Task 3 (Independent Research)
 
 Implement a new controller and route to get a specific institution. You will pass the an id via a route parameter like the **PUT** and **DELETE** examples, and fetch that single record from the database. Return the record, or an error message if not found. 
