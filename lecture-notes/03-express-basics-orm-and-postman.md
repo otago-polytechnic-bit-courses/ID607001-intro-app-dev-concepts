@@ -281,11 +281,40 @@ const deleteInstitution = async (req, res) => {
 };
 ```
 
+To get a **SINGLE** institution, use `prisma.institution.findUnique`.
+
+```js
+const getInstitution = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const institution = await prisma.institution.findUnique({
+      where: { id: Number(id) },
+    });
+
+    if (!institution) {
+      return res
+        .status(200)
+        .json({ msg: `No institution with the id: ${id} found` });
+    }
+
+    return res.json({
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
+```
+
 At the bottom of this file, add this code:
 
 ```js
 export {
-  getInstitutions,
+  getInstitution, // Get a single institution - returns an object
+  getInstitutions, // Get all institutions - returns an array of objects
   createInstitution,
   updateInstitution,
   deleteInstitution
@@ -302,14 +331,26 @@ const router = Router(); // Accessing the Router() object from express. It allow
 
 // Importing the four CRUD functions
 import {
-  getInstitutions,
+  getInstitution, // Get a single institution - returns an object
+  getInstitutions, // Get all institutions - returns an array of objects
   createInstitution,
   updateInstitution,
   deleteInstitution,
 } from "../controllers/institutions.js";
 
-router.route("/").get(getInstitutions).post(createInstitution)
-router.route("/:id").put(updateInstitution).delete(deleteInstitution)
+router.route("/").get(getInstitutions).post(createInstitution);
+router.route("/:id").put(updateInstitution).delete(deleteInstitution).get(getInstitution);
+
+// or
+
+/*
+// This is equivalent to above
+router.route("/").get(getInstitutions)
+router.route("/").post(createInstitution);
+router.route("/:id").put(updateInstitution);
+router.route("/:id").delete(deleteInstitution);
+router.route("/:id").get(getInstitution);
+*/
 
 export default router; // You do not need to enclose router in curly braces
 ```
