@@ -451,7 +451,7 @@ Create an **Express** application and add the code above.
 
 In **Postman**, perform a **POST**, **GET**, **PUT** and **DELETE** request.
 
-You can find the sample video here - https://bit.ly/3F73kUi
+You can find the sample video here - https://bit.ly/3LaaFqh
 
 ## Task 3 (Independent Research)
 
