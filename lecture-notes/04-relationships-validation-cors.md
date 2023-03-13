@@ -80,12 +80,6 @@ export {
 
 **Note:** You will create the appropriate **routes** for these functions. 
 
-Here is a **POST** request example:
-
-Here is a **GET** request example:
-
-**Note:** You can see an institution's list of departments.
-
 ## Validation
 
 **Server-side** validation occurs after a request has been sent. It is used to validate the data before it is saved to the **database** and subsequently consumed by a **client-side** application. If the data does not validate, a response is sent back with the corrections that need to be made. Validation is a security measure and prevents attacks by malicious users. Improper validation is one of the main cause of security vulnerabilities such as **SQL injection**, **cross-site scripting (XSS)** and **header injection**.
