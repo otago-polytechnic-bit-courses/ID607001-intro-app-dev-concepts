@@ -1,5 +1,7 @@
 # 04: Relationships and Validation
 
+Lecture video can be found here - https://bit.ly/3yzJdKT
+
 ## Relationships
 
 The following example demonstrates a relationship between `institution` and `department`.
