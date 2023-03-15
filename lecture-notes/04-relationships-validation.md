@@ -92,6 +92,7 @@ Your Prisma schema already has some validation going on in it. First, all the fi
 model Institution {
   id         Int          @id @default(autoincrement())
   name       String
+  region     String
   country    String?
   createdAt  DateTime     @default(now())
   departments Department[]
@@ -110,6 +111,7 @@ We can also enforce that fields must be **unique**. For instance, at the moment,
 model Institution {
   id         Int          @id @default(autoincrement())
   name       String       @unique
+  region     String
   country    String?
   createdAt  DateTime     @default(now())
   departments Department[]
