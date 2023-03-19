@@ -11,23 +11,27 @@ For example, an **API** that provides a collection of institutions may allow the
 ```js
 const getInstitutions = async (req, res) => {
   try {
-    const institutions = await prisma.institution.findMany({
+    const query = {
       include: {
         departments: true,
       },
-      where: {
-        // Filtering by name, region and country
+    };
+
+    if (req.query.name || req.query.region || req.query.country) {
+      query.where = {
         name: {
-          in: req.query.name || "",
+          in: req.query.name || undefined,
         },
         region: {
-          in: req.query.region || "",
+          in: req.query.region || undefined,
         },
         country: {
-          in: req.query.country || "",
+          in: req.query.country || undefined,
         },
-      },
-    });
+      };
+    }
+
+    const institutions = await prisma.institution.findMany(query);
 
     if (institutions.length === 0) {
       return res.status(200).json({ msg: "No institutions found" });
@@ -58,26 +62,30 @@ const getInstitutions = async (req, res) => {
     const sortBy = req.query.sortBy || "name";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const institutions = await prisma.institution.findMany({
-      include: {
-        departments: true,
-      },
-      where: {
-        // Filtering by name, region and country
-        name: {
-          in: req.query.name || "",
-        },
-        region: {
-          in: req.query.region || "",
-        },
-        country: {
-          in: req.query.country || "",
-        },
-      },
+    const query = {
       orderBy: {
         [sortBy]: sortOrder,
       },
-    });
+      include: {
+        departments: true,
+      },
+    };
+
+    if (req.query.name || req.query.region || req.query.country) {
+      query.where = {
+        name: {
+          in: req.query.name || undefined,
+        },
+        region: {
+          in: req.query.region || undefined,
+        },
+        country: {
+          in: req.query.country || undefined,
+        },
+      };
+    }
+
+    const institutions = await prisma.institution.findMany(query);
 
     if (institutions.length === 0) {
       return res.status(200).json({ msg: "No institutions found" });
@@ -116,27 +124,32 @@ const getInstitutions = async (req, res) => {
     const amount = req.query.amount || paginationDefault.amount;
     const page = req.query.page || paginationDefault.page;
 
-    const institutions = await prisma.institution.findMany({
-      include: {
-        departments: true,
-      },
-      where: {
-        name: {
-          contains: req.query.name || "",
-        },
-        region: {
-          contains: req.query.region || "",
-        },
-        country: {
-          in: req.query.country || "",
-        },
-      },
+    const query = {
+      take: Number(amount),
+      skip: (Number(page) - 1) * Number(amount),
       orderBy: {
         [sortBy]: sortOrder,
       },
-      take: Number(amount),
-      skip: (Number(page) - 1) * Number(amount),
-    });
+      include: {
+        departments: true,
+      },
+    };
+
+    if (req.query.name || req.query.region || req.query.country) {
+      query.where = {
+        name: {
+          in: req.query.name || undefined,
+        },
+        region: {
+          in: req.query.region || undefined,
+        },
+        country: {
+          in: req.query.country || undefined,
+        },
+      };
+    }
+
+    const institutions = await prisma.institution.findMany(query);
 
     if (institutions.length === 0) {
       return res.status(200).json({ msg: "No institutions found" });
@@ -212,6 +225,7 @@ Implement filtering, sorting and pagination in the **GET** request handler for *
 ## Task 3
 
 In preparation for the first **summative assessment**, provide an overview of your chosen API in the **README.md** file. The overview should include the following:
+
 - A description of the API
-- A list of the API's data models. This includes the name of the model, the attributes and their data types, and the relationships between the models 
+- A list of the API's data models. This includes the name of the model, the attributes and their data types, and the relationships between the models
 - A list of the API's endpoints
