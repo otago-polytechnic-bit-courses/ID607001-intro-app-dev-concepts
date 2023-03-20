@@ -1,6 +1,6 @@
 # 05: Filtering, Sorting, Pagination and Rate Limiting
 
-Lecture video can be found here -
+Lecture video can be found here - https://bit.ly/3yMGX3b
 
 ## Filtering
 
