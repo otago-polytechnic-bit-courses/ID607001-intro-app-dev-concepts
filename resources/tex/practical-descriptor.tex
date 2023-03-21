@@ -34,7 +34,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will be given a \textbf{Node.js REST API} to \textbf{API test}. You will be required to independently research \& write at least \textbf{40 API tests} using \textbf{Chai} \& \textbf{Mocha}. You will use these dependencies to verify the correctness of the given \textbf{Node.js REST API}. It includes \textbf{CRUD} operations query parameters, status codes \& the shape of response data. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage. 
+In this \textbf{individual} assessment, you will you test the \textbf{Node.js REST API} you created in \textbf{Project 1: Node.js REST API}.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -83,8 +83,10 @@ Resits \& reassessments are not applicable in \textbf{ID607001: Introductory App
 \section*{Instructions}
 You will need to submit a \textbf{suite of API tests} \& documentation that meet the following requirements:
 
-\subsection*{Functionality - Learning Outcome 1 (60\%)}
+\subsection*{Functionality - Learning Outcome 1 (40\%)}
 \begin{itemize}
+  \item \textbf{Testing:}
+	\begin{itemize}
     \item \textbf{API tests} are written using \textbf{Mocha} \& \textbf{Chai}.
     \item At least \textbf{40 API tests} verifying the correctness of the following:
           \begin{itemize}
@@ -94,63 +96,53 @@ You will need to submit a \textbf{suite of API tests} \& documentation that meet
             \item Status codes, i.e., checking if a response returns 200, 404, etc.
             \item Shape of the data, i.e., does the response data contain a specific field?
           \end{itemize}
+	\end{itemize}
+	\item \textbf{NPM scripts:}
+	\begin{itemize}
+		\item Linting \& fixing your code using \textbf{ESLint}.
+		\item Formatting your code using \textbf{Prettier}.
+		\item Running \textbf{API} tests using \textbf{Mocha}.
+	\end{itemize}
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (30\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (45\%)}
 \begin{itemize}
-    \item Use of intermediate variables. No method calls as arguments.
-    \item Idiomatic use of control flow, data structures \& in-built functions.
-    \item Sufficient modularity, i.e., \textbf{before()} \& \textbf{after()} functions.
-    \item Functions \& variables are named appropriately.
-    \item File header comments using \textbf{JSDoc}. You \textbf{need} to explain the purpose of each each \textbf{API test} file.
-    \item In-line comments using \textbf{JSDoc}. You \textbf{need} to explain complex logic that is not obvious.
-    \item \textbf{API test files} are stored in a directory called \textbf{test} located in the root directory. Each file has the file extension - \textbf{.test.js}
-    \item Code files are formatted using \textbf{Prettier} \& a \textbf{.prettierrc} file. You \textbf{need} to declare a \textbf{npm} script in your application's \textbf{package.json} file which automates this process. Rules \textbf{should} include:
-    \begin{itemize}
-      \item Single quote is set to \textbf{true}.
-      \item Semi-colon is set to \textbf{false}.
-      \item Tab-width is set to \textbf{2}.
-    \end{itemize}
-    \item Declare a \textbf{npm} script in your application's \textbf{package.json} file that runs the \textbf{API tests} in the testing environment.
-    \item \textbf{Prettier}, \textbf{Chai}, \textbf{Chai HTTP} \& \textbf{Mocha} are installed as development dependencies.
-    \item No dead or unused code.
-    \item Database configured for the testing environment.
-    \begin{itemize}
-      \item Create a new database in \textbf{MongoDB Atlas} specifically for the testing environment. 
-      \item Do \textbf{not} use the database from \textbf{Project 1: Node.js REST API}.
-    \end{itemize}
-    \item Application's environment variables are stored in a \textbf{.env} file.
-    \begin{itemize}
-      \item Create a \textbf{example.env} file containing all of the application's environment variables' key. 
-      \item Do not include the environment variables' value.
-    \end{itemize}
+	\item Environment variables' key is stored in the \textbf{env.example} file. 
+  \item Database configured for the testing environment.
+  \begin{itemize}
+    \item Create a new database called \textbf{test.db}. \textbf{Note:} Do not use \textbf{dev.db}
+  \end{itemize}
+  \item Appropriate naming of variables \& functions.
+	\item Idiomatic use of control flow, data structures \& in-built functions.
+  \item Efficient algorithmic approach.
+  \item Sufficient modularity, i.e., \textbf{before()} \& \textbf{after()} functions.
+	\item Each test file \textbf{must} have a header comment located immediately before the \textbf{import} statements.
+  \item In-line comments where required.
+	\item Code is linted \& formatted using \textbf{ESLint} \& \textbf{Prettier}.
+	\item \textbf{Mocha}, \textbf{Chai}, \textbf{ESLint} \& \textbf{Prettier} are installed as \textbf{development dependencies}.	
+  \item No dead or unused code.
 \end{itemize}
 
-\subsection*{Documentation \& Git Usage - Learning Outcome 1 (10\%)}
+\subsection*{Documentation \& Git Usage - Learning Outcome 1 (15\%)}
 \begin{itemize}
-    \item \textbf{GitHub} repository contains a \textbf{Node.js .gitignore}.
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
-      \item What is API testing \& why is it important?
       \item How do you setup the testing environment, i.e., after the repository is cloned, what do you need to do \textbf{before} you run the \textbf{API tests}?
-      \item How do you run the \textbf{API tests}?
-      \item How do you format the code using \textbf{Prettier}?
+      \item How do you lint \& fix your code?
+      \item How do you format your code?
+      \item How do you run your \textbf{API tests}?
     \end{itemize}
-    \item Use of \textbf{Markdown}, i.e., bold text, code blocks, etc.
+    \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
     \item Correct spelling \& grammar.
     \item Your \textbf{Git commit messages} should:
     \begin{itemize}
-      \item Reflect the context of each functional requirement change. 
-      \item Be formatted using the naming conventions outlined in the following:
-            \begin{itemize}
-              \item \textbf{Resource:} \small\href{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}{https://dev.to/i5han3/git-commit-message-convention-that-you-can-follow-1709}
-            \end{itemize} 
-    \end{itemize}
+      \item Reflect the context of each functional requirement change.
+      \item Be formatted using an appropriate naming convention style.
+    \end{itemize}	
 \end{itemize}
           
 \subsection*{Additional Information}
 \begin{itemize}
-    \item Attempt to commit at least \textbf{10} times per week.
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
 \end{itemize} 
 
