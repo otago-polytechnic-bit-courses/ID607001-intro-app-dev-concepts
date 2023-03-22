@@ -48,7 +48,9 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-Here is an example **GET** request that returns all institutions that have the word **"University"** in their name: `http://localhost:3000/api/institutions?name=University`
+Here is an example **GET** request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/institutions?name=Otago Polytechnic`
+
+**Note:** This is an exact search, not partial.
 
 ## Sorting
 
@@ -102,7 +104,7 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-Here is an example **GET** request that returns all institutions that have the word **"University"** in their name, sorted by **name** in **ascending** order: `http://localhost:3000/api/institutions?name=University&sortBy=name&sortOrder=asc`
+Here is an example **GET** request that returns all institutions that have the `name` **Otago Polytechnic**, sorted by **name** in **ascending** order: `http://localhost:3000/api/institutions?name=Otago Polytechnic&sortBy=name&sortOrder=asc`
 
 ## Pagination
 
@@ -169,7 +171,7 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-Here is an example **GET** request that returns the first 15 institutions that have the word **"University"** in their name, sorted by **name** in **ascending** order: `http://localhost:3000/api/institutions?name=University&sortBy=name&sortOrder=asc&amount=15&page=1`
+Here is an example **GET** request that returns the first 15 institutions that have the `name` **Otago Polytechnic**, sorted by **name** in **ascending** order: `http://localhost:3000/api/institutions?name=Otago Polytechnic&sortBy=name&sortOrder=asc&amount=15&page=1`
 
 ## Rate Limiting
 
