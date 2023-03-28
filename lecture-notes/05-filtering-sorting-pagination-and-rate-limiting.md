@@ -231,3 +231,7 @@ In preparation for the first **summative assessment**, provide an overview of yo
 - A description of the API
 - A list of the API's data models. This includes the name of the model, the attributes and their data types, and the relationships between the models
 - A list of the API's endpoints
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
