@@ -166,3 +166,25 @@ Executing two commands - `npx prisma migrate reset`, then `npx mocha --timeout 1
 - `mocha`: Refers to the Mocha testing framework.
 - `--timeout 10000`: Sets the test suite timeout to 10,000 milliseconds (10 seconds). This means that if a test takes longer than this duration, it will be marked as failed.
 - `--exit`: Forces Mocha to exit after all tests have completed running. 
+
+# Formative Assessment
+
+Continue working on the **formative assessments** branch.
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+## Task 1
+
+Add the code above.
+
+## Task 2
+
+Create a suite of tests for the `Departments` model.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your submission. Please don't merge your own pull request.
