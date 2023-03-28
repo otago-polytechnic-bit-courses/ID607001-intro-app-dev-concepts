@@ -200,7 +200,7 @@ Add the code above.
 
 ## Task 2
 
-Test if the created institution's `name` equals "Otago Polytechnic"
+Test if the created institution's `name` equals "Otago Polytechnic".
 
 ## Task 3
 
