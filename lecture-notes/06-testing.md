@@ -151,6 +151,23 @@ describe("institutions", () => {
 });
 ```
 
+**What is happening?**
+
+Let us break down one test...
+
+- `it("should create institution", (done) => { ... })`: Defines a test case using Mocha's `it` function. The first argument describes the test case, and the second argument is a callback function that receives a `done` parameter which is a function to be called when the asynchronous test is complete.
+- `chai.request(app)`: Uses Chai HTTP, a Chai plugin for testing HTTP APIs, to make a request to the app. The app should be an instance of your Express application.
+- `.post(${BASE_URL}/institutions)`: Specifies that a POST request should be made to the /institutions endpoint. BASE_URL is a variable that should hold the base URL of the API (e.g., http://localhost:3000).
+- `.send(institution)`: Sends the institution object as the request payload.
+- `.end((__, institutionRes) => { ... })`: Defines a callback function to be executed when the request is complete. It takes two parameters: `_` (an underscore) is a convention used to indicate that the first parameter (error) is not used in this callback, and `institutionRes` is the response object from the API.
+
+Inside the callback function:
+
+- `chai.expect(institutionRes.status).to.be.equal(201);`: Checks if the response status code is 201, which indicates that the institution was successfully created.
+- `chai.expect(institutionRes.body).to.be.a("object");`: Checks if the response body is an object.
+- `chai.expect(institutionRes.body.msg).to.be.equal("Institution successfully created");`: Checks if the msg property of the response body is equal to the string "Institution successfully created".
+- `done();`: Calls the done function, signaling the end of the asynchronous test case.
+
 In the `package.json` file, replace the `test` script with the following:
 
 ```bash
