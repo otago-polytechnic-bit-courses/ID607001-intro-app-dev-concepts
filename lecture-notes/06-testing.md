@@ -22,7 +22,7 @@ You will notice that there is a new database file, i.e., `test.db`. Make sure yo
 
 ## Loading Env File
 
-In the root directory, create a new file called `loadEnv.cjs`. In the `loadEnv.js`, add the following code:
+In the root directory, create a new file called `loadEnv.cjs`. In the `loadEnv.cjs`, add the following code:
 
 ```js
 const dotenv = require('dotenv');
