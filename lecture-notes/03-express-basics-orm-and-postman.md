@@ -256,7 +256,7 @@ const updateInstitution = async (req, res) => {
     });
 
     return res.json({
-      msg: `Institution with the id: ${id} successfully update`,
+      msg: `Institution with the id: ${id} successfully updated`,
       data: institution,
     });
   } catch (err) {
