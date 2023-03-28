@@ -1,5 +1,57 @@
 # 06: Testing
 
+## Refactoring
+
+In the root directory, create two new enviroment files - `.env.development` and `.env.testing`.
+
+In the `.env.development` file, add the following:
+
+```
+NODE_ENV=development
+DATABASE_URL=file:./dev.db
+```
+
+In the `.env.testing` file, add the following:
+
+```
+NODE_ENV=testing
+DATABASE_URL=file:./test.db
+```
+
+You will notice that there is a new database file, i.e., `test.db`. Make sure you create this.
+
+## Loading Env File
+
+In the root directory, create a new file called `loadEnv.cjs`. In the `loadEnv.js`, add the following code:
+
+```js
+const dotenv = require('dotenv');
+const path = require('path');
+
+const loadEnv = () => {
+  const env = process.env.NODE_ENV || 'development'; // Set default to 'development' if not specified
+  const envFilePath = path.resolve(__dirname, `.env.${env}`);
+  dotenv.config({ path: envFilePath });
+  console.log(`Loaded environment variables from ${envFilePath}`);
+}
+
+module.exports = {
+  loadEnv: loadEnv,
+};
+```
+
+## app.js
+
+In the `app.js`, add the following:
+
+```js
+import { loadEnv } from "./loadEnv.cjs";
+
+loadEnv();
+```
+
+Make sure this is above `const app = express();`.
+
 ## Mocha
 
 **Mocha** is a **JavaScript** testing framework for **Node.js** applications.
@@ -33,6 +85,8 @@ npm install chai chai-http --save-dev
 In the root directory, create a new directory called `test`. In the `test` directory, create a new file called `00-unit-test.test.js`. In the `00-unit-test.test.js` file, add the following code:
 
 ```js
+process.env.NODE_ENV = "testing";
+
 import chai from "chai";
 import { describe, it } from "mocha";
 
@@ -63,6 +117,8 @@ In the `app.js` file, export `app`. For example, `export default app;`. This sho
 In the `test` directory, create a new file called `01-institutions.test.js`. In the `01-institutions.test.js` file, add the following code:
 
 ```js
+process.env.NODE_ENV = "testing";
+
 import chai from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
