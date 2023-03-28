@@ -1,5 +1,7 @@
 # 06: Testing
 
+Lecture video can be found here - https://bit.ly/3TQILBK
+
 ## Refactoring
 
 In the root directory, create two new enviroment files - `.env.development` and `.env.testing`.
