@@ -200,6 +200,10 @@ Add the code above.
 
 ## Task 2
 
+Test if the created institution's `name` equals "Otago Polytechnic"
+
+## Task 3
+
 Create a suite of tests for the `Departments` model.
 
 # Formative Assessment Submission
