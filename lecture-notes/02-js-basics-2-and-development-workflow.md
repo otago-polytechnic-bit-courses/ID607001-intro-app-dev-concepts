@@ -247,7 +247,7 @@ This command will install the `cz-conventional-changelog` package as a dev depen
 
 ## Prettier
 
-**Prettier** is an opinionated code formatter tool. **Prettier** is designed to save developers time by removing the need to manually format code and to ensure consistent formatting across a codebase. You will remember using **Prettier** in **ID607001: Introductory Application Development**.
+**Prettier** is an opinionated code formatter tool. **Prettier** is designed to save developers time by removing the need to manually format code and to ensure consistent formatting across a codebase. 
 
 In reality you only want to format staged files. The reason is because you do not want to format files that are out of scope of the feature you are working on. You can use a dependency called `pretty-quick` to achieve this.
 
