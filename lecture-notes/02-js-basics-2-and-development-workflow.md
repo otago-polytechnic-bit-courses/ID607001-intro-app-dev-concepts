@@ -259,7 +259,16 @@ npm install prettier pretty-quick --save-dev
 
 Check the `package.json` file to ensure you have installed `prettier` and `pretty-quick`.
 
-In the root directory, create a new file called `.prettierrc.json`.
+In the root directory, create a new file called `.prettierrc.json`. In this file, add the following rules:
+
+```json
+{
+  "singleQuote": false,
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 85
+}
+```
 
 In the `package.json` file, add the following scripts in the `scripts` block:
 
