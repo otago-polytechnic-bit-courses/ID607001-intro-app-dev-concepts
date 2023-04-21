@@ -274,8 +274,6 @@ In the root directory, create a new file called `.prettierignore`. In the `.pret
 node_modules
 ```
 
-**Note:** You will configure the `.prettierrc.json` file in the **Formative Assessment**.
-
 **Resources:**
 
 - <https://prettier.io>
