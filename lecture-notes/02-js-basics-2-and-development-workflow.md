@@ -283,6 +283,8 @@ In the root directory, create a new file called `.prettierignore`. In the `.pret
 node_modules
 ```
 
+To see these scripts in action, purposefully mess up the format of your code. Firstly, run the command: `npm run prettier:check` to see which files have formatting issues. Add your file changes to staging by running the command: `git add .`, then run the command: `npm run prettier:write`. Those staged files should no longer have formatting issues.
+
 **Resources:**
 
 - <https://prettier.io>
