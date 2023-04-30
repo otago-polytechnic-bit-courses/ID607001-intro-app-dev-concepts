@@ -247,7 +247,7 @@ This command will install the `cz-conventional-changelog` package as a dev depen
 
 ## Prettier
 
-**Prettier** is an opinionated code formatter tool. **Prettier** is designed to save developers time by removing the need to manually format code and to ensure consistent formatting across a codebase. You will remember using **Prettier** in **ID607001: Introductory Application Development**.
+**Prettier** is an opinionated code formatter tool. **Prettier** is designed to save developers time by removing the need to manually format code and to ensure consistent formatting across a codebase. 
 
 In reality you only want to format staged files. The reason is because you do not want to format files that are out of scope of the feature you are working on. You can use a dependency called `pretty-quick` to achieve this.
 
@@ -259,7 +259,16 @@ npm install prettier pretty-quick --save-dev
 
 Check the `package.json` file to ensure you have installed `prettier` and `pretty-quick`.
 
-In the root directory, create a new file called `.prettierrc.json`.
+In the root directory, create a new file called `.prettierrc.json`. In this file, add the following rules:
+
+```json
+{
+  "singleQuote": false,
+  "semi": true,
+  "tabWidth": 2,
+  "printWidth": 85
+}
+```
 
 In the `package.json` file, add the following scripts in the `scripts` block:
 
@@ -274,7 +283,7 @@ In the root directory, create a new file called `.prettierignore`. In the `.pret
 node_modules
 ```
 
-**Note:** You will configure the `.prettierrc.json` file in the **Formative Assessment**.
+To see these scripts in action, purposefully mess up the format of your code. Firstly, run the command: `npm run prettier:check` to see which files have formatting issues. Add your file changes to staging by running the command: `git add .`, then run the command: `npm run prettier:write`. Those staged files should no longer have formatting issues.
 
 **Resources:**
 

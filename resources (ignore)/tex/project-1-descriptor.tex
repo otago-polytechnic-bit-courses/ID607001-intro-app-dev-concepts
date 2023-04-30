@@ -35,7 +35,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{MySQL} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, validation, etc. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{SQLite} database. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, validation, etc. In addition, marks will be allocated for code elegance, documentation \& \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -102,13 +102,12 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
 	\item Return an appropriate message if an endpoint does not exist.
 	\item Paginate the data so that any number of records can be displayed per page. The default number is 10 records per page. 
 	\item Rate limit is set to 50 requests per minute. You must display the following message if the user exceeds the 50 requests per minute - \textbf{"You have exceeded the number of requests per minute: 50. Please try again later."}
-	\item Data is stored in a \textbf{MySQL} database.
+	\item Data is stored in a \textbf{SQLite} database.
 \end{itemize}
 \item NPM Scripts
 \begin{itemize}
 	\item Opening \textbf{Prisma Studio}.
 	\item Creating a migration using \textbf{Prisma}. 
-	\item Linting \& fixing your code using \textbf{ESLint}.
 	\item Formatting your code using \textbf{Prettier}.
 \end{itemize}
 \end{itemize}
@@ -129,8 +128,8 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
   \item Sufficient modularity.
   \item Each \textbf{controller} \& \textbf{route} file \textbf{must} have a header comment located immediately before the \textbf{import} statements.
 \item In-line comments where required.
-  \item Code is linted \& formatted using \textbf{ESLint} \& \textbf{Prettier}.
-  \item \textbf{ESLint} \& \textbf{Prettier} are installed as \textbf{development dependencies}.	
+  \item Code is formatted using \textbf{Prettier}.
+  \item \textbf{Prettier} is installed as \textbf{development dependencies}.	
 \item No dead or unused code. 
 \end{itemize}
 
@@ -141,8 +140,7 @@ You will need to submit a \textbf{REST API} \& documentation that meet the follo
       \item How do you setup the development environment, i.e., after the repository is cloned?
 	  \item How do you open \textbf{Prisma Studio}?
 	  \item How do you create a migration? 
-	  \item How do you lint \& fix your code?
-      \item How do you format your code?
+	  \item How do you format your code?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
     \item Correct spelling \& grammar.
