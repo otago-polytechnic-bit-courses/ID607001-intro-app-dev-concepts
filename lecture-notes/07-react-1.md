@@ -209,20 +209,18 @@ export default App;
 
 You will learn the specifics of this code later.
 
-Go to `src/index.js`. Have a quick look at the imports on lines 1-5. You only need to care about lines 1, 2, and 4.
-
-On lines 7-12, you should see the following:
+Go to `src/index.js`. Have a quick look at the code.
 
 ```javascript
-ReactDOM.render(
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
   <React.StrictMode>
     <App />
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );
 ```
 
-A **React** component called `App` (first argument) is being render in the **root node** (second argument) using `ReactDOM.render()`.
+A **React** component called `App` is being render in the **root node** using `ReactDOM.render()`.
 
 **Resources:**
 
