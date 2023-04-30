@@ -266,7 +266,7 @@ In `App.js`, declare the following **JavaScript** object inside of the `App` fun
 
 ```js
 const basketballTeam = {
-  center: "Nikola Jokic",
+  center: "Joel Embiid",
   powerForward: "Anthony Davis",
   smallForward: "LeBron James",
   shootingGuard: "James Harden",
