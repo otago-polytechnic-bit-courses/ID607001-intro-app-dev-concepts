@@ -22,6 +22,19 @@ DATABASE_URL=file:./test.db
 
 You will notice that there is a new database file, i.e., `test.db`. Make sure you create this.
 
+## schema.prisma
+
+You will need to update the `url` to the following:
+
+```bash
+datasource db {
+  provider = ...
+  url      = env("DATABASE_URL")
+}
+```
+
+Now, your `url` will connect either the dev or testing based on the environment it is in.
+
 ## Loading Env File
 
 In the root directory, create a new file called `loadEnv.cjs`. In the `loadEnv.cjs`, add the following code:
