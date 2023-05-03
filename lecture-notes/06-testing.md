@@ -33,7 +33,7 @@ datasource db {
 }
 ```
 
-Now, your `url` will connect either the dev or testing based on the environment it is in.
+Now, your `url` will connect to either the dev or testing databse based on the environment it is in.
 
 ## Loading Env File
 
