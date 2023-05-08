@@ -1,6 +1,6 @@
 # 06: Testing
 
-Lecture video can be found here - https://bit.ly/3TQILBK
+Lecture video can be found here - https://otagopoly-my.sharepoint.com/:v:/g/personal/graysono_op_ac_nz/ESjg9TD05w9AgjWSm_6zSogBsAi5tXw_4f6hs9i8KFbJlw?e=tuuhaN
 
 ## Refactoring
 
