@@ -294,7 +294,7 @@ Using the response, render an **image** in an `<img>` element and **text** in a 
 
 ### Problem 4
 
-Create a new **function component** (name it whatever you like) that performs **GET** requests using **Axios** in **parallel** to the following URLs:
+Create a new **function component** (name it whatever you like) that performs **GET** requests using **Promise.All** in **parallel** to the following URLs:
 
 - <https://random-word-form.herokuapp.com/random/noun>
 - <https://random-word-form.herokuapp.com/random/adjective>
