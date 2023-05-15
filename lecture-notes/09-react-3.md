@@ -159,7 +159,7 @@ export default InstitutionsTable;
 
 It is not as abstract as the `Navigation` component. It is pretty much the same way you declare a `table` in **HTML**, except for the `Table` component.
 
-**Resource:** <https://reactstrap.github.io/components/tables>
+**Resource:** <https://reactstrap.github.io>
 
 ## React Router
 
