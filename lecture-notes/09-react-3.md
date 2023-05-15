@@ -235,7 +235,3 @@ After you done this, you should see the following if you are on `/institutions`:
 <img src='https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/master/resources/img/09-react-3/09-react-6.png' />
 
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
-
-## Formative Assessment
-
-No formative assessment today. However, I encourage you to try out the examples above.
