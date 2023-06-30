@@ -282,9 +282,9 @@ const people = [
 
 What is **map**, **filter** and **reduce**?
 
-- **map** transforms an **array** by applying a function to each element in the **array** and returning a new **array**. **Note:** The original **array** is not modified.
-- **filter** filters an **array** by removing elements that do not satisfy a condition and returning a new **array**. **Note:** The original **array** is not modified.
-- **reduce** reduces an **array** to a single value by applying a function to each element in the **array** and returning a single value.
+- **map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Note:** The original **array** is not mutated.
+- **filter** filters an **array** by removing elements that do not satisfy a condition and returning a new **array**. **Note:** The original **array** is not mutated.
+- **reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
 
 ```javascript
 // An array of numbers
