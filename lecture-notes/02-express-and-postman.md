@@ -162,4 +162,22 @@ It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** state
 
 ## Postman
 
-**Postman** is a collaboration platform for API development. **Postman**'s features simplify each step of building an API and streamline collaboration so you can create better APIs—faster. We will use **Postman** to test our **REST API**.
+**Postman** is a collaboration platform for API development. **Postman**'s features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
+
+### Getting Started
+
+Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
+
+Open **Postman** and 
+
+![](<../resources (ignore)/img/02/postman-1.PNG>)
+
+![](<../resources (ignore)/img/02/postman-2.PNG>)
+
+![](<../resources (ignore)/img/02/postman-3.PNG>)
+
+![](<../resources (ignore)/img/02/postman-4.PNG>)
+
+![](<../resources (ignore)/img/02/postman-5.PNG>)
+
+![](<../resources (ignore)/img/02/postman-6.PNG>)
