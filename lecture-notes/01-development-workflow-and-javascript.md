@@ -58,7 +58,7 @@ let name = "John";
 const age = 25;
 ```
 
-What is the difference between `let` and `const`? 
+What is the difference between `let` and `const`?
 
 A variable declared with `let` is mutable, which means that its value can be changed. A variable declared with `const` is immutable, which means that its value cannot be changed.
 
@@ -87,26 +87,26 @@ There are many other operators in **JavaScript**, but we will only be concerned 
 ```javascript
 // if statement
 if (condition) {
-    // code to execute if condition is true
+  // code to execute if condition is true
 }
 
 // if...else statement
 if (condition) {
-    // code to execute if condition is true
+  // code to execute if condition is true
 } else {
-    // code to execute if condition is false
+  // code to execute if condition is false
 }
 
 // switch statement
 switch (expression) {
-    case value1:
-        // code to execute if expression is equal to value1
-        break;
-    case value2:
-        // code to execute if expression is equal to value2
-        break;
-    default:
-        // code to execute if expression is not equal to any of the values
+  case value1:
+    // code to execute if expression is equal to value1
+    break;
+  case value2:
+    // code to execute if expression is equal to value2
+    break;
+  default:
+  // code to execute if expression is not equal to any of the values
 }
 ```
 
@@ -124,36 +124,36 @@ switch (expression) {
 ```javascript
 // for loop
 for (let i = 0; i < 10; i++) {
-    // code to execute repeatedly
+  // code to execute repeatedly
 }
 
 // while loop
 while (condition) {
-    // code to execute repeatedly
+  // code to execute repeatedly
 }
 
 // do...while loop
 do {
-    // code to execute repeatedly
-} while (condition)
+  // code to execute repeatedly
+} while (condition);
 
 // for...in loop
 for (let key in object) {
-    // code to execute repeatedly
+  // code to execute repeatedly
 }
 
 // for...of loop
 for (let element of array) {
-    // code to execute repeatedly
+  // code to execute repeatedly
 }
 
 // forEach() method
-array.forEach(function(element) {
-    // code to execute repeatedly
+array.forEach(function (element) {
+  // code to execute repeatedly
 });
 ```
 
-Feel free to read up on the differences between these loops. 
+Feel free to read up on the differences between these loops.
 
 ### Functions
 
@@ -162,12 +162,12 @@ A **function** is a block of code that performs a specific task. It is like a ma
 ```javascript
 // A function named "add" that takes in two numbers and returns their sum
 function add(num1, num2) {
-    return num1 + num2;
+  return num1 + num2;
 }
 
 // A function named "greet" that takes in a name and returns a greeting
 function greet(name) {
-    return "Hello, " + name + "!";
+  return "Hello, " + name + "!";
 }
 ```
 
@@ -178,13 +178,13 @@ What about **arrow functions**?
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
 const add = (num1, num2) => {
-    return num1 + num2;
-}
+  return num1 + num2;
+};
 
 // An arrow function named "greet" that takes in a name and returns a greeting
 const greet = (name) => {
-    return "Hello, " + name + "!";
-}
+  return "Hello, " + name + "!";
+};
 ```
 
 Can this be simplified further?
@@ -205,15 +205,15 @@ You can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
-const greet = _ => "Hello, World!";
+const greet = (_) => "Hello, World!";
 ```
 
 ### Arrays
 
-An **array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use the index of an element to access the value it contains.
+An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use the index of an element to access the value it contains.
 
 ```javascript
-// An array of numbers	
+// An array of numbers
 const numbers = [1, 2, 3, 4, 5];
 
 // An array of strings
@@ -229,6 +229,37 @@ Yes, it can!
 const mixed = [1, "Hello", true, null, undefined];
 ```
 
+What is a **2D array**?
+
+A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
+
+```javascript
+// A 2D array of numbers
+const numbers = [
+  [1, 2, 3],
+  [4, 5, 6],
+];
+
+// A 2D array of strings
+const fruits = [
+  ["Apple", "Banana", "Cherry"],
+  ["Durian", "Elderberry", "Fig"],
+];
+```
+
+Can a **2D array** have **arrays** of different lengths?
+
+Yes, it can!
+
+```javascript
+// A 2D array of different lengths
+const mixed = [
+  [1, 2, 3],
+  ["Hello", "World"],
+  [true, false],
+];
+```
+
 ### Objects
 
 An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, and each key is assigned a value. You can use the key of a key-value pair to access the value it contains.
@@ -236,9 +267,9 @@ An **object** is a data structure that stores a collection of key-value pairs. I
 ```javascript
 // An object with key-value pairs
 const person = {
-    name: "John",
-    age: 25,
-    isMale: true
+  name: "John",
+  age: 25,
+  isMale: true,
 };
 ```
 
@@ -247,11 +278,11 @@ Here is another example of an **object** with key-value pairs of different data 
 ```javascript
 // An object with key-value pairs of different data types
 const person = {
-    name: "John",
-    age: 25,
-    isMale: true,
-    favouriteFruits: ["Apple", "Banana", "Cherry"],
-    greet: () => "Hello, " + this.name + "!"
+  name: "John",
+  age: 25,
+  isMale: true,
+  favouriteFruits: ["Apple", "Banana", "Cherry"],
+  greet: () => "Hello, " + this.name + "!",
 };
 ```
 
@@ -262,23 +293,22 @@ Yes, you can!
 ```javascript
 // An array of objects
 const people = [
-    {
-        name: "John",
-        age: 25,
-        isMale: true
-    },
-    {
-        name: "Jane",
-        age: 20,
-        isMale: false
-    }
+  {
+    name: "John",
+    age: 25,
+    isMale: true,
+  },
+  {
+    name: "Jane",
+    age: 20,
+    isMale: false,
+  },
 ];
 ```
 
 ### Map, Filter and Reduce
 
 **Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They are used to transform, filter and reduce **arrays** respectively.
-
 
 What is **map**, **filter** and **reduce**?
 
@@ -291,11 +321,11 @@ What is **map**, **filter** and **reduce**?
 const numbers = [1, 2, 3, 4, 5];
 
 // Map
-const numbersSquared = numbers.map(num => num * num);
+const numbersSquared = numbers.map((num) => num * num);
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 
 // Filter
-const evenNumbers = numbers.filter(num => num % 2 === 0);
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
 console.log(evenNumbers); // [2, 4]
 
 // Reduce
@@ -303,5 +333,221 @@ const sum = numbers.reduce((total, num) => total + num, 0);
 console.log(sum); // 15
 ```
 
+## Formative Assessment
 
+Use the given file `01-formative-assessment.js` to complete the following questions. Open the file `01-formative-assessment.js` in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output:
 
+```bash
+$ node 01-formative-assessment.js
+Hello, World!
+```
+
+1. Write a **function** to check if a given number is prime or not.
+
+- Test case 1: `isPrime(1)` should return `false`
+- Test case 2: `isPrime(2)` should return `true`
+
+2. Write a **function** to reverse a string.
+
+- Test case 1: `reverseString("Hello")` should return `"olleH"`
+- Test case 2: `reverseString("World")` should return `"dlroW"`
+
+3. Write a function to find the maximum element in an array.
+
+- Test case 1: `findMax([1, 2, 3, 4, 5])` should return `5`
+- Test case 2: `findMax([5, 4, 3, 2, 1])` should return `5`
+- Test case 3: `findMax([1, 3, 5, 2, 4])` should return `5`
+
+4. Write a **function** to check if a given string is a palindrome.
+
+- Test case 1: `isPalindrome("racecar")` should return `true`
+- Test case 2: `isPalindrome("rAcEcAr")` should return `true`
+- Test case 2: `isPalindrome("hello")` should return `false`
+
+5. Write a **function** to calculate the factorial of a number.
+
+- Test case 1: `factorial(0)` should return `1`
+- Test case 2: `factorial(1)` should return `1`
+- Test case 3: `factorial(5)` should return `120`
+
+6. Write a **function** to sort an array of numbers in ascending order.
+
+- Test case 1: `sort([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
+- Test case 2: `sort([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
+- Test case 3: `sort([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
+
+7. Write a **function** to count the number of occurrences of a specific element in an array.
+
+- Test case 1: `count([1, 2, 3, 4, 5], 1)` should return `1`
+- Test case 2: `count([1, 2, 3, 4, 5], 6)` should return `0`
+- Test case 3: `count([1, 2, 3, 4, 5, 1], 1)` should return `2`
+
+8. Write a **function** to check if two strings are anagrams of each other.
+
+- Test case 1: `isAnagram("hello", "olleh")` should return `true`
+- Test case 2: `isAnagram("hello", "world")` should return `false`
+
+9.  Write a **function** to find the longest word in a string.
+
+- Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
+- Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
+
+10. Write a **function** to merge two sorted **arrays** into a single sorted **array**.
+
+- Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
+- Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
+
+11. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **strings** that contains a message for each learner in the format "name is age years old". **Note:** Use the `map` function.
+
+```javascript
+// An array of objects
+const learners = [
+  { name: "Alice", age: 21 },
+  { name: "Bob", age: 19 },
+  { name: "Charlie", age: 20 },
+];
+
+// Expected output
+["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
+```
+
+12. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners who are older than 20. **Note:** Use the `filter` and `map` functions.
+
+```javascript
+// An array of objects
+const learners = [
+  { name: "Alice", age: 21 },
+  { name: "Bob", age: 19 },
+  { name: "Charlie", age: 25 },
+  { name: "David", age: 18 },
+  { name: "Eve", age: 22 },
+];
+
+// Expected output
+// [
+//   { name: "Alice", age: 21 },
+//   { name: "Charlie", age: 25 },
+//   { name: "Eve", age: 22 },
+// ]
+```
+
+13. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners who are older than 20 and younger than 25. **Note:** Use the `filter` and `map` functions.
+
+```javascript
+// An array of objects
+const learners = [
+  { name: "Alice", age: 21 },
+  { name: "Bob", age: 19 },
+  { name: "Charlie", age: 25 },
+  { name: "David", age: 18 },
+  { name: "Eve", age: 22 },
+];
+
+// Expected output
+// [
+//   { name: "Alice", age: 21 },
+//   { name: "Eve", age: 22 },
+// ]
+```
+
+14. Given an **array** of **strings**, create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A". **Note:** Use the `filter` and `map` functions.
+
+```javascript
+// An array of strings
+const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
+
+// Expected output
+// [6, 10, 5]
+```
+
+15. Given an **array** of **numbers**, calculate the average grade of the learners and return the result. **Note:** Use the `reduce` function.
+
+```javascript
+// An array of numbers
+const grades = [85, 90, 78, 92, 88];
+
+// Expected output
+// 30
+```
+
+16. Given an **array** of **strings**, count the occurrences of each flavour and return an object that represents the frequency of each flavour. **Note:** Use the `reduce` function.
+
+```javascript
+// An array of strings
+const flavours = ["chocolate", "vanilla", "chocolate", "strawberry", "vanilla"];
+
+// Expected output
+// {
+//   chocolate: 2,
+//   vanilla: 2,
+//   strawberry: 1,
+// }
+```
+
+17. Given a **2D array** of **numbers**, matrix, write a **function** that finds the maximum value in the entire matrix.
+
+```javascript
+// A 2D array of numbers
+const matrix = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9],
+];
+
+const max = findMaxValue(matrix);
+console.log(max);
+
+// Expected output
+// 9
+```
+
+18. Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i` and `j`.
+
+```javascript
+const multiplicationTable = generateMultiplicationTable(5);
+console.log(multiplicationTable);
+
+// Expected output
+// [
+//   [1, 2, 3, 4, 5],
+//   [2, 4, 6, 8, 10],
+//   [3, 6, 9, 12, 15],
+//   [4, 8, 12, 16, 20],
+//   [5, 10, 15, 20, 25],
+// ]
+```
+
+19. In a cinema, there are `n` rows and `m` seats in each row. The seating arrangement is represented by a 2D array, where `0` indicates an empty seat and `1` indicates a occupied seat. Write a **function** that finds the number of available seats in the cinema.
+
+```javascript
+// A 2D array of numbers
+const seatingArrangement = [
+  [0, 0, 1, 0, 1],
+  [1, 0, 1, 1, 0],
+  [0, 0, 0, 1, 0],
+  [1, 0, 0, 0, 0],
+];
+
+const availableSeats = countAvailableSeats(seatingArrangement);
+console.log(availableSeats);
+
+// Expected output
+// 13
+```
+
+20. Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move, and "-" represents an empty space. The **function** should determine the winner or declare it as a tie.
+
+```javascript
+// A 2D array representing a Tic-Tac-Toe board
+const board = [
+  ["X", "O", "-"],
+  ["-", "X", "O"],
+  ["-", "-", "X"],
+];
+
+const winner = checkWinner(board);
+console.log(winner);
+
+// Expected output
+// "X"
+```
