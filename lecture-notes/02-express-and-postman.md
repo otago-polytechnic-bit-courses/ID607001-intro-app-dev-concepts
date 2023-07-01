@@ -19,7 +19,7 @@ What is meant by rules and protocols?
 
 ### Getting Started
 
-Open a terminal and run the following commands.
+Open your **s2-23-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
 ```bash
 npm init -y
@@ -27,17 +27,31 @@ npm install express
 npm install nodemon --save-dev
 ```
 
+What is the purpose of each command?
+
+- `npm init -y`: Initializes a **Node.js** project. The `-y` flag is used to accept the default values.
+- `npm install express`: Installs the **Express** module.
+- `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
+
 In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
 "dev": "nodemon index.js"
 ```
 
+What is the purpose of the `dev` script?
+
+Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
+
 Also, add the following line under the `scripts` block.
 
 ```json
 "type": "module"
 ```
+
+What is the purpose of the `type` property?
+
+Used to enable **ES6** module syntax. For example, `import` and `export` statements.
 
 In the root directory, create a file named `index.js` and add the following code.
 

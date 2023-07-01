@@ -355,7 +355,7 @@ console.log(sum); // 15
 
 ## Formative Assessment
 
-Use the given file `01-formative-assessment.js` to complete the following questions. Open the file `01-formative-assessment.js` in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
+Copy the file `01-formative-assessment.js` into your **s2-23-playground** repository. Open your **s2-23-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
 $ node 01-formative-assessment.js
