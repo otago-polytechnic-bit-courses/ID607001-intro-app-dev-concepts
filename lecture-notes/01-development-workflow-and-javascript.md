@@ -78,7 +78,7 @@ There are many other operators in **JavaScript**, but we will only be concerned 
 
 ### Conditionals
 
-**Conditionals** are statements that allow you to execute different blocks of code depending on whether a condition is true or false. There are three types of conditionals in **JavaScript**:
+**Conditionals** are statements that allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
 
 - **if statement**
 - **if...else statement**
@@ -112,7 +112,7 @@ switch (expression) {
 
 ### Loops
 
-**Loops** are statements that allow you to execute a block of code repeatedly. There are several types of loops in **JavaScript**:
+**Loops** are statements that allow you to execute a block of code repeatedly. There are several types of **loops** in **JavaScript**:
 
 - **for loop**
 - **while loop**
@@ -153,7 +153,7 @@ array.forEach(function (element) {
 });
 ```
 
-Feel free to read up on the differences between these loops.
+Feel free to read up on the differences between these **loops**.
 
 ### Functions
 
@@ -164,42 +164,48 @@ A **function** is a block of code that performs a specific task. It is like a ma
 function add(num1, num2) {
   return num1 + num2;
 }
+console.log(add(1, 2)); // 3
 
 // A function named "greet" that takes in a name and returns a greeting
 function greet(name) {
   return "Hello, " + name + "!";
 }
+console.log(greet("John")); // Hello, John!
 ```
 
 What about **arrow functions**?
 
-**Arrow functions** are a newer way of declaring functions.
+**Arrow functions** are a newer way of declaring **functions**.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
 const add = (num1, num2) => {
   return num1 + num2;
 };
+console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
 const greet = (name) => {
   return "Hello, " + name + "!";
 };
+console.log(greet("John")); // Hello, John!
 ```
 
 Can this be simplified further?
 
-Yes, it can! If a function only has one statement, you can omit the curly braces and the `return` keyword.
+Yes, it can! If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
 const add = (num1, num2) => num1 + num2;
+console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
 const greet = (name) => "Hello, " + name + "!";
+console.log(greet("John")); // Hello, John!
 ```
 
-What if a function does not take in any parameters?
+What if a **function** does not take in any parameters?
 
 You can omit the parentheses.
 
@@ -210,7 +216,7 @@ const greet = _ => "Hello, World!";
 
 ### Arrays
 
-An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use the index of an element to access the value it contains.
+An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use the index of an value to access the value it contains.
 
 ```javascript
 // An array of numbers
@@ -245,6 +251,9 @@ const fruits = [
   ["Apple", "Banana", "Cherry"],
   ["Durian", "Elderberry", "Fig"],
 ];
+
+console.log(numbers[0][0]); // 1
+console.log(fruits[1][2]); // Fig
 ```
 
 Can a **2D array** have **arrays** of different lengths?
@@ -271,6 +280,10 @@ const person = {
   age: 25,
   isMale: true,
 };
+
+console.log(person.name); // John
+console.log(person.age); // 25
+console.log(person.isMale); // true
 ```
 
 Here is another example of an **object** with key-value pairs of different data types.
@@ -284,6 +297,9 @@ const person = {
   favouriteFruits: ["Apple", "Banana", "Cherry"],
   greet: () => "Hello, " + this.name + "!",
 };
+
+console.log(person.favouriteFruits[0]); // Apple
+console.log(person.greet()); // Hello, John!
 ```
 
 What about mixing **arrays** and **objects**?
@@ -304,6 +320,9 @@ const people = [
     isMale: false,
   },
 ];
+
+console.log(people[0].name); // John
+console.log(people[1].age); // 20
 ```
 
 ### Map, Filter and Reduce
