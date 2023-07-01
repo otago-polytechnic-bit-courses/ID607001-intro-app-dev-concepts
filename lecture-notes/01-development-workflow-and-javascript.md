@@ -12,19 +12,20 @@ When you start using **Git**, you create a repository, which is like a folder th
 
 Commits are like snapshots of the project at a specific point in time. Each commit has a unique identifier, and it contains information about the changes you made, such as which files were modified and what lines of code were added or removed. **Git** keeps a chronological record of these commits, enabling you to access any previous version of the project easily.
 
-Here are the assessment repositories that you will need to clone to your local machine:
+Here are the assessment repositories that you will need to clone to your local machine.
 
-- Project 1:
-- Project 2:
-- Practical:
+- Playground: https://classroom.github.com/a/rX6o0fH1
+- Project: https://classroom.github.com/a/wJ4pC7Y7
+
+**Do this now!**
 
 Resource: https://education.github.com/git-cheat-sheet-education.pdf
 
 ### Node.js
 
-**Node.js** is an open-source **JavaScript** runtime environment that allows you to execute **JavaScript** code outside of a web browser. Traditionally, **JavaScript** was primarily used for **client-side** scripting in web browsers, handling tasks like validating forms and enhancing user interactions on websites. However, **Node.js** extends the capabilities of **JavaScript** by allowing it to be used on the **server-side** as well.
+**Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. Traditionally, **JavaScript** was primarily used for **client-side** scripting in web browsers, handling tasks like validating forms and enhancing user interactions on websites. However, **Node.js** extends the capabilities of **JavaScript** by allowing it to be used on the **server-side** as well.
 
-We will be using **Node.js** to run **JavaScript** code on our local machines. It will allow us to test our code and see the results in the terminal without having to open a web browser.
+We will use **Node.js** to run **JavaScript** code on our local machines. It will allow us to test our code and see the results in the terminal without opening a web browser.
 
 Resource: https://nodejs.org/en/
 
@@ -34,7 +35,7 @@ Let us recap some of the key concepts of **JavaScript**.
 
 ### Data Types
 
-**Data types** are the different kinds of values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
+**Data types** are the different values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
 
 - **Boolean**: `true` or `false`
 - **Number**: `1`, `2.5`, `-3`
@@ -44,11 +45,11 @@ Let us recap some of the key concepts of **JavaScript**.
 - **BigInt**: `9007199254740991n`
 - **Symbol**: `Symbol()`
 
-We will only be concerned with the first five primitive data types for now. We will not be using **BigInt** and **Symbol** in this course.
+We will only be concerned with the first five primitive data types for now. We will not use **BigInt** and **Symbol** in this course.
 
 ### Variables
 
-A **variable** is a named container that stores a value. It is like a box that holds a value, and the name of the variable is like a label on the box. You can use the name of the variable to access the value it contains.
+A **variable** is a named container that stores a value. It is like a box that holds a value, and the variable's name is like a label on the box. You can use the variable's name to access its value.
 
 ```javascript
 // A mutable variable named "name" with value "John"
@@ -60,9 +61,9 @@ const age = 25;
 
 What is the difference between `let` and `const`?
 
-A variable declared with `let` is mutable, which means that its value can be changed. A variable declared with `const` is immutable, which means that its value cannot be changed.
+A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed.
 
-You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will stick to using `let` and `const`.
+You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
 ### Operators
 
@@ -157,7 +158,7 @@ Feel free to read up on the differences between these **loops**.
 
 ### Functions
 
-A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. You can think of a function as a reusable piece of code that you can use in your program.
+A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. A function is a reusable piece of code you can use in your program.
 
 ```javascript
 // A function named "add" that takes in two numbers and returns their sum
@@ -211,12 +212,12 @@ You can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
-const greet = _ => "Hello, World!";
+const greet = (_) => "Hello, World!";
 ```
 
 ### Arrays
 
-An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use the index of an value to access the value it contains.
+An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use a value's index to access its value.
 
 ```javascript
 // An array of numbers
@@ -271,7 +272,7 @@ const mixed = [
 
 ### Objects
 
-An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, and each key is assigned a value. You can use the key of a key-value pair to access the value it contains.
+An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, assigning each key a value. You can use the key of a key-value pair to access its value.
 
 ```javascript
 // An object with key-value pairs
@@ -327,12 +328,12 @@ console.log(people[1].age); // 20
 
 ### Map, Filter and Reduce
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They are used to transform, filter and reduce **arrays** respectively.
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They are used to transform, filter and reduce **arrays**, respectively.
 
 What is **map**, **filter** and **reduce**?
 
 - **map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Note:** The original **array** is not mutated.
-- **filter** filters an **array** by removing elements that do not satisfy a condition and returning a new **array**. **Note:** The original **array** is not mutated.
+- **filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Note:** The original **array** is not mutated.
 - **reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
 
 ```javascript
@@ -354,7 +355,7 @@ console.log(sum); // 15
 
 ## Formative Assessment
 
-Use the given file `01-formative-assessment.js` to complete the following questions. Open the file `01-formative-assessment.js` in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output:
+Use the given file `01-formative-assessment.js` to complete the following questions. Open the file `01-formative-assessment.js` in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
 $ node 01-formative-assessment.js
@@ -363,7 +364,7 @@ Hello, World!
 
 **Warning!** Do not use **ChatGPT**. We want to see how you solve the questions on your own.
 
-1. Write a **function** to check if a given number is prime or not.
+1. Write a **function** to check whether a given number is prime.
 
 - Test case 1: `isPrime(1)` should return `false`
 - Test case 2: `isPrime(2)` should return `true`
@@ -379,7 +380,7 @@ Hello, World!
 - Test case 2: `findMax([5, 4, 3, 2, 1])` should return `5`
 - Test case 3: `findMax([1, 3, 5, 2, 4])` should return `5`
 
-4. Write a **function** to check if a given string is a palindrome.
+4. Write a **function** to check whether a given string is a palindrome.
 
 - Test case 1: `isPalindrome("racecar")` should return `true`
 - Test case 2: `isPalindrome("rAcEcAr")` should return `true`
@@ -403,12 +404,12 @@ Hello, World!
 - Test case 2: `count([1, 2, 3, 4, 5], 6)` should return `0`
 - Test case 3: `count([1, 2, 3, 4, 5, 1], 1)` should return `2`
 
-8. Write a **function** to check if two strings are anagrams of each other.
+8. Write a **function** to check whether two strings are anagrams of each other.
 
 - Test case 1: `isAnagram("hello", "olleh")` should return `true`
 - Test case 2: `isAnagram("hello", "world")` should return `false`
 
-9.  Write a **function** to find the longest word in a string.
+9. Write a **function** to find the longest word in a string.
 
 - Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
@@ -432,7 +433,7 @@ const learners = [
 ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
 ```
 
-12. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners who are older than 20. **Note:** Use the `filter` and `map` functions.
+12. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners older than 20. **Note:** Use the `filter` and `map` functions.
 
 ```javascript
 // An array of objects
@@ -452,7 +453,7 @@ const learners = [
 // ]
 ```
 
-13. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners who are older than 20 and younger than 25. **Note:** Use the `filter` and `map` functions.
+13. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners older than 20 and younger than 25. **Note:** Use the `filter` and `map` functions.
 
 ```javascript
 // An array of objects
@@ -522,7 +523,7 @@ console.log(max);
 // 9
 ```
 
-18. Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i` and `j`.
+18. Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i' and `j`.
 
 ```javascript
 const multiplicationTable = generateMultiplicationTable(5);
@@ -538,7 +539,7 @@ console.log(multiplicationTable);
 // ]
 ```
 
-19. In a cinema, there are `n` rows and `m` seats in each row. The seating arrangement is represented by a 2D array, where `0` indicates an empty seat and `1` indicates a occupied seat. Write a **function** that finds the number of available seats in the cinema.
+19. A cinema has `n` rows and `m' seats in each row. The seating arrangement is represented by a 2D array, where `0`indicates an empty seat and`1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
 
 ```javascript
 // A 2D array of numbers
@@ -556,7 +557,7 @@ console.log(availableSeats);
 // 13
 ```
 
-20. Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move, and "-" represents an empty space. The **function** should determine the winner or declare it as a tie.
+20. Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move, and "-" represents a space. The **function** should determine the winner or declare it as a tie.
 
 ```javascript
 // A 2D array representing a Tic-Tac-Toe board
