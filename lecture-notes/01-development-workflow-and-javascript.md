@@ -205,7 +205,7 @@ You can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
-const greet = (_) => "Hello, World!";
+const greet = _ => "Hello, World!";
 ```
 
 ### Arrays
