@@ -90,7 +90,7 @@ Hello, World!
 
 Let us do some refactoring. 
 
-Create a folder named `controllers` in the root directory. In the `controllers` folder, create a file named `index.js` and add the following code.
+In the root directory, create a folder named `controllers`. In the `controllers` folder, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -99,7 +99,7 @@ export const get = (req, res) => { // req is the request object and res is the r
 };
 ```
 
-Create a folder named `routes` in the root directory. In the `routes` folder, create a file named `index.js` and add the following code.
+In the root directory, create a folder named `routes`. In the `routes` folder, create a file named `index.js` and add the following code.
 
 ```javascript
 // Import the Express module
@@ -148,12 +148,12 @@ Your file structure should look something like this.
 .
 ├── controllers
 │   └── index.js
-├── index.js
 ├── node_modules
+├── routes
+│   └── index.js
+├── index.js
 ├── package-lock.json
 ├── package.json
-└── routes
-    └── index.js
 ```
 
 Why have we separated the routes and controllers? 
