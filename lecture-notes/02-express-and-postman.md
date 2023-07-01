@@ -6,16 +6,16 @@ You have come across different interfaces before. For example, **Graphical User 
 
 What is meant by rules and protocols?
 
-- Communication protocols: The most common communication protocols are **HTTP** and **HTTPS**. It is the protocol that is used to send and receive data between different software applications.
-- Request methods: The most common request methods are **GET**, **POST**, **PUT**, and **DELETE**. For example, the **GET** method is used to retrieve data.
-- Data formats: The most common data formats are **JSON** and **XML**.  
+- Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. It is the protocol that is used to send and receive data between different software applications.
+- Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the **GET** method is used to retrieve data.
+- Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.  
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
 - Authentication and authorization: Used to restrict access to certain resources. For example, a user must be authenticated and authorized to access the list of users.
 - Error handling: Used to handle errors. For example, if a user tries to access a resource that does not exist, an error message should be returned.
 
 ## Express
 
-**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**. We will use **Express** alongside **NPM (Node Package Manager)** to build a **REST API**.
+**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**. We will use **Express** alongside **Node Package Manager (NPM)** to build a **REST API**.
 
 ### Getting Started
 
@@ -162,22 +162,40 @@ It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** state
 
 ## Postman
 
-**Postman** is a collaboration platform for API development. **Postman**'s features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
+**Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
 
 ### Getting Started
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
-Open **Postman** and 
+Open **Postman**. Click on the **Workspaces** tab then click on the **Create Workspace** button.
 
 ![](<../resources (ignore)/img/02/postman-1.PNG>)
 
+Enter a name for your workspace, set the visibility to **Personal**, then click on the **Create Workspace** button.
+
 ![](<../resources (ignore)/img/02/postman-2.PNG>)
+
+Click on the **Create collection** button.
 
 ![](<../resources (ignore)/img/02/postman-3.PNG>)
 
+Change the name of the collection to **Test Route** then click on the **Add a request** link.
+
 ![](<../resources (ignore)/img/02/postman-4.PNG>)
+
+Change the name of the request to **Index Request**. In the **Request URL** field, enter `http://localhost:3000/`. Click on the **Save** button.
 
 ![](<../resources (ignore)/img/02/postman-5.PNG>)
 
+Click on the **Send** button. You should see the following response.
+
+```bash
+Hello, World!
+```
+
 ![](<../resources (ignore)/img/02/postman-6.PNG>)
+
+As we work through the examples, we will add more requests to the collection. Later we will use the collection to create documentation for our **REST API**.
+
+## Formative Assessment
