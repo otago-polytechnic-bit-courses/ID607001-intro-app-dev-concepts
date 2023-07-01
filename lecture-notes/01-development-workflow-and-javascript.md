@@ -342,6 +342,8 @@ $ node 01-formative-assessment.js
 Hello, World!
 ```
 
+**Warning!** Do not use **ChatGPT**. We want to see how you solve the questions on your own.
+
 1. Write a **function** to check if a given number is prime or not.
 
 - Test case 1: `isPrime(1)` should return `false`
