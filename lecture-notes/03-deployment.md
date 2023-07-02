@@ -14,7 +14,7 @@ Click on the **New +** button then click on the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-2.PNG>)
 
-Connect to your **s2-23-playground** repository.
+Connect to your **s2-23-playground** repository. When you push to this repository, **Render** will automatically deploy your **web service**. This is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
