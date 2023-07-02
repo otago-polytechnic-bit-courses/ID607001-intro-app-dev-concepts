@@ -18,7 +18,7 @@ Connect to your **s2-23-playground** repository. When you push to this repositor
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
-Name your **web service**. I suggest using **id607001-your learner username**.
+Name your **web service**. For example, **id607001-your learner username**.
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 

@@ -177,7 +177,7 @@ Open **Postman**. Click on the **Workspaces** tab then click on the **Create Wor
 
 ![](<../resources (ignore)/img/02/postman-1.PNG>)
 
-Enter a name for your workspace, set the visibility to **Personal**, then click on the **Create Workspace** button.
+Enter a name for your workspace. For example, **id607001-your learner username**. Set the visibility to **Personal**, then click on the **Create Workspace** button.
 
 ![](<../resources (ignore)/img/02/postman-2.PNG>)
 

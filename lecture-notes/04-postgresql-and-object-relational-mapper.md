@@ -10,7 +10,7 @@ Click on the **New +** button then click on the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/04/render-1.PNG>)
 
-Name your **web service**. I suggest using **id607001-your learner username**.
+Name your **web service**. For example, **id607001-your learner username**.
 
 ![](<../resources (ignore)/img/04/render-2.PNG>)
 
