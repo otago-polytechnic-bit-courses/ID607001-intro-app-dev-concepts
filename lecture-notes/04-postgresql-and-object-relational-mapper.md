@@ -36,17 +36,12 @@ What is the purpose of each command?
 - `npm install prisma --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 - `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory. 
 
-What is the purpose of the `.env` file?
+What is the purpose of the `.env` file? Used to store environment variables. For example, database connection string.
 
-Used to store environment variables. For example, database connection string.
-
-What is the purpose of the `prisma` directory?
-
-Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
+What is the purpose of the `prisma` directory? Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
 
 ---
 
-Rename the `.env` file to `.env.development`
 
 In the `schema.prisma` file, you will see the following code.
 
@@ -61,15 +56,13 @@ datasource db {
 }
 ```
 
-What is the purpose of the `generator` block?
+What is the purpose of the `generator` block? Used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
 
-Used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
+What is the purpose of the `datasource` block? Used to specify the database provider and connection string.
 
-What is the purpose of the `datasource` block?
+---
 
-Used to specify the database provider and connection string.
-
-In the `.env` file, you will see the following code.
+Rename the `.env` file to `.env.development`. In the `.env.development` file, you will see the following code.
 
 ```bash
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
@@ -81,7 +74,9 @@ Replace the connection string with the following code.
 DATABASE_URL="<Render PostgreSQL database connection string"
 ```
 
-In `schema.prisma`, add the following model.
+---
+
+In the `schema.prisma` file, add the following model.
 
 ```javascript
 model Institution {
@@ -94,13 +89,9 @@ model Institution {
 }
 ```
 
-What is the purpose of the `model` block?
+What is the purpose of the `model` block? Used to define a database table.
 
-Used to define a database table.
-
-What is the purpose of the `@id` attribute?
- 
-Used to specify the primary key.
+What is the purpose of the `@id` attribute? Used to specify the primary key.
 
 To migrate the database, run the following command.
 
@@ -108,10 +99,9 @@ To migrate the database, run the following command.
 npx prisma migrate dev
 ```
 
-You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. You will find the new migration in the `prisma/migrations` directory.
+You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. You will find the new migration in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
 
-What is a migration?
+What is a migration? A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
 
-A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
-
+---
 
