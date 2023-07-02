@@ -44,6 +44,8 @@ What is the purpose of the `prisma` directory?
 
 Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
 
+---
+
 Rename the `.env` file to `.env.development`
 
 In the `schema.prisma` file, you will see the following code.
