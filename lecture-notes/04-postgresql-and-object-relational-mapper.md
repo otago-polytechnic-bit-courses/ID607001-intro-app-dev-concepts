@@ -50,7 +50,6 @@ What is the purpose of the `prisma` directory? Used to store **Prisma** configur
 
 ---
 
-
 In the `schema.prisma` file, you will see the following code.
 
 ```javascript
@@ -66,7 +65,7 @@ datasource db {
 
 What is the purpose of the `generator` block? Used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
 
-What is the purpose of the `datasource` block? Used to specify the database provider and connection string.
+What is the purpose of the `datasource` block? Used to specify the database provider and URL.
 
 ---
 
@@ -79,7 +78,7 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 Replace the connection string with the following code.
 
 ```bash
-DATABASE_URL="<Render PostgreSQL database connection string"
+DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
 ---

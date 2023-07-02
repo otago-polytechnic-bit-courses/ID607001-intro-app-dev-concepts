@@ -8,7 +8,7 @@
 
 Think of **Git** as a tool that keeps a detailed history of every change you make to a file or a set of files. Instead of having just one copy of the project files, **Git** allows each person working on the project to have their own local copy, including the entire history of changes. It makes it easy to work independently and merge your changes with others' changes later.
 
-When you start using **Git**, you create a repository, which is like a folder that contains all the project files and their history. You can make changes to files in your local repository, such as adding new features, fixing bugs, or modifying existing code. **Git** then allows you to track and save these changes as commits.
+When you start using **Git**, you create a repository, which is like a directory that contains all the project files and their history. You can make changes to files in your local repository, such as adding new features, fixing bugs, or modifying existing code. **Git** then allows you to track and save these changes as commits.
 
 Commits are like snapshots of the project at a specific point in time. Each commit has a unique identifier, and it contains information about the changes you made, such as which files were modified and what lines of code were added or removed. **Git** keeps a chronological record of these commits, enabling you to access any previous version of the project easily.
 

@@ -90,29 +90,34 @@ Hello, World!
 
 Let us do some refactoring. 
 
-In the root directory, create a folder named `controllers`. In the `controllers` folder, create a file named `index.js` and add the following code.
+In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
-export const get = (req, res) => { // req is the request object and res is the response object. This is specific to Express
+const get = (req, res) => { // req is the request object and res is the response object. This is specific to Express
   res.send('Hello, World!');
 };
+
+// Export the get function
+export { get };
 ```
 
-In the root directory, create a folder named `routes`. In the `routes` folder, create a file named `index.js` and add the following code.
+What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
+
+In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Import the Express module
 import express from 'express';
 
-// Import the controllers module
-import * as indexController from '../controllers/index.js';
+// Import the index controllers module
+import { get } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
 
 // Create a GET route
-router.get('/', indexController.get);
+router.get("/", get);
 
 // Export the router
 export default router;
@@ -124,14 +129,14 @@ In the `index.js` file, add the following code.
 // Import the Express module
 import express from 'express';
 
-// Import the routes module
-import routes from './routes/index.js';
+// Import the index routes module
+import indexRoutes from './routes/index.js';
 
 // Create an Express application
 const app = express();
 
 // Use the routes module
-app.use('/', routes);
+app.use('/', indexRoutes);
 
 // Start the server on port 3000
 app.listen(3000, () => {
