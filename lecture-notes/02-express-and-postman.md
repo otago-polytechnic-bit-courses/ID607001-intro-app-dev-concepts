@@ -106,13 +106,13 @@ In the root directory, create a folder named `routes`. In the `routes` folder, c
 import express from 'express';
 
 // Import the controllers module
-import * as controllers from '../controllers/index.js';
+import * as indexController from '../controllers/index.js';
 
 // Create an Express router
 const router = express.Router();
 
 // Create a GET route
-router.get('/', controllers.get);
+router.get('/', indexController.get);
 
 // Export the router
 export default router;

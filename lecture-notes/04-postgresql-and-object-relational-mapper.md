@@ -6,13 +6,21 @@
 
 ### Getting Started
 
+Click on the **New +** button then click on the **PostgreSQL** link.
+
 ![](<../resources (ignore)/img/04/render-1.PNG>)
+
+Name your **web service**. I suggest using **id607001-your learner username**.
 
 ![](<../resources (ignore)/img/04/render-2.PNG>)
 
+Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
 
 ![](<../resources (ignore)/img/04/render-3.PNG>)
 
+Click on the **Connect** button, then click on the **External Connection** tab. Copy the **External Database URL**.
+
+![](<../resources (ignore)/img/04/render-4.PNG>)
 
 ## Object-Relational Mapper (ORM)
 
