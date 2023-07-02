@@ -2,7 +2,7 @@
 
 ## PostgreSQL
 
-**PostgreSQL** is a free and open-source relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
+**PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
 
 ### Getting Started
 
