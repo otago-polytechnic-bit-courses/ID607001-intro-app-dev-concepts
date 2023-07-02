@@ -16,7 +16,7 @@
 
 ## Object-Relational Mapper (ORM)
 
-An **Object-Relational Mapper (ORM)** is a layer of software that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
+An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
 ### Getting Started
 
