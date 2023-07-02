@@ -34,7 +34,7 @@ What is the purpose of each command?
 
 - `npm install @prisma/client`: Installs the **Prisma Client** module.
 - `npm install prisma --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
-- `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
+- `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory. 
 
 What is the purpose of the `.env` file?
 
@@ -43,6 +43,8 @@ Used to store environment variables. For example, database connection string.
 What is the purpose of the `prisma` directory?
 
 Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
+
+Rename the `.env` file to `.env.development`
 
 In the `schema.prisma` file, you will see the following code.
 
@@ -95,7 +97,7 @@ What is the purpose of the `model` block?
 Used to define a database table.
 
 What is the purpose of the `@id` attribute?
-
+ 
 Used to specify the primary key.
 
 To migrate the database, run the following command.
