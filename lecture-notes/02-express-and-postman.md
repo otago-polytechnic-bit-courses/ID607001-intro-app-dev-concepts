@@ -39,9 +39,7 @@ In the `package.json` file, add the following line to the `scripts` block.
 "dev": "nodemon index.js"
 ```
 
-What is the purpose of the `dev` script?
-
-Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
+What is the purpose of the `dev` script? Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
 
 Also, add the following line under the `scripts` block.
 
@@ -49,9 +47,9 @@ Also, add the following line under the `scripts` block.
 "type": "module"
 ```
 
-What is the purpose of the `type` property?
+What is the purpose of the `type` property? Used to enable **ES6** module syntax. For example, `import` and `export` statements.
 
-Used to enable **ES6** module syntax. For example, `import` and `export` statements.
+---
 
 In the root directory, create a file named `index.js` and add the following code.
 
@@ -87,6 +85,8 @@ Open a browser and navigate to `http://localhost:3000/`. You should see the foll
 ```bash
 Hello, World!
 ```
+
+---
 
 Let us do some refactoring. 
 
