@@ -69,13 +69,13 @@ What is the purpose of the `datasource` block? Used to specify the database prov
 
 ---
 
-Rename the `.env` file to `.env.development`. In the `.env.development` file, you will see the following code.
+In the `.env` file, you will see the following code.
 
 ```bash
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
 ```
 
-Replace the connection string with the following code.
+Replace the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
 DATABASE_URL="<Render PostgreSQL external database URL>"
@@ -166,15 +166,6 @@ const getInstitutions = async (req, res) => {
 To create an institution, use `prisma.institution.create`.
 
 ```js
-// Sample HTTP POST request for Postman
-
-/*
-{
-  "name": "Test",
-  "region": "Test",
-  "country": "Test"
-}
-*/
 const createInstitution = async (req, res) => {
   try {
     await prisma.institution.create({
@@ -198,14 +189,6 @@ const createInstitution = async (req, res) => {
 To update an institution, use `prisma.institution.update`.
 
 ```js
-// Sample HTTP PUT request for Postman
-
-/*
-{
-  "name": "Test"
-}
-*/
-
 const updateInstitution = async (req, res) => {
   try {
     let institution = await prisma.institution.findUnique({
@@ -309,3 +292,44 @@ router.delete("/:id", deleteInstitution);
 
 export default router;
 ```
+
+What is `:id`? `:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is `http://localhost:3000/api/institutions/1`, the value of `:id` will be `1`.
+
+---
+
+In the `index.js` file, add the following code.
+
+```javascript
+// This should be declared under import indexRoutes from "./routes/index.js";
+import institutionRoutes from "./routes/institution.js";
+
+// This should be declared under const app = express();
+app.use(urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
+
+// This should be declared under app.use(urlencoded({ extended: false }));
+app.use(json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
+
+// This should be declared under app.use("/", indexRoutes);
+app.use("/api/institutions", institutionRoutes);
+```
+
+**Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralized. For example, `/api/institutions` instead of `/api/institution`.
+
+---
+
+## Testing the API
+
+Let us test the API using Postman.
+
+![](<../resources (ignore)/img/04/postman-1.PNG>)
+
+![](<../resources (ignore)/img/04/postman-2.PNG>)
+
+![](<../resources (ignore)/img/04/postman-3.PNG>)
+
+![](<../resources (ignore)/img/04/postman-4.PNG>)
+
+![](<../resources (ignore)/img/04/postman-5.PNG>)
+
+![](<../resources (ignore)/img/04/postman-6.PNG>)
+
