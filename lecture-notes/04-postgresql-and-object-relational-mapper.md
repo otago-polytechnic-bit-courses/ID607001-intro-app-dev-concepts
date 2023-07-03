@@ -75,7 +75,7 @@ In the `.env` file, you will see the following code.
 DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
 ```
 
-Replace the `DATABASE_URL` environment variable's value with the following code.
+Update the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
 DATABASE_URL="<Render PostgreSQL external database URL>"
@@ -119,23 +119,20 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 ```
 
-To get an institution, use `prisma.institution.findUnique`.
+To create an institution, use `prisma.institution.create`.
 
 ```js
-const getInstitution = async (req, res) => {
+const createInstitution = async (req, res) => {
   try {
-    const institution = await prisma.institution.findUnique({
-      where: { id: Number(req.params.id) },
+    await prisma.institution.create({
+      data: { ...req.body },
     });
 
-    if (!institution) {
-      return res
-        .status(404)
-        .json({ msg: `No institution with the id: ${req.params.id} found` });
-    }
+    const newInstitutions = await prisma.institution.findMany();
 
-    return res.json({
-      data: institution,
+    return res.status(201).json({
+      msg: "Institution successfully created",
+      data: newInstitutions,
     });
   } catch (err) {
     return res.status(500).json({
@@ -144,6 +141,8 @@ const getInstitution = async (req, res) => {
   }
 };
 ```
+
+To get all institutions, use `prisma.institution.findMany`.
 
 ```js
 const getInstitutions = async (req, res) => {
@@ -163,20 +162,23 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-To create an institution, use `prisma.institution.create`.
+To get an institution, use `prisma.institution.findUnique`.
 
 ```js
-const createInstitution = async (req, res) => {
+const getInstitution = async (req, res) => {
   try {
-    await prisma.institution.create({
-      data: { ...req.body },
+    const institution = await prisma.institution.findUnique({
+      where: { id: Number(req.params.id) },
     });
 
-    const newInstitutions = await prisma.institution.findMany();
+    if (!institution) {
+      return res
+        .status(404)
+        .json({ msg: `No institution with the id: ${req.params.id} found` });
+    }
 
-    return res.status(201).json({
-      msg: "Institution successfully created",
-      data: newInstitutions,
+    return res.json({
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({
@@ -319,17 +321,32 @@ app.use("/api/institutions", institutionRoutes);
 
 ## Testing the API
 
-Let us test the API using Postman.
+Let us test the API using **Postman**.
+
+To add a new request, click on the horizontal ellipsis and select `Add request`.
 
 ![](<../resources (ignore)/img/04/postman-1.PNG>)
 
+This is an example of a `POST` request.
+
 ![](<../resources (ignore)/img/04/postman-2.PNG>)
+
+This is an example of a `GET` all request.
 
 ![](<../resources (ignore)/img/04/postman-3.PNG>)
 
+This is an example of a `GET` by Id request.
+
 ![](<../resources (ignore)/img/04/postman-4.PNG>)
+
+This is an example of a `PUT` by Id request.
 
 ![](<../resources (ignore)/img/04/postman-5.PNG>)
 
+This is an example of a `DELETE` by Id request.
+
 ![](<../resources (ignore)/img/04/postman-6.PNG>)
 
+**Note:** Make sure you save your requests.
+
+## Formative Assessment

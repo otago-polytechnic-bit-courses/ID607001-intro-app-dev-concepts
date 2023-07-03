@@ -125,7 +125,7 @@ router.get("/", get);
 export default router;
 ```
 
-In the `index.js` file, add the following code.
+In the `index.js` file, update with the following code.
 
 ```javascript
 // Import the Express module
@@ -204,3 +204,5 @@ Hello, World!
 ![](<../resources (ignore)/img/02/postman-6.PNG>)
 
 As we work through the examples, we will add more requests to the collection. Later we will use the collection to create documentation for our **REST API**.
+
+## Formative Assessment
