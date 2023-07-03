@@ -94,13 +94,15 @@ In the root directory, create a directory named `controllers`. In the `controlle
 
 ```javascript
 // Create a GET route
-const get = (req, res) => { // req is the request object and res is the response object. This is specific to Express
+const get = (req, res) => { 
   res.send('Hello, World!');
 };
 
 // Export the get function
 export { get };
 ```
+
+What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
 What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
 

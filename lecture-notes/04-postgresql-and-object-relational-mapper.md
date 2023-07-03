@@ -281,8 +281,31 @@ Let us briefly discuss...
 
 - What is `try` and `catch`? `try` and `catch` are used to handle errors. The code in the `try` block will be executed. If an error occurs, the code in the `catch` block will be executed.
 - What is `async` and `await`? `async` and `await` are used to handle asynchronous operations. `async` is used to declare an asynchronous function. `await` is used to wait for the asynchronous operation to complete.
-- What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 - What is `res.json`? `res.json` is used to send a JSON response.
 - What is `res.status`? `res.status` is used to set the HTTP status code. For example, 200, 201, 404, 500, etc.
 
 ---
+
+In the `routes` directory, create a new file called `institution.js`. Add the following code.
+
+```javascript
+import express from "express";
+
+import {
+  getInstitution,
+  getInstitutions,
+  createInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../controllers/institution.js";
+
+const router = express.Router();
+
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
+router.post("/", createInstitution);
+router.put("/:id", updateInstitution);
+router.delete("/:id", deleteInstitution);
+
+export default router;
+```
