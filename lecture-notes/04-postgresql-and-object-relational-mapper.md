@@ -339,7 +339,7 @@ This is an example of a `GET` by Id request.
 
 ![](<../resources (ignore)/img/04/postman-4.PNG>)
 
-This is an example of a `PUT` by Id request.
+This is an example of a `PUT` by Id request. **Note:** You do not need to provide all the fields. You can provide only the fields that you want to update.
 
 ![](<../resources (ignore)/img/04/postman-5.PNG>)
 
