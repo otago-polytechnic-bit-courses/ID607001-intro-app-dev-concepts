@@ -120,36 +120,6 @@ const getInstitutions = async (req, res) => {
 ...
 ```
 
----
-
-You can select the fields you want to return from the database. For example, if you want to return only the `name` field from the `Department` model, you can do the following.
-
-```js
-...
-
-const getDepartments = async (req, res) => {
-  try {
-    const departments = await prisma.department.findMany({
-      select: {
-        name: true,
-      },
-    });
-
-    if (departments.length === 0) {
-      return res.status(404).json({ msg: "No departments found" });
-    }
-
-    return res.json({ data: departments });
-  } catch (err) {
-    return res.status(500).json({
-      msg: err.message,
-    });
-  }
-};
-
-...
-```
-
 ## Testing the API
 
 Let us test the API using **Postman**.

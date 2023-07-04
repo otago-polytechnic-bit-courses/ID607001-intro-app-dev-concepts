@@ -254,9 +254,9 @@ At the bottom of this file, add this code:
 
 ```js
 export {
-  getInstitution,
-  getInstitutions,
   createInstitution,
+  getInstitutions,
+  getInstitution,
   updateInstitution,
   deleteInstitution,
 };
@@ -277,18 +277,18 @@ In the `routes` directory, create a new file called `institution.js`. Add the fo
 import express from "express";
 
 import {
-  getInstitution,
-  getInstitutions,
   createInstitution,
+  getInstitutions,
+  getInstitution,
   updateInstitution,
   deleteInstitution,
 } from "../controllers/institution.js";
 
 const router = express.Router();
 
+router.post("/", createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
-router.post("/", createInstitution);
 router.put("/:id", updateInstitution);
 router.delete("/:id", deleteInstitution);
 
