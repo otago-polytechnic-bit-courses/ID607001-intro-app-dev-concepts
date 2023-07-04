@@ -139,3 +139,36 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
 ---
 
 ## Formative Assessment
+
+1. Create a `User` model with the following fields:
+
+   - `id`
+   - `firstName`
+   - `lastName`
+   - `emailAddress`
+   - `password`
+   - `createdAt`
+   - `updatedAt`
+
+2. Create a `Course` model with the following fields:
+
+   - `id`
+   - `code`
+   - `name`
+   - `description`
+   - `departmentId`
+   - `userId`
+   - `createdAt`
+   - `updatedAt`
+
+This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`. 
+
+## Research Assessment
+
+1. **Prisma** has limited schema validation. One useful validation technique is to use the `@unique` directive. Add the `@unique` directive to the `emailAddress` field in the `User` model. What happens when you try to create a user with an email address that already exists in the database? Also, add the `@unique` directive to the `code` and `name` fields in the `Course` model.
+
+2. In **Prisma**, you can use **enums**. An **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a `role` field to the `User` model. The `role` field should be of type `Role`. What happens when you try to create a user with a role that is not one of the constants defined in the **enum**?
+
+3. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
+
+4. Document the new **routes** using **Postman**.

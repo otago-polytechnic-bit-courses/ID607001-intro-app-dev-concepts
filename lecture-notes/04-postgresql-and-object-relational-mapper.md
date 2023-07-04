@@ -98,7 +98,7 @@ model Institution {
 
 What is the purpose of the `model` block? Used to define a database table.
 
-What is the purpose of the `@id` attribute? Used to specify the primary key.
+What is the purpose of the `@id` directive? Used to specify the primary key.
 
 To migrate the database, run the following command.
 
@@ -350,3 +350,4 @@ This is an example of a `DELETE` by Id request.
 **Note:** Make sure you save your requests.
 
 ## Formative Assessment
+

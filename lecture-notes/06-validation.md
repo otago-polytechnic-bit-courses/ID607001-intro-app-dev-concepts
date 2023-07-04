@@ -84,9 +84,8 @@ router.post("/", validatePostInstitution, createInstitution);
 
 Let us test the API using **Postman**.
 
-
+This is an example of a `POST` request where the `name` field is empty.
 
 ![](<../resources (ignore)/img/06/postman-1.PNG>)
-
 
 ## Formative Assessment
