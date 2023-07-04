@@ -317,9 +317,7 @@ app.use("/api/institutions", institutionRoutes);
 
 **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralized. For example, `/api/institutions` instead of `/api/institution`.
 
----
-
-## Testing the API
+## Document and Test the API
 
 Let us test the API using **Postman**.
 
