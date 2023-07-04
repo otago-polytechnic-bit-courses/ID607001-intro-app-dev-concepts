@@ -54,6 +54,16 @@ const validatePostInstitution = (req, res, next) => {
 export { validateInstitution };
 ```
 
+Let us discuss the code above.
+
+What is `next`? `next` is a function that is used to pass control to the next middleware function. If `next` is not called, the request will be left hanging.
+
+What is `institutionSchema`? `institutionSchema` is an object that contains the validation rules for `req.body`.
+
+What is `institutionSchema.validate(req.body)`? `institutionSchema.validate(req.body)` is a function that validates the `institutionSchema` object against `req.body`.
+
+What is `error`? `error` is an object that contains the error message if the validation fails.
+
 ---
 
 In the `routes` directory, update the `institutions.js` file to include the following code.
@@ -69,5 +79,14 @@ router.post("/", validatePostInstitution, createInstitution);
 
 ...
 ```
+
+## Testing the API
+
+Let us test the API using **Postman**.
+
+
+
+![](<../resources (ignore)/img/06/postman-1.PNG>)
+
 
 ## Formative Assessment
