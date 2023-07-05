@@ -136,13 +136,13 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
 
 ![](<../resources (ignore)/img/05/postman-3.PNG>)
 
----
-
 ## Formative Assessment
 
-1. There is a lot of duplicate code in the `controllers` and `routes` directory. Refactor the code to remove the duplicate code.
+1. Implement the above.
 
-2. Create a `User` model with the following fields:
+2. There is a lot of duplicate code in the `controllers` and `routes` directory. Refactor the code to remove the duplicate code.
+
+3. Create a `User` model with the following fields:
 
    - `id`
    - `firstName`
@@ -152,7 +152,7 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
    - `createdAt`
    - `updatedAt`
 
-3. Create a `Course` model with the following fields:
+4. Create a `Course` model with the following fields:
 
    - `id`
    - `code`

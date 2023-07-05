@@ -19,7 +19,13 @@ Here are the assessment repositories that you will need to clone to your local m
 
 **Do this now!**
 
+Make sure you create a **Node.js** `.gitignore` file in both repositories. You can use the following template - <https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore>
+
 Resource: https://education.github.com/git-cheat-sheet-education.pdf
+
+## JavaScript
+
+Let us recap some of the key concepts of **JavaScript**.
 
 ### Node.js
 
@@ -28,10 +34,6 @@ Resource: https://education.github.com/git-cheat-sheet-education.pdf
 We will use **Node.js** to run **JavaScript** code on our local machines. It will allow us to test our code and see the results in the terminal without opening a web browser.
 
 Resource: https://nodejs.org/en/
-
-## JavaScript
-
-Let us recap some of the key concepts of **JavaScript**.
 
 ### Data Types
 

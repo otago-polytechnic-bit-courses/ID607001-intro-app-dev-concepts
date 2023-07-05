@@ -1,8 +1,12 @@
 # 06: Validation
 
+**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section. 
+
+## Joi
+
 There are various validation packages available for **Express**. We will use the [joi](https://joi.dev/) package.
 
-## Getting Started
+### Getting Started
 
 Install the `joi` package.
 
@@ -90,4 +94,6 @@ This is an example of a `POST` request where the `name` field is empty.
 
 ## Formative Assessment
 
-1. Create 
+1. Create validation rules for each of the fields in the `Department`, `Course`, and `User` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. You should not have to repeat the same code over and over again. You should be able to reuse the code.
+
+2. Document and test the **API** in **Postman**.

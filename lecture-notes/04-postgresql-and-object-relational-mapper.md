@@ -100,7 +100,7 @@ What is the purpose of the `model` block? Used to define a database table.
 
 What is the purpose of the `@id` directive? Used to specify the primary key.
 
-To migrate the database, run the following command.
+To create and apply a migration, run the following command.
 
 ```bash
 npx prisma migrate dev
@@ -109,6 +109,14 @@ npx prisma migrate dev
 You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. You will find the new migration in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
 
 What is a migration? A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
+
+**Note:** If you want to reset the database, run the following command.
+
+```bash
+npx prisma migrate reset
+```
+
+**WARNING:** You should only use this command in a **development** environment.
 
 ---
 
@@ -333,15 +341,15 @@ This is an example of a `GET` all request.
 
 ![](<../resources (ignore)/img/04/postman-3.PNG>)
 
-This is an example of a `GET` by Id request.
+This is an example of a `GET` by id request.
 
 ![](<../resources (ignore)/img/04/postman-4.PNG>)
 
-This is an example of a `PUT` by Id request. **Note:** You do not need to provide all the fields. You can provide only the fields that you want to update.
+This is an example of a `PUT` by id request. **Note:** You do not need to provide all the fields. You can provide only the fields that you want to update.
 
 ![](<../resources (ignore)/img/04/postman-5.PNG>)
 
-This is an example of a `DELETE` by Id request.
+This is an example of a `DELETE` by id request.
 
 ![](<../resources (ignore)/img/04/postman-6.PNG>)
 
@@ -349,3 +357,12 @@ This is an example of a `DELETE` by Id request.
 
 ## Formative Assessment
 
+1. Implement the above.
+
+2. To get use to creating **models**, **controllers** and **routes**, create three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+
+## Research Assessment
+
+1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 
+
+2. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.

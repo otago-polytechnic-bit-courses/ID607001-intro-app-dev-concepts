@@ -47,6 +47,10 @@ Scroll to the top of the page and click on your **web service's** URL.
 
 ![](<../resources (ignore)/img/03/render-9.PNG>)
 
-You should see the following page.
+You should see the following page. **Note:** Your **web service's** URL will be different.
 
 ![](<../resources (ignore)/img/03/render-10.PNG>)
+
+## Formative Assessment
+
+1. Implement the above.

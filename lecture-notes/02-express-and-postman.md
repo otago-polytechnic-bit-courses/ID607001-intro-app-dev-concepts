@@ -163,7 +163,7 @@ Your file structure should look something like this.
 ├── package.json
 ```
 
-Why have we separated the routes and controllers? 
+Why have we separated the **routes** and **controllers**? 
 
 It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application, and that responsibility should be entirely encapsulated by the class, module, or function. All its services should be narrowly aligned with that responsibility.
 
@@ -207,5 +207,5 @@ As we work through the examples, we will add more requests to the collection. La
 
 ## Formative Assessment
 
-### Task 1
+1. Implement the above.
 
