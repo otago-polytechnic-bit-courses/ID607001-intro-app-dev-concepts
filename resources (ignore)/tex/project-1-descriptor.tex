@@ -20,7 +20,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project 1: Node.js REST API\\Version 4, Semester One, 2023}
+\lfoot{Project 1: Node.js REST API\\Version 4, Semester Two, 2023}
 \rfoot{\thepage}  
  
 \begin{document}
@@ -47,7 +47,7 @@ At the successful completion of this course, learners will be able to:
 \renewcommand{\arraystretch}{1.5}
 \begin{tabular}{|c|c|c|c|}
 	\hline
-	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcomes} \\ \hline
+	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
 	\small Practical: Node.js REST API Testing & \small 20\%        & \small 11-09-2023 (Monday at 04.59 PM)   & \small 1                   \\ \hline
 	\small Project 1: Node.js REST API                  & \small 40\%        & \small \small 11-09-2023 (Monday at 04.59 PM) & \small 1                   \\ \hline
 	\small Project 2: React CRUD                        & \small 40\%        & \small 13-11-2023 (Monday at 04.59 PM)  & \small 1                   \\ \hline
@@ -84,32 +84,33 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{REST API} and documentation that meet the following requirements: \\
+You will need to submit a \textbf{REST API} and documentation that meet the following requirements: 
 
 \subsection*{Functionality - Learning Outcome 1 (50\%)}
 \begin{itemize} 
 	\item \textbf{REST API:}
 	\begin{itemize}
-	\item Developed using \textbf{Node.js}.
-	\item Can run locally without modification.
-	\item A \textbf{maximum} of \textbf{eight} \textbf{models}. Each containing a \textbf{minimum} of \textbf{four} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
-	\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
-	\item A minimum of \textbf{five relationships} between \textbf{models}.
-	\item At least \textbf{one} \textbf{model} must have an \textbf{enum} \textbf{field}. 
-	\item A \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file must contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
-	\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}.
-	\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} must display all existing \textbf{routes}.
-	\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
-	\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
-	\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
-	\item \textbf{Independent Research Tasks:} 
+		\item Developed using \textbf{Node.js}.
+		\item Can run locally without modification.
+		\item A \textbf{maximum} of \textbf{eight} \textbf{models}. Each containing a \textbf{minimum} of \textbf{four} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
+		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
+		\item A minimum of \textbf{five relationships} between \textbf{models}.
+		\item At least \textbf{one} \textbf{model} must have an \textbf{enum} \textbf{field}. 
+		\item A \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file must contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
+		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}.
+		\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} must display all existing \textbf{routes}.
+		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
+		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
+		\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
+		\item \textbf{Independent Research Tasks:} 
+		\begin{itemize}
+			\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
+			\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
+			\item Return an appropriate message if an endpoint does not exist.
+			\item Limit the number of \textbf{API requests} per minute to 100. You must display the following message if the user exceeds the 100 \textbf{API requests} per minute - \textbf{"You have exceeded the number of requests per minute: 100. Please try again later."}
+		\end{itemize}
 	\end{itemize}
-	\begin{itemize}
-		\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
-		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
-		\item Return an appropriate message if an endpoint does not exist.
-		\item Limit the number of \textbf{API requests} per minute to 100. You must display the following message if the user exceeds the 100 \textbf{API requests} per minute - \textbf{"You have exceeded the number of requests per minute: 100. Please try again later."}
-	\end{itemize}
+
 	\item \textbf{Scripts:}
 	\begin{itemize}
 		\item Run your \textbf{REST API} locally.

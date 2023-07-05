@@ -33,7 +33,7 @@ What is the purpose of each command?
 - `npm install express`: Installs the **Express** module.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
-In the `package.json` file, add the following line to the `scripts` block.
+In the `package.json` file, add the following line to the `scripts` block
 
 ```json
 "dev": "nodemon index.js"
@@ -208,4 +208,12 @@ As we work through the examples, we will add more requests to the collection. La
 ## Formative Assessment
 
 1. Implement the above.
+
+2. 2. To get use to creating **controllers** and **routes**, create three **GET** 
+3. 
+4. three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+
+## Research Assessment
+
+1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 

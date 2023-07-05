@@ -359,10 +359,24 @@ This is an example of a `DELETE` by id request.
 
 1. Implement the above.
 
-2. To get use to creating **models**, **controllers** and **routes**, create three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
 
 ## Research Assessment
 
 1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 
 
-2. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
+2. You will notice that your `.env` file is being ignored by **Git**. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables. 
+   
+For example, your `.env.example` file should contain the following.
+
+```bash
+DATABASE_URL=
+```
+
+Your `.env` file should contain the following.
+
+```bash
+DATABASE_URL="<Render PostgreSQL external database URL>"
+```
+
+Why is this important? If you are working in a team, you can share the `.env.example` file with your team members. They can then create their own `.env` file based on the `.env.example` file. This will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password. 
