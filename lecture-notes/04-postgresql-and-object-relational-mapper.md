@@ -361,6 +361,8 @@ This is an example of a `DELETE` by id request.
 
 2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
 
+3. Document and test the **API** in **Postman**.
+
 ## Research Assessment
 
 1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 

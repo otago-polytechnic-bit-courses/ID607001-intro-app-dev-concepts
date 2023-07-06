@@ -209,9 +209,13 @@ As we work through the examples, we will add more requests to the collection. La
 
 1. Implement the above.
 
-2. 2. To get use to creating **controllers** and **routes**, create three **GET** 
-3. 
-4. three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+2. To get use to creating **controllers** and **routes**, create three **GET** routes for the following.
+
+- `http://localhost:3000/about`. Return your learner id, first name, last name and one thing you enjoy about IT.
+- `http://localhost:3000/contact`. Return your learner email address.
+- `http://localhost:3000/courses`. Return a list of courses you are enrolled in this semester.
+
+3. Document and test the **API** in **Postman**.
 
 ## Research Assessment
 

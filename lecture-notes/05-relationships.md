@@ -163,7 +163,11 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
    - `createdAt`
    - `updatedAt`
 
-This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`. 
+This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`.
+
+5. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
+
+6. Document and test the **API** in **Postman**.
 
 ## Research Assessment
 
@@ -171,6 +175,4 @@ This model should have a relationship with the `Department` model. A `Department
 
 2. In **Prisma**, you can use **enums**. An **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a `role` field to the `User` model with the `@default(LEARNER)` directive. The `role` field should be of type `Role`. What happens when you try to create a user with a role that is not one of the constants defined in the **enum**?
 
-3. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
-
-4. Document and test the **API** in **Postman**.
+3. Document and test the **API** in **Postman**.
