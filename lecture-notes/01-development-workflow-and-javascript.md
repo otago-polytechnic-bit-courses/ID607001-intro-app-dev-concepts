@@ -8,7 +8,7 @@
 
 Think of **Git** as a tool that keeps a detailed history of every change you make to a file or a set of files. Instead of having just one copy of the project files, **Git** allows each person working on the project to have their own local copy, including the entire history of changes. It makes it easy to work independently and merge your changes with others' changes later.
 
-When you start using **Git**, you create a repository, which is like a directory that contains all the project files and their history. You can make changes to files in your local repository, such as adding new features, fixing bugs, or modifying existing code. **Git** then allows you to track and save these changes as commits.
+When you start using **Git**, you create a repository like a directory containing all the project files and their history. You can change files in your local repository, such as adding new features, fixing bugs, or modifying existing code. **Git** allows you to track and save these changes as commits.
 
 Commits are like snapshots of the project at a specific point in time. Each commit has a unique identifier, and it contains information about the changes you made, such as which files were modified and what lines of code were added or removed. **Git** keeps a chronological record of these commits, enabling you to access any previous version of the project easily.
 
@@ -19,7 +19,7 @@ Here are the assessment repositories that you will need to clone to your local m
 
 **Do this now!**
 
-Make sure you create a **Node.js** `.gitignore` file in both repositories. You can use the following template - <https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore>
+Create a **Node.js** `.gitignore` file in both repositories. You can use the following template - <https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore>
 
 Resource: https://education.github.com/git-cheat-sheet-education.pdf
 
@@ -204,7 +204,7 @@ const add = (num1, num2) => num1 + num2;
 console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
-const greet = (name) => "Hello, " + name + "!";
+const greet = (name) => "Hello, "+ name + "!";
 console.log(greet("John")); // Hello, John!
 ```
 
@@ -330,7 +330,7 @@ console.log(people[1].age); // 20
 
 ### Map, Filter and Reduce
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They are used to transform, filter and reduce **arrays**, respectively.
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
 
 What is **map**, **filter** and **reduce**?
 
@@ -541,7 +541,7 @@ console.log(multiplicationTable);
 // ]
 ```
 
-19. A cinema has `n` rows and `m' seats in each row. The seating arrangement is represented by a 2D array, where `0`indicates an empty seat and`1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
+19. A cinema has `n` rows and `m' seats in each row. The seating arrangement is represented by a 2D array, where `0'indicates an empty seat and'1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
 
 ```javascript
 // A 2D array of numbers

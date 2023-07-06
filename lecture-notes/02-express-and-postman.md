@@ -1,12 +1,12 @@
 # 02: Express and Postman
 
-### Application Programming Interface (API)
+## Application Programming Interface (API)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.
 
 What is meant by rules and protocols?
 
-- Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. It is the protocol that is used to send and receive data between different software applications.
+- Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. The protocol is used to send and receive data between different software applications.
 - Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the **GET** method is used to retrieve data.
 - Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.  
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
@@ -51,7 +51,7 @@ What is the purpose of the `type` property? Used to enable **ES6** module syntax
 
 ---
 
-In the root directory, create a file named `index.js` and add the following code.
+Create a file named `index.js` in the root directory and add the following code.
 
 ```javascript
 // Import the Express module
@@ -145,7 +145,7 @@ app.listen(3000, () => {
   console.log('Server is listening on port 3000.');
 });
 
-// Export the Express application. May be used by other modules. For example, API testing
+// Export the Express application. Other modules may use it. For example, API testing
 export default app;
 ```
 
@@ -165,7 +165,7 @@ Your file structure should look something like this.
 
 Why have we separated the **routes** and **controllers**? 
 
-It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application, and that responsibility should be entirely encapsulated by the class, module, or function. All its services should be narrowly aligned with that responsibility.
+It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
 
 ## Postman
 
@@ -175,7 +175,7 @@ It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** state
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
-Open **Postman**. Click on the **Workspaces** tab then click on the **Create Workspace** button.
+Open **Postman**. Click on the **Workspaces** tab and the **Create Workspace** button.
 
 ![](<../resources (ignore)/img/02/postman-1.PNG>)
 
@@ -203,7 +203,7 @@ Hello, World!
 
 ![](<../resources (ignore)/img/02/postman-6.PNG>)
 
-As we work through the examples, we will add more requests to the collection. Later we will use the collection to create documentation for our **REST API**.
+We will add more requests to the collection as we work through the examples. Later we will use the collection to create documentation for our **REST API**.
 
 ## Formative Assessment
 
@@ -220,4 +220,3 @@ As we work through the examples, we will add more requests to the collection. La
 ## Research Assessment
 
 1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
-

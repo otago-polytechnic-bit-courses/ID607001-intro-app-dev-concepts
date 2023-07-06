@@ -61,7 +61,7 @@ const createInstitution = async (req, res) => {
 
 ## Postman Documentation
 
-As you have progressed through the course, you have been using **Postman** to test and document your API. **Postman** has a feature that allows you to generate documentation for your API.
+As you have progressed through the course, you have used **Postman** to test and document your API. **Postman** has a feature allowing you to generate API documentation.
 
 ### Getting Started
 
@@ -69,7 +69,7 @@ You can save your response as an example.
 
 ![](<../resources (ignore)/img/07/postman-1.PNG>)
 
-When you save your response as an example, you will see the following.
+You will see the following when you save your response as an example.
 
 ![](<../resources (ignore)/img/07/postman-2.PNG>)
 
@@ -92,6 +92,3 @@ Click on the **URL for published documentation** link.
 You have successfully published your documentation.
 
 ![](<../resources (ignore)/img/07/postman-7.PNG>)
-
-
-

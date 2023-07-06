@@ -58,7 +58,7 @@ npx prisma db seed
 
 ## Automated Testing
 
-**Automated testing** is a process that validates if software is functioning appropriately and meeting requirements before it is released into production. It is performed by software tools, scripts, and other resources, rather than by human testers.
+**Automated testing** is a process that validates if the software is functioning appropriately and meeting requirements before it is released into production. It is performed by software tools, scripts, and other resources rather than manual testing.
 
 ### Why Automated Testing?
 
@@ -70,7 +70,7 @@ There are various types of **automated testing**. We will focus on **API testing
 
 ### Getting Started
 
-We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **JavaScript** test framework which will execute our tests. **Chai** is an assertion library which allows us to verify the functionality of our code.
+We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **JavaScript** test framework that will execute our tests. **Chai** is an assertion library that allows us to verify the functionality of our code.
 
 To install **Mocha** and **Chai**, run the following command in your terminal.
 
@@ -90,7 +90,7 @@ What is the purpose of the `test` script? Used to run tests.
 
 ---
 
-In the root directory, create a new directory called `test`. In the `test` directory, create a new file called `institution.test.js`. Add the following code.
+In the root directory, create a new directory called `test`. Create a new file called `institution.test.js` in the' test' directory. Add the following code.
 
 ```javascript
 import chai from "chai";
