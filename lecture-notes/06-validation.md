@@ -14,7 +14,7 @@ Install the `joi` package.
 npm install joi
 ```
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `validation.js`. Add the following code.
+In the root directory, create a new directory called `middleware`. Create a new file called `validation.js` in the' middleware' directory. Add the following code.
 
 ```javascript
 import Joi from "joi";
@@ -60,7 +60,7 @@ export { validateInstitution };
 
 Let us discuss the code above.
 
-What is `next`? `next` is a function that is used to pass control to the next middleware function. If `next` is not called, the request will be left hanging.
+What is `next`? `next` is a function that is used to pass control to the next middleware function. The request will be left hanging if `next` is not called.
 
 What is `institutionSchema`? `institutionSchema` is an object that contains the validation rules for `req.body`.
 
@@ -94,6 +94,6 @@ This is an example of a `POST` request where the `name` field is empty.
 
 ## Formative Assessment
 
-1. Create validation rules for each of the fields in the `Department`, `Course`, and `User` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. You should not have to repeat the same code over and over again. You should be able to reuse the code.
+1. Create validation rules for each field in the `Department`, `Course`, and `User` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. It would be best if you did not have to repeat the same code repeatedly. You should be able to reuse the code.
 
 2. Document and test the **API** in **Postman**.

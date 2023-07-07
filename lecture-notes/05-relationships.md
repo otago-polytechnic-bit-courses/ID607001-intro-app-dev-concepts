@@ -2,13 +2,13 @@
 
 In **Prisma**, we can define different types of relationships between models. Here are three types you will encounter most often.
 
-- **One-to-one:** A single instance of a model is associated with a single instance of another model.
-- **One-to-many:** A single instance of a model is associated with multiple instances of another model.
+- **One-to-one:** A single model instance is associated with a single instance of another model.
+- **One-to-many:** A single model instance is associated with multiple instances of another model.
 - **Many-to-many:** Multiple instances of a model are associated with multiple instances of another model.
 
 ## Getting Started
 
-We are create a relationship between the `Institution` and `Department` models. An `Institution` can have multiple `Department`s. A `Department` can only belong to one `Institution`.
+We are creating a relationship between the `Institution` and `Department` models. An `Institution` can have multiple `Department`s. A `Department` can only belong to one `Institution`.
 
 ---
 
@@ -41,11 +41,11 @@ model Institution {
 }
 ```
 
-**Note:** Make sure you create a migration and update the database.
+**Note:** Create a migration and update the database.
 
 ---
 
-In the `controllers` directory, create a new file called `departments.js`. Add the following code.
+Create a new file called `departments.js` in the' controllers' directory. Add the following code.
 
 ```js
 // Note: Some code has been omitted for brevity
@@ -163,14 +163,16 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
    - `createdAt`
    - `updatedAt`
 
-This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`. 
+This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`.
+
+5. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
+
+6. Document and test the **API** in **Postman**.
 
 ## Research Assessment
 
-1. **Prisma** has limited schema validation. One useful validation technique is to use the `@unique` directive. Add the `@unique` directive to the `emailAddress` field in the `User` model. What happens when you try to create a user with an email address that already exists in the database? Also, add the `@unique` directive to the `code` and `name` fields in the `Course` model.
+1. **Prisma** has limited schema validation. One useful validation technique is to use the `@unique` directive. Add the `@unique` directive to the `emailAddress` field in the `User` model. What happens when you try to create a user with an existing email address in the database? Also, add the `@unique` directive to the `code` and `name` fields in the `Course` model.
 
 2. In **Prisma**, you can use **enums**. An **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a `role` field to the `User` model with the `@default(LEARNER)` directive. The `role` field should be of type `Role`. What happens when you try to create a user with a role that is not one of the constants defined in the **enum**?
 
-3. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
-
-4. Document and test the **API** in **Postman**.
+3. Document and test the **API** in **Postman**.

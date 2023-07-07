@@ -6,7 +6,7 @@
 
 ### Getting Started
 
-Click on the **New +** button then click on the **PostgreSQL** link.
+Click the **New +** button, then click the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/04/render-1.PNG>)
 
@@ -18,7 +18,7 @@ Leave the **Instance Type** as **Free**. Click on the **Create Database** button
 
 ![](<../resources (ignore)/img/04/render-3.PNG>)
 
-Click on the **Connect** button, then click on the **External Connection** tab. Copy the **External Database URL**.
+Click on the **Connect** button and the **External Connection** tab. Copy the **External Database URL**.
 
 ![](<../resources (ignore)/img/04/render-4.PNG>)
 
@@ -50,7 +50,7 @@ What is the purpose of the `prisma` directory? Used to store **Prisma** configur
 
 ---
 
-In the `schema.prisma` file, you will see the following code.
+You will see the following code in the `schema.prisma` file.
 
 ```javascript
 generator client {
@@ -106,11 +106,11 @@ To create and apply a migration, run the following command.
 npx prisma migrate dev
 ```
 
-You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. You will find the new migration in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
+You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
 
 What is a migration? A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
 
-**Note:** If you want to reset the database, run the following command.
+**Note:** To reset the database, run the following command.
 
 ```bash
 npx prisma migrate reset
@@ -120,7 +120,7 @@ npx prisma migrate reset
 
 ---
 
-In the `controllers` directory, create a new file called `institution.js`. Add the following code.
+Create a new file called `institution.js` in the' controllers' directory. Add the following code.
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
@@ -272,14 +272,14 @@ export {
 
 Let us briefly discuss...
 
-- What is `try` and `catch`? `try` and `catch` are used to handle errors. The code in the `try` block will be executed. If an error occurs, the code in the `catch` block will be executed.
+- What are `try` and `catch`? `try` and `catch` are used to handle errors. The code in the `try` block will be executed. If an error occurs, the code in the `catch` block will be executed.
 - What is `async` and `await`? `async` and `await` are used to handle asynchronous operations. `async` is used to declare an asynchronous function. `await` is used to wait for the asynchronous operation to complete.
 - What is `res.json`? `res.json` is used to send a JSON response.
 - What is `res.status`? `res.status` is used to set the HTTP status code. For example, 200, 201, 404, 500, etc.
 
 ---
 
-In the `routes` directory, create a new file called `institution.js`. Add the following code.
+Create a new file called `institution.js` in the' routes' directory. Add the following code.
 
 ```javascript
 import express from "express";
@@ -303,7 +303,7 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-What is `:id`? `:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is `http://localhost:3000/api/institutions/1`, the value of `:id` will be `1`.
+What is `:id`? `:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is `http://localhost:3000/api/institutions/1`, the `:id` value will be `1`.
 
 ---
 
@@ -323,13 +323,13 @@ app.use(json()); // To parse the incoming requests with JSON payloads. For examp
 app.use("/api/institutions", institutionRoutes);
 ```
 
-**Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralized. For example, `/api/institutions` instead of `/api/institution`.
+**Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
 
 ## Document and Test the API
 
 Let us test the API using **Postman**.
 
-To add a new request, click on the horizontal ellipsis and select `Add request`.
+To add a new request, click the horizontal ellipsis and select `Add request`.
 
 ![](<../resources (ignore)/img/04/postman-1.PNG>)
 
@@ -345,7 +345,7 @@ This is an example of a `GET` by id request.
 
 ![](<../resources (ignore)/img/04/postman-4.PNG>)
 
-This is an example of a `PUT` by id request. **Note:** You do not need to provide all the fields. You can provide only the fields that you want to update.
+This is an example of a `PUT` by id request. **Note:** You only need to provide some of the fields. You can provide only the fields that you want to update.
 
 ![](<../resources (ignore)/img/04/postman-5.PNG>)
 
@@ -359,13 +359,15 @@ This is an example of a `DELETE` by id request.
 
 1. Implement the above.
 
-2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model, nor do they have to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+
+3. Document and test the **API** in **Postman**.
 
 ## Research Assessment
 
-1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 
+1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 
 
-2. You will notice that your `.env` file is being ignored by **Git**. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables. 
+2. You will notice that **Git ** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables. 
    
 For example, your `.env.example` file should contain the following.
 
@@ -379,4 +381,4 @@ Your `.env` file should contain the following.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-Why is this important? If you are working in a team, you can share the `.env.example` file with your team members. They can then create their own `.env` file based on the `.env.example` file. This will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password. 
+Why is this important? You can share the `.env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password. 
