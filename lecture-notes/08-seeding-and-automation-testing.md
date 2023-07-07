@@ -114,6 +114,8 @@ describe("Institutions", () => {
       .post("/api/institutions")
       .send(institution)
       .end((req, res) => {
+        console.log(res) // This is useful for debugging
+
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -128,6 +130,8 @@ describe("Institutions", () => {
       .request(app)
       .get("/api/institutions")
       .end((req, res) => {
+        console.log(res) // This is useful for debugging
+
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
@@ -140,6 +144,8 @@ describe("Institutions", () => {
       .request(app)
       .get("/api/institutions/1")
       .end((req, res) => {
+        console.log(res) // This is useful for debugging
+
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
@@ -153,6 +159,8 @@ describe("Institutions", () => {
       .put("/api/institutions/1")
       .send(institution)
       .end((req, res) => {
+        console.log(res) // This is useful for debugging
+
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -167,6 +175,8 @@ describe("Institutions", () => {
       .request(app)
       .delete("/api/institutions/1")
       .end((req, res) => {
+        console.log(res) // This is useful for debugging
+
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -177,6 +187,34 @@ describe("Institutions", () => {
   });
 });
 ```
+
+Run the following command in your terminal.
+
+```bash
+npm test
+```
+
+or 
+
+```bash
+npm run test
+```
+
+You should see the following output.
+
+```bash
+Institutions
+  ✔ should create institution (milliseconds)
+  ✔ should get all institutions (milliseconds)
+  ✔ should get institution by id (milliseconds)
+  ✔ should update institution by id (milliseconds)
+  ✔ should delete institution by id (milliseconds)
+
+
+5 passing (milliseconds)
+```
+
+You want to see those **green checkmarks**. If you see any red crosses, then you have a problem with your code.
 
 ## Formative Assessment
 
