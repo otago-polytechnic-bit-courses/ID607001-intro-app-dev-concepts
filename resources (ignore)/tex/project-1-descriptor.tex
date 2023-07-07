@@ -35,7 +35,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js} and deploy it as a \textbf{web service} on \textbf{Render}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, validation, etc. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Node.js} and deploy it as a \textbf{web service} on \textbf{Render}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, validation, etc Also, there will be an element of independent research and implementation. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -54,7 +54,7 @@ At the successful completion of this course, learners will be able to:
 \end{tabular}
 
 \section*{Conditions of Assessment}
-You will complete this assessment during your learner-managed time. However, there will be time to discuss the requirements and your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Monday, 11 September 2023 at 4.59 PM}.
+You will complete majority of this assessment during your learner-managed time. However, there will be time to discuss the requirements and your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Monday, 11 September 2023 at 4.59 PM}.
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
@@ -63,9 +63,9 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of \te
 You must submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wJ4pC7Y7}{https://classroom.github.com/a/wJ4pC7Y7}. Create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
 \section*{Authenticity}
-All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using a \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
+All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using an \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
  
- However, if you get stuck, you can use a \textbf{AI generative tool} to help you get unstuck, permitting you acknowledge that you have used \textbf{AI generative tool}. In the assessment's repository \textbf{README.md} file, please include what prompt(s) you provided to the \textbf{AI generative tool} and how you used the response(s) to help you with your work. It also applies to code snippets retrieved from \textbf{StackOverflow} and \textbf{GitHub}. \\
+ However, if you get stuck, you can use an \textbf{AI generative tool} to help you get unstuck, permitting you acknowledge that you have used it. In the assessment's repository \textbf{README.md} file, please include what prompt(s) you provided to the \textbf{AI generative tool} and how you used the response(s) to help you with your work. It also applies to code snippets retrieved from \textbf{StackOverflow} and \textbf{GitHub}. \\
  
  Failure to do this may result in a mark of \textbf{zero} for this assessment.
 
@@ -84,21 +84,21 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{REST API} and documentation that meet the following requirements: 
+You will need to submit a \textbf{REST API} and \textbf{documentation} that meet the following requirements: 
 
 \subsection*{Functionality - Learning Outcome 1 (50\%)}
 \begin{itemize} 
 	\item \textbf{REST API:}
 	\begin{itemize}
 		\item Developed using \textbf{Node.js}.
-		\item Can run locally without modification.
+		\item Can run locally and in production without modification.
 		\item A \textbf{maximum} of \textbf{eight} \textbf{models}. Each containing a \textbf{minimum} of \textbf{four} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
 		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
 		\item A minimum of \textbf{five relationships} between \textbf{models}.
 		\item At least \textbf{one} \textbf{model} must have an \textbf{enum} \textbf{field}. 
 		\item A \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file must contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
-		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}.
-		\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} must display all existing \textbf{routes}.
+		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}, and \textbf{200} or \textbf{404}.
+		\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} must display all existing \textbf{routes}. \textbf{Note:} This can be hardcoded.
 		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
 		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
 		\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
