@@ -525,7 +525,7 @@ console.log(max);
 // 9
 ```
 
-18. Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i' and `j`.
+18. Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i` and `j`.
 
 ```javascript
 const multiplicationTable = generateMultiplicationTable(5);
