@@ -541,7 +541,7 @@ console.log(multiplicationTable);
 // ]
 ```
 
-19. A cinema has `n` rows and `m' seats in each row. The seating arrangement is represented by a 2D array, where `0'indicates an empty seat and'1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
+19. A cinema has `n` rows and `m` seats in each row. The seating arrangement is represented by a 2D array, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
 
 ```javascript
 // A 2D array of numbers
