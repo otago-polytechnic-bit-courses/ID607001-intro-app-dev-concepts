@@ -33,8 +33,8 @@ We are going to use **Prisma** as our **ORM**. **Prisma** is an open-source **OR
 To get started, run the following command to install **Prisma**.
 
 ```bash
-npm install @prisma/client
-npm install prisma --save-dev
+npm install @prisma/client@4.16.2
+npm install prisma@4.16.2 --save-dev
 npx prisma init
 ```
 
