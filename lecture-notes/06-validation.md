@@ -55,7 +55,7 @@ const validatePostInstitution = (req, res, next) => {
   next();
 };
 
-export { validateInstitution };
+export { validatePostInstitution };
 ```
 
 Let us discuss the code above.
@@ -75,7 +75,7 @@ In the `routes` directory, update the `institutions.js` file to include the foll
 ```javascript
 ...
 
-import { validatePostInstitution } from "../middlewares/validation.js";
+import { validatePostInstitution } from "../middleware/validation.js";
 
 ...
 
