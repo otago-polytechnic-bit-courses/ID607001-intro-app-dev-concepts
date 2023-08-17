@@ -307,7 +307,7 @@ What is `:id`? `:id` is a route parameter. It is used to retrieve the id from th
 
 ---
 
-In the `index.js` file, add the following code.
+In the main `index.js` file (in the root directory), add the following code.
 
 ```javascript
 // This should be declared under import indexRoutes from "./routes/index.js";
