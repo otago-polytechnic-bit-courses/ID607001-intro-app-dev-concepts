@@ -13,7 +13,7 @@ At the top of each file, add the following code.
 ```javascript
 /**
  * @file <the purpose of the file>
- * @author <the of the author>
+ * @author <the name of the author>
  */
 ```
 
