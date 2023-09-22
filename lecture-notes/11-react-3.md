@@ -232,6 +232,48 @@ After you done this, you should see the following if you are on `/institutions`:
 
 **Resource:** <https://reactrouter.com/web/guides/quick-start>
 
+## CORS
+
+Watch this video before you proceed - [https://www.youtube.com/watch?v=4KHiSt0oLJ0&pp=ygUQY29ycyBpbiAxMDAgc2Vjcw%3D%3D](https://youtu.be/4KHiSt0oLJ0?si=z050NODp37BhzLL7)
+
+CORS stands for **Cross-Origin Resource Sharing**. It is a mechanism that uses additional **HTTP headers** to tell a browser to let a web application running at one origin (domain) have permission to access selected resources from a server at a different origin.
+
+A web application executes a cross-origin HTTP request when it requests a resource that has a different origin (domain, protocol, or port) from its own. For example, an application served from `http://domain-a.com` that loads the resource `http://domain-b.com/image.jpg` is executing a cross-origin HTTP request. 
+
+For security reasons, browsers restrict cross-origin HTTP requests initiated from scripts. For example, `XMLHttpRequest` and the **Fetch API** follow the same-origin policy. This means that a web application using those APIs can only request resources from the same origin the application was loaded from unless the response from other origins includes the right CORS headers. 
+
+This prevents a malicious script on one page from obtaining sensitive data from another page. 
+
+### Node.js REST API
+
+Go back to your **Node.js REST API**. 
+
+To get started, run the following command:
+
+```bash
+npm install cors
+```
+
+Check the `package.json` file to ensure you have installed `cors`.
+
+In the `app.js` file, import `cors`. For example:
+
+```js
+import cors from "cors"; 
+```
+
+Then add the following **middleware**:
+
+```js
+app.use(cors()); 
+```
+
+**MAKE SURE YOU PUSH YOUR CODE TO GITHUB AND SUBSEQUENLTY RENDER!**
+
+**Resources:**
+
+- <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
+- <https://www.npmjs.com/package/cors>
 
 ### Fetching Institutions data
 
