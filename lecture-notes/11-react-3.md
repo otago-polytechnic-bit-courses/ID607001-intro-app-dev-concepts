@@ -274,6 +274,8 @@ app.use(cors());
 
 - <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
 - <https://www.npmjs.com/package/cors>
+  
+---
 
 ### Fetching Institutions data
 
