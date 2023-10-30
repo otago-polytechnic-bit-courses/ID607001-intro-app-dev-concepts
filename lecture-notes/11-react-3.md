@@ -306,7 +306,7 @@ const InstitutionsTable = () => {
   const displayInstitutionsData = (
     data.map((d) => {
       return (
-        <tr key={d._id}>
+        <tr key={d.id}>
           <td>{d.name}</td>
           <td>{d.region}</td>
           <td>{d.country}</td>
