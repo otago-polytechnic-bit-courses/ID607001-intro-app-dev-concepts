@@ -20,7 +20,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project 1: Node.js REST API\\Version 4, Semester Two, 2023}
+\lfoot{Project\\Version 5, Semester One, 2024}
 \rfoot{\thepage}  
  
 \begin{document}
@@ -30,12 +30,12 @@
 	\includegraphics[width=50mm]{../img/logo.png}
 \end{figure}
 
-\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\ID607001: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Project 1: Node.js REST API}}
+\title{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology\\ID607001: Introductory Application Development Concepts\\Level 6, Credits 15\\\textbf{Project}}
 \date{}
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. The main purpose of this assessment is to demonstrate your ability to develop a \textbf{REST API} using taught concepts such as queries, relationships, validation, etc Also, there will be an element of independent research and implementation. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. You will choose the theme of your \textbf{REST API}. It could be on sport, culture, food or something else you are interested in. Your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. Also, you will develop a \textbf{React application}. This application will consume the \textbf{REST API} mentioned above. The main purpose of this assessment is not just to build a \textbf{full-stack application}, rather to demonstrate an ability to decouple your \textbf{REST API} from your \textbf{React CRUD application}. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -48,11 +48,9 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|c|c|c|c|}
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
-	\small Practical: Node.js REST API Testing & \small 20\%        & \small 08-10-2023 (Sunday at 04.59 PM)   & \small 1                   \\ \hline
-	\small Project 1: Node.js REST API                  & \small 40\%        & \small 15-09-2023 (Friday at 04.59 PM) \small  & \small 1                   \\ \hline
-	\small Project 2: React CRUD                        & \small 40\%        & \small 10-11-2023 (Friday at 04.59 PM)  & \small 1                   \\ \hline
+	\small Practical & \small 20\%        & \small 08-10-2023 (Sunday at 04.59 PM)   & \small 1                   \\ \hline
+	\small Project                 & \small 80\%        & \small 15-09-2023 (Friday at 04.59 PM) \small  & \small 1                   \\ \hline
 \end{tabular}
-
 
 \section*{Conditions of Assessment}
 You will complete majority of this assessment during your learner-managed time. However, there will be time to discuss the requirements and your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Friday, 15 September 2023 at 4.59 PM}.
@@ -85,36 +83,45 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{REST API} and \textbf{documentation} that meet the following requirements: 
+You will need to submit a \textbf{full-stack application} and \textbf{documentation} that meet the following requirements: 
 
-\subsection*{Functionality - Learning Outcome 1 (50\%)}
+\subsection*{Functionality - Learning Outcome 1 (65\%)}
 \begin{itemize} 
-	\item \textbf{REST API:}
+	\item \textbf{REST API (30\%):}
 	\begin{itemize}
 		\item Developed using \textbf{Node.js}.
 		\item Can run locally and in production without modification.
-		\item A \textbf{maximum} of \textbf{eight} \textbf{models}. Each containing a \textbf{minimum} of \textbf{four} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
-		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
-		\item A minimum of \textbf{five relationships} between \textbf{models}.
-		\item At least \textbf{one} \textbf{model} has an \textbf{enum} \textbf{field}. 
+		\item \textbf{Seven} \textbf{models}. Each containing a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
+		\item \textbf{Five relationships} between \textbf{models}.
+		\item \textbf{One} \textbf{model} has an \textbf{enum} \textbf{field}. 
 		\item A \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
 		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}, and \textbf{200} or \textbf{404}.
+		\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
+		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
 		\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} needs to display all existing \textbf{routes}. \textbf{Note:} This can be hardcoded.
+		\item Return an appropriate message if an endpoint does not exist.
 		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
 		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
 		\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
-		\item \textbf{Independent Research Tasks:} 
-		\begin{itemize}
-			\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
-			\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
-			\item Return an appropriate message if an endpoint does not exist.
-			\item Limit the number of \textbf{API requests} per minute to 100. You need to display the following message if the user exceeds the 100 \textbf{API requests} per minute - \textbf{"You have exceeded the number of requests per minute: 100. Please try again later."}
 		\end{itemize}
 	\end{itemize}
 
-	\item \textbf{Scripts:}
+	\item \textbf{React CRUD Application (30\%):}
+		\begin{itemize}
+		\item Request \textbf{REST API} data from \textbf{seven} \textbf{API} resource groups using \textbf{Axios} and implement the following \textbf{CRUD} functionality:
+		\begin{itemize}
+			\item Create new data via a form. 
+			\item View data in a table.
+			\item Update data via a form. 
+			\item Delete  data via a button. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+			\item Incorrectly formatted form field values handled gracefully using validation error messages.
+		\end{itemize}
+		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Reactstrap}.	
+	\end{itemize}
+
+	\item \textbf{Scripts (5\%):}
 	\begin{itemize}
-		\item Run your \textbf{REST API} locally.
+		\item Run your \textbf{REST API} and \textbf{React Application} locally.
 		\item Create and apply a migration using \textbf{Prisma}.
 		\item Reset your database using \textbf{Prisma}.
 		\item Open \textbf{Prisma Studio}. 
@@ -122,22 +129,19 @@ You will need to submit a \textbf{REST API} and \textbf{documentation} that meet
 	\end{itemize}
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (40\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (25\%)}
 \begin{itemize}
 	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{env.example} file. 
-  \item Appropriate naming of files, variables, functions and resource groups.
-  \begin{itemize}
-	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
-  \end{itemize}
+	\item Appropriate naming of files, variables, functions, resource groups and components.
 	\item Idiomatic use of control flow, data structures and in-built functions.
-  \item Efficient algorithmic approach.
-  \item Sufficient modularity.
-  \item Each \textbf{controller} and \textbf{route} file has a \textbf{JSDoc} header comment located at the top of the file.
-\item In-line comments where required. It should be for code that needs further explanation.
-  \item Code is formatted using \textbf{Prettier}.
-  \item \textbf{Prettier} is installed as a \textbf{development dependency}.	
-\item No dead or unused code. 
+	\item Efficient algorithmic approach.
+	\item Sufficient modularity.
+	\item Each \textbf{controller}, \textbf{route} and \textbf{component} file has a \textbf{JSDoc} header comment located at the top of the file.
+	\item In-line comments where required. It should be for code that needs further explanation.
+	\item Code is formatted using \textbf{Prettier}.
+	\item \textbf{Prettier} is installed as a \textbf{development dependency}.	
+	\item No dead or unused code. 
 \end{itemize}
 
 \subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
@@ -148,12 +152,12 @@ You will need to submit a \textbf{REST API} and \textbf{documentation} that meet
 		\item A URL to your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
 		\item A URL to your published \textbf{REST API} documentation. 
 		\item An Entity Relationship Diagram (ERD) of your database.
-      \item How do you setup the environment, i.e., after the repository is cloned?
-	  \item How do you run your \textbf{REST API} locally?
-	  \item How do you create and apply a migration?  
-	  \item How do you reset your database?
-	  \item How do you open \textbf{Prisma Studio}?
-	  \item How do you format your code?
+		\item How do you setup the environment, i.e., after the repository is cloned?
+		\item How do you run your \textbf{REST API} and \textbf{React Application} locally?
+		\item How do you create and apply a migration?  
+		\item How do you reset your database?
+		\item How do you open \textbf{Prisma Studio}?
+	  	\item How do you format your code?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
     \item Correct spelling and grammar.
