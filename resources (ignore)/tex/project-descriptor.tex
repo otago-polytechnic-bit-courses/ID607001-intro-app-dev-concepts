@@ -20,7 +20,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project\\Version 5, Semester One, 2024}
+\lfoot{Project\\Version 5, Semester Two, 2023}
 \rfoot{\thepage}  
  
 \begin{document}
@@ -48,12 +48,12 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|c|c|c|c|}
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
-	\small Practical & \small 20\%        & \small 08-10-2023 (Sunday at 04.59 PM)   & \small 1                   \\ \hline
-	\small Project                 & \small 80\%        & \small 15-09-2023 (Friday at 04.59 PM) \small  & \small 1                   \\ \hline
+	\small Practical & \small 20\%        & \small 06-10-2023 (Friday at 04.59 PM)   & \small 1                   \\ \hline
+	\small Project                 & \small 80\%        & \small Various \small  & \small 1                   \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
-You will complete majority of this assessment during your learner-managed time. However, there will be time to discuss the requirements and your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Friday, 15 September 2023 at 8.59 AM}.
+You will complete majority of this assessment during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. Part 1 will need to be completed by \textbf{Friday, 15 September 2023 at 4.59 PM} and Part 2 will need to be completed by \textbf{Friday, 10 November 2023 at 4.59 PM}.
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
@@ -83,45 +83,37 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \newpage
 
 \section*{Instructions}
-You will need to submit a \textbf{full-stack application} and \textbf{documentation} that meet the following requirements: 
 
-\subsection*{Functionality - Learning Outcome 1 (65\%)}
+\section*{Part 1 (40\%)}
+
+\subsection*{Functionality - Learning Outcome 1 (50\%)}
 \begin{itemize} 
-	\item \textbf{REST API (30\%):}
+	\item \textbf{REST API:}
 	\begin{itemize}
 		\item Developed using \textbf{Node.js}.
 		\item Can run locally and in production without modification.
-		\item \textbf{Seven} \textbf{models}. Each containing a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
-		\item \textbf{Five relationships} between \textbf{models}.
-		\item \textbf{One} \textbf{model} has an \textbf{enum} \textbf{field}. 
+		\item A \textbf{maximum} of \textbf{eight} \textbf{models}. Each containing a \textbf{minimum} of \textbf{four} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
+		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
+		\item A minimum of \textbf{five relationships} between \textbf{models}.
+		\item At least \textbf{one} \textbf{model} has an \textbf{enum} \textbf{field}. 
 		\item A \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
 		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}, and \textbf{200} or \textbf{404}.
-		\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
-		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
 		\item The \textbf{index route}, i.e., \textbf{https://localhost:3000/api/} needs to display all existing \textbf{routes}. \textbf{Note:} This can be hardcoded.
-		\item Return an appropriate message if an endpoint does not exist.
 		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
 		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
 		\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
+		\item \textbf{Independent Research Tasks:} 
+		\begin{itemize}
+			\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
+			\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
+			\item Return an appropriate message if an endpoint does not exist.
+			\item Limit the number of \textbf{API requests} per minute to 100. You need to display the following message if the user exceeds the 100 \textbf{API requests} per minute - \textbf{"You have exceeded the number of requests per minute: 100. Please try again later."}
 		\end{itemize}
 	\end{itemize}
 
-	\item \textbf{React CRUD Application (30\%):}
-		\begin{itemize}
-		\item Request \textbf{REST API} data from \textbf{seven} \textbf{API} resource groups using \textbf{Axios} and implement the following \textbf{CRUD} functionality:
-		\begin{itemize}
-			\item Create new data via a form. 
-			\item View data in a table.
-			\item Update data via a form. 
-			\item Delete  data via a button. Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
-			\item Incorrectly formatted form field values handled gracefully using validation error messages.
-		\end{itemize}
-		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Reactstrap}.	
-	\end{itemize}
-
-	\item \textbf{Scripts (5\%):}
+	\item \textbf{Scripts:}
 	\begin{itemize}
-		\item Run your \textbf{REST API} and \textbf{React Application} locally.
+		\item Run your \textbf{REST API} locally.
 		\item Create and apply a migration using \textbf{Prisma}.
 		\item Reset your database using \textbf{Prisma}.
 		\item Open \textbf{Prisma Studio}. 
@@ -129,19 +121,22 @@ You will need to submit a \textbf{full-stack application} and \textbf{documentat
 	\end{itemize}
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (25\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (40\%)}
 \begin{itemize}
 	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{env.example} file. 
-	\item Appropriate naming of files, variables, functions, resource groups and components.
+  \item Appropriate naming of files, variables, functions and resource groups.
+  \begin{itemize}
+	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
+  \end{itemize}
 	\item Idiomatic use of control flow, data structures and in-built functions.
-	\item Efficient algorithmic approach.
-	\item Sufficient modularity.
-	\item Each \textbf{controller}, \textbf{route} and \textbf{component} file has a \textbf{JSDoc} header comment located at the top of the file.
-	\item In-line comments where required. It should be for code that needs further explanation.
-	\item Code is formatted using \textbf{Prettier}.
-	\item \textbf{Prettier} is installed as a \textbf{development dependency}.	
-	\item No dead or unused code. 
+  \item Efficient algorithmic approach.
+  \item Sufficient modularity.
+  \item Each \textbf{controller} and \textbf{route} file has a \textbf{JSDoc} header comment located at the top of the file.
+\item In-line comments where required. It should be for code that needs further explanation.
+  \item Code is formatted using \textbf{Prettier}.
+  \item \textbf{Prettier} is installed as a \textbf{development dependency}.	
+\item No dead or unused code. 
 \end{itemize}
 
 \subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
@@ -152,12 +147,65 @@ You will need to submit a \textbf{full-stack application} and \textbf{documentat
 		\item A URL to your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
 		\item A URL to your published \textbf{REST API} documentation. 
 		\item An Entity Relationship Diagram (ERD) of your database.
-		\item How do you setup the environment, i.e., after the repository is cloned?
-		\item How do you run your \textbf{REST API} and \textbf{React Application} locally?
-		\item How do you create and apply a migration?  
-		\item How do you reset your database?
-		\item How do you open \textbf{Prisma Studio}?
-	  	\item How do you format your code?
+      \item How do you setup the environment, i.e., after the repository is cloned?
+	  \item How do you run your \textbf{REST API} locally?
+	  \item How do you create and apply a migration?  
+	  \item How do you reset your database?
+	  \item How do you open \textbf{Prisma Studio}?
+	  \item How do you format your code?
+    \end{itemize}
+    \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
+    \item Correct spelling and grammar.
+    \item Your \textbf{Git commit messages} should:
+    \begin{itemize}
+      \item Reflect the context of each functional requirement change.
+      \item Be formatted using an appropriate naming convention style.
+    \end{itemize}	
+\end{itemize}
+
+\section*{Part 2 (40\%)}
+
+\subsection*{Functionality - Learning Outcome 1 (50\%)}
+\begin{itemize}
+	\item \textbf{React Application:}
+		\begin{itemize}
+		\item Request \textbf{REST API} data from four \textbf{API} resource groups using \textbf{Axios}.
+		\item Create new \textbf{REST API} data via a button and form. 
+		\item View \textbf{REST API} data in a table.
+		\item Update \textbf{REST API} data via a button and form. 
+		\item Delete \textbf{REST API} data via a button.
+		Prompt the user for deletion. You \textbf{can} use the in-built \textbf{confirm() JavaScript} function. 
+		\item Incorrectly formatted form field values handled gracefully using validation error messages.
+		\item UI is visually attractive with a coherent graphical theme and style using \textbf{Reactstrap}.	
+	\end{itemize}
+	\item \textbf{Scripts:}
+	\begin{itemize}
+		\item Format your code using \textbf{Prettier}.
+	\end{itemize}
+\end{itemize}
+
+\subsection*{Code Elegance - Learning Outcome 1 (40\%)}
+\begin{itemize}
+	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
+  \item Appropriate naming of files, variables, functions and components.
+	\item Idiomatic use of control flow, data structures and in-built functions.
+  \item Efficient algorithmic approach.
+  \item Sufficient modularity.
+  \item Each \textbf{component} file has a \textbf{JSDoc} header comment located at the top of the file.
+\item In-line comments where required. It should be for code that needs further explanation.
+  \item Code is formatted using \textbf{Prettier}.
+  \item \textbf{Prettier} is installed as a \textbf{development dependency}.	
+\item No dead or unused code. 
+\end{itemize}
+
+\subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
+\begin{itemize}
+	\item A \textbf{GitHub} project board to help you organise and prioritise your work. 
+    \item Provide the following in your repository \textbf{README.md} file:
+    \begin{itemize} 
+      \item How do you setup the environment, i.e., after the repository is cloned?
+	  \item How do you run your application locally?
+      \item How do you format your code?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
     \item Correct spelling and grammar.
