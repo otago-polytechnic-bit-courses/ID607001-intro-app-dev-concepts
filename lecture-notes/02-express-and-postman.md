@@ -24,6 +24,7 @@ Open your **s1-24-playground** repository in **Visual Studio Code**. Open a term
 ```bash
 npm init -y
 npm install express
+npm install cors
 npm install nodemon --save-dev
 ```
 
@@ -31,6 +32,7 @@ What is the purpose of each command?
 
 - `npm init -y`: Initializes a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.
+- `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
 In the `package.json` file, add the following line to the `scripts` block
@@ -57,8 +59,14 @@ Create a file named `index.js` in the root directory and add the following code.
 // Import the Express module
 import express from 'express';
 
+// Import the CORS module
+import cors from 'cors';
+
 // Create an Express application
 const app = express();
+
+// Use the CORS module
+app.use(cors());
 
 // Create a GET route
 app.get('/', (req, res) => {
@@ -112,6 +120,8 @@ In the root directory, create a directory named `routes`. In the `routes` direct
 // Import the Express module
 import express from 'express';
 
+//
+
 // Import the index controllers module
 import { get } from "../controllers/index.js";
 
@@ -131,11 +141,17 @@ In the `index.js` file, update with the following code.
 // Import the Express module
 import express from 'express';
 
+// Import the CORS module
+import cors from 'cors';
+
 // Import the index routes module
 import indexRoutes from './routes/index.js';
 
 // Create an Express application
 const app = express();
+
+// Use the CORS module
+app.use(cors());
 
 // Use the routes module
 app.use('/', indexRoutes);

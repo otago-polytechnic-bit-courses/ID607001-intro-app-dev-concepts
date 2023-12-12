@@ -313,7 +313,7 @@ In the main `index.js` file (in the root directory), add the following code.
 // This should be declared under import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
-// This should be declared under const app = express();
+// This should be declared under app.use(cors());
 app.use(urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 
 // This should be declared under app.use(urlencoded({ extended: false }));
