@@ -4,7 +4,7 @@
 
 **PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
 
-### Getting Started
+## Getting Started
 
 Click the **New +** button, then click the **PostgreSQL** link.
 
@@ -26,7 +26,7 @@ Click on the **Connect** button and the **External Connection** tab. Copy the **
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
-### Getting Started
+## Getting Started
 
 We are going to use **Prisma** as our **ORM**. **Prisma** is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
 
@@ -356,6 +356,12 @@ This is an example of a `DELETE` by id request.
 **Note:** Make sure you save your requests.
 
 ## Formative Assessment
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 1. Implement the above.
 

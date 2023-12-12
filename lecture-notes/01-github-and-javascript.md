@@ -1,33 +1,41 @@
-# 01: Development Workflow and JavaScript
+# 01: GitHub and JavaScript
+
+## GitHub
+
+In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:
+
+https://classroom.github.com/a/E3ML3zsA
 
 ## Development Workflow
 
-### Git
+By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
-**Git** is a **distributed version control system** commonly used in software development. It helps individuals and teams track file changes and collaborate on projects efficiently.
+## Create a README
 
-Think of **Git** as a tool that keeps a detailed history of every change you make to a file or a set of files. Instead of having just one copy of the project files, **Git** allows each person working on the project to have their own local copy, including the entire history of changes. It makes it easy to work independently and merge your changes with others' changes later.
+Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
 
-When you start using **Git**, you create a repository like a directory containing all the project files and their history. You can change files in your local repository, such as adding new features, fixing bugs, or modifying existing code. **Git** allows you to track and save these changes as commits.
+## Create a .gitignore File
 
-Commits are like snapshots of the project at a specific point in time. Each commit has a unique identifier, and it contains information about the changes you made, such as which files were modified and what lines of code were added or removed. **Git** keeps a chronological record of these commits, enabling you to access any previous version of the project easily.
+Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
 
-Here are the assessment repositories that you will need to clone to your local machine.
+**Resources:**
 
-- Playground: https://classroom.github.com/a/rX6o0fH1
-- Project: https://classroom.github.com/a/wJ4pC7Y7
+- <https://git-scm.com/docs/gitignore>
+- <https://github.com/github/gitignore>
 
-**Do this now!**
+## Clone a Repository
 
-Create a **Node.js** `.gitignore` file in both repositories. You can use the following template - <https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore>
+Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
 
-Resource: https://education.github.com/git-cheat-sheet-education.pdf
+**Resource:**
+
+- <https://git-scm.com/docs/git-clone>
 
 ## JavaScript
 
 Let us recap some of the key concepts of **JavaScript**.
 
-### Node.js
+## Node.js
 
 **Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. Traditionally, **JavaScript** was primarily used for **client-side** scripting in web browsers, handling tasks like validating forms and enhancing user interactions on websites. However, **Node.js** extends the capabilities of **JavaScript** by allowing it to be used on the **server-side** as well.
 
@@ -35,7 +43,7 @@ We will use **Node.js** to run **JavaScript** code on our local machines. It wil
 
 Resource: https://nodejs.org/en/
 
-### Data Types
+## Data Types
 
 **Data types** are the different values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
 
@@ -49,7 +57,7 @@ Resource: https://nodejs.org/en/
 
 We will only be concerned with the first five primitive data types for now. We will not use **BigInt** and **Symbol** in this course.
 
-### Variables
+## Variables
 
 A **variable** is a named container that stores a value. It is like a box that holds a value, and the variable's name is like a label on the box. You can use the variable's name to access its value.
 
@@ -67,7 +75,7 @@ A variable declared with `let` is mutable, meaning its value can be changed. A v
 
 You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
-### Operators
+## Operators
 
 **Operators** are symbols that perform operations on values. There are several types of operators in **JavaScript**:
 
@@ -79,7 +87,7 @@ You might see `var` being used instead of `let` or `const`. `var` is an older wa
 
 There are many other operators in **JavaScript**, but we will only be concerned with these for now.
 
-### Conditionals
+## Conditionals
 
 **Conditionals** are statements that allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
 
@@ -113,7 +121,7 @@ switch (expression) {
 }
 ```
 
-### Loops
+## Loops
 
 **Loops** are statements that allow you to execute a block of code repeatedly. There are several types of **loops** in **JavaScript**:
 
@@ -158,7 +166,7 @@ array.forEach(function (element) {
 
 Feel free to read up on the differences between these **loops**.
 
-### Functions
+## Functions
 
 A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. A function is a reusable piece of code you can use in your program.
 
@@ -217,7 +225,7 @@ You can omit the parentheses.
 const greet = _ => "Hello, World!";
 ```
 
-### Arrays
+## Arrays
 
 An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use a value's index to access its value.
 
@@ -272,7 +280,7 @@ const mixed = [
 ];
 ```
 
-### Objects
+## Objects
 
 An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, assigning each key a value. You can use the key of a key-value pair to access its value.
 
@@ -328,7 +336,7 @@ console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
 
-### Map, Filter and Reduce
+## Map, Filter and Reduce
 
 **Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
 
@@ -357,14 +365,18 @@ console.log(sum); // 15
 
 ## Formative Assessment
 
-Copy the file `01-formative-assessment.js` into your **s2-23-playground** repository. Open your **s2-23-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
+Copy the file `01-formative-assessment.js` into your **s1-24-playground** repository. Open your **s1-24-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
 $ node 01-formative-assessment.js
 Hello, World!
 ```
 
-**Warning!** Do not use **ChatGPT**. We want to see how you solve the questions on your own.
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 1. Write a **function** to check whether a given number is prime.
 

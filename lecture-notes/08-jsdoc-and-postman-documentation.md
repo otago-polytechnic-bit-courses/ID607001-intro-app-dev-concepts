@@ -1,4 +1,4 @@
-# 07: JSDoc and Postman Documentation
+# 08: JSDoc and Postman Documentation
 
 **Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
 
@@ -6,7 +6,7 @@
 
 **JSDoc** is an API documentation generator for **JavaScript**. **JSDoc** comments are written in a specific syntax to document the code. The **JSDoc** comments are then parsed and converted into HTML documentation. We will not convert the **JSDoc** comments into HTML documentation. However, it is good information to know.
 
-### Getting Started
+## Getting Started
 
 At the top of each file, add the following code.
 
@@ -63,7 +63,7 @@ const createInstitution = async (req, res) => {
 
 As you have progressed through the course, you have used **Postman** to test and document your API. **Postman** has a feature allowing you to generate API documentation.
 
-### Getting Started
+## Getting Started
 
 You can save your response as an example.
 

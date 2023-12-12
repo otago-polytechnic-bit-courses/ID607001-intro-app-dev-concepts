@@ -19,7 +19,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Practical \\Version 5, Semester Two, 2023}
+\lfoot{Practical \\Version 1, Semester One, 2024}
 \rfoot{\thepage}
  
 \begin{document}
@@ -34,12 +34,12 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will test the \textbf{REST API} you created in \textbf{Project: Part 1}. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.  
+In this \textbf{individual} assessment, you will test the \textbf{REST API} you created in the \textbf{Project} assessment. In addition, marks will be allocated for code elegance, documentation and \textbf{Git} usage.  
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
 \begin{enumerate}
-    \item Design and build secure applications with dynamic database functionality following an appropriate software development methodology.
+	\item Design and build secure applications with dynamic database functionality following an appropriate software development methodology.
 \end{enumerate}
 
 \section*{Assessments}
@@ -47,18 +47,18 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|c|c|c|c|}
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
-	\small Practical & \small 20\%        & \small 06-10-2023 (Friday at 04.59 PM)   & \small 1                   \\ \hline
-	\small Project                 & \small 80\%        & \small Various \small  & \small 1                   \\ \hline
+	\small Practical & \small 20\%        & \small 21-06-2024 (Friday at 4.59 PM)   & \small 1                   \\ \hline
+	\small Project                 & \small 80\%        & \small 21-06-2024 (Friday at 4.59 PM) \small  & \small 1                   \\ \hline
 \end{tabular}
 
 \section*{Conditions of Assessment}
-You will complete majority of this assessment during your learner-managed time. However, there will be time to discuss the requirements and your assessment progress during the teaching sessions. This assessment will need to be completed by \textbf{Friday, 06 October 2023 at 8.59 AM}.
+You will complete this assessment during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by \textbf{Friday, 21 June 2024} at \textbf{4.59 PM}. 
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \section*{Submission}
-You \textbf{must} submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wJ4pC7Y7}{https://classroom.github.com/a/wJ4pC7Y7}. Create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest program files in the \textbf{testing} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{testing} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{9:00 AM}.
+You \textbf{must} submit all program files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wlzE5yYo}{https://classroom.github.com/a/wlzE5yYo}. Create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest program files in the \textbf{master} or \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test your \textbf{master} or \textbf{main} branch application before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5.00 PM}.
 
 \section*{Authenticity}
 All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using an \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
@@ -73,9 +73,6 @@ The school's process concerning submissions, extensions, resubmissions and resit
 \section*{Extensions}
 Familiarise yourself with the assessment due date. Extensions will \textbf{only} be granted if you are unable to complete the assessment by the due date because of \textbf{unforeseen circumstances outside your control}. The length of the extension granted will depend on the circumstances and \textbf{must} be negotiated with the course lecturer before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
 
-\section*{Resubmissions}
-Learners may be requested to resubmit an assessment following a rework of part/s of the original assessment. Resubmissions are to be completed within a negotiable short time frame and usually \textbf{must} be completed within the timing of the course to which the assessment relates. Resubmissions will be available to learners who have made a genuine attempt at the first assessment opportunity and achieved a \textbf{D grade (40-49\%)}. The maximum grade awarded for resubmission will be \textbf{C-}.
-
 \section*{Resits}
 Resits and reassessments are not applicable in \textbf{ID607001: Introductory Application Development Concepts}. 
 
@@ -84,19 +81,18 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \section*{Instructions}
 You will need to submit a \textbf{suite of API tests} and \textbf{documentation} that meet the following requirements:
 
-\subsection*{Functionality - Learning Outcome 1 (50\%)}
+\subsection*{Functionality - Learning Outcome 1 (40\%)}
 \begin{itemize}
   \item \textbf{Testing:}
 	\begin{itemize}
     \item \textbf{API tests} are written using \textbf{Mocha} and \textbf{Chai}.
     \item \textbf{API tests} verifying the correctness for the following:
       \begin{itemize}
-        \item \textbf{GET one}, \textbf{GET all}, \textbf{POST}, \textbf{PUT} and \textbf{DELETE} operations. (35 tests).
+        \item \textbf{GET one}, \textbf{GET all}, \textbf{POST}, \textbf{PUT} and \textbf{DELETE} operations. (30 tests).
         \item \textbf{Index route} displaying all existing \textbf{routes}. (one test).
         \item A \textbf{route} that does not exist. (one test).
-        \item Validation for \textbf{POST} and \textbf{PUT} operations. (14 tests)
-        \item \textbf{Filtering}, \textbf{sorting} and \textbf{pagination} for \textbf{GET all} operations. (six tests).
-        \item Status codes. (four tests)
+        \item Validation for \textbf{POST} and \textbf{PUT} operations. (12 tests).
+        \item \textbf{Filtering}, \textbf{sorting} and \textbf{pagination} for \textbf{GET all} operations. (18 tests).
       \end{itemize}
 	\end{itemize}
 
@@ -107,7 +103,7 @@ You will need to submit a \textbf{suite of API tests} and \textbf{documentation}
 	\end{itemize}
 \end{itemize}
 
-\subsection*{Code Elegance - Learning Outcome 1 (40\%)}
+\subsection*{Code Elegance - Learning Outcome 1 (55\%)}
 \begin{itemize}
   \item Appropriate naming of files, variables and functions.
 	\item Idiomatic use of control flow, data structures and in-built functions.
@@ -120,9 +116,8 @@ You will need to submit a \textbf{suite of API tests} and \textbf{documentation}
   \item No dead or unused code.
 \end{itemize}
 
-\subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
+\subsection*{Documentation and Git Usage - Learning Outcome 1 (5\%)}
 \begin{itemize}
-  \item A \textbf{GitHub} project board to help you organise and prioritise your work. 
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
       \item How to seed your database with \textbf{Prisma}?

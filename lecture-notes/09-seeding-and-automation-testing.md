@@ -60,15 +60,15 @@ npx prisma db seed
 
 **Automated testing** is a process that validates if the software is functioning appropriately and meeting requirements before it is released into production. It is performed by software tools, scripts, and other resources rather than manual testing.
 
-### Why Automated Testing?
+## Why Automated Testing?
 
 **Automated testing** is important because it enables faster feedback on the quality of the software being developed. It also helps to reduce the cost of software development.
 
-### Types of Automated Testing
+## Types of Automated Testing
 
 There are various types of **automated testing**. We will focus on **API testing**.
 
-### Getting Started
+## Getting Started
 
 We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **JavaScript** test framework that will execute our tests. **Chai** is an assertion library that allows us to verify the functionality of our code.
 
@@ -217,6 +217,12 @@ Institutions
 You want to see those **green checkmarks**. If you see any red crosses, then you have a problem with your code.
 
 ## Formative Assessment
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 1. Implement the above.
 

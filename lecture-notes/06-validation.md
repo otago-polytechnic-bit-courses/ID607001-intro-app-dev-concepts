@@ -6,7 +6,7 @@
 
 There are various validation packages available for **Express**. We will use the [joi](https://joi.dev/) package.
 
-### Getting Started
+## Getting Started
 
 Install the `joi` package.
 
@@ -93,6 +93,12 @@ This is an example of a `POST` request where the `name` field is empty.
 ![](<../resources (ignore)/img/06/postman-1.PNG>)
 
 ## Formative Assessment
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 1. Create validation rules for each field in the `Department`, `Course`, and `User` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. It would be best if you did not have to repeat the same code repeatedly. You should be able to reuse the code.
 

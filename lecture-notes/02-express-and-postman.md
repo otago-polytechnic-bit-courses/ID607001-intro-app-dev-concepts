@@ -17,9 +17,9 @@ What is meant by rules and protocols?
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**. We will use **Express** alongside **Node Package Manager (NPM)** to build a **REST API**.
 
-### Getting Started
+## Getting Started
 
-Open your **s2-23-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
+Open your **s1-24-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
 ```bash
 npm init -y
@@ -171,7 +171,7 @@ It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** state
 
 **Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
 
-### Getting Started
+## Getting Started
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
@@ -206,6 +206,12 @@ Hello, World!
 We will add more requests to the collection as we work through the examples. Later we will use the collection to create documentation for our **REST API**.
 
 ## Formative Assessment
+
+If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
+
+- If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
 1. Implement the above.
 
