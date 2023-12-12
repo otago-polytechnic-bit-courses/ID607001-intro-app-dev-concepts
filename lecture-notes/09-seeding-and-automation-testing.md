@@ -114,7 +114,7 @@ describe("Institutions", () => {
       .post("/api/institutions")
       .send(institution)
       .end((req, res) => {
-        console.log(res) // This is useful for debugging
+        console.log(res) // This is useful for debugging. Remember to remove this
 
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");

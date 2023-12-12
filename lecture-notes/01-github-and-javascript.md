@@ -4,7 +4,9 @@
 
 In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:
 
-https://classroom.github.com/a/E3ML3zsA
+https://classroom.github.com/a/mQiAFC8n
+
+You will use this repository for your **formative assessments** only.
 
 ## Development Workflow
 

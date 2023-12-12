@@ -7,7 +7,7 @@ You have come across different interfaces before. For example, **Graphical User 
 What is meant by rules and protocols?
 
 - Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. The protocol is used to send and receive data between different software applications.
-- Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the **GET** method is used to retrieve data.
+- Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the `GET` method is used to retrieve data.
 - Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.  
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
 - Authentication and authorization: Used to restrict access to certain resources. For example, a user must be authenticated and authorized to access the list of users.
@@ -215,7 +215,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 1. Implement the above.
 
-2. To get use to creating **controllers** and **routes**, create three **GET** routes for the following.
+2. To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
 
 - `http://localhost:3000/about`. Return your learner id, first name, last name and one thing you enjoy about IT.
 - `http://localhost:3000/contact`. Return your learner email address.
