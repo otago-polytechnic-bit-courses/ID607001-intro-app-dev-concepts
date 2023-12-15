@@ -13,6 +13,50 @@ What is meant by rules and protocols?
 - Authentication and authorization: Used to restrict access to certain resources. For example, a user must be authenticated and authorized to access the list of users.
 - Error handling: Used to handle errors. For example, if a user tries to access a resource that does not exist, an error message should be returned.
 
+### Request Methods
+
+An **HTTP request method** is a **verb** that indicates the desired action to be performed for a given resource. For example, the `GET` method requests a representation of the specified resource.
+
+There are nine different **HTTP request methods**:
+- `GET`: Requests a representation of the specified resource. Requests using `GET` should only retrieve data.
+- `HEAD`: Requests a representation of the specified resource. Requests using `HEAD` should only retrieve data.
+- `POST`: Submits data to be processed to the specified resource. The data is included in the body of the request. The data may result in the creation of a new resource or the updates of existing resources.
+- `PUT`: Replaces all current representations of the target resource with the request payload.
+- `DELETE`: Deletes the specified resource.
+- `CONNECT`: Establishes a tunnel to the server identified by the target resource.
+- `OPTIONS`: Describes the communication options for the target resource.
+- `TRACE`: Performs a message loop-back test along the path to the target resource.
+- `PATCH`: Used to apply partial modifications to a resource.
+
+We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
+
+### Response Status Codes
+
+An **HTTP response status code** indicates whether a specific **HTTP request** has been successfully completed. Responses are grouped in five classes:
+
+1. Information responses (100–199)
+2. Successful responses (200–299)
+3. Redirection messages (300–399)
+4. Client error responses (400–499)
+5. Server error responses (500–599)
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
+
+### Headers
+
+An **HTTP header** is a **header** that is sent at the beginning of a **request** or **response**. It contains information about the **request** or **response** and about the **client** or the **server**.
+
+There are four different **header** groups:
+
+1. Request headers
+2. Response headers
+3. Representation headers
+4. Payload headers
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
+
 ## Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**. We will use **Express** alongside **Node Package Manager (NPM)** to build a **REST API**.
@@ -38,7 +82,7 @@ What is the purpose of each command?
 In the `package.json` file, add the following line to the `scripts` block
 
 ```json
-"dev": "nodemon index.js"
+"dev": "nodemon app.js"
 ```
 
 What is the purpose of the `dev` script? Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
@@ -53,7 +97,7 @@ What is the purpose of the `type` property? Used to enable **ES6** module syntax
 
 ---
 
-Create a file named `index.js` in the root directory and add the following code.
+Create a file named `app.js` in the root directory and add the following code.
 
 ```javascript
 // Import the Express module
@@ -98,7 +142,7 @@ Hello, World!
 
 Let us do some refactoring. 
 
-In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
+In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `app.js` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -112,9 +156,9 @@ export { get };
 
 What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
-What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
+What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `app.js` file in the `routes` directory.
 
-In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
+In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `app.js` and add the following code.
 
 ```javascript
 // Import the Express module
@@ -123,7 +167,7 @@ import express from 'express';
 //
 
 // Import the index controllers module
-import { get } from "../controllers/index.js";
+import { get } from "../controllers/app.js";
 
 // Create an Express router
 const router = express.Router();
@@ -135,7 +179,7 @@ router.get("/", get);
 export default router;
 ```
 
-In the `index.js` file, update with the following code.
+In the `app.js` file, update with the following code.
 
 ```javascript
 // Import the Express module
@@ -145,7 +189,7 @@ import express from 'express';
 import cors from 'cors';
 
 // Import the index routes module
-import indexRoutes from './routes/index.js';
+import indexRoutes from './routes/app.js';
 
 // Create an Express application
 const app = express();
@@ -170,11 +214,11 @@ Your file structure should look something like this.
 ```bash
 .
 ├── controllers
-│   └── index.js
+│   └── app.js
 ├── node_modules
 ├── routes
-│   └── index.js
-├── index.js
+│   └── app.js
+├── app.js
 ├── package-lock.json
 ├── package.json
 ```

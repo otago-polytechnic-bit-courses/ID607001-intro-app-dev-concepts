@@ -22,7 +22,7 @@ Name your **web service**. For example, **id607001-your learner username**.
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 
-Change the **Runtime** to **Node**, **Build Command** to `npm install`, and **Start Command** to `node index.js`.
+Change the **Runtime** to **Node**, **Build Command** to `npm install`, and **Start Command** to `node app.js`.
 
 ![](<../resources (ignore)/img/03/render-5.PNG>)
 
