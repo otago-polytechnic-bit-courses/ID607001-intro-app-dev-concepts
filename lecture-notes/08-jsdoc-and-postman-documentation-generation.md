@@ -1,4 +1,4 @@
-# 08: JSDoc and Postman Documentation
+# 08: JSDoc and Postman Documentation Generation
 
 **Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
 
@@ -59,7 +59,7 @@ const createInstitution = async (req, res) => {
 
 **Note:** Do not use **JSDoc** for in-line comments. Use normal JavaScript comments.
 
-## Postman Documentation
+## Postman Documentation Generation
 
 As you have progressed through the course, you have used **Postman** to test and document your API. **Postman** has a feature allowing you to generate API documentation.
 
