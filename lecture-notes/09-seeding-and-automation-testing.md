@@ -1,4 +1,4 @@
-# 08: Automation Testing
+# 09: Automation Testing
 
 **Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
 
