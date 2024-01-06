@@ -1,6 +1,6 @@
 # Marking Rubric
 
-### Functionality - REST API - 30%
+### Functionality: REST API - 25%
 
 | **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
 | -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
@@ -15,7 +15,7 @@
 | **Endpoint Validation and Index Route**     | Proper validation for each field using Joi during creation and updating. Index route displays all existing routes. | Minor issues in validation or missing some validations. | Significant issues in validation or missing many validations. | Validation is incomplete or missing, and index route is not displaying routes. |
 | **Database Storage and Deployment**         | Data is stored in a PostgreSQL database on Render. API is deployed as a web service on Render. | Minor issues in database storage or deployment.  | Significant issues in database storage or deployment. | Data is not stored in PostgreSQL, or API deployment on Render is unsuccessful. |
 
-### Functionality - CRUD Application - 20%
+### Functionality: CRUD Application - 20%
 
 | **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
 | -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
@@ -28,6 +28,16 @@
 | **Validation Error Handling**               | Gracefully handles incorrectly formatted form field values with validation error messages. | Minor issues in validation error handling.       | Significant issues in validation error handling. | Validation error handling is not working as expected. |
 | **UI Design and Style**                     | UI is visually attractive with a coherent graphical theme and style using Reactstrap. | Minor issues in UI design or style.              | Significant issues in UI design or style.         | UI design or style is not visually attractive or lacks coherence. |
 
+### Functionality: Scripts - 5%
+
+| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
+| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Run REST API and CRUD Application Locally** | Successfully run both REST API and CRUD application locally without issues. | Minor issues or gaps in running either REST API or CRUD application locally. | Significant issues or incomplete execution of either REST API or CRUD application locally. | No or inadequate execution of both REST API and CRUD application locally. |
+| **Create and Apply Prisma Migration**        | Successfully create and apply a migration using Prisma. | Minor issues or gaps in creating and applying Prisma migration. | Significant issues or incomplete creation and application of Prisma migration. | No or inadequate creation and application of Prisma migration. |
+| **Reset Database with Prisma**               | Successfully reset the database using Prisma. | Minor issues or gaps in resetting the database with Prisma. | Significant issues or incomplete database reset with Prisma. | No or inadequate database reset with Prisma. |
+| **Open Prisma Studio**                       | Successfully open Prisma Studio.      | Minor issues or gaps in opening Prisma Studio. | Significant issues or incomplete opening of Prisma Studio. | No or inadequate opening of Prisma Studio. |
+| **Format Code with Prettier**                | Successfully format code using Prettier. | Minor issues or gaps in code formatting with Prettier. | Significant issues or incomplete code formatting with Prettier. | No or inadequate code formatting with Prettier. |
+
 ### Code Quality and Best Practices - 45%
 
 | **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
@@ -36,7 +46,7 @@
 | **Appropriate Naming**                       | Clear and meaningful names for files, variables, functions, and resource groups following best practices. | Minor issues in naming conventions or clarity.        | Significant naming issues impacting readability.     | Naming conventions are not followed.   
 | **Efficient Algorithmic Approach**           | Implementation demonstrates a highly efficient algorithmic approach. | Some areas could be optimised for better efficiency.  | Significant optimisation opportunities are missed.   | Inefficient algorithmic approach throughout.          |
 | **Sufficient Modularity**                    | Code is well-organised and modular, enhancing maintainability and readability. | Some modules could be better organised for clarity.  | Significant issues in modularity and organisation.   | Lack of modularity, impacting code maintainability.   |
-| **JSDoc Comments**                           | Each test file includes clear and comprehensive JSDoc header comments. | Minor issues or missing JSDoc comments in some files. | Significant issues with JSDoc comments throughout.   | No JSDoc comments in test files.                         |
+| **JSDoc Comments**                           | Each file includes clear and comprehensive JSDoc header comments. | Minor issues or missing JSDoc comments in some files. | Significant issues with JSDoc comments throughout.   | No JSDoc comments in files.                         |
 | **Code Formatting**                         | Code is formatted using Prettier. Prettier is installed as a development dependency. | Minor issues in code formatting or Prettier setup. | Significant issues in code formatting or Prettier setup. | Code lacks proper formatting and Prettier setup.      |
 | **No Dead or Unused Code**                    | Codebase contains no dead or unused code.              | Minor instances of dead or unused code.              | Significant dead or unused code in the project.      | Extensive dead or unused code affecting the project.  |
 
@@ -68,9 +78,11 @@
 
 [Insert overall comments and feedback here.]
 
-**Functionality - REST API: [x/30]**
+**Functionality: REST API: [x/25]**
 
-**Functionality - CRUD Application: [x/20]**
+**Functionality: CRUD Application: [x/20]**
+
+**Functionality: Scripts: [x/5]**
 
 **Code Quality and Best Practices: [x/45]**
 

@@ -1,6 +1,6 @@
 # Marking Rubric
 
-### Functionality - 50%
+### Functionality: 50%
 
 | **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
 | -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
@@ -15,7 +15,7 @@
 | **Idiomatic Use**                             | Effective use of control flow, data structures, and in-built functions in an idiomatic manner. | Some instances of non-idiomatic code or inefficient use. | Significant non-idiomatic code affecting efficiency. | Poor use of control flow, data structures, or functions. |
 | **Efficient Algorithmic Approach**           | Implementation demonstrates a highly efficient algorithmic approach. | Some areas could be optimised for better efficiency.  | Significant optimisation opportunities are missed.   | Inefficient algorithmic approach throughout.          |
 | **Sufficient Modularity**                    | Code is well-organised and modular, enhancing maintainability and readability. | Some modules could be better organised for clarity.  | Significant issues in modularity and organisation.   | Lack of modularity, impacting code maintainability.   |
-| **JSDoc Comments**                           | Each test file includes clear and comprehensive JSDoc header comments. | Minor issues or missing JSDoc comments in some files. | Significant issues with JSDoc comments throughout.   | No JSDoc comments in test files.                      |
+| **JSDoc Comments**                           | Each file includes clear and comprehensive JSDoc header comments. | Minor issues or missing JSDoc comments in some files. | Significant issues with JSDoc comments throughout.   | No JSDoc comments in files.                         |
 | **Code Formatting**                          | Code is consistently formatted using Prettier.        | Some inconsistencies in code formatting.              | Code formatting issues throughout.                   | Lack of adherence to any code formatting standards.    |
 | **Dependency Installation**                  | Mocha and Chai are correctly installed as development dependencies. | Minor issues in dependency installation.             | Significant problems in installing required dependencies. | Missing or incorrect installation of dependencies.    |
 | **No Dead or Unused Code**                    | Codebase contains no dead or unused code.              | Minor instances of dead or unused code.              | Significant dead or unused code in the project.      | Extensive dead or unused code affecting the project.  |
