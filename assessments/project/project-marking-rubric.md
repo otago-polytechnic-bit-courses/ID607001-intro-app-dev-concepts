@@ -59,8 +59,6 @@
 | **Markdown Usage**                          | Effective use of Markdown, including headings, bold text, code blocks, etc. | Some Markdown elements are used, but inconsistencies are present. | Limited use of Markdown or improper formatting.      | Markdown is not used or severely misformatted.         |
 | **Spelling and Grammar**                    | Correct spelling and grammar throughout the documentation. | Minor spelling or grammatical errors are present.     | Significant spelling or grammatical issues.          | Numerous spelling and grammatical errors.            |
 | **Git Commit Messages**                     | Commit messages reflect the context of each functional requirement change. | Some commit messages lack clarity or context.        | Commit messages are unclear or unrelated to changes. | Lack of meaningful commit messages.                   |
-| **REST API on Render**                       | URL to the REST API as a web service on Render is provided in README.md. | Minor issues in providing the URL or details.    | Significant issues in providing the URL or details. | Missing URL or information about the REST API on Render. |
-| **REST API Documentation**                  | URL to published REST API documentation with detailed route information, descriptions, example requests, and responses. | Minor issues in providing documentation details. | Significant issues in providing documentation details. | Missing or inadequate REST API documentation.         |
 
 # Marking Cover Sheet
 
