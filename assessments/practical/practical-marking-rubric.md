@@ -22,8 +22,8 @@
 
 ### Documentation - 5%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
 | **Markdown Usage**                          | Effective use of Markdown, including headings, bold text, code blocks, etc. | Some Markdown elements are used, but inconsistencies are present. | Limited use of Markdown or improper formatting.      | Markdown is not used or severely misformatted.         |
 | **Spelling and Grammar**                    | Correct spelling and grammar throughout the documentation. | Minor spelling or grammatical errors are present.     | Significant spelling or grammatical issues.          | Numerous spelling and grammatical errors.            |
