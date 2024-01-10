@@ -30,7 +30,7 @@
 
 ### Functionality: Scripts - 5%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Run REST API and CRUD Application Locally** | Successfully run both REST API and CRUD application locally without issues. | Minor issues or gaps in running either REST API or CRUD application locally. | Significant issues or incomplete execution of either REST API or CRUD application locally. | No or inadequate execution of both REST API and CRUD application locally. |
 | **Create and Apply Prisma Migration**        | Successfully create and apply a migration using Prisma. | Minor issues or gaps in creating and applying Prisma migration. | Significant issues or incomplete creation and application of Prisma migration. | No or inadequate creation and application of Prisma migration. |
@@ -52,7 +52,7 @@
 
 ### Documentation - 5%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **2-3**                                               | **1-0**                                               |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **GitHub Project Board**                    | Consistent and effective use of GitHub project board for organising and prioritising development work. | Minor inconsistencies in GitHub project board usage. | Significant issues in GitHub project board usage.   | GitHub project board is not used or poorly maintained. |
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
