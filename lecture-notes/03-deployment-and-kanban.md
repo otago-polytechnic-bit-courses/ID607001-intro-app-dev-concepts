@@ -1,4 +1,4 @@
-# 03: Deployment
+# 03: Deployment and Kanban
 
 ## Render
 
@@ -50,6 +50,20 @@ Scroll to the top of the page and click on your **web service's** URL.
 You should see the following page. **Note:** Your **web service's** URL will be different.
 
 ![](<../resources (ignore)/img/03/render-10.PNG>)
+
+## Kanban   
+
+### What is Kanban?
+
+**Kanban** is a **method** for managing the creation of products with an emphasis on **continuous delivery** while not overburdening the development team. Like **Scrum**, **Kanban** is a process designed to help teams work together more effectively.
+
+### What is a Kanban Board?
+
+A **Kanban board** is a **work and workflow visualisation tool** that enables you to optimize the flow of your work. **Physical Kanban boards**, like the one pictured here - <https://bit.ly/3HrWSIl>, typically use sticky notes on a whiteboard to communicate status, progress, and issues. Instead, we are going to use **GitHub Projects** to create a **Kanban board**.
+
+### What is a Kanban Card?
+
+A **Kanban card** is a **task** on a **Kanban board**. **Kanban cards** are used to represent work items and convey important information about the work item through custom fields.
 
 ## Formative Assessment
 
