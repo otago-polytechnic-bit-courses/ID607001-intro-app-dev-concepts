@@ -65,10 +65,113 @@ You should see a page that says **Vite + React**
 
 - `vite.config.js` - A file that contains configuration information for **Vite**.
 
+## JSX
 
+Open the `App.jsx` file in the `src`. This is called **JSX** or **JavaScript XML**. It is a syntax extension to JavaScript that allows you to write HTML-like code in your JavaScript files.
 
+## Components
 
+**Components** are the building blocks of **React** applications. They are reusable pieces of code that can be used to build user interfaces.
 
+`App.jsx` is a component. It is a function that returns **JSX**.
+
+Let us create a new component.
+
+In the `src` directory, create a new file called `MyFirstComponent.jsx`.
+
+In `MyFirstComponent.jsx`, add the following code:
+
+```jsx
+const MyFirstComponent = () => {
+  return <h1>Hello, World!</h1>;
+};
+
+export default MyFirstComponent;
+```
+
+In `App.jsx`, replace the existing code with the following:
+
+```jsx
+import MyFirstComponent from "./MyFirstComponent";
+
+const App = () => {
+  return <MyFirstComponent />;
+};
+
+export default App;
+```
+
+Navigate to **http://127.0.0.1:5173/** in your browser.
+
+You should see **Hello, World!** on the page.
+
+## Props
+
+**Props** are used to pass data from one component to another.
+
+In `MyFirstComponent.jsx`, replace the existing code with the following:
+
+```jsx
+const MyFirstComponent = (props) => {
+  return <h1>Hello, {props.name}!</h1>;
+};
+
+export default MyFirstComponent;
+```
+
+In `App.jsx`, replace the existing code with the following:
+
+```jsx
+import MyFirstComponent from "./MyFirstComponent";
+
+const App = () => {
+  return <MyFirstComponent name="Jeff" />;
+};
+
+export default App;
+```
+
+Navigate to **http://127.0.0.1:5173/** in your browser.
+
+You should see **Hello, Jeff!** on the page.
+
+## State
+
+**State** is used to store data that can change over time.
+
+In `App.jsx`, replace the existing code with the following:
+
+```jsx
+import { useState } from "react";
+
+import MyFirstComponent from "./MyFirstComponent";
+
+const App = () => {
+  const [name, setName] = useState("Jeff");
+
+  return <MyFirstComponent name={name} />;
+};
+
+export default App;
+```
+
+## Reconciliation
+
+**React** uses a process called **reconciliation** to update the DOM when the state of a component changes.
+
+## Virtual DOM
+
+**React** uses a **virtual DOM** to keep track of the state of the DOM. When the state of a component changes, **React** updates the virtual DOM and then uses **reconciliation** to update the DOM. This is much faster than updating the DOM directly.
+
+## Lifecycle
+
+**React** components have a lifecycle. The lifecycle consists of three phases:
+
+- **Mounting** - The component is created and inserted into the DOM.
+
+- **Updating** - The component is updated when its state or props change.
+
+- **Unmounting** - The component is removed from the DOM.
 
 ## Formative Assessment
 
@@ -77,3 +180,4 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
