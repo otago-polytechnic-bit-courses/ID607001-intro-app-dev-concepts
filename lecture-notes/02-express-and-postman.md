@@ -164,8 +164,6 @@ In the root directory, create a directory named `routes`. In the `routes` direct
 // Import the Express module
 import express from 'express';
 
-//
-
 // Import the index controllers module
 import { get } from "../controllers/app.js";
 

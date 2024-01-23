@@ -52,6 +52,13 @@ Create a new file called `departments.js` in the' controllers' directory. Add th
 
 const createDepartment = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
     await prisma.department.create({
       data: { ...req.body },
     });

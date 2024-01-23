@@ -171,7 +171,6 @@ const getInstitutions = async (req, res) => {
 
 Here is an example `GET` request that returns the first 15 institutions that have the `name` **Otago Polytechnic**, sorted by `name` in `asc` or ascending order: `http://localhost:3000/api/institutions?name=Otago Polytechnic&sortBy=name&sortOrder=asc&amount=15&page=1`
 
-
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:

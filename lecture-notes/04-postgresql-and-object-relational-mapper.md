@@ -132,6 +132,13 @@ To create an institution, use `prisma.institution.create`.
 ```js
 const createInstitution = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
     await prisma.institution.create({
       data: { ...req.body },
     });
@@ -201,6 +208,13 @@ To update an institution, use `prisma.institution.update`.
 ```js
 const updateInstitution = async (req, res) => {
   try {
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
     let institution = await prisma.institution.findUnique({
       where: { id: Number(req.params.id) },
     });
@@ -307,7 +321,7 @@ What is `:id`? `:id` is a route parameter. It is used to retrieve the id from th
 
 ---
 
-In the main `app.js` file (in the root directory), add the following code.
+In the `app.js` file (in the root directory), add the following code.
 
 ```javascript
 // This should be declared under import indexRoutes from "./routes/app.js";
@@ -324,6 +338,61 @@ app.use("/api/institutions", institutionRoutes);
 ```
 
 **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+
+## Other API Security Best Practices
+
+Earlier we looked at validating the `content-type` request header. Now, we are going to look at some other API security best practices.
+
+### X-Content-Type-Options
+
+The `X-Content-Type-Options` response header is used to prevent **MIME** type sniffing. It is used to prevent browsers from trying to guess the MIME type of a response. For example, if the response is `application/json`, the browser will not try to guess the MIME type. It will treat the response as `application/json`.
+
+To set the `X-Content-Type-Options` response header, add the following code to the `app.js` file (in the root directory).
+
+```javascript
+// This should be declared under const app = express();
+const setXContentTypeOptions = (req, res, next) => {
+  res.set("X-Content-Type-Options", "nosniff");
+  next();
+};
+
+// This should be declared under app.use(cors());
+app.use(setXContentTypeOptions);
+```
+
+### X-Frame-Options
+
+The `X-Frame-Options` response header is used to prevent clickjacking attacks. It is used to prevent the browser from displaying the page in a frame or iframe. For example, if the `X-Frame-Options` response header is set to `DENY`, the browser will not display the page in a frame or iframe.
+
+To set the `X-Frame-Options` response header, add the following code to the `app.js` file (in the root directory).
+
+```javascript
+// This should be declared under the setXContentTypeOptions function
+const setXFrameOptions = (req, res, next) => {
+  res.set("X-Frame-Options", "DENY");
+  next();
+};
+
+// This should be declared under app.use(setXContentTypeOptions);
+app.use(setXFrameOptions);
+```
+
+### Content-Security-Policy
+
+The `Content-Security-Policy` response header is used to prevent cross-site scripting (XSS) attacks. It is used to prevent the browser from loading resources from untrusted sources. For example, if the `Content-Security-Policy` response header is set to `default-src 'none'`, the browser will not load any resources from untrusted sources.
+
+To set the `Content-Security-Policy` response header, add the following code to the `app.js` file (in the root directory).
+
+```javascript
+// This should be declared under the setXFrameOptions function
+const setContentSecurityPolicy = (req, res, next) => {
+  res.set("Content-Security-Policy", "default-src 'none'");
+  next();
+};
+
+// This should be declared under app.use(setXFrameOptions);
+app.use(setContentSecurityPolicy);
+```
 
 ## Document and Test the API
 
@@ -365,16 +434,16 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 1. Implement the above.
 
-2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc. 
+2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc.
 
 3. Document and test the **API** in **Postman**.
 
 ## Research Assessment
 
-1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database. 
+1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
 
-2. You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables. 
-   
+2. You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables.
+
 For example, your `.env.example` file should contain the following.
 
 ```bash
@@ -387,4 +456,4 @@ Your `.env` file should contain the following.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-Why is this important? You can share the `.env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password. 
+Why is this important? You can share the `.env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
