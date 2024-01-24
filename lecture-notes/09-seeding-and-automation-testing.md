@@ -72,18 +72,18 @@ We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **Ja
 To install **Mocha** and **Chai**, run the following command in your terminal.
 
 ```bash
-npm install mocha chai chai-http --save-dev 
+npm install mocha chai@4.3.9 chai-http --save-dev 
 ```
 
 In the `package.json` file, replace `test` script's value with the following.
 
 ```json
-"test": "npx prisma migrate reset --force && npx mocha --timeout 10000 --exit"
+"test": "prisma migrate reset --force && mocha --timeout 10000 --exit"
 ```
 
 What is the purpose of the `test` script? Used to run tests.
 
-**Note:** The `npx prisma migrate reset --force` will also seed your database.
+**Note:** The `prisma migrate reset --force` will also seed your database.
 
 ---
 
@@ -112,7 +112,6 @@ describe("Institutions", () => {
       .send(institution)
       .end((req, res) => {
         console.log(res) // This is useful for debugging. Remember to remove this
-
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai
