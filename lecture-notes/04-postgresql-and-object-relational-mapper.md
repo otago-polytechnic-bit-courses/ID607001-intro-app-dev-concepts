@@ -442,9 +442,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
 
-2. You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables.
+2. You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `..env.example` file and commit it to **Git**. The `..env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables.
 
-For example, your `.env.example` file should contain the following.
+For example, your `..env.example` file should contain the following.
 
 ```bash
 DATABASE_URL=
@@ -456,4 +456,4 @@ Your `.env` file should contain the following.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-Why is this important? You can share the `.env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
+Why is this important? You can share the `..env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `..env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
