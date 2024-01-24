@@ -28,14 +28,11 @@ const main = async () => {
         },
       },
     });
-
-    console.log("Database successfully seeded");
-
-    await prisma.$disconnect(); // Disconnect from the database
   } catch (err) {
     console.error(err);
-    await prisma.$disconnect(); 
-    process.exit(1); // Exit the process
+  } finally {
+    await prisma.$disconnect();
+    process.exit(0);
   }
 };
 
