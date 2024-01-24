@@ -87,7 +87,7 @@ What is the purpose of the `test` script? Used to run tests.
 
 ---
 
-In the root directory, create a new directory called `test`. Create a new file called `institution.test.js` in the' test' directory. Add the following code.
+In the root directory, create a new directory called `test`. Create a new file called `00-institution.test.js` in the' test' directory. Add the following code.
 
 ```javascript
 import chai from "chai";
@@ -127,8 +127,7 @@ describe("Institutions", () => {
       .request(app)
       .get("/api/institutions")
       .end((req, res) => {
-        console.log(res) // This is useful for debugging
-
+        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
@@ -141,8 +140,7 @@ describe("Institutions", () => {
       .request(app)
       .get("/api/institutions/1")
       .end((req, res) => {
-        console.log(res) // This is useful for debugging
-
+        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
@@ -156,8 +154,7 @@ describe("Institutions", () => {
       .put("/api/institutions/1")
       .send(institution)
       .end((req, res) => {
-        console.log(res) // This is useful for debugging
-
+        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -172,8 +169,7 @@ describe("Institutions", () => {
       .request(app)
       .delete("/api/institutions/1")
       .end((req, res) => {
-        console.log(res) // This is useful for debugging
-
+        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
