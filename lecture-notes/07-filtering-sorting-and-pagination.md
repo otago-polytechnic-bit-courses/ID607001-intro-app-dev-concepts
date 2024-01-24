@@ -59,7 +59,7 @@ Sorting is often used in combination with filtering to further refine the result
 ```js
 const getInstitutions = async (req, res) => {
   try {
-    const sortBy = req.query.sortBy || "name";
+    const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
     const query = {
@@ -118,7 +118,7 @@ const paginationDefault = {
 
 const getInstitutions = async (req, res) => {
   try {
-    const sortBy = req.query.sortBy || "name";
+    const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
     const amount = req.query.amount || paginationDefault.amount;
