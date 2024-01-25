@@ -77,7 +77,7 @@ Open the `App.jsx` file in the `src`. This is called **JSX** or **JavaScript XML
 
 Let us create a new component.
 
-In the `src` directory, create a new file called `MyFirstComponent.jsx`.
+In the `src` directory, create a new directory called `components`. In the `components` directory, create a new file called `MyFirstComponent.jsx`.
 
 In `MyFirstComponent.jsx`, add the following code:
 

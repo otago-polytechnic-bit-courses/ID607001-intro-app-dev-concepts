@@ -174,7 +174,7 @@ What is the purpose of `e.target.name.value`? This gets the value of the input w
 
 **Lifting state up** is used to share state between components. When multiple components need to reflect the same changing data, it is recommended to lift the shared state up to their closest common ancestor.
 
-In the `src` directory, create a new file called `Product.jsx`.
+In the `components` directory, create a new file called `Product.jsx`.
 
 In `Product.jsx`, add the following code:
 
