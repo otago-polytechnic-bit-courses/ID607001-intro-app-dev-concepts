@@ -98,20 +98,32 @@ import app from "../app.js";
 
 chai.use(chaiHttp);
 
-const institution = {
-  name: "University of Otago",
-  region: "Otago",
-  country: "New Zealand",
-};
-
 describe("Institutions", () => {
+  it("should not create institution", (done) => {
+    chai
+      .request(app)
+      .post("/api/institutions")
+      .send({
+        name: 123,
+        region: "Otago",
+        country: "New Zealand",
+      })
+      .end((req, res) => {
+        chai.expect(res.body.msg).to.be.equal("Name should be a string");
+        done();
+      });
+  });
+
   it("should create institution", (done) => {
     chai
       .request(app)
       .post("/api/institutions")
-      .send(institution)
+      .send({
+        name: "University of Otago",
+        region: "Otago",
+        country: "New Zealand",
+      })
       .end((req, res) => {
-        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai
@@ -126,7 +138,6 @@ describe("Institutions", () => {
       .request(app)
       .get("/api/institutions")
       .end((req, res) => {
-        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("array");
@@ -137,12 +148,27 @@ describe("Institutions", () => {
   it("should get institution by id", (done) => {
     chai
       .request(app)
-      .get("/api/institutions/1")
+      .get("/api/institutions/2")
       .end((req, res) => {
-        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai.expect(res.body.data).to.be.a("object");
+        chai.expect(res.body.data.name).to.be.equal("University of Otago");
+        done();
+      });
+  });
+
+  it("should not update institution by id", (done) => {
+    chai
+      .request(app)
+      .put("/api/institutions/2")
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: 123,
+      })
+      .end((req, res) => {
+        chai.expect(res.body.msg).to.be.equal("Country should be a string");
         done();
       });
   });
@@ -150,34 +176,23 @@ describe("Institutions", () => {
   it("should update institution by id", (done) => {
     chai
       .request(app)
-      .put("/api/institutions/1")
-      .send(institution)
+      .put("/api/institutions/2")
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: "New Zealand",
+      })
       .end((req, res) => {
-        console.log(res) // This is useful for debugging. Remember to remove this
         chai.expect(res.status).to.be.equal(200);
         chai.expect(res.body).to.be.a("object");
         chai
           .expect(res.body.msg)
-          .to.be.equal("Institution with the id: 1 successfully updated");
-        done();
-      });
-  });
-
-  it("should delete institution by id", (done) => { 
-    chai
-      .request(app)
-      .delete("/api/institutions/1")
-      .end((req, res) => {
-        console.log(res) // This is useful for debugging. Remember to remove this
-        chai.expect(res.status).to.be.equal(200);
-        chai.expect(res.body).to.be.a("object");
-        chai
-          .expect(res.body.msg)
-          .to.be.equal("Institution with the id: 1 successfully deleted");
+          .to.be.equal("Institution with the id: 2 successfully updated");
         done();
       });
   });
 });
+
 ```
 
 Run the following command in your terminal.
@@ -196,14 +211,16 @@ You should see the following output.
 
 ```bash
 Institutions
+  ✔ should not create institution (milliseconds)
   ✔ should create institution (milliseconds)
   ✔ should get all institutions (milliseconds)
   ✔ should get institution by id (milliseconds)
+  ✔ should not update institution by id (milliseconds)
   ✔ should update institution by id (milliseconds)
   ✔ should delete institution by id (milliseconds)
 
 
-5 passing (milliseconds)
+7 passing (milliseconds)
 ```
 
 You want to see those **green checkmarks**. If you see any red crosses, then you have a problem with your code.

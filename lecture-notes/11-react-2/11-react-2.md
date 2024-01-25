@@ -86,6 +86,26 @@ const App = () => {
 
 What is the purpose of `&&`? This is used to conditionally render content. If the condition is `true`, the content after the `&&` will be rendered. If the condition is `false`, the content after the `&&` will not be rendered.
 
+Here is another example:
+
+```jsx
+import { useState } from "react";
+
+import MyFirstComponent from "./MyFirstComponent";
+
+const App = () => {
+  const [name, setName] = useState("Jeff");
+  const [showBest, setShowBest] = useState(false);
+
+  return (
+    <>
+      <MyFirstComponent name={name} />
+      {showBest ? <p>Jeff is the best!</p> : <p>Jeff is not the best!</p>}
+    </>
+  );
+};
+```
+
 ## Handling Events
 
 There are many different types of events that can be handled in **React**.
@@ -196,9 +216,7 @@ const App = () => {
   ]);
   const [cart, setCart] = useState([]);
 
-  const addToCart = (product) => {
-    setCart([...cart, product]);
-  };
+  const addToCart = (product) => setCart([...cart, product]);
 
   return (
     <>
@@ -226,6 +244,3 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-```
-
-```

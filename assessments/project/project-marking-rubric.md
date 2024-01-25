@@ -26,7 +26,7 @@
 | **Update Operation**                        | Successfully updates data via the REST API.         | Minor issues in the update operation.             | Significant issues in the update operation.       | Update operation is not working as expected.         |
 | **Delete Operation**                        | Deletes REST API data with user confirmation using the confirm() JavaScript function. | Minor issues in the delete operation or confirmation process. | Significant issues in the delete operation or confirmation process. | Delete operation or confirmation process is not working as expected. |
 | **Validation Error Handling**               | Gracefully handles incorrectly formatted form field values with validation error messages. | Minor issues in validation error handling.       | Significant issues in validation error handling. | Validation error handling is not working as expected. |
-| **UI Design and Style**                     | UI is visually attractive with a coherent graphical theme and style using Reactstrap. | Minor issues in UI design or style.              | Significant issues in UI design or style.         | UI design or style is not visually attractive or lacks coherence. |
+| **UI Design and Style**                     | UI is visually attractive with a coherent graphical theme and style using Shadcn UI. | Minor issues in UI design or style.              | Significant issues in UI design or style.         | UI design or style is not visually attractive or lacks coherence. |
 
 ### Functionality: Scripts - 5%
 

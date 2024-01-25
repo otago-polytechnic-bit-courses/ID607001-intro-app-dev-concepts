@@ -352,7 +352,7 @@ To set the `X-Content-Type-Options` response header, add the following code to t
 ```javascript
 // This should be declared under const app = express();
 const setXContentTypeOptions = (req, res, next) => {
-  res.set("X-Content-Type-Options", "nosniff");
+  res.set("x-content-type-options", "nosniff");
   next();
 };
 
@@ -369,7 +369,7 @@ To set the `X-Frame-Options` response header, add the following code to the `app
 ```javascript
 // This should be declared under the setXContentTypeOptions function
 const setXFrameOptions = (req, res, next) => {
-  res.set("X-Frame-Options", "DENY");
+  res.set("x-frame-options", "deny");
   next();
 };
 
@@ -386,7 +386,7 @@ To set the `Content-Security-Policy` response header, add the following code to 
 ```javascript
 // This should be declared under the setXFrameOptions function
 const setContentSecurityPolicy = (req, res, next) => {
-  res.set("Content-Security-Policy", "default-src 'none'");
+  res.set("content-security-policy", "default-src 'none'");
   next();
 };
 
