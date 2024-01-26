@@ -129,14 +129,14 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{.env.example} file. 
   	\item Appropriate naming of files, variables, functions and resource groups.
-  	\item API security best practices are followed, including:
+  	\begin{itemize}
+	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
+  \end{itemize}
+  \item API security best practices are followed, including:
   	\begin{itemize}
 		\item Validating \textbf{content-type} on request header.
 		\item Sending \textbf{x-content-type-options}, \textbf{x-frame-options}, and \textbf{content-security-policy} on response header.
 	\end{itemize}
-  \begin{itemize}
-	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
-  \end{itemize}
 	\item Idiomatic use of control flow, data structures and in-built functions.
   \item Efficient algorithmic approach.
   \item Sufficient modularity.
