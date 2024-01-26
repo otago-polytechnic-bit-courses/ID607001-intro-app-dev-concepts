@@ -22,25 +22,25 @@ import Joi from "joi";
 const validatePostInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
-      "string.base": "Name should be a string",
-      "string.empty": "Name cannot be empty",
-      "string.min": "Name should have a minimum length of {#limit}",
-      "string.max": "Name should have a maximum length of {#limit}",
-      "any.required": "Name is required",
+      "string.base": "name should be a string",
+      "string.empty": "name cannot be empty",
+      "string.min": "name should have a minimum length of {#limit}",
+      "string.max": "name should have a maximum length of {#limit}",
+      "any.required": "name is required",
     }),
     region: Joi.string().min(3).max(100).required().messages({
-      "string.base": "Region should be a string",
-      "string.empty": "Region cannot be empty",
-      "string.min": "Region should have a minimum length of {#limit}",
-      "string.max": "Region should have a maximum length of {#limit}",
-      "any.required": "Region is required",
+      "string.base": "region should be a string",
+      "string.empty": "region cannot be empty",
+      "string.min": "region should have a minimum length of {#limit}",
+      "string.max": "region should have a maximum length of {#limit}",
+      "any.required": "region is required",
     }),
     country: Joi.string().min(3).max(100).required().messages({
-      "string.base": "Country should be a string",
-      "string.empty": "Country cannot be empty",
-      "string.min": "Country should have a minimum length of {#limit}",
-      "string.max": "Country should have a maximum length of {#limit}",
-      "any.required": "Country is required",
+      "string.base": "country should be a string",
+      "string.empty": "country cannot be empty",
+      "string.min": "country should have a minimum length of {#limit}",
+      "string.max": "country should have a maximum length of {#limit}",
+      "any.required": "country is required",
     }),
   });
 
