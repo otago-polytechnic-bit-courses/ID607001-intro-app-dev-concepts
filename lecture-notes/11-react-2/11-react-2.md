@@ -147,14 +147,16 @@ import MyFirstComponent from "./MyFirstComponent";
 const App = () => {
   const [name, setName] = useState("Jeff");
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setName(e.target.name.value);
+  };
+
   return (
     <>
       <MyFirstComponent name={name} />
       <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          setName(e.target.name.value);
-        }}
+        onSubmit={handleSubmit}
       >
         <input type="text" name="name" />
         <button type="submit">Change Name</button>
@@ -165,6 +167,8 @@ const App = () => {
 
 export default App;
 ```
+
+What is `onSubmit`? This is an event handler that is called when the form is submitted.
 
 What is the purpose of `e.preventDefault()`? This prevents the default behavior of the form, which is to refresh the page.
 
@@ -243,4 +247,3 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
-

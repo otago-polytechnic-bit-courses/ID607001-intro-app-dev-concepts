@@ -40,8 +40,8 @@ npx prisma init
 
 What is the purpose of each command?
 
-- `npm install @prisma/client`: Installs the **Prisma Client** module.
-- `npm install prisma --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
+- `npm install @prisma/client@4.16.2t`: Installs the **Prisma Client** module.
+- `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 - `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
 
 What is the purpose of the `.env` file? Used to store environment variables. For example, database connection string.
