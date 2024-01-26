@@ -33,6 +33,34 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 
 - <https://git-scm.com/docs/git-clone>
 
+## Commit Message Conventions
+
+When committing changes to your repository, you should follow the **conventional commits** convention. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
+
+- **build**: Changes that affect the build system or external dependencies
+- **ci**: Changes to our CI configuration files and scripts
+- **docs**: Documentation only changes
+- **feat**: A new feature
+- **fix**: A bug fix
+- **perf**: A code change that improves performance
+- **refactor**: A code change that neither fixes a bug nor adds a feature
+- **style**: Changes that do not affect the meaning of the code (white-space, formatting, missing semi-colons, etc)
+- **test**: Adding missing tests or correcting existing tests
+
+The **scope** is a phrase describing the section of the codebase that is affected by the change. For example, if you are working on the **formative assessment** for **JavaScript**, you can use the scope `javascript`. If you are working on the **formative assessment** for **HTML**, you can use the scope `html`.
+
+The **description** is a short description of the change. It should be written in the imperative mood, meaning it should be written as if you are giving a command or instruction. For example, "Add a new feature" instead of "Added a new feature".
+
+Here are some examples of **conventional commits**:
+
+- `feat(javascript): Add a new feature`
+- `fix(html): Fix a bug`
+- `docs(css): Update documentation`
+
+**Resources:**
+
+- <https://www.conventionalcommits.org/en/v1.0.0/>
+
 ## JavaScript
 
 Let us recap some of the key concepts of **JavaScript**.
