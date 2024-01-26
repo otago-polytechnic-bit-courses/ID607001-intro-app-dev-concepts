@@ -63,7 +63,7 @@ There are four different **header** groups:
 
 ## Getting Started
 
-Open your **s1-24-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
+Open your **s1-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
 ```bash
 npm init -y
