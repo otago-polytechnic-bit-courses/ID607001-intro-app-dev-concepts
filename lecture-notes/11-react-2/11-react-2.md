@@ -183,6 +183,8 @@ In the `components` directory, create a new file called `Product.jsx`.
 In `Product.jsx`, add the following code:
 
 ```jsx
+import PropTypes from "prop-types";
+
 const Product = (props) => {
   return (
     <li>
@@ -200,6 +202,13 @@ const Product = (props) => {
       </button>
     </li>
   );
+};
+
+Product.propTypes = {
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  addToCart: PropTypes.func.isRequired,
 };
 
 export default Product;

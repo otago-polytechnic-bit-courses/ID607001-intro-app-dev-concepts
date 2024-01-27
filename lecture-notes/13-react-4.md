@@ -8,8 +8,13 @@ npm install axios bootstrap react-router-dom reactstrap
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
+
+// Remove import "./index.css";
+
 import "bootstrap/dist/css/bootstrap.min.css";
 
+// It will render the App component in the root element. You can find the root 
+// element in the index.html file in the root directory
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
@@ -65,9 +70,10 @@ export default Navigation;
 ```jsx
 import axios from "axios";
 
+// Create an axios instance
 const instance = axios.create({
-  baseURL: "https://id607001-graysono-wbnj.onrender.com/api",
-  timeout: 10000,
+  baseURL: "https://id607001-graysono-wbnj.onrender.com/api", // Replace with your own API URL
+  timeout: 10000, // 10 seconds. Increase if requests are timing out
 });
 
 export default instance;
@@ -83,6 +89,7 @@ import {
   Input,
   FormFeedback,
 } from "reactstrap";
+import PropTypes from "prop-types";
 
 import instance from "../../utils/axios";
 
@@ -120,14 +127,15 @@ const InstitutionForm = ({ onFormSubmit }) => {
         country: "",
         submitError: "",
       });
-      onFormSubmit();
+      onFormSubmit(); // Call the onFormSubmit prop
     } catch (err) {
+      // Handle validation errors
       if (err.response && err.response.data && err.response.data.msg) {
-        const errorMsg = err.response.data.msg;
-        const field = errorMsg.split(" ")[0];
+        const errorMsg = err.response.data.msg; // Get the error message
+        const field = errorMsg.split(" ")[0]; // Get the field name from the error message, i.e., "name should be a string" -> "name"
         setErrors((prevErrors) => ({
-          ...prevErrors,
-          [field]: errorMsg,
+          ...prevErrors, // Keep the other errors
+          [field]: errorMsg, // Set the error for the field
         }));
       } else {
         console.log(err);
@@ -157,7 +165,7 @@ const InstitutionForm = ({ onFormSubmit }) => {
           id="region"
           name="region"
           onChange={handleChange}
-          invalid={!!errors.region}
+          invalid={!!errors.region} 
         />
         <FormFeedback>{errors.region}</FormFeedback>
       </FormGroup>
@@ -179,6 +187,10 @@ const InstitutionForm = ({ onFormSubmit }) => {
       <Button type="submit">Add Institution</Button>
     </Form>
   );
+};
+
+InstitutionForm.propTypes = {
+  onFormSubmit: PropTypes.func.isRequired,
 };
 
 export default InstitutionForm;
@@ -238,7 +250,7 @@ const InstitutionTable = () => {
     if (confirmDelete) {
       try {
         await instance.delete(`/institutions/${id}`);
-        setData(data.filter((item) => item.id !== id));
+        setData(data.filter((item) => item.id !== id)); // Remove the item from the data array
       } catch (err) {
         console.log(err);
       }
@@ -246,11 +258,11 @@ const InstitutionTable = () => {
   };
 
   const handleEdit = (item) => {
-    setEditItem(item);
-    setModalOpen(true);
+    setEditItem(item); // Set the item to be edited
+    setModalOpen(true); // Open the modal
   };
 
-  const resetErrors = () => {
+  const resetErrors = () => { 
     setErrors({
       name: "",
       region: "",
@@ -262,8 +274,7 @@ const InstitutionTable = () => {
   const handleEditFormSubmit = async (editedData) => {
     try {
       await instance.put(`/institutions/${editItem.id}`, editedData);
-
-      const updatedData = data.map((item) =>
+      const updatedData = data.map((item) => // Update the item in the data array
         item.id === editItem.id ? { ...item, ...editedData } : item
       );
       resetErrors();
@@ -271,12 +282,13 @@ const InstitutionTable = () => {
       setModalOpen(false);
       setEditItem(null);
     } catch (err) {
+      // Handle validation errors
       if (err.response && err.response.data && err.response.data.msg) {
-        const errorMsg = err.response.data.msg;
-        const field = errorMsg.split(" ")[0];
+        const errorMsg = err.response.data.msg; // Get the error message
+        const field = errorMsg.split(" ")[0]; // Get the field name from the error message, i.e., "name should be a string" -> "name"
         setErrors({
-          ...errors,
-          [field]: errorMsg,
+          ...errors, // Keep the other errors
+          [field]: errorMsg, // Set the error for the field
         });
       } else {
         console.log(err);
@@ -284,7 +296,7 @@ const InstitutionTable = () => {
     }
   };
 
-  const handleFormSubmit = () => fetchData();
+  const handleFormSubmit = () => fetchData(); // Refetch data when the form is submitted
 
   return (
     <>
@@ -306,7 +318,7 @@ const InstitutionTable = () => {
             <tbody>
               {data.length === 0 ? (
                 <tr>
-                  <td colSpan="5" className="text-center">
+                  <td colSpan="5" className="text-center"> 
                     No data available
                   </td>
                 </tr>
@@ -341,13 +353,13 @@ const InstitutionTable = () => {
           <Modal
             isOpen={modalOpen}
             toggle={() => {
-              resetErrors();
+              resetErrors(); // Reset errors when the modal is closed
               setModalOpen(!modalOpen);
             }}
           >
             <ModalHeader
               toggle={() => {
-                resetErrors();
+                resetErrors(); // Reset errors when the modal is closed
                 setModalOpen(!modalOpen);
               }}
             >

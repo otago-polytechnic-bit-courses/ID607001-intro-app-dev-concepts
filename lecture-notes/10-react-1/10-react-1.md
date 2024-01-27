@@ -135,6 +135,32 @@ Navigate to **http://127.0.0.1:5173/** in your browser.
 
 You should see **Hello, Jeff!** on the page.
 
+## Prop Types
+
+**Prop types** are used to validate the data that is passed to a component.
+
+Install **prop-types** by running the following command in your terminal:
+
+```bash
+npm install prop-types
+```
+
+In `MyFirstComponent.jsx`, replace the existing code with the following:
+
+```jsx
+import PropTypes from "prop-types";
+
+const MyFirstComponent = (props) => {
+  return <h1>Hello, {props.name}!</h1>;
+};
+
+MyFirstComponent.propTypes = {
+  name: PropTypes.string.isRequired, // The name prop is required and must be a string
+};
+
+export default MyFirstComponent;
+```
+
 ## State
 
 **State** is used to store data that can change over time.
