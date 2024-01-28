@@ -300,6 +300,65 @@ const [players, setPlayers] = useState([
 
 Map over the `players` array and render the player's name, jersey number, and team. In `App.jsx`, use the `BasketballPlayers` component to display the players.
 
-3.
+3. Create a new component called `Item.jsx` and add the following code:
 
-4.
+```jsx
+const Item = (props) {
+  let itemContent = props.name;
+
+  if (props.isPacked) {
+    itemContent = (
+      <del>
+        {props.name + " ✔"}
+      </del>
+    );
+  }
+
+  return (
+    <li className="item">
+      {itemContent}
+    </li>
+  );
+}
+
+export default Item;
+```
+
+Create a new component called `PackList.jsx` which renders a list of items. If the item is packed, it should be crossed out. In `App.jsx`, use the `PackList` component to display a list of items.
+
+4. Create a component called `AmericanFootballPlayerVoting.jsx` and add the following code:
+
+```jsx
+const FootballPlayerVoting = () => {
+  const [players, setPlayers] = useState([
+    { id: 1, name: "Lamar Jackson", team: "Baltimore Ravens", votes: 0 },
+    { id: 2, name: "Dak Prescott", team: "Dallas Cowboys", votes: 0 },
+    { id: 3, name: "Patrick Mahomes", team: "Kansas City Chiefs", votes: 0 },
+    { id: 4, name: "Jalen Hurts", team: "Philadelphia Eagles", votes: 0 },
+    { id: 5, name: "Josh Allen", team: "Buffalo Bills", votes: 0 },
+  ]);
+
+  const handleVote = (id) => {
+    // Write code here
+  };
+
+  return (
+    <div>
+      <h2>Vote for your favorite football player!</h2>
+      <ul>
+        {players.map((player) => (
+          <li key={player.id}>
+            {player.name} - Jersey Number: {player.jerseyNumber} - Votes:{" "}
+            {player.votes}
+            <button onClick={() => handleVote(player.id)}>Vote</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default FootballPlayerVoting;
+```
+
+When the `Vote` button is clicked, the player's `votes` should be incremented by 1. In `App.jsx`, use the `FootballPlayerVoting` component to display the list of players.
