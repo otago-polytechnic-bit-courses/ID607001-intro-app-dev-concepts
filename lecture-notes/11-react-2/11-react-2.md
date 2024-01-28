@@ -155,9 +155,7 @@ const App = () => {
   return (
     <>
       <MyFirstComponent name={name} />
-      <form
-        onSubmit={handleSubmit}
-      >
+      <form onSubmit={handleSubmit}>
         <input type="text" name="name" />
         <button type="submit">Change Name</button>
       </form>
@@ -256,3 +254,52 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+1. 1. Given the following code:
+
+```jsx
+const Biography => () {
+  return (
+    <h1>Welcome to my website!</h1>
+    <p>My name is Jeff.</p>
+    <p>I work at Otago Polytechnic.</p>
+  );
+}
+
+export default Biography;
+```
+
+There is an error in the code. Fix the error.
+
+2. Create a component called `BasketballPlayers.jsx` which has the following state:
+
+```jsx
+const [players, setPlayers] = useState([
+  { id: 1, name: "LeBron James", jerseyNumber: 23, team: "Los Angeles Lakers" },
+  { id: 2, name: "Kevin Durant", jerseyNumber: 35, team: "Phoenix Suns" },
+  {
+    id: 3,
+    name: "Stephen Curry",
+    jerseyNumber: 30,
+    team: "Golden State Warriors",
+  },
+  {
+    id: 4,
+    name: "Kawhi Leonard",
+    jerseyNumber: 2,
+    team: "Los Angeles Clippers",
+  },
+  {
+    id: 5,
+    name: "Giannis Antetokounmpo",
+    jerseyNumber: 34,
+    team: "Milwaukee Bucks",
+  },
+]);
+```
+
+Map over the `players` array and render the player's name, jersey number, and team. In `App.jsx`, use the `BasketballPlayers` component to display the players.
+
+3.
+
+4.
