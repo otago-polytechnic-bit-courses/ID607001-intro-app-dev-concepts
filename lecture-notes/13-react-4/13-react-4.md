@@ -1,5 +1,9 @@
 # 13: React 4
 
+
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
+
+
 ```bash
 npm install axios bootstrap react-router-dom reactstrap
 ```

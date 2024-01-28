@@ -1,5 +1,9 @@
 # 12: React 3
 
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
+
+
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:

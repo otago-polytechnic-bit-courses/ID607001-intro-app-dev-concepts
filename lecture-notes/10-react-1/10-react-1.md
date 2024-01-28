@@ -1,6 +1,6 @@
 # 10: React 1
 
-If you get stuck, a completed version of this project is available in the **10-react-1** directory of the **lecture-notes** repository.
+If you get stuck, a completed version of this project is available in the **exemplar** directory.
 
 ## Vite
 
@@ -206,4 +206,31 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+1. Given the following code:
+
+```jsx
+const Profile => () {
+  <img
+    src="https://imgur.com/WKnQwiz"
+    alt="Michael Jordan going Super Saiyan after making 'The Shot'"
+  />
+}
+```
+
+There are two errors in the code. Fix the error.
+
+2. Create a component called `UserInformation.jx` which the props `firstName` of type `string` and `lastName` of type `string`. The component should display the full name of the user in an `h1` element. In `App.jsx`, use the `UserInformation` component to display your full name and the lecturer's full name. **Note:** Do not use the `useState` hook.
+
+3. Update the `UserInformation` component to include the props `age` of type `number` and `isStudent` of type `boolean`. The component should display the full name of the user in an `h1` element and the age and whether or not the user is a student in an `h2` element. In `App.jsx`, use the `UserInformation` component to display your full name, age and whether or not you are a student. **Note:** Do not use the `useState` hook.
+
+4. Create a new component called `MyTimetable.jsx`. The component should display a table with the following columns:
+
+   - `Course Code`
+   - `Course Name`
+   - `Day`
+   - `Start Time`
+   - `End Time`
+
+In `App.jsx`, use the `MyTimetable` component to display your timetable. **Note:** Do not use props.
 
