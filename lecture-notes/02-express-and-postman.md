@@ -142,7 +142,7 @@ Hello, World!
 
 Let us do some refactoring. 
 
-In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `app.js` and add the following code.
+In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -156,16 +156,16 @@ export { get };
 
 What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
-What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `app.js` file in the `routes` directory.
+What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
 
-In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `app.js` and add the following code.
+In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Import the Express module
 import express from 'express';
 
 // Import the index controllers module
-import { get } from "../controllers/app.js";
+import { get } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
