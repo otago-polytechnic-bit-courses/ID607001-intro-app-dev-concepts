@@ -212,7 +212,7 @@ Your file structure should look something like this.
 ```bash
 .
 ├── controllers
-│   └── app.js
+│   └── index.js
 ├── node_modules
 ├── routes
 │   └── app.js
