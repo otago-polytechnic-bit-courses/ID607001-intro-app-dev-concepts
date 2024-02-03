@@ -124,6 +124,7 @@ Create a new file called `institution.js` in the' controllers' directory. Add th
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
+
 const prisma = new PrismaClient();
 ```
 
