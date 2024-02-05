@@ -227,6 +227,8 @@ You want to see those **green checkmarks**. If you see any red crosses, then you
 
 ## Formative Assessment
 
+Before you start, create a new branch called **09-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -238,3 +240,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 2. Seed the `User` and `Course` tables with data.
 
 3. Create tests for the `Departments`, `User` and `Course` tables.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

@@ -402,6 +402,8 @@ $ node 01-formative-assessment.js
 Hello, World!
 ```
 
+Create a new branch called **01-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -617,3 +619,7 @@ console.log(winner);
 // Expected output
 // "X"
 ```
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

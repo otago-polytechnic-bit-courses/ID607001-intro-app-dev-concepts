@@ -249,6 +249,8 @@ export default App;
 
 ## Formative Assessment
 
+Before you start, create a new branch called **11-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -362,3 +364,7 @@ export default FootballPlayerVoting;
 ```
 
 When the `Vote` button is clicked, the player's `votes` should be incremented by 1. In `App.jsx`, use the `FootballPlayerVoting` component to display the list of players.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
