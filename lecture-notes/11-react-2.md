@@ -1,6 +1,33 @@
 # 11: React 2
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
+## Preparation
+
+1. In the **Terminal**, the following command:
+
+```bash
+npm create vite@latest
+```
+
+2. Name the project **11-react-2**, select **React** as the framework and select **JavaScript + SWC** as the variant.
+
+3. Change into the project directory and install the dependencies:
+
+```bash
+cd 11-react-2
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+If you try to run the development server before installing the dependencies, you will get an error.
+
+5. Navigate to **http://127.0.0.1:5173/** in your browser.
+
+You should see a page that says **Vite + React**.
 
 ## Fragments
 
@@ -255,7 +282,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-1. 1. Given the following code:
+1. Given the following code:
 
 ```jsx
 const Biography => () {
@@ -343,7 +370,7 @@ const FootballPlayerVoting = () => {
   };
 
   return (
-    <div>
+    <>
       <h2>Vote for your favorite football player!</h2>
       <ul>
         {players.map((player) => (
@@ -354,7 +381,7 @@ const FootballPlayerVoting = () => {
           </li>
         ))}
       </ul>
-    </div>
+    </>
   );
 };
 

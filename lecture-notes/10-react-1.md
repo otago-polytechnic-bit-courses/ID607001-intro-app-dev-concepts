@@ -1,7 +1,5 @@
 # 10: React 1
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
-
 ## Vite
 
 **Vite** is a build tool that is used to create **React** applications. It is similar to **Create React App**, but it is faster and has a few other advantages.
@@ -33,7 +31,7 @@ If you try to run the development server before installing the dependencies, you
 
 5. Navigate to **http://127.0.0.1:5173/** in your browser.
 
-You should see a page that says **Vite + React**
+You should see a page that says **Vite + React**.
 
 ## Hot Module Replacement
 

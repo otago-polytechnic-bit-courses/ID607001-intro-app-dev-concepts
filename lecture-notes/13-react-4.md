@@ -1,11 +1,42 @@
 # 13: React 4
 
+## Create Vite App
 
-If you get stuck, a completed version of this project is available in the **exemplar** directory.
+1. In the **Terminal**, the following command:
+
+```bash
+npm create vite@latest
+```
+
+2. Name the project **13-react-4**, select **React** as the framework and select **JavaScript + SWC** as the variant.
+
+3. Change into the project directory and install the dependencies:
+
+```bash
+cd 13-react-4
+npm install
+```
+
+4. Start the development server:
+
+```bash
+npm run dev
+```
+
+If you try to run the development server before installing the dependencies, you will get an error.
+
+5. Navigate to **http://127.0.0.1:5173/** in your browser.
+
+You should see a page that says **Vite + React**.
+
+## Bootstrap
+
+
+## ReactStrap
 
 
 ```bash
-npm install axios bootstrap react-router-dom reactstrap
+npm install bootstrap reactstrap
 ```
 
 ```jsx
@@ -46,7 +77,7 @@ import InstitutionTable from "./tables/InstitutionTable";
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+  const toggle = () => setIsOpen(!isOpen); // Toggle the value of isOpen
 
   return (
     <Router>
@@ -70,6 +101,16 @@ const Navigation = () => {
 
 export default Navigation;
 ```
+
+Let us breakdown the components in this code snippet:
+
+- `Navbar` is a component from **Reactstrap** that is used to create a navigation bar.
+- `NavbarBrand` is a component from **Reactstrap** that is used to create a brand link in the navigation bar.
+- `NavbarToggler` is a component from **Reactstrap** that is used to create a toggler for the navigation bar.
+- `Collapse` is a component from **Reactstrap** that is used to create a collapsible navigation bar.
+- `Nav` is a component from **Reactstrap** that is used to create a navigation bar.
+- `NavItem` is a component from **Reactstrap** that is used to create a navigation item.
+- `NavLink` is a component from **Reactstrap** that is used to create a navigation link.
 
 ```jsx
 import axios from "axios";
