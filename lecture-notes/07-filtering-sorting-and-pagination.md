@@ -173,6 +173,8 @@ Here is an example `GET` request that returns the first 15 institutions that hav
 
 ## Formative Assessment
 
+Before you start, create a new branch called **07-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -182,3 +184,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 1. Implement the above.
 
 2. Document and test the **API** in **Postman**.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

@@ -145,6 +145,8 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
 
 ## Formative Assessment
 
+Before you start, create a new branch called **05-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -189,3 +191,7 @@ This model should have a relationship with the `Department` model. A `Department
 2. In **Prisma**, you can use **enums**. An **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a `role` field to the `User` model with the `@default(LEARNER)` directive. The `role` field should be of type `Role`. What happens when you try to create a user with a role that is not one of the constants defined in the **enum**?
 
 3. Document and test the **API** in **Postman**.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

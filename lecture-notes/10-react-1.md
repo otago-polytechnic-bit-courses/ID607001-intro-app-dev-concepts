@@ -199,6 +199,8 @@ export default App;
 
 ## Formative Assessment
 
+Before you start, create a new branch called **10-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -232,3 +234,6 @@ There are two errors in the code. Fix the error.
 
 In `App.jsx`, use the `MyTimetable` component to display your timetable. **Note:** Do not use props.
 
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

@@ -265,6 +265,8 @@ We will add more requests to the collection as we work through the examples. Lat
 
 ## Formative Assessment
 
+Before you start, create a new branch called **02-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -284,3 +286,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 ## Research Assessment
 
 1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

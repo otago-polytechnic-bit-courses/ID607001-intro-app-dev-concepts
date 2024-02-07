@@ -94,6 +94,8 @@ This is an example of a `POST` request where the `name` field is empty.
 
 ## Formative Assessment
 
+Before you start, create a new branch called **06-formative-assessment**.
+
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
@@ -103,3 +105,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 1. Create validation rules for each field in the `Department`, `Course`, and `User` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. It would be best if you did not have to repeat the same code repeatedly. You should be able to reuse the code.
 
 2. Document and test the **API** in **Postman**.
+
+# Formative Assessment Submission
+
+Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
