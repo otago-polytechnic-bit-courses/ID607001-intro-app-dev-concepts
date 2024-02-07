@@ -289,7 +289,7 @@ const App = () => {
 export default App;
 ```
 
-6. Navigate to **http://127.0.0.1:5173/īnstitutions**. **Note:** If you see, **No data available**, it means that you have not added any institutions yet.
+6. Navigate to **http://127.0.0.1:5173/īnstitutions**. **Note:** If you see, **No data available**, refresh the page.
 
 ## Formative Assessment
 
@@ -301,10 +301,16 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-<<<<<<< HEAD
-1. 
-=======
-# Formative Assessment Submission
+1. Using **Axios**, perform a **GET** request to the following API - https://emojihub.yurace.pro/api/random/category/<category>. Replace `<category>` with a random category from the following list: **smileys-and-people**, **animals-and-nature**, **food-and-drink**, **travel-and-places**, **activities**, **objects**, **symbols** and **flags**. Display the emoji's name, group and html code/emoji. 
 
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
->>>>>>> cf545330576d1c625eac010447decdeb2d4daf5c
+**Resource:** <https://github.com/cheatsnake/emojihub>
+
+![](12-react-3-formative-assessment-1.jpeg)
+
+1. Using **Axios**, perform a **GET** request to the following API - https://thronesapi.com/api/v2/Characters/<id>. Replace `<id>` with a random number between 1 and 50. Display the character's first name, last name and image.
+
+![](12-react-3-formative-assessment-2.jpeg)
+
+3. Using **Axios** and the resource below, select a random API and perform a **GET** request to it. Display the data returned from the API.
+
+**Resource:** https://github.com/public-apis/public-apis

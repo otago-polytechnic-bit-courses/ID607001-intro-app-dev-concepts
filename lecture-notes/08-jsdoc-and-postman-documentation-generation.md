@@ -67,28 +67,28 @@ As you have progressed through the course, you have used **Postman** to test and
 
 You can save your response as an example.
 
-![](<../resources (ignore)/img/07/postman-1.PNG>)
+![](<../resources (ignore)/img/08/postman-1.PNG>)
 
 You will see the following when you save your response as an example.
 
-![](<../resources (ignore)/img/07/postman-2.PNG>)
+![](<../resources (ignore)/img/08/postman-2.PNG>)
 
 Click on the **Collection**, then click on the **View complete collection documentation** link. 
 
-![](<../resources (ignore)/img/07/postman-3.PNG>)
+![](<../resources (ignore)/img/08/postman-3.PNG>)
 
 Click on the **Publish** button.
 
-![](<../resources (ignore)/img/07/postman-4.PNG>)
+![](<../resources (ignore)/img/08/postman-4.PNG>)
 
 Scroll to the bottom of the page and click on the **Publish** button.
 
-![](<../resources (ignore)/img/07/postman-5.PNG>)
+![](<../resources (ignore)/img/08/postman-5.PNG>)
 
 Click on the **URL for published documentation** link.
 
-![](<../resources (ignore)/img/07/postman-6.PNG>)
+![](<../resources (ignore)/img/08/postman-6.PNG>)
 
 You have successfully published your documentation.
 
-![](<../resources (ignore)/img/07/postman-7.PNG>)
+![](<../resources (ignore)/img/08/postman-7.PNG>)
