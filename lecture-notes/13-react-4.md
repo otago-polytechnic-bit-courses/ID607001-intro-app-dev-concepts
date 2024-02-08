@@ -61,7 +61,11 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 );
 ```
 
-**What is the 
+**What is .min.css?**
+
+`.min.css` is a minified version of the **Bootstrap** CSS file. Minified files are smaller in size and are used in production to reduce the time it takes to load the website.
+
+3. In `src/components/Navigation.jsx`, remove the existing code and add the following code:
 
 ```jsx
 import { useState } from "react";
@@ -118,19 +122,11 @@ Let us breakdown the components in this code snippet:
 - `NavItem` is a component from **Reactstrap** that is used to create a navigation item.
 - `NavLink` is a component from **Reactstrap** that is used to create a navigation link.
 
+4. In `src/components/InstitutionForm.jsx`, remove the existing code and add the following code:
+ 
 ```jsx
-import axios from "axios";
+// Note: Please read the code comments
 
-// Create an axios instance
-const instance = axios.create({
-  baseURL: "https://id607001-graysono-wbnj.onrender.com/api", // Replace with your own API URL
-  timeout: 10000, // 10 seconds. Increase if requests are timing out
-});
-
-export default instance;
-```
-
-```jsx
 import { useState } from "react";
 import {
   Button,
@@ -157,14 +153,16 @@ const InstitutionForm = ({ onFormSubmit }) => {
     submitError: "",
   });
 
+  // This function is called when the input fields change
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // name refers to the name attribute of the input field, value refers to the value of the input field
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
 
+  // This function is called when the form is submitted
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission
     try {
       await instance.post("/institutions", formData);
       setFormData({
@@ -247,7 +245,21 @@ InstitutionForm.propTypes = {
 export default InstitutionForm;
 ```
 
+Let us breakdown the components in this code snippet:
+
+- `Form` is a component from **Reactstrap** that is used to create a form.
+- `FormGroup` is a component from **Reactstrap** that is used to group form elements.
+- `Label` is a component from **Reactstrap** that is used to create a label for a form element.
+- `Input` is a component from **Reactstrap** that is used to create an input field.
+- `FormFeedback` is a component from **Reactstrap** that is used to create feedback for an input field.
+- `Button` is a component from **Reactstrap** that is used to create a button.
+
+
+5. In `src/components/InstitutionTable.jsx`, remove the existing code and add the following code:
+
 ```jsx
+// Note: Please read the code comments
+
 import { useEffect, useState } from "react";
 import {
   Table,
@@ -484,6 +496,14 @@ const InstitutionTable = () => {
 export default InstitutionTable;
 ```
 
+Let us breakdown the components in this code snippet:
+
+- `Table` is a component from **Reactstrap** that is used to create a table.
+- `Modal` is a component from **Reactstrap** that is used to create a modal. A modal is a dialog box or popup window that is displayed on top of the current page.
+- `ModalHeader` is a component from **Reactstrap** that is used to create a header for a modal.
+- `ModalBody` is a component from **Reactstrap** that is used to create a body for a modal.
+- `ModalFooter` is a component from **Reactstrap** that is used to create a footer for a modal.
+
 ## Formative Assessment
 
 Before you start, create a new branch called **13-formative-assessment**.
@@ -493,6 +513,8 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - If you provide **ChatGPT** with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
+
+1. Spend some time understanding the code above. Once you have an understanding of the code, implement the same functionality using your own **REST API** developed in the **Project** assessment.
 
 # Formative Assessment Submission
 
