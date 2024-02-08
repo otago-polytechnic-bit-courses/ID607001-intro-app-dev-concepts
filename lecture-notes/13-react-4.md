@@ -31,31 +31,37 @@ You should see a page that says **Vite + React**.
 
 ## Bootstrap
 
+**Bootstrap** is a popular CSS framework that is used to create responsive and mobile-first websites. It is a good idea to use a CSS framework like **Bootstrap** to make your website look good without having to write a lot of CSS.
 
-## ReactStrap
+## Reactstrap
 
+**Reactstrap** is a library that provides **Bootstrap** components as **React** components. This makes it easy to use **Bootstrap** in **React** applications.
+
+1. To get started, install the **Bootstrap** and **Reactstrap** packages:
 
 ```bash
 npm install bootstrap reactstrap
 ```
+
+2. In `src/main.jsx`, remove or comment out - `import "./index.css";` and add - `import "bootstrap/dist/css/bootstrap.min.css";`.
 
 ```jsx
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 
-// Remove import "./index.css";
+// import "./index.css";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// It will render the App component in the root element. You can find the root 
-// element in the index.html file in the root directory
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
 );
 ```
+
+**What is the 
 
 ```jsx
 import { useState } from "react";

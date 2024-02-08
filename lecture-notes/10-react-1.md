@@ -103,6 +103,28 @@ Navigate to **http://127.0.0.1:5173/** in your browser.
 
 You should see **Hello, World!** on the page.
 
+## Strict Mode
+
+**React** has a feature called **strict mode** that helps you write better components. It does not render any visible UI. It activates additional checks and warnings for its descendants. You will find ane example of this in `src/main.jsx`.	
+
+```jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+
+import "./index.css";
+
+import "bootstrap/dist/css/bootstrap.min.css";
+
+// It will render the App component in the root element. You can find the root 
+// element in the index.html file in the root directory
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+```
+
 ## Props
 
 **Props** are used to pass data from one component to another.
