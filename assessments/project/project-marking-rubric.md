@@ -2,8 +2,8 @@
 
 ### Functionality: REST API - 25%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Development and Environment**              | API seamlessly runs in both development and production environments without modification. | Minor issues in environment compatibility.        | Significant issues in environment compatibility. | API struggles to run in development or production environments. |
 | **Model Development**                        | Six models are developed, each with a minimum of four fields, demonstrating diverse data types. | Minor issues in model development, lacking diversity or meeting the minimum requirements. | Significant issues in model development, failing to meet the minimum requirements. | Models are missing or poorly developed.                |
 | **Relationships Between Models**            | Six relationships between models are established, showcasing a clear understanding of associations. | Minor issues in establishing relationships.       | Significant issues in establishing relationships. | Relationships between models are missing or incorrectly defined. |
@@ -17,8 +17,8 @@
 
 ### Functionality: CRUD Application - 20%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Development and Environment**              | Application seamlessly runs in the development environment without modification. | Minor issues in environment compatibility.        | Significant issues in environment compatibility. | Application struggles to run in development environment. |
 | **Integration with REST API**               | Requests data from four API resource groups using Axios. Implements CRUD operations effectively. | Minor issues in integration or incomplete CRUD functionality. | Significant issues in integration or incomplete CRUD functionality. | Fails to integrate with the REST API or lacks essential CRUD functionality. |
 | **Create Operation**                        | Successfully creates new data via the REST API.      | Minor issues in the create operation.             | Significant issues in the create operation.        | Create operation is not working as expected.         |
@@ -40,8 +40,8 @@
 
 ### Code Quality and Best Practices - 45%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **.gitignore and .env.example**               | Proper use of Node.js .gitignore file. Environment variables are stored in .env.example. | Minor issues in .gitignore or .env.example.        | Significant issues in .gitignore or .env.example. | Missing .gitignore or .env.example.                    |
 | **Appropriate Naming**                       | Clear and meaningful names for files, variables, functions, and resource groups following best practices. | Minor issues in naming conventions or clarity.        | Significant naming issues impacting readability.     | Naming conventions are not followed. 
 | **API Best Practices**                        | API security best practices are followed, including validation of content-type, sending x-content-type-options, x-frame-options, and content-security-policy. Secure communication through HTTPS is ensured. | Minor omissions in API security best practices.         | Significant issues in API security best practices.  | Critical omissions in API security, exposing vulnerabilities.  |

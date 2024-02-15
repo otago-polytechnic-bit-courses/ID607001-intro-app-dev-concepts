@@ -2,15 +2,15 @@
 
 ### Functionality: 50%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Testing**                                  | API tests are comprehensive, covering all specified cases with clear verification. | Some minor issues in API test coverage or verification. | Significant issues in API test coverage or verification. | API tests are not implemented or inadequate.          |
 | **Scripts**                                  | Clear and accurate scripts provided for seeding the database and running API tests using Mocha. | Scripts are somewhat unclear or contain minor errors.  | Scripts are confusing or have significant errors.   | Scripts are missing or inadequate.                      |
 
 ### Code Quality and Best Practices - 45%
 
-| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
-| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
+| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Appropriate Naming**                       | Clear and meaningful names for files, variables, and functions, following best practices. | Minor issues in naming conventions or clarity.        | Significant naming issues impacting readability.     | Naming conventions are not followed.                  |
 | **Idiomatic Use**                             | Effective use of control flow, data structures, and in-built functions in an idiomatic manner. | Some instances of non-idiomatic code or inefficient use. | Significant non-idiomatic code affecting efficiency. | Poor use of control flow, data structures, or functions. |
 | **Efficient Algorithmic Approach**           | Implementation demonstrates a highly efficient algorithmic approach. | Some areas could be optimised for better efficiency.  | Significant optimisation opportunities are missed.   | Inefficient algorithmic approach throughout.          |
