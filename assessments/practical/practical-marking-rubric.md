@@ -55,6 +55,4 @@
 
 **Assessor's Name:** [Assessor's Name]
 
-**Assessor's Signature:** ___________________
-
 *Note: This cover sheet is to be completed and submitted with the assignment.*
