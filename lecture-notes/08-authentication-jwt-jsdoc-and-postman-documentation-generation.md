@@ -59,6 +59,19 @@ model User {
 
 **Note:** In both `Institution` and `Department` models, add a reference to the `User` model's id. Make sure you create a new migration using the commands `npx prisma migrate reset && npx prisma migrate dev`. Also, we are using the `uuid` function to generate a unique id for the `User` model.
 
+### Headers
+
+An **HTTP header** is a **header** that is sent at the beginning of a **request** or **response**. It contains information about the **request** or **response** and about the **client** or the **server**.
+
+There are four different **header** groups:
+
+1. Request headers
+2. Response headers
+3. Representation headers
+4. Payload headers
+
+**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
+
 ### middleware/authRoute.js
 
 In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `authRoute.js`. In the `authRoute.js` file, add the following code:
