@@ -78,6 +78,8 @@ What is the purpose of each command?
 - `npm install express`: Installs the **Express** module.
 - `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
+- 
+**Note:** You only need to do this once.
 
 In the `package.json` file, add the following line to the `scripts` block
 
