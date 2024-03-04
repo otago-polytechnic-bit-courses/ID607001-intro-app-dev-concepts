@@ -47,7 +47,7 @@ In the `prisma.schema` file, add the following model:
 
 ```js
 model User {
-  id               String        @id @default(uuid())
+  id               Int           @id @default(autoincrement())
   email            String        @unique
   name             String
   password         String
