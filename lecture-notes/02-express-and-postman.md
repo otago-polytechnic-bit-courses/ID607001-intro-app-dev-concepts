@@ -187,7 +187,7 @@ import express from 'express';
 import cors from 'cors';
 
 // Import the index routes module
-import indexRoutes from './routes/app.js';
+import indexRoutes from './routes/index.js';
 
 // Create an Express application
 const app = express();
@@ -215,7 +215,7 @@ Your file structure should look something like this.
 │   └── index.js
 ├── node_modules
 ├── routes
-│   └── app.js
+│   └── index.js
 ├── app.js
 ├── package-lock.json
 ├── package.json
