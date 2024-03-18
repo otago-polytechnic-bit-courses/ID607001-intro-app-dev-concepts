@@ -6,11 +6,13 @@
 
 ## Getting Started
 
-Go to Render. Click the **New +** button, then click the **PostgreSQL** link.
+Go to Render. 
+
+Click the **New +** button, then click the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/04/render-1.PNG>)
 
-Name your **database**. For example, **id607001-your learner username**.
+Name your **New PostgreSQL**. For example, **id607001-your learner username**.
 
 ![](<../resources (ignore)/img/04/render-2.PNG>)
 
