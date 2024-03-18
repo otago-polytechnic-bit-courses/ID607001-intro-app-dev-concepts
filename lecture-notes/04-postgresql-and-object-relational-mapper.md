@@ -46,6 +46,8 @@ What is the purpose of each command?
 - `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 - `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
 
+**Note:** You only need to run these three commands **ONCE**.
+
 What is the purpose of the `.env` file? Used to store environment variables. For example, database connection string.
 
 What is the purpose of the `prisma` directory? Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
@@ -109,6 +111,8 @@ npx prisma migrate dev
 ```
 
 You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
+
+**Note:** Everytime you make a change to `schema.prisma`, you need to run `npx prisma migrate dev`.
 
 What is a migration? A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
 
