@@ -183,7 +183,7 @@ In the `app.js` file, update with the following code.
 
 ```javascript
 // Import the Express module
-import express, { urlencoded, json } from "express"; // We will discuss the urlencoded and json functions later. Note: These will appear as unused.
+import express from "express";
 
 // Import the CORS module
 import cors from 'cors';
