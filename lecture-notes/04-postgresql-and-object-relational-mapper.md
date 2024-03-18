@@ -437,6 +437,8 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
+## Tasks
+
 1. Implement the above.
 
 2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc.
