@@ -335,10 +335,10 @@ In the `app.js` file (in the root directory), add the following code.
 import institutionRoutes from "./routes/institution.js";
 
 // This should be declared under app.use(cors());
-app.use(urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
+app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 
 // This should be declared under app.use(urlencoded({ extended: false }));
-app.use(json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
+app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
 // This should be declared under app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
