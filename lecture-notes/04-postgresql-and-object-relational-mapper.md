@@ -24,6 +24,10 @@ Click on the **Connect** button and the **External Connection** tab. Copy the **
 
 ![](<../resources (ignore)/img/04/render-4.PNG>)
 
+Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
+
+![](<https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/resources%20(ignore)/img/04/render-5.PNG?raw=true>).
+
 ## Object-Relational Mapper (ORM)
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
