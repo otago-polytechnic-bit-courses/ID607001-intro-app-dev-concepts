@@ -27,7 +27,7 @@
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
 | **Markdown Usage**                          | Effective use of Markdown, including headings, bold text, code blocks, etc. | Some Markdown elements are used, but inconsistencies are present. | Limited use of Markdown or improper formatting.      | Markdown is not used or severely misformatted.         |
 | **Spelling and Grammar**                    | Correct spelling and grammar throughout the documentation. | Minor spelling or grammatical errors are present.     | Significant spelling or grammatical issues.          | Numerous spelling and grammatical errors.            |
-| **Git Commit Messages**                     | Commit messages reflect the context of each functional requirement change. | Some commit messages lack clarity or context.        | Commit messages are unclear or unrelated to changes. | Lack of meaningful commit messages.                   |
+| **Git Commit Messages**             | Git commit messages consistently reflect context and follow naming conventions. | Git commit messages generally reflect context and follow naming conventions. | Some Git commit messages reflect context but lack consistent naming conventions. | Git commit messages do not reflect context or follow naming conventions.       |
 
 # Marking Cover Sheet
 

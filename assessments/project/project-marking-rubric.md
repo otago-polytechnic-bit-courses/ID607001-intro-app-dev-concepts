@@ -2,8 +2,8 @@
 
 ### Functionality: REST API - 25%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
-| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
+| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Development and Environment**              | API seamlessly runs in both development and production environments without modification. | Minor issues in environment compatibility.        | Significant issues in environment compatibility. | API struggles to run in development or production environments. |
 | **Model Development**                        | Six models are developed, each with a minimum of four fields, demonstrating diverse data types. | Minor issues in model development, lacking diversity or meeting the minimum requirements. | Significant issues in model development, failing to meet the minimum requirements. | Models are missing or poorly developed.                |
 | **Relationships Between Models**            | Six relationships between models are established, showcasing a clear understanding of associations. | Minor issues in establishing relationships.       | Significant issues in establishing relationships. | Relationships between models are missing or incorrectly defined. |
@@ -17,8 +17,8 @@
 
 ### Functionality: CRUD Application - 20%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
-| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
+| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **Development and Environment**              | Application seamlessly runs in the development environment without modification. | Minor issues in environment compatibility.        | Significant issues in environment compatibility. | Application struggles to run in development environment. |
 | **Integration with REST API**               | Requests data from four API resource groups using Axios. Implements CRUD operations effectively. | Minor issues in integration or incomplete CRUD functionality. | Significant issues in integration or incomplete CRUD functionality. | Fails to integrate with the REST API or lacks essential CRUD functionality. |
 | **Create Operation**                        | Successfully creates new data via the REST API.      | Minor issues in the create operation.             | Significant issues in the create operation.        | Create operation is not working as expected.         |
@@ -40,8 +40,8 @@
 
 ### Code Quality and Best Practices - 45%
 
-| **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
-| --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
+| **Criteria**                                      | **10-9**                                              | **8-7**                                               | **6-5**                                               | **4-0**                                               |
+| -------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
 | **.gitignore and .env.example**               | Proper use of Node.js .gitignore file. Environment variables are stored in .env.example. | Minor issues in .gitignore or .env.example.        | Significant issues in .gitignore or .env.example. | Missing .gitignore or .env.example.                    |
 | **Appropriate Naming**                       | Clear and meaningful names for files, variables, functions, and resource groups following best practices. | Minor issues in naming conventions or clarity.        | Significant naming issues impacting readability.     | Naming conventions are not followed. 
 | **API Best Practices**                        | API security best practices are followed, including validation of content-type, sending x-content-type-options, x-frame-options, and content-security-policy. Secure communication through HTTPS is ensured. | Minor omissions in API security best practices.         | Significant issues in API security best practices.  | Critical omissions in API security, exposing vulnerabilities.  |
@@ -56,11 +56,11 @@
 
 | **Criteria**                                       | **5**                                              | **4**                                               | **3-2**                                               | **1-0**                                               |
 | --------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------- |
-| **GitHub Project Board or Issues**                    | Consistent and effective use of GitHub project board or issues for organising and prioritising development work. | Minor inconsistencies in GitHub project board or issues usage. | Significant issues in GitHub project board or issues usage.   | GitHub project board or issues is not used or poorly maintained. |
+| **GitHub Project Board**                    | Consistent and effective use of GitHub project board for organising and prioritising development work. | Minor inconsistencies in GitHub project board usage. | Significant issues in GitHub project board usage.   | GitHub project board is not used or poorly maintained. |
 | **README Content**                    | Well-documented repository README.md with required information. | Minor issues in documentation or missing some details. | Significant issues in documentation or missing key information. | README.md lacks essential information or is poorly structured. |
 | **Markdown Usage**                          | Effective use of Markdown, including headings, bold text, code blocks, etc. | Some Markdown elements are used, but inconsistencies are present. | Limited use of Markdown or improper formatting.      | Markdown is not used or severely misformatted.         |
 | **Spelling and Grammar**                    | Correct spelling and grammar throughout the documentation. | Minor spelling or grammatical errors are present.     | Significant spelling or grammatical issues.          | Numerous spelling and grammatical errors.            |
-| **Git Commit Messages**                     | Commit messages reflect the context of each functional requirement change. | Some commit messages lack clarity or context.        | Commit messages are unclear or unrelated to changes. | Lack of meaningful commit messages.                   |
+| **Git Commit Messages**             | Git commit messages consistently reflect context and follow naming conventions. | Git commit messages generally reflect context and follow naming conventions. | Some Git commit messages reflect context but lack consistent naming conventions. | Git commit messages do not reflect context or follow naming conventions.       |
 
 # Marking Cover Sheet
 
@@ -91,5 +91,7 @@
 **Total Marks (100%):** [Total Marks]
 
 **Assessor's Name:** [Assessor's Name]
+
+**Assessor's Signature:** ___________________
 
 *Note: This cover sheet is to be completed and submitted with the assignment.*
