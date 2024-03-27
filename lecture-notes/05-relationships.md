@@ -45,7 +45,7 @@ model Institution {
 
 ---
 
-Create a new file called `departments.js` in the' controllers' directory. Add the following code.
+Create a new file called `department.js` in the' controllers' directory. Add the following code.
 
 ```js
 // Note: Some code has been omitted for brevity
@@ -97,7 +97,7 @@ const getDepartments = async (req, res) => {
 
 ---
 
-In the `controllers` directory, update the `institutions.js` file to include the following code.
+In the `controllers` directory, update the `institution.js` file to include the following code.
 
 ```js
 // Note: Some code has been omitted for brevity
