@@ -1,7 +1,5 @@
 # 09: Automation Testing
 
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
-
 ## Seeding
 
 Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed.js` and add the following code.
