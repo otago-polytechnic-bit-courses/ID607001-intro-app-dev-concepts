@@ -1,7 +1,5 @@
 # 06: Validation
 
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section. 
-
 ## Joi
 
 There are various validation packages available for **Express**. We will use the [joi](https://joi.dev/) package.
