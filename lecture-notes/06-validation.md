@@ -12,7 +12,7 @@ Install the `joi` package.
 npm install joi
 ```
 
-In the root directory, create a new directory called `middleware`. Create a new file called `validation.js` in the' middleware' directory. Add the following code.
+In the root directory, create a new directory called `middleware`. Create a new file called `validation.js` in the `middleware` directory. Add the following code.
 
 ```javascript
 import Joi from "joi";
@@ -68,7 +68,7 @@ What is `error`? `error` is an object that contains the error message if the val
 
 ---
 
-In the `routes` directory, update the `institutions.js` file to include the following code.
+In the `routes` directory, update the `institution.js` file to include the following code.
 
 ```javascript
 ...
