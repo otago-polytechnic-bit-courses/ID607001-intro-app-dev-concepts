@@ -1,7 +1,5 @@
 # 07: Filtering, Sorting and Pagination
 
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section. 
-
 ## Filtering
 
 **Filtering** in an **API** refers to the process of selectively retrieving data from a collection of resources based on specified criteria. This is often done by specifying parameters in the **API** request that instruct the server to filter the data and return only the items that match the specified criteria.
