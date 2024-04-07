@@ -1,4 +1,4 @@
-# 08: Authentication, JWT, JSDoc and Postman Documentation Generation
+# 09: Authentication, JWT, JSDoc and Postman Documentation Generation
 
 ## Authentication and JWT
 
