@@ -103,7 +103,7 @@ describe("Institutions", () => {
       .request(app)
       .post("/api/institutions")
       .send({
-        name: 123,
+        name: 123, // Name should be a string
         region: "Otago",
         country: "New Zealand",
       })
@@ -165,7 +165,7 @@ describe("Institutions", () => {
       .send({
         name: "University of Auckland",
         region: "Auckland",
-        country: 123,
+        country: 123, // Country should be a string
       })
       .end((req, res) => {
         chai.expect(res.body.msg).to.be.equal("Country should be a string");
