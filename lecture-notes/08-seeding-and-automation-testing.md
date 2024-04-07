@@ -1,6 +1,4 @@
-# 09: Automation Testing
-
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
+# 08: Automation Testing
 
 ## Seeding
 
@@ -237,9 +235,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 1. Implement the above.
 
-2. Seed the `User` and `Course` tables with data.
+2. Seed the `Course` table with data.
 
-3. Create tests for the `Departments`, `User` and `Course` tables.
+3. Create tests for the `Departments` and `Course` tables.
 
 # Formative Assessment Submission
 

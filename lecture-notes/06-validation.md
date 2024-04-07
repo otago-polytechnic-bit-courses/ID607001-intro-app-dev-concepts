@@ -1,7 +1,5 @@
 # 06: Validation
 
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section. 
-
 ## Joi
 
 There are various validation packages available for **Express**. We will use the [joi](https://joi.dev/) package.
@@ -14,7 +12,7 @@ Install the `joi` package.
 npm install joi
 ```
 
-In the root directory, create a new directory called `middleware`. Create a new file called `validation.js` in the' middleware' directory. Add the following code.
+In the root directory, create a new directory called `middleware`. Create a new file called `validation.js` in the `middleware` directory. Add the following code.
 
 ```javascript
 import Joi from "joi";

@@ -1,6 +1,4 @@
-# 08: Authentication, JWT, JSDoc and Postman Documentation Generation
-
-**Disclaimer:** The following code snippets **do not** take into account the refactoring task in the `05-relationships.md` file's **formative assessment** section.
+# 09: Authentication, JWT, JSDoc and Postman Documentation Generation
 
 ## Authentication and JWT
 
