@@ -15,7 +15,8 @@ const main = async () => {
         name: "Otago Polytechnic",
         region: "Otago",
         country: "New Zealand",
-        departments: { // Seed departments at the same time
+        departments: {
+          // Seed departments at the same time
           create: [
             {
               name: "Information Technology",
@@ -70,22 +71,22 @@ We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **Ja
 To install **Mocha** and **Chai**, run the following command in your terminal.
 
 ```bash
-npm install chai@4.3.9 chai-http mocha --save-dev 
+npm install chai@4.3.9 chai-http mocha --save-dev
 ```
 
 In the `package.json` file, replace `test` script's value with the following.
 
 ```json
-"test": "prisma migrate reset --force && mocha --timeout 10000 --exit"
+"test": "npx prisma migrate reset --force && mocha --timeout 10000 --exit"
 ```
 
 What is the purpose of the `test` script? Used to run tests.
 
-**Note:** The `prisma migrate reset --force` will also seed your database.
+**Note:** The `npx prisma migrate reset --force` will also seed your database.
 
 ---
 
-In the root directory, create a new directory called `test`. Create a new file called `00-institution.test.js` in the' test' directory. Add the following code.
+In the root directory, create a new directory called `test`. Create a new file called `00-institution.test.js` in the `test` directory. Add the following code:
 
 ```javascript
 import chai from "chai";
@@ -107,6 +108,7 @@ describe("Institutions", () => {
         country: "New Zealand",
       })
       .end((req, res) => {
+        console.log(res.body); // This is useful for debugging. Make sure you remove it before you commit your code
         chai.expect(res.body.msg).to.be.equal("Name should be a string");
         done();
       });
@@ -189,8 +191,21 @@ describe("Institutions", () => {
         done();
       });
   });
-});
 
+  it("should delete institution by id", (done) => {
+    chai
+      .request(app)
+      .delete("/api/institutions/2")
+      .end((req, res) => {
+        chai.expect(res.status).to.be.equal(200);
+        chai.expect(res.body).to.be.a("object");
+        chai
+          .expect(res.body.msg)
+          .to.be.equal("Institution with the id: 2 successfully deleted");
+        done();
+      });
+  });
+});
 ```
 
 Run the following command in your terminal.
@@ -199,7 +214,7 @@ Run the following command in your terminal.
 npm test
 ```
 
-or 
+or
 
 ```bash
 npm run test
