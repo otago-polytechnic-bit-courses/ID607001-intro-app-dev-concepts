@@ -226,13 +226,13 @@ Let us break down one test...
 - `chai.request(app)`: Uses Chai HTTP, a Chai plugin for testing HTTP APIs, to make a request to the app. The app should be an instance of your Express application.
 - `.post(/api/institutions)`: Specifies that a POST request should be made to the `/institutions` endpoint. 
 - `.send(institution)`: Sends the institution object as the request payload.
-- `.end((__, institutionRes) => { ... })`: Defines a callback function to be executed when the request is complete. It takes two parameters: `_` (an underscore) is a convention used to indicate that the first parameter (error) is not used in this callback, and `institutionRes` is the response object from the API.
+- `.end((req, res) => { ... })`: Defines a callback function to be executed when the request is complete. 
 
 Inside the callback function:
 
-- `chai.expect(institutionRes.status).to.be.equal(201);`: Checks if the response status code is 201, which indicates that the institution was successfully created.
-- `chai.expect(institutionRes.body).to.be.a("object");`: Checks if the response body is an object.
-- `chai.expect(institutionRes.body.msg).to.be.equal("Institution successfully created");`: Checks if the msg property of the response body is equal to the string "Institution successfully created".
+- `chai.expect(res.status).to.be.equal(201);`: Checks if the response status code is 201, which indicates that the institution was successfully created.
+- `chai.expect(res.body).to.be.a("object");`: Checks if the response body is an object.
+- `chai.expect(res.body.msg).to.be.equal("Institution successfully created");`: Checks if the msg property of the response body is equal to the string "Institution successfully created".
 - `done();`: Calls the done function, signaling the end of the asynchronous test case.
 
 ---
