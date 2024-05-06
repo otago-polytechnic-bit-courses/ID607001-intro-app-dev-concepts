@@ -34,7 +34,7 @@ An **Object-Relational Mapper (ORM)** is a layer that sits between the database 
 
 ## Getting Started
 
-In **Visual Studio Code**, intsall the following extension - <https://marketplace.visualstudio.com/items?itemName=Prisma.prisma>.
+In **Visual Studio Code**, install the following extension - <https://marketplace.visualstudio.com/items?itemName=Prisma.prisma>.
 
 ---
 
