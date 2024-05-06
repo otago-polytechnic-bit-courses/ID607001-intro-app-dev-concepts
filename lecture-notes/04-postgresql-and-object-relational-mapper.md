@@ -34,6 +34,10 @@ An **Object-Relational Mapper (ORM)** is a layer that sits between the database 
 
 ## Getting Started
 
+In **Visual Studio Code**, intsall the following extension - <https://marketplace.visualstudio.com/items?itemName=Prisma.prisma>.
+
+---
+
 We are going to use **Prisma** as our **ORM**. **Prisma** is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
 
 To get started, run the following command to install **Prisma**.
