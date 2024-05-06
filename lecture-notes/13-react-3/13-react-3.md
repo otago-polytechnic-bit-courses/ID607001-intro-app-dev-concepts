@@ -305,12 +305,12 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 **Resource:** <https://github.com/cheatsnake/emojihub>
 
-![](12-react-3-formative-assessment-1.jpeg)
+![alt text](<../../resources (ignore)/img/13/12-react-3-formative-assessment-1.jpeg>)
 
 1. Using **Axios**, perform a **GET** request to the following API - https://thronesapi.com/api/v2/Characters/<id>. Replace `<id>` with a random number between 1 and 50. Display the character's first name, last name and image.
 
-![](12-react-3-formative-assessment-2.jpeg)
+![alt text](<../../resources (ignore)/img/13/12-react-3-formative-assessment-2.jpeg>)
 
-3. Using **Axios** and the resource below, select a random API and perform a **GET** request to it. Display the data returned from the API.
+2. Using **Axios** and the resource below, select a random API and perform a **GET** request to it. Display the data returned from the API.
 
 **Resource:** https://github.com/public-apis/public-apis
