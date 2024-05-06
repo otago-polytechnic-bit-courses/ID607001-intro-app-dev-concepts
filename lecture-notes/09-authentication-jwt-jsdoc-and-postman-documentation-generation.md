@@ -293,7 +293,7 @@ In the `routes` directory, create a new file called `auth.js`. In the `auth.js` 
 ```js
 import { Router } from "express";
 
-import { register, login } from "../../controllers/auth.js";
+import { register, login } from "../controllers/auth.js";
 
 const router = Router();
 
