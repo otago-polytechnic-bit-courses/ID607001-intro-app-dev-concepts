@@ -72,7 +72,7 @@ There are four different **header** groups:
 
 ### middleware/authRoute.js
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `authRoute.js`. In the `authRoute.js` file, add the following code:
+In the `middleware` directory, create a new file called `authRoute.js`. In the `authRoute.js` file, add the following code:
 
 ```js
 import jwt from "jsonwebtoken";
