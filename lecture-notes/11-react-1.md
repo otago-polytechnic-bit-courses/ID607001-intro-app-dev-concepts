@@ -114,8 +114,6 @@ import App from "./App.jsx";
 
 import "./index.css";
 
-import "bootstrap/dist/css/bootstrap.min.css";
-
 // It will render the App component in the root element. You can find the root 
 // element in the index.html file in the root directory
 ReactDOM.createRoot(document.getElementById("root")).render(
