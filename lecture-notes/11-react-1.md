@@ -90,7 +90,7 @@ export default MyFirstComponent;
 In `App.jsx`, replace the existing code with the following:
 
 ```jsx
-import MyFirstComponent from "./MyFirstComponent";
+import MyFirstComponent from "./components/MyFirstComponent";
 
 const App = () => {
   return <MyFirstComponent />;
@@ -140,7 +140,7 @@ export default MyFirstComponent;
 In `App.jsx`, replace the existing code with the following:
 
 ```jsx
-import MyFirstComponent from "./MyFirstComponent";
+import MyFirstComponent from "./components/MyFirstComponent";
 
 const App = () => {
   return <MyFirstComponent name="Jeff" />;
@@ -188,7 +188,7 @@ In `App.jsx`, replace the existing code with the following:
 ```jsx
 import { useState } from "react";
 
-import MyFirstComponent from "./MyFirstComponent";
+import MyFirstComponent from "./components/MyFirstComponent";
 
 const App = () => {
   const [name, setName] = useState("Jeff");
