@@ -109,6 +109,8 @@ const App = () => {
     </>
   );
 };
+
+export default App;
 ```
 
 What is the purpose of `&&`? This is used to conditionally render content. If the condition is `true`, the content after the `&&` will be rendered. If the condition is `false`, the content after the `&&` will not be rendered.
@@ -131,6 +133,8 @@ const App = () => {
     </>
   );
 };
+
+export default App;
 ```
 
 ## Handling Events
