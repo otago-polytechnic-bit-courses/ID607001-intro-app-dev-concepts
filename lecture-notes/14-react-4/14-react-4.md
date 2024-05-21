@@ -138,7 +138,7 @@ import {
 } from "reactstrap";
 import PropTypes from "prop-types";
 
-import instance from "../../utils/axios";
+import { studentManagementSystemInstance } from "../../utils/axios";
 
 const InstitutionForm = ({ onFormSubmit }) => {
   const [formData, setFormData] = useState({
@@ -164,7 +164,7 @@ const InstitutionForm = ({ onFormSubmit }) => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent the default form submission
     try {
-      await instance.post("/institutions", formData);
+      await studentManagementSystemInstance.post("/institutions", formData);
       setFormData({
         name: "",
         region: "",
@@ -274,7 +274,7 @@ import {
   FormFeedback,
 } from "reactstrap";
 
-import instance from "../../utils/axios";
+import { studentManagementSystemInstance } from "../../utils/axios";
 
 import InstitutionForm from "../forms/InstitutionForm";
 
@@ -297,7 +297,7 @@ const InstitutionTable = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const res = await instance.get("/institutions");
+      const res = await studentManagementSystemInstance.get("/institutions");
       setData(res.data.data);
     } catch (err) {
       console.log(err);
@@ -312,7 +312,7 @@ const InstitutionTable = () => {
     );
     if (confirmDelete) {
       try {
-        await instance.delete(`/institutions/${id}`);
+        await studentManagementSystemInstance.delete(`/institutions/${id}`);
         setData(data.filter((item) => item.id !== id)); // Remove the item from the data array
       } catch (err) {
         console.log(err);
@@ -336,7 +336,7 @@ const InstitutionTable = () => {
 
   const handleEditFormSubmit = async (editedData) => {
     try {
-      await instance.put(`/institutions/${editItem.id}`, editedData);
+      await studentManagementSystemInstance.put(`/institutions/${editItem.id}`, editedData);
       const updatedData = data.map((item) => // Update the item in the data array
         item.id === editItem.id ? { ...item, ...editedData } : item
       );

@@ -1,4 +1,14 @@
+// Note: Please read the code comments
+
 import { useState } from "react";
+import {
+  Button,
+  Form,
+  FormGroup,
+  Label,
+  Input,
+  FormFeedback,
+} from "reactstrap";
 import PropTypes from "prop-types";
 
 import { studentManagementSystemInstance } from "../../utils/axios";
@@ -16,14 +26,16 @@ const InstitutionForm = ({ onFormSubmit }) => {
     submitError: "",
   });
 
+  // This function is called when the input fields change
   const handleChange = (e) => {
-    const { name, value } = e.target;
+    const { name, value } = e.target; // name refers to the name attribute of the input field, value refers to the value of the input field
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: "" });
   };
 
+  // This function is called when the form is submitted
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission
     try {
       await studentManagementSystemInstance.post("/institutions", formData);
       setFormData({
@@ -54,10 +66,10 @@ const InstitutionForm = ({ onFormSubmit }) => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name:</label>
-        <input
+    <Form onSubmit={handleSubmit}>
+      <FormGroup>
+        <Label for="name">Name:</Label>
+        <Input
           type="text"
           value={formData.name}
           id="name"
@@ -65,17 +77,23 @@ const InstitutionForm = ({ onFormSubmit }) => {
           onChange={handleChange}
           invalid={!!errors.name}
         />
-        <label htmlFor="name">Region:</label>
-        <input
+        <FormFeedback>{errors.name}</FormFeedback>
+      </FormGroup>
+      <FormGroup>
+        <Label for="name">Region:</Label>
+        <Input
           type="text"
           value={formData.region}
           id="region"
           name="region"
           onChange={handleChange}
-          invalid={!!errors.region}
+          invalid={!!errors.region} 
         />
-        <label htmlFor="name">Country:</label>
-        <input
+        <FormFeedback>{errors.region}</FormFeedback>
+      </FormGroup>
+      <FormGroup>
+        <Label for="name">Country:</Label>
+        <Input
           type="text"
           value={formData.country}
           id="country"
@@ -83,15 +101,13 @@ const InstitutionForm = ({ onFormSubmit }) => {
           onChange={handleChange}
           invalid={!!errors.country}
         />
-        {errors.submitError && (
-          <div className="text-danger">{errors.submitError}</div>
-        )}
-        <button type="submit">Add Institution</button>
-      </form>
-      <span>{errors.name}</span>
-      <span>{errors.region}</span>
-      <span>{errors.country}</span>
-    </>
+        <FormFeedback>{errors.country}</FormFeedback>
+      </FormGroup>
+      {errors.submitError && (
+        <div className="text-danger">{errors.submitError}</div>
+      )}
+      <Button type="submit">Add Institution</Button>
+    </Form>
   );
 };
 

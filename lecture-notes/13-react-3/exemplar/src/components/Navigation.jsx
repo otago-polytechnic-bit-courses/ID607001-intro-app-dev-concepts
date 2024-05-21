@@ -6,11 +6,7 @@ const Navigation = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/institutions" element={
-          <>
-            <InstitutionTable />
-          </>
-        } />
+        <Route path="/institutions" element={<InstitutionTable />} />
       </Routes>
     </Router>
   );
