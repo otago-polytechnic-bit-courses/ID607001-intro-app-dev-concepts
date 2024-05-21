@@ -15,7 +15,7 @@ const InstitutionTable = () => {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const res = await studentManagementSystemInstance.get("/institutions");
+      const res = await studentManagementSystemInstance.get("/institutions?amount=100");
       setData(res.data.data);
     } catch (err) {
       console.log(err);
