@@ -71,7 +71,7 @@ We will use **Mocha** and **Chai** to test our **REST API**. **Mocha** is a **Ja
 To install **Mocha** and **Chai**, run the following command in your terminal.
 
 ```bash
-npm install chai@4.3.9 chai-http mocha --save-dev
+npm install chai@4.3.9 chai-http@4.4.0 mocha --save-dev
 ```
 
 In the `package.json` file, replace `test` script's value with the following.
