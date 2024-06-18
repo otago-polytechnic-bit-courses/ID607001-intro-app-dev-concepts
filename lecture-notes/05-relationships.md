@@ -1,5 +1,11 @@
 # 05: Relationships
 
+## Previous Class
+
+Link to the previous class: [04: PostgreSQL and Object-Relational Mapper(ORM)](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/04-postgresql-and-object-relational-mapper.md)
+
+---
+
 ## Relationships
 
 Relationships are a fundamental concept in database design. They define how two or more entities are connected to each other. In a relational database, relationships are established using primary and foreign keys.
@@ -245,3 +251,9 @@ Document the **API** in **Postman**.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [06: Validation](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/06-validation.md)

@@ -1,5 +1,11 @@
 # 03: Render and Kanban
 
+## Previous Class
+
+Link to the previous class: [02: Express and Postman](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/02-express-and-postman.md)
+
+---
+
 ## Render
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.

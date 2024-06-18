@@ -1,5 +1,11 @@
 # 06: Validation
 
+## Previous Class
+
+Link to the previous class: [05: Relationships](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/05-relationships.md)
+
+---
+
 ## Joi
 
 There are many ways to validate data in a **Node.js** application. One popular library for data validation is **Joi**. **Joi** is a powerful schema description language and data validator for **JavaScript**. It is used to validate the structure of objects and ensure they meet specific criteria.
@@ -171,3 +177,9 @@ Document the **API** in **Postman**.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [07: Filtering, Sorting and Pagination](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/07-filtering-sorting-and-pagination.md)

@@ -1,5 +1,11 @@
 ## 02: Express and Postman
 
+## Previous Class
+
+Link to the previous class: [01: GitHub and JavaScript](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/01-github-and-javascript.md)
+
+---
+
 ## Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.

@@ -1,5 +1,11 @@
 # 09: ERD Generation, JSDoc and Postman Documentation Generation
 
+## Previous Class
+
+Link to the previous class: [08: Seeding and API Testing](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/08-seeding-and-api-testing.md)
+
+---
+
 ## ERD Generation
 
 Instead of manually creating an **ERD** diagram, you can use a tool to generate the diagram. **Prisma** has a generator that allows you to generate an **ERD** diagram.
@@ -173,3 +179,9 @@ Click on the **URL for published documentation** link.
 You have successfully published your documentation.
 
 ![](<../resources (ignore)/img/08/postman-7.PNG>)
+
+---
+
+## Next Class
+
+Link to the next class: [04: PostgreSQL and Object-Relational Mapper (ORM)](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/04-postgresql-and-object-relational-mapper.md)

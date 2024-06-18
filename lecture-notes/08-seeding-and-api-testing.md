@@ -1,5 +1,11 @@
 # 08: Seeding and API Testing
 
+## Previous Class
+
+Link to the previous class: [07: Filtering, Sorting and Pagination](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/07-filtering-sorting-and-pagination.md)
+
+---
+
 ## Seeding
 
 **Seeding** is the process of populating a database with initial data. It is useful for setting up a database with predefined data for development, testing, or demonstration purposes.
@@ -337,3 +343,9 @@ Create tests for the `Departments`, `Course` and `Lecturer` tables.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [09: ERD Generation, JSDoc and Postman Documentation Generation](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/09-erd-generation-jsdoc-and-postman-documentation-generation.md)

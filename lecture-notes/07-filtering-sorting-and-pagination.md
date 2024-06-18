@@ -1,5 +1,9 @@
 # 07: Filtering, Sorting and Pagination
 
+## Previous Class
+
+Link to the previous class: [06: Validation](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/06-validation.md)
+
 ## Filtering
 
 **Filtering** in an **API** refers to the process of selectively retrieving data from a collection of resources based on specified criteria. This is often done by specifying parameters in the **API** request that instruct the server to filter the data and return only the items that match the specified criteria.
@@ -233,3 +237,9 @@ Document the **API** in **Postman**.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [08: Seeding and API Testing](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/08-seeding-and-api-testing.md)

@@ -1,5 +1,11 @@
 # 04: PostgreSQL and Object-Relational Mapper(ORM)
 
+## Previous Class
+
+Link to the previous class: [03: Render and Kanban](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/03-render-and-kanban.md)
+
+---
+
 ## PostgreSQL
 
 **PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
@@ -561,3 +567,9 @@ You can share the `.env.example` file with your team members. They can create th
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [05: Relationships](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/05-relationships.md)
