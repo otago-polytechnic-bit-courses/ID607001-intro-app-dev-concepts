@@ -539,7 +539,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
 
-11. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **strings** that contains a message for each learner in the format "name is age years old". **Note:** Use the `map` function.
+11. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `map` function to create a new **array** of **strings** that contains a message for each learner in the format "name is age years old". 
 
 ```javascript
 // An array of objects
@@ -553,7 +553,7 @@ const learners = [
 ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
 ```
 
-12. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners older than 20. **Note:** Use the `filter` and `map` functions.
+12. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20. 
 
 ```javascript
 // An array of objects
@@ -573,7 +573,7 @@ const learners = [
 // ]
 ```
 
-13. Given an **array** of **objects** representing learners with properties `name` and `age`, create a new **array** of **objects** that contains only learners older than 20 and younger than 25. **Note:** Use the `filter` and `map` functions.
+13. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20 and younger than 25.
 
 ```javascript
 // An array of objects
@@ -592,7 +592,7 @@ const learners = [
 // ]
 ```
 
-14. Given an **array** of **strings**, create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A". **Note:** Use the `filter` and `map` functions.
+14. Given an **array** of **strings**, use the `filter` and `map` functions create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A".
 
 ```javascript
 // An array of strings
@@ -602,7 +602,7 @@ const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 // [6, 10, 5]
 ```
 
-15. Given an **array** of **numbers**, calculate the average grade of the learners and return the result. **Note:** Use the `reduce` function.
+15. Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result. 
 
 ```javascript
 // An array of numbers
@@ -612,7 +612,7 @@ const grades = [85, 90, 78, 92, 88];
 // 30
 ```
 
-16. Given an **array** of **strings**, count the occurrences of each flavour and return an object that represents the frequency of each flavour. **Note:** Use the `reduce` function.
+16. Given an **array** of **strings**, use the `reduce` function to count the occurrences of each flavour and return an object that represents the frequency of each flavour. 
 
 ```javascript
 // An array of strings
