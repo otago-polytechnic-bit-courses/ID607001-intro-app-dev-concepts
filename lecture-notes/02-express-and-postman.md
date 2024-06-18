@@ -1,5 +1,13 @@
 ## 02: Express and Postman
 
+## Express
+
+**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
+
+> **Resource:** <https://expressjs.com/>
+
+---
+
 ### Application Programming Interface (API)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.
@@ -68,21 +76,13 @@ There are four different **header** groups:
 
 ### Node Package Manager (NPM)
 
-**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. We will use **NPM** to install **Express** and other modules.
+**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. 
 
 > **Resource:** <https://docs.npmjs.com/about-npm>
 
 ---
 
-### Express
-
-**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
-
-> **Resource:** <https://expressjs.com/>
-
----
-
-### Getting Started with Express
+### Setup
 
 Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
@@ -305,7 +305,7 @@ When setting up a project, it is important to have a clear file structure. This 
 
 ---
 
-### Postman
+## Postman
 
 **Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
 
@@ -313,7 +313,7 @@ When setting up a project, it is important to have a clear file structure. This 
 
 ---
 
-### Getting Started with Postman
+## Setup
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
@@ -384,3 +384,9 @@ Document and test the **API** in **Postman**.
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+
+---
+
+## Next Class
+
+Link to the next class: [03: Render and Kanban](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/03-render-and-kanban.md)
