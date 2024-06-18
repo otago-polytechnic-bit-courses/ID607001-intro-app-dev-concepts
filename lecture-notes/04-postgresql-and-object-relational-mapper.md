@@ -26,7 +26,7 @@ Click on the **Connect** button and the **External Connection** tab. Copy the **
 
 Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
 
-![](<https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/resources%20(ignore)/img/04/render-5.PNG?raw=true>).
+![](<https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/resources%20(ignore)/img/04/render-5.PNG?raw=true>).
 
 ## Object-Relational Mapper (ORM)
 

@@ -8,16 +8,17 @@ What is meant by rules and protocols?
 
 - Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. The protocol is used to send and receive data between different software applications.
 - Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the `GET` method is used to retrieve data.
-- Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.  
+- Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
 - Authentication and authorization: Used to restrict access to certain resources. For example, a user must be authenticated and authorized to access the list of users.
 - Error handling: Used to handle errors. For example, if a user tries to access a resource that does not exist, an error message should be returned.
 
-### Request Methods
+### HTTP Request Methods
 
 An **HTTP request method** is a **verb** that indicates the desired action to be performed for a given resource. For example, the `GET` method requests a representation of the specified resource.
 
 There are nine different **HTTP request methods**:
+
 - `GET`: Requests a representation of the specified resource. Requests using `GET` should only retrieve data.
 - `HEAD`: Requests a representation of the specified resource. Requests using `HEAD` should only retrieve data.
 - `POST`: Submits data to be processed to the specified resource. The data is included in the body of the request. The data may result in the creation of a new resource or the updates of existing resources.
@@ -32,7 +33,7 @@ We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
-### Response Status Codes
+### HTTP Status Codes
 
 An **HTTP response status code** indicates whether a specific **HTTP request** has been successfully completed. Responses are grouped in five classes:
 
@@ -44,7 +45,7 @@ An **HTTP response status code** indicates whether a specific **HTTP request** h
 
 **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
-### Headers
+### HTTP Headers
 
 An **HTTP header** is a **header** that is sent at the beginning of a **request** or **response**. It contains information about the **request** or **response** and about the **client** or the **server**.
 
@@ -59,11 +60,15 @@ There are four different **header** groups:
 
 ## Express
 
-**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**. We will use **Express** alongside **Node Package Manager (NPM)** to build a **REST API**.
+**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
 
-## Getting Started
+## Node Package Manager (NPM)
 
-Open your **s1-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
+**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. We will use **NPM** to install **Express** and other modules.
+
+### Getting Started
+
+Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
 ```bash
 npm init -y
@@ -78,13 +83,21 @@ What is the purpose of each command?
 - `npm install express`: Installs the **Express** module.
 - `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
-- 
-**Note:** You only need to do this once.
+- **Note:** You only need to do this once.
 
 In the `package.json` file, add the following line to the `scripts` block
 
 ```json
 "dev": "nodemon app.js"
+```
+
+Your `scripts` block should look like this.
+
+```json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon app.js"
+}
 ```
 
 What is the purpose of the `dev` script? Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
@@ -99,29 +112,31 @@ What is the purpose of the `type` property? Used to enable **ES6** module syntax
 
 ---
 
-Create a file named `app.js` in the root directory and add the following code.
+Create a file named `app.js` in the root directory and add the following code. The `app.js` file is the entry point of the application.
 
 ```javascript
 // Import the Express module
-import express from 'express';
+import express from "express";
 
 // Import the CORS module
-import cors from 'cors';
+import cors from "cors";
 
 // Create an Express application
 const app = express();
+
+const PORT = process.env.PORT || 3000; // Use the PORT environment variable or 3000
 
 // Use the CORS module
 app.use(cors());
 
 // Create a GET route
-app.get('/', (req, res) => {
-  res.send('Hello, World!');
+app.get("/", (req, res) => {
+  return res.status(200).send("Hello, World!");
 });
 
 // Start the server on port 3000
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000.');
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}.`);
 });
 
 // Export the Express application. May be used by other modules. For example, API testing
@@ -134,6 +149,8 @@ In the terminal, run the following command.
 npm run dev
 ```
 
+This command will run the `dev` script declared in the `package.json` file. The server will start on port `3000`.
+
 Open a browser and navigate to `http://localhost:3000/`. You should see the following message.
 
 ```bash
@@ -142,14 +159,12 @@ Hello, World!
 
 ---
 
-Let us do some refactoring. 
-
 In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
-const get = (req, res) => { 
-  res.send('Hello, World!');
+const get = (req, res) => {
+  return res.status(200).send("Hello, World!");
 };
 
 // Export the get function
@@ -186,23 +201,25 @@ In the `app.js` file, update with the following code.
 import express from "express";
 
 // Import the CORS module
-import cors from 'cors';
+import cors from "cors";
 
 // Import the index routes module
-import indexRoutes from './routes/index.js';
+import indexRoutes from "./routes/index.js";
 
 // Create an Express application
 const app = express();
 
+const PORT = process.env.PORT || 3000; // Use the PORT environment variable or 3000
+
 // Use the CORS module
-app.use(cors());
+app.use(cors()); // Make sure this is declared before the routes
 
 // Use the routes module
-app.use('/', indexRoutes);
+app.use("/", indexRoutes);
 
 // Start the server on port 3000
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000.');
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}.`);
 });
 
 // Export the Express application. Other modules may use it. For example, API testing
@@ -223,15 +240,23 @@ Your file structure should look something like this.
 ├── package.json
 ```
 
-Why have we separated the **routes** and **controllers**? 
+Why have we separated the **routes** and **controllers**?
 
 It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
+
+What is the purpose of the `node_modules` directory? 
+
+Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
+
+What is the purpose of the `package-lock.json` file?
+
+It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
 
 ## Postman
 
 **Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
 
-## Getting Started
+### Getting Started
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 

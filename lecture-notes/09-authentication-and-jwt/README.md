@@ -28,4 +28,4 @@ npm run dev
 
 You are ready to test your **auth** endpoints on **Postman**.
 
-Refer to the screenshots in the following lecture notes - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-24/lecture-notes/09-authentication-jwt-jsdoc-and-postman-documentation-generation.md>
+Refer to the screenshots in the following lecture notes - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/09-authentication-jwt-jsdoc-and-postman-documentation-generation.md>

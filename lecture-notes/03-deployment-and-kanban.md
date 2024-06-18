@@ -14,7 +14,7 @@ Click the **New +** button, then click the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-2.PNG>)
 
-Connect to your **s1-24-intro-app-dev-playground** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+Connect to your **s2-24-intro-app-dev-playground** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
