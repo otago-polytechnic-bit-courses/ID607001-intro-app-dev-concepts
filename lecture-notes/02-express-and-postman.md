@@ -274,12 +274,11 @@ Your file structure should look something like this.
 ├── package.json
 ```
 
-> Why have we separated the **routes** and **controllers**? It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
+1. Why have we separated the **routes** and **controllers**? It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
 
-> What is the purpose of the `node_modules` directory? Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
+2. What is the purpose of the `node_modules` directory? Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
 
-> What is the purpose of the `package-lock.json` file? 
-  > It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
+3. What is the purpose of the `package-lock.json` file? It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
 
 ---
 
