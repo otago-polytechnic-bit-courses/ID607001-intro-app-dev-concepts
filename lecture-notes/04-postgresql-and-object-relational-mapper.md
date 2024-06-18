@@ -457,7 +457,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 3. Document and test the **API** in **Postman**.
 
-## Research Assessment
+## Research Tasks
 
 1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
 

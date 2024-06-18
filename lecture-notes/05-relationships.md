@@ -184,7 +184,7 @@ This model should have a relationship with the `Department` model. A `Department
 
 6. Document and test the **API** in **Postman**.
 
-## Research Assessment
+## Research Tasks
 
 1. **Prisma** has limited schema validation. One useful validation technique is to use the `@unique` directive. Add the `@unique` directive to the `emailAddress` field in the `User` model. What happens when you try to create a user with an existing email address in the database? Also, add the `@unique` directive to the `code` and `name` fields in the `Course` model.
 

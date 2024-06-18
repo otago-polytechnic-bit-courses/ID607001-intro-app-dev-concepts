@@ -1,6 +1,6 @@
 # 01: GitHub and JavaScript
 
-## GitHub
+### GitHub
 
 In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:
 
@@ -8,22 +8,27 @@ https://classroom.github.com/a/mQiAFC8n
 
 You will use this repository for your **formative assessments** only.
 
-## Development Workflow
+---
+
+### Development Workflow
 
 By default, **GitHub Classroom** creates an empty repository. Firstly, you must create a **README** and `.gitignore` file. **GitHub** provides an option for creating new files once the repository is created.
 
-## Create a README
+---
+
+### Create a README
 
 Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
 
-## Create a .gitignore File
+---
+
+### Create a .gitignore File
 
 Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
 
-**Resources:**
-
-- <https://git-scm.com/docs/gitignore>
-- <https://github.com/github/gitignore>
+> **Resources:**
+  - <https://git-scm.com/docs/gitignore>
+  - <https://github.com/github/gitignore>
 
 ## Clone a Repository
 

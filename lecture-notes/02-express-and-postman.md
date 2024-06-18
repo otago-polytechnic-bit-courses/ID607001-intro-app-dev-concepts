@@ -121,6 +121,8 @@ Your `scripts` block should look like this.
 
 The `dev` script is used to start the server in development mode. The `nodemon` module is used to restart the server when changes are made to the code.
 
+> **Resource:** <https://docs.npmjs.com/cli/v10/using-npm/scripts>
+
 ---
 
 ### app.mjs
@@ -195,6 +197,8 @@ export { get };
 > What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
 > What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.mjs` file in the `routes` directory.
+
+> Resource: <https://expressjs.com/en/guide/routing.html>
 
 ---
 
@@ -336,7 +340,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 3. Document and test the **API** in **Postman**.
 
-## Research Assessment
+## Research Task
 
 1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
