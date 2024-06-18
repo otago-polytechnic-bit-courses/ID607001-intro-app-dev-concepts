@@ -349,7 +349,7 @@ We will add more requests to the collection as we work through the examples. Lat
 
 ---
 
-### Formative Assessment
+## Formative Assessment
 
 Before you start, create a new branch called **02-formative-assessment**.
 
@@ -359,24 +359,28 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-1. Implement the above.
+### Task One
 
-2. To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
+Implement the above.
+
+### Task Two
+
+To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
 
 - <http://localhost:3000/about/>. Return your learner id, first name, last name and one thing you enjoy about IT.
 - <http://localhost:3000/contact/>. Return your learner email address.
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
 
-3. Document and test the **API** in **Postman**.
+### Task Three
+
+Document and test the **API** in **Postman**.
+
+## Task Four (Research)
+
+**Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
 ---
 
-### Research Task
-
-1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
-
----
-
-### Formative Assessment Submission
+### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
