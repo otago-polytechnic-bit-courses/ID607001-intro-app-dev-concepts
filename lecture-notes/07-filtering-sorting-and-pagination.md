@@ -6,6 +6,10 @@
 
 For example, an **API** that provides a collection of institutions may allow the client, i.e., **Postman** to filter the institutions based on certain fields such as **name**, **region**, or **country**. The client can specify the desired filters as parameters in the request, and the server will return only the products that match those filters.
 
+---
+
+### Institution Controller
+
 In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include filtering based on the `name`, `region`, or `country` fields.
 
 ```js
@@ -60,6 +64,10 @@ Here is an example `GET` request that returns all institutions where the `name` 
 Sorting enables end-users to quickly find the items they are looking for, especially in large collections of resources. End-users can see the most relevant or important items, rather than having to manually search through the entire collection.
 
 Sorting is often used in combination with filtering to further refine the results returned by an API. By combining both filtering and sorting.
+
+---
+
+### Institution Controller
 
 In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include sorting based on a specified field and order.
 
@@ -123,6 +131,12 @@ Here is an example `GET` request that returns all institutions sorted by `name` 
 **Pagination** in an API refers to the process of dividing a large set of data into smaller, more manageable pieces or pages. It allows end-users to retrieve a subset of the data at a time, rather than having to request and process the entire dataset at once.
 
 In a typical pagination implementation, the end-user specifies the desired page size (i.e. the number of items to retrieve per page) and the page number (i.e. the current page). The server then retrieves the specified page of data from the dataset and returns it to the client.
+
+---
+
+### Institution Controller
+
+In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include pagination based on the specified page size and page number.
 
 ```js
 const getInstitutions = async (req, res) => {
