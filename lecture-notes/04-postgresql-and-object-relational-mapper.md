@@ -603,7 +603,7 @@ Use a **Markdown** table to display the scripts and their descriptions. For exam
 ```markdown
 | Script        | Description                  |
 | ------------- | ---------------------------- |
-| `npm run dev` | <Description of the command> |
+| `npm run dev` | <Description of the script> |
 ```
 
 ---
