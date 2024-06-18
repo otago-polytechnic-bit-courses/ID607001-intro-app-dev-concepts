@@ -601,8 +601,8 @@ In your repository `README.md` file, document the following scripts.
 Use a **Markdown** table to display the scripts and their descriptions. For example,
 
 ```markdown
-| Script | Description |
-| ----------- | ----------- |
+| Script        | Description                  |
+| ------------- | ---------------------------- |
 | `npm run dev` | <Description of the command> |
 ```
 
