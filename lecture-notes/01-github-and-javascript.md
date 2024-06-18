@@ -1,6 +1,6 @@
-## 01: GitHub and JavaScript
+# 01: GitHub and JavaScript
 
-### GitHub
+## GitHub
 
 In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/mQiAFC8n>. You will use this repository for your **formative assessments** only.
 
@@ -64,7 +64,7 @@ Here are some examples of **conventional commits**:
 
 ---
 
-### JavaScript
+## JavaScript
 
 **JavaScript** is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications**, and building **backend/server-side** applications.
 
@@ -467,7 +467,7 @@ In this course, we will use the **object literal** syntax to create **objects**.
 
 ---
 
-### Formative Assessment
+## Formative Assessment
 
 Copy the file `01-formative-assessment.js` into your **s2-24-intro-app-dev-playground** repository. Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
@@ -694,6 +694,6 @@ console.log(winner);
 // "X"
 ```
 
-### Formative Assessment Submission
+## Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
