@@ -1,6 +1,6 @@
 # 02: Express and Postman
 
-## Application Programming Interface (API)
+### Application Programming Interface (API)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.
 
@@ -12,6 +12,8 @@ What is meant by rules and protocols?
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
 - Authentication and authorisation: Used to restrict access to certain resources. For example, a user must be authenticated and authorised to access the list of users.
 - Error handling: Used to handle errors. For example, if a user tries to access a resource that does not exist, an error message should be returned.
+
+---
 
 ### HTTP Request Methods
 
@@ -64,13 +66,17 @@ There are four different **header** groups:
 
 ---
 
-## Node Package Manager (NPM)
+### Node Package Manager (NPM)
 
 **Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. We will use **NPM** to install **Express** and other modules.
 
-## Express
+---
+
+### Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
+
+---
 
 ### Getting Started
 
@@ -294,9 +300,11 @@ What is the purpose of the `package-lock.json` file?
 
 It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
 
-## Postman
+### Postman
 
 **Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
+
+---
 
 ### Getting Started
 
