@@ -313,7 +313,7 @@ Change the name of the collection to **Test Route** then click on the **Add a re
 
 ![](<../resources (ignore)/img/02/postman-4.PNG>)
 
-Change the name of the request to **Index Request**. In the **Request URL** field, enter `http://localhost:3000/`. Click on the **Save** button.
+Change the name of the request to **Index Request**. In the **Request URL** field, enter <http://localhost:3000/>. Click on the **Save** button.
 
 ![](<../resources (ignore)/img/02/postman-5.PNG>)
 
