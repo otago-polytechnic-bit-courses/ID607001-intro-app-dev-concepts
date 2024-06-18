@@ -375,7 +375,7 @@ To get use to creating **controllers** and **routes**, create three `GET` routes
 
 Document and test the **API** in **Postman**.
 
-## Task Four (Research)
+### Task Four (Research)
 
 **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
