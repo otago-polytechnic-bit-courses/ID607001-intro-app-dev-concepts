@@ -230,15 +230,15 @@ Create the appropriate **controllers** and **routes** for the `Lecturer` and `Co
 
 ---
 
-### Task Five
+### Task Five (Research)
 
-Document the **API** in **Postman**.
+In **Prisma**, an **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `PART_TIME` and `FULL_TIME`. Add a `role` field to the `Lecturer` model with the `@default(PART_TIME)` directive. The `role` field should be of type `Role`. What happens when you try to create a lecturer with a role that is not one of the constants defined in the **enum**?
 
 ---
 
-### Task Six (Research)
+### Task Five
 
-In **Prisma**, an **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `PART_TIME` and `FULL_TIME`. Add a `role` field to the `Lecturer` model with the `@default(PART_TIME)` directive. The `role` field should be of type `Role`. What happens when you try to create a lecturer with a role that is not one of the constants defined in the **enum**?
+Document the **API** in **Postman**.
 
 ---
 

@@ -158,7 +158,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Create validation rules for each field in the `Department`, `Course`, and `Lecturer` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters. Also, think carefully about code reusability like in the previous **formative assessment**. It would be best if you did not have to repeat the same code repeatedly. You should be able to reuse the code.
+Create validation rules for each field in the `Department`, `Course`, and `Lecturer` models. Think carefully about the validation rules. Do not just copy the validation rules from the `Institution` model. For example, the `name` field in the `Institution` model has a minimum length of 3 characters. However, the `name` field in the `Department` model should have a minimum length of 5 characters.
 
 ---
 
