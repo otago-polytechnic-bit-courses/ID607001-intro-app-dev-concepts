@@ -116,7 +116,7 @@ let name = "John";
 const age = 25;
 ```
 
-1. What is the difference between `let` and `const`? A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
+A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations>
 
@@ -245,7 +245,7 @@ function greet(name) {
 console.log(greet("John")); // Hello, John!
 ```
 
-1. What about **arrow functions**? **Arrow functions** are a newer way of declaring **functions**.
+An **arrow function** is a newer way of declaring a **function**.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -263,7 +263,7 @@ const greet = (name) => {
 console.log(greet("John")); // Hello, John!
 ```
 
-2. Can this be simplified further? Yes, it can! If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
+If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -277,7 +277,7 @@ const greet = (name) => "Hello, " + name + "!";
 console.log(greet("John")); // Hello, John!
 ```
 
-3. What if a **function** does not take in any parameters? You can omit the parentheses.
+If a **function** does not take in any parameters, you can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
@@ -302,14 +302,14 @@ const numbers = [1, 2, 3, 4, 5];
 const fruits = ["Apple", "Banana", "Cherry", "Durian", "Elderberry"];
 ```
 
-1. Can an **array** have values of different data types? Yes, it can!
+Here is an example of an **array** with values of different data types.
 
 ```javascript
 // An array of different data types
 const mixed = [1, "Hello", true, null, undefined];
 ```
 
-2. What is a **2D array**? A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
+A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
 
 ```javascript
 // A 2D array of numbers
@@ -328,7 +328,7 @@ console.log(numbers[0][0]); // 1
 console.log(fruits[1][2]); // Fig
 ```
 
-3. Can a **2D array** have **arrays** of different lengths? Yes, it can! Here is an example of a **2D array** with **arrays** of different lengths.
+Here is an example of a **2D array** with **arrays** of different lengths.
 
 ```javascript
 // A 2D array of different lengths
@@ -370,7 +370,7 @@ const numbersSquared = numbers.map(square);
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 ```
 
-Here is an example of using the `map` function.
+Here is an example of using the `filter` function.
 
 ```javascript
 // An array of numbers
