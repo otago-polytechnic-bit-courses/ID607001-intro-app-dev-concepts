@@ -129,7 +129,7 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ---
 
-### app.mjs
+### Main File
 
 In the root directory, create a file named `app.mjs`.  In the `app.mjs` file, add the following code.
 
