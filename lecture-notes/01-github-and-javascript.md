@@ -174,6 +174,8 @@ switch (expression) {
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements>
 
+---
+
 ### Loops
 
 **Loops** are statements that allow you to execute a block of code repeatedly. There are several types of **loops** in **JavaScript**:
@@ -232,12 +234,14 @@ A **function** is a block of code that performs a specific task. It is like a ma
 function add(num1, num2) {
   return num1 + num2;
 }
+
 console.log(add(1, 2)); // 3
 
 // A function named "greet" that takes in a name and returns a greeting
 function greet(name) {
   return "Hello, " + name + "!";
 }
+
 console.log(greet("John")); // Hello, John!
 ```
 
@@ -248,12 +252,14 @@ console.log(greet("John")); // Hello, John!
 const add = (num1, num2) => {
   return num1 + num2;
 };
+
 console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
 const greet = (name) => {
   return "Hello, " + name + "!";
 };
+
 console.log(greet("John")); // Hello, John!
 ```
 
@@ -274,6 +280,7 @@ console.log(greet("John")); // Hello, John!
 ```javascript
 // An arrow function named "greet" that returns a greeting
 const greet = (_) => "Hello, World!";
+console.log(greet()); // Hello, World!
 ```
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
