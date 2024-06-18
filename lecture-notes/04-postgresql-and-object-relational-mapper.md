@@ -4,11 +4,13 @@
 
 **PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
 
-### Getting Started
+> **Note:** There are different types of databases. For example, **relational databases**, **NoSQL databases**, **graph databases**, etc. **PostgreSQL** is a **relational database**. **Relational databases** store data in tables. Each table has rows and columns. **SQL** (Structured Query Language) is used to interact with **relational databases**.
 
-Go to Render. 
+---
 
-Click the **New +** button, then click the **PostgreSQL** link.
+### Setup
+
+Go to [Render](https://render.com/) and click the **New +** button, then click the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/04/render-1.PNG>)
 
@@ -28,17 +30,17 @@ Go back to your **web service**. In the **Environment** tab, add a new environme
 
 ![](<https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/resources%20(ignore)/img/04/render-5.PNG?raw=true>).
 
+---
+
 ## Object-Relational Mapper (ORM)
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
-### Getting Started
-
-In **Visual Studio Code**, install the following extension - <https://marketplace.visualstudio.com/items?itemName=Prisma.prisma>.
-
 ---
 
-We are going to use **Prisma** as our **ORM**. **Prisma** is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
+### Setup
+
+The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
 
 To get started, run the following command to install **Prisma**.
 
@@ -48,38 +50,19 @@ npm install prisma@4.16.2 --save-dev
 npx prisma init
 ```
 
+> **Note:** You only need to run these commands once.
+
 What is the purpose of each command?
 
 - `npm install @prisma/client@4.16.2t`: Installs the **Prisma Client** module.
 - `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
-- `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
+- `npx prisma init`: Initialises **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
 
-> **Note:** You only need to run these three commands **ONCE**.
-
-What is the purpose of the `.env` file? Used to store environment variables. For example, database connection string.
-
-What is the purpose of the `prisma` directory? Used to store **Prisma** configuration files. For example, `schema.prisma`. The `schema.prisma` file is used to define the database schema.
+The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
 
 ---
 
-You will see the following code in the `schema.prisma` file.
-
-```javascript
-generator client {
-  provider = "prisma-client-js"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
-
-What is the purpose of the `generator` block? Used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
-
-What is the purpose of the `datasource` block? Used to specify the database provider and URL.
-
----
+### Environment Variables File
 
 In the `.env` file, you will see the following code.
 
@@ -95,12 +78,39 @@ DATABASE_URL="<Render PostgreSQL external database URL>"
 
 ---
 
-In the `schema.prisma` file, add the following model.
+### Schema Prisma File
+
+You will see the following code in the `schema.prisma` file.
+
+```javascript
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+The `generator` block is used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
+
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/generators>
+
+The `datasource` block is used to specify the database provider and URL. The `url` value is retrieved from the `DATABASE_URL` environment variable.
+
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
+
+---
+
+### Model
+
+Under `datasource db` block, add the following code.
 
 ```javascript
 model Institution {
   id         Int          @id @default(autoincrement())
-  name       String
+  name       String       @unique
   region     String
   country    String
   createdAt  DateTime     @default(now())
@@ -108,9 +118,15 @@ model Institution {
 }
 ```
 
-What is the purpose of the `model` block? Used to define a database table.
+A **model** is used to define a database table. In this case, we are defining an `Institution` table. The `@id` directive is used to specify the primary key. The `@default` directive is used to specify the default value. The `@autoincrement` directive is used to specify that the value should be automatically incremented. The `@unique` directive is used to specify that the value should be unique. The `@default(now())` directive is used to specify that the value should be the current date and time. The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
 
-What is the purpose of the `@id` directive? Used to specify the primary key.
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
+
+---
+
+### Create and Apply a Migration
+
+A **migration** is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
 
 To create and apply a migration, run the following command.
 
@@ -120,33 +136,40 @@ npx prisma migrate dev
 
 You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
 
-**Note:** Everytime you make a change to `schema.prisma`, you need to run `npx prisma migrate dev`.
+> **Note:** When you make a change to the `schema.prisma` file, you need to create a new migration and apply it.
 
-What is a migration? A migration is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
+---
 
-**Note:** To reset the database, run the following command.
+### Reset the Database
+
+To reset the database, run the following command.
 
 ```bash
 npx prisma migrate reset
 ```
 
-**WARNING:** You should only use this command in a **development** environment.
+> **Note:** This command will delete all the data in the database. Use it with caution.
 
 ---
 
-Create a new file called `institution.js` in the' controllers' directory. Add the following code.
+### Institution Controller
+
+In the `controllers` directory, create a new file called `institution.mjs`. Add the following code.
 
 ```javascript
-import { PrismaClient } from "@prisma/client";
+import { PrismaClient, Prisma } from "@prisma/client";
 
+// Create a new instance of the PrismaClient
 const prisma = new PrismaClient();
 ```
 
-To create an institution, use `prisma.institution.create`.
+To create an institution, use the `prisma.institution.create` function.
 
 ```js
 const createInstitution = async (req, res) => {
-  try {
+  // Try/catch blocks are used to handle exceptions
+  try { 
+    // Validate the content-type request header. It ensures that the request body is in JSON format
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
       return res.status(400).json({
@@ -154,36 +177,53 @@ const createInstitution = async (req, res) => {
       });
     }
 
+    // Create a new institution
     await prisma.institution.create({
-      data: { ...req.body },
+      // Data to be inserted
+      data: {
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
     });
 
+    // Get all institutions from the institution table
     const newInstitutions = await prisma.institution.findMany();
 
+    // Send a JSON response
     return res.status(201).json({
       msg: "Institution successfully created",
       data: newInstitutions,
     });
   } catch (err) {
-    return res.status(500).json({
-      msg: err.message,
-    });
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            msg: "Institution with the same name already exists",
+          });
+        }
+      }
+    }
   }
 };
 ```
 
-To get all institutions, use `prisma.institution.findMany`.
+To get all institutions, use the `prisma.institution.findMany` function.
 
 ```js
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany();
 
-    if (institutions.length === 0) {
+    // Check if there are no institutions
+    if (!institutions) {
       return res.status(404).json({ msg: "No institutions found" });
     }
 
-    return res.json({ data: institutions });
+    return res.status(200).json({
+      data: institutions,
+    });
   } catch (err) {
     return res.status(500).json({
       msg: err.message,
@@ -192,7 +232,7 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-To get an institution, use `prisma.institution.findUnique`.
+To get an institution, use the `prisma.institution.findUnique` function.
 
 ```js
 const getInstitution = async (req, res) => {
@@ -207,7 +247,7 @@ const getInstitution = async (req, res) => {
         .json({ msg: `No institution with the id: ${req.params.id} found` });
     }
 
-    return res.json({
+    return res.status(200).json({
       data: institution,
     });
   } catch (err) {
@@ -218,11 +258,12 @@ const getInstitution = async (req, res) => {
 };
 ```
 
-To update an institution, use `prisma.institution.update`.
+To update an institution, use the `prisma.institution.update` function.
 
 ```js
 const updateInstitution = async (req, res) => {
   try {
+    // Validate the content-type request header. It ensures that the request body is in JSON format
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
       return res.status(400).json({
@@ -242,22 +283,31 @@ const updateInstitution = async (req, res) => {
 
     institution = await prisma.institution.update({
       where: { id: Number(req.params.id) },
-      data: { ...req.body },
+      data: { // Data to be updated
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
     });
 
-    return res.json({
+    return res.status(200).json({
       msg: `Institution with the id: ${req.params.id} successfully updated`,
       data: institution,
     });
   } catch (err) {
-    return res.status(500).json({
-      msg: err.message,
-    });
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            msg: "Institution with the same name already exists",
+          });
+        }
+      }
   }
 };
 ```
 
-To delete an institution, use `prisma.institution.delete`.
+To delete an institution, use the `prisma.institution.delete` function.
 
 ```js
 const deleteInstitution = async (req, res) => {
@@ -287,7 +337,7 @@ const deleteInstitution = async (req, res) => {
 };
 ```
 
-At the bottom of this file, add this code:
+To use the functions in the `institution.mjs` file, export them.
 
 ```js
 export {
@@ -299,16 +349,11 @@ export {
 };
 ```
 
-Let us briefly discuss...
-
-- What are `try` and `catch`? `try` and `catch` are used to handle errors. The code in the `try` block will be executed. If an error occurs, the code in the `catch` block will be executed.
-- What is `async` and `await`? `async` and `await` are used to handle asynchronous operations. `async` is used to declare an asynchronous function. `await` is used to wait for the asynchronous operation to complete.
-- What is `res.json`? `res.json` is used to send a JSON response.
-- What is `res.status`? `res.status` is used to set the HTTP status code. For example, 200, 201, 404, 500, etc.
-
 ---
 
-Create a new file called `institution.js` in the' routes' directory. Add the following code.
+### Institution Router
+
+In the `routes` directory, create a new file called `institution.mjs`. Add the following code.
 
 ```javascript
 import express from "express";
@@ -319,7 +364,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institution.js";
+} from "../controllers/institution.mjs";
 
 const router = express.Router();
 
@@ -332,15 +377,17 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-What is `:id`? `:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is `http://localhost:3000/api/institutions/1`, the `:id` value will be `1`.
+`:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/1>, the `:id` value will be `1`.
 
 ---
 
-In the `app.js` file (in the root directory), add the following code.
+### Main File
+
+In the `app.mjs` file, add the following code. 
 
 ```javascript
-// This should be declared under import indexRoutes from "./routes/app.js";
-import institutionRoutes from "./routes/institution.js";
+// This should be declared under import indexRoutes from "./routes/app.mjs";
+import institutionRoutes from "./routes/institution.mjs";
 
 // This should be declared under app.use(cors());
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
@@ -352,17 +399,21 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use("/api/institutions", institutionRoutes);
 ```
 
-**Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+> **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+
+---
 
 ## Other API Security Best Practices
 
 Earlier we looked at validating the `content-type` request header. Now, we are going to look at some other API security best practices.
 
+---
+
 ### X-Content-Type-Options
 
 The `X-Content-Type-Options` response header is used to prevent **MIME** type sniffing. It is used to prevent browsers from trying to guess the MIME type of a response. For example, if the response is `application/json`, the browser will not try to guess the MIME type. It will treat the response as `application/json`.
 
-To set the `X-Content-Type-Options` response header, add the following code to the `app.js` file (in the root directory).
+To set the `X-Content-Type-Options` response header, add the following code to the `app.mjs` file (in the root directory).
 
 ```javascript
 // This should be declared under const app = express();
@@ -379,7 +430,7 @@ app.use(setXContentTypeOptions);
 
 The `X-Frame-Options` response header is used to prevent clickjacking attacks. It is used to prevent the browser from displaying the page in a frame or iframe. For example, if the `X-Frame-Options` response header is set to `DENY`, the browser will not display the page in a frame or iframe.
 
-To set the `X-Frame-Options` response header, add the following code to the `app.js` file (in the root directory).
+To set the `X-Frame-Options` response header, add the following code to the `app.mjs` file (in the root directory).
 
 ```javascript
 // This should be declared under the setXContentTypeOptions function
@@ -396,7 +447,7 @@ app.use(setXFrameOptions);
 
 The `Content-Security-Policy` response header is used to prevent cross-site scripting (XSS) attacks. It is used to prevent the browser from loading resources from untrusted sources. For example, if the `Content-Security-Policy` response header is set to `default-src 'none'`, the browser will not load any resources from untrusted sources.
 
-To set the `Content-Security-Policy` response header, add the following code to the `app.js` file (in the root directory).
+To set the `Content-Security-Policy` response header, add the following code to the `app.mjs` file (in the root directory).
 
 ```javascript
 // This should be declared under the setXFrameOptions function
