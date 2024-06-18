@@ -184,4 +184,4 @@ You have successfully published your documentation.
 
 ## Next Class
 
-Link to the next class: [04: PostgreSQL and Object-Relational Mapper (ORM)](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/04-postgresql-and-object-relational-mapper.md)
+Link to the next class: [10: SvelteKit 1]()
