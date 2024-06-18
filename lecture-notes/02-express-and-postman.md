@@ -31,7 +31,7 @@ There are nine different **HTTP request methods**:
 
 We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
 
-**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
 ### HTTP Status Codes
 
@@ -43,7 +43,7 @@ An **HTTP response status code** indicates whether a specific **HTTP request** h
 4. Client error responses (400–499)
 5. Server error responses (500–599)
 
-**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
 ### HTTP Headers
 
@@ -56,15 +56,15 @@ There are four different **header** groups:
 3. Representation headers
 4. Payload headers
 
-**Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
-
-## Express
-
-**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
 
 ## Node Package Manager (NPM)
 
 **Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. We will use **NPM** to install **Express** and other modules.
+
+## Express
+
+**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
 
 ### Getting Started
 
@@ -83,7 +83,10 @@ What is the purpose of each command?
 - `npm install express`: Installs the **Express** module.
 - `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
-- **Note:** You only need to do this once.
+
+**Note:** You only need to do this once.
+
+---
 
 In the `package.json` file, add the following line to the `scripts` block
 
@@ -102,6 +105,8 @@ Your `scripts` block should look like this.
 
 What is the purpose of the `dev` script? Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
 
+---
+
 Also, add the following line under the `scripts` block.
 
 ```json
@@ -112,7 +117,36 @@ What is the purpose of the `type` property? Used to enable **ES6** module syntax
 
 ---
 
-Create a file named `app.js` in the root directory and add the following code. The `app.js` file is the entry point of the application.
+Your `package.json` file should look like this.
+
+```json
+{
+  "name": "s2-24-intro-app-dev-playground",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "<version>",
+    "express": "<version>"
+  },
+  "devDependencies": {
+    "nodemon": "<version>"
+  }
+}
+```
+
+---
+
+In the root directory, create a file named `app.js`. The `app.js` file is the entry point of the application.
+In the `app.js` file, add the following code.
 
 ```javascript
 // Import the Express module
@@ -171,7 +205,9 @@ const get = (req, res) => {
 export { get };
 ```
 
-What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
+What `req` and `res`? 🤔
+
+`req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
 What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
 
@@ -244,7 +280,7 @@ Why have we separated the **routes** and **controllers**?
 
 It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
 
-What is the purpose of the `node_modules` directory? 
+What is the purpose of the `node_modules` directory?
 
 Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
 
