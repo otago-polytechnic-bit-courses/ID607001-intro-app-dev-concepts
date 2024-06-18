@@ -70,11 +70,15 @@ There are four different **header** groups:
 
 **Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. We will use **NPM** to install **Express** and other modules.
 
+> **Resource:** <https://docs.npmjs.com/about-npm>
+
 ---
 
 ### Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
+
+> **Resource:** <https://expressjs.com/>
 
 ---
 
@@ -127,8 +131,7 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ### app.mjs
 
-In the root directory, create a file named `app.mjs`. The `app.mjs` file is the entry point of the application.
-In the `app.mjs` file, add the following code.
+In the root directory, create a file named `app.mjs`.  In the `app.mjs` file, add the following code.
 
 ```javascript
 // Import the Express module
@@ -159,6 +162,8 @@ app.listen(PORT, () => {
 // Export the Express application. May be used by other modules. For example, API testing
 export default app;
 ```
+
+> **Note:** The `app.mjs` file is the entry point of the application. It is used to start the server and define the routes.
 
 ---
 
