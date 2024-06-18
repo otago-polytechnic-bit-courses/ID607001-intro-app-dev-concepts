@@ -8,7 +8,7 @@
 
 ### Setup
 
-Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** to sign up.
+Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
 
 ![](<../resources (ignore)/img/03/render-1.PNG>)
 
