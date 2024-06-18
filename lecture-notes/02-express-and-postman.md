@@ -33,6 +33,8 @@ We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
+---
+
 ### HTTP Status Codes
 
 An **HTTP response status code** indicates whether a specific **HTTP request** has been successfully completed. Responses are grouped in five classes:
@@ -44,6 +46,8 @@ An **HTTP response status code** indicates whether a specific **HTTP request** h
 5. Server error responses (500–599)
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
+
+---
 
 ### HTTP Headers
 
@@ -57,6 +61,8 @@ There are four different **header** groups:
 4. Payload headers
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
+
+---
 
 ## Node Package Manager (NPM)
 
