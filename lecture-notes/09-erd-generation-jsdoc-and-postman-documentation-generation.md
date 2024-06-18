@@ -1,18 +1,24 @@
-# 10: ERD Generation, JSDoc and Postman Documentation Generation
+# 09: ERD Generation, JSDoc and Postman Documentation Generation
 
 ## ERD Generation
 
-Instead of using online tools like **Draw.io** and **Lucidchart** to create **ERD** diagrams, you can a library called **prisma-erd-generator** to generate **ERD** diagrams.
+Instead of manually creating an **ERD** diagram, you can use a tool to generate the diagram. **Prisma** has a generator that allows you to generate an **ERD** diagram.
 
-### Getting Started
+---
 
-To install **prisma-erd-generator**, run the following command in your terminal.
+### Setup
+
+Open a terminal and run the following.
 
 ```bash
 npm install prisma-erd-generator --save-dev
 ```
 
-In the `schema.prisma` file, add the following code.
+---
+
+### Prisma Schema File
+
+Open the `schema.prisma` file and add the following code.
 
 ```javascript
 generator erd {
@@ -20,15 +26,21 @@ generator erd {
 }
 ```
 
-Run the following command to generate the **ERD** diagram:
+The `generator erd` block is used to configure the **ERD** generator. The `provider` field specifies the name of the generator.
+
+---
+
+### Generate the ERD
+
+Open a terminal and run the following.
 
 ```bash
 npx prisma generate
 ```
 
-You should see an `.svg` file in the `prisma` directory. Open the file to view the **ERD** diagram.
+In the `prisma` directory, you will see a new file called `erd.svg`. This file contains the **ERD** diagram.
 
-You can customize the **ERD** diagram by adding the following code to the `schema.prisma` file.
+If you wish to customize the **ERD** diagram, you can add the following code to the `schema.prisma` file.
 
 ```javascript
 generator erd {
@@ -38,13 +50,17 @@ generator erd {
 }
 ```
 
-**Resource:** <https://www.npmjs.com/package/prisma-erd-generator>
+> **Resource:** <https://github.com/keonik/prisma-erd-generator#prisma-entity-relationship-diagram-generator>
+
+---
 
 ## JSDoc
 
-**JSDoc** is an API documentation generator for **JavaScript**. **JSDoc** comments are written in a specific syntax to document the code. The **JSDoc** comments are then parsed and converted into HTML documentation. We will not convert the **JSDoc** comments into HTML documentation. However, it is good information to know.
+**JSDoc** is a markup language used to annotate JavaScript source code files. It allows you to add documentation to your code.
 
-### Getting Started
+---
+
+### Setup
 
 At the top of each file, add the following code.
 
@@ -55,7 +71,7 @@ At the top of each file, add the following code.
  */
 ```
 
-For example, in the `controllers/institution.js` file.
+Here is a more detailed example.
 
 ```javascript
 /**
@@ -64,9 +80,9 @@ For example, in the `controllers/institution.js` file.
  */
 ```
 
-**Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
+> **Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
 
-How do you comment a **function**?
+Here is an example of a **JSDoc** comment for the `createInstitution` function in `controllers/institution.mjs`.
 
 ```javascript
 /**
@@ -76,32 +92,59 @@ How do you comment a **function**?
  * @returns {object} - The response object
  */
 const createInstitution = async (req, res) => {
+  // Try/catch blocks are used to handle exceptions
   try {
+    // Validate the content-type request header. It ensures that the request body is in JSON format
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
+    // Create a new institution
     await prisma.institution.create({
-      data: { ...req.body },
+      // Data to be inserted
+      data: {
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
     });
 
+    // Get all institutions from the institution table
     const newInstitutions = await prisma.institution.findMany();
 
+    // Send a JSON response
     return res.status(201).json({
       msg: "Institution successfully created",
       data: newInstitutions,
     });
   } catch (err) {
-    return res.status(500).json({
-      msg: err.message,
-    });
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            msg: "Institution with the same name already exists",
+          });
+        }
+      }
+    }
   }
 };
 ```
 
-**Note:** Do not use **JSDoc** for in-line comments. Use normal JavaScript comments.
+> **Note:** Avoid using **JSDocs** for inline comments.
+
+---
 
 ## Postman Documentation Generation
 
-As you have progressed through the course, you have used **Postman** to test and document your API. **Postman** has a feature allowing you to generate API documentation.
+As your API grows, it is important to document it. **Postman** allows you to generate documentation for your API.
 
-### Getting Started
+---
+
+### Setup
 
 You can save your response as an example.
 
