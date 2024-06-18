@@ -345,9 +345,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 2. To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
 
-- `http://localhost:3000/about`. Return your learner id, first name, last name and one thing you enjoy about IT.
-- `http://localhost:3000/contact`. Return your learner email address.
-- `http://localhost:3000/courses`. Return a list of courses you are enrolled in this semester.
+- <http://localhost:3000/about>. Return your learner id, first name, last name and one thing you enjoy about IT.
+- <http://localhost:3000/contact>. Return your learner email address.
+- <http://localhost:3000/courses>. Return a list of courses you are enrolled in this semester.
 
 3. Document and test the **API** in **Postman**.
 
