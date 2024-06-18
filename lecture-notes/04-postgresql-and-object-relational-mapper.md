@@ -591,7 +591,7 @@ You can share the `.env.example` file with your team members. They can create th
 
 ### Task Six
 
-In your repository `README.md` file, document the following scripts.
+In the repository's `README.md` file, document the following scripts.
 
 - How to run the server
 - How to create and apply a migration
