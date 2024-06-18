@@ -66,11 +66,7 @@ Here are some examples of **conventional commits**:
 
 ## JavaScript
 
-**JavaScript** is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications**, and building **backend/server-side** applications.
-
-1. What does **interpreted programming language** mean? An **interpreted programming language** is a type of programming language for which most of its implementations execute instructions directly and freely, without previously compiling a program into machine-language instructions. In contrast, **compiled programming languages** are first translated into machine code before being executed.
-
-2. What is the **ECMAScript** specification? **ECMAScript** is a standard for a **scripting language**. It specifies the core features that a **scripting language** should provide and how those features should be implemented. **JavaScript** is an implementation of the **ECMAScript** specification.
+**JavaScript** is a high-level, interpreted programming language that conforms to the **ECMAScript** specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications**, and building **backend/server-side** applications.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript>
 
@@ -80,9 +76,15 @@ Here are some examples of **conventional commits**:
 
 **Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. It is built on **Chrome's V8 JavaScript engine** and provides a rich library of various **JavaScript** modules. **Node.js** is primarily used for **backend/server-side** development. We will use **Node.js** to run **JavaScript** code. It will allow us to test our code and see the results in the terminal without opening a web browser.
 
-1. What is the **V8 JavaScript engine**? The **V8 JavaScript engine** is an open-source **JavaScript engine** developed by **Google** for **Google Chrome** and **Chromium** web browsers. It is written in **C++** and is used to execute **JavaScript** code in the browser.
-
 > **Resource:** <https://nodejs.org/en/>
+
+---
+
+### V8 JavaScript Engine
+
+**V8** is an open-source **JavaScript** engine developed by **Google** for **Google Chrome** and **Chromium** web browsers. It is written in **C++** and is used to execute **JavaScript** code in the browser. **Node.js** uses the **V8** engine to execute **JavaScript** code outside the browser.
+
+> **Resource:** <https://v8.dev/>
 
 ---
 
@@ -345,11 +347,9 @@ const mixed = [
 
 ### Map, Filter and Reduce
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. 
 
-1. What is **map**, **filter** and **reduce**? **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
-
-Here is an example of using the `map` function.
+**Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
 
 ```javascript
 // An array of numbers
@@ -370,7 +370,7 @@ const numbersSquared = numbers.map(square);
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 ```
 
-Here is an example of using the `filter` function.
+**Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. Here is an example of using the `filter` function.
 
 ```javascript
 // An array of numbers
@@ -391,7 +391,7 @@ const evenNumbers = numbers.filter(isEven);
 console.log(evenNumbers); // [2, 4]
 ```
 
-Here is an example of using the `reduce` function.
+**Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value. Here is an example of using the `reduce` function.
 
 ```javascript
 // Reduce
@@ -446,7 +446,7 @@ console.log(person.favouriteFruits[0]); // Apple
 console.log(person.greet()); // Hello, John!
 ```
 
-1. What about mixing **arrays** and **objects**? You can have an **array** of **objects** or an **object** with **arrays**. Here is an example of an **array** of **objects**.
+You can have an **array** of **objects** or an **object** with **arrays**. Here is an example of an **array** of **objects**.
 
 ```javascript
 // An array of objects
