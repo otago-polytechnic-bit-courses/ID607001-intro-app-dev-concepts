@@ -1,12 +1,8 @@
-# 01: GitHub and JavaScript
+## 01: GitHub and JavaScript
 
-### GitHub
+### GitHub 
 
-In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking the following:
-
-https://classroom.github.com/a/mQiAFC8n
-
-You will use this repository for your **formative assessments** only.
+In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/mQiAFC8n>. You will use this repository for your **formative assessments** only.
 
 ---
 
@@ -20,25 +16,25 @@ By default, **GitHub Classroom** creates an empty repository. Firstly, you must 
 
 Click on the **Add file** button, then the **Create new file** button. Name your file `README.md` (Markdown), then click on the **Commit new file** button. You should see a new file in your formative assessments repository called `README.md` and the `main` branch.
 
+> **Resource:** <https://guides.github.com/features/mastering-markdown/>
+
 ---
 
 ### Create a .gitignore File
 
 Like before, click on the **Add file** button and then the **Create new file** button. Name your file `.gitignore`. A `.gitignore` template dropdown will appear on the right-hand side of the screen. Select the **Node** `.gitignore` template. Click on the **Commit new file** button. You should see a new file in your formative assessments repository called `.gitignore`.
 
-> **Resources:**
-  - <https://git-scm.com/docs/gitignore>
-  - <https://github.com/github/gitignore>
+> **Resource:** <https://git-scm.com/docs/gitignore>
 
-## Clone a Repository
+### Clone a Repository
 
 Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
 
-**Resource:**
+> **Resource:** <https://git-scm.com/docs/git-clone>
 
-- <https://git-scm.com/docs/git-clone>
+---
 
-## Commit Message Conventions
+### Commit Message Conventions
 
 When committing changes to your repository, you should follow the **conventional commits** convention. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
 
@@ -58,27 +54,37 @@ The **description** is a short description of the change. It should be written i
 
 Here are some examples of **conventional commits**:
 
-- `feat(javascript): Add a new feature`
-- `fix(html): Fix a bug`
-- `docs(css): Update documentation`
+- `feat(javascript): add a new feature`
+- `fix(html): fix a bug`
+- `docs(css): update documentation`
 
-**Resources:**
+> **Resource:** <https://www.conventionalcommits.org/en/v1.0.0/>
 
-- <https://www.conventionalcommits.org/en/v1.0.0/>
+---
 
-## JavaScript
+### JavaScript
 
-Let us recap some of the key concepts of **JavaScript**.
+**JavaScript** is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications**, and building **backend/server-side** applications.
 
-## Node.js
+1. What does **interpreted programming language** mean? An **interpreted programming language** is a type of programming language for which most of its implementations execute instructions directly and freely, without previously compiling a program into machine-language instructions. In contrast, **compiled programming languages** are first translated into machine code before being executed.
 
-**Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. Traditionally, **JavaScript** was primarily used for **client-side** scripting in web browsers, handling tasks like validating forms and enhancing user interactions on websites. However, **Node.js** extends the capabilities of **JavaScript** by allowing it to be used on the **server-side** as well.
+2. What is the **ECMAScript** specification? **ECMAScript** is a standard for a **scripting language**. It specifies the core features that a **scripting language** should provide and how those features should be implemented. **JavaScript** is an implementation of the **ECMAScript** specification.
 
-We will use **Node.js** to run **JavaScript** code on our local machines. It will allow us to test our code and see the results in the terminal without opening a web browser.
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript>
 
-Resource: https://nodejs.org/en/
+---
 
-## Data Types
+### Node.js
+
+**Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. It is built on **Chrome's V8 JavaScript engine** and provides a rich library of various **JavaScript** modules. **Node.js** is primarily used for **backend/server-side** development. We will use **Node.js** to run **JavaScript** code. It will allow us to test our code and see the results in the terminal without opening a web browser.
+
+1. What is the **V8 JavaScript engine**? The **V8 JavaScript engine** is an open-source **JavaScript engine** developed by **Google** for **Google Chrome** and **Chromium** web browsers. It is written in **C++** and is used to execute **JavaScript** code in the browser.
+
+> **Resource:** <https://nodejs.org/en/>
+
+---
+
+### Data Types
 
 **Data types** are the different values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
 
@@ -92,7 +98,9 @@ Resource: https://nodejs.org/en/
 
 We will only be concerned with the first five primitive data types for now. We will not use **BigInt** and **Symbol** in this course.
 
-## Variables
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
+
+### Variables
 
 A **variable** is a named container that stores a value. It is like a box that holds a value, and the variable's name is like a label on the box. You can use the variable's name to access its value.
 
@@ -110,7 +118,7 @@ A variable declared with `let` is mutable, meaning its value can be changed. A v
 
 You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
-## Operators
+### Operators
 
 **Operators** are symbols that perform operations on values. There are several types of operators in **JavaScript**:
 
@@ -122,7 +130,7 @@ You might see `var` being used instead of `let` or `const`. `var` is an older wa
 
 There are many other operators in **JavaScript**, but we will only be concerned with these for now.
 
-## Conditionals
+### Conditionals
 
 **Conditionals** are statements that allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
 
@@ -156,7 +164,7 @@ switch (expression) {
 }
 ```
 
-## Loops
+### Loops
 
 **Loops** are statements that allow you to execute a block of code repeatedly. There are several types of **loops** in **JavaScript**:
 
@@ -201,7 +209,7 @@ array.forEach(function (element) {
 
 Feel free to read up on the differences between these **loops**.
 
-## Functions
+### Functions
 
 A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. A function is a reusable piece of code you can use in your program.
 
@@ -260,7 +268,7 @@ You can omit the parentheses.
 const greet = _ => "Hello, World!";
 ```
 
-## Arrays
+### Arrays
 
 An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use a value's index to access its value.
 
@@ -315,7 +323,7 @@ const mixed = [
 ];
 ```
 
-## Objects
+### Objects
 
 An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, assigning each key a value. You can use the key of a key-value pair to access its value.
 
@@ -371,7 +379,7 @@ console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
 
-## Map, Filter and Reduce
+### Map, Filter and Reduce
 
 **Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
 
@@ -398,7 +406,7 @@ const sum = numbers.reduce((total, num) => total + num, 0);
 console.log(sum); // 15
 ```
 
-## Formative Assessment
+### Formative Assessment
 
 Copy the file `01-formative-assessment.js` into your **s2-24-intro-app-dev-playground** repository. Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
@@ -625,6 +633,6 @@ console.log(winner);
 // "X"
 ```
 
-# Formative Assessment Submission
+### Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
