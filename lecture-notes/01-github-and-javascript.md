@@ -510,12 +510,16 @@ Write a **function** to check whether a given number is prime.
 - Test case 1: `isPrime(1)` should return `false`
 - Test case 2: `isPrime(2)` should return `true`
 
+---
+
 ### Task Two
 
 Write a **function** to reverse a string.
 
 - Test case 1: `reverseString("Hello")` should return `"olleH"`
 - Test case 2: `reverseString("World")` should return `"dlroW"`
+
+---
 
 ### Task Three
 
@@ -525,6 +529,8 @@ Write a function to find the maximum element in an array.
 - Test case 2: `findMax([5, 4, 3, 2, 1])` should return `5`
 - Test case 3: `findMax([1, 3, 5, 2, 4])` should return `5`
 
+---
+
 ### Task Four
 
 Write a **function** to check whether a given string is a palindrome.
@@ -532,6 +538,8 @@ Write a **function** to check whether a given string is a palindrome.
 - Test case 1: `isPalindrome("racecar")` should return `true`
 - Test case 2: `isPalindrome("rAcEcAr")` should return `true`
 - Test case 2: `isPalindrome("hello")` should return `false`
+
+---
 
 ### Task Five
 
@@ -541,6 +549,8 @@ Write a **function** to calculate the factorial of a number.
 - Test case 2: `factorial(1)` should return `1`
 - Test case 3: `factorial(5)` should return `120`
 
+---
+
 ### Task Six
 
 Write a **function** to sort an array of numbers in ascending order.
@@ -548,6 +558,8 @@ Write a **function** to sort an array of numbers in ascending order.
 - Test case 1: `sort([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
 - Test case 2: `sort([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
 - Test case 3: `sort([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
+
+---
 
 ### Task Seven
 
@@ -557,12 +569,16 @@ Write a **function** to count the number of occurrences of a specific element in
 - Test case 2: `count([1, 2, 3, 4, 5], 6)` should return `0`
 - Test case 3: `count([1, 2, 3, 4, 5, 1], 1)` should return `2`
 
+---
+
 ### Task Eight
 
 Write a **function** to check whether two strings are anagrams of each other.
 
 - Test case 1: `isAnagram("hello", "olleh")` should return `true`
 - Test case 2: `isAnagram("hello", "world")` should return `false`
+
+---
 
 ### Task Nine
 
@@ -571,12 +587,16 @@ Write a **function** to find the longest word in a string.
 - Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
 
+---
+
 ### Task Ten
 
 Write a **function** to merge two sorted **arrays** into a single sorted **array**.
 
 - Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
+
+---
 
 ### Task Eleven
 
@@ -593,6 +613,8 @@ const learners = [
 // Expected output
 ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
 ```
+
+---
 
 ### Task Twelve
 
@@ -616,6 +638,8 @@ const learners = [
 // ]
 ```
 
+---
+
 ### Task Thirteen
 
 Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20 and younger than 25.
@@ -637,6 +661,8 @@ const learners = [
 // ]
 ```
 
+---
+
 ### Task Fourteen
 
 Given an **array** of **strings**, use the `filter` and `map` functions create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A".
@@ -649,6 +675,8 @@ const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 // [6, 10, 5]
 ```
 
+---
+
 ### Task Fifteen
 
 Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result.
@@ -660,6 +688,8 @@ const grades = [85, 90, 78, 92, 88];
 // Expected output
 // 30
 ```
+
+---
 
 ### Task Sixteen
 
@@ -676,6 +706,8 @@ const flavours = ["chocolate", "vanilla", "chocolate", "strawberry", "vanilla"];
 //   strawberry: 1,
 // }
 ```
+
+---
 
 ### Task Seventeen
 
@@ -696,6 +728,8 @@ console.log(max);
 // 9
 ```
 
+---
+
 ### Task Eighteen
 
 Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i` and `j`.
@@ -713,6 +747,8 @@ console.log(multiplicationTable);
 //   [5, 10, 15, 20, 25],
 // ]
 ```
+
+---
 
 ### Task Nineteen
 
@@ -733,6 +769,8 @@ console.log(availableSeats);
 // Expected output
 // 13
 ```
+
+---
 
 ### Task Twenty
 

@@ -363,6 +363,9 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 Implement the above.
 
+---
+
+
 ### Task Two
 
 To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
@@ -371,9 +374,14 @@ To get use to creating **controllers** and **routes**, create three `GET` routes
 - <http://localhost:3000/contact/>. Return your learner email address.
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
 
+---
+
+
 ### Task Three
 
 Document and test the **API** in **Postman**.
+
+---
 
 ### Task Four (Research)
 
