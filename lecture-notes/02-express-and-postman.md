@@ -194,11 +194,11 @@ const get = (req, res) => {
 export { get };
 ```
 
-> What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
+1. What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
-> What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.mjs` file in the `routes` directory.
+2. What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.mjs` file in the `routes` directory.
 
-> Resource: <https://expressjs.com/en/guide/routing.html>
+> **Resource:** <https://expressjs.com/en/guide/routing.html>
 
 ---
 
