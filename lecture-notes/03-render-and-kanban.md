@@ -53,20 +53,34 @@ You should see the following page. **Note:** Your **web service's** URL will be 
 
 ![](<../resources (ignore)/img/03/render-10.PNG>)
 
-## Kanban   
+> **Resource:** <https://render.com/docs>
 
-### What is Kanban?
+---
+
+## Kanban   
 
 **Kanban** is a **method** for managing the creation of products with an emphasis on **continuous delivery** while not overburdening the development team. Like **Scrum**, **Kanban** is a process designed to help teams work together more effectively.
 
-### What is a Kanban Board?
+> **Resource:** <https://www.atlassian.com/agile/kanban>
+
+---
+
+### Kanban Board
 
 A **Kanban board** is a **work and workflow visualisation tool** that enables you to optimize the flow of your work. **Physical Kanban boards**, like the one pictured here - <https://bit.ly/3HrWSIl>, typically use sticky notes on a whiteboard to communicate status, progress, and issues. Instead, we are going to use **GitHub Projects** to create a **Kanban board**.
 
-### What is a Kanban Card?
+> **Resource:** <https://www.atlassian.com/agile/kanban/boards>
+
+---
+
+### Kanban Card
 
 A **Kanban card** is a **task** on a **Kanban board**. **Kanban cards** are used to represent work items and convey important information about the work item through custom fields.
 
-## Formative Assessment
+> **Resource:** <https://www.atlassian.com/agile/kanban/cards>
 
-1. Implement the above.
+---
+
+## Next Class
+
+Link to the next class: [04: PostgreSQL and Object-Relational Mapper (ORM)](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/04-postgresql-and-object-relational-mapper.md)
