@@ -268,10 +268,12 @@ console.log(greet("John")); // Hello, John!
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
 const add = (num1, num2) => num1 + num2;
+
 console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
 const greet = (name) => "Hello, " + name + "!";
+
 console.log(greet("John")); // Hello, John!
 ```
 
@@ -280,6 +282,7 @@ console.log(greet("John")); // Hello, John!
 ```javascript
 // An arrow function named "greet" that returns a greeting
 const greet = (_) => "Hello, World!";
+
 console.log(greet()); // Hello, World!
 ```
 
