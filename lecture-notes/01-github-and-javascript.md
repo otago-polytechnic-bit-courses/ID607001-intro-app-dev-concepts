@@ -694,6 +694,6 @@ console.log(winner);
 // "X"
 ```
 
-### Formative Assessment Submission
+### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
