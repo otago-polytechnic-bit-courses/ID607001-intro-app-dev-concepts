@@ -177,7 +177,7 @@ npm run dev
 
 This command will run the `dev` script declared in the `package.json` file. The server will start on port `3000`.
 
-Open a browser and navigate to `http://localhost:3000/`. You should see the following message.
+Open a browser and navigate to <http://localhost:3000/>. You should see the following message.
 
 ```bash
 Hello, World!
