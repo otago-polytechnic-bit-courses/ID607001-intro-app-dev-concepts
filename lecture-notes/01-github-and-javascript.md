@@ -355,6 +355,7 @@ const numbers = [1, 2, 3, 4, 5];
 
 // Map
 const numbersSquared = numbers.map((num) => num * num);
+
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 
 // Passing a named function to map
@@ -363,10 +364,12 @@ function square(num) {
 }
 
 const numbersSquared = numbers.map(square);
+
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 
 // Filter
 const evenNumbers = numbers.filter((num) => num % 2 === 0);
+
 console.log(evenNumbers); // [2, 4]
 
 // Passing a named function to filter
@@ -375,10 +378,12 @@ function isEven(num) {
 }
 
 const evenNumbers = numbers.filter(isEven);
+
 console.log(evenNumbers); // [2, 4]
 
 // Reduce
 const sum = numbers.reduce((total, num) => total + num, 0);
+
 console.log(sum); // 15
 
 // Passing a named function to reduce
@@ -387,6 +392,7 @@ function add(total, num) {
 }
 
 const sum = numbers.reduce(add, 0);
+
 console.log(sum); // 15
 ```
 
@@ -539,7 +545,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
 
-11. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `map` function to create a new **array** of **strings** that contains a message for each learner in the format "name is age years old". 
+11. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `map` function to create a new **array** of **strings** that contains a message for each learner in the format "name is age years old".
 
 ```javascript
 // An array of objects
@@ -553,7 +559,7 @@ const learners = [
 ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
 ```
 
-12. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20. 
+12. Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20.
 
 ```javascript
 // An array of objects
@@ -602,7 +608,7 @@ const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 // [6, 10, 5]
 ```
 
-15. Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result. 
+15. Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result.
 
 ```javascript
 // An array of numbers
@@ -612,7 +618,7 @@ const grades = [85, 90, 78, 92, 88];
 // 30
 ```
 
-16. Given an **array** of **strings**, use the `reduce` function to count the occurrences of each flavour and return an object that represents the frequency of each flavour. 
+16. Given an **array** of **strings**, use the `reduce` function to count the occurrences of each flavour and return an object that represents the frequency of each flavour.
 
 ```javascript
 // An array of strings
