@@ -291,6 +291,8 @@ Your file structure should look something like this.
 
 **Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
 
+> **Note:** There are other tools available for testing **REST APIs**. For example, **Insomnia** and **Swagger UI**.
+
 ---
 
 ### Getting Started with Postman
