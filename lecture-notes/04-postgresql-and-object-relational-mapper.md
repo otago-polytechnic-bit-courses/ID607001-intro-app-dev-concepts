@@ -52,7 +52,7 @@ npx prisma init
 
 > **Note:** You only need to run these commands once.
 
-What is the purpose of each command?
+What does each command do?
 
 - `npm install @prisma/client@4.16.2t`: Installs the **Prisma Client** module.
 - `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
@@ -76,7 +76,7 @@ Update the `DATABASE_URL` environment variable's value with the following code.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-> **Note:** The `.env` file is used to store sensitive information. For example, database connection string. It is not committed to **Git**. It is added to the `.gitignore` file.
+> **Note:** The `.env` file is used to store sensitive information. It is not committed to **Git**. It is added to the `.gitignore` file.
 
 ---
 
@@ -243,6 +243,7 @@ const getInstitution = async (req, res) => {
       where: { id: Number(req.params.id) },
     });
 
+    // Check if there is no institution
     if (!institution) {
       return res
         .status(404)
@@ -273,16 +274,19 @@ const updateInstitution = async (req, res) => {
       });
     }
 
+    // Find the institution by id
     let institution = await prisma.institution.findUnique({
       where: { id: Number(req.params.id) },
     });
 
+    // Check if there is no institution
     if (!institution) {
       return res
         .status(404)
         .json({ msg: `No institution with the id: ${req.params.id} found` });
     }
 
+    // Update the institution
     institution = await prisma.institution.update({
       where: { id: Number(req.params.id) },
       data: { // Data to be updated
@@ -494,7 +498,7 @@ This is an example of a `DELETE` by id request.
 
 ![](<../resources (ignore)/img/04/postman-6.PNG>)
 
-**Note:** Make sure you save your requests.
+> **Note:** Make sure you save your requests. 
 
 ---
 

@@ -93,7 +93,7 @@ npm install cors
 npm install nodemon --save-dev
 ```
 
-What is the purpose of each command?
+What does each command do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.
