@@ -1,6 +1,6 @@
 # 05: Relationships
 
-## Relationships 
+## Relationships
 
 Relationships are a fundamental concept in database design. They define how two or more entities are connected to each other. In a relational database, relationships are established using primary and foreign keys.
 
@@ -132,7 +132,7 @@ const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany({
       include: {
-          departments: true, // Include the departments field
+        departments: true, // Include the departments field
       },
     });
 
@@ -169,7 +169,7 @@ This is an example of a `GET` all request. Notice the `institutionId` field is n
 
 ![](<../resources (ignore)/img/05/postman-3.PNG>)
 
-> **Note:** Make sure you save your requests. 
+> **Note:** Make sure you save your requests.
 
 ---
 
@@ -195,13 +195,13 @@ Implement the above.
 
 Create a `Lecturer` model with the following fields:
 
-   - `id`
-   - `firstName`
-   - `lastName`
-   - `emailAddress`
-   - `courseId`
-   - `createdAt`
-   - `updatedAt`
+- `id`
+- `firstName`
+- `lastName`
+- `emailAddress`
+- `courseId`
+- `createdAt`
+- `updatedAt`
 
 This model should have a **One-to-One** relationship with the `Course` model. The `emailAddress` field should be unique.
 
@@ -211,14 +211,14 @@ This model should have a **One-to-One** relationship with the `Course` model. Th
 
 Create a `Course` model with the following fields:
 
-   - `id`
-   - `code`
-   - `name`
-   - `description`
-   - `departmentId`
-   - `lecturerId`
-   - `createdAt`
-   - `updatedAt`
+- `id`
+- `code`
+- `name`
+- `description`
+- `departmentId`
+- `lecturerId`
+- `createdAt`
+- `updatedAt`
 
 This model should have a **One-to-Many** relationship with the `Department` model and a **One-to-One** relationship with the `Lecturer` model. The `code` field should be unique.
 
@@ -226,7 +226,7 @@ This model should have a **One-to-Many** relationship with the `Department` mode
 
 ### Task Four
 
-Create the appropriate **controllers** and **routes** for the `Lecturer` and `Course` models. 
+Create the appropriate **controllers** and **routes** for the `Lecturer` and `Course` models.
 
 ---
 
@@ -242,6 +242,6 @@ In **Prisma**, an **enum** is a special type that defines a set of constants. Cr
 
 ---
 
-###  Submission
+### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

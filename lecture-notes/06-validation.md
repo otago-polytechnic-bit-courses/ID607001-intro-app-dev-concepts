@@ -2,7 +2,9 @@
 
 ## Joi
 
-There are many ways to validate data in a Node.js application. One popular library for data validation is **Joi**. **Joi** is a powerful schema description language and data validator for JavaScript. It is used to validate the structure of objects and ensure they meet specific criteria.
+There are many ways to validate data in a **Node.js** application. One popular library for data validation is **Joi**. **Joi** is a powerful schema description language and data validator for **JavaScript**. It is used to validate the structure of objects and ensure they meet specific criteria.
+
+> **Resource:** <https://joi.dev/>
 
 ---
 
@@ -48,14 +50,17 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
+  // Validate the request body
   const { error } = institutionSchema.validate(req.body);
 
+  // If there is an error, return a 400 response and the error message
   if (error) {
     return res.status(400).json({
       msg: error.details[0].message,
     });
   }
 
+  // If there is no error, proceed to the next middleware
   next();
 };
 
@@ -81,14 +86,17 @@ const validatePutInstitution = (req, res, next) => {
     }),
   });
 
+  // Validate the request body
   const { error } = institutionSchema.validate(req.body);
 
+  // If there is an error, return a 400 response and the error message
   if (error) {
     return res.status(400).json({
       msg: error.details[0].message,
     });
   }
 
+  // If there is no error, proceed to the next middleware
   next();
 };
 
@@ -104,13 +112,16 @@ export { validatePostInstitution, validatePutInstitution };
 In the `routes` directory, open the `institutionRouter.mjs` file. Add the following code to the file.
 
 ```javascript
-// Some code has been omitted for brevity
+// Note: Some code has been omitted for brevity
 
 // ...
 
-import { validatePostInstitution, validationPutInstitution } from "../middleware/institutionValidator.js";
+import {
+  validatePostInstitution,
+  validationPutInstitution,
+} from "../middleware/institutionValidator.mjs";
 
- //...
+//...
 
 // Update the POST and PUT routes
 router.post("/", validatePostInstitution, createInstitution);
@@ -128,6 +139,8 @@ Let us test the API using **Postman**.
 This is an example of a `POST` request where the `name` field is empty.
 
 ![](<../resources (ignore)/img/06/postman-1.PNG>)
+
+> **Note:** Make sure you save your request.
 
 ---
 

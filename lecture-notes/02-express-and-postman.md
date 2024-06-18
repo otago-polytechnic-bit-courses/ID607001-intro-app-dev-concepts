@@ -76,7 +76,7 @@ There are four different **header** groups:
 
 ### Node Package Manager (NPM)
 
-**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code. 
+**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code.
 
 > **Resource:** <https://docs.npmjs.com/about-npm>
 
@@ -110,7 +110,7 @@ You will notice new files and directories in the root directory. These include:
 
 ### Node Modules
 
-The `node_modules` directory contains the modules installed by **NPM**. It is recommended to add the `node_modules` directory to the `.gitignore` file. This prevents the modules from being pushed to the repository. 
+The `node_modules` directory contains the modules installed by **NPM**. It is recommended to add the `node_modules` directory to the `.gitignore` file. This prevents the modules from being pushed to the repository.
 
 ---
 
@@ -157,7 +157,7 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ### Main File
 
-In the root directory, create a file named `app.mjs`.  In the `app.mjs` file, add the following code.
+In the root directory, create a file named `app.mjs`. In the `app.mjs` file, add the following code.
 
 ```javascript
 // Import the Express module
@@ -170,7 +170,7 @@ import cors from "cors";
 const app = express();
 
 // Use the PORT environment variable or 3000
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 // Use the CORS module
 app.use(cors());
@@ -217,7 +217,8 @@ In the root directory, create a directory named `controllers`. In the `controlle
 
 ```javascript
 // Create a GET route
-const get = (req, res) => { // req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
+const get = (req, res) => {
+  // req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
   return res.status(200).send("Hello, World!");
 };
 
@@ -266,7 +267,7 @@ import indexRoutes from "./routes/index.mjs";
 const app = express();
 
 // Use the PORT environment variable or 3000
-const PORT = process.env.PORT || 3000; 
+const PORT = process.env.PORT || 3000;
 
 // Use the CORS module
 app.use(cors()); // Make sure this is declared before the routes
@@ -367,7 +368,6 @@ Implement the above.
 
 ---
 
-
 ### Task Two
 
 To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
@@ -377,7 +377,6 @@ To get use to creating **controllers** and **routes**, create three `GET` routes
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
 
 ---
-
 
 ### Task Three
 

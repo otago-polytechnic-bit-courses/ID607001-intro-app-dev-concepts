@@ -347,7 +347,7 @@ const mixed = [
 
 ### Map, Filter and Reduce
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. 
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**.
 
 **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
 

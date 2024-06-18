@@ -57,7 +57,7 @@ You should see the following page. **Note:** Your **web service's** URL will be 
 
 ---
 
-## Kanban   
+## Kanban
 
 **Kanban** is a **method** for managing the creation of products with an emphasis on **continuous delivery** while not overburdening the development team. Like **Scrum**, **Kanban** is a process designed to help teams work together more effectively.
 

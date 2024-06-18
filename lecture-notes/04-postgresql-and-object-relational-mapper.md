@@ -133,7 +133,7 @@ A **migration** is a file that contains the **SQL** statements to create, update
 To create and apply a migration, run the following command.
 
 ```bash
-npx prisma migrate dev 
+npx prisma migrate dev
 ```
 
 You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
@@ -170,7 +170,7 @@ To create an institution, use the `prisma.institution.create` function.
 ```js
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
-  try { 
+  try {
     // Validate the content-type request header. It ensures that the request body is in JSON format
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
@@ -389,7 +389,7 @@ export default router;
 
 ### Main File
 
-In the `app.mjs` file, add the following code. 
+In the `app.mjs` file, add the following code.
 
 ```javascript
 // This should be declared under import indexRoutes from "./routes/app.mjs";
@@ -498,7 +498,7 @@ This is an example of a `DELETE` by id request.
 
 ![](<../resources (ignore)/img/04/postman-6.PNG>)
 
-> **Note:** Make sure you save your requests. 
+> **Note:** Make sure you save your requests.
 
 ---
 
