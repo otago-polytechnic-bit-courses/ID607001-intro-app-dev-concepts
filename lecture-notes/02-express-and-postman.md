@@ -327,7 +327,9 @@ Hello, World!
 
 We will add more requests to the collection as we work through the examples. Later we will use the collection to create documentation for our **REST API**.
 
-## Formative Assessment
+---
+
+### Formative Assessment
 
 Before you start, create a new branch called **02-formative-assessment**.
 
@@ -347,10 +349,14 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 3. Document and test the **API** in **Postman**.
 
-## Research Task
+---
+
+### Research Task
 
 1. **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
-# Formative Assessment Submission
+---
+
+### Formative Assessment Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
