@@ -1,4 +1,4 @@
-# 11: SvelteKit 2
+# 15: SvelteKit 6
 
 ## Previous Class
 
@@ -8,7 +8,7 @@ Link to the previous class:
 
 ## Formative Assessment
 
-Before you start, create a new branch called **11-formative-assessment**.
+Before you start, create a new branch called **15-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
