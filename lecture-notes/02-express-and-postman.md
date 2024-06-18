@@ -100,10 +100,14 @@ What is the purpose of each command?
 
 ---
 
+### Scripts
+
+A **script** is a series of commands that are executed by the **Node.js** runtime. **Scripts** are used to automate repetitive tasks.
+
 In the `package.json` file, add the following line to the `scripts` block
 
 ```json
-"dev": "nodemon app.js"
+"dev": "nodemon app.mjs"
 ```
 
 Your `scripts` block should look like this.
@@ -111,54 +115,18 @@ Your `scripts` block should look like this.
 ```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "nodemon app.js"
+  "dev": "nodemon app.mjs"
 }
 ```
 
-What is the purpose of the `dev` script? Used to start the server in development mode. The `nodemon` module is used to restart the server automatically when changes are made to the code.
+The `dev` script is used to start the server in development mode. The `nodemon` module is used to restart the server when changes are made to the code.
 
 ---
 
-Also, add the following line under the `scripts` block.
+### app.mjs
 
-```json
-"type": "module"
-```
-
-What is the purpose of the `type` property? Used to enable **ES6** module syntax. For example, `import` and `export` statements.
-
----
-
-Your `package.json` file should look like this.
-
-```json
-{
-  "name": "s2-24-intro-app-dev-playground",
-  "version": "1.0.0",
-  "description": "",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon app.js"
-  },
-  "type": "module",
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "cors": "<version>",
-    "express": "<version>"
-  },
-  "devDependencies": {
-    "nodemon": "<version>"
-  }
-}
-```
-
----
-
-In the root directory, create a file named `app.js`. The `app.js` file is the entry point of the application.
-In the `app.js` file, add the following code.
+In the root directory, create a file named `app.mjs`. The `app.mjs` file is the entry point of the application.
+In the `app.mjs` file, add the following code.
 
 ```javascript
 // Import the Express module
@@ -189,6 +157,10 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+---
+
+### Running the Server
+
 In the terminal, run the following command.
 
 ```bash
@@ -205,7 +177,9 @@ Hello, World!
 
 ---
 
-In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
+### Controller
+
+In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.mjs` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -217,20 +191,22 @@ const get = (req, res) => {
 export { get };
 ```
 
-What `req` and `res`? 🤔
+> What `req` and `res`? `req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
 
-`req` is an object that contains information about the HTTP request. `res` is an object that contains information about the HTTP response.
+> What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.mjs` file in the `routes` directory.
 
-What is the purpose of exporting the `get` function? To make it accessible to other modules. For example, the `index.js` file in the `routes` directory.
+---
 
-In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
+### Route
+
+In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.mjs` and add the following code.
 
 ```javascript
 // Import the Express module
 import express from "express";
 
 // Import the index controllers module
-import { get } from "../controllers/index.js";
+import { get } from "../controllers/index.mjs";
 
 // Create an Express router
 const router = express.Router();
@@ -242,7 +218,7 @@ router.get("/", get);
 export default router;
 ```
 
-In the `app.js` file, update with the following code.
+In the `app.mjs` file, update with the following code.
 
 ```javascript
 // Import the Express module
@@ -252,7 +228,7 @@ import express from "express";
 import cors from "cors";
 
 // Import the index routes module
-import indexRoutes from "./routes/index.js";
+import indexRoutes from "./routes/index.mjs";
 
 // Create an Express application
 const app = express();
@@ -274,31 +250,29 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+---
+
+### File Structure
+
 Your file structure should look something like this.
 
 ```bash
 .
 ├── controllers
-│   └── index.js
+│   └── index.mjs
 ├── node_modules
 ├── routes
-│   └── index.js
-├── app.js
+│   └── index.mjs
+├── app.mjs
 ├── package-lock.json
 ├── package.json
 ```
 
-Why have we separated the **routes** and **controllers**?
+> Why have we separated the **routes** and **controllers**? It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
 
-It is to follow the **Single Responsibility Principle (SRP)**. The **SRP** states that every module, class, or function should have responsibility over a single part of the functionality provided by the software application and that the class, module, or function should entirely encapsulate responsibility. All its services should be narrowly aligned with that responsibility.
+> What is the purpose of the `node_modules` directory? Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
 
-What is the purpose of the `node_modules` directory?
-
-Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
-
-What is the purpose of the `package-lock.json` file?
-
-It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
+> What is the purpose of the `package-lock.json` file? It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
 
 ### Postman
 
