@@ -349,6 +349,8 @@ const mixed = [
 
 1. What is **map**, **filter** and **reduce**? **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
 
+Here is an example of using the `map` function.
+
 ```javascript
 // An array of numbers
 const numbers = [1, 2, 3, 4, 5];
@@ -366,6 +368,13 @@ function square(num) {
 const numbersSquared = numbers.map(square);
 
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
+```
+
+Here is an example of using the `map` function.
+
+```javascript
+// An array of numbers
+const numbers = [1, 2, 3, 4, 5];
 
 // Filter
 const evenNumbers = numbers.filter((num) => num % 2 === 0);
@@ -380,7 +389,11 @@ function isEven(num) {
 const evenNumbers = numbers.filter(isEven);
 
 console.log(evenNumbers); // [2, 4]
+```
 
+Here is an example of using the `reduce` function.
+
+```javascript
 // Reduce
 const sum = numbers.reduce((total, num) => total + num, 0);
 
