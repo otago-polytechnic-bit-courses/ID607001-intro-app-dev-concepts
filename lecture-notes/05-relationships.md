@@ -193,22 +193,6 @@ Implement the above.
 
 ### Task Two
 
-Create a `Lecturer` model with the following fields:
-
-- `id`
-- `firstName`
-- `lastName`
-- `emailAddress`
-- `courseId`
-- `createdAt`
-- `updatedAt`
-
-This model should have a **One-to-One** relationship with the `Course` model. The `emailAddress` field should be unique.
-
----
-
-### Task Three
-
 Create a `Course` model with the following fields:
 
 - `id`
@@ -221,6 +205,22 @@ Create a `Course` model with the following fields:
 - `updatedAt`
 
 This model should have a **One-to-Many** relationship with the `Department` model and a **One-to-One** relationship with the `Lecturer` model. The `code` field should be unique.
+
+---
+
+### Task Three
+
+Create a `Lecturer` model with the following fields:
+
+- `id`
+- `firstName`
+- `lastName`
+- `emailAddress`
+- `courseId`
+- `createdAt`
+- `updatedAt`
+
+This model should have a **One-to-One** relationship with the `Course` model. The `emailAddress` field should be unique.
 
 ---
 
