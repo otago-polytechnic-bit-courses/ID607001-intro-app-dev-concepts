@@ -151,8 +151,8 @@ Your `scripts` block should look like this.
 ```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "nodemon app.js",
-}
+  "dev": "nodemon app.js"
+},
 ```
 
 The `dev` script is used to start the server in development mode. The `nodemon` module is used to restart the server when changes are made to the code.
