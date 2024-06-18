@@ -349,8 +349,6 @@ const mixed = [
 
 1. What is **map**, **filter** and **reduce**? **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
 
-> **Note:** For **map** and **filter**, the original **array** is not modified.
-
 ```javascript
 // An array of numbers
 const numbers = [1, 2, 3, 4, 5];
@@ -391,6 +389,8 @@ function add(total, num) {
 const sum = numbers.reduce(add, 0);
 console.log(sum); // 15
 ```
+
+> **Note:** For **map** and **filter**, the original **array** is not modified.
 
 ---
 
@@ -447,6 +447,21 @@ const people = [
 console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
+
+There is an alternative way to create an **object** using the **Object** constructor.
+
+```javascript
+// An object using the Object constructor
+const person = new Object();
+person.name = "John";
+person.age = 25;
+person.isMale = true;
+
+console.log(person.name); // John
+console.log(person.age); // 25
+```
+
+In this course, we will use the **object literal** syntax to create **objects**.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
 
