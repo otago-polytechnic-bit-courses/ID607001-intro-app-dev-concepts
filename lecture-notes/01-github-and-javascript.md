@@ -1,6 +1,6 @@
 ## 01: GitHub and JavaScript
 
-### GitHub 
+### GitHub
 
 In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/mQiAFC8n>. You will use this repository for your **formative assessments** only.
 
@@ -26,6 +26,8 @@ Like before, click on the **Add file** button and then the **Create new file** b
 
 > **Resource:** <https://git-scm.com/docs/gitignore>
 
+---
+
 ### Clone a Repository
 
 Open up **Git Bash** or whatever alternative you see fit on your computer. Clone your formative assessments repository to a location on your computer using the command: `git clone <repository URL>`.
@@ -50,7 +52,7 @@ When committing changes to your repository, you should follow the **conventional
 
 The **scope** is a phrase describing the section of the codebase that is affected by the change. For example, if you are working on the **formative assessment** for **JavaScript**, you can use the scope `javascript`. If you are working on the **formative assessment** for **HTML**, you can use the scope `html`.
 
-The **description** is a short description of the change. It should be written in the imperative mood, meaning it should be written as if you are giving a command or instruction. For example, "Add a new feature" instead of "Added a new feature".
+The **description** is a short description of the change. It should be written in the imperative mood, meaning it should be written as if you are giving a command or instruction. For example, "add a new feature" instead of "added a new feature".
 
 Here are some examples of **conventional commits**:
 
@@ -100,6 +102,8 @@ We will only be concerned with the first five primitive data types for now. We w
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
 
+---
+
 ### Variables
 
 A **variable** is a named container that stores a value. It is like a box that holds a value, and the variable's name is like a label on the box. You can use the variable's name to access its value.
@@ -112,11 +116,11 @@ let name = "John";
 const age = 25;
 ```
 
-What is the difference between `let` and `const`?
+1. What is the difference between `let` and `const`? A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
-A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed.
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations>
 
-You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
+---
 
 ### Operators
 
@@ -130,9 +134,13 @@ You might see `var` being used instead of `let` or `const`. `var` is an older wa
 
 There are many other operators in **JavaScript**, but we will only be concerned with these for now.
 
-### Conditionals
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators>
 
-**Conditionals** are statements that allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
+---
+
+### Conditional Statements
+
+**Conditionals statements** allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
 
 - **if statement**
 - **if...else statement**
@@ -163,6 +171,8 @@ switch (expression) {
   // code to execute if expression is not equal to any of the values
 }
 ```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements>
 
 ### Loops
 
@@ -209,6 +219,10 @@ array.forEach(function (element) {
 
 Feel free to read up on the differences between these **loops**.
 
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration>
+
+---
+
 ### Functions
 
 A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. A function is a reusable piece of code you can use in your program.
@@ -227,9 +241,7 @@ function greet(name) {
 console.log(greet("John")); // Hello, John!
 ```
 
-What about **arrow functions**?
-
-**Arrow functions** are a newer way of declaring **functions**.
+1. What about **arrow functions**? **Arrow functions** are a newer way of declaring **functions**.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -245,9 +257,7 @@ const greet = (name) => {
 console.log(greet("John")); // Hello, John!
 ```
 
-Can this be simplified further?
-
-Yes, it can! If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
+2. Can this be simplified further? Yes, it can! If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -255,18 +265,20 @@ const add = (num1, num2) => num1 + num2;
 console.log(add(1, 2)); // 3
 
 // An arrow function named "greet" that takes in a name and returns a greeting
-const greet = (name) => "Hello, "+ name + "!";
+const greet = (name) => "Hello, " + name + "!";
 console.log(greet("John")); // Hello, John!
 ```
 
-What if a **function** does not take in any parameters?
-
-You can omit the parentheses.
+3. What if a **function** does not take in any parameters? You can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
-const greet = _ => "Hello, World!";
+const greet = (_) => "Hello, World!";
 ```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
+
+---
 
 ### Arrays
 
@@ -280,18 +292,14 @@ const numbers = [1, 2, 3, 4, 5];
 const fruits = ["Apple", "Banana", "Cherry", "Durian", "Elderberry"];
 ```
 
-Can an **array** have values of different data types?
-
-Yes, it can!
+1. Can an **array** have values of different data types? Yes, it can!
 
 ```javascript
 // An array of different data types
 const mixed = [1, "Hello", true, null, undefined];
 ```
 
-What is a **2D array**?
-
-A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
+2. What is a **2D array**? A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
 
 ```javascript
 // A 2D array of numbers
@@ -310,9 +318,7 @@ console.log(numbers[0][0]); // 1
 console.log(fruits[1][2]); // Fig
 ```
 
-Can a **2D array** have **arrays** of different lengths?
-
-Yes, it can!
+3. Can a **2D array** have **arrays** of different lengths? Yes, it can! Here is an example of a **2D array** with **arrays** of different lengths.
 
 ```javascript
 // A 2D array of different lengths
@@ -322,6 +328,61 @@ const mixed = [
   [true, false],
 ];
 ```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections>
+
+---
+
+### Map, Filter and Reduce
+
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
+
+1. What is **map**, **filter** and **reduce**? **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
+
+> **Note:** For **map** and **filter**, the original **array** is not modified.
+
+```javascript
+// An array of numbers
+const numbers = [1, 2, 3, 4, 5];
+
+// Map
+const numbersSquared = numbers.map((num) => num * num);
+console.log(numbersSquared); // [1, 4, 9, 16, 25]
+
+// Passing a named function to map
+function square(num) {
+  return num * num;
+}
+
+const numbersSquared = numbers.map(square);
+console.log(numbersSquared); // [1, 4, 9, 16, 25]
+
+// Filter
+const evenNumbers = numbers.filter((num) => num % 2 === 0);
+console.log(evenNumbers); // [2, 4]
+
+// Passing a named function to filter
+function isEven(num) {
+  return num % 2 === 0;
+}
+
+const evenNumbers = numbers.filter(isEven);
+console.log(evenNumbers); // [2, 4]
+
+// Reduce
+const sum = numbers.reduce((total, num) => total + num, 0);
+console.log(sum); // 15
+
+// Passing a named function to reduce
+function add(total, num) {
+  return total + num;
+}
+
+const sum = numbers.reduce(add, 0);
+console.log(sum); // 15
+```
+
+---
 
 ### Objects
 
@@ -356,9 +417,7 @@ console.log(person.favouriteFruits[0]); // Apple
 console.log(person.greet()); // Hello, John!
 ```
 
-What about mixing **arrays** and **objects**?
-
-Yes, you can!
+1. What about mixing **arrays** and **objects**? You can have an **array** of **objects** or an **object** with **arrays**. Here is an example of an **array** of **objects**.
 
 ```javascript
 // An array of objects
@@ -379,32 +438,9 @@ console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
 
-### Map, Filter and Reduce
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. They transform, filter and reduce **arrays**, respectively.
-
-What is **map**, **filter** and **reduce**?
-
-- **map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. **Note:** The original **array** is not mutated.
-- **filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. **Note:** The original **array** is not mutated.
-- **reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value.
-
-```javascript
-// An array of numbers
-const numbers = [1, 2, 3, 4, 5];
-
-// Map
-const numbersSquared = numbers.map((num) => num * num);
-console.log(numbersSquared); // [1, 4, 9, 16, 25]
-
-// Filter
-const evenNumbers = numbers.filter((num) => num % 2 === 0);
-console.log(evenNumbers); // [2, 4]
-
-// Reduce
-const sum = numbers.reduce((total, num) => total + num, 0);
-console.log(sum); // 15
-```
+---
 
 ### Formative Assessment
 
