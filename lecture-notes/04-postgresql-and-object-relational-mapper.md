@@ -76,6 +76,8 @@ Update the `DATABASE_URL` environment variable's value with the following code.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
+> **Note:** The `.env` file is used to store sensitive information. For example, database connection string. It is not committed to **Git**. It is added to the `.gitignore` file.
+
 ---
 
 ### Schema Prisma File
@@ -118,7 +120,7 @@ model Institution {
 }
 ```
 
-A **model** is used to define a database table. In this case, we are defining an `Institution` table. The `@id` directive is used to specify the primary key. The `@default` directive is used to specify the default value. The `@autoincrement` directive is used to specify that the value should be automatically incremented. The `@unique` directive is used to specify that the value should be unique. The `@default(now())` directive is used to specify that the value should be the current date and time. The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
+A `model` is used to define a database table. In this case, we are defining an `Institution` table. The `@id` directive is used to specify the primary key. The `@default` directive is used to specify the default value. The `@autoincrement` directive is used to specify that the value should be automatically incremented. The `@unique` directive is used to specify that the value should be unique. The `@default(now())` directive is used to specify that the value should be the current date and time. The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
 
 > **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
 
@@ -413,56 +415,60 @@ Earlier we looked at validating the `content-type` request header. Now, we are g
 
 The `X-Content-Type-Options` response header is used to prevent **MIME** type sniffing. It is used to prevent browsers from trying to guess the MIME type of a response. For example, if the response is `application/json`, the browser will not try to guess the MIME type. It will treat the response as `application/json`.
 
-To set the `X-Content-Type-Options` response header, add the following code to the `app.mjs` file (in the root directory).
+To set the `X-Content-Type-Options` response header, add the following code to the `app.mjs` file.
 
 ```javascript
 // This should be declared under const app = express();
 const setXContentTypeOptions = (req, res, next) => {
-  res.set("x-content-type-options", "nosniff");
-  next();
+  res.set("x-content-type-options", "nosniff"); // Prevents MIME type sniffing
+  next(); // Calls the next middleware
 };
 
 // This should be declared under app.use(cors());
 app.use(setXContentTypeOptions);
 ```
 
+---
+
 ### X-Frame-Options
 
 The `X-Frame-Options` response header is used to prevent clickjacking attacks. It is used to prevent the browser from displaying the page in a frame or iframe. For example, if the `X-Frame-Options` response header is set to `DENY`, the browser will not display the page in a frame or iframe.
 
-To set the `X-Frame-Options` response header, add the following code to the `app.mjs` file (in the root directory).
+To set the `X-Frame-Options` response header, add the following code to the `app.mjs` file.
 
 ```javascript
 // This should be declared under the setXContentTypeOptions function
 const setXFrameOptions = (req, res, next) => {
-  res.set("x-frame-options", "deny");
-  next();
+  res.set("x-frame-options", "deny"); // Prevents the page from being displayed in a frame or iframe
+  next(); // Calls the next middleware
 };
 
 // This should be declared under app.use(setXContentTypeOptions);
 app.use(setXFrameOptions);
 ```
 
+---
+
 ### Content-Security-Policy
 
 The `Content-Security-Policy` response header is used to prevent cross-site scripting (XSS) attacks. It is used to prevent the browser from loading resources from untrusted sources. For example, if the `Content-Security-Policy` response header is set to `default-src 'none'`, the browser will not load any resources from untrusted sources.
 
-To set the `Content-Security-Policy` response header, add the following code to the `app.mjs` file (in the root directory).
+To set the `Content-Security-Policy` response header, add the following code to the `app.mjs` file.
 
 ```javascript
 // This should be declared under the setXFrameOptions function
 const setContentSecurityPolicy = (req, res, next) => {
-  res.set("content-security-policy", "default-src 'none'");
-  next();
+  res.set("content-security-policy", "default-src 'none'"); // Prevents the browser from loading resources from untrusted sources
+  next(); // Calls the next middleware
 };
 
 // This should be declared under app.use(setXFrameOptions);
 app.use(setContentSecurityPolicy);
 ```
 
-## Document and Test the API
+---
 
-Let us test the API using **Postman**.
+## Document the API in Postman
 
 To add a new request, click the horizontal ellipsis and select `Add request`.
 
@@ -490,6 +496,8 @@ This is an example of a `DELETE` by id request.
 
 **Note:** Make sure you save your requests.
 
+---
+
 ## Formative Assessment
 
 Before you start, create a new branch called **04-formative-assessment**.
@@ -500,19 +508,27 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-## Tasks
+---
 
-1. Implement the above.
+### Task One
 
-2. To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc.
+Implement the above.
 
-3. Document and test the **API** in **Postman**.
+### Task Two
 
-## Research Tasks
+To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc.
 
-1. **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
+### Task Three
 
-2. You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables.
+Document the API in **Postman**.
+
+### Task Four (Research)
+
+**Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
+
+### Task Five (Research)
+
+You will notice that **Git** is ignoring your `.env` file. It is good practice to create a `.env.example` file and commit it to **Git**. The `.env.example` file should contain all the environment variables that are required by your application. The `.env` file should contain the actual values of the environment variables.
 
 For example, your `.env.example` file should contain the following.
 
@@ -526,8 +542,10 @@ Your `.env` file should contain the following.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-Why is this important? You can share the `.env.example` file with your team members if you are working in a team. They can create their own `.env` file based on the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
+You can share the `.env.example` file with your team members. They can create their own `.env` file from the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
 
-# Formative Assessment Submission
+---
+
+### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
