@@ -104,7 +104,7 @@ What is the purpose of each command?
 
 A **script** is a series of commands that are executed by the **Node.js** runtime. **Scripts** are used to automate repetitive tasks.
 
-In the `package.json` file, add the following line to the `scripts` block
+In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
 "dev": "nodemon app.mjs"
@@ -138,7 +138,8 @@ import cors from "cors";
 // Create an Express application
 const app = express();
 
-const PORT = process.env.PORT || 3000; // Use the PORT environment variable or 3000
+// Use the PORT environment variable or 3000
+const PORT = process.env.PORT || 3000; 
 
 // Use the CORS module
 app.use(cors());
@@ -233,7 +234,8 @@ import indexRoutes from "./routes/index.mjs";
 // Create an Express application
 const app = express();
 
-const PORT = process.env.PORT || 3000; // Use the PORT environment variable or 3000
+// Use the PORT environment variable or 3000
+const PORT = process.env.PORT || 3000; 
 
 // Use the CORS module
 app.use(cors()); // Make sure this is declared before the routes
