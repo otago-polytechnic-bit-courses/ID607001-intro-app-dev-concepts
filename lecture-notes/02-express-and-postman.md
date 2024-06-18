@@ -1,4 +1,4 @@
-# 02: Express and Postman
+## 02: Express and Postman
 
 ### Application Programming Interface (API)
 
@@ -82,7 +82,7 @@ There are four different **header** groups:
 
 ---
 
-### Getting Started
+### Getting Started with Express
 
 Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
 
@@ -293,7 +293,7 @@ Your file structure should look something like this.
 
 ---
 
-### Getting Started
+### Getting Started with Postman
 
 Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
 
