@@ -42,7 +42,7 @@ An **Object-Relational Mapper (ORM)** is a layer that sits between the database 
 
 The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
 
-To get started, run the following command to install **Prisma**.
+To get started, open a terminal and run the following.
 
 ```bash
 npm install @prisma/client@4.16.2
@@ -50,9 +50,9 @@ npm install prisma@4.16.2 --save-dev
 npx prisma init
 ```
 
-> **Note:** You only need to run these commands once.
+> **Note:** You only need to run these once.
 
-What does each command do?
+What does each do?
 
 - `npm install @prisma/client@4.16.2`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
 - `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.

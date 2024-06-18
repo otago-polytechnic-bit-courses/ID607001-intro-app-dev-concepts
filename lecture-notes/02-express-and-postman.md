@@ -84,7 +84,7 @@ There are four different **header** groups:
 
 ### Setup
 
-Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following commands.
+Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following.
 
 ```bash
 npm init -y
@@ -93,7 +93,7 @@ npm install cors
 npm install nodemon --save-dev
 ```
 
-What does each command do?
+What does each do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.

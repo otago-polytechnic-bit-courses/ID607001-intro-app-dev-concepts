@@ -1,8 +1,10 @@
 # 05: Relationships
 
-## Relationship 
+## Relationships 
 
 Relationships are a fundamental concept in database design. They define how two or more entities are connected to each other. In a relational database, relationships are established using primary and foreign keys.
+
+---
 
 ### Types of Relationships
 
@@ -14,7 +16,7 @@ In **Prisma**, you can define relationships between models. There are three main
 
 ---
 
-## Creating a Relationship
+### Creating a Relationship
 
 We are going to create a **One-to-Many** relationship between the `Institution` and `Department` models.
 
@@ -124,7 +126,7 @@ In the `controllers` directory, open the `institution.mjs` file and update the `
 ```js
 // Note: Some code has been omitted for brevity
 
-...
+// ...
 
 const getInstitutions = async (req, res) => {
   try {
@@ -134,7 +136,7 @@ const getInstitutions = async (req, res) => {
       },
     });
 
-    if (!institutions.length) {
+    if (!institutions) {
       return res.status(404).json({ msg: "No institutions found" });
     }
 
@@ -146,7 +148,7 @@ const getInstitutions = async (req, res) => {
   }
 };
 
-...
+// ...
 ```
 
 ---
@@ -166,6 +168,10 @@ This is an example of a `GET` all request. Notice the `departments` field.
 This is an example of a `GET` all request. Notice the `institutionId` field is not returned.
 
 ![](<../resources (ignore)/img/05/postman-3.PNG>)
+
+> **Note:** Make sure you save your requests. 
+
+---
 
 ## Formative Assessment
 
