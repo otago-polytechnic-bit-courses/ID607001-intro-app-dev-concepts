@@ -1,6 +1,10 @@
 # 05: Relationships
 
-## Relationship Types
+## Relationship 
+
+Relationships are a fundamental concept in database design. They define how two or more entities are connected to each other. In a relational database, relationships are established using primary and foreign keys.
+
+### Types of Relationships
 
 In **Prisma**, you can define relationships between models. There are three main types of relationships:
 
@@ -8,7 +12,9 @@ In **Prisma**, you can define relationships between models. There are three main
 2. **One-to-Many**: A relationship where one record in a table is related to multiple records in another table.
 3. **Many-to-Many**: A relationship where multiple records in a table are related to multiple records in another table.
 
-## Creating Relationships
+---
+
+## Creating a Relationship
 
 We are going to create a **One-to-Many** relationship between the `Institution` and `Department` models.
 
@@ -181,12 +187,6 @@ Implement the above.
 
 ### Task Two
 
-There is a lot of duplicate code in the `controllers` and `routes` directory. Refactor the code to remove the duplicate code.
-
----
-
-### Task Three
-
 Create a `Lecturer` model with the following fields:
 
    - `id`
@@ -201,7 +201,7 @@ This model should have a **One-to-One** relationship with the `Course` model. Th
 
 ---
 
-### Task Four
+### Task Three
 
 Create a `Course` model with the following fields:
 
@@ -218,19 +218,19 @@ This model should have a **One-to-Many** relationship with the `Department` mode
 
 ---
 
-### Task Five
+### Task Four
 
 Create the appropriate **controllers** and **routes** for the `Lecturer` and `Course` models. 
 
 ---
 
-### Task Six
+### Task Five
 
 Document the **API** in **Postman**.
 
 ---
 
-### Task Seven (Research)
+### Task Six (Research)
 
 In **Prisma**, an **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `PART_TIME` and `FULL_TIME`. Add a `role` field to the `Lecturer` model with the `@default(PART_TIME)` directive. The `role` field should be of type `Role`. What happens when you try to create a lecturer with a role that is not one of the constants defined in the **enum**?
 
