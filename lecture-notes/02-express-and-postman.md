@@ -278,7 +278,10 @@ Your file structure should look something like this.
 
 > What is the purpose of the `node_modules` directory? Contains the modules installed by **NPM**. This directory should not be committed to the repository because it is large and contains many files. When you run `npm install`, the modules are installed based on the `package.json` file. In the `.gitignore` file, `node_modules` is added to ignore the directory.
 
-> What is the purpose of the `package-lock.json` file? It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
+> What is the purpose of the `package-lock.json` file? 
+  > It is used to lock the version of the modules installed by **NPM**. This ensures that the same version of the modules is installed when the project is cloned or deployed. It is useful for **reproducibility** on different machines.
+
+---
 
 ### Postman
 
