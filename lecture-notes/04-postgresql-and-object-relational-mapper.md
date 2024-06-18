@@ -160,9 +160,20 @@ npx prisma migrate reset --force
 
 ---
 
+### Package JSON File
+
+You will often run the `npx prisma migrate dev` and `npx prisma migrate reset --force` commands. To make it easier, add the following scripts to the `package.json` file.
+
+```json
+"prisma:migrate": "npx prisma migrate dev",
+"prisma:reset": "npx prisma migrate reset --force",
+```
+
+---
+
 ### Institution Controller
 
-In the `controllers` directory, create a new file called `institution.mjs`. Add the following code.
+In the `controllers` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
 import { PrismaClient, Prisma } from "@prisma/client";
@@ -349,7 +360,7 @@ const deleteInstitution = async (req, res) => {
 };
 ```
 
-To use the functions in the `institution.mjs` file, export them.
+To use the functions in the `institution.js` file, export them.
 
 ```js
 export {
@@ -365,7 +376,7 @@ export {
 
 ### Institution Router
 
-In the `routes` directory, create a new file called `institution.mjs`. Add the following code.
+In the `routes` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
 import express from "express";
@@ -376,7 +387,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institution.mjs";
+} from "../controllers/institution.js";
 
 const router = express.Router();
 
@@ -395,11 +406,11 @@ export default router;
 
 ### Main File
 
-In the `app.mjs` file, add the following code.
+In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import indexRoutes from "./routes/app.mjs";
-import institutionRoutes from "./routes/institution.mjs";
+// This should be declared under import indexRoutes from "./routes/app.js";
+import institutionRoutes from "./routes/institution.js";
 
 // This should be declared under app.use(cors());
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
@@ -425,7 +436,7 @@ Earlier we looked at validating the `content-type` request header. Now, we are g
 
 The `X-Content-Type-Options` response header is used to prevent **MIME** type sniffing. It is used to prevent browsers from trying to guess the MIME type of a response. For example, if the response is `application/json`, the browser will not try to guess the MIME type. It will treat the response as `application/json`.
 
-To set the `X-Content-Type-Options` response header, add the following code to the `app.mjs` file.
+To set the `X-Content-Type-Options` response header, add the following code to the `app.js` file.
 
 ```javascript
 // This should be declared under const app = express();
@@ -444,7 +455,7 @@ app.use(setXContentTypeOptions);
 
 The `X-Frame-Options` response header is used to prevent clickjacking attacks. It is used to prevent the browser from displaying the page in a frame or iframe. For example, if the `X-Frame-Options` response header is set to `DENY`, the browser will not display the page in a frame or iframe.
 
-To set the `X-Frame-Options` response header, add the following code to the `app.mjs` file.
+To set the `X-Frame-Options` response header, add the following code to the `app.js` file.
 
 ```javascript
 // This should be declared under the setXContentTypeOptions function
@@ -463,7 +474,7 @@ app.use(setXFrameOptions);
 
 The `Content-Security-Policy` response header is used to prevent cross-site scripting (XSS) attacks. It is used to prevent the browser from loading resources from untrusted sources. For example, if the `Content-Security-Policy` response header is set to `default-src 'none'`, the browser will not load any resources from untrusted sources.
 
-To set the `Content-Security-Policy` response header, add the following code to the `app.mjs` file.
+To set the `Content-Security-Policy` response header, add the following code to the `app.js` file.
 
 ```javascript
 // This should be declared under the setXFrameOptions function
@@ -540,7 +551,21 @@ Document the API in **Postman**.
 
 ### Task Four (Research)
 
-**Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
+**Prisma Studio** is a visual editor for your database. To open **Prisma Studio**, run the following command.
+
+```bash
+npx prisma studio
+```
+
+**Prisma Studio** will open in your default browser. You can view, add, update, and delete data from your database. It is a great tool for debugging and testing your database.
+
+In your `package.json` file, add the following script.
+
+```json
+"prisma:studio": "npx prisma studio"
+```
+
+> **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
 
 ---
 
@@ -561,6 +586,25 @@ DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
 You can share the `.env.example` file with your team members. They can create their own `.env` file from the `.env.example` file. It will ensure that everyone is using the same environment variables. Also, security is important. You do not want to commit sensitive information to **Git**. For example, your database URL contains your database username and password.
+
+---
+
+### Task Six
+
+In your repository `README.md` file, document the following scripts.
+
+- How to run the server
+- How to create and apply a migration
+- How to reset the database
+- How to open **Prisma Studio**
+
+Use a **Markdown** table to display the scripts and their descriptions. For example,
+
+```markdown
+| Script | Description |
+| ----------- | ----------- |
+| `npm run dev` | <Description of the command> |
+```
 
 ---
 

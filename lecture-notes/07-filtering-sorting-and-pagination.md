@@ -14,7 +14,7 @@ For example, an **API** that provides a collection of institutions may allow the
 
 ### Institution Controller
 
-In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include filtering based on the `name`, `region`, or `country` fields.
+In the `controllers` directory, open the `institution.js` file and update the `getInstitutions` function to include filtering based on the `name`, `region`, or `country` fields.
 
 ```js
 const getInstitutions = async (req, res) => {
@@ -73,7 +73,7 @@ Sorting is often used in combination with filtering to further refine the result
 
 ### Institution Controller
 
-In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include sorting based on a specified field and order.
+In the `controllers` directory, open the `institution.js` file and update the `getInstitutions` function to include sorting based on a specified field and order.
 
 ```js
 const getInstitutions = async (req, res) => {
@@ -140,7 +140,7 @@ In a typical pagination implementation, the end-user specifies the desired page 
 
 ### Institution Controller
 
-In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include pagination based on the specified page size and page number.
+In the `controllers` directory, open the `institution.js` file and update the `getInstitutions` function to include pagination based on the specified page size and page number.
 
 ```js
 const getInstitutions = async (req, res) => {

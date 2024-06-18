@@ -26,7 +26,7 @@ npm install joi
 
 ### Validation Middleware
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `institutionValidator.mjs`. Add the following code to the file.
+In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `institutionValidator.js`. Add the following code to the file.
 
 ```javascript
 import Joi from "joi";
@@ -115,7 +115,7 @@ export { validatePostInstitution, validatePutInstitution };
 
 ### Institution Router
 
-In the `routes` directory, open the `institutionRouter.mjs` file. Add the following code to the file.
+In the `routes` directory, open the `institutionRouter.js` file. Add the following code to the file.
 
 ```javascript
 // Note: Some code has been omitted for brevity
@@ -125,7 +125,7 @@ In the `routes` directory, open the `institutionRouter.mjs` file. Add the follow
 import {
   validatePostInstitution,
   validationPutInstitution,
-} from "../middleware/institutionValidator.mjs";
+} from "../middleware/institutionValidator.js";
 
 //...
 

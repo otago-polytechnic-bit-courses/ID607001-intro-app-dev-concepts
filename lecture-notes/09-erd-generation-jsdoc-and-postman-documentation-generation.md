@@ -88,7 +88,7 @@ Here is a more detailed example.
 
 > **Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
 
-Here is an example of a **JSDoc** comment for the `createInstitution` function in `controllers/institution.mjs`.
+Here is an example of a **JSDoc** comment for the `createInstitution` function in `controllers/institution.js`.
 
 ```javascript
 /**

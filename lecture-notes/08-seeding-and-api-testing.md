@@ -14,7 +14,7 @@ Link to the previous class: [07: Filtering, Sorting and Pagination](https://gith
 
 ### Setup
 
-In the `prisma` directory, create a new file called `seed.mjs`. Add the following code:
+In the `prisma` directory, create a new file called `seed.js`. Add the following code:
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
@@ -54,7 +54,7 @@ main();
 
 ### Seeding via Raw SQL Query
 
-In the `seed.mjs` file, add the following code:
+In the `seed.js` file, add the following code:
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
@@ -83,7 +83,7 @@ In the `package.json` file, add the following script.
 
 ```json
 "prisma": {
-  "seed": "node prisma/seed.mjs"
+  "seed": "node prisma/seed.js"
 }
 ```
 
@@ -125,7 +125,7 @@ The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--
 
 ### Creating a Test File
 
-In the root directory, create a new directory called `test`. In the `test` directory, create a new file called `institution.test.mjs`. Add the following code.
+In the root directory, create a new directory called `test`. In the `test` directory, create a new file called `institution.test.js`. Add the following code.
 
 ```javascript
 import chai from "chai";

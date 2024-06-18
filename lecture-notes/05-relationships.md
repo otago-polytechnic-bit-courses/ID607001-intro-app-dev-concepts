@@ -63,7 +63,7 @@ The `departments` field is an array of `Department` records. This field will be 
 
 ### Department Controller
 
-In the `controllers` directory, create a new file called `department.mjs`. Add the following code to the file.
+In the `controllers` directory, create a new file called `department.js`. Add the following code to the file.
 
 ```js
 import { PrismaClient } from "@prisma/client";
@@ -127,7 +127,7 @@ export { createDepartment, getDepartments };
 
 ### Institution Controller
 
-In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include the `departments` field.
+In the `controllers` directory, open the `institution.js` file and update the `getInstitutions` function to include the `departments` field.
 
 ```js
 // Note: Some code has been omitted for brevity

@@ -103,7 +103,7 @@ What does each do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.
-- `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
+- `npm install cors`: Installs the **CORS** module. **CORS** or **Cross-Origin Resource Sharing** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
 You will notice new files and directories in the root directory. These include:
@@ -143,7 +143,7 @@ A **script** is a series of commands that are executed by the **Node.js** runtim
 In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
-"dev": "nodemon app.mjs"
+"dev": "nodemon app.js"
 ```
 
 Your `scripts` block should look like this.
@@ -151,7 +151,7 @@ Your `scripts` block should look like this.
 ```json
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
-  "dev": "nodemon app.mjs"
+  "dev": "nodemon app.js",
 }
 ```
 
@@ -161,9 +161,21 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ---
 
+### Module 
+
+In the `package.json` file, add the following under the `scripts` block.
+
+```json
+"type": "module",
+```
+
+This will allow you to use **ES6 modules** in your project. For example, `import` and `export`, rather than `require` and `module.exports`.
+
+---
+
 ### Main File
 
-In the root directory, create a file named `app.mjs`. In the `app.mjs` file, add the following code.
+In the root directory, create a file named `app.js`. In the `app.js` file, add the following code.
 
 ```javascript
 // Import the Express module
@@ -195,7 +207,7 @@ app.listen(PORT, () => {
 export default app;
 ```
 
-> **Note:** The `app.mjs` file is the entry point of the application. It is used to start the server and define the routes.
+> **Note:** The `app.js` file is the entry point of the application. It is used to start the server and define the routes.
 
 ---
 
@@ -219,7 +231,7 @@ Hello, World!
 
 ### Controller
 
-In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.mjs` and add the following code.
+In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -238,14 +250,14 @@ export { get };
 
 ### Route
 
-In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.mjs` and add the following code.
+In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Import the Express module
 import express from "express";
 
 // Import the index controllers module
-import { get } from "../controllers/index.mjs";
+import { get } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
@@ -257,7 +269,7 @@ router.get("/", get);
 export default router;
 ```
 
-In the `app.mjs` file, update with the following code.
+In the `app.js` file, update with the following code.
 
 ```javascript
 // Import the Express module
@@ -267,7 +279,7 @@ import express from "express";
 import cors from "cors";
 
 // Import the index routes module
-import indexRoutes from "./routes/index.mjs";
+import indexRoutes from "./routes/index.js";
 
 // Create an Express application
 const app = express();
@@ -299,11 +311,11 @@ Your file structure should look something like this.
 ```bash
 .
 ├── controllers
-│   └── index.mjs
+│   └── index.js
 ├── node_modules
 ├── routes
-│   └── index.mjs
-├── app.mjs
+│   └── index.js
+├── app.js
 ├── package-lock.json
 ├── package.json
 ```
