@@ -10,7 +10,7 @@ What is meant by rules and protocols?
 - Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the `GET` method is used to retrieve data.
 - Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
-- Authentication and authorization: Used to restrict access to certain resources. For example, a user must be authenticated and authorized to access the list of users.
+- Authentication and authorisation: Used to restrict access to certain resources. For example, a user must be authenticated and authorised to access the list of users.
 - Error handling: Used to handle errors. For example, if a user tries to access a resource that does not exist, an error message should be returned.
 
 ### HTTP Request Methods
@@ -31,7 +31,7 @@ There are nine different **HTTP request methods**:
 
 We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
 
-> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
 ### HTTP Status Codes
 
@@ -43,7 +43,7 @@ An **HTTP response status code** indicates whether a specific **HTTP request** h
 4. Client error responses (400–499)
 5. Server error responses (500–599)
 
-> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Status>
 
 ### HTTP Headers
 
@@ -56,7 +56,7 @@ There are four different **header** groups:
 3. Representation headers
 4. Payload headers
 
-> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
 
 ## Node Package Manager (NPM)
 
@@ -79,12 +79,12 @@ npm install nodemon --save-dev
 
 What is the purpose of each command?
 
-- `npm init -y`: Initializes a **Node.js** project. The `-y` flag is used to accept the default values.
+- `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.
 - `npm install cors`: Installs the **CORS** module. **CORS** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
-**Note:** You only need to do this once.
+> **Note:** You only need to do this once.
 
 ---
 

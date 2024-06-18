@@ -1,10 +1,10 @@
-# 03: Deployment and Kanban
+# 03: Render and Kanban
 
 ## Render
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
 
-## Getting Started
+### Getting Started
 
 Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** to sign up.
 

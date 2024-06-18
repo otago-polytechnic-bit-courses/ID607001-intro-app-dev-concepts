@@ -4,7 +4,7 @@
 
 **PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
 
-## Getting Started
+### Getting Started
 
 Go to Render. 
 
@@ -32,7 +32,7 @@ Go back to your **web service**. In the **Environment** tab, add a new environme
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
-## Getting Started
+### Getting Started
 
 In **Visual Studio Code**, install the following extension - <https://marketplace.visualstudio.com/items?itemName=Prisma.prisma>.
 
@@ -54,7 +54,7 @@ What is the purpose of each command?
 - `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 - `npx prisma init`: Initializes **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
 
-**Note:** You only need to run these three commands **ONCE**.
+> **Note:** You only need to run these three commands **ONCE**.
 
 What is the purpose of the `.env` file? Used to store environment variables. For example, database connection string.
 
