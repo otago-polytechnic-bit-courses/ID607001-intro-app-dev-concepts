@@ -54,9 +54,9 @@ npx prisma init
 
 What does each command do?
 
-- `npm install @prisma/client@4.16.2t`: Installs the **Prisma Client** module.
-- `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma CLI** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
-- `npx prisma init`: Initialises **Prisma** in the project. It creates a `.env` file and a `prisma` directory.
+- `npm install @prisma/client@4.16.2`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
+- `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
+- `npx prisma init`: Initialises **Prisma** in your project. It creates the `.env` file and the `prisma` directory.
 
 The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
 
@@ -133,7 +133,7 @@ A **migration** is a file that contains the **SQL** statements to create, update
 To create and apply a migration, run the following command.
 
 ```bash
-npx prisma migrate dev
+npx prisma migrate dev 
 ```
 
 You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
@@ -147,7 +147,7 @@ You will be prompted to enter a name for the migration. Do not enter anything an
 To reset the database, run the following command.
 
 ```bash
-npx prisma migrate reset
+npx prisma migrate reset --force
 ```
 
 > **Note:** This command will delete all the data in the database. Use it with caution.
@@ -518,17 +518,25 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 Implement the above.
 
+---
+
 ### Task Two
 
 To get use to creating **models**, create three resources of your choice. They do not have to be related to the `Institution` model or to be related to each other. Look into different data types for your **models'** fields. For example, `String`, `Int`, `Boolean`, `DateTime`, etc.
+
+---
 
 ### Task Three
 
 Document the API in **Postman**.
 
+---
+
 ### Task Four (Research)
 
 **Prisma Studio** is a visual editor for your database. It is a feature of **Prisma**. Please read the documentation on [Prisma Studio](https://www.prisma.io/docs/concepts/components/prisma-studio) and use it to view the data in your database.
+
+---
 
 ### Task Five (Research)
 

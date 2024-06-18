@@ -1,18 +1,18 @@
 # 05: Relationships
 
-In **Prisma**, we can define different types of relationships between models. Here are three types you will encounter most often.
+## Relationship Types
 
-- **One-to-one:** A single model instance is associated with a single instance of another model.
-- **One-to-many:** A single model instance is associated with multiple instances of another model.
-- **Many-to-many:** Multiple instances of a model are associated with multiple instances of another model.
+In **Prisma**, you can define relationships between models. There are three main types of relationships:
 
-## Getting Started
+1. **One-to-One**: A relationship where one record in a table is related to one record in another table.
+2. **One-to-Many**: A relationship where one record in a table is related to multiple records in another table.
+3. **Many-to-Many**: A relationship where multiple records in a table are related to multiple records in another table.
 
-We are creating a relationship between the `Institution` and `Department` models. An `Institution` can have multiple `Department`s. A `Department` can only belong to one `Institution`.
+## Creating Relationships
 
----
+We are going to create a **One-to-Many** relationship between the `Institution` and `Department` models.
 
-In the `schema.prisma` file, add the following code.
+In the `schema.prisma` file, add the following `Department` model below the `Institution` model.
 
 ```prisma
 model Department {
@@ -21,34 +21,41 @@ model Department {
   institutionId Int
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
-  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  institution   Institution @relation(fields: [institutionId], references: [id])
 }
 ```
 
----
+The `institutionId` field is a foreign key that references the `id` field in the `Institution` model. The `@relation` directive is used to define the relationship between the `Department` and `Institution` models.
 
-In the `schema.prisma` file, update the `Institution` model to include a `departments` field.
+Update the `Institution` model to include the `departments` field.
 
 ```prisma
 model Institution {
   id          Int          @id @default(autoincrement())
   name        String
-  region     String
-  country    String
+  region      String
+  country     String
   departments Department[]
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }
 ```
 
-**Note:** Create a migration and update the database.
+The `departments` field is an array of `Department` records. This field will be used to retrieve all the departments associated with an institution.
+
+> **Note:** Make sure you create and apply a migration.
 
 ---
 
-Create a new file called `department.js` in the' controllers' directory. Add the following code.
+### Department Controller
+
+In the `controllers` directory, create a new file called `department.mjs`. Add the following code to the file.
 
 ```js
-// Note: Some code has been omitted for brevity
+import { PrismaClient } from "@prisma/client";
+
+// Create a new instance of the PrismaClient
+const prisma = new PrismaClient();
 
 const createDepartment = async (req, res) => {
   try {
@@ -60,7 +67,10 @@ const createDepartment = async (req, res) => {
     }
 
     await prisma.department.create({
-      data: { ...req.body },
+      data: {
+        name: req.body.name,
+        institutionId: req.body.institutionId,
+      },
     });
 
     const newDepartments = await prisma.department.findMany();
@@ -80,24 +90,30 @@ const getDepartments = async (req, res) => {
   try {
     const departments = await prisma.department.findMany();
 
-    if (departments.length === 0) {
+    if (!departments) {
       return res.status(404).json({ msg: "No departments found" });
     }
 
-    return res.json({ data: departments });
+    return res.status(200).json({ data: departments });
   } catch (err) {
     return res.status(500).json({
       msg: err.message,
     });
   }
 };
+
+// Add other department controller functions here
+
+export { createDepartment, getDepartments };
 ```
 
-**Note:** You will create the appropriate routes for the functions above and functions that have been omitted for brevity.
+> **Note:** Make sure you add the appropriate routes for the `Department` model.
 
 ---
 
-In the `controllers` directory, update the `institution.js` file to include the following code.
+### Institution Controller
+
+In the `controllers` directory, open the `institution.mjs` file and update the `getInstitutions` function to include the `departments` field.
 
 ```js
 // Note: Some code has been omitted for brevity
@@ -108,15 +124,15 @@ const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany({
       include: {
-          departments: true,
+          departments: true, // Include the departments field
       },
     });
 
-    if (institutions.length === 0) {
+    if (!institutions.length) {
       return res.status(404).json({ msg: "No institutions found" });
     }
 
-    return res.json({ data: institutions });
+    return res.status(200).json({ data: institutions });
   } catch (err) {
     return res.status(500).json({
       msg: err.message,
@@ -127,7 +143,9 @@ const getInstitutions = async (req, res) => {
 ...
 ```
 
-## Document and Test the API
+---
+
+## Document the API in Postman
 
 Let us test the API using **Postman**.
 
@@ -153,45 +171,71 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 - Do not trust **ChatGPT's** responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge that you are using **ChatGPT**. In the **README.md** file, please include what prompt(s) you provided to **ChatGPT** and how you used the response(s) to help you with your work
 
-1. Implement the above.
+---
 
-2. There is a lot of duplicate code in the `controllers` and `routes` directory. Refactor the code to remove the duplicate code.
+### Task One
 
-3. Create a `User` model with the following fields:
+Implement the above.
+
+---
+
+### Task Two
+
+There is a lot of duplicate code in the `controllers` and `routes` directory. Refactor the code to remove the duplicate code.
+
+---
+
+### Task Three
+
+Create a `Lecturer` model with the following fields:
 
    - `id`
    - `firstName`
    - `lastName`
    - `emailAddress`
-   - `password`
+   - `courseId`
    - `createdAt`
    - `updatedAt`
 
-4. Create a `Course` model with the following fields:
+This model should have a **One-to-One** relationship with the `Course` model. The `emailAddress` field should be unique.
+
+---
+
+### Task Four
+
+Create a `Course` model with the following fields:
 
    - `id`
    - `code`
    - `name`
    - `description`
    - `departmentId`
-   - `userId`
+   - `lecturerId`
    - `createdAt`
    - `updatedAt`
 
-This model should have a relationship with the `Department` model. A `Department` can have multiple `Course`s. A `Course` can only belong to one `Department`.
+This model should have a **One-to-Many** relationship with the `Department` model and a **One-to-One** relationship with the `Lecturer` model. The `code` field should be unique.
 
-5. Create the appropriate **controllers** and **routes** for the `User` and `Course` models. Make sure you create the appropriate relationships between the models.
+---
 
-6. Document and test the **API** in **Postman**.
+### Task Five
 
-## Research Tasks
+Create the appropriate **controllers** and **routes** for the `Lecturer` and `Course` models. 
 
-1. **Prisma** has limited schema validation. One useful validation technique is to use the `@unique` directive. Add the `@unique` directive to the `emailAddress` field in the `User` model. What happens when you try to create a user with an existing email address in the database? Also, add the `@unique` directive to the `code` and `name` fields in the `Course` model.
+---
 
-2. In **Prisma**, you can use **enums**. An **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a `role` field to the `User` model with the `@default(LEARNER)` directive. The `role` field should be of type `Role`. What happens when you try to create a user with a role that is not one of the constants defined in the **enum**?
+### Task Six
 
-3. Document and test the **API** in **Postman**.
+Document the **API** in **Postman**.
 
-# Formative Assessment Submission
+---
+
+### Task Seven (Research)
+
+In **Prisma**, an **enum** is a special type that defines a set of constants. Create an **enum** called `Role` with the following constants: `PART_TIME` and `FULL_TIME`. Add a `role` field to the `Lecturer` model with the `@default(PART_TIME)` directive. The `role` field should be of type `Role`. What happens when you try to create a lecturer with a role that is not one of the constants defined in the **enum**?
+
+---
+
+#  Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
