@@ -64,33 +64,33 @@
 
 # Marking Cover Sheet
 
-**Course Title:** [Course Title]
+**Course Title:** 
 
-**Assignment Title:** [Assignment Title]
+**Assignment Title:** 
 
-**Learner Name:** [Learner Name]
+**Learner Name:** 
 
-**Learner ID:** [Learner ID]
+**Learner ID:** 
 
-**Date Submitted:** [Date]
+**Date Submitted:**
 
 # Overall Comments:
 
 [Insert overall comments and feedback here.]
 
-**Functionality: REST API: [x/25]**
+**Functionality: REST API: [ /25]**
 
-**Functionality: CRUD Application: [x/20]**
+**Functionality: CRUD Application: [ /20]**
 
-**Functionality: Scripts: [x/5]**
+**Functionality: Scripts: [ /5]**
 
-**Code Quality and Best Practices: [x/45]**
+**Code Quality and Best Practices: [ /45]**
 
-**Documentation: [x/5]**
+**Documentation: [ /5]**
 
-**Total Marks (100%):** [Total Marks]
+**Total Marks (100%):** 
 
-**Assessor's Name:** [Assessor's Name]
+**Assessor's Name:** 
 
 **Assessor's Signature:** ___________________
 
