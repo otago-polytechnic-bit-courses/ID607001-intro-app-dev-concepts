@@ -1,8 +1,8 @@
-# 03: Render and Kanban
+# Week 03
 
 ## Previous Class
 
-Link to the previous class: [02: Express and Postman](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)
 
 ---
 
@@ -22,7 +22,7 @@ Click the **New +** button, then click the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-2.PNG>)
 
-Connect to your **s2-24-intro-app-dev-playground** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+Connect to your **s2-24-intro-app-dev-repo** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 

@@ -90,7 +90,7 @@ There are four different **header** groups:
 
 ### Setup
 
-Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open a terminal and run the following.
+Open your **s2-24-intro-app-dev-repo** repository in **Visual Studio Code**. Open a terminal and run the following.
 
 ```bash
 npm init -y
@@ -159,7 +159,7 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ---
 
-### Module 
+### Module
 
 In the `package.json` file, add the following under the `scripts` block.
 
@@ -179,17 +179,28 @@ In the root directory, create a file named `app.js`. In the `app.js` file, add t
 // Import the Express module
 import express from "express";
 
-// Import the CORS module
-import cors from "cors";
-
 // Create an Express application
 const app = express();
 
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
-// Use the CORS module
-app.use(cors());
+// Create a GET route
+app.get("/", (req, res) => {
+  return res.status(200).json({
+    message: "Hello, World!",
+  });
+});
+
+// Start the server on port 3000
+// Import the Express module
+import express from "express";
+
+// Create an Express application
+const app = express();
+
+// Use the PORT environment variable or 3000
+const PORT = process.env.PORT || 3000;
 
 // Create a GET route
 app.get("/", (req, res) => {
@@ -200,7 +211,9 @@ app.get("/", (req, res) => {
 
 // Start the server on port 3000
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}.`);
+  console.log(
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+  );
 });
 
 // Export the Express application. May be used by other modules. For example, API testing
@@ -293,10 +306,12 @@ app.use("/", indexRoutes);
 
 // Start the server on port 3000
 app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}.`);
+  console.log(
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+  );
 });
 
-// Export the Express application. Other modules may use it. For example, API testing
+// Export the Express application. May be used by other modules. For example, API testing
 export default app;
 ```
 
@@ -370,7 +385,7 @@ In the `package.json` file, add the following lines to the `scripts` block.
 "prettier:check": "npx prettier --check ."
 ```
 
-- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file. 
+- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 - `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
 
 ---
