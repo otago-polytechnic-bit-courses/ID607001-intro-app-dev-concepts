@@ -63,7 +63,7 @@ Scroll to the top of the page and click on your **web service's** URL.
 
 ![](<../resources (ignore)/img/03/render-9.PNG>)
 
-You should see the following page. 
+You should see the following page.
 
 > **Note:** Your **web service's** URL will be different.
 
@@ -95,7 +95,7 @@ Leave the **Instance Type** as **Free**. Click on the **Create Database** button
 
 ![](<../resources (ignore)/img/03/render-13.png>)
 
-Click on the **Connect** button and the **External Connection** tab. Copy the **External Database URL**.
+Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
 
 ![](<../resources (ignore)/img/03/render-14.png>)
 
@@ -193,12 +193,12 @@ model Institution {
 }
 ```
 
-- A `model` is used to define a database table. In this case, we are defining an `Institution` table. 
-- The `@id` directive is used to specify the primary key. 
+- A `model` is used to define a database table. In this case, we are defining an `Institution` table.
+- The `@id` directive is used to specify the primary key.
 - The `@default` directive is used to specify the default value.
-- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier).  
-- The `@unique` directive is used to specify that the value should be unique. 
-- The `@default(now())` directive is used to specify that the value should be the current date and time. 
+- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier).
+- The `@unique` directive is used to specify that the value should be unique.
+- The `@default(now())` directive is used to specify that the value should be the current date and time.
 - The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
 
 > **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
@@ -262,14 +262,6 @@ To create an institution, use the `prisma.institution.create` function.
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
   try {
-    // Validate the content-type request header. It ensures that the request body is in JSON format
-    const contentType = req.headers["content-type"];
-    if (!contentType || contentType !== "application/json") {
-      return res.status(400).json({
-        msg: "Invalid Content-Type. Expected application/json.",
-      });
-    }
-
     // Create a new institution
     await prisma.institution.create({
       // Data to be inserted
@@ -285,7 +277,7 @@ const createInstitution = async (req, res) => {
 
     // Send a JSON response
     return res.status(201).json({
-      msg: "Institution successfully created",
+      message: "Institution successfully created",
       data: newInstitutions,
     });
   } catch (err) {
@@ -293,7 +285,7 @@ const createInstitution = async (req, res) => {
       {
         if (err.code === "P2002") {
           return res.status(400).json({
-            msg: "Institution with the same name already exists",
+            message: "Institution with the same name already exists",
           });
         }
       }
@@ -312,7 +304,7 @@ const getInstitutions = async (req, res) => {
 
     // Check if there are no institutions
     if (!institutions) {
-      return res.status(404).json({ msg: "No institutions found" });
+      return res.status(404).json({ message: "No institutions found" });
     }
 
     return res.status(200).json({
@@ -320,7 +312,7 @@ const getInstitutions = async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -333,14 +325,14 @@ To get an institution, use the `prisma.institution.findUnique` function.
 const getInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
-      where: { id: Number(req.params.id) },
+      where: { id: req.params.id },
     });
 
     // Check if there is no institution
     if (!institution) {
       return res
         .status(404)
-        .json({ msg: `No institution with the id: ${req.params.id} found` });
+        .json({ message: `No institution with the id: ${req.params.id} found` });
     }
 
     return res.status(200).json({
@@ -348,7 +340,7 @@ const getInstitution = async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -360,30 +352,23 @@ To update an institution, use the `prisma.institution.update` function.
 // Add this code under the getInstitution function
 const updateInstitution = async (req, res) => {
   try {
-    // Validate the content-type request header. It ensures that the request body is in JSON format
-    const contentType = req.headers["content-type"];
-    if (!contentType || contentType !== "application/json") {
-      return res.status(400).json({
-        msg: "Invalid Content-Type. Expected application/json.",
-      });
-    }
-
     // Find the institution by id
     let institution = await prisma.institution.findUnique({
-      where: { id: Number(req.params.id) },
+      where: { id: req.params.id },
     });
 
     // Check if there is no institution
     if (!institution) {
       return res
         .status(404)
-        .json({ msg: `No institution with the id: ${req.params.id} found` });
+        .json({ message: `No institution with the id: ${req.params.id} found` });
     }
 
     // Update the institution
     institution = await prisma.institution.update({
-      where: { id: Number(req.params.id) },
-      data: { // Data to be updated
+      where: { id: req.params.id },
+      data: {
+        // Data to be updated
         name: req.body.name,
         region: req.body.region,
         country: req.body.country,
@@ -391,18 +376,17 @@ const updateInstitution = async (req, res) => {
     });
 
     return res.status(200).json({
-      msg: `Institution with the id: ${req.params.id} successfully updated`,
+      message: `Institution with the id: ${req.params.id} successfully updated`,
       data: institution,
     });
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      {
-        if (err.code === "P2002") {
-          return res.status(400).json({
-            msg: "Institution with the same name already exists",
-          });
-        }
+      if (err.code === "P2002") {
+        return res.status(400).json({
+          message: "Institution with the same name already exists",
+        });
       }
+    }
   }
 };
 ```
@@ -414,25 +398,25 @@ To delete an institution, use the `prisma.institution.delete` function.
 const deleteInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
-      where: { id: Number(req.params.id) },
+      where: { id: req.params.id },
     });
 
     if (!institution) {
       return res
         .status(404)
-        .json({ msg: `No institution with the id: ${req.params.id} found` });
+        .json({ message: `No institution with the id: ${req.params.id} found` });
     }
 
     await prisma.institution.delete({
-      where: { id: Number(req.params.id) },
+      where: { id: req.params.id },
     });
 
     return res.json({
-      msg: `Institution with the id: ${req.params.id} successfully deleted`,
+      message: `Institution with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -479,7 +463,7 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-`:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/1>, the `:id` value will be `1`.
+`:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/uuid>, the `:id` value will be `uuid`.
 
 ---
 
@@ -491,7 +475,7 @@ In the `app.js` file, add the following code.
 // This should be declared under import indexRoutes from "./routes/app.js";
 import institutionRoutes from "./routes/institution.js";
 
-// This should be declared under app.use(cors());
+// This should be declared above app.use("/", indexRoutes);
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 
 // This should be declared under app.use(urlencoded({ extended: false }));
@@ -501,7 +485,93 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use("/api/institutions", institutionRoutes);
 ```
 
-> **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+> **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/uuid`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+
+---
+
+## JSDoc
+
+**JSDoc** is an API documentation generator for **JavaScript**. **JSDoc** comments are written in a specific syntax to document the code. The **JSDoc** comments are then parsed and converted into HTML documentation. We will not convert the **JSDoc** comments into HTML documentation. However, it is good information to know.
+
+### Getting Started
+
+At the top of each file, add the following code.
+
+```javascript
+/**
+ * @file <the purpose of the file>
+ * @author <the name of the author>
+ */
+```
+
+For example, in the `controllers/institution.js` file.
+
+```javascript
+/**
+ * @file Manages all operations related to institutions
+ * @author John Doe
+ */
+```
+
+**Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
+
+How do you comment a **function**?
+
+```javascript
+/**
+ * @description This function creates a new institution
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} - The response object
+ */
+const createInstitution = async (req, res) => {
+  try {
+    await prisma.institution.create({
+      data: {
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
+    });
+
+    const newInstitutions = await prisma.institution.findMany();
+
+    return res.status(201).json({
+      message: "Institution successfully created",
+      data: newInstitutions,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            message: "Institution with the same name already exists",
+          });
+        }
+      }
+    }
+  }
+};
+```
+
+> **Note:** Do not use **JSDoc** for in-line comments. Use normal JavaScript comments.
+
+---
+
+## Swagger
+
+**Swagger** is a set of open-source tools built around the **OpenAPI Specification** that can help you design, build, document, and consume REST APIs.
+
+### Setup
+
+To get started, open a terminal and run the following.
+
+```bash
+npm install swagger-ui-express swagger-jsdoc --save-dev
+```
+
+
+---
 
 ## Next Class
 
