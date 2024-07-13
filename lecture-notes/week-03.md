@@ -99,7 +99,7 @@ Click on the **Connect** button and the **External Connection** tab. Copy the **
 
 Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
 
-![](<../resources (ignore)/img/04/render-15.PNG>)
+![](<../resources (ignore)/img/03/render-15.PNG>)
 
 ---
 
