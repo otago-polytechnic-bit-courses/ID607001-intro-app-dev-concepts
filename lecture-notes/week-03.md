@@ -22,7 +22,7 @@ Click the **New +** button, then click the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-2.PNG>)
 
-
+By default, it will select **Build and deploy from a Git repository**. Click the **Next** button.
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
@@ -42,10 +42,6 @@ Click on the **Deploy Web Service** button.
 
 ![](<../resources (ignore)/img/03/render-7.PNG>)
 
-
-
-![](<../resources (ignore)/img/03/render-8.PNG>)
-
 Keep an eye on the logs. Your **web service** is ready when you see the following message.
 
 ```bash
@@ -53,10 +49,11 @@ Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
-
-![](<../resources (ignore)/img/03/render-9.PNG>)
+![](<../resources (ignore)/img/03/render-8.PNG>)
 
 Scroll to the top of the page and click on your **web service's** URL.
+
+![](<../resources (ignore)/img/03/render-9.PNG>)
 
 You should see the following page. **Note:** Your **web service's** URL will be different.
 
