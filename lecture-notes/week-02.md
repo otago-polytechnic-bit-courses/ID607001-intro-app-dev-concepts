@@ -340,17 +340,38 @@ Implement the above.
 
 ### Task Two
 
-To get use to creating **controllers** and **routes**, create three `GET` routes for the following.
+To get use to creating **controllers** and **routes**, create two `GET` routes for the following.
 
-- <http://localhost:3000/about/>. Return your learner id, first name, last name and one thing you enjoy about IT.
-- <http://localhost:3000/contact/>. Return your learner email address.
+- <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
+
+You should have new **controller** and **route** files for about and courses.
 
 ---
 
 ### Task Three (Research)
 
-**Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
+**Prettier** is an opinionated code formatter.
+
+Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
+
+In the `.prettierrc.json` file, implement the following rules:
+
+- `printWidth`: 80
+- `tabWidth`: 2
+- `semi`: true
+- `singleQuote`: false
+- `trailingComma`: "all"
+
+In the `package.json` file, add the following lines to the `scripts` block.
+
+```json
+"prettier:format": "npx prettier --write .",
+"prettier:check": "npx prettier --check ."
+```
+
+- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file. 
+- `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
 
 ---
 

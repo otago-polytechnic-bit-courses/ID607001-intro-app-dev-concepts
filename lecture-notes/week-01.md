@@ -2,7 +2,7 @@
 
 ## GitHub
 
-In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/mQiAFC8n>. You will use this repository for your **formative assessments** only.
+In this course, we are going to use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/WBzw8fEH>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. This repository will be used to submit your formative (non-graded) and summative (graded) assessments.
 
 ---
 
@@ -491,11 +491,11 @@ In this course, we will use the **object literal** syntax to create **objects**.
 Copy the file `01-formative-assessment.js` into your **s2-24-intro-app-dev-playground** repository. Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code**. Open the terminal and run the command `node 01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
-$ node 01-formative-assessment.js
+$ node week-01-formative-assessment.js
 Hello, World!
 ```
 
-Create a new branch called **01-formative-assessment**.
+Create a new branch called **week-01-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
