@@ -63,7 +63,9 @@ Scroll to the top of the page and click on your **web service's** URL.
 
 ![](<../resources (ignore)/img/03/render-9.PNG>)
 
-You should see the following page. **Note:** Your **web service's** URL will be different.
+You should see the following page. 
+
+> **Note:** Your **web service's** URL will be different.
 
 ![](<../resources (ignore)/img/03/render-10.PNG>)
 
@@ -85,7 +87,7 @@ Click the **New +** button, then click the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/03/render-11.PNG>)
 
-Name your **New PostgreSQL**. For example, **id607001-your learner username**.
+Name your **New PostgreSQL**. For example, **s2-24-intro-app-dev-repo-GitHub username**.
 
 ![](<../resources (ignore)/img/03/render-12.PNG>)
 
@@ -182,7 +184,7 @@ Under `datasource db` block, add the following code.
 
 ```javascript
 model Institution {
-  id         Int          @id @default(autoincrement())
+  id         String       @id @default(uuid())
   name       String       @unique
   region     String
   country    String
@@ -191,7 +193,13 @@ model Institution {
 }
 ```
 
-A `model` is used to define a database table. In this case, we are defining an `Institution` table. The `@id` directive is used to specify the primary key. The `@default` directive is used to specify the default value. The `@autoincrement` directive is used to specify that the value should be automatically incremented. The `@unique` directive is used to specify that the value should be unique. The `@default(now())` directive is used to specify that the value should be the current date and time. The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
+- A `model` is used to define a database table. In this case, we are defining an `Institution` table. 
+- The `@id` directive is used to specify the primary key. 
+- The `@default` directive is used to specify the default value.
+- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier).  
+- The `@unique` directive is used to specify that the value should be unique. 
+- The `@default(now())` directive is used to specify that the value should be the current date and time. 
+- The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
 
 > **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
 
@@ -231,7 +239,7 @@ You will often run the `npx prisma migrate dev` and `npx prisma migrate reset --
 
 ```json
 "prisma:migrate": "npx prisma migrate dev",
-"prisma:reset": "npx prisma migrate reset --force",
+"prisma:reset": "npx prisma migrate reset --force"
 ```
 
 ---
@@ -250,6 +258,7 @@ const prisma = new PrismaClient();
 To create an institution, use the `prisma.institution.create` function.
 
 ```js
+// Add this code under const prisma = new PrismaClient();
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
   try {
@@ -296,6 +305,7 @@ const createInstitution = async (req, res) => {
 To get all institutions, use the `prisma.institution.findMany` function.
 
 ```js
+// Add this code under the createInstitution function
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany();
@@ -319,6 +329,7 @@ const getInstitutions = async (req, res) => {
 To get an institution, use the `prisma.institution.findUnique` function.
 
 ```js
+// Add this code under the getInstitutions function
 const getInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -346,6 +357,7 @@ const getInstitution = async (req, res) => {
 To update an institution, use the `prisma.institution.update` function.
 
 ```js
+// Add this code under the getInstitution function
 const updateInstitution = async (req, res) => {
   try {
     // Validate the content-type request header. It ensures that the request body is in JSON format
@@ -398,6 +410,7 @@ const updateInstitution = async (req, res) => {
 To delete an institution, use the `prisma.institution.delete` function.
 
 ```js
+// Add this code under the updateInstitution function
 const deleteInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -428,6 +441,7 @@ const deleteInstitution = async (req, res) => {
 To use the functions in the `institution.js` file, export them.
 
 ```js
+// Add this code under the deleteInstitution function
 export {
   createInstitution,
   getInstitutions,
