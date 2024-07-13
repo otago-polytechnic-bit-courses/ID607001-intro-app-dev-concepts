@@ -1,4 +1,4 @@
-# 01: GitHub and JavaScript
+# Week 01
 
 ## GitHub
 
@@ -803,4 +803,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [02: Express and Postman](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/02-express-and-postman.md)
+Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)

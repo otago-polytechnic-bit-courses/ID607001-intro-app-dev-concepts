@@ -1,8 +1,8 @@
-## 02: Express and Postman
+## Week 02
 
 ## Previous Class
 
-Link to the previous class: [01: GitHub and JavaScript](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/01-github-and-javascript.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-01.md)
 
 ---
 
@@ -95,7 +95,6 @@ Open your **s2-24-intro-app-dev-playground** repository in **Visual Studio Code*
 ```bash
 npm init -y
 npm install express
-npm install cors
 npm install nodemon --save-dev
 ```
 
@@ -103,7 +102,6 @@ What does each do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
 - `npm install express`: Installs the **Express** module.
-- `npm install cors`: Installs the **CORS** module. **CORS** or **Cross-Origin Resource Sharing** is a mechanism that allows restricted resources on a web page to be requested from another domain outside the domain from which the first resource was served. You will learn more about **CORS** in **ID608001: Intermediate Application Development Concepts**.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
 You will notice new files and directories in the root directory. These include:
@@ -195,7 +193,9 @@ app.use(cors());
 
 // Create a GET route
 app.get("/", (req, res) => {
-  return res.status(200).send("Hello, World!");
+  return res.status(200).json({
+    message: "Hello, World!",
+  });
 });
 
 // Start the server on port 3000
@@ -224,7 +224,9 @@ This command will run the `dev` script declared in the `package.json` file. The 
 Open a browser and navigate to <http://localhost:3000/>. You should see the following message.
 
 ```bash
-Hello, World!
+{
+  "message": "Hello, World!"
+}
 ```
 
 ---
@@ -235,13 +237,15 @@ In the root directory, create a directory named `controllers`. In the `controlle
 
 ```javascript
 // Create a GET route
-const get = (req, res) => {
+const getIndex = (req, res) => {
   // req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
-  return res.status(200).send("Hello, World!");
+  return res.status(200).json({
+    message: "Hello, World!",
+  });
 };
 
-// Export the get function. May be used by other modules. For example, the index routes module
-export { get };
+// Export the getIndex function. May be used by other modules. For example, the index routes module
+export { getIndex };
 ```
 
 > **Resource:** <https://expressjs.com/en/guide/routing.html>
@@ -257,13 +261,13 @@ In the root directory, create a directory named `routes`. In the `routes` direct
 import express from "express";
 
 // Import the index controllers module
-import { get } from "../controllers/index.js";
+import { getIndex } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
 
 // Create a GET route
-router.get("/", get);
+router.get("/", getIndex);
 
 // Export the router
 export default router;
@@ -275,9 +279,6 @@ In the `app.js` file, update with the following code.
 // Import the Express module
 import express from "express";
 
-// Import the CORS module
-import cors from "cors";
-
 // Import the index routes module
 import indexRoutes from "./routes/index.js";
 
@@ -286,9 +287,6 @@ const app = express();
 
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
-
-// Use the CORS module
-app.use(cors()); // Make sure this is declared before the routes
 
 // Use the routes module
 app.use("/", indexRoutes);
@@ -322,55 +320,9 @@ Your file structure should look something like this.
 
 When setting up a project, it is important to have a clear file structure. This makes it easier to find files and maintain the project.
 
----
-
-## Postman
-
-**Postman** is a collaboration platform for API development. **Postman's** features simplify each step of building an API and streamline collaboration so you can create better APIs faster. We will use **Postman** to test our **REST API**.
-
-> **Note:** There are other tools available for testing **REST APIs**. For example, **Insomnia** and **Swagger UI**.
-
----
-
-## Setup
-
-Download and install **Postman** from [https://www.postman.com/downloads/](https://www.postman.com/downloads/).
-
-Open **Postman**. Click on the **Workspaces** tab and the **Create Workspace** button.
-
-![](<../resources (ignore)/img/02/postman-1.PNG>)
-
-Enter a name for your workspace. For example, **id607001-your learner username**. Set the visibility to **Personal**, then click on the **Create Workspace** button.
-
-![](<../resources (ignore)/img/02/postman-2.PNG>)
-
-Click on the **Create collection** button.
-
-![](<../resources (ignore)/img/02/postman-3.PNG>)
-
-Change the name of the collection to **Test Route** then click on the **Add a request** link.
-
-![](<../resources (ignore)/img/02/postman-4.PNG>)
-
-Change the name of the request to **Index Request**. In the **Request URL** field, enter <http://localhost:3000/>. Click on the **Save** button.
-
-![](<../resources (ignore)/img/02/postman-5.PNG>)
-
-Click on the **Send** button. You should see the following response.
-
-```bash
-Hello, World!
-```
-
-![](<../resources (ignore)/img/02/postman-6.PNG>)
-
-We will add more requests to the collection as we work through the examples. Later we will use the collection to create documentation for our **REST API**.
-
----
-
 ## Formative Assessment
 
-Before you start, create a new branch called **02-formative-assessment**.
+Before you start, create a new branch called **week-02-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 
@@ -396,13 +348,7 @@ To get use to creating **controllers** and **routes**, create three `GET` routes
 
 ---
 
-### Task Three
-
-Document and test the **API** in **Postman**.
-
----
-
-### Task Four (Research)
+### Task Three (Research)
 
 **Prettier** is an opinionated code formatter. Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
@@ -416,4 +362,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [03: Render and Kanban](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/03-render-and-kanban.md)
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-03.md)

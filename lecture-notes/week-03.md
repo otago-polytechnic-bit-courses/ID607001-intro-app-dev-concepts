@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [02: Express and Postman](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/02-express-and-postman.md)
+Link to the previous class: [02: Express and Postman](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)
 
 ---
 
