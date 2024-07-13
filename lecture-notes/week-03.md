@@ -38,7 +38,7 @@ Connect to your **s2-24-intro-app-dev-repo-GitHub username** repository. When yo
 
 Name your **web service**. For example, **s2-24-intro-app-dev-repo-GitHub username**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
 
-**Note:** As you progress through this course, you will change the **Branch**.
+> **Note:** As you progress through this course, you will change the **Branch**.
 
 ![](<../resources (ignore)/img/03/render-5.PNG>)
 
