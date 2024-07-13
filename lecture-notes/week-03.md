@@ -26,23 +26,22 @@ Click the **New +** button, then click the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
-Connect to your **s2-24-intro-app-dev-repo-<GitHub username>** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+Connect to your **s2-24-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 
-Name your **web service**. For example, **s2-24-intro-app-dev-repo-<GitHub username>**.
+Name your **web service**. For example, **s2-24-intro-app-dev-repo-GitHub username**. Change the **Language** to **Node**.
 
 ![](<../resources (ignore)/img/03/render-5.PNG>)
 
-Change the **Runtime** to **Node**, **Build Command** to `npm install`, and **Start Command** to `node app.js`.
+Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
 
 ![](<../resources (ignore)/img/03/render-6.PNG>)
 
-Leave the **Instance Type** as **Free**.
+Click on the **Deploy Web Service** button.
 
 ![](<../resources (ignore)/img/03/render-7.PNG>)
 
-Click on the **Create Web Service** button.
 
 
 ![](<../resources (ignore)/img/03/render-8.PNG>)
