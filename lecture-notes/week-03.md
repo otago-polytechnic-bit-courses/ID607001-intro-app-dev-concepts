@@ -22,25 +22,30 @@ Click the **New +** button, then click the **Web Service** link.
 
 ![](<../resources (ignore)/img/03/render-2.PNG>)
 
-Connect to your **s2-24-intro-app-dev-repo-<GitHub username>** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
-Name your **web service**. For example, **s2-24-intro-app-dev-repo-<GitHub username>**.
+Connect to your **s2-24-intro-app-dev-repo-<GitHub username>** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 
-Change the **Runtime** to **Node**, **Build Command** to `npm install`, and **Start Command** to `node app.js`.
+Name your **web service**. For example, **s2-24-intro-app-dev-repo-<GitHub username>**.
 
 ![](<../resources (ignore)/img/03/render-5.PNG>)
 
-Leave the **Instance Type** as **Free**.
+Change the **Runtime** to **Node**, **Build Command** to `npm install`, and **Start Command** to `node app.js`.
 
 ![](<../resources (ignore)/img/03/render-6.PNG>)
 
-Click on the **Create Web Service** button.
+Leave the **Instance Type** as **Free**.
 
 ![](<../resources (ignore)/img/03/render-7.PNG>)
+
+Click on the **Create Web Service** button.
+
+
+![](<../resources (ignore)/img/03/render-8.PNG>)
 
 Keep an eye on the logs. Your **web service** is ready when you see the following message.
 
@@ -49,11 +54,10 @@ Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
-![](<../resources (ignore)/img/03/render-8.PNG>)
-
-Scroll to the top of the page and click on your **web service's** URL.
 
 ![](<../resources (ignore)/img/03/render-9.PNG>)
+
+Scroll to the top of the page and click on your **web service's** URL.
 
 You should see the following page. **Note:** Your **web service's** URL will be different.
 
