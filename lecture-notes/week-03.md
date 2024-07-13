@@ -85,23 +85,23 @@ You should see the following page.
 
 Click the **New +** button, then click the **PostgreSQL** link.
 
-![](<../resources (ignore)/img/03/render-11.PNG>)
+![](<../resources (ignore)/img/03/render-11.png>)
 
 Name your **New PostgreSQL**. For example, **s2-24-intro-app-dev-repo-GitHub username**.
 
-![](<../resources (ignore)/img/03/render-12.PNG>)
+![](<../resources (ignore)/img/03/render-12.png>)
 
 Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
 
-![](<../resources (ignore)/img/03/render-13.PNG>)
+![](<../resources (ignore)/img/03/render-13.png>)
 
 Click on the **Connect** button and the **External Connection** tab. Copy the **External Database URL**.
 
-![](<../resources (ignore)/img/03/render-14.PNG>)
+![](<../resources (ignore)/img/03/render-14.png>)
 
 Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
 
-![](<../resources (ignore)/img/03/render-15.PNG>)
+![](<../resources (ignore)/img/03/render-15.png>)
 
 ---
 
