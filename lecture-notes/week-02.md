@@ -372,11 +372,11 @@ Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), pa
 
 In the `.prettierrc.json` file, implement the following rules:
 
-- `printWidth`: 80
-- `tabWidth`: 2
-- `semi`: true
-- `singleQuote`: false
-- `trailingComma`: "all"
+- Print width is 80
+- Tab width is 2
+- Semi-colons are required
+- Single quotes are required
+- Trailing commas wherever possible
 
 In the `package.json` file, add the following lines to the `scripts` block.
 
