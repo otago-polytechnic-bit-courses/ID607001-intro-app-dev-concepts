@@ -6,6 +6,12 @@ Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Before We Start
+
+Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-formative-assessment**.
+
+---
+
 ## Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
@@ -90,7 +96,7 @@ There are four different **header** groups:
 
 ### Setup
 
-Open your **s2-24-intro-app-dev-repo** repository in **Visual Studio Code**. Open a terminal and run the following.
+Open a terminal and run the following.
 
 ```bash
 npm init -y
@@ -336,8 +342,6 @@ Your file structure should look something like this.
 When setting up a project, it is important to have a clear file structure. This makes it easier to find files and maintain the project.
 
 ## Formative Assessment
-
-Before you start, create a new branch called **week-02-formative-assessment**.
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
 

@@ -6,6 +6,12 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Before We Start
+
+Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment**.
+
+---
+
 ## Render
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
@@ -47,7 +53,7 @@ Click on the **Deploy Web Service** button.
 Keep an eye on the logs. Your **web service** is ready when you see the following message.
 
 ```bash
-Server is listening on port 10000. Visit http://localhost:10000 
+Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
@@ -64,6 +70,424 @@ You should see the following page. **Note:** Your **web service's** URL will be 
 > **Resource:** <https://render.com/docs>
 
 ---
+
+## PostgreSQL
+
+**PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
+
+> **Note:** There are different types of databases. For example, **relational databases**, **NoSQL databases**, **graph databases**, etc. **PostgreSQL** is a **relational database**. **Relational databases** store data in tables. Each table has rows and columns. **SQL** (Structured Query Language) is used to interact with **relational databases**.
+
+---
+
+### Setup
+
+Click the **New +** button, then click the **PostgreSQL** link.
+
+![](<../resources (ignore)/img/03/render-11.PNG>)
+
+Name your **New PostgreSQL**. For example, **id607001-your learner username**.
+
+![](<../resources (ignore)/img/03/render-12.PNG>)
+
+Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+
+![](<../resources (ignore)/img/03/render-13.PNG>)
+
+Click on the **Connect** button and the **External Connection** tab. Copy the **External Database URL**.
+
+![](<../resources (ignore)/img/03/render-14.PNG>)
+
+Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
+
+![](<../resources (ignore)/img/04/render-15.PNG>)
+
+---
+
+## Object-Relational Mapper (ORM)
+
+An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
+
+---
+
+### Setup
+
+The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
+
+To get started, open a terminal and run the following.
+
+```bash
+npm install @prisma/client@4.16.2
+npm install prisma@4.16.2 --save-dev
+npx prisma init
+```
+
+> **Note:** You only need to run these once.
+
+What does each do?
+
+- `npm install @prisma/client@4.16.2`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
+- `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
+- `npx prisma init`: Initialises **Prisma** in your project. It creates the `.env` file and the `prisma` directory.
+
+The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
+
+---
+
+### Environment Variables File
+
+In the `.env` file, you will see the following code.
+
+```bash
+DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
+```
+
+Update the `DATABASE_URL` environment variable's value with the following code.
+
+```bash
+DATABASE_URL="<Render PostgreSQL external database URL>"
+```
+
+> **Note:** The `.env` file is used to store sensitive information. It is not committed to **Git**. It is added to the `.gitignore` file.
+
+---
+
+### Schema Prisma File
+
+You will see the following code in the `schema.prisma` file.
+
+```javascript
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+The `generator` block is used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
+
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/generators>
+
+The `datasource` block is used to specify the database provider and URL. The `url` value is retrieved from the `DATABASE_URL` environment variable.
+
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
+
+---
+
+### Model
+
+Under `datasource db` block, add the following code.
+
+```javascript
+model Institution {
+  id         Int          @id @default(autoincrement())
+  name       String       @unique
+  region     String
+  country    String
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+}
+```
+
+A `model` is used to define a database table. In this case, we are defining an `Institution` table. The `@id` directive is used to specify the primary key. The `@default` directive is used to specify the default value. The `@autoincrement` directive is used to specify that the value should be automatically incremented. The `@unique` directive is used to specify that the value should be unique. The `@default(now())` directive is used to specify that the value should be the current date and time. The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
+
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
+
+---
+
+### Create and Apply a Migration
+
+A **migration** is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
+
+To create and apply a migration, run the following command.
+
+```bash
+npx prisma migrate dev
+```
+
+You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
+
+> **Note:** When you make a change to the `schema.prisma` file, you need to create a new migration and apply it.
+
+---
+
+### Reset the Database
+
+To reset the database, run the following command.
+
+```bash
+npx prisma migrate reset --force
+```
+
+> **Note:** This command will delete all the data in the database. Use it with caution.
+
+---
+
+### Package JSON File
+
+You will often run the `npx prisma migrate dev` and `npx prisma migrate reset --force` commands. To make it easier, add the following scripts to the `package.json` file.
+
+```json
+"prisma:migrate": "npx prisma migrate dev",
+"prisma:reset": "npx prisma migrate reset --force",
+```
+
+---
+
+### Institution Controller
+
+In the `controllers` directory, create a new file called `institution.js`. Add the following code.
+
+```javascript
+import { PrismaClient, Prisma } from "@prisma/client";
+
+// Create a new instance of the PrismaClient
+const prisma = new PrismaClient();
+```
+
+To create an institution, use the `prisma.institution.create` function.
+
+```js
+const createInstitution = async (req, res) => {
+  // Try/catch blocks are used to handle exceptions
+  try {
+    // Validate the content-type request header. It ensures that the request body is in JSON format
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
+    // Create a new institution
+    await prisma.institution.create({
+      // Data to be inserted
+      data: {
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
+    });
+
+    // Get all institutions from the institution table
+    const newInstitutions = await prisma.institution.findMany();
+
+    // Send a JSON response
+    return res.status(201).json({
+      msg: "Institution successfully created",
+      data: newInstitutions,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            msg: "Institution with the same name already exists",
+          });
+        }
+      }
+    }
+  }
+};
+```
+
+To get all institutions, use the `prisma.institution.findMany` function.
+
+```js
+const getInstitutions = async (req, res) => {
+  try {
+    const institutions = await prisma.institution.findMany();
+
+    // Check if there are no institutions
+    if (!institutions) {
+      return res.status(404).json({ msg: "No institutions found" });
+    }
+
+    return res.status(200).json({
+      data: institutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
+```
+
+To get an institution, use the `prisma.institution.findUnique` function.
+
+```js
+const getInstitution = async (req, res) => {
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: { id: Number(req.params.id) },
+    });
+
+    // Check if there is no institution
+    if (!institution) {
+      return res
+        .status(404)
+        .json({ msg: `No institution with the id: ${req.params.id} found` });
+    }
+
+    return res.status(200).json({
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
+```
+
+To update an institution, use the `prisma.institution.update` function.
+
+```js
+const updateInstitution = async (req, res) => {
+  try {
+    // Validate the content-type request header. It ensures that the request body is in JSON format
+    const contentType = req.headers["content-type"];
+    if (!contentType || contentType !== "application/json") {
+      return res.status(400).json({
+        msg: "Invalid Content-Type. Expected application/json.",
+      });
+    }
+
+    // Find the institution by id
+    let institution = await prisma.institution.findUnique({
+      where: { id: Number(req.params.id) },
+    });
+
+    // Check if there is no institution
+    if (!institution) {
+      return res
+        .status(404)
+        .json({ msg: `No institution with the id: ${req.params.id} found` });
+    }
+
+    // Update the institution
+    institution = await prisma.institution.update({
+      where: { id: Number(req.params.id) },
+      data: { // Data to be updated
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
+    });
+
+    return res.status(200).json({
+      msg: `Institution with the id: ${req.params.id} successfully updated`,
+      data: institution,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      {
+        if (err.code === "P2002") {
+          return res.status(400).json({
+            msg: "Institution with the same name already exists",
+          });
+        }
+      }
+  }
+};
+```
+
+To delete an institution, use the `prisma.institution.delete` function.
+
+```js
+const deleteInstitution = async (req, res) => {
+  try {
+    const institution = await prisma.institution.findUnique({
+      where: { id: Number(req.params.id) },
+    });
+
+    if (!institution) {
+      return res
+        .status(404)
+        .json({ msg: `No institution with the id: ${req.params.id} found` });
+    }
+
+    await prisma.institution.delete({
+      where: { id: Number(req.params.id) },
+    });
+
+    return res.json({
+      msg: `Institution with the id: ${req.params.id} successfully deleted`,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      msg: err.message,
+    });
+  }
+};
+```
+
+To use the functions in the `institution.js` file, export them.
+
+```js
+export {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
+```
+
+---
+
+### Institution Router
+
+In the `routes` directory, create a new file called `institution.js`. Add the following code.
+
+```javascript
+import express from "express";
+
+import {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../controllers/institution.js";
+
+const router = express.Router();
+
+router.post("/", createInstitution);
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
+router.put("/:id", updateInstitution);
+router.delete("/:id", deleteInstitution);
+
+export default router;
+```
+
+`:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/1>, the `:id` value will be `1`.
+
+---
+
+### Main File
+
+In the `app.js` file, add the following code.
+
+```javascript
+// This should be declared under import indexRoutes from "./routes/app.js";
+import institutionRoutes from "./routes/institution.js";
+
+// This should be declared under app.use(cors());
+app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
+
+// This should be declared under app.use(urlencoded({ extended: false }));
+app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
+
+// This should be declared under app.use("/", indexRoutes);
+app.use("/api/institutions", institutionRoutes);
+```
+
+> **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/1`, `/api/institutions/2`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
 
 ## Next Class
 
