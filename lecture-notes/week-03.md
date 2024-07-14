@@ -959,7 +959,7 @@ Click on the **Try it out** button.
 
 ![](<../resources (ignore)/img/03/swagger-2.png>)
 
-Enter the following data.
+Add the following code in the **Request body**.
 
 ```json
 {
@@ -1019,7 +1019,7 @@ Click on the **Try it out** button.
 
 ![](<../resources (ignore)/img/03/swagger-11.png>)
 
-In the **id** field, enter the **id** of the institution you want to update. Enter the following data.
+In the **id** field, enter the **id** of the institution you want to update. Add the following code in the **Request body**.
 
 ```json
 {
