@@ -162,7 +162,7 @@ Run the application and go to <http://localhost:3000/api-docs>. Click on the **P
 }
 ```
 
-Click on the **Execute** button. 
+Click on the **Execute** button.
 
 ![](<../resources (ignore)/img/04/swagger-2.png>)
 
@@ -174,10 +174,97 @@ In the **Responses** section, you should see the following.
 
 ## Relationships
 
+In **Prisma**, we can define different types of relationships between models. Here are three types you will encounter most often.
+
+- **One-to-one:** A single model instance is associated with a single instance of another model.
+- **One-to-many:** A single model instance is associated with multiple instances of another model.
+- **Many-to-many:** Multiple instances of a model are associated with multiple instances of another model.
+
+### Prisma Schema File
+
+In the `schema.prisma` file, add the following code under the `model Institution` block.
+
+```prisma
+model Department {
+  id            String      @id @default(uuid())
+  name          String
+  institutionId String
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+}
+```
+
+Also, update the `model Institution` block.
+
+```prisma
+model Institution {
+  id          String       @id @default(uuid())
+  name        String
+  region      String
+  country     String
+  departments Department[]
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+}
+```
+
+> What type of relationship is this? This is a **one-to-many** relationship. A single institution can have multiple departments.
+
+---
+
+### Department Controller and Router
+
+Much like the `institution.js` files, create a new `department.js` file in the `controllers/v1` and `routes/v1` directories. The code in these files should be similar to the `institution.js` files.
+
+---
+
+### Main File
+
+In the `app.js` file, add the following code.
+
+```javascript
+// This should be declared under import institutionRoutes from "./routes/v1/institution.js";
+import departmentRoutes from "./routes/v1/department.js";
+
+// This should be declared under app.use(`/api/v1/institutions`, institutionRoutes);
+app.use(`/api/v1/departments`, departmentRoutes);
+```
+
+---
+
+### Swagger Documentation
+
+Run the application and go to <http://localhost:3000/api-docs>. You should see the following.
+
+![](<../resources (ignore)/img/04/swagger-4.png>)
+
+### POST Request Example
+
+Click on the **Try it out** button.
+
+![](<../resources (ignore)/img/04/swagger-5.png>)
+
+Add the following code in the **Request body**.
+
+```json
+{
+  "name": "Information Technology",
+  "institutionId": "<uuid of an existing institution>"
+}
+```
+
+Then click on the **Execute** button.
+
+![](<../resources (ignore)/img/04/swagger-6.png>)
+
+In the **Responses** section, you should see the following.
+
+![](<../resources (ignore)/img/04/swagger-7.png>)
+
 ---
 
 ## Repository Pattern
-
 
 ---
 
