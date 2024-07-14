@@ -947,7 +947,7 @@ There can be quite a lot of properties in a **Swagger** comment. Here are some o
 
 ### Swagger Documentation
 
-To test the **Swagger** documentation, run the application and go to <http://localhost:3000/api-docs>. You should see the **Swagger** documentation.
+To test the **Swagger** documentation, run the application and go to <http://localhost:3000/api-docs>. You should see the following.
 
 ![](<../resources (ignore)/img/03/swagger-1.png>)
 
@@ -956,10 +956,25 @@ To test the **Swagger** documentation, run the application and go to <http://loc
 
 ### POST Request Example
 
+Click on the **Try it out** button.
 
 ![](<../resources (ignore)/img/03/swagger-2.png>)
 
+Enter the following data.
+
+```json
+{
+  "name": "Otago Polytechnic",
+  "region": "Otago",
+  "country": "New Zealand"
+}
+```
+
+Then click on the **Execute** button.
+
 ![](<../resources (ignore)/img/03/swagger-3.png>)
+
+In the **Responses** section, you should see the following.
 
 ![](<../resources (ignore)/img/03/swagger-4.png>)
 
@@ -967,12 +982,17 @@ To test the **Swagger** documentation, run the application and go to <http://loc
 
 ### GET All Request Example
 
+Click on the **Try it out** button.
+
 ![](<../resources (ignore)/img/03/swagger-5.png>)
+
+Then click on the **Execute** button.
 
 ![](<../resources (ignore)/img/03/swagger-6.png>)
 
-![](<../resources (ignore)/img/03/swagger-7.png>)
+In the **Responses** section, you should see the following.
 
+![](<../resources (ignore)/img/03/swagger-7.png>)
 
 ---
 
