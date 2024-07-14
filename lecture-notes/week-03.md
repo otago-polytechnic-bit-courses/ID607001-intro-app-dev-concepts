@@ -1071,13 +1071,15 @@ Implement the above.
 
 ---
 
-### Task Two (Research)
-
-
+### Task Two - Optional Fields (Research)
 
 ---
 
-### Task Three (Research)
+### Task Three - Prisma Studio (Research)
+
+---
+
+### Task Four - Logging (Research)
 
 ---
 

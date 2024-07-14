@@ -355,7 +355,7 @@ You should have new `controller` and `route` files for about and courses.
 
 ---
 
-### Task Three (Research)
+### Task Three - Prettier (Research)
 
 **Prettier** is a popular code formatting tool.
 
