@@ -326,6 +326,8 @@ Your file structure should look something like this.
 
 When setting up a project, it is important to have a clear file structure. This makes it easier to find files and maintain the project.
 
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
@@ -349,13 +351,13 @@ To get use to creating `controllers` and `routes`, create two `GET` routes for t
 - <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
 
-You should have new **controller** and **route** files for about and courses.
+You should have new `controller` and `route` files for about and courses.
 
 ---
 
 ### Task Three (Research)
 
-**Prettier** is an opinionated code formatter.
+**Prettier** is a popular code formatting tool.
 
 Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
 
