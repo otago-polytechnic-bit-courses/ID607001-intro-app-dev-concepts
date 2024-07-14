@@ -8,7 +8,9 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment**.
+Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment** from **week-02-formative-assessment**.
+
+> **Note:** There are a lot of code examples. It is strongly recommended to type the code examples rather than copying and pasting. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
@@ -137,6 +139,8 @@ The `.env` file is used to store environment variables. For example, database co
 
 ### Environment Variables File
 
+A **.env** file is used to store environment variables. It is used to store sensitive information. For example, database connection string.
+
 In the `.env` file, you will see the following code.
 
 ```bash
@@ -149,7 +153,7 @@ Update the `DATABASE_URL` environment variable's value with the following code.
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
-> **Note:** The `.env` file is used to store sensitive information. It is not committed to **Git**. It is added to the `.gitignore` file.
+> **Note:** The `.env` file is not committed to **Git**. The **Node** `.gitignore` file ignores the `.env` file.
 
 ---
 
@@ -289,6 +293,10 @@ const createInstitution = async (req, res) => {
           });
         }
       }
+    } else {
+      return res.status(500).json({
+        message: err.message,
+      });
     }
   }
 };
@@ -332,7 +340,9 @@ const getInstitution = async (req, res) => {
     if (!institution) {
       return res
         .status(404)
-        .json({ message: `No institution with the id: ${req.params.id} found` });
+        .json({
+          message: `No institution with the id: ${req.params.id} found`,
+        });
     }
 
     return res.status(200).json({
@@ -361,7 +371,9 @@ const updateInstitution = async (req, res) => {
     if (!institution) {
       return res
         .status(404)
-        .json({ message: `No institution with the id: ${req.params.id} found` });
+        .json({
+          message: `No institution with the id: ${req.params.id} found`,
+        });
     }
 
     // Update the institution
@@ -386,6 +398,10 @@ const updateInstitution = async (req, res) => {
           message: "Institution with the same name already exists",
         });
       }
+    } else {
+      return res.status(500).json({
+        message: err.message,
+      });
     }
   }
 };
@@ -404,7 +420,9 @@ const deleteInstitution = async (req, res) => {
     if (!institution) {
       return res
         .status(404)
-        .json({ message: `No institution with the id: ${req.params.id} found` });
+        .json({
+          message: `No institution with the id: ${req.params.id} found`,
+        });
     }
 
     await prisma.institution.delete({
@@ -513,7 +531,7 @@ For example, in the `controllers/institution.js` file.
  */
 ```
 
-**Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
+> **Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
 
 How do you comment a **function**?
 
@@ -549,6 +567,10 @@ const createInstitution = async (req, res) => {
           });
         }
       }
+    } else {
+      return res.status(500).json({
+        message: err.message,
+      });
     }
   }
 };
@@ -570,6 +592,44 @@ To get started, open a terminal and run the following.
 npm install swagger-ui-express swagger-jsdoc --save-dev
 ```
 
+### Main File
+
+In the `app.js` file, add the following code.
+
+```javascript
+// This should be declared under import express from "express";
+import swaggerjsdoc from "swagger-jsdoc";
+
+// This should be declared under import swaggerjsdoc from "swagger-jsdoc";
+import swaggerUi from "swagger-ui-express";
+
+// This should be declared under app.use(express.json());
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "Institution API",
+      version: "1.0.0",
+      description: "An API to manage institutions",
+      contact: {
+        name: "Grayson Orr",
+      },
+    },
+    servers: [
+      {
+        url: "http://localhost:3000",
+      },
+    ],
+  },
+  apis: ["./routes/*.js"],
+};
+
+// This should be declared under const swaggerOptions = { ... };
+const swaggerDocs = swaggerjsdoc(swaggerOptions);
+
+// This should be declared under app.use("/api/institutions", institutionRoutes);
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+```
 
 ---
 
