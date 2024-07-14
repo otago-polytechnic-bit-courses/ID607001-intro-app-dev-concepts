@@ -146,7 +146,7 @@ In the `routes/v1/institution.js` file, update the following code.
  *             $ref: '#/components/schemas/Institution'
 ```
 
-> **Note:** The `content` property has been updated to `text/plain`. The update is for testing purposes.Ensure that you update it to `application/json` after testing.
+> **Note:** The `content` property has been updated to `text/plain`. It is for testing purposes only. Ensure that you update it to `application/json` after testing.
 
 ---
 
