@@ -986,7 +986,7 @@ Click on the **Try it out** button.
 
 ![](<../resources (ignore)/img/03/swagger-5.png>)
 
-Then click on the **Execute** button.
+Click on the **Execute** button.
 
 ![](<../resources (ignore)/img/03/swagger-6.png>)
 
@@ -996,7 +996,65 @@ In the **Responses** section, you should see the following.
 
 ---
 
+### GET One Request Example
 
+Click on the **Try it out** button.
+
+![](<../resources (ignore)/img/03/swagger-8.png>)
+
+In the **id** field, enter the **id** of the institution you want to retrieve. Click on the **Execute** button.
+
+![](<../resources (ignore)/img/03/swagger-9.png>)
+
+In the **Responses** section, you should see the following.
+
+![](<../resources (ignore)/img/03/swagger-10.png>)
+
+What happens if you enter an **id** that does not exist?
+
+---
+
+### PUT Request Example
+
+Click on the **Try it out** button.
+
+![](<../resources (ignore)/img/03/swagger-11.png>)
+
+In the **id** field, enter the **id** of the institution you want to update. Enter the following data.
+
+```json
+{
+  "name": "Otago University"
+}
+```
+
+> **Note:** You only need to enter the fields you want to update.
+
+Click on the **Execute** button.
+
+![](<../resources (ignore)/img/03/swagger-12.png>)
+
+In the **Responses** section, you should see the following.
+
+![](<../resources (ignore)/img/03/swagger-13.png>)
+
+---
+
+### DELETE Request Example
+
+Click on the **Try it out** button.
+
+![](<../resources (ignore)/img/03/swagger-14.png>)
+
+In the **id** field, enter the **id** of the institution you want to delete. Click on the **Execute** button.
+
+![](<../resources (ignore)/img/03/swagger-15.png>)
+
+In the **Responses** section, you should see the following.
+
+![](<../resources (ignore)/img/03/swagger-16.png>)
+
+---
 
 ## Next Class
 
