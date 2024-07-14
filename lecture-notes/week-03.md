@@ -949,11 +949,13 @@ There can be quite a lot of properties in a **Swagger** comment. Here are some o
 
 To test the **Swagger** documentation, run the application and go to <http://localhost:3000/api-docs>. You should see the **Swagger** documentation.
 
+![](<../resources (ignore)/img/03/swagger-1.png>)
+
+
 ---
 
 ### POST Request Example
 
-![](<../resources (ignore)/img/03/swagger-1.png>)
 
 ![](<../resources (ignore)/img/03/swagger-2.png>)
 
@@ -962,6 +964,19 @@ To test the **Swagger** documentation, run the application and go to <http://loc
 ![](<../resources (ignore)/img/03/swagger-4.png>)
 
 ---
+
+### GET All Request Example
+
+![](<../resources (ignore)/img/03/swagger-5.png>)
+
+![](<../resources (ignore)/img/03/swagger-6.png>)
+
+![](<../resources (ignore)/img/03/swagger-7.png>)
+
+
+---
+
+
 
 ## Next Class
 
