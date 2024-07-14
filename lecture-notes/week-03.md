@@ -614,9 +614,9 @@ const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
     info: {
-      title: "Institution API",
+      title: "Student Management System API",
       version: "1.0.0",
-      description: "An API to manage institutions",
+      description: "A student management system API",
       contact: {
         name: "Grayson Orr",
       },
@@ -950,7 +950,6 @@ There can be quite a lot of properties in a **Swagger** comment. Here are some o
 To test the **Swagger** documentation, run the application and go to <http://localhost:3000/api-docs>. You should see the following.
 
 ![](<../resources (ignore)/img/03/swagger-1.png>)
-
 
 ---
 
