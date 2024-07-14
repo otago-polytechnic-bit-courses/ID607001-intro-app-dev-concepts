@@ -511,6 +511,8 @@ app.use("/api/institutions", institutionRoutes);
 
 **JSDoc** is an API documentation generator for **JavaScript**. **JSDoc** comments are written in a specific syntax to document the code. The **JSDoc** comments are then parsed and converted into HTML documentation. We will not convert the **JSDoc** comments into HTML documentation. However, it is good information to know.
 
+---
+
 ### Getting Started
 
 At the top of each file, add the following code.
@@ -584,6 +586,8 @@ const createInstitution = async (req, res) => {
 
 **Swagger** is a set of open-source tools built around the **OpenAPI Specification** that can help you design, build, document, and consume REST APIs.
 
+---
+
 ### Setup
 
 To get started, open a terminal and run the following.
@@ -592,15 +596,17 @@ To get started, open a terminal and run the following.
 npm install swagger-ui-express swagger-jsdoc --save-dev
 ```
 
+---
+
 ### Main File
 
 In the `app.js` file, add the following code.
 
 ```javascript
 // This should be declared under import express from "express";
-import swaggerjsdoc from "swagger-jsdoc";
+import swaggerJSDoc from "swagger-jsdoc";
 
-// This should be declared under import swaggerjsdoc from "swagger-jsdoc";
+// This should be declared under import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
 // This should be declared under app.use(express.json());
@@ -625,11 +631,317 @@ const swaggerOptions = {
 };
 
 // This should be declared under const swaggerOptions = { ... };
-const swaggerDocs = swaggerjsdoc(swaggerOptions);
+const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
 // This should be declared under app.use("/api/institutions", institutionRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 ```
+
+---
+
+### Institution Router
+
+In the `routes/institution.js` file, update the code as follows.
+
+```javascript
+import express from "express";
+
+import {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../controllers/institution.js";
+
+const router = express.Router();
+
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Institution:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *           example: "123e4567-e89b-12d3-a456-426614174000"
+ *         name:
+ *           type: string
+ *           example: "Institution Name"
+ *         region:
+ *           type: string
+ *           example: "Region Name"
+ *         country:
+ *           type: string
+ *           example: "Country Name"
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ */
+
+/**
+ * @swagger
+ * /api/institutions:
+ *   post:
+ *     summary: Create a new institution
+ *     tags:
+ *       - Institution
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Institution'
+ *     responses:
+ *       '201':
+ *         description: Institution successfully created
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Institution successfully created"
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Institution'
+ *       '400':
+ *         description: Institution with the same name already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Institution with the same name already exists"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
+router.post("/", createInstitution);
+
+/**
+ * @swagger
+ * /api/institutions:
+ *   get:
+ *     summary: Get all institutions
+ *     tags:
+ *       - Institution
+ *     responses:
+ *       '200':
+ *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 data:
+ *                   type: array
+ *                   items:
+ *                     $ref: '#/components/schemas/Institution'
+ *       '404':
+ *         description: No institutions found
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No institutions found"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
+router.get("/", getInstitutions);
+
+/**
+ * @swagger
+ * /api/institutions/{id}:
+ *   get:
+ *     summary: Get an institution by id
+ *     tags:
+ *       - Institution
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The institution id
+ *     responses:
+ *       '200':
+ *         description: Success
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/Institution'
+ *       '404':
+ *         description: No institution found with the provided id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No institution with the id: {id} found"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
+router.get("/:id", getInstitution);
+
+/**
+ * @swagger
+ * /api/institutions/{id}:
+ *   put:
+ *     summary: Update an institution by id
+ *     tags:
+ *       - Institution
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The institution id
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/Institution'
+ *     responses:
+ *       '200':
+ *         description: Institution successfully updated
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Institution with the id: {id} successfully updated"
+ *                 data:
+ *                   $ref: '#/components/schemas/Institution'
+ *       '404':
+ *         description: No institution found with the provided id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No institution with the id: {id} found"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
+router.put("/:id", updateInstitution);
+
+/**
+ * @swagger
+ * /api/institutions/{id}:
+ *   delete:
+ *     summary: Delete an institution by id
+ *     tags:
+ *       - Institution
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: The institution id
+ *     responses:
+ *       '200':
+ *         description: Institution successfully deleted
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "Institution with the id: {id} successfully deleted"
+ *       '404':
+ *         description: No institution found with the provided id
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "No institution with the id: {id} found"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
+router.delete("/:id", deleteInstitution);
+
+export default router;
+```
+
+There can be quite a lot of properties in a **Swagger** comment. Here are some of the properties.
+
+- `@swagger`: This is used to specify the **OpenAPI Specification** version.
+- `components`: This is used to define reusable components.
+- `schemas`: This is used to define the data model. 
+- `summary`: This is a short summary of the operation.
+- `tags`: This is used to group operations together. 
+- `requestBody`: This is used to specify the request body.
+- `parameters`: This is used to specify the parameters.
+- `responses`: This is used to specify the responses. 
+
+> **Note:** It is tedious to write **Swagger** comments. However, it is good practice to write them. It will help you and other developers understand the API.
 
 ---
 
