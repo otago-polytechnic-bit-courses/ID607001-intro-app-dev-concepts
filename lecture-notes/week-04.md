@@ -1,4 +1,4 @@
-# Week 03
+# Week 04
 
 ## Previous Class
 
@@ -25,8 +25,6 @@ API versioning is the process of versioning your API. It is important to version
 3. **Header Versioning:** In header versioning, the version number is included in the header. For example, `Accept: application/vnd.example.v1+json`.
 
 4. **Media Type Versioning:** In media type versioning, the version number is included in the media type. For example, `Accept: application/vnd.example.v1+json`.
-
-In this class, we will use **URL Versioning** to version our API.
 
 ---
 
