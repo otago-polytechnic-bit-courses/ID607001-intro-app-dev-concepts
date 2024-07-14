@@ -490,7 +490,7 @@ export default router;
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import indexRoutes from "./routes/app.js";
+// This should be declared under import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
 // This should be declared above app.use("/", indexRoutes);

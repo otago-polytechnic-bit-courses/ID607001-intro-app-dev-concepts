@@ -201,23 +201,6 @@ app.get("/", (req, res) => {
 });
 
 // Start the server on port 3000
-// Import the Express module
-import express from "express";
-
-// Create an Express application
-const app = express();
-
-// Use the PORT environment variable or 3000
-const PORT = process.env.PORT || 3000;
-
-// Create a GET route
-app.get("/", (req, res) => {
-  return res.status(200).json({
-    message: "Hello, World!",
-  });
-});
-
-// Start the server on port 3000
 app.listen(PORT, () => {
   console.log(
     `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
@@ -361,7 +344,7 @@ Implement the above.
 
 ### Task Two
 
-To get use to creating **controllers** and **routes**, create two `GET` routes for the following.
+To get use to creating `controllers` and `routes`, create two `GET` routes for the following.
 
 - <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
