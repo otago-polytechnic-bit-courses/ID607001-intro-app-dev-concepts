@@ -250,7 +250,7 @@ Add the following code in the **Request body**.
 ```json
 {
   "name": "Information Technology",
-  "institutionId": "<uuid of an existing institution>"
+  "institutionId": "<UUID of an existing institution>"
 }
 ```
 
