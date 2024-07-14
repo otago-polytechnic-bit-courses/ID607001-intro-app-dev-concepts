@@ -945,6 +945,24 @@ There can be quite a lot of properties in a **Swagger** comment. Here are some o
 
 ---
 
+### Swagger Documentation
+
+To test the **Swagger** documentation, run the application and go to <http://localhost:3000/api-docs>. You should see the **Swagger** documentation.
+
+---
+
+### POST Request Example
+
+![](<../resources (ignore)/img/03/swagger-1.png>)
+
+![](<../resources (ignore)/img/03/swagger-2.png>)
+
+![](<../resources (ignore)/img/03/swagger-3.png>)
+
+![](<../resources (ignore)/img/03/swagger-4.png>)
+
+---
+
 ## Next Class
 
 Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-04.md)
