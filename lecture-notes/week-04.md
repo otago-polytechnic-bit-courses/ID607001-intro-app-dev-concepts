@@ -239,6 +239,8 @@ Run the application and go to <http://localhost:3000/api-docs>. You should see t
 
 ![](<../resources (ignore)/img/04/swagger-4.png>)
 
+---
+
 ### POST Request Example
 
 Click on the **Try it out** button.
