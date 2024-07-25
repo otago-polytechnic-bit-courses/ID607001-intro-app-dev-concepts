@@ -734,7 +734,7 @@ console.log(max);
 
 ### Task Eighteen
 
-Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i` and `j`.
+Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i + 1` and `j + 1`.
 
 ```javascript
 const multiplicationTable = generateMultiplicationTable(5);
