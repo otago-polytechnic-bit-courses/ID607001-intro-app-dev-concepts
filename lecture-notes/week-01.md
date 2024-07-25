@@ -688,7 +688,7 @@ Given an **array** of **numbers**, use the `reduce` function to calculate the av
 const grades = [85, 90, 78, 92, 88];
 
 // Expected output
-// 30
+// 86.6
 ```
 
 ---
