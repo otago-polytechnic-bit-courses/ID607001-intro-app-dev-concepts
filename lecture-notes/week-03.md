@@ -1073,13 +1073,15 @@ Implement the above.
 
 ### Task Two - Optional Fields (Research)
 
+In the `schema.prisma` file, update the `Institution` model to include optional fields for `phoneNumber` and `website`.
+
 ---
 
 ### Task Three - Prisma Studio (Research)
 
----
+**Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 
-### Task Four - Logging (Research)
+> **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
 
 ---
 
