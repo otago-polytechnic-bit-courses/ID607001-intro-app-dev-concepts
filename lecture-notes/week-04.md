@@ -474,7 +474,7 @@ Create a `User` model with the following fields:
    - `createdAt`
    - `updatedAt`
 
-Create the necessary controller and router files for the `User` model.
+Create the necessary controller, router and repository files for the `User` model.
 
 In the router file, create Swagger documentation for the following routes:
 
@@ -498,7 +498,7 @@ Create a `Course` model with the following fields:
    - `createdAt`
    - `updatedAt`
 
-Create the necessary controller and router files for the `Course` model.
+Create the necessary controller, router and repository files for the `Course` model.
 
 In the router file, create **Swagger** documentation for the following routes:
 
