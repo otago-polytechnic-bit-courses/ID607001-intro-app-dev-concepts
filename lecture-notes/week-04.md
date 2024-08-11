@@ -266,6 +266,180 @@ In the **Responses** section, you should see the following.
 
 ---
 
+## Repository Pattern
+
+The repository pattern is a design pattern that separates the data access logic from the business logic. It is a common pattern used in modern web applications. The repository pattern has the following benefits:
+
+- **Separation of Concerns:** The repository pattern separates the data access logic from the business logic. This makes the code easier to maintain and test.
+- **Testability:** The repository pattern makes it easier to test the data access logic and the business logic separately. For example, you can write unit tests for the data access logic without having to set up a database.
+- **Flexibility:** The repository pattern makes it easier to switch between different data access technologies. For example, you can switch from a SQL database to a NoSQL database without changing the business logic.
+
+--- 
+
+### Institution Repository Class
+
+In the root directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institutionRepository.js`. Add the following code.
+
+```javascript
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
+class InstitutionRepository {
+  async create(data) {
+    return await prisma.institution.create({ data });
+  }
+
+  async findAll() {
+    return await prisma.institution.findMany();
+  }
+
+  async findById(id) {
+    return await prisma.institution.findUnique({
+      where: { id },
+    });
+  }
+
+  async update(id, data) {
+    return await prisma.institution.update({
+      where: { id },
+      data,
+    });
+  }
+
+  async delete(id) {
+    return await prisma.institution.delete({
+      where: { id },
+    });
+  }
+}
+
+export default new InstitutionRepository();
+```
+
+In the `controllers/v1/institution.js` file, update the following code.
+
+```javascript
+import { PrismaClient, Prisma } from "@prisma/client";
+const prisma = new PrismaClient();
+
+import institutionRepository from "../../repositories/institutionRepository.js";
+
+const createInstitution = async (req, res) => {
+  try {
+    await institutionRepository.create(req.body);
+    const newInstitutions = await institutionRepository.findAll();
+    return res.status(201).json({
+      message: "Institution successfully created",
+      data: newInstitutions,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2002") {
+        return res.status(400).json({
+          message: "Institution with the same name already exists",
+        });
+      }
+    } else {
+      return res.status(500).json({
+        message: err.message,
+      });
+    }
+  }
+};
+
+const getInstitutions = async (req, res) => {
+  try {
+    const institutions = await institutionRepository.findAll();
+    if (!institutions) {
+      return res.status(404).json({ message: "No institutions found" });
+    }
+    return res.status(200).json({
+      data: institutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const getInstitution = async (req, res) => {
+  try {
+    const institution = await institutionRepository.findById(req.params.id);
+    if (!institution) {
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
+    }
+    return res.status(200).json({
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const updateInstitution = async (req, res) => {
+  try {
+    let institution = await institutionRepository.findById(req.params.id);
+    if (!institution) {
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
+    }
+    institution = await institutionRepository.update(req.params.id, req.body);
+    return res.status(200).json({
+      message: `Institution with the id: ${req.params.id} successfully updated`,
+      data: institution,
+    });
+  } catch (err) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError) {
+      if (err.code === "P2002") {
+        return res.status(400).json({
+          message: "Institution with the same name already exists",
+        });
+      }
+    } else {
+      return res.status 500.json({
+        message: err.message,
+      });
+    }
+  }
+};
+
+const deleteInstitution = async (req, res) => {
+  try {
+    const institution = await institutionRepository.findById(req.params.id);
+    if (!institution) {
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
+    }
+    await institutionRepository.delete(req.params.id);
+    return res.json({
+      message: `Institution with the id: ${req.params.id} successfully deleted`,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+export {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
+```
+
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
