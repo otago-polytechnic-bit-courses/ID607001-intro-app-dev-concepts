@@ -343,6 +343,7 @@ In Prisma, you can use enums. An enum is a special type that defines a set of co
 > What happens when you try to create a user with a role that is not one of the constants defined in the enum?
 
 In the router file, update the **Swagger** documentation include the role field.
+
 ---
 
 ### Submission
