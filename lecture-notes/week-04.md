@@ -266,10 +266,6 @@ In the **Responses** section, you should see the following.
 
 ---
 
-## Repository Pattern
-
----
-
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
@@ -286,12 +282,65 @@ Implement the above.
 
 ---
 
-### Task Two - ESLint (Research)
+### Task Two
+
+In the `controllers` and `routes` directories, there is a lot of duplicate code. Refactor the code to reduce the duplication.
 
 ---
 
-### Task Three - Enums (Research)
+### Task Three
 
+Create a `User` model with the following fields:
+
+   - `id`
+   - `firstName`
+   - `lastName`
+   - `emailAddress` which should be unique
+   - `password` which does not need to be hashed
+   - `createdAt`
+   - `updatedAt`
+
+Create the necessary controller and router files for the `User` model.
+
+In the router file, create Swagger documentation for the following routes:
+
+   - GET `/api/v1/users`
+   - GET `/api/v1/users/{id}`
+   - POST `/api/v1/users`
+   - PUT `/api/v1/users/{id}`
+   - DELETE `/api/v1/users/{id}`
+---
+
+### Task Four
+
+Create a `Course` model with the following fields:
+
+   - `id`
+   - `code`
+   - `name`
+   - `description`
+   - `departmentId`
+   - `userId`
+   - `createdAt`
+   - `updatedAt`
+
+Create the necessary controller and router files for the `Course` model.
+
+In the router file, create **Swagger** documentation for the following routes:
+
+   - GET `/api/v1/courses`
+   - GET `/api/v1/courses/{id}`
+   - POST `/api/v1/courses`
+   - PUT `/api/v1/courses/{id}`
+   - DELETE `/api/v1/courses/{id}`
+
+### Task Five - Enums (Research)
+
+In Prisma, you can use enums. An enum is a special type that defines a set of constants. Create an enum called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a role field to the `User` model with the `@default(LEARNER)` directive. The role field should be of type `Role`. 
+
+> What happens when you try to create a user with a role that is not one of the constants defined in the enum?
+
+In the router file, update the **Swagger** documentation include the role field.
 ---
 
 ### Submission
