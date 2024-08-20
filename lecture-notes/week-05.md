@@ -16,7 +16,7 @@ Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Validation
 
-There are various validation packages available for **Express**. We will use the [joi](https://joi.dev/) package.
+Validation is the process of ensuring that data is correct and meets certain criteria before it is used or stored. In the context of web development, validation is often used to ensure that user input is correct and meets the requirements of the application.
 
 ---
 
@@ -150,15 +150,15 @@ export default router;
 
 Validating `string.empty`.
 
-![](<../resources (ignore)/img/05/swagger-1.png>)
+![](<../resources (ignore)/img/05/swagger-1.PNG>)
 
-![](<../resources (ignore)/img/05/swagger-2.png>)
+![](<../resources (ignore)/img/05/swagger-2.PNG>)
 
 Validating `any.required`.	
 
-![](<../resources (ignore)/img/05/swagger-3.png>)
+![](<../resources (ignore)/img/05/swagger-3.PNG>)
 
-![](<../resources (ignore)/img/05/swagger-4.png>)
+![](<../resources (ignore)/img/05/swagger-4.PNG>)
 
 ---
 
@@ -255,7 +255,7 @@ In the `routes/v1` directory, open the `institution.js` file. In the `/api/v1/in
 
 Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/v1/institutions?name=Otago Polytechnic`
 
-![](<../resources (ignore)/img/05/swagger-5.png>)
+![](<../resources (ignore)/img/05/swagger-5.PNG>)
 
 ## Sorting
 
