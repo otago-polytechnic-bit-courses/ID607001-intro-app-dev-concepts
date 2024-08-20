@@ -154,7 +154,7 @@ Validating `string.empty`.
 
 ![](<../resources (ignore)/img/05/swagger-2.PNG>)
 
-Validating `any.required`.	
+Validating `any.required`.
 
 ![](<../resources (ignore)/img/05/swagger-3.PNG>)
 
@@ -182,11 +182,12 @@ async findAll(filters) {
     // Check if any filters are provided
     if (filters.name || filters.region || filters.country) {
         query.where = {
-        name: filters.name ? { equals: filters.name } : undefined,
-        region: filters.region ? { equals: filters.region } : undefined,
-        country: filters.country ? { equals: filters.country } : undefined,
+        name: filters.name ? { contains: filters.name } : undefined,
+        region: filters.region ? { contains: filters.region } : undefined,
+        country: filters.country ? { contains: filters.country } : undefined,
         };
     }
+
     return await prisma.institution.findMany(query);
 }
 ```
@@ -200,12 +201,14 @@ In the `controllers/v1` directory, open the `institution.js` file. Update the `g
 ```javascript
 const getInstitutions = async (req, res) => {
   try {
+    // Extract filters from the query parameters
     const filters = {
       name: req.query.name || undefined,
       region: req.query.region || undefined,
       country: req.query.country || undefined,
     };
 
+    // Retrieve institutions based on the filters
     const institutions = await institutionRepository.findAll(filters);
 
     // Check if there are no institutions
@@ -257,59 +260,115 @@ Here is an example `GET` request that returns all institutions that have the `na
 
 ![](<../resources (ignore)/img/05/swagger-5.PNG>)
 
+> **Note:** The `%20` in the URL represents a space character. When specifying query parameters in a URL, spaces are often replaced with `%20` to ensure that the URL is properly encoded.
+
 ## Sorting
 
 Sorting enables end-users to quickly find the items they are looking for, especially in large collections of resources. End-users can see the most relevant or important items, rather than having to manually search through the entire collection.
 
 Sorting is often used in combination with filtering to further refine the results returned by an API. By combining both filtering and sorting.
 
-```js
+---
+
+## Institution Repository
+
+In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
+
+```javascript
+// Find all institutions based on the provided filters, sorted by the specified column and order
+async findAll(filters, sortBy = "id", sortOrder = "asc") {
+  const query = {
+    orderBy: {
+      [sortBy]: sortOrder, // Sort by the specified column and order
+    },
+  };
+
+  if (filters.name || filters.region || filters.country) {
+    query.where = {
+    name: filters.name ? { contains: filters.name } : undefined,
+    region: filters.region ? { contains: filters.region } : undefined,
+    country: filters.country ? { contains: filters.country } : undefined,
+    };
+  }
+
+  return await prisma.institution.findMany(query);
+}
+```
+
+---
+
+## Institution Controller
+
+In the `controllers/v1` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
+
+```javascript
 const getInstitutions = async (req, res) => {
   try {
+    const filters = {
+      name: req.query.name || undefined,
+      region: req.query.region || undefined,
+      country: req.query.country || undefined,
+    };
+
+    // Extract the sortBy and sortOrder parameters from the query
     const sortBy = req.query.sortBy || "id";
     const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
 
-    const query = {
-      orderBy: {
-        [sortBy]: sortOrder,
-      },
-      include: {
-        departments: true,
-      },
-    };
+    // Retrieve institutions based on the filters, sorted by the specified column and order
+    const institutions = await institutionRepository.findAll(
+      filters,
+      sortBy,
+      sortOrder
+    );
 
-    if (req.query.name || req.query.region || req.query.country) {
-      query.where = {
-        name: {
-          equals: req.query.name || undefined,
-        },
-        region: {
-          equals: req.query.region || undefined,
-        },
-        country: {
-          equals: req.query.country || undefined,
-        },
-      };
+    // Check if there are no institutions
+    if (!institutions) {
+      return res.status(404).json({ message: "No institutions found" });
     }
 
-    const institutions = await prisma.institution.findMany(query);
-
-    if (institutions.length === 0) {
-      return res.status(200).json({ msg: "No institutions found" });
-    }
-
-    return res.json({
+    return res.status(200).json({
       data: institutions,
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
 ```
 
-Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**, sorted by `name` in `asc` or ascending order: `http://localhost:3000/api/v1/institutions?name=Otago Polytechnic&sortBy=name&sortOrder=asc`
+---
+
+## Institution Router
+
+In the `routes/v1` directory, open the `institution.js` file. In the `/api/v1/institutions:` block under the `tags:` block, add the following code.
+
+```javascript
+ *       - in: query
+ *         name: sortBy
+ *         schema:
+ *           type: string
+ *           enum: [id, name, region, country]
+ *         description: Field to sort the institutions by (default is 'id')
+ *       - in: query
+ *         name: sortOrder
+ *         schema:
+ *           type: string
+ *           enum: [asc, desc]
+ *         description: Order to sort the institutions by (default is 'asc')
+```
+
+---
+
+## GET Request Example
+
+Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/v1/institutions?sortBy=name&sortOrder=asc`
+
+![](<../resources (ignore)/img/05/swagger-6.PNG>)
+
+![](<../resources (ignore)/img/05/swagger-7.PNG>)
+
+---
 
 ## Pagination
 
