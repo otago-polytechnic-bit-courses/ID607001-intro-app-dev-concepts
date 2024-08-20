@@ -320,8 +320,7 @@ export default new InstitutionRepository();
 In the `controllers/v1/institution.js` file, update the following code.
 
 ```javascript
-import { PrismaClient, Prisma } from "@prisma/client";
-const prisma = new PrismaClient();
+import { Prisma } from "@prisma/client";
 
 import institutionRepository from "../../repositories/institutionRepository.js";
 
