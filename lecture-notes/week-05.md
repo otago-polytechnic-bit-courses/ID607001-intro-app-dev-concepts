@@ -390,6 +390,12 @@ Implement validation for the `Department`, `Course`, and `User` resources.
 
 ### Task Three
 
+Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
+
+---
+
+### Task Four (Research)
+
 Pagination is the process of dividing a large collection of resources into smaller pages to improve performance and user experience. By paginating the results of an API request, users can retrieve a subset of resources at a time, rather than loading the entire collection at once.
 
 Use the this resource - [Prisma Pagination](https://www.prisma.io/docs/orm/prisma-client/queries/pagination) to implement pagination:
