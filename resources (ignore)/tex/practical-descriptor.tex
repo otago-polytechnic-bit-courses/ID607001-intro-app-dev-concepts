@@ -22,7 +22,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Practical \\Version 1, Semester One, 2024}
+\lfoot{Practical \\Version 2, Semester Two, 2024}
 \rfoot{\thepage}
  
 \begin{document}
@@ -37,7 +37,7 @@
 \maketitle
 
 \section*{Assessment Overview}
-In this \textbf{individual} or \textbf{group} assessment, you will test the \textbf{REST API} you created in the \textbf{Project} assessment. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.  
+In this \textbf{individual} or \textbf{group} assessment, you will test the \textbf{Your choice REST API} you created in the \textbf{Project} assessment. In addition, marks will be allocated for code quality and best practices, documentation and \textbf{Git} usage.  
 
 \section*{Learning Outcome}
 At the successful completion of this course, learners will be able to:
@@ -61,7 +61,8 @@ You will complete this assessment during your learner-managed time. However, the
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \section*{Submission}
-You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wlzE5yYo}{https://classroom.github.com/a/wlzE5yYo}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. Create a branch called \textbf{practical}. The latest application files in the \textbf{practical} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/WBzw8fEH}{https://classroom.github.com/a/WBzw8fEH}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. Create a branch called \textbf{practical}. The latest application files in the \textbf{practical} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+
 
 \section*{Authenticity}
 All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using an \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
@@ -91,13 +92,11 @@ You will need to submit a \textbf{suite of API tests} and \textbf{documentation}
     \item \textbf{API tests} are written using \textbf{Mocha} and \textbf{Chai}.
     \item \textbf{API tests} verifying the correctness for the following:
       \begin{itemize}
-        \item \textbf{GET one}, \textbf{GET all}, \textbf{POST}, \textbf{PUT} and \textbf{DELETE} operations. (30 tests).
-        \item \textbf{Index route} displaying all existing \textbf{routes}. (one test).
+        \item \textbf{GET one}, \textbf{GET all}, \textbf{POST}, \textbf{PUT} and \textbf{DELETE} operations. (20 tests).
         \item A \textbf{route} that does not exist. (one test).
-        \item Validation for \textbf{POST} and \textbf{PUT} operations. (12 tests).
+        \item Validation for \textbf{POST} and \textbf{PUT} operations. (8 tests).
       \end{itemize}
 	\end{itemize}
-
 	\item \textbf{Scripts:}
 	\begin{itemize}
     \item Seed your database with \textbf{Prisma}.
@@ -107,13 +106,13 @@ You will need to submit a \textbf{suite of API tests} and \textbf{documentation}
 
 \subsection*{Code Quality and Best Practices - Learning Outcome 1 (45\%)}
 \begin{itemize}
+  \item Environment variables' key is stored in the \textbf{.env.example} file. 
   \item Appropriate naming of files, variables and functions.
 	\item Idiomatic use of control flow, data structures and in-built functions.
   \item Efficient algorithmic approach.
   \item Sufficient modularity.
 	\item Each \textbf{test} file has a \textbf{JSDoc} header comment located at the top of the file.
-	\item Code is formatted using \textbf{Prettier}.
-	\item \textbf{Mocha} and \textbf{Chai} are installed as \textbf{development dependencies}.	
+	\item Code is formatted.
   \item No dead or unused code.
 \end{itemize}  
 
@@ -135,7 +134,7 @@ You will need to submit a \textbf{suite of API tests} and \textbf{documentation}
           
 \subsection*{Additional Information}
 \begin{itemize}
-  \item You do not need to test the \textbf{filtering}, \textbf{sorting} and \textbf{pagination} operations.
+    \item You do not need to test the \textbf{filtering}, \textbf{sorting} and \textbf{pagination} operations.
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
 \end{itemize} 
 
