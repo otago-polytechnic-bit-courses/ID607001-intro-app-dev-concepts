@@ -372,12 +372,12 @@ In the `.prettierrc.json` file, implement the following rules:
 In the `package.json` file, add the following lines to the `scripts` block.
 
 ```json
-"prettier:format": "npx prettier --write .",
 "prettier:check": "npx prettier --check ."
+"prettier:format": "npx prettier --write .",
 ```
 
-- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 - `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
+- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 
 Run the `prettier:format` script to format your code. Run the `prettier:check` script to check if your code is formatted correctly.
 
