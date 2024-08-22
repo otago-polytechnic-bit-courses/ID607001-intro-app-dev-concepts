@@ -63,7 +63,8 @@ You will complete this assessment during your learner-managed time. However, the
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
 
 \section*{Submission}
-You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/wlzE5yYo}{https://classroom.github.com/a/wlzE5yYo}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. The latest application files in the \textbf{main} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/WBzw8fEH}{https://classroom.github.com/a/WBzw8fEH}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. Create a branch called \textbf{project-2}. The latest application files in the \textbf{project} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
+
 
 \section*{Authenticity}
 All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using an \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
@@ -91,32 +92,44 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\begin{itemize}
 		\item Developed using \textbf{Node.js}.
 		\item Can run in development and production without modification.
-		\item \textbf{Five} \textbf{models}. Each \textbf{model} contains a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
+		\item \textbf{Four} \textbf{models}. Each \textbf{model} contains a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
 		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
-		\item \textbf{Five relationships} between \textbf{models}.
+		\item \textbf{Four relationships} between \textbf{models}.
 		\item \textbf{One} \textbf{model} has an \textbf{enum} \textbf{field}. 
-		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
+		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}. \textbf{Note:} You can create a generic \textbf{repository} file for all \textbf{models} if you wish.
 		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}, and \textbf{200} or \textbf{404}.
 		\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
 		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
-		\item An endpoint for Swagger documentation. Each route needs to be documented. 
 		\item Return an appropriate message if an endpoint does not exist.
 		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
+		\item An endpoint for Swagger documentation. Each route needs to be documented. 
 		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
 		\item Deploy your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
 	\end{itemize}
 	\item \textbf{OpenTDB REST API:}
+	\begin{itemize}
+		\item Developed using \textbf{Node.js}.
+		\item Can run in development and production without modification.
+		\item \textbf{Enums}
 		\begin{itemize}
-			\item Developed using \textbf{Node.js}.
-			\item Can run in development and production without modification.
+			\item \textbf{User} - basic user and admin user.
+			\item \textbf{Type} - multiple and boolean.
+			\item \textbf{Difficulty} - easy, medium and hard.
 		\end{itemize}
+		\item \textbf{Models}
+		\begin{itemize}
+			\item \textbf{User} - email address, first name, last name, password, login attempts last login attempt and role.
+		\end{itemize}
+	\end{itemize}
 
+	
 	\item \textbf{Scripts:}
 	\begin{itemize}
 		\item Run your \textbf{REST API} and \textbf{CRUD application} locally.
 		\item Create and apply a migration using \textbf{Prisma}.
 		\item Reset your database using \textbf{Prisma}.
 		\item Open \textbf{Prisma Studio}. 
+		\item Check your code using \textbf{Prettier}.
 		\item Format your code using \textbf{Prettier}.
 	\end{itemize}
 \end{itemize}
@@ -127,14 +140,14 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\item Environment variables' key is stored in the \textbf{.env.example} file. 
   	\item Appropriate naming of files, variables, functions and resource groups.
   	\begin{itemize}
-	\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/items} not \textbf{/api/item}.
-  \end{itemize}
+		\item API endpoints are versioned, i.e., \textbf{/api/v1}.
+		\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
+  	\end{itemize}
 	\item Idiomatic use of control flow, data structures and in-built functions.
 	\item Efficient algorithmic approach.
 	\item Sufficient modularity.
 	\item Each \textbf{controller}, \textbf{route} and \textbf{component} file has a \textbf{JSDoc} header comment located at the top of the file.
-	\item Code is formatted using \textbf{Prettier}.
-	\item \textbf{Prettier} is installed as a \textbf{development dependency}.	
+	\item Code is formatted.
 	\item No dead or unused code. 
 \end{itemize}
 
@@ -143,13 +156,13 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\item A \textbf{GitHub} project board or issues to help you organise and prioritise your development work. The course lecturer needs to see consistent use of the \textbf{GitHub} project board or issues for the duration of the assessment.
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
-	\item A URL to your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
-	\item A URL to your published \textbf{REST API} documentation. Each route needs to be documented. Include a description, example request and example response.
+	\item A URL to your \textbf{REST APIs} as a \textbf{web service} on \textbf{Render}.
       \item How do you setup the environments, i.e., after the repository is cloned?
-	  \item How do you run your \textbf{REST API} and \textbf{CRUD application} locally?
+	  \item How do you run your \textbf{REST APIs} locally?
 	  \item How do you create and apply a migration?  
 	  \item How do you reset your database?
 	  \item How do you open \textbf{Prisma Studio}?
+	  \item How do you check your code?
 	  \item How do you format your code?
     \end{itemize}
     \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
