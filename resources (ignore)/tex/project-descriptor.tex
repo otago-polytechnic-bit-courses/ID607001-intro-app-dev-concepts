@@ -17,7 +17,7 @@
 \usepackage{fancyhdr}
 \hypersetup{
   colorlinks = true,
-  urlcolor = blue
+  urlcolor = blue 
 } 
 \setlength\parindent{0pt}
 \pagestyle{fancy}
@@ -90,7 +90,7 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 \begin{itemize} 
 	\item \textbf{Your choice REST API (20\%):}
 	\begin{itemize}
-		\item Developed using \textbf{Node.js}.
+		\item Create a new directory called \textbf{your-choice-rest-api} and create a new \textbf{Express} application.
 		\item Can run in development and production without modification.
 		\item \textbf{Four} \textbf{models}. Each \textbf{model} contains a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
 		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
@@ -102,10 +102,12 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
 		\item Return an appropriate message if an endpoint does not exist.
 		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
+		\item Scripts for running your \textbf{REST API} locally, creating and applying a migration, resetting the \textbf{PostgreSQL} database, opening \textbf{Prisma Studio}, checking your code and formatting your code are included in the \textbf{package.json} file.
 	\end{itemize}
+
 	\item \textbf{OpenTDB REST API (25\%):}
 	\begin{itemize}
-		\item Developed using \textbf{Node.js}.
+		\item Create a new directory called \textbf{opentdb-rest-api} and create a new \textbf{Express} application.
 		\item Can run in development and production without modification.
 		\item In your \textbf{schema.prisma} file, implement the following \textbf{enums}:
 		\begin{itemize}
@@ -151,20 +153,14 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 		\end{itemize}
 		\item Two \textbf{ADMIN} and three \textbf{BASIC} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{ADMIN} and \textbf{BASIC} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
 		\item Implement \textbf{Helmet}, \textbf{CORS}, \textbf{rate limiting} and \textbf{compression}.
+		\item Scripts for running your \textbf{REST API} locally, creating and applying a migration, resetting the \textbf{PostgreSQL} database, seeding \textbf{ADMIN} and \textbf{BASIC} users, opening \textbf{Prisma Studio}, checking your code and formatting your code are included in the \textbf{package.json} file.
 	\end{itemize}
-	\item \textbf{Scripts (5\%):}
+	\item In addition, each \textbf{REST API} will:
 	\begin{itemize}
-		\item Run your \textbf{REST APIs} locally.
-		\item Create and apply a migration using \textbf{Prisma}.
-		\item Reset the \textbf{PostgreSQL} database using \textbf{Prisma}.
-		\item Seed \textbf{ADMIN} and \textbf{BASIC} users using \textbf{Prisma}.
-		\item Open \textbf{Prisma Studio}. 
-		\item Check your code using \textbf{Prettier}.
-		\item Format your code using \textbf{Prettier}.
-	\end{itemize}
-		\item An endpoint for Swagger documentation. Each route needs to be documented. 
-		\item Store your data in a \textbf{PostgreSQL} database on \textbf{Render}.
-		\item Deploy your \textbf{REST APIs} as a \textbf{web service} on \textbf{Render}.
+		\item Have an endpoint for Swagger documentation. Each route needs to be documented. 
+		\item Store their data in a \textbf{PostgreSQL} database on \textbf{Render}.
+		\item Be deployed as a \textbf{web service} on \textbf{Render}.
+	\end{itemize} 
 \end{itemize}
 
 \subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
@@ -211,7 +207,7 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \subsection*{Additional Information}
 \begin{itemize}
-\item You cannot use the models in the lecture notes, i.e., Institution, Department, Course and User.
+	\item Your choice \textbf{REST API} must be signed off by the course lecturer before you start your development work.
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
     \item You need to show the course lecturer the initial \textbf{GitHub} project board or issues before you start your development work. Following this, you need to show the course lecturer your \textbf{GitHub} project board or issues at the end of each week.
 \end{itemize} 
