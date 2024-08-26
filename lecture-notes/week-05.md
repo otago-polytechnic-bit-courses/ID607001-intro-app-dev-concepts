@@ -179,11 +179,11 @@ async findAll(filters) {
 
     // Check if any filters are provided
     if (filters.name || filters.region || filters.country) {
-        query.where = {
+      query.where = {
         name: filters.name ? { contains: filters.name } : undefined,
         region: filters.region ? { contains: filters.region } : undefined,
         country: filters.country ? { contains: filters.country } : undefined,
-        };
+      };
     }
 
     return await prisma.institution.findMany(query);
