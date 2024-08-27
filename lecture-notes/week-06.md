@@ -191,7 +191,7 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-  const MAX_LOGIN_ATTEMPTS = 5; 
+  const MAX_LOGIN_ATTEMPTS = 5;
   const LOCK_TIME_MS = 5 * 60 * 1000; // 5 minutes
 
   try {
@@ -266,6 +266,8 @@ const login = async (req, res) => {
 export { register, login };
 ```
 
+---
+
 ### Auth Router
 
 In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
@@ -282,6 +284,8 @@ router.route("/login").post(login);
 
 export default router;
 ```
+
+---
 
 ### Main File
 
@@ -319,21 +323,17 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-
 ---
 
 ### Task Two
-
 
 ---
 
 ### Task Three
 
-
 ---
 
 ### Task Four (Research)
-
 
 ---
 
