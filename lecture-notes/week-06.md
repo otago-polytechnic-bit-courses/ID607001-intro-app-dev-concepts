@@ -72,10 +72,26 @@ model User {
   password         String
   loginAttempts    Int           @default(0)
   lastLoginAttempt DateTime?
+  institutions     Institution[]
+  departments      Department[]
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
+}
+```
 
-  // Include any references to other models
+Also, update the `Institution` model:
+
+```js
+model Institution {
+  id          String       @id @default(uuid())
+  name        String
+  region      String
+  country     String
+  userId      String
+  departments Department[]
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
 }
 ```
 
@@ -275,7 +291,7 @@ In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.j
 ```js
 import { Router } from "express";
 
-import { register, login } from "../controllers/auth.js";
+import { register, login } from "../../controllers/v1/auth.js";
 
 const router = Router();
 

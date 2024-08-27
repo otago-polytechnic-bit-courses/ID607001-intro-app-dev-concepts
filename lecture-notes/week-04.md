@@ -97,7 +97,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
     // Check if the Content-Type header is application/json
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
-      return res.status(400).json({
+      return res.status(409).json({
         error: {
           message: "Content-Type must be application/json",
         },
@@ -227,8 +227,8 @@ In the `app.js` file, add the following code.
 // This should be declared under import institutionRoutes from "./routes/v1/institution.js";
 import departmentRoutes from "./routes/v1/department.js";
 
-// This should be declared under app.use(`/api/v1/institutions`, institutionRoutes);
-app.use(`/api/v1/departments`, departmentRoutes);
+// This should be declared under app.use("/api/v1/institutions", institutionRoutes);
+app.use("/api/v1/departments", departmentRoutes);
 ```
 
 ---
@@ -335,7 +335,7 @@ const createInstitution = async (req, res) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
-        return res.status(400).json({
+        return res.status(409).json({
           message: "Institution with the same name already exists",
         });
       }
@@ -397,7 +397,7 @@ const updateInstitution = async (req, res) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
-        return res.status(400).json({
+        return res.status(409).json({
           message: "Institution with the same name already exists",
         });
       }

@@ -288,7 +288,7 @@ const createInstitution = async (req, res) => {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       {
         if (err.code === "P2002") {
-          return res.status(400).json({
+          return res.status(409).json({
             message: "Institution with the same name already exists",
           });
         }
@@ -394,7 +394,7 @@ const updateInstitution = async (req, res) => {
   } catch (err) {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       if (err.code === "P2002") {
-        return res.status(400).json({
+        return res.status(409).json({
           message: "Institution with the same name already exists",
         });
       }
@@ -564,7 +564,7 @@ const createInstitution = async (req, res) => {
     if (err instanceof Prisma.PrismaClientKnownRequestError) {
       {
         if (err.code === "P2002") {
-          return res.status(400).json({
+          return res.status(409).json({
             message: "Institution with the same name already exists",
           });
         }

@@ -65,7 +65,7 @@ const validatePostInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({
+    return res.status(409).json({
       msg: error.details[0].message,
     });
   }
@@ -98,7 +98,7 @@ const validatePutInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(req.body);
 
   if (error) {
-    return res.status(400).json({
+    return res.status(409).json({
       msg: error.details[0].message,
     });
   }
