@@ -177,13 +177,14 @@ async findAll(filters) {
     // Create an empty query object
     const query = {};
 
-    // Check if any filters are provided
-    if (filters.name || filters.region || filters.country) {
-      query.where = {
-        name: filters.name ? { contains: filters.name } : undefined,
-        region: filters.region ? { contains: filters.region } : undefined,
-        country: filters.country ? { contains: filters.country } : undefined,
-      };
+    if (Object.keys(filters).length > 0) {
+      query.where = {};
+      // Loop through the filters and apply them dynamically
+      for (const [key, value] of Object.entries(filters)) {
+        if (value) {
+          query.where[key] = { contains: value };
+        }
+      }
     }
 
     return await prisma.institution.findMany(query);
