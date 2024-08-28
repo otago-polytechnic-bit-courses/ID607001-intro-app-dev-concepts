@@ -95,7 +95,7 @@ model Institution {
 }
 ```
 
-> **Note:** There are two additional fields - `loginAttempts` and `lastLoginAttempt`.
+> **Note:** There are three additional fields - `userId`, `loginAttempts` and `lastLoginAttempt`.
 
 ---
 
