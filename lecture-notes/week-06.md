@@ -73,7 +73,6 @@ model User {
   loginAttempts    Int           @default(0)
   lastLoginAttempt DateTime?
   institutions     Institution[]
-  departments      Department[]
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }
