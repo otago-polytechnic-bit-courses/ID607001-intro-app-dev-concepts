@@ -18,7 +18,7 @@ Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
 
-> **Note:** The following authentication and JWT concepts will be useful for **ID606001: Studio 3**. However, you will not be implementing these in the assessments for this course.
+> **Note:** The following authentication and JWT concepts will be useful for **ID606001: Studio 3**. 
 
 ---
 
