@@ -575,6 +575,25 @@ Implement the code above for the `Institution`, `Department`, `Course` and `User
 
 ---
 
+### Task Two (Research)
+
+When logging in, only return the user's `id`, `firstName` and `lastName`. The response should look like the following:
+
+```json
+{
+  "msg": "User successfully logged in",
+  "user": {
+    "id": "<User's id>",
+    "firstName": "John",
+    "lastName": "Doe",
+    "emailAddress": "john.doe@example.com"
+  },
+  "token": "<User's token>"
+}
+```
+
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
