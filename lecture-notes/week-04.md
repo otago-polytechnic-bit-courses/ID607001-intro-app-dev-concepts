@@ -58,6 +58,12 @@ import institutionRoutes from "./routes/v1/institution.js";
 Also, update the following code.
 
 ```javascript
+// This should be declared under app.use(express.json());
+const swaggerOptions = {
+  // ...
+  apis: ["./routes/v1/*.js"],
+};
+
 // This should be declared under app.use("/", indexRoutes);
 app.use(`/api/v1/institutions`, institutionRoutes);
 ```
