@@ -525,6 +525,10 @@ app.use("/api/v1/institutions", authRouteMiddleware, institutionRoutes); // Auth
 
 ---
 
+You should see two more options - `/api/v1/auth/register` and `/api/v1/auth/login`
+
+![](<../resources (ignore)/img/06/capture-1.PNG>)
+
 ## Register Example
 
 Registering a new user. What happens to the `password` when you click the **Execute** button?
@@ -532,10 +536,6 @@ Registering a new user. What happens to the `password` when you click the **Exec
 ![](<../resources (ignore)/img/06/capture-2.PNG>)
 
 ## Login Example
-
-You should see two more options - `/api/v1/auth/register` and `/api/v1/auth/login`
-
-![](<../resources (ignore)/img/06/capture-1.PNG>)
 
 Logging in with John Doe.
 
