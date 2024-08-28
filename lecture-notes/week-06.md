@@ -295,13 +295,211 @@ import { register, login } from "../../controllers/v1/auth.js";
 
 const router = Router();
 
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     User:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *           example: "123e4567-e89b-12d3-a456-426614174000"
+ *         firstName:
+ *           type: string
+ *           example: "John"
+ *         lastName:
+ *           type: string
+ *           example: "Doe"
+ *         emailAddress:
+ *           type: string
+ *           format: email
+ *           example: "john.doe@example.com"
+ *         password:
+ *           type: string
+ *           example: "password123"
+ *         loginAttempts:
+ *           type: integer
+ *           example: 3
+ *         lastLoginAttempt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ */
+
+/**
+ * @swagger
+ * /api/v1/auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/User'
+ *     responses:
+ *       '201':
+ *         description: User successfully registered
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: "User successfully registered"
+ *                 data:
+ *                   $ref: '#/components/schemas/User'
+ *       '409':
+ *         description: User already exists
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: "User already exists"
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
 router.route("/register").post(register);
+
+/**
+ * @swagger
+ * /api/v1/auth/login:
+ *   post:
+ *     summary: Log in an existing user
+ *     tags:
+ *       - Auth
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               emailAddress:
+ *                 type: string
+ *                 format: email
+ *                 example: "john.doe@example.com"
+ *               password:
+ *                 type: string
+ *                 example: "password123"
+ *     responses:
+ *       '200':
+ *         description: User successfully logged in
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: "User successfully logged in"
+ *                 token:
+ *                   type: string
+ *                   example: ""
+ *       '500':
+ *         description: Internal server error
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 msg:
+ *                   type: string
+ *                   example: "An unexpected error occurred"
+ */
 router.route("/login").post(login);
 
 export default router;
 ```
 
 ---
+
+### Institution Router
+
+In the `routes/v1` directory, open the `institution.js` file. In the `institution.js` file, update the **Swagger documentation**.
+
+```js
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Institution:
+ *       type: object
+ *       properties:
+ *         id:
+ *           type: string
+ *           format: uuid
+ *           example: "123e4567-e89b-12d3-a456-426614174000"
+ *         name:
+ *           type: string
+ *           example: "Institution Name"
+ *         region:
+ *           type: string
+ *           example: "Region Name"
+ *         country:
+ *           type: string
+ *           example: "Country Name"
+ *         userId:
+ *           type: string
+ *           format: uuid
+ *           example: "123e4567-e89b-12d3-a456-426614174000"
+ *         createdAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ *         updatedAt:
+ *           type: string
+ *           format: date-time
+ *           example: "2024-07-14T12:34:56Z"
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   security:
+ *     - BearerAuth: []
+ */
+```
+
+`userId` has been added to the `properties` block.
+
+Also, add the `security` block under the `tags` block".
+
+```js
+/**
+ * @swagger
+ * /api/v1/institutions:
+ *   post:
+ *     summary: Create a new institution
+ *     tags:
+ *       - Institution
+ *     security:
+ *       - BearerAuth: []
+```
 
 ### Main File
 
@@ -327,6 +525,40 @@ app.use("/api/v1/institutions", authRouteMiddleware, institutionRoutes); // Auth
 
 ---
 
+## Register Example
+
+Registering a new user. What happens to the `password` when you click the **Execute** button?
+
+![](<../resources (ignore)/img/06/capture-2.PNG>)
+
+## Login Example
+
+You should see two more options - `/api/v1/auth/register` and `/api/v1/auth/login`
+
+![](<../resources (ignore)/img/06/capture-1.PNG>)
+
+Logging in with John Doe.
+
+![](<../resources (ignore)/img/06/capture-3.PNG>)
+
+Make sure you copy the user's `id` and `token`. You will need these later on.
+
+![](<../resources (ignore)/img/06/capture-4.PNG>)
+
+What happens if you enter the wrong `password` and click the **Execute** button six times?
+
+## POST Example
+
+You should see a lock next the down chevron. 
+
+![(<../resources (ignore)/img/06/capture-5.PNG>)
+
+If you click on the lock, you will be prompt to enter the `token`. Enter the `token`, click the **Authorize** button, then click the **Close** button.
+
+![](<../resources (ignore)/img/06/capture-6.PNG>)
+
+Click on the **Execute** button. What happens if you do not provide the `token`?
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
@@ -339,17 +571,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
----
-
-### Task Two
-
----
-
-### Task Three
-
----
-
-### Task Four (Research)
+Implement the code above for the `Institution`, `Department`, `Course` and `User` models. 
 
 ---
 
