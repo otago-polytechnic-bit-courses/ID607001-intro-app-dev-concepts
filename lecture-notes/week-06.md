@@ -551,7 +551,7 @@ What happens if you enter the wrong `password` and click the **Execute** button 
 
 You should see a lock next the down chevron. 
 
-![(<../resources (ignore)/img/06/capture-5.PNG>)
+![](<../resources (ignore)/img/06/capture-5.PNG>)
 
 If you click on the lock, you will be prompt to enter the `token`. Enter the `token`, click the **Authorize** button, then click the **Close** button.
 
