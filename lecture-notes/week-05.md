@@ -336,6 +336,8 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
+> **Note:** Where other functions are using `institutionRepository.findAll()`, pass in the following arguments `({}, "id", "asc")`. For example, `institutionRepository.findAll({}, "id", "asc")`. 
+
 ---
 
 ## Institution Router
