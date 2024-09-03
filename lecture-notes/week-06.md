@@ -18,7 +18,7 @@ Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
 
-> **Note:** The following authentication and JWT concepts will be useful for **ID606001: Studio 3**. 
+> **Note:** The following authentication and JWT concepts will be useful for **ID606001: Studio 3**.
 
 ---
 
@@ -548,7 +548,7 @@ What happens if you enter the wrong `password` and click the **Execute** button 
 
 ## POST Example
 
-You should see a lock next the down chevron. 
+You should see a lock next the down chevron.
 
 ![](<../resources (ignore)/img/06/capture-5.PNG>)
 
@@ -570,7 +570,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Implement the code above for the `Institution`, `Department`, `Course` and `User` models. 
+Implement the code above for the `Institution`, `Department`, `Course` and `User` models.
 
 ---
 
