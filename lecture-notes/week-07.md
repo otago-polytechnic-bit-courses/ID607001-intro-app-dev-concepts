@@ -146,13 +146,13 @@ Registering a new basic user.
 
 ---
 
-### Post Example
+### POST Example
 
 Creating a new institution as a basic user. 
 
 ![](<../resources (ignore)/img/07/capture-4.PNG>)
 
-If you want to test this works, temporarily replace `if (user.role !== "ADMIN_USER")` with `if (user.role !== "BASIC_USER")` in the `middleware/authorisation.js` file. 
+If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMIN_USER")` with `if (user.role !== "BASIC_USER")` in the `middleware/authorisation.js` file. 
 
 ---
 
