@@ -55,9 +55,11 @@ In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the 
 
 The screenshot below is an example of before compression.
 
-![](../../resources/img/04-caching-and-compression/04-caching-and-compression-4.PNG)
+![](../resources (ignore)/img/08/04-caching-and-compression-4.PNG)
 
 As you can see, there is 51.1 kilobytes transferred over the network.
+
+> **Note:** The browser used in Microsoft Edge.
 
 ---
 
@@ -78,9 +80,11 @@ In the browser, refresh the page.
 
 The screenshot below is an example of after compression.
 
-![](../../resources/img/04-caching-and-compression/04-caching-and-compression-5.PNG)
+![](../resources (ignore)/img/08/04-caching-and-compression-5.PNG)
 
 As you can see, there is 3.4 kilobytes transferred over the network which is significantly lower than the previous benchmark.
+
+> **Note:** The browser used in Microsoft Edge.
 
 ---
 
