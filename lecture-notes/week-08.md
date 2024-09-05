@@ -59,7 +59,7 @@ The screenshot below is an example of before compression.
 
 As you can see, there is 51.1 kilobytes transferred over the network.
 
-> **Note:** The browser used in Microsoft Edge.
+> **Note:** The browser used is Microsoft Edge.
 
 ---
 
@@ -84,7 +84,7 @@ The screenshot below is an example of after compression.
 
 As you can see, there is 3.4 kilobytes transferred over the network which is significantly lower than the previous benchmark.
 
-> **Note:** The browser used in Microsoft Edge.
+> **Note:** The browser used is Microsoft Edge.
 
 ---
 
