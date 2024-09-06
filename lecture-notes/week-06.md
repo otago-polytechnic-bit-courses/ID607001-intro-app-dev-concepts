@@ -72,29 +72,12 @@ model User {
   password         String
   loginAttempts    Int           @default(0)
   lastLoginAttempt DateTime?
-  institutions     Institution[]
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }
 ```
 
-Also, update the `Institution` model:
-
-```js
-model Institution {
-  id          String       @id @default(uuid())
-  name        String
-  region      String
-  country     String
-  userId      String
-  departments Department[]
-  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
-}
-```
-
-> **Note:** There are three additional fields - `userId`, `loginAttempts` and `lastLoginAttempt`.
+> **Note:** There are two additional fields - `loginAttempts` and `lastLoginAttempt`.
 
 ---
 
@@ -462,10 +445,6 @@ In the `routes/v1` directory, open the `institution.js` file. In the `institutio
  *         country:
  *           type: string
  *           example: "Country Name"
- *         userId:
- *           type: string
- *           format: uuid
- *           example: "123e4567-e89b-12d3-a456-426614174000"
  *         createdAt:
  *           type: string
  *           format: date-time
