@@ -463,9 +463,7 @@ In the `routes/v1` directory, open the `institution.js` file. In the `institutio
  */
 ```
 
-`userId` has been added to the `properties` block.
-
-Also, add the `security` block under the `tags` block".
+Add the `security` block under the `tags` block".
 
 ```js
 /**
@@ -519,7 +517,7 @@ Logging in with John Doe.
 
 ![](<../resources (ignore)/img/06/capture-3.PNG>)
 
-Make sure you copy the user's `id` and `token`. You will need these later on.
+Make sure you copy the `token`. You will need these later on.
 
 ![](<../resources (ignore)/img/06/capture-4.PNG>)
 
