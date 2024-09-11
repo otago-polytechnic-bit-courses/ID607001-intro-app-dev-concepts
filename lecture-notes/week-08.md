@@ -88,17 +88,92 @@ As you can see, there is 3.4 kilobytes transferred over the network which is sig
 
 ---
 
-## Rate Limiting
-
-
----
-
 ## Securing HTTP Headers
 
+**Helmet** helps secure your **Express** apps by setting various **HTTP headers**. For example, **X-Powered-By** which is a header that is set by default in **Express**. This header can be used by attackers to identify the technology stack of your application.
+
+To get started, run the following command:
+
+```bash
+npm install helmet
+```
+
+### Main File
+
+In the `app.js` file, import `helmet`. For example:
+
+```js
+import helmet from "helmet";
+```
+
+Add the following **middleware**:
+
+```js
+// This should be declared under app.use(compression());
+app.use(helmet(
+  x-powered-by: false
+));
+```
 
 ---
 
 ## Cross-Origin Resource Sharing
+
+**CORS** is a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
+
+To get started, run the following command:
+
+```bash
+npm install cors
+```
+
+### Main File
+
+In the `app.js` file, import `cors`. For example:
+
+```js
+import cors from "cors";
+```
+
+Add the following **middleware**:
+
+```js
+// This should be declared under app.use(helmet());
+app.use(cors());
+```
+
+## Rate Limiting
+
+**Express Rate Limit** is a **middleware** that limits repeated requests to public APIs and/or endpoints.
+
+To get started, run the following command:
+
+```bash
+npm install express-rate-limit
+```
+
+### Main File
+
+In the `app.js` file, import `rateLimit`. For example:
+
+```js
+import rateLimit from "express-rate-limit";
+```
+
+Add the following **middleware**:
+
+```js
+// This should be declared under app.use(cors());
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: "Too many requests from this IP, please try again after 15 minutes",
+});
+
+app.use(limiter);
+```
+
+This is a basic example of rate limiting. You can customise the rate limiting to suit your application. For example, you can limit requests based on the user's **IP address**.
 
 ---
 
