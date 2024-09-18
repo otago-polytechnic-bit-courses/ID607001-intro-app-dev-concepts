@@ -98,6 +98,8 @@ To get started, run the following command:
 npm install helmet
 ```
 
+---
+
 ### Main File
 
 In the `app.js` file, import `helmet`. For example:
@@ -127,6 +129,8 @@ To get started, run the following command:
 npm install cors
 ```
 
+---
+
 ### Main File
 
 In the `app.js` file, import `cors`. For example:
@@ -153,6 +157,8 @@ To get started, run the following command:
 ```bash
 npm install express-rate-limit
 ```
+
+---
 
 ### Main File
 
