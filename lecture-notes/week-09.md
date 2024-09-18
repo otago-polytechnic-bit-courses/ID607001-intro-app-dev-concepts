@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-09.md)
+Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-08.md)
 
 ---
 
@@ -335,4 +335,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-09.md)
+Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-10.md)
