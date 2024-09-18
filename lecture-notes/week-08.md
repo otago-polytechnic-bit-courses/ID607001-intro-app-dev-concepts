@@ -142,6 +142,8 @@ Add the following **middleware**:
 app.use(cors());
 ```
 
+---
+
 ## Rate Limiting
 
 **Express Rate Limit** is a **middleware** that limits repeated requests to public APIs and/or endpoints.
