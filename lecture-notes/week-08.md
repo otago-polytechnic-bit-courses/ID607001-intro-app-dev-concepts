@@ -119,35 +119,6 @@ app.use(helmet(
 
 ---
 
-## Cross-Origin Resource Sharing
-
-**CORS** is a mechanism that allows many resources (e.g., fonts, JavaScript, etc.) on a web page to be requested from another domain outside the domain from which the resource originated.
-
-To get started, run the following command:
-
-```bash
-npm install cors
-```
-
----
-
-### Main File
-
-In the `app.js` file, import `cors`. For example:
-
-```js
-import cors from "cors";
-```
-
-Add the following **middleware**:
-
-```js
-// This should be declared under app.use(helmet());
-app.use(cors());
-```
-
----
-
 ## Rate Limiting
 
 **Express Rate Limit** is a **middleware** that limits repeated requests to public APIs and/or endpoints.
