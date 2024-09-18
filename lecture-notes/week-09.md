@@ -270,7 +270,6 @@ describe("Institutions", () => {
       .send({
         name: "University of Waikato",
         region: "Waikato",
-        country: "New Zealand",
       })
       .end((req, res) => {
         chai.expect(res.status).to.be.equal(200);
