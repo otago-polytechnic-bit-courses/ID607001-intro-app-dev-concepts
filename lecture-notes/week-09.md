@@ -20,7 +20,9 @@ Before we create our tests, let us create a script to seed our database with dat
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
+import brcrypt from "brcryptjs";
 const prisma = new PrismaClient();
+
 
 const main = async () => {
   try {
