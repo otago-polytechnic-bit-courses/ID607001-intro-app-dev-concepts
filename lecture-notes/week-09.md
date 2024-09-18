@@ -70,7 +70,7 @@ In the `package.json` file, add the following line under the `scripts` block.
 ```json
 "prisma": {
   "seed": "node prisma/seed.js"
-}
+},
 ```
 
 To seed your database, run the following command.
