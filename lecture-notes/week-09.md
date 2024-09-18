@@ -145,8 +145,6 @@ const registerAndLoginUser = (done) => {
     .end((err, res) => {
       if (err) done(err);
 
-      userId = res.body.data.id; // Store the user ID from the registration response
-
       chai
         .request(app)
         .post("/api/v1/auth/login")
