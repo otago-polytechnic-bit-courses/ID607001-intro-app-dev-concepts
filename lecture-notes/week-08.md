@@ -112,9 +112,11 @@ Add the following **middleware**:
 
 ```js
 // This should be declared under app.use(compression());
-app.use(helmet(
-  x-powered-by: false
-));
+app.use(
+  helmet({
+    xPoweredBy: true,
+  })
+);
 ```
 
 ---
