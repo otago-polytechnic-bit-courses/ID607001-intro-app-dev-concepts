@@ -179,7 +179,7 @@ describe("Institutions", () => {
         country: "New Zealand",
       })
       .end((req, res) => {
-        console.log(res.body); // Debugging purposes
+        console.log(res.body); // Debugging purposes. Do not push to production
         chai.expect(res.status).to.be.equal(201);
         chai.expect(res.body).to.be.a("object");
         chai
