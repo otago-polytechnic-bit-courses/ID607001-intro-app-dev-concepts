@@ -48,7 +48,7 @@ npx prisma generate
 
 You should see an `.svg` file in the `prisma` directory. Open the file to view the **ERD** diagram.
 
-You can customize the **ERD** diagram by adding the following code to the `schema.prisma` file.
+You can customise the **ERD** diagram by adding the following code to the `schema.prisma` file.
 
 ```javascript
 generator erd {
