@@ -64,7 +64,7 @@ generator erd {
 
 ## README.md Setup
 
-In the **assessments** directory, you will find a `README.md` template. You will use this for your **summative assessments**.
+In the **assessments** directory, you will find a `README.md` template. You will use this for your **Project** and **Practical** assessments.
 
 ---
 
