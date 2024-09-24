@@ -1,4 +1,4 @@
-# Project Name
+# Project and Practical
 
 ## REST APIs URL (Render Web Service)
 You can access the deployed REST APIs on Render using the following URL:
