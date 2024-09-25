@@ -16,7 +16,7 @@ Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## ERD Generation
 
-Instead of using online tools like **Draw.io** and **Lucidchart** to create **ERD** diagrams, you can a library called **prisma-erd-generator** to generate **ERDs**.
+Instead of using online tools like **Draw.io** and **Lucidchart** to create **ERDs**, you can a library called **prisma-erd-generator** to generate **ERDs**.
 
 ---
 
