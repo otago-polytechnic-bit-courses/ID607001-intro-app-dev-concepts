@@ -14,80 +14,6 @@ Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ---
 
-## Compression
-
-Compression with **gzip** helps decrease the downloadable amount of data served to the client. This compression technique can improve the application's performance by significantly reducing the payload size, i.e., **JSON** response.
-
-> View this video to learn more about how GZIP works - <https://www.youtube.com/watch?v=NLtt4S9ErIA>
-
-To get started, run the following command:
-
-```bash
-npm install compression
-```
-
----
-
-### Main File
-
-In the `app.js` file, import `compression`. For example:
-
-```js
-import compression from "compression";
-```
-
-For testing purposes, add the following `GET` route:
-
-```js
-app.get("/api/v1/optimisation", (req, res) => {
-  const text = "See you later, alligator. Bye bye bye, butterfly";
-  res.json({ msg: text.repeat(1000) });
-});
-```
-
-> **Note:** Remove this `GET` route after testing.
-
----
-
-### GET example - Without Compression
-
-In a browser, navigate to <http://localhost:3000/api/v1/optimisation>. Open the **development tools** and keep an eye on the amount of kilobytes transferred over the network.
-
-The screenshot below is an example of before compression.
-
-![](<../resources (ignore)/img/08/04-caching-and-compression-4.PNG>)
-
-As you can see, there is 51.1 kilobytes transferred over the network.
-
-> **Note:** The browser used is Microsoft Edge.
-
----
-
-### Main File
-
-Add the following **middleware**:
-
-```js
-// This should be declared under app.use(express.json());
-app.use(compression());
-```
-
----
-
-### GET example - With Compression
-
-In the browser, refresh the page.
-
-The screenshot below is an example of after compression.
-
-![](<../resources (ignore)/img/08/04-caching-and-compression-5.PNG>)
-
-As you can see, there is 3.4 kilobytes transferred over the network which is significantly lower than the previous benchmark.
-
-> **Note:** The browser used is Microsoft Edge.
-
----
-
 ## Securing HTTP Headers
 
 **Helmet** helps secure your **Express** apps by setting various **HTTP headers**. For example, **X-Powered-By** which is a header that is set by default in **Express**. This header can be used by attackers to identify the technology stack of your application.
@@ -111,7 +37,6 @@ import helmet from "helmet";
 Add the following **middleware**:
 
 ```js
-// This should be declared under app.use(compression());
 app.use(
   helmet({
     xPoweredBy: true,
@@ -148,7 +73,6 @@ Add the following **middleware**:
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   max: 100, // limit each IP to 100 requests per windowMs
-  message: "Too many requests from this IP, please try again after 15 minutes",
 });
 
 app.use(limiter);
@@ -173,6 +97,10 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 Implement the above.
 
 ---
+
+### Task Two
+
+Update the `limiter` variable to include a custom message when the rate limit is exceeded. For example, Too many requests from this IP, please try again after 15 minutes.
 
 ### Submission
 

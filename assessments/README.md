@@ -1,7 +1,7 @@
 # Project and Practical
 
 ## REST API URL (Render Web Service)
-You can access the deployed REST API on Render - [REPLACE WITH A LINK TO YOUR REST API PROJECT NAME](<REPLACE WITH A LINK TO YOUR REST API>)
+You can access the deployed REST API on Render - [REPLACE WITH A LINK TO YOUR REST API](<REPLACE WITH A LINK TO YOUR REST API>)
 
 ## Setup Environment
 
@@ -9,22 +9,27 @@ You can access the deployed REST API on Render - [REPLACE WITH A LINK TO YOUR RE
 
 ```bash
 git clone <REPLACE WITH A LINK TO YOUR GITHUB REPO.git>
-cd <REPLACE WITH THE REST API PROJECT DIRECTORY>
 ```
 
-2. Install the required dependencies:
+2. Change the directory:
+
+```bash
+cd <REPLACE WITH YOUR REPOSITORY NAME>
+```
+
+3. Install the required dependencies:
 
 ```bash
 <ADD THE COMMAND HERE>
 ```
 
-3. Set up environment variables by creating a `.env` file and filling in the required configurations:
+4. Copy the `.env.example` file to `.env`:
 
 ```bash
-DATABASE_URL=
-
-ADD OTHER ENVIRONMENT VARIABLES
+<ADD THE COMMAND HERE>
 ```
+
+5. Update the `.env` file with the required environment variables.
 
 ## Database Migration
 
@@ -36,7 +41,7 @@ To create and apply a new migration using **Prisma**, run the following command:
 
 ## Reset PostgreSQL Database
 
-To reset the **PostgreSQL** database, run the following command:
+To reset the **PostgreSQL** database using **Prisma**, run the following command:
 
 ```bash
 <ADD THE COMMAND HERE>
@@ -68,15 +73,13 @@ Your local API should now be running on <http://localhost:3000>.
 
 ## Running API Tests
 
-**NOTE:** Remove this section for the **OpenTDB REST API** REST API.
-
 To run the **API tests** locally, run the following command:
 
 ```bash
 <ADD THE COMMAND HERE>
 ```
 
-This will execute all the **API tests** to ensure the endpoints are working as expected.
+This will execute all the **API tests** to ensure the REST API functionality is working as expected.
 
 ## Opening Prisma Studio
 
@@ -88,7 +91,7 @@ To visually inspect your database using **Prisma Studio**, run the following com
 
 ## Code Quality Checks
 
-To check your code for any issues, run the following command:
+To check your code for any issues using **Prettier**, run the following command:
 
 ```bash
 <ADD THE COMMAND HERE>
@@ -96,7 +99,7 @@ To check your code for any issues, run the following command:
 
 ## Code Formatting
 
-To format your code according to project guidelines, run the following command:
+To format your code using **Prettier**, run the following command:
 
 ```bash
 <ADD THE COMMAND HERE>
@@ -104,7 +107,7 @@ To format your code according to project guidelines, run the following command:
 
 ## Entity Relationship Diagram (ERD)
 
-Below are the Entity Relationship Diagrams (ERDs) for the REST API:
+Below is the Entity Relationship Diagram (ERD) for the REST API:
 
 ```bash
 <ADD THE DIAGRAMS HERE>
