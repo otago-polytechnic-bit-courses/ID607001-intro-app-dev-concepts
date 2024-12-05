@@ -175,7 +175,7 @@ Filtering is the process of selecting a subset of resources from a larger collec
 In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
 
 ```javascript
-async findAll(filters) {
+async findAll(filters = {}) {
     // Create an empty query object
     const query = {};
 
@@ -275,7 +275,7 @@ In the `repositories` directory, open the `institution.js` file. Update the `fin
 
 ```javascript
 // Find all institutions based on the provided filters, sorted by the specified column and order
-async findAll(filters, sortBy = "id", sortOrder = "asc") {
+async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
   const query = {
     orderBy: {
       [sortBy]: sortOrder, // Sort by the specified column and order

@@ -14,6 +14,10 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ---
 
+## Logging
+
+---
+
 ## Authentication and JWT
 
 As a developer, you ideally want to safeguard sensitive data from being accessed by unauthorised users. Only when a user has logged in or authenticated they will be able to access their data. However, authorisation goes beyond authentication. Users can have different roles and permissions, which gives them specific access. For example, an admin user can create, update and delete a resource, but a normal user can only read a resource.
@@ -81,12 +85,12 @@ model User {
 
 ### Middleware
 
-In the `middleware` directory, create a new file called `authRoute.js`. In the `authRoute.js` file, add the following code:
+In the `middleware` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import jwt from "jsonwebtoken";
 
-const authRoute = (req, res, next) => {
+const auth = (req, res, next) => {
   try {
     /**
      * The authorization request header provides information that authenticates
@@ -143,9 +147,8 @@ In the `controllers/v1` directory, create a new file called `auth.js`. In the `a
 ```js
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+import prisma from "../../prisma/client";
 
 const register = async (req, res) => {
   try {
