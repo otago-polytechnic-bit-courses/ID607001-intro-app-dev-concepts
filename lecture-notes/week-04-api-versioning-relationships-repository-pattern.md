@@ -294,9 +294,7 @@ The repository pattern is a design pattern that separates the data access logic 
 In the root directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "../prisma/client";
 
 class InstitutionRepository {
   async create(data) {
@@ -333,8 +331,6 @@ export default new InstitutionRepository();
 In the `controllers/v1/institution.js` file, update the following code.
 
 ```javascript
-import prisma from "../../prisma/client.js";
-
 import institutionRepository from "../../repositories/institution.js";
 
 const createInstitution = async (req, res) => {
