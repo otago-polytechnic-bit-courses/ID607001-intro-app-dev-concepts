@@ -94,6 +94,13 @@ In this class, we will use the **Accept Header** to perform content negotiation.
 
 ### Middleware
 
+**Middleware** is a function that has access to the request object (`req`), the response object (`res`), and the next middleware function in the application's request-response cycle. Middleware functions can perform the following tasks:
+
+- Execute any code.
+- Make changes to the request and the response objects.
+- End the request-response cycle.
+- Call the next middleware function in the stack.
+
 In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `utils.js`. Add the following code.
 
 ```javascript
