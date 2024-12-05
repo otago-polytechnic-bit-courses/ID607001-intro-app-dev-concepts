@@ -32,7 +32,7 @@ npm install joi
 
 ## Validation Middleware
 
-In the `middleware` directory, create a new file called `validation.js`.In the `validation.js` file, add the following code.
+In the `middleware` directory, create a new file called `institution.js`.In the `institution.js` file, add the following code.
 
 ```javascript
 import Joi from "joi";
@@ -129,7 +129,7 @@ import {
 import {
   validatePostInstitution,
   validatePutInstitution,
-} from "../../middleware/validation.js";
+} from "../../middleware/institution.js";
 
 const router = express.Router();
 
