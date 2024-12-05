@@ -28,11 +28,13 @@ To get started, open a terminal and run the following.
 npm install joi
 ```
 
+> **Note:** There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator. 
+
 ---
 
 ## Validation Middleware
 
-In the `middleware` directory, create a new file called `institution.js`.In the `institution.js` file, add the following code.
+In the `middleware` directory, create a new directory called `validation`. In the `validation` directory, create a new file called `institution.js`.In the `institution.js` file, add the following code.
 
 ```javascript
 import Joi from "joi";
@@ -129,7 +131,7 @@ import {
 import {
   validatePostInstitution,
   validatePutInstitution,
-} from "../../middleware/institution.js";
+} from "../../middleware/validation/institution.js";
 
 const router = express.Router();
 
