@@ -137,7 +137,7 @@ The `.env` file is used to store environment variables. For example, database co
 
 ---
 
-### Environment Variables File
+### .env File 
 
 A **.env** file is used to store environment variables. It is used to store sensitive information. For example, database connection string.
 
@@ -150,10 +150,24 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 Update the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
+NODE_ENV=development
 DATABASE_URL="<Render PostgreSQL external database URL>"
 ```
 
 > **Note:** The `.env` file is not committed to **Git**. The **Node** `.gitignore` file ignores the `.env` file.
+
+---
+
+### .env.example File
+
+The `.env.example` file is used to provide an example of the `.env` file. It is committed to **Git**. It is used to show other developers what environment variables are required. It is also used to provide default values. Here is an example of the `.env.example` file.
+
+```bash
+NODE_ENV=development
+DATABASE_URL=
+```
+
+> **Note:** The `.env.example` file is committed to **Git**. The **Node** `.gitignore` file does not ignore the `.env.example` file.
 
 ---
 

@@ -16,6 +16,38 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Logging
 
+Logging is the process of recording events that occur in an application. It is a crucial part of the development process. Logging helps developers understand what is happening in the application, especially when something goes wrong. It is also useful for monitoring the application's performance and security. There are different types of logs, such as error logs, warning logs, info logs, and debug logs. Each type of log provides different information about the application's behaviour.
+
+To get started, run the following command:
+
+```bash
+npm install winston
+```
+
+Check the `package.json` file to ensure you have installed `winston`.
+
+In the `middleware` directory, create a new file called `logger.js`. In the `logger.js` file, add the following code:
+
+```js
+import winston from "winston";
+
+const logger = winston.createLogger({
+  level: "info",
+  format: winston.format.json(),
+  defaultMeta: { service: "user-service" },
+  transports: [
+    new winston.transports.File({ filename: "error.log", level: "error" }),
+    new winston.transports.File({ filename: "combined.log" }),
+  ],
+});
+
+if (process.env.NODE_ENV !== "production") {
+  logger.add(new winston.transports.Console({ format: winston.format.simple() }));
+} 
+
+export default logger;
+```
+
 ---
 
 ## Authentication and JWT
@@ -483,7 +515,7 @@ Add the `security` block under the `tags` block".
 In the `app.js` file, add the following imports:
 
 ```js
-import auth from "./middleware/auth.js";
+import auth from "./middleware/auth/auth.js";
 
 import authRoutes from "./routes/v1/auth.js";
 ```
