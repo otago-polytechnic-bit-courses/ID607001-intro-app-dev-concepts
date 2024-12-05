@@ -490,16 +490,16 @@ export default router;
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import indexRoutes from "./routes/index.js";
+// This should be declared under - import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
 // This should be declared above app.use("/", indexRoutes);
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 
-// This should be declared under app.use(urlencoded({ extended: false }));
+// This should be declared under - app.use(urlencoded({ extended: false }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
-// This should be declared under app.use("/", indexRoutes);
+// This should be declared under - app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 ```
 
@@ -603,13 +603,13 @@ npm install swagger-ui-express swagger-jsdoc --save-dev
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import express from "express";
+// This should be declared under - import express from "express";
 import swaggerJSDoc from "swagger-jsdoc";
 
-// This should be declared under import swaggerJSDoc from "swagger-jsdoc";
+// This should be declared under - import swaggerJSDoc from "swagger-jsdoc";
 import swaggerUi from "swagger-ui-express";
 
-// This should be declared under app.use(express.json());
+// This should be declared under - app.use(express.json());
 const swaggerOptions = {
   definition: {
     openapi: "3.0.0",
@@ -630,10 +630,10 @@ const swaggerOptions = {
   apis: ["./routes/*.js"],
 };
 
-// This should be declared under const swaggerOptions = { ... };
+// This should be declared under - const swaggerOptions = { ... };
 const swaggerDocs = swaggerJSDoc(swaggerOptions);
 
-// This should be declared under app.use("/api/institutions", institutionRoutes);
+// This should be declared under - app.use("/api/institutions", institutionRoutes);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
 ```
 

@@ -51,20 +51,20 @@ Also, update the **Swagger** comments. For example, `/api/v1/institutions:` inst
 In the `app.js` file, update the import path for the `routes/v1/institution.js` file.
 
 ```javascript
-// This should be declared under import indexRoutes from "./routes/index.js";
+// This should be declared under - import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/v1/institution.js";
 ```
 
 Also, update the following code.
 
 ```javascript
-// This should be declared under app.use(express.json());
+// This should be declared under - app.use(express.json());
 const swaggerOptions = {
   // ...
   apis: ["./routes/v1/*.js"],
 };
 
-// This should be declared under app.use("/", indexRoutes);
+// This should be declared under - app.use("/", indexRoutes);
 app.use(`/api/v1/institutions`, institutionRoutes);
 ```
 
@@ -123,10 +123,10 @@ export { isContentTypeApplicationJSON };
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import institutionRoutes from "./routes/v1/institution.js";
+// This should be declared under - import institutionRoutes from "./routes/v1/institution.js";
 import { isContentTypeApplicationJSON } from "./middleware/utils.js";
 
-// This should be declared under const swaggerDocs = swaggerJSDoc(swaggerOptions);
+// This should be declared under - const swaggerDocs = swaggerJSDoc(swaggerOptions);
 app.use(isContentTypeApplicationJSON);
 ```
 
@@ -230,10 +230,10 @@ Much like the `institution.js` files, create a new `department.js` file in the `
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under import institutionRoutes from "./routes/v1/institution.js";
+// This should be declared under - import institutionRoutes from "./routes/v1/institution.js";
 import departmentRoutes from "./routes/v1/department.js";
 
-// This should be declared under app.use("/api/v1/institutions", institutionRoutes);
+// This should be declared under - app.use("/api/v1/institutions", institutionRoutes);
 app.use("/api/v1/departments", departmentRoutes);
 ```
 

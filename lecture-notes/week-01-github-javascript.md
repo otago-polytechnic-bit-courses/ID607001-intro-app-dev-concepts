@@ -2,7 +2,7 @@
 
 ## GitHub
 
-This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/WBzw8fEH>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. You will use this repository to submit your formative (non-graded) and summative (graded) assessments.
+This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/EYdgJL1H>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. You will use this repository to submit your formative (non-graded) and summative (graded) assessments.
 
 ---
 
@@ -41,6 +41,7 @@ Open up **Git Bash** or whatever alternative you see fit on your computer. Clone
 You should follow the **conventional commits** convention when committing changes to your repository. A **conventional commit** consists of a **type**, **scope** and **description**. The **type** and **description** are mandatory, while the **scope** is optional. The **type** must be one of the following:
 
 - **build**: Changes that affect the build system or external dependencies
+- **chore**: Regular code maintenance, such as refactoring or updating dependencies
 - **ci**: Changes to our CI configuration files and scripts
 - **docs**: Documentation only changes
 - **feat**: A new feature
