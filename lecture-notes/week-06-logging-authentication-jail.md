@@ -222,10 +222,15 @@ const register = async (req, res) => {
 
     user = await prisma.user.create({
       data: { firstName, lastName, emailAddress, password: hashedPassword },
+      select: { // Select only the fields you want to return
+        id: true,
+        firstName: true,
+        lastName: true,
+        emailAddress: true,
+        createdAt: true,
+        updatedAt: true,
+      }, 
     });
-
-    // Delete the password property from the user object
-    delete user.password;
 
     return res.status(201).json({
       msg: "User successfully registered",
