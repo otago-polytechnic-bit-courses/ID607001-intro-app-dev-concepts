@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-09.md)
+Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-09.md)
 
 ---
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-formative-assessment** from **week-09-formative-assessment**.
+Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-formative-assessment** from **week-09-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -80,7 +80,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Implement the above.
+Implement the code examples above.
 
 ---
 

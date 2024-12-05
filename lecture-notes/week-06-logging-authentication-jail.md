@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-05.md)
+Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-05.md)
 
 ---
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
+Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -549,7 +549,7 @@ Implement the code above for the `Institution`, `Department`, `Course` and `User
 
 ---
 
-### Task Two (Research)
+### Task Two (Independent Research)
 
 When logging in, only return the user's `id`, `firstName` and `lastName`. The response should look like the following:
 
@@ -576,4 +576,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-07.md)
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-07.md)

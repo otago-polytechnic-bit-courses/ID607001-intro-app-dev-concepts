@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-02.md)
 
 ---
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment** from **week-02-formative-assessment**.
+Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-formative-assessment** from **week-02-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -34,11 +34,11 @@ By default, **Build and deploy from a Git repository** will be selected. Click t
 
 ![](<../resources (ignore)/img/03/render-3.PNG>)
 
-Connect to your **s2-24-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 
-Name your **web service**. For example, **s2-24-intro-app-dev-repo-GitHub username**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
+Name your **web service**. For example, **s1-25-intro-app-dev-repo-GitHub username**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
 
 > **Note:** As you progress through this course, you will change the **Branch**.
 
@@ -89,7 +89,7 @@ Click the **New +** button, then click the **PostgreSQL** link.
 
 ![](<../resources (ignore)/img/03/render-11.png>)
 
-Name your **New PostgreSQL**. For example, **s2-24-intro-app-dev-repo-GitHub username**.
+Name your **New PostgreSQL**. For example, **s1-25-intro-app-dev-repo-GitHub username**.
 
 ![](<../resources (ignore)/img/03/render-12.png>)
 
@@ -120,17 +120,17 @@ The **ORM** we are going to use is **Prisma** which is an open-source **ORM** fo
 To get started, open a terminal and run the following.
 
 ```bash
-npm install @prisma/client@4.16.2
-npm install prisma@4.16.2 --save-dev
+npm install @prisma/client
+npm install prisma --save-dev
 npx prisma init
 ```
-
+ 
 > **Note:** You only need to run these once.
 
 What does each do?
 
-- `npm install @prisma/client@4.16.2`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
-- `npm install prisma@4.16.2 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
+- `npm install @prisma/client`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
+- `npm install prisma --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
 - `npx prisma init`: Initialises **Prisma** in your project. It creates the `.env` file and the `prisma` directory.
 
 The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
@@ -248,21 +248,30 @@ You will often run the `npx prisma migrate dev` and `npx prisma migrate reset --
 
 ---
 
+### Prisma Client
+
+In the `prisma` directory, create a new file called `client.js`. Add the following code.
+
+```javascript
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default prisma;
+```
+
 ### Institution Controller
 
 In the `controllers` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import { PrismaClient, Prisma } from "@prisma/client";
-
-// Create a new instance of the PrismaClient
-const prisma = new PrismaClient();
+import prisma from "../prisma/client.js";
 ```
 
 To create an institution, use the `prisma.institution.create` function.
 
 ```js
-// Add this code under const prisma = new PrismaClient();
+// Add the following code under import prisma from "../prisma/client.js";
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
   try {
@@ -285,19 +294,9 @@ const createInstitution = async (req, res) => {
       data: newInstitutions,
     });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      {
-        if (err.code === "P2002") {
-          return res.status(409).json({
-            message: "Institution with the same name already exists",
-          });
-        }
-      }
-    } else {
-      return res.status(500).json({
-        message: err.message,
-      });
-    }
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 ```
@@ -305,7 +304,7 @@ const createInstitution = async (req, res) => {
 To get all institutions, use the `prisma.institution.findMany` function.
 
 ```js
-// Add this code under the createInstitution function
+// Add the following code under the createInstitution function
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany();
@@ -329,7 +328,7 @@ const getInstitutions = async (req, res) => {
 To get an institution, use the `prisma.institution.findUnique` function.
 
 ```js
-// Add this code under the getInstitutions function
+// Add the following code under the getInstitutions function
 const getInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -338,11 +337,9 @@ const getInstitution = async (req, res) => {
 
     // Check if there is no institution
     if (!institution) {
-      return res
-        .status(404)
-        .json({
-          message: `No institution with the id: ${req.params.id} found`,
-        });
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
     }
 
     return res.status(200).json({
@@ -359,7 +356,7 @@ const getInstitution = async (req, res) => {
 To update an institution, use the `prisma.institution.update` function.
 
 ```js
-// Add this code under the getInstitution function
+// Add the following code under the getInstitution function
 const updateInstitution = async (req, res) => {
   try {
     // Find the institution by id
@@ -369,11 +366,9 @@ const updateInstitution = async (req, res) => {
 
     // Check if there is no institution
     if (!institution) {
-      return res
-        .status(404)
-        .json({
-          message: `No institution with the id: ${req.params.id} found`,
-        });
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
     }
 
     // Update the institution
@@ -392,17 +387,9 @@ const updateInstitution = async (req, res) => {
       data: institution,
     });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      if (err.code === "P2002") {
-        return res.status(409).json({
-          message: "Institution with the same name already exists",
-        });
-      }
-    } else {
-      return res.status(500).json({
-        message: err.message,
-      });
-    }
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 ```
@@ -410,7 +397,7 @@ const updateInstitution = async (req, res) => {
 To delete an institution, use the `prisma.institution.delete` function.
 
 ```js
-// Add this code under the updateInstitution function
+// Add the following code under the updateInstitution function
 const deleteInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -418,11 +405,9 @@ const deleteInstitution = async (req, res) => {
     });
 
     if (!institution) {
-      return res
-        .status(404)
-        .json({
-          message: `No institution with the id: ${req.params.id} found`,
-        });
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
     }
 
     await prisma.institution.delete({
@@ -443,7 +428,7 @@ const deleteInstitution = async (req, res) => {
 To use the functions in the `institution.js` file, export them.
 
 ```js
-// Add this code under the deleteInstitution function
+// Add the following code under the deleteInstitution function
 export {
   createInstitution,
   getInstitutions,
@@ -477,6 +462,9 @@ router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
 router.put("/:id", updateInstitution);
 router.delete("/:id", deleteInstitution);
+
+// Note: You can chain the routes like this -
+// router.route("/").post(createInstitution).get(getInstitutions);
 
 export default router;
 ```
@@ -934,12 +922,12 @@ There can be quite a lot of properties in a **Swagger** comment. Here are some o
 
 - `@swagger`: This is used to specify the **OpenAPI Specification** version.
 - `components`: This is used to define reusable components.
-- `schemas`: This is used to define the data model. 
+- `schemas`: This is used to define the data model.
 - `summary`: This is a short summary of the operation.
-- `tags`: This is used to group operations together. 
+- `tags`: This is used to group operations together.
 - `requestBody`: This is used to specify the request body.
 - `parameters`: This is used to specify the parameters.
-- `responses`: This is used to specify the responses. 
+- `responses`: This is used to specify the responses.
 
 > **Note:** It is tedious to write **Swagger** comments. However, it is good practice to write them. It will help you and other developers understand the API.
 
@@ -1067,17 +1055,17 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Implement the above.
+Implement the code examples above.
 
 ---
 
-### Task Two - Optional Fields (Research)
+### Task Two - Optional Fields (Independent Research)
 
 In the `schema.prisma` file, update the `Institution` model to include optional fields for `phoneNumber` and `website`.
 
 ---
 
-### Task Three - Prisma Studio (Research)
+### Task Three - Prisma Studio (Independent Research)
 
 **Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 
@@ -1093,4 +1081,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-04.md)
+Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-04.md)

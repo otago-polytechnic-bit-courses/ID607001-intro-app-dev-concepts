@@ -489,7 +489,7 @@ In this course, we will use the **object literal** syntax to create **objects**.
 
 ## Formative Assessment
 
-Copy the file `week-01-formative-assessment.js` into your **s2-24-intro-app-dev-repo** repository. Open your **s2-24-intro-app-dev-repo** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-formative-assessment.js` to run the file. You should see the following output.
+Copy the file `week-01-formative-assessment.js` into your **s1-25-intro-app-dev-repo** repository. Open your **s1-25-intro-app-dev-repo** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
 $ node week-01-formative-assessment.js
@@ -804,4 +804,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-02.md)
+Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-02.md)

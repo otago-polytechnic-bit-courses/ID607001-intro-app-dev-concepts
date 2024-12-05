@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-04.md)
+Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-04.md)
 
 ---
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**.
+Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -124,7 +124,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../../controllers/institution.js";
+} from "../../controllers/v1/institution.js";
 
 import {
   validatePostInstitution,
@@ -383,7 +383,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Implement the above.
+Implement the code examples above.
 
 ---
 
@@ -393,13 +393,13 @@ Implement validation for the `Department`, `Course`, and `User` resources.
 
 ---
 
-### Task Three
+### Task Three (Independent Research)
 
 Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
 
 ---
 
-### Task Four (Research)
+### Task Four (Independent Research)
 
 Pagination is the process of dividing a large collection of resources into smaller pages to improve performance and user experience. By paginating the results of an API request, users can retrieve a subset of resources at a time, rather than loading the entire collection at once.
 
@@ -415,4 +415,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-06.md)
+Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-06.md)

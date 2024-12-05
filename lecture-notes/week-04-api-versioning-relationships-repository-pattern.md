@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-03.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-03.md)
 
 ---
 
 ## Before We Start
 
-Open your **s2-24-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
+Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-formative-assessment** from **week-03-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -280,14 +280,14 @@ The repository pattern is a design pattern that separates the data access logic 
 - **Testability:** The repository pattern makes it easier to test the data access logic and the business logic separately. For example, you can write unit tests for the data access logic without having to set up a database.
 - **Flexibility:** The repository pattern makes it easier to switch between different data access technologies. For example, you can switch from a SQL database to a NoSQL database without changing the business logic.
 
---- 
+---
 
 ### Institution Repository Class
 
 In the root directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institutionRepository.js`. Add the following code.
 
 ```javascript
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
@@ -326,7 +326,7 @@ export default new InstitutionRepository();
 In the `controllers/v1/institution.js` file, update the following code.
 
 ```javascript
-import { Prisma } from "@prisma/client";
+import prisma from "../../prisma/client.js";
 
 import institutionRepository from "../../repositories/institutionRepository.js";
 
@@ -339,17 +339,9 @@ const createInstitution = async (req, res) => {
       data: newInstitutions,
     });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      if (err.code === "P2002") {
-        return res.status(409).json({
-          message: "Institution with the same name already exists",
-        });
-      }
-    } else {
-      return res.status(500).json({
-        message: err.message,
-      });
-    }
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 
@@ -401,17 +393,9 @@ const updateInstitution = async (req, res) => {
       data: institution,
     });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      if (err.code === "P2002") {
-        return res.status(409).json({
-          message: "Institution with the same name already exists",
-        });
-      }
-    } else {
-      return res.status(500).json({
-        message: err.message,
-      });
-    }
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 
@@ -457,7 +441,7 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 
 ### Task One
 
-Implement the above.
+Implement the code examples above.
 
 ---
 
@@ -471,53 +455,54 @@ In the `controllers` and `routes` directories, there is a lot of duplicate code.
 
 Create a `User` model with the following fields:
 
-   - `id`
-   - `firstName`
-   - `lastName`
-   - `emailAddress` which should be unique
-   - `password` which does not need to be hashed
-   - `createdAt`
-   - `updatedAt`
+- `id`
+- `firstName`
+- `lastName`
+- `emailAddress` which should be unique
+- `password` which does not need to be hashed
+- `createdAt`
+- `updatedAt`
 
 Create the necessary controller, router and repository files for the `User` model.
 
 In the router file, create Swagger documentation for the following routes:
 
-   - GET `/api/v1/users`
-   - GET `/api/v1/users/{id}`
-   - POST `/api/v1/users`
-   - PUT `/api/v1/users/{id}`
-   - DELETE `/api/v1/users/{id}`
+- GET `/api/v1/users`
+- GET `/api/v1/users/{id}`
+- POST `/api/v1/users`
+- PUT `/api/v1/users/{id}`
+- DELETE `/api/v1/users/{id}`
+
 ---
 
 ### Task Four
 
 Create a `Course` model with the following fields:
 
-   - `id`
-   - `code`
-   - `name`
-   - `description`
-   - `departmentId`
-   - `userId`
-   - `createdAt`
-   - `updatedAt`
+- `id`
+- `code`
+- `name`
+- `description`
+- `departmentId`
+- `userId`
+- `createdAt`
+- `updatedAt`
 
 Create the necessary controller, router and repository files for the `Course` model.
 
 In the router file, create **Swagger** documentation for the following routes:
 
-   - GET `/api/v1/courses`
-   - GET `/api/v1/courses/{id}`
-   - POST `/api/v1/courses`
-   - PUT `/api/v1/courses/{id}`
-   - DELETE `/api/v1/courses/{id}`
+- GET `/api/v1/courses`
+- GET `/api/v1/courses/{id}`
+- POST `/api/v1/courses`
+- PUT `/api/v1/courses/{id}`
+- DELETE `/api/v1/courses/{id}`
 
 ---
 
-### Task Five - Enums (Research)
+### Task Five - Enums (Independent Research)
 
-In **Prisma**, you can use enums. An enum is a special type that defines a set of constants. Create an enum called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a role field to the `User` model with the `@default(LEARNER)` directive. The role field should be of type `Role`. 
+In **Prisma**, you can use enums. An enum is a special type that defines a set of constants. Create an enum called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a role field to the `User` model with the `@default(LEARNER)` directive. The role field should be of type `Role`.
 
 > What happens when you try to create a user with a role that is not one of the constants defined in the enum?
 
@@ -533,4 +518,4 @@ Create a new pull request and assign **grayson-orr** to review your practical su
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-24/lecture-notes/week-05.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-05.md)
