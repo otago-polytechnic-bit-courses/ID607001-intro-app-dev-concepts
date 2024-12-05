@@ -34,7 +34,7 @@ npm install joi
 
 ## Validation Middleware
 
-In the `middleware` directory, create a new directory called `validation`. In the `validation` directory, create a new file called `institution.js`.In the `institution.js` file, add the following code.
+In the `middleware` directory, create a new directory called `validation`. In the `validation` directory, create a new file called `institution.js`. In the `institution.js` file, add the following code.
 
 ```javascript
 import Joi from "joi";
