@@ -31,9 +31,21 @@ In the `middleware` directory, create a new file called `logger.js`. In the `log
 ```js
 import winston from "winston";
 
+const { combine, timestamp, printf, colorize, errors } = winston.format;
+
+const logFormat = printf(({ level, message, timestamp, stack }) => {
+  return `${timestamp} [${level}]: ${stack || message}`;
+});
+
 const logger = winston.createLogger({
-  level: "info",
-  format: winston.format.json(),
+  level: process.env.LOG_LEVEL || "info",
+  format: combine(
+    timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
+    errors({ stack: true }),
+    process.env.NODE_ENV === "production"
+      ? winston.format.json()
+      : combine(colorize(), logFormat)
+  ),
   defaultMeta: { service: "user-service" },
   transports: [
     new winston.transports.File({ filename: "error.log", level: "error" }),
@@ -43,7 +55,9 @@ const logger = winston.createLogger({
 
 if (process.env.NODE_ENV !== "production") {
   logger.add(
-    new winston.transports.Console({ format: winston.format.simple() })
+    new winston.transports.Console({
+      format: combine(colorize(), logFormat),
+    })
   );
 }
 
@@ -222,14 +236,15 @@ const register = async (req, res) => {
 
     user = await prisma.user.create({
       data: { firstName, lastName, emailAddress, password: hashedPassword },
-      select: { // Select only the fields you want to return
+      select: {
+        // Select only the fields you want to return
         id: true,
         firstName: true,
         lastName: true,
         emailAddress: true,
         createdAt: true,
         updatedAt: true,
-      }, 
+      },
     });
 
     return res.status(201).json({
