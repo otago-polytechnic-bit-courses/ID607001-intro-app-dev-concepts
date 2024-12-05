@@ -124,7 +124,7 @@ npm install @prisma/client
 npm install prisma --save-dev
 npx prisma init
 ```
- 
+
 > **Note:** You only need to run these once.
 
 What does each do?
@@ -244,6 +244,17 @@ You will often run the `npx prisma migrate dev` and `npx prisma migrate reset --
 ```json
 "prisma:migrate": "npx prisma migrate dev",
 "prisma:reset": "npx prisma migrate reset --force"
+```
+
+Your `scripts` block should look like this.
+
+```json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon app.js",
+  "prisma:migrate": "npx prisma migrate dev",
+  "prisma:reset": "npx prisma migrate reset --force"
+},
 ```
 
 ---
@@ -549,19 +560,9 @@ const createInstitution = async (req, res) => {
       data: newInstitutions,
     });
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError) {
-      {
-        if (err.code === "P2002") {
-          return res.status(409).json({
-            message: "Institution with the same name already exists",
-          });
-        }
-      }
-    } else {
-      return res.status(500).json({
-        message: err.message,
-      });
-    }
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 ```
