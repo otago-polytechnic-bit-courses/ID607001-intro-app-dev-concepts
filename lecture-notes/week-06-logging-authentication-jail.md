@@ -16,7 +16,7 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Logging
 
-Logging is the process of recording events that occur in an application. It is a crucial part of the development process. Logging helps developers understand what is happening in the application, especially when something goes wrong. It is also useful for monitoring the application's performance and security. There are different types of logs, such as error logs, warning logs, info logs, and debug logs. Each type of log provides different information about the application's behaviour.
+**Logging** is the process of recording events that occur in an application. It is a crucial part of the development process. Logging helps developers understand what is happening in the application, especially when something goes wrong. It is also useful for monitoring the application's performance and security. There are different types of logs, such as error logs, warning logs, info logs, and debug logs. Each type of log provides different information about the application's behaviour.
 
 To get started, run the following command:
 
