@@ -48,6 +48,22 @@ if (process.env.NODE_ENV !== "production") {
 export default logger;
 ```
 
+In the `app.js` file, add the following import:
+
+```js
+
+import logger from "./middleware/logger.js";
+```
+
+Add the following code to the `app.js` file:
+
+```js
+app.use((req, res, next) => {
+  logger.info(`${req.method} ${req.originalUrl}`);
+  next();
+});
+```
+
 ---
 
 ## Authentication and JWT
