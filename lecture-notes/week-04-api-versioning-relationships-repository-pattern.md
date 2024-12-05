@@ -503,16 +503,6 @@ In the router file, create **Swagger** documentation for the following routes:
 
 ---
 
-### Task Five - Enums (Independent Research)
-
-In **Prisma**, you can use enums. An enum is a special type that defines a set of constants. Create an enum called `Role` with the following constants: `LEARNER` and `LECTURER`. Add a role field to the `User` model with the `@default(LEARNER)` directive. The role field should be of type `Role`.
-
-> What happens when you try to create a user with a role that is not one of the constants defined in the enum?
-
-In the router file, update the **Swagger** documentation include the role field.
-
----
-
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

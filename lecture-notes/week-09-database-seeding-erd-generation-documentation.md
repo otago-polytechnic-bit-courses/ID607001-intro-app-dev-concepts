@@ -32,14 +32,14 @@ const main = async () => {
         lastName: "Doe",
         emailAddress: "john.doe@example.com",
         password: "password123",
-        role: "ADMIN_USER",
+        role: "ADMIN",
       },
       {
         firstName: "Jane",
         lastName: "Doe",
         emailAddress: "jane.doe@example.com",
         password: "password123",
-        role: "ADMIN_USER",
+        role: "ADMIN",
       },
     ];
 

@@ -22,7 +22,31 @@ Authorisation/access control is a process of determining if a user has the right
 
 ### Schema
 
-In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN_USER` and `BASIC_USER`. Update the `User` model to include a `Role` field called `role` with the default value of `BASIC_USER`.
+In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN` and `BASIC`. 
+
+```prisma
+enum Role {
+  ADMIN
+  BASIC
+}
+```
+
+Update the `User` model to include a `Role` field called `role` with the default value of `BASIC`. 
+
+```prisma
+model User {
+  id               String        @id @default(uuid())
+  firstName        String
+  lastName         String
+  emailAddress     String        @unique
+  password         String
+  loginAttempts    Int           @default(0)
+  lastLoginAttempt DateTime?
+  role             Role          @default(BASIC)
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @default(now())
+}
+```
 
 ---
 
@@ -35,7 +59,7 @@ const register = async (req, res) => {
   try {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
-    if (role === "ADMIN_USER") {
+    if (role === "ADMIN") {
       return res.status(403).json({ msg: "User cannot register as an admin" });
     }
 
@@ -52,7 +76,7 @@ const register = async (req, res) => {
         lastName,
         emailAddress,
         password: hashedPassword,
-        role: "BASIC_USER",
+        role: "BASIC",
       },
     });
 
@@ -88,7 +112,7 @@ const adminAuthorisation = async (req, res, next) => {
     const user = await prisma.user.findUnique({ where: { id: id } });
 
     // Check if the user is an admin
-    if (user.role !== "ADMIN_USER") {
+    if (user.role !== "ADMIN") {
       return res.status(403).json({
         msg: "Not authorized to access this route",
       });
@@ -153,7 +177,7 @@ Creating a new institution as a basic user.
 
 ![](<../resources (ignore)/img/07/capture-4.PNG>)
 
-If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMIN_USER")` with `if (user.role !== "BASIC_USER")` in the `middleware/authorisation.js` file. 
+If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMIN")` with `if (user.role !== "BASIC")` in the `middleware/authorisation.js` file. 
 
 ---
 
