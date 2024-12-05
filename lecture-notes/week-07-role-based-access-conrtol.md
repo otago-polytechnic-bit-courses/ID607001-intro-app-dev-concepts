@@ -142,7 +142,7 @@ import express from "express";
 
 // Note: Controller and validation imports have been removed for brevity
 
-import adminAuthorisation from "../../middleware/adminAuthorisation.js";
+import authorisation from "../../middleware/auth/authorisation.js";
 
 const router = express.Router();
 
@@ -151,7 +151,7 @@ const router = express.Router();
 router.post(
   "/",
   validatePostInstitution,
-  adminAuthorisation,
+  authorisation,
   createInstitution
 );
 router.get("/", getInstitutions);
