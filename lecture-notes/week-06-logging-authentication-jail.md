@@ -483,7 +483,7 @@ Add the `security` block under the `tags` block".
 In the `app.js` file, add the following imports:
 
 ```js
-import authRouteMiddleware from "./middleware/authRoute.js";
+import auth from "./middleware/auth.js";
 
 import authRoutes from "./routes/v1/auth.js";
 ```
@@ -497,7 +497,7 @@ app.use("/api/v1/auth", authRoutes);
 Update the following routes for `/institutions`:
 
 ```js
-app.use("/api/v1/institutions", authRouteMiddleware, institutionRoutes); // Authenticated route
+app.use("/api/v1/institutions", auth, institutionRoutes); // Authenticated route
 ```
 
 ---
