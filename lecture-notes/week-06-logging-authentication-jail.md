@@ -42,8 +42,10 @@ const logger = winston.createLogger({
 });
 
 if (process.env.NODE_ENV !== "production") {
-  logger.add(new winston.transports.Console({ format: winston.format.simple() }));
-} 
+  logger.add(
+    new winston.transports.Console({ format: winston.format.simple() })
+  );
+}
 
 export default logger;
 ```
@@ -51,7 +53,6 @@ export default logger;
 In the `app.js` file, add the following import:
 
 ```js
-
 import logger from "./middleware/logger.js";
 ```
 
@@ -144,7 +145,7 @@ const auth = (req, res, next) => {
      * The authorization request header provides information that authenticates
      * a user agent with a server, allowing access to a protected resource. The
      * information will be a bearer token, and a user agent is a middle man between
-     * you and the server. An example of a user agent is Postman or a web browser
+     * you and the server. An example of a user agent is Swagger or a web browser
      * like Google Chrome
      */
     const authHeader = req.headers.authorization;
