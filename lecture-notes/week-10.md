@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-09.md)
+Link to the previous class: [Week 09](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-09-database-seeding-erd-generation-documentation.md)
 
 ---
 
