@@ -22,7 +22,7 @@ Authorisation/access control is a process of determining if a user has the right
 
 ### Schema
 
-In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN` and `BASIC`. 
+In the `schema.prisma` file, add a new enum called `Role` with the values `ADMIN` and `BASIC`.
 
 ```prisma
 enum Role {
@@ -31,7 +31,7 @@ enum Role {
 }
 ```
 
-Update the `User` model to include a `Role` field called `role` with the default value of `BASIC`. 
+Update the `User` model to include a `Role` field called `role` with the default value of `BASIC`.
 
 ```prisma
 model User {
@@ -78,9 +78,15 @@ const register = async (req, res) => {
         password: hashedPassword,
         role: "BASIC",
       },
+      select: {
+        id: true,
+        firstName: true,
+        lastName: true,
+        emailAddress: true,
+        createdAt: true,
+        updatedAt: true,
+      },
     });
-
-    delete user.password;
 
     return res.status(201).json({
       msg: "User successfully registered",
@@ -98,14 +104,12 @@ const register = async (req, res) => {
 
 ### Authorisation Middleware
 
-In the `middleware` directory, create a new file called `adminAuthorisation.js`. In the `adminAuthorisation.js` file, add the following code:
+In the `middleware/auth` directory, create a new file called `authorisation.js`. In the `authorisation.js` file, add the following code:
 
 ```js
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../prisma/client.js";
 
-const prisma = new PrismaClient();
-
-const adminAuthorisation = async (req, res, next) => {
+const authorisation = async (req, res, next) => {
   try {
     const { id } = req.user;
 
@@ -126,7 +130,7 @@ const adminAuthorisation = async (req, res, next) => {
   }
 };
 
-export default adminAuthorisation;
+export default authorisation;
 ```
 
 ---
@@ -144,7 +148,12 @@ const router = express.Router();
 
 // Note: Swagger documentation has been removed for brevity
 
-router.post("/", validatePostInstitution, adminAuthorisation, createInstitution);
+router.post(
+  "/",
+  validatePostInstitution,
+  adminAuthorisation,
+  createInstitution
+);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
@@ -173,11 +182,11 @@ Registering a new basic user.
 
 ### POST Example
 
-Creating a new institution as a basic user. 
+Creating a new institution as a basic user.
 
 ![](<../resources (ignore)/img/07/capture-4.PNG>)
 
-If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMIN")` with `if (user.role !== "BASIC")` in the `middleware/authorisation.js` file. 
+If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMIN")` with `if (user.role !== "BASIC")` in the `middleware/authorisation.js` file.
 
 ---
 
