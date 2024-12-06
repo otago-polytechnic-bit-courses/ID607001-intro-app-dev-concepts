@@ -621,6 +621,12 @@ Implement the code above for the `Institution`, `Department`, `Course` and `User
 
 ---
 
+### Task Two (Independent Research)
+
+Implement a logout route. The route should invalidate the token. You can do this by storing the token in a blacklist. When a user logs out, add the token to the blacklist. When a user tries to access a protected route with a blacklisted token, return a 403 forbidden status code and message.
+
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
