@@ -102,6 +102,8 @@ Implement the code examples above.
 
 Update the `rateLimit` function to include a custom message when the rate limit is exceeded. For example, Too many requests from this IP, please try again after 15 minutes.
 
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
