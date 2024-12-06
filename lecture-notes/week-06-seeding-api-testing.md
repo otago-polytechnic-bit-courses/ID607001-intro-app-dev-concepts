@@ -23,7 +23,7 @@ import bcryptjs from "bcryptjs";
 
 import prisma from "./client.js";
 
-import { validatePostUser } from "../middleware/validation/user.js";
+import { validatePostUser } from "../middleware/validation/user.js"; // Note: You need to create validation middleware for the User model
 
 const hashPassword = async (password) => {
   const salt = await bcryptjs.genSalt();
