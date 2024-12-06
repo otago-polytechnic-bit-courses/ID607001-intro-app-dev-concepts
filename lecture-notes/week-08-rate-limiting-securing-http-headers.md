@@ -70,12 +70,12 @@ Add the following **middleware**:
 
 ```js
 // This should be declared under - app.use( helmet({ xPoweredBy: true, }));
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
-});
-
-app.use(limiter);
+app.use(
+  rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+  })
+);
 ```
 
 This is a basic example of rate limiting. You can customise the rate limiting to suit your application. For example, you can limit requests based on the user's **IP address**.
@@ -100,7 +100,7 @@ Implement the code examples above.
 
 ### Task Two
 
-Update the `limiter` variable to include a custom message when the rate limit is exceeded. For example, Too many requests from this IP, please try again after 15 minutes.
+Update the `rateLimit` function to include a custom message when the rate limit is exceeded. For example, Too many requests from this IP, please try again after 15 minutes.
 
 ### Submission
 
