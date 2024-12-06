@@ -19,10 +19,29 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed.js` and add the following code.
 
 ```javascript
-import { PrismaClient } from "@prisma/client";
 import bcryptjs from "bcryptjs";
 
-const prisma = new PrismaClient();
+import prisma from "./client.js";
+
+import { validatePostUser } from "../middleware/validation/user.js";
+
+const hashPassword = async (password) => {
+  const salt = await bcryptjs.genSalt();
+  return bcryptjs.hash(password, salt);
+};
+
+// Simulate an Express-like request and response for validation
+const validateUser = (user) => {
+  const req = { body: user };
+  const res = {
+    json: (message) => {
+      console.log(message.message);
+      process.exit(1);
+    },
+  };
+
+  validatePostUser(req, res, () => {}); // Pass an empty function since we're not using next()
+};
 
 const main = async () => {
   try {
@@ -32,7 +51,7 @@ const main = async () => {
         lastName: "Doe",
         emailAddress: "john.doe@example.com",
         password: "password123",
-        role: "ADMIN",
+        role: "asa",
       },
       {
         firstName: "Jane",
@@ -45,17 +64,19 @@ const main = async () => {
 
     const newUserData = await Promise.all(
       userData.map(async (user) => {
-        const salt = await bcryptjs.genSalt();
-        const hashedPassword = await bcryptjs.hash(user.password, salt);
-        return { ...user, password: hashedPassword };
+        validateUser(user);
+        return { ...user, password: await hashPassword(user.password) };
       })
     );
 
     await prisma.user.createMany({
       data: newUserData,
+      skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
+
+    console.log("Users successfully seeded");
   } catch (err) {
-    console.error(err);
+    console.error("Seeding failed:", err.message);
   } finally {
     await prisma.$disconnect();
     process.exit(0);
@@ -314,9 +335,9 @@ Let us break down one test...
 
 - `it("should create institution", (done) => { ... })`: Defines a test case using Mocha's `it` function. The first argument describes the test case, and the second argument is a callback function that receives a `done` parameter which is a function to be called when the asynchronous test is complete.
 - `chai.request(app)`: Uses Chai HTTP, a Chai plugin for testing HTTP APIs, to make a request to the app. The app should be an instance of your Express application.
-- `.post(/api/v1/institutions)`: Specifies that a POST request should be made to the `/institutions` endpoint. 
+- `.post(/api/v1/institutions)`: Specifies that a POST request should be made to the `/institutions` endpoint.
 - `.send({ SOME DATA })`: Sends the institution object as the request payload.
-- `.end((req, res) => { ... })`: Defines a callback function to be executed when the request is complete. 
+- `.end((req, res) => { ... })`: Defines a callback function to be executed when the request is complete.
 
 Inside the callback function:
 
