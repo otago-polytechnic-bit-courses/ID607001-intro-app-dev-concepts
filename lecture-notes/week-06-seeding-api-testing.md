@@ -34,10 +34,12 @@ const hashPassword = async (password) => {
 const validateUser = (user) => {
   const req = { body: user };
   const res = {
-    json: (message) => {
-      console.log(message.message);
-      process.exit(1);
-    },
+    status: (code) => ({
+      json: (message) => {
+        console.log(message.message);
+        process.exit(1);
+      },
+    }),
   };
 
   validatePostUser(req, res, () => {}); // Pass an empty function since we're not using next()
@@ -51,7 +53,7 @@ const main = async () => {
         lastName: "Doe",
         emailAddress: "john.doe@example.com",
         password: "password123",
-        role: "asa",
+        role: "ADMIN",
       },
       {
         firstName: "Jane",
