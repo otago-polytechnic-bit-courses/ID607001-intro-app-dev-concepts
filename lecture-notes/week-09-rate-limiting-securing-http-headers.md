@@ -44,6 +44,16 @@ app.use(
 );
 ```
 
+> **Note:** When you perform an **HTTP** request, you should see the **X-Powered-By** header in the response. After adding the **helmet** middleware, the **X-Powered-By** header should be removed.
+
+Before.
+
+![](<../resources (ignore)/img/09/helmet-1.PNG>)
+
+After.
+
+![](<../resources (ignore)/img/09/helmet-2.PNG>)
+
 ---
 
 ## Rate Limiting
@@ -79,6 +89,10 @@ app.use(
 ```
 
 This is a basic example of rate limiting. You can customise the rate limiting to suit your application. For example, you can limit requests based on the user's **IP address**.
+
+> **Note:** You should see additional headers in the response. For example, **X-RateLimit-Limit**, **X-RateLimit-Remaining**, and **X-RateLimit-Reset**.
+
+![](<../resources (ignore)/img/09/rate-limit-1.PNG>)
 
 ---
 
