@@ -92,6 +92,8 @@ This is a basic example of rate limiting. You can customise the rate limiting to
 
 > **Note:** You should see additional headers in the response. For example, **X-RateLimit-Limit**, **X-RateLimit-Remaining**, and **X-RateLimit-Reset**.
 
+After.
+
 ![](<../resources (ignore)/img/09/rate-limit-1.PNG>)
 
 ---
