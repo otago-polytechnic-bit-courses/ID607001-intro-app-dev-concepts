@@ -60,12 +60,12 @@ const register = async (req, res) => {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
     if (role === "ADMIN") {
-      return res.status(403).json({ msg: "User cannot register as an admin" });
+      return res.status(403).json({ message: "User cannot register as an admin" });
     }
 
     let user = await prisma.user.findUnique({ where: { emailAddress } });
 
-    if (user) return res.status(409).json({ msg: "User already exists" });
+    if (user) return res.status(409).json({ message: "User already exists" });
 
     const salt = await bcryptjs.genSalt();
     const hashedPassword = await bcryptjs.hash(password, salt);
@@ -89,12 +89,12 @@ const register = async (req, res) => {
     });
 
     return res.status(201).json({
-      msg: "User successfully registered",
+      message: "User successfully registered",
       data: user,
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -118,14 +118,14 @@ const authorisation = async (req, res, next) => {
     // Check if the user is an admin
     if (user.role !== "ADMIN") {
       return res.status(403).json({
-        msg: "Not authorized to access this route",
+        message: "Not authorized to access this route",
       });
     }
 
     next();
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };

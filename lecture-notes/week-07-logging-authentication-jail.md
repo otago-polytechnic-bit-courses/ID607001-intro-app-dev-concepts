@@ -171,7 +171,7 @@ const auth = (req, res, next) => {
      */
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(403).json({
-        msg: "No token provided",
+        message: "No token provided",
       });
     }
 
@@ -191,7 +191,7 @@ const auth = (req, res, next) => {
     return next();
   } catch (err) {
     return res.status(403).json({
-      msg: "Not authorized to access this route",
+      message: "Not authorized to access this route",
     });
   }
 };
@@ -219,7 +219,7 @@ const register = async (req, res) => {
 
     let user = await prisma.user.findUnique({ where: { emailAddress } });
 
-    if (user) return res.status(409).json({ msg: "User already exists" });
+    if (user) return res.status(409).json({ message: "User already exists" });
 
     /**
      * A salt is random bits added to a password before it is hashed. Salts
@@ -248,12 +248,12 @@ const register = async (req, res) => {
     });
 
     return res.status(201).json({
-      msg: "User successfully registered",
+      message: "User successfully registered",
       data: user,
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -267,14 +267,14 @@ const login = async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { emailAddress } });
 
-    if (!user) return res.status(401).json({ msg: "Invalid email address" });
+    if (!user) return res.status(401).json({ message: "Invalid email address" });
 
     if (
       user.loginAttempts >= MAX_LOGIN_ATTEMPTS &&
       user.lastLoginAttempt >= Date.now() - LOCK_TIME_MS
     ) {
       return res.status(401).json({
-        msg: "Maximum login attempts reached. Please try again later",
+        message: "Maximum login attempts reached. Please try again later",
       });
     }
 
@@ -293,7 +293,7 @@ const login = async (req, res) => {
         },
       });
 
-      return res.status(401).json({ msg: "Invalid password" });
+      return res.status(401).json({ message: "Invalid password" });
     }
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
@@ -321,12 +321,12 @@ const login = async (req, res) => {
     });
 
     return res.status(200).json({
-      msg: "User successfully logged in",
+      message: "User successfully logged in",
       token: token,
     });
   } catch (err) {
     return res.status(500).json({
-      msg: err.message,
+      message: err.message,
     });
   }
 };
@@ -409,7 +409,7 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
- *                 msg:
+ *                 message:
  *                   type: string
  *                   example: "User successfully registered"
  *                 data:
@@ -421,7 +421,7 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
- *                 msg:
+ *                 message:
  *                   type: string
  *                   example: "User already exists"
  *       '500':
@@ -431,7 +431,7 @@ const router = Router();
  *             schema:
  *               type: object
  *               properties:
- *                 msg:
+ *                 message:
  *                   type: string
  *                   example: "An unexpected error occurred"
  */
@@ -466,7 +466,7 @@ router.route("/register").post(register);
  *             schema:
  *               type: object
  *               properties:
- *                 msg:
+ *                 message:
  *                   type: string
  *                   example: "User successfully logged in"
  *                 token:
@@ -479,7 +479,7 @@ router.route("/register").post(register);
  *             schema:
  *               type: object
  *               properties:
- *                 msg:
+ *                 message:
  *                   type: string
  *                   example: "An unexpected error occurred"
  */
@@ -627,7 +627,7 @@ When logging in, only return the user's `id`, `firstName` and `lastName`. The re
 
 ```json
 {
-  "msg": "User successfully logged in",
+  "message": "User successfully logged in",
   "user": {
     "id": "<User's id>",
     "firstName": "John",
