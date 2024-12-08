@@ -18,6 +18,10 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 **Helmet** helps secure your **Express** apps by setting various **HTTP headers**. For example, **X-Powered-By** which is a header that is set by default in **Express**. This header can be used by attackers to identify the technology stack of your application.
 
+---
+
+### Setup
+
 To get started, run the following command:
 
 ```bash
@@ -59,6 +63,10 @@ After.
 ## Rate Limiting
 
 **Express Rate Limit** is a **middleware** that limits repeated requests to public APIs and/or endpoints.
+
+---
+
+### Setup
 
 To get started, run the following command:
 
