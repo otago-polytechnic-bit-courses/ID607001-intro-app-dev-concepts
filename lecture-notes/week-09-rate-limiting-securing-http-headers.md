@@ -28,6 +28,8 @@ To get started, run the following command:
 npm install helmet
 ```
 
+Check the `package.json` file to ensure you have installed `helmet`.
+
 ---
 
 ### Main File
@@ -73,6 +75,8 @@ To get started, run the following command:
 ```bash
 npm install express-rate-limit
 ```
+
+Check the `package.json` file to ensure you have installed `express-rate-limit`.
 
 ---
 
