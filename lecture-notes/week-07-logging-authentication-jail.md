@@ -18,6 +18,10 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 **Logging** is the process of recording events that occur in an application. It is a crucial part of the development process. Logging helps developers understand what is happening in the application, especially when something goes wrong. It is also useful for monitoring the application's performance and security. There are different types of logs, such as error logs, warning logs, info logs, and debug logs. Each type of log provides different information about the application's behaviour.
 
+---
+
+### Setup
+
 To get started, run the following command:
 
 ```bash
@@ -25,6 +29,10 @@ npm install winston
 ```
 
 Check the `package.json` file to ensure you have installed `winston`.
+
+---
+
+### Middleware
 
 In the `middleware` directory, create a new file called `logger.js`. In the `logger.js` file, add the following code:
 
@@ -63,6 +71,10 @@ if (process.env.NODE_ENV !== "production") {
 
 export default logger;
 ```
+
+---
+
+### Main File
 
 In the `app.js` file, add the following import:
 
