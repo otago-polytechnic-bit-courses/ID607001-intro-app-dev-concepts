@@ -16,6 +16,12 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Seeding
 
+**Seeding**
+
+---
+
+### Prisma
+
 Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed.js` and add the following code.
 
 ```javascript
@@ -23,7 +29,8 @@ import bcryptjs from "bcryptjs";
 
 import prisma from "./client.js";
 
-import { validatePostUser } from "../middleware/validation/user.js"; // Note: You need to create validation middleware for the User model
+// Note: It is assumed that you have created validation middleware for the User model
+import { validatePostUser } from "../middleware/validation/user.js"; 
 
 const hashPassword = async (password) => {
   const salt = await bcryptjs.genSalt();
@@ -78,7 +85,7 @@ const main = async () => {
 
     console.log("Users successfully seeded");
   } catch (err) {
-    console.error("Seeding failed:", err.message);
+    console.log("Seeding failed:", err.message);
   } finally {
     await prisma.$disconnect();
     process.exit(0);
@@ -87,6 +94,10 @@ const main = async () => {
 
 main();
 ```
+
+---
+
+### Package JSON File
 
 In the `package.json` file, add the following line under the `scripts` block.
 
