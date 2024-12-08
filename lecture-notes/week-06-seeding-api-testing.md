@@ -121,7 +121,7 @@ npx prisma db seed
 
 ---
 
-## Getting Started
+### Setup
 
 ---
 
