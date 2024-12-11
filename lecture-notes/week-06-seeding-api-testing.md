@@ -284,8 +284,8 @@ Implement the code examples above.
 
 You saw two ways to seed your database. Research and compare the two methods. Research and implement a third method to seed your database. Here are some ideas to get you started:
 
-- Use a JSON file to seed your database
-- Use a CSV file to seed your database
+- Use a **JSON** file to seed your database
+- Use a **CSV** file to seed your database
 - Use a third-party library to seed your database. For example, [Faker.js](https://fakerjs.dev/guide/) to generate fake data
 
 ---
