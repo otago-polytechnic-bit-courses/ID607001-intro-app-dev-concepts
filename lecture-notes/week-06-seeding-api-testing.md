@@ -264,6 +264,56 @@ npm install mocha chai chai-http --save-dev
 
 ---
 
+### Test File
+
+In the root directory, create a directory named `test`. In the `test` directory, create a file named `00-institution.test.js` and add the following code.
+
+```javascript
+import chai from "chai";
+
+import chaiHttp from "chai-http";
+
+import app from "../app.js";
+
+chai.use(chaiHttp);
+
+const { expect } = chai;
+
+describe("Institution API", () => {
+  it("should return all institutions", (done) => {
+    chai
+      .request(app)
+      .get("/institutions")
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an("array");
+        done();
+      });
+  });
+
+  it("should return a single institution", (done) => {
+    chai
+      .request(app)
+      .get("/institutions/1")
+      .end((err, res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.be.an("object");
+        done();
+      });
+  });
+
+  it("should return a 404 status code", (done) => {
+    chai
+      .request(app)
+      .get("/institutions/100")
+      .end((err, res) => {
+        expect(res).to.have.status(404);
+        done();
+      });
+  });
+});
+```
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
