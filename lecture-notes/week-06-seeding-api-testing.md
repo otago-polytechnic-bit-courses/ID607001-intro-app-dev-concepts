@@ -102,24 +102,6 @@ seedAdminUsers();
 
 ---
 
-### Package JSON File
-
-In the `package.json` file, add the following line under the `scripts` block.
-
-```json
-"prisma": {
-  "seed:admin-users": "node prisma/seed-admin-users.js"
-},
-```
-
-To seed your database, run the following command.
-
-```bash
-npx prisma db seed
-```
-
----
-
 ## Seeding Data via GitHub Gist
 
 **GitHub Gist** is a simple way to share snippets and pastes with others. We can use GitHub Gist to store our seed data and fetch it to seed our database.
@@ -232,6 +214,37 @@ seedBasicUsers();
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your GitHub Gist.
+
+---
+
+### Package JSON File
+
+In the `package.json` file, add the following line under the `scripts` block.
+
+```json
+"prisma": {
+  "seed:admin-users": "node prisma/seed-admin-users.js",
+  "seed:basic-users": "node prisma/seed-basic-users.js"
+},
+```
+
+To seed your database, run the following command.
+
+```bash
+npx prisma db seed
+```
+
+or alternatively, you can run the following command.
+
+```bash
+npm run prisma:seed:admin-users
+```
+
+or
+
+```bash
+npm run prisma:seed:basic-users
+```
 
 ---
 
