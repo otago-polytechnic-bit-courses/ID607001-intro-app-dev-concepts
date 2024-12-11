@@ -294,6 +294,8 @@ You saw two ways to seed your database. Research and compare the two methods. Re
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
