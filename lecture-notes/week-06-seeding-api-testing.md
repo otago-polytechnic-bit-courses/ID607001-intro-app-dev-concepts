@@ -234,13 +234,13 @@ To seed your database, run the following command.
 npx prisma db seed
 ```
 
-or alternatively, you can run the following command.
+If you want to seed only the admin users or basic users, run the following command.
 
 ```bash
 npm run prisma:seed:admin-users
 ```
 
-or
+or if you want to seed only the basic users, run the following command.
 
 ```bash
 npm run prisma:seed:basic-users
