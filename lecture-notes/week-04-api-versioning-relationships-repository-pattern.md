@@ -503,6 +503,12 @@ In the router file, create **Swagger** documentation for the following routes:
 
 ---
 
+###  Task Five (Independent Research)
+
+You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+---
+
 ### Submission
 
 Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.

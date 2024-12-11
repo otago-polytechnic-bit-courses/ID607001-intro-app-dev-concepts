@@ -1,113 +1,75 @@
-# Project and Practical
+## **REST API** URL (Render Web Service)
 
-## REST API URL (Render Web Service)
-You can access the deployed REST API on Render - [REPLACE WITH A LINK TO YOUR REST API](<REPLACE WITH A LINK TO YOUR REST API>)
+You can access the deployed **REST API** on **Render** - [REPLACE WITH A LINK](<REPLACE WITH A LINK>)
 
 ## Setup Environment
 
-1. Clone the repository:
+| Step                                              | Command                                                   |
+| ------------------------------------------------- | --------------------------------------------------------- |
+| Clone the repository                              | `<REPLACE WITH A COMMAND>` |
+| Change the directory                              | `<REPLACE WITH A COMMAND>`                 |
+| Install the required dependencies                 | `<REPLACE WITH A COMMAND>`                                  |
+| Copy `.env.example` to `.env`                     | `<REPLACE WITH A COMMAND>`                                  |
 
-```bash
-git clone <REPLACE WITH A LINK TO YOUR GITHUB REPO.git>
-```
-
-2. Change the directory:
-
-```bash
-cd <REPLACE WITH YOUR REPOSITORY NAME>
-```
-
-3. Install the required dependencies:
-
-```bash
-<ADD THE COMMAND HERE>
-```
-
-4. Copy the `.env.example` file to `.env`:
-
-```bash
-<ADD THE COMMAND HERE>
-```
-
-5. Update the `.env` file with the required environment variables.
+Update the `.env` file with environment variables.	
 
 ## Database Migration
 
-To create and apply a new migration using **Prisma**, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task                                          | Command                  |
+| --------------------------------------------- | ------------------------ |
+| Create and apply a new migration using **Prisma** | `<REPLACE WITH A COMMAND>` |
 
 ## Reset PostgreSQL Database
 
-To reset the **PostgreSQL** database using **Prisma**, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task                                       | Command                  |
+| ------------------------------------------ | ------------------------ |
+| Reset the **PostgreSQL** database using **Prisma** | `<REPLACE WITH A COMMAND>` |
 
 ## Seeding the Database with Prisma
 
-To seed your database with additional data using **Prisma**, follow these steps:
+Write the seed script inside `<REPLACE WITH A PATH>`.
 
-1. Write your seed script inside `prisma/seed.js`.
+| Task                                          | Command                  |
+| --------------------------------------------- | ------------------------ |
+| Execute the seeding script                    | `<REPLACE WITH A COMMAND>` |
 
-2. Run the following command to execute the seeding script:
+## Running **REST API** Locally
 
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task                                   | Command                  |
+| -------------------------------------- | ------------------------ |
+| Run the **REST API** on your local machine | `<REPLACE WITH A COMMAND>` |
 
-The seeding script will populate your database with the necessary data.
-
-## Running REST API Locally
-
-To run the REST API on your local machine, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
-
-Your local API should now be running on <http://localhost:3000>.
+Your local API should now be running on `<REPLACE WITH A LINK>`.
 
 ## Running API Tests
 
-To run the **API tests** locally, run the following command:
+| Task                  | Command                  |
+| --------------------- | ------------------------ |
+| Run API tests locally | `<REPLACE WITH A COMMAND>` |
 
-```bash
-<ADD THE COMMAND HERE>
-```
-
-This will execute all the **API tests** to ensure the REST API functionality is working as expected.
+This will execute all the API tests to ensure the **REST API** functionality is working as expected.
 
 ## Opening Prisma Studio
 
-To visually inspect your database using **Prisma Studio**, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task               | Command                  |
+| ------------------ | ------------------------ |
+| Open **Prisma Studio** | `<REPLACE WITH A COMMAND>` |
 
 ## Code Quality Checks
 
-To check your code for any issues using **Prettier**, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task                              | Command                  |
+| --------------------------------- | ------------------------ |
+| Check code quality using **Prettier** | `<REPLACE WITH A COMMAND>` |
 
 ## Code Formatting
 
-To format your code using **Prettier**, run the following command:
-
-```bash
-<ADD THE COMMAND HERE>
-```
+| Task                       | Command                  |
+| -------------------------- | ------------------------ |
+| Format code using **Prettier** | `<REPLACE WITH A COMMAND>` |
 
 ## Entity Relationship Diagram (ERD)
 
-Below is the Entity Relationship Diagram (ERD) for the REST API:
+Below is the **Entity Relationship Diagram (ERD)** for the **REST API**:
 
 ```bash
 <ADD THE DIAGRAMS HERE>

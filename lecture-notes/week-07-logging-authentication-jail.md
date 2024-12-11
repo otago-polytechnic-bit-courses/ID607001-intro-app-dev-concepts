@@ -593,6 +593,8 @@ Registering a new user. What happens to the `password` when you click the **Exec
 
 ![](<../resources (ignore)/img/06/capture-2.PNG>)
 
+---
+
 ## Login Example
 
 Logging in with John Doe.
@@ -605,6 +607,8 @@ Make sure you copy the `token`. You will need these later on.
 
 What happens if you enter the wrong `password` and click the **Execute** button six times?
 
+---
+
 ## POST Example
 
 You should see a lock next the down chevron.
@@ -616,6 +620,14 @@ If you click on the lock, you will be prompt to enter the `token`. Enter the `to
 ![](<../resources (ignore)/img/06/capture-6.PNG>)
 
 Click on the **Execute** button. What happens if you do not provide the `token`?
+
+---
+
+## API Testing
+
+
+
+---
 
 ## Formative Assessment
 
