@@ -16,13 +16,18 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Seeding
 
-**Seeding**
+**Seeding** is the process of populating a database with data. It is useful for testing and development purposes. There are several ways to seed a database. For this class, we will focus on two methods:
+
+1. **Prisma Client**: Use the Prisma Client to seed the database with data.
+2. **GitHub Gist**: Use a GitHub Gist to seed the database with data.
+
+In the **formative assessment**, you will research and implement a third and fourth method to seed your database.
 
 ---
 
-### Prisma
+### Script to Seed Data
 
-Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed.js` and add the following code.
+Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed-admin-users.js` and add the following code.
 
 ```javascript
 import bcryptjs from "bcryptjs";
@@ -30,7 +35,7 @@ import bcryptjs from "bcryptjs";
 import prisma from "./client.js";
 
 // Note: It is assumed that you have created validation middleware for the User model
-import { validatePostUser } from "../middleware/validation/user.js"; 
+import { validatePostUser } from "../middleware/validation/user.js";
 
 const hashPassword = async (password) => {
   const salt = await bcryptjs.genSalt();
@@ -52,7 +57,7 @@ const validateUser = (user) => {
   validatePostUser(req, res, () => {}); // Pass an empty function since we're not using next()
 };
 
-const main = async () => {
+const seedAdminUsers = async () => {
   try {
     const userData = [
       {
@@ -92,7 +97,7 @@ const main = async () => {
   }
 };
 
-main();
+seedAdminUsers();
 ```
 
 ---
@@ -103,7 +108,7 @@ In the `package.json` file, add the following line under the `scripts` block.
 
 ```json
 "prisma": {
-  "seed": "node prisma/seed.js"
+  "seed:admin-users": "node prisma/seed-admin-users.js"
 },
 ```
 
@@ -112,6 +117,121 @@ To seed your database, run the following command.
 ```bash
 npx prisma db seed
 ```
+
+---
+
+## Seeding Data via GitHub Gist
+
+**GitHub Gist** is a simple way to share snippets and pastes with others. We can use GitHub Gist to store our seed data and fetch it to seed our database.
+
+---
+
+### Create a GitHub Gist
+
+Create a [GitHub Gist](https://gist.github.com/) and add the following JSON data.
+
+```json
+[
+  {
+    "firstName": "Joe",
+    "lastName": "Doe",
+    "emailAddress": "joe.doe@example.com",
+    "password": "password123",
+    "role": "BASIC"
+  },
+  {
+    "firstName": "Jen",
+    "lastName": "Doe",
+    "emailAddress": "jen.doe@example.com",
+    "password": "password123",
+    "role": "BASIC"
+  }
+]
+```
+
+Provide the filename as `seed-basic-users.json` and click on the **Create secret gist** button.
+
+---
+
+### Getting the Raw URL
+
+Click on the **Raw** button to get the raw URL of the Gist. Copy the URL.
+
+---
+
+### Fetching Data from GitHub Gist
+
+To fetch data from the GitHub Gist, we will use the `node-fetch` package. Install the package by running the following command.
+
+```bash
+npm install node-fetch
+```
+
+---
+
+### Script to Seed Data
+
+In the `prisma` directory, create a file named `seed-basic-users.js` and add the following code.
+
+```javascript
+import fetch from "node-fetch";
+import bcryptjs from "bcryptjs";
+
+import prisma from "./client.js";
+import { validatePostUser } from "../middleware/validation/user.js";
+
+const hashPassword = async (password) => {
+  const salt = await bcryptjs.genSalt();
+  return bcryptjs.hash(password, salt);
+};
+
+const validateUser = (user) => {
+  const req = { body: user };
+  const res = {
+    status: (code) => ({
+      json: (message) => {
+        console.log(message.message);
+        process.exit(1);
+      },
+    }),
+  };
+
+  validatePostUser(req, res, () => {});
+};
+
+const seedBasicUsers = async () => {
+  try {
+    const gistUrl = "<GIST_RAW_URL>";
+    const response = await fetch(gistUrl);
+    const data = await response.json();
+
+    const newUserData = await Promise.all(
+      data.map(async (user) => {
+        validateUser(user);
+        const hashedPassword = await hashPassword(user.password);
+        return { ...user, password: hashedPassword };
+      })
+    );
+
+    await prisma.user.createMany({
+      data: newUserData,
+      skipDuplicates: true,
+    });
+
+    console.log("Users successfully seeded");
+  } catch (err) {
+    console.error("Seeding failed:", err.message);
+  } finally {
+    await prisma.$disconnect();
+    process.exit(0);
+  }
+};
+
+seedBasicUsers();
+
+```
+
+> **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your GitHub Gist.
 
 ---
 
@@ -140,6 +260,14 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 Implement the code examples above.
 
 ---
+
+### Task Two (Independent Research)
+
+You saw two ways to seed your database. Research and compare the two methods. Research and implement a third method to seed your database. Here are some ideas to get you started:
+
+- Use a JSON file to seed your database
+- Use a CSV file to seed your database
+- Use a third-party library to seed your database
 
 ### Submission
 
