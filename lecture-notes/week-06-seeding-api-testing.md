@@ -137,13 +137,13 @@ Provide the filename as `seed-basic-users.json` and click on the **Create secret
 
 ### Getting the Raw URL
 
-Click on the **Raw** button to get the raw URL of the Gist. Copy the URL.
+Click on the **Raw** button to get the raw URL of the **GitHub Gist**. Copy the URL.
 
 ---
 
 ### Fetching Data from GitHub Gist
 
-To fetch data from the GitHub Gist, we will use the `node-fetch` package. Install the package by running the following command.
+To fetch data from the **GitHub Gist**, we will use the `node-fetch` package. Install the package by running the following command.
 
 ```bash
 npm install node-fetch
@@ -213,7 +213,7 @@ seedBasicUsers();
 
 ```
 
-> **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your GitHub Gist.
+> **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
 
 ---
 
