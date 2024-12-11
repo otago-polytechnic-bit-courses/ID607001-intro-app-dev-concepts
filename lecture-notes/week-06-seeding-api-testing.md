@@ -243,6 +243,12 @@ seedBasicUsers();
 
 ### Setup
 
+There are several libraries for testing APIs. We will use **Mocha** and **Chai** for this class. Install the libraries by running the following command.
+
+```bash
+npm install mocha chai chai-http --save-dev
+```
+
 ---
 
 ## Formative Assessment
@@ -267,7 +273,13 @@ You saw two ways to seed your database. Research and compare the two methods. Re
 
 - Use a JSON file to seed your database
 - Use a CSV file to seed your database
-- Use a third-party library to seed your database
+- Use a third-party library to seed your database. For example, [Faker.js](https://fakerjs.dev/guide/) to generate fake data
+
+---
+
+###  Task Three (Independent Research)
+
+You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
 ### Submission
 
