@@ -67,6 +67,44 @@ In the **assessments** directory, you will find a `README.md` template. You will
 
 ---
 
+## Software Methodologies
+
+Thus far, you should have covered the **Agile** methodology. This week, you will learn about four more methodologies.
+
+---
+
+### Waterfall
+
+The **Waterfall** methodology is a linear approach to software development. It is a sequential design process in which progress is seen as flowing steadily downwards through the phases of requirement gathering and analysis, design, implementation, testing, deployment and maintenance.
+
+> **Resource:** <https://www.tutorialspoint.com/sdlc/sdlc_waterfall_model.htm>
+
+---
+
+### Spiral
+
+The **Spiral** methodology is a risk-driven software development process model. Based on the unique risk patterns of a given project, the spiral model guides a team to adopt elements of one or more process models, such as incremental, waterfall, or evolutionary prototyping.
+
+> **Resource:** <https://www.tutorialspoint.com/sdlc/sdlc_spiral_model.htm>
+
+---
+
+### V-Model
+
+The **V-Model** is a type of software development model that takes the form of a V. It is also known as the **Verification and Validation Model**. The V-Model demonstrates the relationships between each phase of the development life cycle and its associated phase of testing. 
+
+> **Resource:** <https://www.tutorialspoint.com/sdlc/sdlc_v_model.htm>
+
+---
+
+### RAD
+
+**Rapid Application Development (RAD)** is a type of incremental software development process model that emphasises an extremely short development cycle. The RAD model is a "high-speed" adaptation of the linear sequential model in which rapid development is achieved by using a component-based construction approach. 
+
+> **Resource:** <https://www.tutorialspoint.com/sdlc/sdlc_rad_model.htm>
+
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
@@ -80,6 +118,18 @@ If you get stuck on any of the following tasks, feel free to use **ChatGPT** per
 ### Task One
 
 Implement the code examples above.
+
+---
+
+### Task Two (Independent Research)
+
+In your own words, each phase of the **Waterfall** methodology. Appropriately cite your sources using **APA 7th Edition**.
+
+---
+
+### Task Three (Independent Research)
+
+In your own words, explain the impact of the **Spiral** methodology on testing. Appropriately cite your sources using **APA 7th Edition**.
 
 ---
 
