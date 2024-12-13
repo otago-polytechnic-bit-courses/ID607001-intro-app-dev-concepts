@@ -247,7 +247,28 @@ npm run prisma:seed:basic-users
 
 ---
 
-### Setup
+### Setup - Docker
+
+To test APIs, we need to set up a test database. We will use **Docker** to create a test database. Run the following command to create a **PostgreSQL** database.
+
+```bash
+docker run --name testdb -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=test -p 5432:5432 -d postgres
+```
+
+---
+
+### Setup - .env.test File
+
+Create a `.env.test` file in the root directory and add the following code.
+
+```plaintext
+DATABASE_URL="postgresql://test:test@localhost:5432/test"
+```
+
+---
+
+
+### Setup - Dependencies
 
 There are several libraries for testing APIs. We will use **Chai** and **Mocha**. **Chai** is an assertion library that works well with **Mocha**, a testing framework. **Chai** provides a lot of flexibility in terms of how you write your assertions.
 
@@ -469,7 +490,7 @@ You saw two ways to seed your database. Research and compare the two methods. Re
 
 ### Task Three (Independent Research)
 
-Create a new test file in the `test` directory named `01-department.test.js`. Implement the 15 tests. Make sure you cover the main HTTP methods (GET, POST, PUT, DELETE) for a department as well as validation, filtering, and sorting.
+Create a new test file in the `test` directory named `01-department.test.js`. Implement 15 tests. Make sure you cover the main HTTP methods (GET, POST, PUT, DELETE) for a department as well as validation, filtering, and sorting.
 
 ---
 
