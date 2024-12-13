@@ -210,7 +210,6 @@ const seedBasicUsers = async () => {
 };
 
 seedBasicUsers();
-
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
@@ -226,12 +225,6 @@ In the `package.json` file, add the following line under the `scripts` block.
   "seed:admin-users": "node prisma/seed-admin-users.js",
   "seed:basic-users": "node prisma/seed-basic-users.js"
 },
-```
-
-To seed your database, run the following command.
-
-```bash
-npx prisma db seed
 ```
 
 If you want to seed only the admin users or basic users, run the following command.
@@ -256,10 +249,12 @@ npm run prisma:seed:basic-users
 
 ### Setup
 
-There are several libraries for testing APIs. We will use **Mocha** and **Chai** for this class. Install the libraries by running the following command.
+There are several libraries for testing APIs. We will use **Chai** and **Mocha**. **Chai** is an assertion library that works well with **Mocha**, a testing framework. **Chai** provides a lot of flexibility in terms of how you write your assertions.
+
+Install the libraries by running the following command.
 
 ```bash
-npm install mocha chai chai-http --save-dev
+npm install chai chai-http mocha --save-dev
 ```
 
 ---
@@ -269,50 +264,182 @@ npm install mocha chai chai-http --save-dev
 In the root directory, create a directory named `test`. In the `test` directory, create a file named `00-institution.test.js` and add the following code.
 
 ```javascript
-import chai from "chai";
-
+import * as chaiModule from "chai";
 import chaiHttp from "chai-http";
+import { describe, it } from "mocha";
 
 import app from "../app.js";
 
-chai.use(chaiHttp);
+const chai = chaiModule.use(chaiHttp);
 
-const { expect } = chai;
+let institutionId;
+let anotherInstitutionId;
 
-describe("Institution API", () => {
-  it("should return all institutions", (done) => {
-    chai
-      .request(app)
-      .get("/institutions")
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.an("array");
-        done();
-      });
+describe("Institutions", () => {
+  it("should reject non-string name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .send({ name: 123, region: "Otago", country: "New Zealand" });
+
+    chai.expect(res.body.message).to.be.equal("name should be a string");
   });
 
-  it("should return a single institution", (done) => {
-    chai
-      .request(app)
-      .get("/institutions/1")
-      .end((err, res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.be.an("object");
-        done();
+  it("should create a valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .send({
+        name: "University of Otago",
+        region: "Otago",
+        country: "New Zealand",
       });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal("Institution successfully created");
+    institutionId = res.body.data[0].id;
   });
 
-  it("should return a 404 status code", (done) => {
-    chai
-      .request(app)
-      .get("/institutions/100")
-      .end((err, res) => {
-        expect(res).to.have.status(404);
-        done();
+  it("should create another valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .send({
+        name: "University of Canterbury",
+        region: "Canterbury",
+        country: "New Zealand",
       });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal("Institution successfully created");
+    anotherInstitutionId = res.body.data[0].id;
+  });
+
+  it("should retrieve all institutions", async () => {
+    const res = await chai.request.execute(app).get("/api/v1/institutions");
+
+    chai.expect(res.body.data).to.be.an("array");
+  });
+
+  it("should retrieve an institution by ID", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get(`/api/v1/institutions/${institutionId}`);
+
+    chai.expect(res.body.data.name).to.be.equal("University of Otago");
+  });
+
+  it("should filter institutions by name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get("/api/v1/institutions?name=Otago");
+
+    chai.expect(res.body.data[0].name).to.be.equal("University of Otago");
+  });
+
+  it("should sort institutions by name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get("/api/v1/institutions?sortBy=name");
+
+    chai.expect(res.body.data[0].name).to.be.equal("University of Canterbury");
+  });
+
+  it("should reject non-string country during update", async () => {
+    const res = await chai.request
+      .execute(app)
+      .put(`/api/v1/institutions/${institutionId}`)
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: 123,
+      });
+
+    chai.expect(res.body.message).to.be.equal("country should be a string");
+  });
+
+  it("should update a valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .put(`/api/v1/institutions/${institutionId}`)
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: "New Zealand",
+      });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal(
+        `Institution with the id: ${institutionId} successfully updated`
+      );
+  });
+
+  it("should delete an institution by ID", async () => {
+    const res = await chai.request
+      .execute(app)
+      .delete(`/api/v1/institutions/${institutionId}`);
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal(
+        `Institution with the id: ${institutionId} successfully deleted`
+      );
   });
 });
+
+// Export the ID for use in other tests
+export { anotherInstitutionId };
 ```
+
+> **Note:** This test suite covers the main HTTP methods (GET, POST, PUT, DELETE) for an institution as well as validation, filtering, and sorting.
+
+What are some key points to note in the test file?
+
+- `describe`: A function that groups tests together
+- `it`: A function that defines a test case
+- `chai.request.execute`: A function that sends a request to the API
+- `chai.expect`: A function that makes assertions
+
+---
+
+### Package JSON File
+
+In the `package.json` file, add the following line under the `scripts` block.
+
+```json
+"test": "mocha --timeout 10000 --exit"
+```
+
+The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--exit` flag exits the process once the tests are complete.
+
+To run the tests, run the following command.
+
+```bash
+npm test
+```
+
+When you run the tests, you should see the following output.
+
+```bash
+Institutions
+  ✓ should reject non-string name
+  ✓ should create a valid institution
+  ✓ should create another valid institution
+  ✓ should retrieve all institutions
+  ✓ should retrieve an institution by ID
+  ✓ should filter institutions by name
+  ✓ should sort institutions by name
+  ✓ should reject non-string country during update
+  ✓ should update a valid institution
+  ✓ should delete an institution by ID
+
+10 passing 
+```
+
+---
 
 ## Formative Assessment
 
@@ -340,7 +467,13 @@ You saw two ways to seed your database. Research and compare the two methods. Re
 
 ---
 
-###  Task Three (Independent Research)
+### Task Three (Independent Research)
+
+Create a new test file in the `test` directory named `01-department.test.js`. Implement the 15 tests. Make sure you cover the main HTTP methods (GET, POST, PUT, DELETE) for a department as well as validation, filtering, and sorting.
+
+---
+
+### Task Four (Independent Research)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
