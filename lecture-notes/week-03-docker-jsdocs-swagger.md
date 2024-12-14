@@ -14,67 +14,6 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ---
 
-## Render
-
-[Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
-
----
-
-### Setup
-
-Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
-
-![](<../resources (ignore)/img/03/render-1.PNG>)
-
-Click the **New +** button, then click the **Web Service** link.
-
-![](<../resources (ignore)/img/03/render-2.PNG>)
-
-By default, **Build and deploy from a Git repository** will be selected. Click the **Next** button.
-
-![](<../resources (ignore)/img/03/render-3.PNG>)
-
-Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
-
-![](<../resources (ignore)/img/03/render-4.PNG>)
-
-Name your **web service**. For example, **s1-25-intro-app-dev-repo-GitHub username**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
-
-> **Note:** As you progress through this course, you will change the **Branch**.
-
-![](<../resources (ignore)/img/03/render-5.PNG>)
-
-Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
-
-![](<../resources (ignore)/img/03/render-6.PNG>)
-
-Click on the **Deploy Web Service** button.
-
-![](<../resources (ignore)/img/03/render-7.PNG>)
-
-Keep an eye on the logs. Your **web service** is ready when you see the following message.
-
-```bash
-Server is listening on port 10000. Visit http://localhost:10000
-Your service is live 🎉
-```
-
-![](<../resources (ignore)/img/03/render-8.PNG>)
-
-Scroll to the top of the page and click on your **web service's** URL.
-
-![](<../resources (ignore)/img/03/render-9.PNG>)
-
-You should see the following page.
-
-> **Note:** Your **web service's** URL will be different.
-
-![](<../resources (ignore)/img/03/render-10.PNG>)
-
-> **Resource:** <https://render.com/docs>
-
----
-
 ## PostgreSQL
 
 **PostgreSQL** is a free relational database management system (RDBMS). It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
@@ -83,27 +22,47 @@ You should see the following page.
 
 ---
 
-### Setup
+## Docker
 
-Click the **New +** button, then click the **PostgreSQL** link.
+**Docker** is a platform for developing, shipping, and running applications. It allows you to package your application and its dependencies into a container. A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. We are going to use **Docker** to run a **PostgreSQL** container.
 
-![](<../resources (ignore)/img/03/render-11.png>)
+> **Resource:** <https://www.docker.com>
 
-Name your **New PostgreSQL**. For example, **s1-25-intro-app-dev-repo-GitHub username**.
+---
 
-![](<../resources (ignore)/img/03/render-12.png>)
+### Getting Started
 
-Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+To get started, open a terminal and run the following.
 
-![](<../resources (ignore)/img/03/render-13.png>)
+```bash
+docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
+```
 
-Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
+What does each do? 
 
-![](<../resources (ignore)/img/03/render-14.png>)
+- `docker run`: This command creates a new container.
+- `--name id607001-db-dev`: This command names the container **id607001-db-dev**. 
+- `-e POSTGRES_PASSWORD=HelloWorld123`: This command sets the **PostgreSQL** password to **HelloWorld123**.
+- `-p 5432:5432`: This command maps the container's port **5432** to the host's port **5432**.
+- `-d postgres`: This command uses the **PostgreSQL** image to create the container.
 
-Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
+To check if the container is running, run the following command.
 
-![](<../resources (ignore)/img/03/render-15.png>)
+```bash
+docker ps
+```
+
+To stop the container, run the following command.
+
+```bash
+docker stop id607001-db-dev
+```
+
+To remove the container, run the following command.
+
+```bash
+docker rm id607001-db-dev
+```
 
 ---
 
@@ -150,8 +109,8 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 Update the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
-NODE_ENV=development
-DATABASE_URL="<Render PostgreSQL external database URL>"
+APP_ENV=development
+DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 ```
 
 > **Note:** The `.env` file is not committed to **Git**. The **Node** `.gitignore` file ignores the `.env` file.
@@ -163,7 +122,7 @@ DATABASE_URL="<Render PostgreSQL external database URL>"
 The `.env.example` file is used to provide an example of the `.env` file. It is committed to **Git**. It is used to show other developers what environment variables are required. It is also used to provide default values. Here is an example of the `.env.example` file.
 
 ```bash
-NODE_ENV=development
+APP_ENV=development
 DATABASE_URL=
 ```
 

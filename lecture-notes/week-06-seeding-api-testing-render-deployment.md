@@ -98,6 +98,8 @@ const seedAdminUsers = async () => {
 };
 
 seedAdminUsers();
+
+export default seedAdminUsers;
 ```
 
 ---
@@ -210,6 +212,8 @@ const seedBasicUsers = async () => {
 };
 
 seedBasicUsers();
+
+export default seedBasicUsers;
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
@@ -247,26 +251,17 @@ npm run prisma:seed:basic-users
 
 ---
 
-### Setup - Docker
+### Setup - Docker Container
 
-To test APIs, we need to set up a test database. We will use **Docker** to create a test database. Run the following command to create a **PostgreSQL** database.
+We will create another **Docker** container for testing. Run the following command to create a **PostgreSQL** container.
 
 ```bash
-docker run --name testdb -e POSTGRES_USER=test -e POSTGRES_PASSWORD=test -e POSTGRES_DB=test -p 5432:5432 -d postgres
+docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5433 -d postgres
 ```
 
----
-
-### Setup - .env.test File
-
-Create a `.env.test` file in the root directory and add the following code.
-
-```plaintext
-DATABASE_URL="postgresql://test:test@localhost:5432/test"
-```
+Run `docker ps` to check if two containers are running.
 
 ---
-
 
 ### Setup - Dependencies
 
@@ -280,11 +275,24 @@ npm install chai chai-http mocha --save-dev
 
 ---
 
+### Load Environment Variables
+
+Create a `.env.test` file in the root directory and add the following code.
+
+```bash
+APP_ENV=test
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres
+```
+
+---
+
 ### Test File
 
 In the root directory, create a directory named `test`. In the `test` directory, create a file named `00-institution.test.js` and add the following code.
 
 ```javascript
+process.env.APP_ENV = "testing";
+
 import * as chaiModule from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
@@ -459,6 +467,92 @@ Institutions
 
 10 passing 
 ```
+
+---
+
+## Render
+
+[Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
+
+---
+
+### Web Service Setup
+
+Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
+
+![](<../resources (ignore)/img/03/render-1.PNG>)
+
+Click the **New +** button, then click the **Web Service** link.
+
+![](<../resources (ignore)/img/03/render-2.PNG>)
+
+By default, **Build and deploy from a Git repository** will be selected. Click the **Next** button.
+
+![](<../resources (ignore)/img/03/render-3.PNG>)
+
+Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
+
+![](<../resources (ignore)/img/03/render-4.PNG>)
+
+Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
+
+> **Note:** As you progress through the next few weeks, you will manually  change the **Branch**.
+
+![](<../resources (ignore)/img/03/render-5.PNG>)
+
+Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+
+![](<../resources (ignore)/img/03/render-6.PNG>)
+
+Click on the **Deploy Web Service** button.
+
+![](<../resources (ignore)/img/03/render-7.PNG>)
+
+Keep an eye on the logs. Your **web service** is ready when you see the following message.
+
+```bash
+Server is listening on port 10000. Visit http://localhost:10000
+Your service is live 🎉
+```
+
+![](<../resources (ignore)/img/03/render-8.PNG>)
+
+Scroll to the top of the page and click on your **web service's** URL.
+
+![](<../resources (ignore)/img/03/render-9.PNG>)
+
+You should see the following page.
+
+> **Note:** Your **web service's** URL will be different.
+
+![](<../resources (ignore)/img/03/render-10.PNG>)
+
+> **Resource:** <https://render.com/docs>
+
+---
+
+### PostgreSQL Setup
+
+Click the **New +** button, then click the **PostgreSQL** link.
+
+![](<../resources (ignore)/img/03/render-11.png>)
+
+Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+
+![](<../resources (ignore)/img/03/render-12.png>)
+
+Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+
+![](<../resources (ignore)/img/03/render-13.png>)
+
+Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
+
+![](<../resources (ignore)/img/03/render-14.png>)
+
+Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. Click on the **Save Changes** button.
+
+![](<../resources (ignore)/img/03/render-15.png>)
+
 
 ---
 

@@ -50,7 +50,7 @@ const logger = winston.createLogger({
   format: combine(
     timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
     errors({ stack: true }),
-    process.env.NODE_ENV === "production"
+    process.env.APP_ENV === "production"
       ? winston.format.json()
       : combine(colorize(), logFormat)
   ),
@@ -61,7 +61,7 @@ const logger = winston.createLogger({
   ],
 });
 
-if (process.env.NODE_ENV !== "production") {
+if (process.env.APP_ENV !== "production") {
   logger.add(
     new winston.transports.Console({
       format: combine(colorize(), logFormat),
@@ -127,7 +127,8 @@ JWT_LIFETIME=1hr
 The `.env` file should look like this:
 
 ```bash
-DATABASE_URL=The PostgreSQL connection string
+APP_ENV=development
+DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 JWT_SECRET=HelloWorld123
 JWT_LIFETIME=1hr
 ```

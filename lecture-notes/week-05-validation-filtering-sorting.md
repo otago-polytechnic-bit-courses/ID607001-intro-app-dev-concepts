@@ -374,7 +374,6 @@ Here is an example `GET` request that returns all institutions that have the `na
 ---
 
 
-
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:
