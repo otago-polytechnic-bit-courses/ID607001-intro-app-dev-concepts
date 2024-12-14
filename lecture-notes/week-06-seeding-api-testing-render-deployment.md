@@ -27,24 +27,16 @@ In the **formative assessment**, you will research and implement a third and fou
 
 ### Script to Seed Data
 
-Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed-admin-users.js` and add the following code.
+Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed-institutions.js` and add the following code.
 
 ```javascript
-import bcryptjs from "bcryptjs";
-
 import prisma from "./client.js";
 
-// Note: It is assumed that you have created validation middleware for the User model
-import { validatePostUser } from "../middleware/validation/user.js";
-
-const hashPassword = async (password) => {
-  const salt = await bcryptjs.genSalt();
-  return bcryptjs.hash(password, salt);
-};
+import { validatePostInstitution } from "../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
-const validateUser = (user) => {
-  const req = { body: user };
+const validateInstitution = (institution) => {
+  const req = { body: institution };
   const res = {
     status: (code) => ({
       json: (message) => {
@@ -54,41 +46,37 @@ const validateUser = (user) => {
     }),
   };
 
-  validatePostUser(req, res, () => {}); // Pass an empty function since we're not using next()
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
 };
 
-const seedAdminUsers = async () => {
+const seedInstitutions = async () => {
   try {
-    const userData = [
+    const institutionData = [
       {
-        firstName: "John",
-        lastName: "Doe",
-        emailAddress: "john.doe@example.com",
-        password: "password123",
-        role: "ADMIN",
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
       },
       {
-        firstName: "Jane",
-        lastName: "Doe",
-        emailAddress: "jane.doe@example.com",
-        password: "password123",
-        role: "ADMIN",
+        name: "Southern Institute of Technology",
+        region: "Southland",
+        country: "New Zealand",
       },
     ];
 
     const data = await Promise.all(
-      userData.map(async (user) => {
-        validateUser(user);
-        return { ...user, password: await hashPassword(user.password) };
+      institutionData.map(async (institution) => {
+        validateInstitution(institution);
+        return { ...institution };
       })
     );
 
-    await prisma.user.createMany({
+    await prisma.institution.createMany({
       data: data,
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
-    console.log("Users successfully seeded");
+    console.log("Institutions successfully seeded");
   } catch (err) {
     console.log("Seeding failed:", err.message);
   } finally {
@@ -97,9 +85,9 @@ const seedAdminUsers = async () => {
   }
 };
 
-seedAdminUsers();
+seedInstitutions();
 
-export default seedAdminUsers;
+export default seedInstitutions;
 ```
 
 ---
@@ -117,23 +105,19 @@ Create a [GitHub Gist](https://gist.github.com/) and add the following JSON data
 ```json
 [
   {
-    "firstName": "Joe",
-    "lastName": "Doe",
-    "emailAddress": "joe.doe@example.com",
-    "password": "password123",
-    "role": "BASIC"
+    "name": "Otago Polytechnic",
+    "region": "Otago",
+    "country": "New Zealand"
   },
   {
-    "firstName": "Jen",
-    "lastName": "Doe",
-    "emailAddress": "jen.doe@example.com",
-    "password": "password123",
-    "role": "BASIC"
+    "name": "Southern Institute of Technology",
+    "region": "Southland",
+    "country": "New Zealand"
   }
 ]
 ```
 
-Provide the filename as `seed-basic-users.json` and click on the **Create secret gist** button.
+Provide the filename as `seed-institutions-github.json` and click on the **Create secret gist** button.
 
 ---
 
@@ -155,22 +139,18 @@ npm install node-fetch
 
 ### Script to Seed Data
 
-In the `prisma` directory, create a file named `seed-basic-users.js` and add the following code.
+In the `prisma` directory, create a file named `seed-institutions-github.js` and add the following code.
 
 ```javascript
 import fetch from "node-fetch";
-import bcryptjs from "bcryptjs";
 
 import prisma from "./client.js";
-import { validatePostUser } from "../middleware/validation/user.js";
 
-const hashPassword = async (password) => {
-  const salt = await bcryptjs.genSalt();
-  return bcryptjs.hash(password, salt);
-};
+import { validatePostInstitution } from "../middleware/validation/institution.js";
 
-const validateUser = (user) => {
-  const req = { body: user };
+// Simulate an Express-like request and response for validation
+const validateInstitution = (institution) => {
+  const req = { body: institution };
   const res = {
     status: (code) => ({
       json: (message) => {
@@ -180,40 +160,39 @@ const validateUser = (user) => {
     }),
   };
 
-  validatePostUser(req, res, () => {});
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
 };
 
-const seedBasicUsers = async () => {
+const seedInstitutions = async () => {
   try {
     const gistUrl = "<GIST_RAW_URL>";
     const response = await fetch(gistUrl);
-    const data = await response.json();
+    const institutionData = await response.json();
 
-    const newUserData = await Promise.all(
-      data.map(async (user) => {
-        validateUser(user);
-        const hashedPassword = await hashPassword(user.password);
-        return { ...user, password: hashedPassword };
+    const data = await Promise.all(
+      institutionData.map(async (institution) => {
+        validateInstitution(institution);
+        return { ...institution };
       })
     );
 
-    await prisma.user.createMany({
-      data: newUserData,
-      skipDuplicates: true,
+    await prisma.institution.createMany({
+      data: data,
+      skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
-    console.log("Users successfully seeded");
+    console.log("Institutions successfully seeded");
   } catch (err) {
-    console.error("Seeding failed:", err.message);
+    console.log("Seeding failed:", err.message);
   } finally {
     await prisma.$disconnect();
     process.exit(0);
   }
 };
 
-seedBasicUsers();
+seedInstitutions();
 
-export default seedBasicUsers;
+export default seedInstitutions;
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
@@ -226,21 +205,9 @@ In the `package.json` file, add the following line under the `scripts` block.
 
 ```json
 "prisma": {
-  "seed:admin-users": "node prisma/seed-admin-users.js",
-  "seed:basic-users": "node prisma/seed-basic-users.js"
+  "seed:institutions": "node prisma/seed-institutions.js",
+  "seed:institutions-github": "node prisma/seed-institutions-github.js"
 },
-```
-
-If you want to seed only the admin users or basic users, run the following command.
-
-```bash
-npm run prisma:seed:admin-users
-```
-
-or if you want to seed only the basic users, run the following command.
-
-```bash
-npm run prisma:seed:basic-users
 ```
 
 ---
@@ -251,19 +218,7 @@ npm run prisma:seed:basic-users
 
 ---
 
-### Setup - Docker Container
-
-We will create another **Docker** container for testing. Run the following command to create a **PostgreSQL** container.
-
-```bash
-docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5433 -d postgres
-```
-
-Run `docker ps` to check if two containers are running.
-
----
-
-### Setup - Dependencies
+### Setup
 
 There are several libraries for testing APIs. We will use **Chai** and **Mocha**. **Chai** is an assertion library that works well with **Mocha**, a testing framework. **Chai** provides a lot of flexibility in terms of how you write your assertions.
 
@@ -275,24 +230,11 @@ npm install chai chai-http mocha --save-dev
 
 ---
 
-### Load Environment Variables
-
-Create a `.env.test` file in the root directory and add the following code.
-
-```bash
-APP_ENV=test
-DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres
-```
-
----
-
 ### Test File
 
 In the root directory, create a directory named `test`. In the `test` directory, create a file named `00-institution.test.js` and add the following code.
 
 ```javascript
-process.env.APP_ENV = "testing";
-
 import * as chaiModule from "chai";
 import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
@@ -465,7 +407,7 @@ Institutions
   ✓ should update a valid institution
   ✓ should delete an institution by ID
 
-10 passing 
+10 passing
 ```
 
 ---
@@ -494,9 +436,9 @@ Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. When yo
 
 ![](<../resources (ignore)/img/03/render-4.PNG>)
 
-Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-03-formative-assessment**.
+Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-06-formative-assessment**.
 
-> **Note:** As you progress through the next few weeks, you will manually  change the **Branch**.
+> **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
 
 ![](<../resources (ignore)/img/03/render-5.PNG>)
 
@@ -552,7 +494,6 @@ Click on the **Connect** button and the **External** tab. Copy the **External Da
 Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. Click on the **Save Changes** button.
 
 ![](<../resources (ignore)/img/03/render-15.png>)
-
 
 ---
 
