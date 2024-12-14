@@ -85,8 +85,6 @@ const seedInstitutions = async () => {
   }
 };
 
-seedInstitutions();
-
 export default seedInstitutions;
 ```
 
@@ -105,13 +103,13 @@ Create a [GitHub Gist](https://gist.github.com/) and add the following JSON data
 ```json
 [
   {
-    "name": "Otago Polytechnic",
-    "region": "Otago",
+    "name": "University of Auckland",
+    "region": "Auckland",
     "country": "New Zealand"
   },
   {
-    "name": "Southern Institute of Technology",
-    "region": "Southland",
+    "name": "University of Waikato",
+    "region": "Waikato",
     "country": "New Zealand"
   }
 ]
@@ -163,7 +161,7 @@ const validateInstitution = (institution) => {
   validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
 };
 
-const seedInstitutions = async () => {
+const seedInstitutionsFromGitHub = async () => {
   try {
     const gistUrl = "<GIST_RAW_URL>";
     const response = await fetch(gistUrl);
@@ -190,12 +188,24 @@ const seedInstitutions = async () => {
   }
 };
 
-seedInstitutions();
-
-export default seedInstitutions;
+export default seedInstitutionsFromGitHub;
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
+
+---
+
+### Index File
+
+In the `prisma` directory, create an `index.js` file and add the following code.
+
+```javascript
+import seedInstitutions from "./seed-institutions.js";
+import seedInstitutionsFromGitHub from "./seed-institutions-github.js";
+
+seedInstitutions();
+seedInstitutionsFromGitHub();
+```
 
 ---
 
@@ -205,8 +215,7 @@ In the `package.json` file, add the following line under the `scripts` block.
 
 ```json
 "prisma": {
-  "seed:institutions": "node prisma/seed-institutions.js",
-  "seed:institutions-github": "node prisma/seed-institutions-github.js"
+  "seed": "node prisma/index.js"
 },
 ```
 
@@ -381,7 +390,7 @@ What are some key points to note in the test file?
 In the `package.json` file, add the following line under the `scripts` block.
 
 ```json
-"test": "mocha --timeout 10000 --exit"
+"test": "npx prisma migrate reset --force && mocha --timeout 10000 --exit",
 ```
 
 The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--exit` flag exits the process once the tests are complete.
