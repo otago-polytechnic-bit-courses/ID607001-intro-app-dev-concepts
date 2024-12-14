@@ -16,7 +16,7 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ## Seeding
 
-**Seeding** is the process of populating a database with data. It is useful for testing and development purposes. There are several ways to seed a database. For this class, we will focus on two methods:
+**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. For this class, we will focus on two methods:
 
 1. **Prisma Client**: Use the Prisma Client to seed the database with data.
 2. **GitHub Gist**: Use a GitHub Gist to seed the database with data.
@@ -27,12 +27,12 @@ In the **formative assessment**, you will research and implement a third and fou
 
 ### Script to Seed Data
 
-Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a file named `seed-institutions.js` and add the following code.
+Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `seed-institutions.js` and add the following code.
 
 ```javascript
-import prisma from "./client.js";
+import prisma from "../client.js";
 
-import { validatePostInstitution } from "../middleware/validation/institution.js";
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -51,6 +51,9 @@ const validateInstitution = (institution) => {
 
 const seedInstitutions = async () => {
   try {
+    // Delete all existing institutions
+    await prisma.institution.deleteMany();
+    
     const institutionData = [
       {
         name: "Otago Polytechnic",
@@ -79,9 +82,6 @@ const seedInstitutions = async () => {
     console.log("Institutions successfully seeded");
   } catch (err) {
     console.log("Seeding failed:", err.message);
-  } finally {
-    await prisma.$disconnect();
-    process.exit(0);
   }
 };
 
@@ -137,14 +137,14 @@ npm install node-fetch
 
 ### Script to Seed Data
 
-In the `prisma` directory, create a file named `seed-institutions-github.js` and add the following code.
+In the `prisma/seeding` directory, create a new file named `seed-institutions-github.js` and add the following code.
 
 ```javascript
 import fetch from "node-fetch";
 
-import prisma from "./client.js";
+import prisma from "../client.js";
 
-import { validatePostInstitution } from "../middleware/validation/institution.js";
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -179,12 +179,9 @@ const seedInstitutionsFromGitHub = async () => {
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
-    console.log("Institutions successfully seeded");
+    console.log("Institutions successfully seeded from GitHub Gist");
   } catch (err) {
     console.log("Seeding failed:", err.message);
-  } finally {
-    await prisma.$disconnect();
-    process.exit(0);
   }
 };
 
@@ -195,28 +192,12 @@ export default seedInstitutionsFromGitHub;
 
 ---
 
-### Index File
-
-In the `prisma` directory, create an `index.js` file and add the following code.
-
-```javascript
-import seedInstitutions from "./seed-institutions.js";
-import seedInstitutionsFromGitHub from "./seed-institutions-github.js";
-
-seedInstitutions();
-seedInstitutionsFromGitHub();
-```
-
----
-
 ### Package JSON File
 
-In the `package.json` file, add the following line under the `scripts` block.
+In the `package.json` file, add the following in the `scripts` block.
 
 ```json
-"prisma": {
-  "seed": "node prisma/index.js"
-},
+"prisma:seed-institutions": "npm node ./prisma/seeding/seed-institutions.js && node ./prisma/seeding/seed-institutions-github.js"
 ```
 
 ---

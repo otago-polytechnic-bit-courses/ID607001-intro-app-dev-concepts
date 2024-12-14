@@ -626,8 +626,6 @@ Click on the **Execute** button. What happens if you do not provide the `token`?
 
 ## Seeding
 
-
-
 ```javascript
 import bcryptjs from "bcryptjs";
 
