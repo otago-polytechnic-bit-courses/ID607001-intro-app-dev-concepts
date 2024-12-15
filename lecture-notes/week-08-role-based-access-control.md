@@ -190,6 +190,194 @@ If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMI
 
 ---
 
+## API Testing
+
+The following example is a refactored version of the `00-institution.test.js` file. The file has been refactored to include the `login` function. The `login` function logs in an admin user and returns the `token`. The `token` is then used to access the protected routes.
+
+```js
+import bcryptjs from "bcryptjs";
+import * as chaiModule from "chai";
+import chaiHttp from "chai-http";
+import { describe, it } from "mocha";
+
+import app from "../app.js";
+
+import prisma from "../prisma/client.js";
+
+const chai = chaiModule.use(chaiHttp);
+
+const hashPassword = async (password) => {
+  const salt = await bcryptjs.genSalt();
+  return bcryptjs.hash(password, salt);
+};
+
+let institutionId;
+let anotherInstitutionId;
+let token;
+
+describe("Institutions", () => {
+  it("should create and login an admin user", async () => {
+    await prisma.user.create({
+      data: {
+        firstName: "John",
+        lastName: "Doe",
+        emailAddress: "john.doe@example.com",
+        password: await hashPassword("password123"),
+        role: "ADMIN",
+      },
+    });
+
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/auth/login")
+      .send({
+        emailAddress: "john.doe@example.com",
+        password: "password123",
+      });
+
+    token = res.body.token;
+  });
+
+  it("should reject missing token", async () => {
+    const res = await chai.request.execute(app).get("/api/v1/institutions");
+
+    chai.expect(res.body.message).to.be.equal("No token provided");
+  });
+
+  it("should reject non-string name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .set("Authorization", `Bearer ${token}`)
+      .send({ name: 123, region: "Otago", country: "New Zealand" });
+
+    chai.expect(res.body.message).to.be.equal("name should be a string");
+  });
+
+  it("should create a valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "University of Otago",
+        region: "Otago",
+        country: "New Zealand",
+      });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal("Institution successfully created");
+    institutionId = res.body.data[0].id;
+  });
+
+  it("should create another valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .post("/api/v1/institutions")
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "University of Canterbury",
+        region: "Canterbury",
+        country: "New Zealand",
+      });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal("Institution successfully created");
+    anotherInstitutionId = res.body.data[0].id;
+  });
+
+  it("should retrieve all institutions", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get("/api/v1/institutions")
+      .set("Authorization", `Bearer ${token}`);
+
+    chai.expect(res.body.data).to.be.an("array");
+  });
+
+  it("should retrieve an institution by ID", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get(`/api/v1/institutions/${institutionId}`)
+      .set("Authorization", `Bearer ${token}`);
+
+    chai.expect(res.body.data.name).to.be.equal("University of Otago");
+  });
+
+  it("should filter institutions by name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get("/api/v1/institutions?name=Otago")
+      .set("Authorization", `Bearer ${token}`);
+
+    chai.expect(res.body.data[0].name).to.be.equal("University of Otago");
+  });
+
+  it("should sort institutions by name", async () => {
+    const res = await chai.request
+      .execute(app)
+      .get("/api/v1/institutions?sortBy=name")
+      .set("Authorization", `Bearer ${token}`);
+
+    chai.expect(res.body.data[0].name).to.be.equal("University of Canterbury");
+  });
+
+  it("should reject non-string country during update", async () => {
+    const res = await chai.request
+      .execute(app)
+      .put(`/api/v1/institutions/${institutionId}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: 123,
+      });
+
+    chai.expect(res.body.message).to.be.equal("country should be a string");
+  });
+
+  it("should update a valid institution", async () => {
+    const res = await chai.request
+      .execute(app)
+      .put(`/api/v1/institutions/${institutionId}`)
+      .set("Authorization", `Bearer ${token}`)
+      .send({
+        name: "University of Auckland",
+        region: "Auckland",
+        country: "New Zealand",
+      });
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal(
+        `Institution with the id: ${institutionId} successfully updated`
+      );
+  });
+
+  it("should delete an institution by ID", async () => {
+    const res = await chai.request
+      .execute(app)
+      .delete(`/api/v1/institutions/${institutionId}`)
+      .set("Authorization", `Bearer ${token}`);
+
+    chai
+      .expect(res.body.message)
+      .to.be.equal(
+        `Institution with the id: ${institutionId} successfully deleted`
+      );
+  });
+});
+
+// Export the ID for use in other tests
+export { anotherInstitutionId };
+```
+
+> **Note:** You will notice that each `chai.request` has been refactored to include the `set` method. The `set` method is used to set the `Authorization` header with the `token`.
+
+---
+
 ## Formative Assessment
 
 If you get stuck on any of the following tasks, feel free to use **ChatGPT** permitting, you are aware of the following:

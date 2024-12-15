@@ -280,7 +280,8 @@ const login = async (req, res) => {
 
     const user = await prisma.user.findUnique({ where: { emailAddress } });
 
-    if (!user) return res.status(401).json({ message: "Invalid email address" });
+    if (!user)
+      return res.status(401).json({ message: "Invalid email address" });
 
     if (
       user.loginAttempts >= MAX_LOGIN_ATTEMPTS &&
@@ -622,16 +623,6 @@ If you click on the lock, you will be prompt to enter the `token`. Enter the `to
 ![](<../resources (ignore)/img/06/capture-6.PNG>)
 
 Click on the **Execute** button. What happens if you do not provide the `token`?
-
----
-
-## Seeding
-
-Last week, we create scripts to seed institutions. This week, we will create scripts to seed users. In the **lecture-notes** directory, you have been provided two scripts - `seed-admin-users.js` and `seed-basic-users.js`. Copy and paste these files into the `prisma/seeding` directory.
-
-## API Testing
-
-
 
 ---
 

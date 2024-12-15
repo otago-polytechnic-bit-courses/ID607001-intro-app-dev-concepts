@@ -369,17 +369,16 @@ In the `.prettierrc.json` file, implement the following rules:
 - Single quotes are required
 - Trailing commas wherever possible
 
-In the `package.json` file, add the following lines to the `scripts` block.
+In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
-"prettier:check": "npx prettier --check ."
-"prettier:format": "npx prettier --write .",
+"prettier:format": "npx prettier --write ."
 ```
 
-- `prettier:check` script is used to check if the code is formatted based on the rules specified in the `.prettierrc.json` file.
-- `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 
-Run the `prettier:format` script to format your code. Run the `prettier:check` script to check if your code is formatted correctly.
+The `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
+
+Run the `prettier:format` script to format your code. 
 
 ---
 

@@ -1,76 +1,54 @@
-## **REST API** URL (Render Web Service)
+# REST API Setup Guide
 
-You can access the deployed **REST API** on **Render** - [REPLACE WITH A LINK](<REPLACE WITH A LINK>)
+**Deployed API**: [REPLACE WITH A LINK](<REPLACE WITH A LINK>)
 
-## Setup Environment
+---
 
-| Step                                              | Command                                                   |
-| ------------------------------------------------- | --------------------------------------------------------- |
-| Clone the repository                              | `<REPLACE WITH A COMMAND>` |
-| Change the directory                              | `<REPLACE WITH A COMMAND>`                 |
-| Install the required dependencies                 | `<REPLACE WITH A COMMAND>`                                  |
-| Copy `.env.example` to `.env`                     | `<REPLACE WITH A COMMAND>`                                  |
+## Environment Setup
 
-Update the `.env` file with environment variables.	
+| Task                          | Command                    |
+| ----------------------------- | -------------------------- |
+| Clone the repository          | `<REPLACE WITH A COMMAND>` |
+| Change directory              | `<REPLACE WITH A COMMAND>` |
+| Install dependencies          | `<REPLACE WITH A COMMAND>` |
+| Copy `.env.example` to `.env` | `<REPLACE WITH A COMMAND>` |
 
-## Database Migration
+_Update the `.env` file with environment variables._
 
-| Task                                          | Command                  |
-| --------------------------------------------- | ------------------------ |
-| Create and apply a new migration using **Prisma** | `<REPLACE WITH A COMMAND>` |
+---
 
-## Reset PostgreSQL Database
+## Database Management
 
-| Task                                       | Command                  |
-| ------------------------------------------ | ------------------------ |
-| Reset the **PostgreSQL** database using **Prisma** | `<REPLACE WITH A COMMAND>` |
+| Task                       | Command                    |
+| -------------------------- | -------------------------- |
+| Create and apply migration | `<REPLACE WITH A COMMAND>` |
+| Reset PostgreSQL database  | `<REPLACE WITH A COMMAND>` |
+| Seed the database          | `<REPLACE WITH A COMMAND>` |
 
-## Seeding the Database with Prisma
+---
 
-Write the seed script inside `<REPLACE WITH A PATH>`.
+## Running the API
 
-| Task                                          | Command                  |
-| --------------------------------------------- | ------------------------ |
-| Execute the seeding script                    | `<REPLACE WITH A COMMAND>` |
+| Task              | Command                    |
+| ----------------- | -------------------------- |
+| Start API locally | `<REPLACE WITH A COMMAND>` |
+| Local API URL     | `<REPLACE WITH A LINK>`    |
+| Swagger URL       | `<REPLACE WITH A LINK>`    |
 
-## Running **REST API** Locally
+---
 
-| Task                                   | Command                  |
-| -------------------------------------- | ------------------------ |
-| Run the **REST API** on your local machine | `<REPLACE WITH A COMMAND>` |
+## Testing and Tools
 
-Your local API should now be running on `<REPLACE WITH A LINK>`.
+| Task               | Command                    |
+| ------------------ | -------------------------- |
+| Run API tests      | `<REPLACE WITH A COMMAND>` |
+| Open Prisma Studio | `<REPLACE WITH A COMMAND>` |
+| Format code        | `<REPLACE WITH A COMMAND>` |
 
-## Running API Tests
+---
 
-| Task                  | Command                  |
-| --------------------- | ------------------------ |
-| Run API tests locally | `<REPLACE WITH A COMMAND>` |
+## ERD
 
-This will execute all the API tests to ensure the **REST API** functionality is working as expected.
+**Entity Relationship Diagram**:
 
-## Opening Prisma Studio
-
-| Task               | Command                  |
-| ------------------ | ------------------------ |
-| Open **Prisma Studio** | `<REPLACE WITH A COMMAND>` |
-
-## Code Quality Checks
-
-| Task                              | Command                  |
-| --------------------------------- | ------------------------ |
-| Check code quality using **Prettier** | `<REPLACE WITH A COMMAND>` |
-
-## Code Formatting
-
-| Task                       | Command                  |
-| -------------------------- | ------------------------ |
-| Format code using **Prettier** | `<REPLACE WITH A COMMAND>` |
-
-## Entity Relationship Diagram (ERD)
-
-Below is the **Entity Relationship Diagram (ERD)** for the **REST API**:
-
-```bash
-<ADD THE DIAGRAMS HERE>
-```
+<ADD THE DIAGRAM HERE>

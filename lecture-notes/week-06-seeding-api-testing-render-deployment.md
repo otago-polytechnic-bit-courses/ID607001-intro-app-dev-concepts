@@ -215,14 +215,14 @@ There are several libraries for testing APIs. We will use **Chai** and **Mocha**
 Install the libraries by running the following command.
 
 ```bash
-npm install chai chai-http mocha --save-dev
+npm install chai@4.3.9 chai-http@4.4.0 mocha --save-dev
 ```
 
 ---
 
 ### Test File
 
-In the root directory, create a directory named `test`. In the `test` directory, create a file named `00-institution.test.js` and add the following code.
+In the root directory, create a directory named `tests`. In the `tests` directory, create a file named `00-institution.test.js` and add the following code.
 
 ```javascript
 import * as chaiModule from "chai";
@@ -350,9 +350,6 @@ describe("Institutions", () => {
       );
   });
 });
-
-// Export the ID for use in other tests
-export { anotherInstitutionId };
 ```
 
 > **Note:** This test suite covers the main HTTP methods (GET, POST, PUT, DELETE) for an institution as well as validation, filtering, and sorting.
@@ -371,15 +368,15 @@ What are some key points to note in the test file?
 In the `package.json` file, add the following line under the `scripts` block.
 
 ```json
-"test": "npx prisma migrate reset --force && mocha --timeout 10000 --exit",
+"test": "npm run prisma:reset && mocha tests --recursive --timeout 10000 --exit",
 ```
 
-The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--exit` flag exits the process once the tests are complete.
+The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--exit` flag exits the process once the tests are complete. The `--recursive` flag allows Mocha to run tests in subdirectories.
 
 To run the tests, run the following command.
 
 ```bash
-npm test
+npm run test
 ```
 
 When you run the tests, you should see the following output.
