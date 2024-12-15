@@ -53,7 +53,7 @@ const seedInstitutions = async () => {
   try {
     // Delete all existing institutions
     await prisma.institution.deleteMany();
-    
+
     const institutionData = [
       {
         name: "Otago Polytechnic",
@@ -222,7 +222,7 @@ npm install chai@4.3.9 chai-http@4.4.0 mocha --save-dev
 
 ### Test File
 
-In the root directory, create a directory named `tests`. In the `tests` directory, create a file named `00-institution.test.js` and add the following code.
+In the root directory, create a directory named `tests`. In the `tests` directory, create a file named `01-institution.test.js` and add the following code.
 
 ```javascript
 import * as chaiModule from "chai";
@@ -234,12 +234,12 @@ import app from "../app.js";
 const chai = chaiModule.use(chaiHttp);
 
 let institutionId;
-let anotherInstitutionId;
+export let anotherInstitutionId; // Exported for use in other test files
 
 describe("Institutions", () => {
   it("should reject non-string name", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .post("/api/v1/institutions")
       .send({ name: 123, region: "Otago", country: "New Zealand" });
 
@@ -247,14 +247,11 @@ describe("Institutions", () => {
   });
 
   it("should create a valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
-      .post("/api/v1/institutions")
-      .send({
-        name: "University of Otago",
-        region: "Otago",
-        country: "New Zealand",
-      });
+    const res = await chai.request(app).post("/api/v1/institutions").send({
+      name: "University of Otago",
+      region: "Otago",
+      country: "New Zealand",
+    });
 
     chai
       .expect(res.body.message)
@@ -263,14 +260,11 @@ describe("Institutions", () => {
   });
 
   it("should create another valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
-      .post("/api/v1/institutions")
-      .send({
-        name: "University of Canterbury",
-        region: "Canterbury",
-        country: "New Zealand",
-      });
+    const res = await chai.request(app).post("/api/v1/institutions").send({
+      name: "University of Canterbury",
+      region: "Canterbury",
+      country: "New Zealand",
+    });
 
     chai
       .expect(res.body.message)
@@ -279,38 +273,34 @@ describe("Institutions", () => {
   });
 
   it("should retrieve all institutions", async () => {
-    const res = await chai.request.execute(app).get("/api/v1/institutions");
+    const res = await chai.request(app).get("/api/v1/institutions");
 
     chai.expect(res.body.data).to.be.an("array");
   });
 
   it("should retrieve an institution by ID", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .get(`/api/v1/institutions/${institutionId}`);
 
     chai.expect(res.body.data.name).to.be.equal("University of Otago");
   });
 
   it("should filter institutions by name", async () => {
-    const res = await chai.request
-      .execute(app)
-      .get("/api/v1/institutions?name=Otago");
+    const res = await chai.request(app).get("/api/v1/institutions?name=Otago");
 
     chai.expect(res.body.data[0].name).to.be.equal("University of Otago");
   });
 
   it("should sort institutions by name", async () => {
-    const res = await chai.request
-      .execute(app)
-      .get("/api/v1/institutions?sortBy=name");
+    const res = await chai.request(app).get("/api/v1/institutions?sortBy=name");
 
     chai.expect(res.body.data[0].name).to.be.equal("University of Canterbury");
   });
 
   it("should reject non-string country during update", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .put(`/api/v1/institutions/${institutionId}`)
       .send({
         name: "University of Auckland",
@@ -322,8 +312,8 @@ describe("Institutions", () => {
   });
 
   it("should update a valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .put(`/api/v1/institutions/${institutionId}`)
       .send({
         name: "University of Auckland",
@@ -339,8 +329,8 @@ describe("Institutions", () => {
   });
 
   it("should delete an institution by ID", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .delete(`/api/v1/institutions/${institutionId}`);
 
     chai
@@ -358,7 +348,7 @@ What are some key points to note in the test file?
 
 - `describe`: A function that groups tests together
 - `it`: A function that defines a test case
-- `chai.request.execute`: A function that sends a request to the API
+- `chai.request`: A function that sends a request to the API
 - `chai.expect`: A function that makes assertions
 
 ---
@@ -502,7 +492,7 @@ Implement the code examples above.
 
 ### Task Two (Independent Research)
 
-You saw two ways to seed your database. Research and compare the two methods. Research and implement a third method to seed your database. Here are some ideas to get you started:
+You saw two ways to seed your database. Research and compare the two methods. Research and implement a third method to seed . Here are some ideas to get you started:
 
 - Use a **JSON** file to seed your database
 - Use a **CSV** file to seed your database
@@ -512,7 +502,7 @@ You saw two ways to seed your database. Research and compare the two methods. Re
 
 ### Task Three (Independent Research)
 
-Create a new test file in the `test` directory named `01-department.test.js`. Implement 15 tests. Make sure you cover the main HTTP methods (GET, POST, PUT, DELETE) for a department as well as validation, filtering, and sorting.
+Create two new test files in the `tests` directory named `02-department.test.js` and `03-course.test.js`. Implement 10 tests for each. Make sure you cover the main HTTP methods (GET, POST, PUT, DELETE) as well as validation, filtering, and sorting.
 
 ---
 

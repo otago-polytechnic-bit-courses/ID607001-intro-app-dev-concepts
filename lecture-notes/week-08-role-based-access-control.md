@@ -60,7 +60,9 @@ const register = async (req, res) => {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
     if (role === "ADMIN") {
-      return res.status(403).json({ message: "User cannot register as an admin" });
+      return res
+        .status(403)
+        .json({ message: "User cannot register as an admin" });
     }
 
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -148,12 +150,7 @@ const router = express.Router();
 
 // Note: Swagger documentation has been removed for brevity
 
-router.post(
-  "/",
-  validatePostInstitution,
-  authorisation,
-  createInstitution
-);
+router.post("/", validatePostInstitution, authorisation, createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
@@ -192,16 +189,15 @@ If you want to test this works, **TEMPORARILY** replace `if (user.role !== "ADMI
 
 ## API Testing
 
-The following example is a refactored version of the `00-institution.test.js` file. The file has been refactored to include the `login` function. The `login` function logs in an admin user and returns the `token`. The `token` is then used to access the protected routes.
+In the `tests` directory, create a new file called `00-auth.test.js`. Add the following code to the `00-auth.test.js` file:
 
 ```js
 import bcryptjs from "bcryptjs";
 import * as chaiModule from "chai";
 import chaiHttp from "chai-http";
-import { describe, it } from "mocha";
+import { describe, it, before } from "mocha";
 
 import app from "../app.js";
-
 import prisma from "../prisma/client.js";
 
 const chai = chaiModule.use(chaiHttp);
@@ -211,12 +207,11 @@ const hashPassword = async (password) => {
   return bcryptjs.hash(password, salt);
 };
 
-let institutionId;
-let anotherInstitutionId;
-let token;
+export let token; // Export token for use in other test files
 
-describe("Institutions", () => {
-  it("should create and login an admin user", async () => {
+describe("Auth", () => {
+  before(async () => {
+    // Ensure a fresh admin user exists in the database
     await prisma.user.create({
       data: {
         firstName: "John",
@@ -226,27 +221,47 @@ describe("Institutions", () => {
         role: "ADMIN",
       },
     });
+  });
 
-    const res = await chai.request
-      .execute(app)
-      .post("/api/v1/auth/login")
-      .send({
-        emailAddress: "john.doe@example.com",
-        password: "password123",
-      });
+  it("should login an admin user and return a token", async () => {
+    const res = await chai.request(app).post("/api/v1/auth/login").send({
+      emailAddress: "john.doe@example.com",
+      password: "password123",
+    });
+
+    chai.expect(res).to.have.status(200);
+    chai.expect(res.body.token).to.exist;
 
     token = res.body.token;
   });
+});
+```
 
+The following example is a refactored version of the `00-institution.test.js` file. The file has been refactored to include the `login` function. The `login` function logs in an admin user and returns the `token`. The `token` is then used to access the protected routes.
+
+```js
+import * as chaiModule from "chai";
+import chaiHttp from "chai-http";
+import { describe, it } from "mocha";
+
+import app from "../app.js";
+import { token } from "./00-auth.test.js";
+
+const chai = chaiModule.use(chaiHttp);
+
+let institutionId;
+export let anotherInstitutionId;
+
+describe("Institutions", () => {
   it("should reject missing token", async () => {
-    const res = await chai.request.execute(app).get("/api/v1/institutions");
+    const res = await chai.request(app).get("/api/v1/institutions");
 
     chai.expect(res.body.message).to.be.equal("No token provided");
   });
 
   it("should reject non-string name", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .post("/api/v1/institutions")
       .set("Authorization", `Bearer ${token}`)
       .send({ name: 123, region: "Otago", country: "New Zealand" });
@@ -255,8 +270,8 @@ describe("Institutions", () => {
   });
 
   it("should create a valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .post("/api/v1/institutions")
       .set("Authorization", `Bearer ${token}`)
       .send({
@@ -272,8 +287,8 @@ describe("Institutions", () => {
   });
 
   it("should create another valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .post("/api/v1/institutions")
       .set("Authorization", `Bearer ${token}`)
       .send({
@@ -289,8 +304,8 @@ describe("Institutions", () => {
   });
 
   it("should retrieve all institutions", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .get("/api/v1/institutions")
       .set("Authorization", `Bearer ${token}`);
 
@@ -298,8 +313,8 @@ describe("Institutions", () => {
   });
 
   it("should retrieve an institution by ID", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .get(`/api/v1/institutions/${institutionId}`)
       .set("Authorization", `Bearer ${token}`);
 
@@ -307,8 +322,8 @@ describe("Institutions", () => {
   });
 
   it("should filter institutions by name", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .get("/api/v1/institutions?name=Otago")
       .set("Authorization", `Bearer ${token}`);
 
@@ -316,8 +331,8 @@ describe("Institutions", () => {
   });
 
   it("should sort institutions by name", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .get("/api/v1/institutions?sortBy=name")
       .set("Authorization", `Bearer ${token}`);
 
@@ -325,8 +340,8 @@ describe("Institutions", () => {
   });
 
   it("should reject non-string country during update", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .put(`/api/v1/institutions/${institutionId}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
@@ -339,8 +354,8 @@ describe("Institutions", () => {
   });
 
   it("should update a valid institution", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .put(`/api/v1/institutions/${institutionId}`)
       .set("Authorization", `Bearer ${token}`)
       .send({
@@ -357,8 +372,8 @@ describe("Institutions", () => {
   });
 
   it("should delete an institution by ID", async () => {
-    const res = await chai.request
-      .execute(app)
+    const res = await chai
+      .request(app)
       .delete(`/api/v1/institutions/${institutionId}`)
       .set("Authorization", `Bearer ${token}`);
 
@@ -369,9 +384,6 @@ describe("Institutions", () => {
       );
   });
 });
-
-// Export the ID for use in other tests
-export { anotherInstitutionId };
 ```
 
 > **Note:** You will notice that each `chai.request` has been refactored to include the `set` method. The `set` method is used to set the `Authorization` header with the `token`.

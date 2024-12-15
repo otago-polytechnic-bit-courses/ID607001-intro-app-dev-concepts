@@ -126,11 +126,26 @@ Implement the code examples above.
 
 ---
 
-### Task Two
+### Task Two (Independent Research)
 
 Update the `rateLimit` function to include a custom message when the rate limit is exceeded. For example, Too many requests from this IP, please try again after 15 minutes.
 
 ---
+
+### Task Three (Independent Research)
+
+In the `tests` directory, create a new file called `100-http.test.js`. In this file, write a test to check if the **X-Powered-By** header is removed after adding the **helmet** middleware.
+
+---
+
+### Task Four (Independent Research)
+
+Implement the following:
+
+- Cross-Origin Resource Sharing (CORS) middleware - <https://www.npmjs.com/package/cors>
+- Compression middleware - <https://www.npmjs.com/package/compression>
+
+In your own words, explain how the **CORS** and **Compression** middleware benefit your application. Appropriately cite your sources using **APA 7th Edition**.
 
 ### Submission
 
