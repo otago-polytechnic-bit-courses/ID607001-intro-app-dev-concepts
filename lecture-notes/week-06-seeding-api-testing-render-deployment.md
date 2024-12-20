@@ -192,7 +192,7 @@ export default seedInstitutionsFromGitHub;
 
 ---
 
-### Package JSON File
+## Package JSON File
 
 In the `package.json` file, add the following in the `scripts` block.
 
