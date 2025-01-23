@@ -38,9 +38,11 @@
 \maketitle 
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. In development, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in production, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}.\\
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. In \textbf{development} and \textbf{testing}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in \textbf{production}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}.\\
 
 As you develop your \textbf{REST API}, you will need to write \textbf{API tests} to verify the functionality of your \textbf{REST API} using \textbf{Chai} and \textbf{Mocha}.\\
+
+For marking purposes, provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}.\\
 
 Marks will also be given for code quality and best practices, documentation and \textbf{Git} usage. 
  
@@ -56,13 +58,12 @@ At the successful completion of this course, learners will be able to:
 \begin{tabular}{|c|c|c|c|}
 	\hline
 	\textbf{Assessment}                                 & \textbf{Weighting} & \textbf{Due Date}            & \textbf{Learning Outcome} \\ \hline
-	\small Practical & \small 20\%        & \small 13-11-2024 (Wednesday at 4.59 PM)   & \small 1                   \\ \hline
-	\small Project                 & \small 80\%        & \small 13-11-2024 (Wednesday at 4.59 PM) \small  & \small 1                   \\ \hline
+	\small Practical & \small 20\%        & \small Thursday of Week 16 at 2.59 PM  & \small 1                   \\ \hline
+	\small Project                 & \small 80\%        & \small Monday of Week 15 at 7.59 AM \small  & \small 1                   \\ \hline
 \end{tabular}
 
-
 \section*{Conditions of Assessment}
-You will complete this assessment during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by \textbf{Wednesday, 13 November 2024} at \textbf{4.59 PM}. 
+You will complete this assessment mostly during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by \textbf{Monday of Week 15} at \textbf{7.59 AM}. 
 
 \section*{Pass Criteria}
 This assessment is criterion-referenced (CRA) with a cumulative pass mark of \textbf{50\%} across all assessments in \textbf{ID607001: Introductory Application Development Concepts}.
@@ -70,13 +71,20 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of \te
 \section*{Submission}
 You \textbf{must} submit all application files via \textbf{GitHub Classroom}. Here is the URL to the repository you will use for your submission – \href{https://classroom.github.com/a/WBzw8fEH}{https://classroom.github.com/a/WBzw8fEH}. If you do not have not one, create a \textbf{.gitignore} and add the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}. Create a branch called \textbf{project}. The latest application files in the \textbf{project} branch will be used to mark against the \textbf{Functionality} criterion. Please test before you submit. Partial marks \textbf{will not} be given for incomplete functionality. Late submissions will incur a \textbf{10\% penalty per day}, rolling over at \textbf{5:00 PM}.
 
-
 \section*{Authenticity}
 All parts of your submitted assessment \textbf{must} be completely your work. Do your best to complete this assessment without using an \textbf{AI generative tool}. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment. \\
  
- However, if you get stuck, you can use an \textbf{AI generative tool} to help you get unstuck, permitting you to acknowledge that you have used it. In the assessment's repository \textbf{README.md} file, please include what prompt(s) you provided to the \textbf{AI generative tool} and how you used the response(s) to help you with your work. It also applies to code snippets retrieved from \textbf{StackOverflow} and \textbf{GitHub}. \\
+Learning to use AI tool is an important skill. While AI tools are powerful, you \textbf{must} be aware of the following:
+
+\begin{itemize}
+    \item If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+    \item Do not trust the AI tool's responses blindly. You \textbf{must} still use your judgement and may need to do additional research to determine if the response is correct
+    \item Acknowledge what AI tool you have used. In the assessment's repository \textbf{README.md} file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+\end{itemize}
+
+It also applies to code snippets retrieved from \textbf{StackOverflow} and \textbf{GitHub}. \\
  
- Failure to do this may result in a mark of \textbf{zero} for this assessment.
+Failure to do this may result in a mark of \textbf{zero} for this assessment.
 
 \section*{Policy on Submissions, Extensions, Resubmissions and Resits}
 The school's process concerning submissions, extensions, resubmissions and resits complies with \textbf{Otago Polytechnic | Te Pūkenga} policies. Learners can view policies on the \textbf{Otago Polytechnic | Te Pūkenga} website located at \href{https://www.op.ac.nz/about-us/governance-and-management/policies}{https://www.op.ac.nz/about-us/governance-and-management/policies}. 
@@ -93,82 +101,35 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \subsection*{Functionality - Learning Outcome 1 (50\%)}
 \begin{itemize} 
-	\item \textbf{Your choice REST API (25\%):}
+	\item Models (10\%)
 	\begin{itemize}
-		\item Create a new directory called \textbf{your-choice-rest-api} and create a new \textbf{Express} application using \textbf{Node.js}.
-		\item Can run in development and production without modification.
-		\item \textbf{Four} \textbf{models}. Each \textbf{model} contains a \textbf{minimum} of \textbf{three} \textbf{fields} excluding the \textbf{id}, \textbf{createdAt} and \textbf{updatedAt} \textbf{fields}.
-		\item A range of different data types, i.e., all \textbf{fields} in a \textbf{model} can not be of a single type.
-		\item \textbf{Four relationships} between \textbf{models}.
-		\item \textbf{One} \textbf{model} has an \textbf{enum} \textbf{field}. 
-		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}. \textbf{Note:} You can create a generic \textbf{repository} file for all \textbf{models} if you wish.
-		\item Return an appropriate success or failure message, and status code when performing the operations, i.e., \textbf{"Successfully created an institution"} or \textbf{"No institutions found"}, and \textbf{200} or \textbf{404}.
-		\item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} should be filterable and sortable (in ascending and descending order).
-		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 25.
-		\item Return an appropriate message if an endpoint does not exist.
-		\item When creating and updating, validate each \textbf{field} using \textbf{Joi}. 
-		\item Scripts for running your \textbf{REST API} locally, creating and applying a migration, resetting the \textbf{PostgreSQL} database, opening \textbf{Prisma Studio}, checking your code and formatting your code are included in the \textbf{package.json} file.
+		\item Ten models. Each model must have at least five fields.
+		\item A range of data types, i.e., Int, String, Boolean, etc.
+		\item Five relationships between models, i.e., one-to-one, one-to-many, many-to-many, etc.
+		\item Three enums. Each enum must have at least three values.
 	\end{itemize}
-
-	\item \textbf{OpenTDB REST API (25\%):}
+	\item Authentication and Role-Based Access Control (10\%)
 	\begin{itemize}
-		\item Create a new directory called \textbf{opentdb-rest-api} and create a new \textbf{Express} application using \textbf{Node.js}.
-		\item Can run in development and production without modification.
-		\item In your \textbf{schema.prisma} file, implement the following \textbf{enums}:
-		\begin{itemize}
-			\item \textbf{Role} - BASIC and ADMIN.
-			\item \textbf{Type} - multiple and boolean.
-			\item \textbf{Difficulty} - easy, medium and hard.
-		\end{itemize}
-		\item In addition, implement the following \textbf{models}:
-		\begin{itemize}
-			\item \textbf{User} - id, emailAddress, firstName, lastName, password, loginAttempts, lastLoginAttempt and role.
-			\item \textbf{Category} - id and name. \textbf{Note:} id is an \textbf{Int}.
-			\item \textbf{Quiz} - id, categoryId, name, type, difficulty, startDate and endDate.
-			\item \textbf{Question} - id, quizId, question, correctAnswer and incorrectAnswers.
-			\item \textbf{UserQuestionAnswer} - id, userId, quizId, questionId, answer and isCorrect.
-			\item \textbf{UserQuizScore} - id, userId, quizId and score.
-		\end{itemize}
-		\item The category, list of questions, list of correct answers and list of incorrect answers will be fetched from the \href{OpenTDB API}{https://opentdb.com/api\_config.php}.
-		\item An \textbf{ADMIN} user can:
-		\begin{itemize}
-			\item Login.
-			\item Create (POST) a quiz, retrieve all (GET) quizzes, retrieve (GET) a quiz, update (PUT) a quiz and delete (DELETE) a quiz.  	
-			\item Retrieve all \textbf{ADMIN} and \textbf{BASIC} user information excluding password.
-			\item Retrieve all scores.
-		\end{itemize}
-		\item A \textbf{BASIC} user can:
-		\begin{itemize}
-			\item Register and login.
-			\item Retrieve all (GET) quizzes and retrieve (GET) a quiz.  	
-			\item Play a quiz.
-			\item Retrieve all scores.
-		\end{itemize}
-		\item When creating a quiz, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
-		\begin{itemize}
-			\item Name has a minimum length of five characters, a maximum length of 30 characters and alpha characters only.
-			\item Start date has to be greater than or equal to today's date.
-			\item End date has to be greater than the start date and no longer than five days. 
-			\item Number of questions has to be ten.
-		\end{itemize}
-		\item When playing a quiz, the following error checking needs to be implemented using \textbf{Joi} and/or conditional statements:
-		\begin{itemize}
-			\item Can not play if quiz has not started or has ended.
-			\item Answered all ten questions.
-		\end{itemize}
-		\item Two \textbf{ADMIN} and three \textbf{BASIC} users are seeded via a \textbf{script} in the \textbf{package.json} file. The \textbf{ADMIN} and \textbf{BASIC} users' data will be fetched from a local file and inserted into the \textbf{User} table using \textbf{Prisma}.  
-		\item Implement \textbf{Helmet}, \textbf{rate limiting} and \textbf{compression}.
-		\item Scripts for running your \textbf{REST API} locally, creating and applying a migration, resetting the \textbf{PostgreSQL} database, seeding \textbf{ADMIN} and \textbf{BASIC} users, opening \textbf{Prisma Studio}, checking your code and formatting your code are included in the \textbf{package.json} file.
+		\item Three roles, i.e., \textbf{SUPER\_ADMIN}, \textbf{ADMIN} and \textbf{NORMAL}.
+		\item Register a \textbf{NORMAL} user. 
+		\item All users can login.
+		\item Lock a user for ten minutes after five failed login attempts.
+		\item All users can logout. When a user logs out, the user's token is blacklisted. 
 	\end{itemize}
-	\item In addition, each \textbf{REST API} will:
+	\item CRUD Operations (10\%)
 	\begin{itemize}
-		\item Have an endpoint for Swagger documentation. Each route needs to be documented. 
-		\item Store their data in a \textbf{PostgreSQL} database on \textbf{Render}. \textbf{Note:} You may have to use the same database for both \textbf{REST API}.
-		\item Be deployed as a \textbf{web service} on \textbf{Render}.
-	\end{itemize} 
+		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
+		\item When performing a \textbf{POST} and \textbf{PUT} request, validate the request body. Each field must have four validation rules.
+		\item \item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} must be filterable and sortable (in ascending and descending order).
+		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 10.
+		
+	\end{itemize}
+	\item Seeding and API Tests (10\%)
+	\item Logging and Security (5\%)
+	\item Development, Testing and Production (5\%)
 \end{itemize}
 
-\subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
+\subsection*{Code Quality and Best Practices - Learning Outcome 1 (45\%)}
 \begin{itemize}
 	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
 	\item Environment variables' key is stored in the \textbf{.env.example} file. 
@@ -185,7 +146,7 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\item No dead or unused code. 
 \end{itemize}
 
-\subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
+\subsection*{Documentation and Git Usage - Learning Outcome 1 (5\%)}
 \begin{itemize}
 	\item A \textbf{GitHub} project board or issues to help you organise and prioritise your development work. The course lecturer needs to see consistent use of the \textbf{GitHub} project board or issues for the duration of the assessment. \textbf{Note:} If you cannot create a \textbf{GitHub} project board, please use \textbf{GitHub} issues.
     \item Provide the following in your repository \textbf{README.md} file:
