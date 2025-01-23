@@ -123,7 +123,7 @@ Implement the code examples above.
 
 ### Task Two (Independent Research)
 
-In your own words, each phase of the **Waterfall** methodology. Appropriately cite your sources using **APA 7th Edition**.
+In your own words, explain each phase of the **Waterfall** methodology. Appropriately cite your sources using **APA 7th Edition**.
 
 ---
 
