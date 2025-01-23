@@ -23,7 +23,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project\\Version 3, Semester 1, 2025}
+\lfoot{Project\\Version 4, Semester 1, 2025}
 \rfoot{\thepage}  
  
 \begin{document}
@@ -38,13 +38,7 @@
 \maketitle 
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. In \textbf{development} and \textbf{testing}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in \textbf{production}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}.\\
-
-As you develop your \textbf{REST API}, you will need to write \textbf{API tests} to verify the functionality of your \textbf{REST API} using \textbf{Chai} and \textbf{Mocha}.\\
-
-For marking purposes, provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}.\\
-
-Marks will also be given for code quality and best practices, documentation and \textbf{Git} usage. 
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. In \textbf{development} and \textbf{testing}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in \textbf{production}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. As you develop your \textbf{REST API}, you will need to write \textbf{API tests} to verify the functionality of your \textbf{REST API} using \textbf{Chai} and \textbf{Mocha}. For marking purposes, provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}. Marks will also be given for code quality and best practices, documentation and \textbf{Git} usage. 
  
 
 \section*{Learning Outcome}
@@ -99,51 +93,96 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \section*{Instructions}
 
-\subsection*{Functionality - Learning Outcome 1 (50\%)}
+\subsection*{Functionality - Learning Outcome 1 (55\%)}
 \begin{itemize} 
 	\item Models (10\%)
 	\begin{itemize}
-		\item Ten models. Each model must have at least five fields.
-		\item A range of data types, i.e., Int, String, Boolean, etc.
+		\item Ten models. Each model must have at least five fields. One model must be the \textbf{User} model.
+		\item A range of data types, i.e., \textbf{Int}, \textbf{String}, \textbf{Boolean}, etc.
 		\item Five relationships between models, i.e., one-to-one, one-to-many, many-to-many, etc.
 		\item Three enums. Each enum must have at least three values.
 	\end{itemize}
 	\item Authentication and Role-Based Access Control (10\%)
 	\begin{itemize}
 		\item Three roles, i.e., \textbf{SUPER\_ADMIN}, \textbf{ADMIN} and \textbf{NORMAL}.
-		\item Register a \textbf{NORMAL} user. 
+		\item Register a \textbf{NORMAL} user, but not a \textbf{SUPER\_ADMIN} or \textbf{ADMIN} user. 
 		\item All users can login.
 		\item Lock a user for ten minutes after five failed login attempts.
 		\item All users can logout. When a user logs out, the user's token is blacklisted. 
 	\end{itemize}
-	\item CRUD Operations (10\%)
+	\item CRUD Operations (15\%)
 	\begin{itemize}
-		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain operations for \textbf{POST}, \textbf{GET all}, \textbf{GET one}, \textbf{PUT} and \textbf{DELETE}.
-		\item When performing a \textbf{POST} and \textbf{PUT} request, validate the request body. Each field must have four validation rules.
-		\item \item \textbf{Filter} and \textbf{sort} your data using \textbf{query parameters}. All \textbf{fields} must be filterable and sortable (in ascending and descending order).
-		\item \textbf{Paginate} your data using \textbf{query parameters}. The default number of data per page is 10.
+		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain the following CRUD operations: \textbf{getAll}, \textbf{getById}, \textbf{create}, \textbf{update} and \textbf{delete}.
 		
+		\item When performing a \textbf{POST} and \textbf{PUT} request, validate the request body. Each field must have four validation rules.
+		
+		\item \textbf{Filter} and \textbf{sort}  data using \textbf{query parameters}. All \textbf{fields} must be filterable and sortable (in ascending and descending order).
+		
+		\item \textbf{Paginate} data using \textbf{query parameters}. The default number of data per page is 25.
+
+		\item \textbf{SUPER\_ADMIN} Permissions
+		\begin{itemize}
+			\item Can perform the following operations on the \textbf{User} model:
+			\begin{itemize}
+				\item Read operations on all users.
+				\item Create, update and delete \textbf{ADMIN} and \textbf{NORMAL} users, but cannot update their \textbf{password}.
+				\item Create a \textbf{SUPER\_ADMIN} user.
+				\item Update their data except \textbf{role}, but not other \textbf{SUPER\_ADMIN} users.
+				\item Cannot delete other \textbf{SUPER\_ADMIN} users, including themselves.
+				\item Disable and enable users. When a user is disabled, the user cannot login.
+			\end{itemize}
+			\item Perform CRUD operations on the other models.
+		\end{itemize}
+		
+		\item \textbf{ADMIN} Permissions
+		\begin{itemize}
+			\item Can perform the following actions on the \textbf{User} model:
+			\begin{itemize}
+				\item Read operations on \textbf{ADMIN} and \textbf{NORMAL} users, but not \textbf{SUPER\_ADMIN} users.
+				\item Create, update and delete \textbf{NORMAL} users, but cannot update their \textbf{password}.
+				\item Cannot create, update and delete \textbf{SUPER\_ADMIN} and \textbf{ADMIN} users.
+				\item Update their data except \textbf{role}, but not other \textbf{ADMIN} users.
+				\item Cannot delete other \textbf{ADMIN} users, including themselves.
+			\end{itemize}
+			\item Perform CRUD operations on the other models.
+		\end{itemize}
+		
+		\item \textbf{NORMAL} Permissions
+		\begin{itemize}
+			\item Can perform the following actions on the \textbf{User} model:
+			\begin{itemize}
+				\item Read operations on themselves, but not other users.
+				\item Update their data except \textbf{role}, but not other users.
+				\item Cannot delete other users, including themselves.
+			\end{itemize}
+			\item Perform read operations on the other models.
+		\end{itemize}
 	\end{itemize}
+
 	\item Seeding and API Tests (10\%)
+	\begin{itemize}
+		\item Seed five \textbf{NORMAL} users via a \textbf{CSV} file.
+		\item Seed five \textbf{ADMIN} users via a \textbf{JSON} file.
+		\item Seed five \textbf{SUPER\_ADMIN} users via \textbf{GitHub Gist}.
+	\end{itemize}
+
 	\item Logging and Security (5\%)
+
 	\item Development, Testing and Production (5\%)
 \end{itemize}
 
-\subsection*{Code Quality and Best Practices - Learning Outcome 1 (45\%)}
+\subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
 \begin{itemize}
-	\item A \textbf{Node.js} \textbf{.gitignore} file is used.
-	\item Environment variables' key is stored in the \textbf{.env.example} file. 
-  	\item Appropriate naming of files, variables, functions and resource groups.
-  	\begin{itemize}
-		\item API endpoints are versioned, i.e., \textbf{/api/v1}.
-		\item Resource groups are named with a plural noun instead of a noun or verb, i.e., \textbf{/api/v1/items} not \textbf{/api/v1/item}.
-  	\end{itemize}
-	\item Idiomatic use of control flow, data structures and in-built functions.
-	\item Efficient algorithmic approach.
-	\item Sufficient modularity.
-	\item Each file has a \textbf{JSDoc} header comment located at the top of the file.
-	\item Code is formatted.
-	\item No dead or unused code. 
+	\item Project Structure and Organisation (10\%)
+	\begin{itemize}
+		\item 
+	\end{itemize}
+	\item Naming Conventions (5\%)
+	\item Code Practices and Readability (10\%)
+	\item Documentation and Comments (5\%)
+	\item Code Formatting (5\%)
+	\item Dead Code and Unused Dependencies (5\%)
+	\item Performance and Scalability (5\%)
 \end{itemize}
 
 \subsection*{Documentation and Git Usage - Learning Outcome 1 (5\%)}
