@@ -23,7 +23,7 @@
 \pagestyle{fancy}
 \fancyhf{}
 \rhead{College of Engineering, Construction and Living Sciences\\Bachelor of Information Technology}
-\lfoot{Project\\Version 4, Semester 1, 2025}
+\lfoot{Project\\Version 4, Semester One, 2025}
 \rfoot{\thepage}  
  
 \begin{document}
@@ -38,7 +38,12 @@
 \maketitle 
 
 \section*{Assessment Overview}
-In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. In \textbf{development} and \textbf{testing}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in \textbf{production}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. As you develop your \textbf{REST API}, you will need to write \textbf{API tests} to verify the functionality of your \textbf{REST API} using \textbf{Chai} and \textbf{Mocha}. For marking purposes, provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}. Marks will also be given for code quality and best practices, documentation and \textbf{Git} usage. 
+In this \textbf{individual} assessment, you will develop a \textbf{REST API} using \textbf{Express} and \textbf{Node.js}, and deploy it as a \textbf{web service} on \textbf{Render}. You will choose the idea for your \textbf{REST API}. It could be related to sport, culture, food or something else you are interested in. \\
+
+
+In \textbf{development} and \textbf{testing}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Docker} and in \textbf{production}, your data will be stored in a \textbf{PostgreSQL} database on \textbf{Render}. As you develop your \textbf{REST API}, you will need to write \textbf{API tests} to verify the functionality of your \textbf{REST API} using \textbf{Chai} and \textbf{Mocha}. \\
+
+For marking purposes, provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}. Marks will also be given for code quality and best practices, documentation and \textbf{Git} usage. 
  
 
 \section*{Learning Outcome}
@@ -93,15 +98,17 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \section*{Instructions}
 
-\subsection*{Functionality - Learning Outcome 1 (55\%)}
-\begin{itemize} 
-	\item Models (10\%)
+\subsection*{Functionality - Learning Outcome 1 (50\%)}
+\begin{itemize}
+	 
+	\item Models (5\%)
 	\begin{itemize}
 		\item Ten models. Each model must have at least five fields. One model must be the \textbf{User} model.
 		\item A range of data types, i.e., \textbf{Int}, \textbf{String}, \textbf{Boolean}, etc.
 		\item Five relationships between models, i.e., one-to-one, one-to-many, many-to-many, etc.
 		\item Three enums. Each enum must have at least three values.
 	\end{itemize}
+
 	\item Authentication and Role-Based Access Control (10\%)
 	\begin{itemize}
 		\item Three roles, i.e., \textbf{SUPER\_ADMIN}, \textbf{ADMIN} and \textbf{NORMAL}.
@@ -110,6 +117,7 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 		\item Lock a user for ten minutes after five failed login attempts.
 		\item All users can logout. When a user logs out, the user's token is blacklisted. 
 	\end{itemize}
+
 	\item CRUD Operations (15\%)
 	\begin{itemize}
 		\item A \textbf{repository}, \textbf{controller} and \textbf{route} file for each \textbf{model}. Each \textbf{controller} file needs to contain the following CRUD operations: \textbf{getAll}, \textbf{getById}, \textbf{create}, \textbf{update} and \textbf{delete}.
@@ -173,37 +181,31 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
 \begin{itemize}
-	\item Project Structure and Organisation (10\%)
-	\begin{itemize}
-		\item 
-	\end{itemize}
-	\item Naming Conventions (5\%)
-	\item Code Practices and Readability (10\%)
-	\item Documentation and Comments (5\%)
-	\item Code Formatting (5\%)
-	\item Dead Code and Unused Dependencies (5\%)
-	\item Performance and Scalability (5\%)
+    \item Project Structure (10\%) - The codebase should be well-organised with a clear and logical structure that separates concerns and promotes reusability.
+	\item Naming Conventions (5\%) - File, class, function, variable and resource group names should be clear, descriptive and consistent across the codebase. 
+    \item Documentation and Comments (5\%) - The code should be well-documented using the \textbf{JSDoc} format with comments that explain complex logic and clarify the purpose of classes, methods or complex sections. 
+    \item Code Formatting (5\%) - Consistent indentation and spacing should be used across the codebase. It includes ensuring proper indentation for code blocks, following a standard format for braces and adding blank lines between sections.
+    \item Dead Code (5\%) - The code should not contain unused or redundant files, classes, functions, variables or resource groups. Keeping unnecessary code around can lead to confusion, clutter and potential bugs down the line.
+    \item Performance and Scalability (10\%) - The code should be optimised for performance, using efficient algorithms and data structures to minimise bottlenecks. 
 \end{itemize}
 
-\subsection*{Documentation and Git Usage - Learning Outcome 1 (5\%)}
+\subsection*{Documentation and Git Usage - Learning Outcome 1 (10\%)}
 \begin{itemize}
-	\item A \textbf{GitHub} project board or issues to help you organise and prioritise your development work. The course lecturer needs to see consistent use of the \textbf{GitHub} project board or issues for the duration of the assessment. \textbf{Note:} If you cannot create a \textbf{GitHub} project board, please use \textbf{GitHub} issues.
+	\item A \textbf{GitHub} issues board to help you organise and prioritise your development work. The course lecturer needs to see consistent use of the \textbf{GitHub} issues board for the duration of the assessment.
     \item Provide the following in your repository \textbf{README.md} file:
     \begin{itemize} 
 	\item A URL to your \textbf{REST API} as a \textbf{web service} on \textbf{Render}.
-      \item How do you setup the environments, i.e., after the repository is cloned?
-	  \item How do you run your \textbf{REST API} locally?
-	  \item How do you create and apply a migration?  
-	  \item How do you reset the \textbf{PostgreSQL} database?
-	  \item How do you seed \textbf{ADMIN} and \textbf{BASIC} users?
-	  \item How do you open \textbf{Prisma Studio}?
-	  \item How do you check your code?
-	  \item How do you format your code?
-	  \item ERD of both \textbf{REST API}.
-    \end{itemize}
-	\textbf{Note:} You can find a \textbf{README.md} template in the \textbf{assessments} directory on \textbf{GitHub}.
-    \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
-    \item Correct spelling and grammar.
+	\item How to setup the development environment?
+	\item How to setup the testing environment?
+	\item How to seed the \textbf{PostgreSQL} database?
+	\item How to run the \textbf{API tests}?
+	\item How do you open \textbf{Prisma Studio}?
+	\item An \textbf{ERD} of your \textbf{REST API}.
+	\item A URL to the video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}.
+  \end{itemize}
+	    \item Use of \textbf{Markdown}, i.e., headings, bold text, code blocks, etc.
+	    \item Correct spelling and grammar.
+	\item A \textbf{.gitignore} file containing the ignored files in this resource - \href{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}{https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore}.
     \item Your \textbf{Git commit messages} should:
     \begin{itemize}
       \item Reflect the context of each functional requirement change.
@@ -213,8 +215,9 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \subsection*{Additional Information}
 \begin{itemize}
-	\item Your choice \textbf{REST API} must be signed off by the course lecturer before you start your development work.
+	\item Your \textbf{REST API} idea must be signed off by the course lecturer before you start your development work.
+	\item If you \textbf{do not} provide a video demonstrating the functionality of your \textbf{REST API} and the \textbf{API tests}, you will receive a mark of \textbf{zero} for this assessment.
     \item \textbf{Do not} rewrite your \textbf{Git} history. It is important that the course lecturer can see how you worked on your assessment over time. 
-    \item You need to show the course lecturer the initial \textbf{GitHub} project board or issues before you start your development work. Following this, you need to show the course lecturer your \textbf{GitHub} project board or issues at the end of each week.
+    \item You need to show the course lecturer the initial \textbf{GitHub} issues board before you start your development work. Following this, you need to show the course lecturer your \textbf{GitHub} issues at the end of each week.
 \end{itemize} 
 \end{document}
