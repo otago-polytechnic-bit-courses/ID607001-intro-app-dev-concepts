@@ -208,7 +208,19 @@ In the `package.json` file, add the following in the `scripts` block.
 
 ---
 
-### Setup
+### Setup - Docker
+
+Create a new **PostgreSQL** database on **Docker** by running the command below.
+
+```bash
+docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5433 -d postgres
+```
+
+> **Note:** Make sure you change the `DATABASE_URL` in the `.env` file to `postgresql://postgres:HelloWorld123@localhost:5433/id607001-db-test`.  
+
+---
+
+### Setup - Dependencies
 
 There are several libraries for testing APIs. We will use **Chai** and **Mocha**. **Chai** is an assertion library that works well with **Mocha**, a testing framework. **Chai** provides a lot of flexibility in terms of how you write your assertions.
 
