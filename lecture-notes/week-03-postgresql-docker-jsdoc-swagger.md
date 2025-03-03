@@ -32,7 +32,7 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ### Getting Started
 
-To get started, open a terminal and run the following.
+To get started, open **Docker Desktop**, and a terminal and run the following.
 
 ```bash
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
