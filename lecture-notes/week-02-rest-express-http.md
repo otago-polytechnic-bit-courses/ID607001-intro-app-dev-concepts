@@ -381,12 +381,6 @@ Run the `prettier:format` script to format your code.
 
 ---
 
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
-
----
-
 ## Next Class
 
 Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)

@@ -131,8 +131,3 @@ In your own words, explain each phase of the **Waterfall** methodology. Write yo
 
 In your own words, explain the impact of the **Spiral** methodology on testing. Write your answers in a file called `week-10.md`. Appropriately cite your sources using **APA 7th Edition**.
 
----
-
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
