@@ -405,12 +405,6 @@ Implement the code examples above.
 
 ---
 
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
-
----
-
 ## Next Class
 
 Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-08-rate-limiting-securing-http-headers.md)

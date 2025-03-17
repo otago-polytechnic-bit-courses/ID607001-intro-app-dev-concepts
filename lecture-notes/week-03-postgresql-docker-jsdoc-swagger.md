@@ -32,7 +32,7 @@ Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ### Getting Started
 
-To get started, open a terminal and run the following.
+To get started, open **Docker Desktop**, and a terminal and run the following.
 
 ```bash
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
@@ -1043,12 +1043,6 @@ In the `schema.prisma` file, update the `Institution` model to include optional 
 **Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 
 > **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
-
----
-
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
 
 ---
 

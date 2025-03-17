@@ -146,10 +146,6 @@ Implement the following:
 
 In your own words, explain how the **CORS** and **Compression** middleware benefit your application. Appropriately cite your sources using **APA 7th Edition**.
 
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
-
 ---
 
 ## Next Class

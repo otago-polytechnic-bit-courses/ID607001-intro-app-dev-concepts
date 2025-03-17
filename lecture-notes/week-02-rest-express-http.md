@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-01.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-01-github-javascript.md)
 
 ---
 
@@ -379,12 +379,6 @@ In the `package.json` file, add the following line to the `scripts` block.
 The `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 
 Run the `prettier:format` script to format your code. 
-
----
-
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
 
 ---
 

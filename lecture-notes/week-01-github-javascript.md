@@ -512,6 +512,8 @@ Write a **function** to check whether a given number is prime.
 - Test case 1: `isPrime(1)` should return `false`
 - Test case 2: `isPrime(2)` should return `true`
 
+> **Hint on how to solve this task:** A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
+
 ---
 
 ### Task Two
@@ -520,6 +522,8 @@ Write a **function** to reverse a string.
 
 - Test case 1: `reverseString("Hello")` should return `"olleH"`
 - Test case 2: `reverseString("World")` should return `"dlroW"`
+
+> **Hint on how to solve this task:** You can reverse a string by converting it to an **array**, reversing the **array**, and then converting the **array** back to a string. There are three functions you can use to achieve this: `split()`, `reverse()`, and `join()`. You can also use a **for loop** to reverse a string.
 
 ---
 
@@ -531,6 +535,8 @@ Write a function to find the maximum element in an array.
 - Test case 2: `findMax([5, 4, 3, 2, 1])` should return `5`
 - Test case 3: `findMax([1, 3, 5, 2, 4])` should return `5`
 
+> **Hint on how to solve this task:** You can find the maximum element in an **array** by iterating through the **array** and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the **array**.
+
 ---
 
 ### Task Four
@@ -540,6 +546,8 @@ Write a **function** to check whether a given string is a palindrome.
 - Test case 1: `isPalindrome("racecar")` should return `true`
 - Test case 2: `isPalindrome("rAcEcAr")` should return `true`
 - Test case 2: `isPalindrome("hello")` should return `false`
+
+> **Hint on how to solve this task:** A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. You can use the **function** you wrote in Task Two to reverse the string.
 
 ---
 
@@ -551,6 +559,8 @@ Write a **function** to calculate the factorial of a number.
 - Test case 2: `factorial(1)` should return `1`
 - Test case 3: `factorial(5)` should return `120`
 
+> **Hint on how to solve this task:** The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial of a number by multiplying all positive integers less than or equal to that number. You can use a **for loop** to calculate the factorial of a number. You can also use recursion to calculate the factorial of a number but we will not cover recursion in this course.
+
 ---
 
 ### Task Six
@@ -560,6 +570,8 @@ Write a **function** to sort an array of numbers in ascending order.
 - Test case 1: `sort([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
 - Test case 2: `sort([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
 - Test case 3: `sort([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
+
+> **Hint on how to solve this task:** You can sort an **array** of numbers in ascending order by using the `sort` method. The `sort` method sorts the elements of an **array** in place and returns the sorted **array**. By default, the `sort` method sorts the elements as strings. You can provide a **compare function** to the `sort` method to sort the elements as numbers.
 
 ---
 
@@ -571,6 +583,8 @@ Write a **function** to count the number of occurrences of a specific element in
 - Test case 2: `count([1, 2, 3, 4, 5], 6)` should return `0`
 - Test case 3: `count([1, 2, 3, 4, 5, 1], 1)` should return `2`
 
+> **Hint on how to solve this task:** You can count the number of occurrences of a specific element in an **array** by iterating through the **array** and keeping track of the number of occurrences of that element. You can start by assuming the number of occurrences is 0 and then increment it each time you find the element in the **array**. You can use a **for loop** to count the number of occurrences of a specific element in an **array**.
+
 ---
 
 ### Task Eight
@@ -579,6 +593,8 @@ Write a **function** to check whether two strings are anagrams of each other.
 
 - Test case 1: `isAnagram("hello", "olleh")` should return `true`
 - Test case 2: `isAnagram("hello", "world")` should return `false`
+
+> **Hint on how to solve this task:** An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. You can check if two strings are anagrams of each other by comparing the sorted strings. You can use the **function** you wrote in Task Six to sort the strings.
 
 ---
 
@@ -589,6 +605,8 @@ Write a **function** to find the longest word in a string.
 - Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
 
+> **Hint on how to solve this task:** You can find the longest word in a string by splitting the string into an **array** of words, finding the length of each word, and keeping track of the longest word found so far. You can start by assuming the first word is the longest word and then compare it with the rest of the words in the **array**.
+
 ---
 
 ### Task Ten
@@ -597,6 +615,8 @@ Write a **function** to merge two sorted **arrays** into a single sorted **array
 
 - Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
+
+> **Hint on how to solve this task:** You can merge two sorted **arrays** into a single sorted **array** by iterating through both **arrays** and comparing the elements in each **array**. You can start by assuming the first element in each **array** is the smallest element and then compare them. You can use two pointers to keep track of the current index in each **array**.
 
 ---
 
@@ -615,6 +635,8 @@ const learners = [
 // Expected output
 ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
 ```
+
+> **Hint on how to solve this task:** You can create a new **array** of **strings** by iterating through the **array** of **objects** and creating a message for each learner. You can use the `map` function to create a new **array** of **strings**.
 
 ---
 
@@ -640,6 +662,8 @@ const learners = [
 // ]
 ```
 
+> **Hint on how to solve this task:** You can create a new **array** of **objects** by filtering the **array** of **objects** to include only learners older than 20 and then mapping the filtered **array** of **objects** to create a new **array** of **objects**.
+
 ---
 
 ### Task Thirteen
@@ -663,6 +687,8 @@ const learners = [
 // ]
 ```
 
+> **Hint on how to solve this task:** You can create a new **array** of **objects** by filtering the **array** of **objects** to include only learners older than 20 and younger than 25 and then mapping the filtered **array** of **objects** to create a new **array** of **objects**.
+
 ---
 
 ### Task Fourteen
@@ -677,6 +703,8 @@ const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 // [6, 10, 5]
 ```
 
+> **Hint on how to solve this task:** You can create a new **array** of lengths by filtering the **array** of **strings** to exclude any string that starts with the letter "A" and then mapping the filtered **array** of **strings** to create a new **array** of lengths.
+
 ---
 
 ### Task Fifteen
@@ -690,6 +718,8 @@ const grades = [85, 90, 78, 92, 88];
 // Expected output
 // 86.6
 ```
+
+> **Hint on how to solve this task:** You can calculate the average grade of the learners by using the `reduce` function to sum the grades and then dividing the sum by the number of grades. You can use the `length` property of the **array** to get the number of grades.
 
 ---
 
@@ -708,6 +738,8 @@ const flavours = ["chocolate", "vanilla", "chocolate", "strawberry", "vanilla"];
 //   strawberry: 1,
 // }
 ```
+
+> **Hint on how to solve this task:** You can count the occurrences of each flavour by using the `reduce` function to create an object that represents the frequency of each flavour. You can start by assuming the object is empty and then increment the count of each flavour each time you find the flavour in the **array**.
 
 ---
 
@@ -730,6 +762,8 @@ console.log(max);
 // 9
 ```
 
+> **Hint on how to solve this task:** You can find the maximum value in the entire matrix by iterating through the **2D array** and keeping track of the maximum value found so far. You can start by assuming the first element is the maximum value and then compare it with the rest of the elements in the **2D array**.
+
 ---
 
 ### Task Eighteen
@@ -749,6 +783,8 @@ console.log(multiplicationTable);
 //   [5, 10, 15, 20, 25],
 // ]
 ```
+
+> **Hint on how to solve this task:** You can generate a multiplication table by creating a **2D array** and then iterating through the **2D array** to calculate the product of `i + 1` and `j + 1`. You can use a **nested for loop** to generate the multiplication table.
 
 ---
 
@@ -772,6 +808,8 @@ console.log(availableSeats);
 // 13
 ```
 
+> **Hint on how to solve this task:** You can find the number of available seats in the cinema by iterating through the **2D array** and counting the number of empty seats. You can start by assuming the number of available seats is 0 and then increment it each time you find an empty seat in the **2D array**.
+
 ---
 
 ### Task Twenty
@@ -793,11 +831,7 @@ console.log(winner);
 // "X"
 ```
 
----
-
-### Submission
-
-Create a new pull request and assign **grayson-orr** to review your practical submission. Please do not merge your own pull request.
+> **Hint on how to solve this task:** You can check the winner of a **Tic-Tac-Toe** game by checking the rows, columns, and diagonals of the **2D array**. You can start by checking the rows and then the columns and diagonals. You can use a series of **if statements** to check the rows, columns, and diagonals for a winner.
 
 ---
 
