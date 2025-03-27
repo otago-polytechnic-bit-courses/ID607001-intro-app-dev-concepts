@@ -197,7 +197,7 @@ export default seedInstitutionsFromGitHub;
 In the `package.json` file, add the following in the `scripts` block.
 
 ```json
-"prisma:seed-institutions": "npm node ./prisma/seeding/seed-institutions.js && node ./prisma/seeding/seed-institutions-github.js"
+"prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js && node ./prisma/seeding/seed-institutions-github.js"
 ```
 
 ---
@@ -205,18 +205,6 @@ In the `package.json` file, add the following in the `scripts` block.
 ## API Testing
 
 **API testing** is a type of software testing that involves testing APIs directly and as part of integration testing to determine if they meet expectations for functionality, reliability, performance, and security.
-
----
-
-### Setup - Docker
-
-Create a new **PostgreSQL** database on **Docker** by running the command below.
-
-```bash
-docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5433 -d postgres
-```
-
-> **Note:** Make sure you change the `DATABASE_URL` in the `.env` file to `postgresql://postgres:HelloWorld123@localhost:5433/id607001-db-test`.  
 
 ---
 
