@@ -567,7 +567,7 @@ Add the `security` block under the `tags` block".
 In the `app.js` file, add the following imports:
 
 ```js
-import auth from "./middleware/auth/auth.js";
+import auth from "./middleware/auth.js";
 
 import authRoutes from "./routes/v1/auth.js";
 ```
