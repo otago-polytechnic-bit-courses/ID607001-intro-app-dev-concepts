@@ -292,12 +292,6 @@ describe("Institutions", () => {
     chai.expect(res.body.data[0].name).to.be.equal("University of Otago");
   });
 
-  it("should sort institutions by name", async () => {
-    const res = await chai.request(app).get("/api/v1/institutions?sortBy=name");
-
-    chai.expect(res.body.data[0].name).to.be.equal("University of Canterbury");
-  });
-
   it("should reject non-string country during update", async () => {
     const res = await chai
       .request(app)
@@ -379,12 +373,11 @@ Institutions
   ✓ should retrieve all institutions
   ✓ should retrieve an institution by ID
   ✓ should filter institutions by name
-  ✓ should sort institutions by name
   ✓ should reject non-string country during update
   ✓ should update a valid institution
   ✓ should delete an institution by ID
 
-10 passing
+9 passing
 ```
 
 ---
@@ -392,6 +385,30 @@ Institutions
 ## Render
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
+
+---
+
+### PostgreSQL Setup
+
+Click the **New +** button, then click the **PostgreSQL** link.
+
+![](<../resources (ignore)/img/03/render-11.png>)
+
+Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+
+![](<../resources (ignore)/img/03/render-12.png>)
+
+Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+
+![](<../resources (ignore)/img/03/render-13.png>)
+
+Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
+
+![](<../resources (ignore)/img/03/render-14.png>)
+
+Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. Click on the **Save Changes** button.
+
+![](<../resources (ignore)/img/03/render-15.png>)
 
 ---
 
@@ -447,30 +464,6 @@ You should see the following page.
 ![](<../resources (ignore)/img/03/render-10.PNG>)
 
 > **Resource:** <https://render.com/docs>
-
----
-
-### PostgreSQL Setup
-
-Click the **New +** button, then click the **PostgreSQL** link.
-
-![](<../resources (ignore)/img/03/render-11.png>)
-
-Name your **New PostgreSQL**. For example, **id607001-db-prod**.
-
-![](<../resources (ignore)/img/03/render-12.png>)
-
-Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
-
-![](<../resources (ignore)/img/03/render-13.png>)
-
-Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
-
-![](<../resources (ignore)/img/03/render-14.png>)
-
-Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. Click on the **Save Changes** button.
-
-![](<../resources (ignore)/img/03/render-15.png>)
 
 ---
 
