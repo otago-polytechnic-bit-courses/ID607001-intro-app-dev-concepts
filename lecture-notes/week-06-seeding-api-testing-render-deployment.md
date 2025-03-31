@@ -85,7 +85,7 @@ const seedInstitutions = async () => {
   }
 };
 
-export default seedInstitutions;
+seedInstitutions();
 ```
 
 ---
@@ -185,7 +185,7 @@ const seedInstitutionsFromGitHub = async () => {
   }
 };
 
-export default seedInstitutionsFromGitHub;
+seedInstitutionsFromGitHub();
 ```
 
 > **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
