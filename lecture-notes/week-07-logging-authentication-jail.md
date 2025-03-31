@@ -39,20 +39,21 @@ In the `middleware` directory, create a new file called `logger.js`. In the `log
 ```js
 import winston from "winston";
 
-const { combine, timestamp, printf, colorize, errors } = winston.format;
+const { combine, timestamp, printf, colorize, errors, json } = winston.format;
 
+// Define custom log format
 const logFormat = printf(({ level, message, timestamp, stack }) => {
   return `${timestamp} [${level}]: ${stack || message}`;
 });
+
+const isProduction = process.env.APP_ENV === "production";
 
 const logger = winston.createLogger({
   level: process.env.LOG_LEVEL || "info",
   format: combine(
     timestamp({ format: "YYYY-MM-DD HH:mm:ss" }),
     errors({ stack: true }),
-    process.env.APP_ENV === "production"
-      ? winston.format.json()
-      : combine(colorize(), logFormat)
+    isProduction ? json() : combine(colorize(), logFormat)
   ),
   defaultMeta: { service: "user-service" },
   transports: [
@@ -61,7 +62,8 @@ const logger = winston.createLogger({
   ],
 });
 
-if (process.env.APP_ENV !== "production") {
+// Add console transport only in non-production environments
+if (!isProduction) {
   logger.add(
     new winston.transports.Console({
       format: combine(colorize(), logFormat),
@@ -71,6 +73,17 @@ if (process.env.APP_ENV !== "production") {
 
 export default logger;
 ```
+
+What is this code doing?
+
+- The `combine` function combines multiple formats into one format
+- The `timestamp` function adds a timestamp to the log message
+- The `printf` function formats the log message
+- The `colorize` function adds colour to the log message
+- The `errors` function logs the error stack trace
+- The `createLogger` function creates a logger instance
+- The `transports` property specifies where the logs should be stored
+- The `add` function adds a transport to the logger instance
 
 ---
 
@@ -91,6 +104,8 @@ app.use((req, res, next) => {
 });
 ```
 
+> **Note:** Put this code before the routes.
+
 ---
 
 ## Authentication and JWT
@@ -109,13 +124,23 @@ Token based authentication is stateless, session based authentication is statefu
 
 **JWT** is an open standard that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed. **JWTs** can be signed using a secret or a public/private key pair.
 
+---
+
+### Setup
+
 To get started, run the following command:
 
 ```bash
 npm install bcryptjs jsonwebtoken
 ```
 
+> **Note:** The `bcryptjs` package is used to hash passwords, and the `jsonwebtoken` package is used to sign and verify **JWTs**.
+
 Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonwebtoken`.
+
+---
+
+### Environment Variables
 
 In the `.env` file, add the following environment variables:
 
