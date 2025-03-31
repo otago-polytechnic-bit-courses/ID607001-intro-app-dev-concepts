@@ -209,7 +209,7 @@ const auth = (req, res, next) => {
   }
 };
 
-export default authRoute;
+export default auth;
 ```
 
 > **Note:** You will use this middleware in the `app.js` file to protect your routes.
