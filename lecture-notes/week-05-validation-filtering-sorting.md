@@ -365,7 +365,7 @@ In the `routes/v1` directory, open the `institution.js` file. In the `/api/v1/in
 
 ## GET Request Example
 
-Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/v1/institutions?sortBy=name&sortOrder=asc`
+Here is an example `GET` request that sorts all institutions by name in ascending order: `http://localhost:3000/api/v1/institutions?sortBy=name&sortOrder=asc`
 
 ![](<../resources (ignore)/img/05/swagger-6.PNG>)
 
