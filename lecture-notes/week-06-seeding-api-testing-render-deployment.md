@@ -389,8 +389,6 @@ Institutions
 
 1. Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
 
-![](<../resources (ignore)/img/03/render-1.PNG>)
-
 2. Click the **New +** button, then click the **Web Service** link.
 
 3. Click the **Git Provider** option. Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
