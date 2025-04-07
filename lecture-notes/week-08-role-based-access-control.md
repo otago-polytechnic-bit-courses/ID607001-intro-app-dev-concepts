@@ -289,22 +289,7 @@ describe("Institutions", () => {
     chai
       .expect(res.body.message)
       .to.be.equal("Institution successfully created");
-  });
-
-  it("should create another valid institution", async () => {
-    const res = await chai
-      .request(app)
-      .post("/api/v1/institutions")
-      .set("Authorization", `Bearer ${token}`)
-      .send({
-        name: "University of Canterbury",
-        region: "Canterbury",
-        country: "New Zealand",
-      });
-
-    chai
-      .expect(res.body.message)
-      .to.be.equal("Institution successfully created");
+    institutionId = res.body.data[0].id;
   });
 
   it("should retrieve all institutions", async () => {
