@@ -237,7 +237,7 @@ describe("Auth", () => {
 });
 ```
 
-The following example is a refactored version of the `00-institution.test.js` file. The file has been refactored to include the `login` function. The `login` function logs in an admin user and returns the `token`. The `token` is then used to access the protected routes.
+The following example is a refactored version of the `01-institution.test.js` file. The file has been refactored to include the `login` function. The `login` function logs in an admin user and returns the `token`. The `token` is then used to access the protected routes.
 
 ```js
 import * as chaiModule from "chai";
