@@ -207,8 +207,6 @@ const hashPassword = async (password) => {
   return bcryptjs.hash(password, salt);
 };
 
-export let token; // Export token for use in other test files
-
 describe("Auth", () => {
   before(async () => {
     // Ensure a fresh admin user exists in the database
@@ -231,8 +229,6 @@ describe("Auth", () => {
 
     chai.expect(res).to.have.status(200);
     chai.expect(res.body.token).to.exist;
-
-    token = res.body.token;
   });
 });
 ```
@@ -245,18 +241,28 @@ import chaiHttp from "chai-http";
 import { describe, it } from "mocha";
 
 import app from "../app.js";
-import { token } from "./00-auth.test.js";
 
 const chai = chaiModule.use(chaiHttp);
 
+let token;
 let institutionId;
-export let anotherInstitutionId;
 
 describe("Institutions", () => {
   it("should reject missing token", async () => {
     const res = await chai.request(app).get("/api/v1/institutions");
 
     chai.expect(res.body.message).to.be.equal("No token provided");
+  });
+
+  it("should login an admin user and return a token", async () => {
+    const res = await chai.request(app).post("/api/v1/auth/login").send({
+      emailAddress: "john.doe@example.com",
+      password: "password123",
+    });
+
+    chai.expect(res.body.token).to.exist;
+
+    token = res.body.token;
   });
 
   it("should reject non-string name", async () => {
@@ -283,7 +289,6 @@ describe("Institutions", () => {
     chai
       .expect(res.body.message)
       .to.be.equal("Institution successfully created");
-    institutionId = res.body.data[0].id;
   });
 
   it("should create another valid institution", async () => {
@@ -300,7 +305,6 @@ describe("Institutions", () => {
     chai
       .expect(res.body.message)
       .to.be.equal("Institution successfully created");
-    anotherInstitutionId = res.body.data[0].id;
   });
 
   it("should retrieve all institutions", async () => {
