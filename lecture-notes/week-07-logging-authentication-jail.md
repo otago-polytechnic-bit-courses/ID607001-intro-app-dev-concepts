@@ -191,7 +191,7 @@ In the `middleware` directory, create a new file called `jwtAuth.js`. In the `jw
 ```js
 import jwt from "jsonwebtoken";
 
-const auth = (req, res, next) => {
+const jwtAuth = (req, res, next) => {
   try {
     /**
      * The authorization request header provides information that authenticates
@@ -234,7 +234,7 @@ const auth = (req, res, next) => {
   }
 };
 
-export default auth;
+export default jwtAuth;
 ```
 
 > **Note:** You will use this middleware in the `app.js` file to protect your routes.
