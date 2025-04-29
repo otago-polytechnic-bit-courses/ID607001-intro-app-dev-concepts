@@ -186,8 +186,8 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 	\begin{itemize}
 		\item Log all requests and responses in development to a file called \textbf{combined.log}.
 		\item Secure the \textbf{X-Powered-By} header.
-		\item Limit the number of requests for \textbf{getAll} and \textbf{getById} operations to 20 requests per minute. Set the window ms to 120 and message to \textbf{You have exceeded the number of requests: 20. Please try again in 120 seconds.} when the limit is reached.
-		\item Limit the number of \textbf{create}, \textbf{update} and \textbf{delete} operations to 10 requests per minute. Set the window ms to 60 and message to \textbf{You have exceeded the number of requests: 10. Please try again in 60 seconds.} when the limit is reached.
+		\item Limit the number of requests for \textbf{getAll} and \textbf{getById} operations to 20 requests within a 2 minute window. Set the message to \textbf{You have exceeded the number of requests: 20. Please try again in 2 minutes.} when the limit is reached.
+		\item Limit the number of \textbf{create}, \textbf{update} and \textbf{delete} operations to 10 requests within a minute window. Set the message to \textbf{You have exceeded the number of requests: 10. Please try again in 1 minute.} when the limit is reached.
 	\end{itemize}
 
 	\item Development, Testing and Production (5\%)
