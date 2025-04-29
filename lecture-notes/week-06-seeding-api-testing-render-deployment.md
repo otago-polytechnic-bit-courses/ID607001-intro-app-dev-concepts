@@ -234,7 +234,6 @@ import app from "../app.js";
 const chai = chaiModule.use(chaiHttp);
 
 let institutionId;
-export let anotherInstitutionId; // Exported for use in other test files
 
 describe("Institutions", () => {
   it("should reject non-string name", async () => {
@@ -257,19 +256,6 @@ describe("Institutions", () => {
       .expect(res.body.message)
       .to.be.equal("Institution successfully created");
     institutionId = res.body.data[0].id;
-  });
-
-  it("should create another valid institution", async () => {
-    const res = await chai.request(app).post("/api/v1/institutions").send({
-      name: "University of Canterbury",
-      region: "Canterbury",
-      country: "New Zealand",
-    });
-
-    chai
-      .expect(res.body.message)
-      .to.be.equal("Institution successfully created");
-    anotherInstitutionId = res.body.data[0].id;
   });
 
   it("should retrieve all institutions", async () => {
@@ -369,7 +355,6 @@ When you run the tests, you should see the following output.
 Institutions
   ✓ should reject non-string name
   ✓ should create a valid institution
-  ✓ should create another valid institution
   ✓ should retrieve all institutions
   ✓ should retrieve an institution by ID
   ✓ should filter institutions by name
@@ -377,7 +362,7 @@ Institutions
   ✓ should update a valid institution
   ✓ should delete an institution by ID
 
-9 passing
+8 passing
 ```
 
 ---
@@ -390,78 +375,42 @@ Institutions
 
 ### PostgreSQL Setup
 
-Click the **New +** button, then click the **PostgreSQL** link.
+1. Click the **New +** button, then click the **Postgres** link.
 
-![](<../resources (ignore)/img/03/render-11.png>)
+2. Name your **New PostgreSQL**. For example, **id607001-db-prod**.
 
-Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+3. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
 
-![](<../resources (ignore)/img/03/render-12.png>)
-
-Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
-
-![](<../resources (ignore)/img/03/render-13.png>)
-
-Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
-
-![](<../resources (ignore)/img/03/render-14.png>)
-
-Go back to your **web service**. In the **Environment** tab, add a new environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. Click on the **Save Changes** button.
-
-![](<../resources (ignore)/img/03/render-15.png>)
+4. Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
 
 ---
 
 ### Web Service Setup
 
-Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
+1. Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
 
-![](<../resources (ignore)/img/03/render-1.PNG>)
+2. Click the **New +** button, then click the **Web Service** link.
 
-Click the **New +** button, then click the **Web Service** link.
+3. Click the **Git Provider** option. Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
-![](<../resources (ignore)/img/03/render-2.PNG>)
-
-By default, **Build and deploy from a Git repository** will be selected. Click the **Next** button.
-
-![](<../resources (ignore)/img/03/render-3.PNG>)
-
-Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. When you push to this repository, **Render** will automatically deploy your **web service**. It is called **Continuous Deployment**.
-
-![](<../resources (ignore)/img/03/render-4.PNG>)
-
-Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-06-formative-assessment**.
+4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-06-formative-assessment**.
 
 > **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
 
-![](<../resources (ignore)/img/03/render-5.PNG>)
+5. Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
 
-Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. 
 
-![](<../resources (ignore)/img/03/render-6.PNG>)
+7. Click on the **Deploy Web Service** button.
 
-Click on the **Deploy Web Service** button.
-
-![](<../resources (ignore)/img/03/render-7.PNG>)
-
-Keep an eye on the logs. Your **web service** is ready when you see the following message.
+8. Keep an eye on the logs. Your **web service** is ready when you see the following message.
 
 ```bash
 Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
-![](<../resources (ignore)/img/03/render-8.PNG>)
-
-Scroll to the top of the page and click on your **web service's** URL.
-
-![](<../resources (ignore)/img/03/render-9.PNG>)
-
-You should see the following page.
-
-> **Note:** Your **web service's** URL will be different.
-
-![](<../resources (ignore)/img/03/render-10.PNG>)
+9. Scroll to the top of the page and click on your **web service's** URL.
 
 > **Resource:** <https://render.com/docs>
 
@@ -474,6 +423,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+
 ---
 
 ### Task One

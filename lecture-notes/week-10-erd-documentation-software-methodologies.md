@@ -61,12 +61,6 @@ generator erd {
 
 ---
 
-## README.md Setup
-
-In the **assessments** directory, you will find a `README.md` template. You will use this for your **Project** assessment.
-
----
-
 ## Software Methodologies
 
 Thus far, you should have covered the **Agile** methodology. This week, you will learn about four more methodologies.

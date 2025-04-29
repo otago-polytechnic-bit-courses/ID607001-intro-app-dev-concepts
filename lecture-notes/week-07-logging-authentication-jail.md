@@ -186,12 +186,12 @@ model User {
 
 ### Middleware
 
-In the `middleware` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `middleware` directory, create a new file called `jwtAuth.js`. In the `jwtAuth.js` file, add the following code:
 
 ```js
 import jwt from "jsonwebtoken";
 
-const auth = (req, res, next) => {
+const jwtAuth = (req, res, next) => {
   try {
     /**
      * The authorization request header provides information that authenticates
@@ -234,7 +234,7 @@ const auth = (req, res, next) => {
   }
 };
 
-export default auth;
+export default jwtAuth;
 ```
 
 > **Note:** You will use this middleware in the `app.js` file to protect your routes.
@@ -592,7 +592,7 @@ Add the `security` block under the `tags` block".
 In the `app.js` file, add the following imports:
 
 ```js
-import auth from "./middleware/auth.js";
+import jwtAuth from "./middleware/jwtAuth.js";
 
 import authRoutes from "./routes/v1/auth.js";
 ```
@@ -606,7 +606,7 @@ app.use("/api/v1/auth", authRoutes);
 Update the following routes for `/institutions`:
 
 ```js
-app.use("/api/v1/institutions", auth, institutionRoutes); // Authenticated route
+app.use("/api/v1/institutions", jwtAuth, institutionRoutes); // Authenticated route
 ```
 
 ---
