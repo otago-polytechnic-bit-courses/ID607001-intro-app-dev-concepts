@@ -8,7 +8,7 @@ Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **s1-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
+Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-formative-assessment** from **week-05-formative-assessment**.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -391,7 +391,7 @@ Institutions
 
 2. Click the **New +** button, then click the **Web Service** link.
 
-3. Click the **Git Provider** option. Connect to your **s1-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+3. Click the **Git Provider** option. Connect to your **s2-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-06-formative-assessment**.
 
@@ -468,4 +468,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-07-logging-authentication-jail.md
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-07-authentication-jail.md
