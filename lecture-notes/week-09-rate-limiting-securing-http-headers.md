@@ -150,4 +150,4 @@ In your own words, explain how the **CORS** and **Compression** middleware benef
 
 ## Next Class
 
-Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-10-erd-documentation.md)
+Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-10-erd-other-software-methodologies.md)
