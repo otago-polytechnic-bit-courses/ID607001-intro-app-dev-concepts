@@ -137,6 +137,7 @@ You will see the following code in the `schema.prisma` file.
 ```javascript
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -152,6 +153,25 @@ The `generator` block is used to specify the **Prisma Client** provider. The **P
 The `datasource` block is used to specify the database provider and URL. The `url` value is retrieved from the `DATABASE_URL` environment variable.
 
 > **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
+
+Remove the following line:
+
+```javascript
+output   = "../generated/prisma"
+```
+
+Your `schema.prisma` file should look like the following:
+
+```javascript
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
 
 ---
 
