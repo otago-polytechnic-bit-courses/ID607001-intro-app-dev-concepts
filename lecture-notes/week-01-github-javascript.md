@@ -81,14 +81,6 @@ Here are some examples of **conventional commits**:
 
 ---
 
-### V8 JavaScript Engine
-
-**V8** is an open-source **JavaScript** engine developed by **Google** for **Google Chrome** and **Chromium** web browsers. It is written in **C++** and is used to execute **JavaScript** code in the browser. **Node.js** uses the **V8** engine to execute **JavaScript** code outside the browser.
-
-> **Resource:** <https://v8.dev/>
-
----
-
 ### Data Types
 
 **Data types** are the different values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
