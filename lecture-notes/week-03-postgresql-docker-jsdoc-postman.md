@@ -255,7 +255,6 @@ import prisma from "../prisma/client.js";
 To create an institution, use the `prisma.institution.create` function.
 
 ```js
-// Add the following code under import prisma from "../prisma/client.js";
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
   try {
@@ -288,7 +287,6 @@ const createInstitution = async (req, res) => {
 To get all institutions, use the `prisma.institution.findMany` function.
 
 ```js
-// Add the following code under the createInstitution function
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany();
@@ -340,7 +338,6 @@ const getInstitution = async (req, res) => {
 To update an institution, use the `prisma.institution.update` function.
 
 ```js
-// Add the following code under the getInstitution function
 const updateInstitution = async (req, res) => {
   try {
     // Find the institution by id
@@ -381,7 +378,6 @@ const updateInstitution = async (req, res) => {
 To delete an institution, use the `prisma.institution.delete` function.
 
 ```js
-// Add the following code under the updateInstitution function
 const deleteInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -412,7 +408,6 @@ const deleteInstitution = async (req, res) => {
 To use the functions in the `institution.js` file, export them.
 
 ```js
-// Add the following code under the deleteInstitution function
 export {
   createInstitution,
   getInstitutions,
@@ -462,20 +457,43 @@ export default router;
 In the `app.js` file, add the following code.
 
 ```javascript
-// This should be declared under - import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
-// This should be declared above app.use("/", indexRoutes);
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
-
-// This should be declared under - app.use(urlencoded({ extended: false }));
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
-// This should be declared under - app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 ```
 
 > **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/uuid`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+
+**Full Example:**
+
+```javascript
+import express from "express";
+
+import indexRoutes from "./routes/index.js";
+import institutionRoutes from "./routes/institution.js";
+
+const app = express();
+
+const PORT = process.env.PORT || 3000;
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json()); 
+
+app.use("/", indexRoutes);
+app.use("/api/institutions", institutionRoutes);
+
+app.listen(PORT, () => {
+  console.log(
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+  );
+});
+
+export default app;
+```
+
 
 ---
 
@@ -563,7 +581,7 @@ Implement the code examples above.
 
 ### Task Two - Optional Fields (Independent Research)
 
-In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. 
+In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
 
 ---
 

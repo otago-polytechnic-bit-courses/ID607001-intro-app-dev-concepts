@@ -193,10 +193,14 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
-// Create a GET route
+// Create a GET route. req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
 app.get("/", (req, res) => {
   return res.status(200).json({
     message: "Hello, World!",
+    firstName: "John",
+    lastName: "Doe",
+    age: 20,
+    hobbies: ["Reading", "Gaming", "Cooking"],
   });
 });
 
@@ -229,7 +233,11 @@ Open a browser and navigate to <http://localhost:3000/>. You should see the foll
 
 ```bash
 {
-  "message": "Hello, World!"
+  "message": "Hello, World!",
+  "firstName": "John",
+  "lastName": "Doe",
+  "age": 20,
+  "hobbies": ["Reading", "Gaming", "Cooking"]
 }
 ```
 
@@ -242,9 +250,12 @@ In the root directory, create a directory named `controllers`. In the `controlle
 ```javascript
 // Create a GET route
 const getIndex = (req, res) => {
-  // req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
   return res.status(200).json({
     message: "Hello, World!",
+    firstName: "John",
+    lastName: "Doe",
+    age: 20,
+    hobbies: ["Reading", "Gaming", "Cooking"],
   });
 };
 
@@ -261,7 +272,6 @@ export { getIndex };
 In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
 
 ```javascript
-// Import the Express module
 import express from "express";
 
 // Import the index controllers module
@@ -271,13 +281,13 @@ import { getIndex } from "../controllers/index.js";
 const router = express.Router();
 
 // Create a GET route
-router.get("/", getIndex);
+router.get("/", getIndex); // The first argument is the route path, the second argument is the controller function
 
 // Export the router
 export default router;
 ```
 
-In the `app.js` file, update with the following code.
+In the `app.js` file, replace the existing code with the following code to use the `index` routes module.
 
 ```javascript
 // Import the Express module
@@ -349,7 +359,7 @@ Implement the code examples above.
 To get use to creating `controllers` and `routes`, create two `GET` routes for the following.
 
 - <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
-- <http://localhost:3000/courses/>. Return a list of courses you are enrolled in this semester.
+- <http://localhost:3000/courses/>. Return an **array** of courses you are enrolled in this semester.
 
 You should have new `controller` and `route` files for about and courses.
 
@@ -375,10 +385,9 @@ In the `package.json` file, add the following line to the `scripts` block.
 "prettier:format": "npx prettier --write ."
 ```
 
-
 The `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
 
-Run the `prettier:format` script to format your code. 
+Run the `prettier:format` script to format your code.
 
 ---
 
