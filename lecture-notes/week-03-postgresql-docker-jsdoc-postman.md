@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-02-express-http.md)
+Link to the previous class: [Week 02]*(https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-02-rest-express-http.md)
 
 ---
 
@@ -599,4 +599,4 @@ In the `schema.prisma` file, update the `Institution` model to include two new f
 
 ## Next Class
 
-Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-04-api-versioning-relationships-repository-pattern.md)
+Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-content-negotiation-relationships-repository-pattern.md)
