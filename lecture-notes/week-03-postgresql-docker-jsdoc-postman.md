@@ -310,7 +310,6 @@ const getInstitutions = async (req, res) => {
 To get an institution, use the `prisma.institution.findUnique` function.
 
 ```js
-// Add the following code under the getInstitutions function
 const getInstitution = async (req, res) => {
   try {
     const institution = await prisma.institution.findUnique({
@@ -494,6 +493,9 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+---
+
+### Postman Example
 
 ---
 
