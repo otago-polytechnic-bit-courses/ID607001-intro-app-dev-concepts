@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-02-express-http.md)
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-02-rest-express-http.md)
 
 ---
 
@@ -137,6 +137,7 @@ You will see the following code in the `schema.prisma` file.
 ```javascript
 generator client {
   provider = "prisma-client-js"
+  output   = "../generated/prisma"
 }
 
 datasource db {
@@ -152,6 +153,25 @@ The `generator` block is used to specify the **Prisma Client** provider. The **P
 The `datasource` block is used to specify the database provider and URL. The `url` value is retrieved from the `DATABASE_URL` environment variable.
 
 > **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
+
+Remove the following line:
+
+```javascript
+output   = "../generated/prisma"
+```
+
+Your `schema.prisma` file should look like the following:
+
+```javascript
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
 
 ---
 
@@ -599,4 +619,4 @@ In the `schema.prisma` file, update the `Institution` model to include two new f
 
 ## Next Class
 
-Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-04-api-versioning-relationships-repository-pattern.md)
+Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-content-negotiation-relationships-repository-pattern.md)
