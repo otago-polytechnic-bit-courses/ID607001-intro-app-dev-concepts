@@ -244,6 +244,8 @@ const prisma = new PrismaClient();
 export default prisma;
 ```
 
+---
+
 ### Institution Controller
 
 In the `controllers` directory, create a new file called `institution.js`. Add the following code.
