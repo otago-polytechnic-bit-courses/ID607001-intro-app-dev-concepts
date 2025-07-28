@@ -164,7 +164,7 @@ import departmentRoutes from "./routes/department.js";
 app.use("/api/departments", departmentRoutes);
 ```
 
-**Full Example:**
+> **Note:** If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";

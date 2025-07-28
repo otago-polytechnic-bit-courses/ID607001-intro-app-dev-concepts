@@ -486,9 +486,9 @@ app.use(express.json()); // To parse the incoming requests with JSON payloads. F
 app.use("/api/institutions", institutionRoutes);
 ```
 
-> **Note:** We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/uuid`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
+We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/uuid`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
 
-**Full Example:**
+> **Note:** If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
@@ -516,6 +516,14 @@ export default app;
 ```
 
 ---
+
+## Postman
+
+**Postman** is a tool for testing APIs. It allows you to send requests to your API and view the responses. It is a powerful tool for testing and debugging APIs.
+
+### Getting Started
+
+To get started, navigate to <https://identity.getpostman.com/login> and sign in with your **GitHub** account. You will need to authorise **Postman** to access your **GitHub** account. Once you are signed in, you will see the **Postman** dashboard. 
 
 ### Postman Example
 
