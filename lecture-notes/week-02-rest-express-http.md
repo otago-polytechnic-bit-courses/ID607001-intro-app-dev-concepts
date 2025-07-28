@@ -1,4 +1,4 @@
-## Week 02
+# Week 02
 
 ## Previous Class
 
@@ -393,4 +393,4 @@ Run the `prettier:format` script to format your code.
 
 ## Next Class
 
-Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
