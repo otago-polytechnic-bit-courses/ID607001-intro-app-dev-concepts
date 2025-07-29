@@ -71,7 +71,7 @@ import { isContentTypeApplicationJSON } from "./middleware/utils.js";
 app.use(isContentTypeApplicationJSON);
 ```
 
-**Full Example:**
+> **Note:** If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
