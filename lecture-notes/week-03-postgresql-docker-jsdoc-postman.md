@@ -539,11 +539,11 @@ Name the request **Get all institutions**. Select the **GET** method from the dr
 
 ![](<../resources (ignore)/img/week-3/02-week-3.png>)
 
-To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**. Name the request **Create an institution**. 
+To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**. 
 
 ![](<../resources (ignore)/img/week-3/03-week-3.png>)
 
-Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. Click on the **Send** button to send the request. You should see a response with a success message and the newly created institution in the response body. Again, click on the **Save** button to save the request in the collection.
+Name the request **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
 
 ```json
 {
@@ -552,6 +552,8 @@ Select the **POST** method from the dropdown. Enter the request URL as `http://l
   "country": "New Zealand"
 }
 ```
+
+Click on the **Send** button to send the request. You should see a response with a success message and the newly created institution in the response body. Again, click on the **Save** button to save the request in the collection.
 
 ![](<../resources (ignore)/img/week-3/04-week-3.png>)
 
