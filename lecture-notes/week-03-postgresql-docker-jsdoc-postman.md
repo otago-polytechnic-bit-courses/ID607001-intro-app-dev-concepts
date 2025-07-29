@@ -527,6 +527,36 @@ To get started, navigate to <https://identity.getpostman.com/login> and sign in 
 
 ### Postman Example
 
+Once you have setup your workspace, you can create a new collection. A collection is a group of requests. You can create a new collection by clicking on the **Create Collection** button in the left sidebar. Name the collection appropriately.
+
+![](<../resources (ignore)/img/week-3/00-week-3.png>)
+
+Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection. 
+
+![](<../resources (ignore)/img/week-3/01-week-3.png>)
+
+Name the request **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. You should see the response in the response section. If you have not created any institutions, you will see an empty array. Click on the **Save** button to save the request in the collection.
+
+![](<../resources (ignore)/img/week-3/02-week-3.png>)
+
+To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**. Name the request **Create an institution**. 
+
+![](<../resources (ignore)/img/week-3/03-week-3.png>)
+
+Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. Click on the **Send** button to send the request. You should see a response with a success message and the newly created institution in the response body. Again, click on the **Save** button to save the request in the collection.
+
+```json
+{
+  "name": "Otago Polytechnic",
+  "region": "Otago",
+  "country": "New Zealand"
+}
+```
+
+![](<../resources (ignore)/img/week-3/04-week-3.png>)
+
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. This collection contains all the requests you need to test the **Institution** API. For example, create an institution, get all institutions, get an institution by id, update an institution by id and delete an institution by id.
+
 ---
 
 ## JSDoc
