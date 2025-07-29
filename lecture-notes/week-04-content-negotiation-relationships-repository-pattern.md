@@ -150,7 +150,7 @@ model Institution {
 
 ### Department Controller and Router
 
-Much like the `institution.js` files, create a new `department.js` file in the `controllers/v1` and `routes/v1` directories. The code in these files should be similar to the `institution.js` files.
+Much like the `institution.js` files, create a new `department.js` file in the `controllers` and `routes` directories. The code in these files should be similar to the `institution.js` files.
 
 ---
 
@@ -373,35 +373,20 @@ Implement the code examples above.
 
 ### Task Two
 
-In the `controllers` and `routes` directories, there is a lot of duplicate code. Refactor the code to reduce the duplication.
-
----
-
-### Task Three
-
 Create a `User` model with the following fields:
 
 - `id`
 - `firstName`
 - `lastName`
 - `emailAddress` which should be unique
-- `password` which does not need to be hashed
 - `createdAt`
 - `updatedAt`
 
 Create the necessary controller, router and repository files for the `User` model.
 
-In the router file, create Swagger documentation for the following routes:
-
-- GET `/api/users`
-- GET `/api/users/{id}`
-- POST `/api/users`
-- PUT `/api/users/{id}`
-- DELETE `/api/users/{id}`
-
 ---
 
-### Task Four
+### Task Three
 
 Create a `Course` model with the following fields:
 
@@ -416,17 +401,9 @@ Create a `Course` model with the following fields:
 
 Create the necessary controller, router and repository files for the `Course` model.
 
-In the router file, create **Swagger** documentation for the following routes:
-
-- GET `/api/courses`
-- GET `/api/courses/{id}`
-- POST `/api/courses`
-- PUT `/api/courses/{id}`
-- DELETE `/api/courses/{id}`
-
 ---
 
-###  Task Five (Independent Research)
+###  Task Four (Independent Research)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
