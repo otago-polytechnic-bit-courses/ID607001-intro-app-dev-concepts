@@ -14,6 +14,12 @@ Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ---
 
+## Full Code Example
+
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-02-rest-express-http>
+
+---
+
 ## Express
 
 **Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
