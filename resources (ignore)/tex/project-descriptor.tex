@@ -94,25 +94,41 @@ Resits and reassessments are not applicable in \textbf{ID607001: Introductory Ap
 
 \section*{Instructions}
 
-\subsection*{Functionality - Learning Outcome 1 (20\%)}
+\subsection*{Functionality - Learning Outcome 1 (25\%)}
 \begin{itemize}
-	 \item Backend with the following functionality:
+	 \item Backend application with the following functionality:
 	 \begin{itemize}
-	 	\item \textbf{Four models} with a minimum of \textbf{four fields}, including a \textbf{UUID primary key}.
+	 	\item Five \textbf{models} with a minimum of four \textbf{fields}.
+		\item One model should have an enum field.
 	 	\item One \textbf{one-to-many} relationship and one \textbf{many-to-many} relationship.
-	 	\item \textbf{Create}, \textbf{Read all}, \textbf{Read by UUID} \textbf{Update} and \textbf{Delete} operations for each model.
+	 	\item \textbf{CRUD} operations for each model.
 	 	\item Validation on \textbf{Create} and \textbf{Update} operations.
-	 	\item \textbf{Filter}, \textbf{sort} and \textbf{paginate} on \textbf{GET} routes using \textbf{query parameters}.
-	 	\item Authentication using \textbf{JSON Web Tokens (JWT)}, allowing users to register, login, logout and securely access protected endpoints.
+	 	\item \textbf{Filter}, \textbf{sort} and \textbf{paginate} using \textbf{query parameters}.
+	 	\item Allow users to register, login and logout.
+		\item Role-based access control:
+		\begin{itemize}
+			\item An \textbf{admin user} can perform \textbf{CRUD} operations on all \textbf{models}.
+			\item A \textbf{normal user} can perform \textbf{Read all}, \textbf{Read by UUID} operations on all \textbf{models}. 
+		\end{itemize}
+		\item Content negotiation to support \textbf{JSON} format.
+		\item Seed script to populate the database with test data.
+		\item API tests covering \textbf{CRUD} operations for each model.
+		\item Deploy to \textbf{Render}.
 	 \end{itemize}
 
-	 \item Frontend with the following functionality:
+	 \item Frontend application with the following functionality:
 	 \begin{itemize}
-	 	\item 
+		 \item Consume the backend application on \textbf{Render} to perform \textbf{CRUD} operations based on role.
+		 \item Authentication with secure token handling.
+		 \item Display data with support for \textbf{filtering}, \textbf{sorting} and \textbf{pagination}.
+		 \item Forms with validation for \textbf{Create} and \textbf{Update} operations.
+		 \item Render UI elements and actions based on role.
+		 \item Responsive and accessible UI design.
+		 \item Deploy to \textbf{Vercel}.
 	 \end{itemize}
 \end{itemize}
 
-\subsection*{Code Quality and Best Practices - Learning Outcome 1 (35\%)}
+\subsection*{Code Quality and Best Practices - Learning Outcome 1 (40\%)}
 \begin{itemize}
 \item Write clean, readable, and maintainable code.
 \item Use modular, reusable components and avoid code duplication.

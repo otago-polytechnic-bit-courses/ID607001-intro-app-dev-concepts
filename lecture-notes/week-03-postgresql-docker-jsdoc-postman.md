@@ -527,9 +527,13 @@ export default app;
 
 **Postman** is a tool for testing APIs. It allows you to send requests to your API and view the responses. It is a powerful tool for testing and debugging APIs.
 
+---
+
 ### Getting Started
 
 To get started, navigate to <https://identity.getpostman.com/login> and sign in with your **GitHub** account. You will need to authorise **Postman** to access your **GitHub** account. Once you are signed in, you will see the **Postman** dashboard. 
+
+---
 
 ### Postman Example
 
