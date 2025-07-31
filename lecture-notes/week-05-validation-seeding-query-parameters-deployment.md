@@ -135,12 +135,12 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../../controllers/institution.js";
+} from "../controllers/institution.js";
 
 import {
   validatePostInstitution,
   validatePutInstitution,
-} from "../../middleware/validation/institution.js";
+} from "../middleware/validation/institution.js";
 
 const router = express.Router();
 
@@ -177,7 +177,7 @@ Before we create our tests, let us create a script to seed our database with dat
 ```javascript
 import prisma from "../client.js";
 
-import { validatePostInstitution } from "../../middleware/validation/institution.js";
+import { validatePostInstitution } from "../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -289,7 +289,7 @@ import fetch from "node-fetch";
 
 import prisma from "../client.js";
 
-import { validatePostInstitution } from "../../middleware/validation/institution.js";
+import { validatePostInstitution } from "../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -539,7 +539,7 @@ Here is an example `GET` request that sorts all institutions by name in ascendin
 
 2. Click the **New +** button, then click the **Web Service** link.
 
-3. Click the **Git Provider** option. Connect to your **s2-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+3. Click the **Git Provider** option. Connect to your **s2-25-intro-app-dev-repo-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-formative-assessment**.
 
