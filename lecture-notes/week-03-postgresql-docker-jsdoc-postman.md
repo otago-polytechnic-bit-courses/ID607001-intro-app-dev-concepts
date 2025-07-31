@@ -70,7 +70,7 @@ To remove the container, run the following command.
 docker rm id607001-db-dev
 ```
 
-In the `package.json` file, add the following line to the scripts block.
+In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
 "docker:run": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres"
@@ -137,8 +137,15 @@ The `.env.example` file is used to provide an example of the `.env` file. It is 
 APP_ENV=development
 DATABASE_URL=
 ```
-
 > **Note:** The `.env.example` file is committed to **Git**. The **Node** `.gitignore` file does not ignore the `.env.example` file.
+
+In the `package.json` file, add the following line to the `scripts` block.
+
+```json
+"env:copy": "cp .env.example .env || copy .env.example .env"
+```
+
+> **Note:** `cp .env.example .env` is the **Linux** or **macOS** command and `copy .env.example .env` is the **Windows** command. If the first command fails, it will try the second command.
 
 ---
 
