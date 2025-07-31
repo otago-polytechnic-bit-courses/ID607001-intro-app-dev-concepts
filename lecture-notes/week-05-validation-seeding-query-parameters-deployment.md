@@ -252,7 +252,7 @@ seedInstitutions();
 
 ---
 
-## Seeding Data via GitHub Gist
+### Seeding Data via GitHub Gist
 
 **GitHub Gist** is a simple way to share snippets and pastes with others. We can use GitHub Gist to store our seed data and fetch it to seed our database.
 
@@ -354,7 +354,7 @@ seedInstitutionsFromGitHub();
 
 ---
 
-## Package JSON File
+### Package JSON File
 
 In the `package.json` file, add the following in the `scripts` block.
 
