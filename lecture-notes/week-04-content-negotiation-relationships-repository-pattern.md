@@ -335,6 +335,19 @@ export default app;
 
 ### Postman Example
 
+Name the request **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
+
+```json
+{
+  "name": "Otago Polytechnic",
+  "institutionId": "<Replace with an institution's id>"
+}
+```
+
+![](<../resources (ignore)/img/week-3/00-week-1.png>)
+
+> **Note:** You need to create an institution first.
+
 ---
 
 ## Repository Pattern
