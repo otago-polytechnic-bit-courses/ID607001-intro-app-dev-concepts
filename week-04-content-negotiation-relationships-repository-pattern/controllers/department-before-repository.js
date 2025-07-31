@@ -1,9 +1,22 @@
-import departmentRepository from "../repositories/department.js";
+import prisma from "../prisma/client.js";
 
 const createDepartment = async (req, res) => {
+  // Try/catch blocks are used to handle exceptions
   try {
-    await departmentRepository.create(req.body);
-    const newDepartments = await departmentRepository.findAll();
+    // Create a new department
+    await prisma.department.create({
+      // Data to be inserted
+      data: {
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
+    });
+
+    // Get all departments from the department table
+    const newDepartments = await prisma.department.findMany();
+
+    // Send a JSON response
     return res.status(201).json({
       message: "Department successfully created",
       data: newDepartments,
@@ -17,10 +30,13 @@ const createDepartment = async (req, res) => {
 
 const getDepartments = async (req, res) => {
   try {
-    const departments = await departmentRepository.findAll();
+    const departments = await prisma.department.findMany();
+
+    // Check if there are no departments
     if (!departments) {
       return res.status(404).json({ message: "No departments found" });
     }
+
     return res.status(200).json({
       data: departments,
     });
@@ -33,12 +49,17 @@ const getDepartments = async (req, res) => {
 
 const getDepartment = async (req, res) => {
   try {
-    const department = await departmentRepository.findById(req.params.id);
+    const department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
+    // Check if there is no department
     if (!department) {
       return res.status(404).json({
         message: `No department with the id: ${req.params.id} found`,
       });
     }
+
     return res.status(200).json({
       data: department,
     });
@@ -51,13 +72,29 @@ const getDepartment = async (req, res) => {
 
 const updateDepartment = async (req, res) => {
   try {
-    let department = await departmentRepository.findById(req.params.id);
+    // Find the department by id
+    let department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
+    // Check if there is no department
     if (!department) {
       return res.status(404).json({
         message: `No department with the id: ${req.params.id} found`,
       });
     }
-    department = await departmentRepository.update(req.params.id, req.body);
+
+    // Update the department
+    department = await prisma.department.update({
+      where: { id: req.params.id },
+      data: {
+        // Data to be updated
+        name: req.body.name,
+        region: req.body.region,
+        country: req.body.country,
+      },
+    });
+
     return res.status(200).json({
       message: `Department with the id: ${req.params.id} successfully updated`,
       data: department,
@@ -71,13 +108,20 @@ const updateDepartment = async (req, res) => {
 
 const deleteDepartment = async (req, res) => {
   try {
-    const department = await departmentRepository.findById(req.params.id);
+    const department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
     if (!department) {
       return res.status(404).json({
         message: `No department with the id: ${req.params.id} found`,
       });
     }
-    await departmentRepository.delete(req.params.id);
+
+    await prisma.department.delete({
+      where: { id: req.params.id },
+    });
+
     return res.json({
       message: `Department with the id: ${req.params.id} successfully deleted`,
     });
