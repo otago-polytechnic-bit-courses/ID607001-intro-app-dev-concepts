@@ -70,7 +70,7 @@ To remove the container, run the following command.
 docker rm id607001-db-dev
 ```
 
-In the package.json file, add the following line to the scripts block.
+In the `package.json` file, add the following line to the scripts block.
 
 ```
 "docker:run": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres"
