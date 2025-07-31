@@ -400,7 +400,7 @@ async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
 
 ---
 
-## Institution Controller
+### Institution Controller
 
 In the `controllers` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
 
