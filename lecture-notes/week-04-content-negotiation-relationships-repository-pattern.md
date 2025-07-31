@@ -109,10 +109,6 @@ export default app;
 
 ---
 
-### Postman Example
-
----
-
 ## Relationships
 
 In **Prisma**, we can define different types of relationships between models. Here are three types you will encounter most often.
