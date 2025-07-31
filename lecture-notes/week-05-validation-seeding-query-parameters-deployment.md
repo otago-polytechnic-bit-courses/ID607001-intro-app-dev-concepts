@@ -157,6 +157,23 @@ export default router;
 
 ### Postman Example
 
+Name the request **Create an institution - validation**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
+
+
+```json
+{
+    "name": "Otago Polytechnic"
+}
+```
+
+Click on the **Send** button to send the request. 
+
+![](<../resources (ignore)/img/week-5/00-week-5.png>)
+
+Here is an example for the **PUT** method.
+
+![](<../resources (ignore)/img/week-5/01-week-5.png>)
+
 ---
 
 ## Seeding

@@ -344,6 +344,8 @@ Name the request **Create a department**. Select the **POST** method from the dr
 }
 ```
 
+Click on the **Send** button to send the request. 
+
 ![](<../resources (ignore)/img/week-4/00-week-4.png>)
 
 > **Note:** Make sure you have at least one institution.
