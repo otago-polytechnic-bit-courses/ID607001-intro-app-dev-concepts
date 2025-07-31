@@ -339,7 +339,7 @@ Name the request **Create a department**. Select the **POST** method from the dr
 
 ```json
 {
-  "name": "Otago Polytechnic",
+  "name": "Information Technology",
   "institutionId": "<Replace with an institution's id>"
 }
 ```
