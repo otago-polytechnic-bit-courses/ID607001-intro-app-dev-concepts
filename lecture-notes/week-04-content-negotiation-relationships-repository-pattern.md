@@ -348,6 +348,8 @@ Name the request **Create a department**. Select the **POST** method from the dr
 
 > **Note:** Make sure you have at least one institution.
 
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. This collection contains all the requests you need to test the **department** endpoints. For example, create an department, get all departments, get an department by id, update an department by id and delete an department by id.
+
 ---
 
 ## Repository Pattern
