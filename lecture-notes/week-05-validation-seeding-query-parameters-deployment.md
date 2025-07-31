@@ -366,88 +366,12 @@ In the `package.json` file, add the following in the `scripts` block.
 
 ## Query Parameters
 
----
 
-### Filtering
-
-Filtering is the process of selecting a subset of resources from a larger collection based on certain criteria. By applying filters to an API request, users can control which resources are returned based on specific conditions.
+Filtering, sorting and paging.
 
 ---
 
 ### Institution Repository
-
-In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
-
-```javascript
-async findAll(filters = {}) {
-    // Create an empty query object
-    const query = {};
-
-    if (Object.keys(filters).length > 0) {
-      query.where = {};
-      // Loop through the filters and apply them dynamically
-      for (const [key, value] of Object.entries(filters)) {
-        if (value) {
-          query.where[key] = { contains: value };
-        }
-      }
-    }
-
-    return await prisma.institution.findMany(query);
-}
-```
-
----
-
-### Institution Controller
-
-In the `controllers` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
-
-```javascript
-const getInstitutions = async (req, res) => {
-  try {
-    // Extract filters from the query parameters
-    const filters = {
-      name: req.query.name || undefined,
-      region: req.query.region || undefined,
-      country: req.query.country || undefined,
-    };
-
-    // Retrieve institutions based on the filters
-    const institutions = await institutionRepository.findAll(filters);
-
-    // Check if there are no institutions
-    if (!institutions) {
-      return res.status(404).json({ message: "No institutions found" });
-    }
-
-    return res.status(200).json({
-      data: institutions,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
-};
-```
-
----
-
-## Postman Example
-
-Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/institutions?name=Otago Polytechnic`
-
-
-> **Note:** The `%20` in the URL represents a space character. When specifying query parameters in a URL, spaces are often replaced with `%20` to ensure that the URL is properly encoded.
-
-## Sorting
-
-Sorting is the process of arranging a collection of resources in a specific order based on one or more criteria. By applying sorting to the results of an API request, users can control the order in which the resources are returned.
-
----
-
-## Institution Repository
 
 In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
 
@@ -522,7 +446,6 @@ const getInstitutions = async (req, res) => {
 
 ## Postman Example
 
-Here is an example `GET` request that sorts all institutions by name in ascending order: `http://localhost:3000/api/institutions?sortBy=name&sortOrder=asc`
 
 
 ---
