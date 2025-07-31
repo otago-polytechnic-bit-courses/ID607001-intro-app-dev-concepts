@@ -154,6 +154,139 @@ model Institution {
 
 Much like the `institution.js` files, create a new `department.js` file in the `controllers` and `routes` directories. The code in these files should be similar to the `institution.js` files.
 
+Your ``controllers/department.js` should look like the following.
+
+```js
+import prisma from "../prisma/client.js";
+
+const createDepartment = async (req, res) => {
+  try {
+    await prisma.department.create({
+      data: {
+        name: req.body.name,
+        institutionId: req.body.institutionId,
+      },
+    });
+
+    const newDepartments = await prisma.department.findMany();
+
+    return res.status(201).json({
+      message: "Department successfully created",
+      data: newDepartments,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const getDepartments = async (req, res) => {
+  try {
+    const departments = await prisma.department.findMany();
+
+    if (!departments) {
+      return res.status(404).json({ message: "No departments found" });
+    }
+
+    return res.status(200).json({
+      data: departments,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const getDepartment = async (req, res) => {
+  try {
+    const department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
+    if (!department) {
+      return res.status(404).json({
+        message: `No department with the id: ${req.params.id} found`,
+      });
+    }
+
+    return res.status(200).json({
+      data: department,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const updateDepartment = async (req, res) => {
+  try {
+    let department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
+    if (!department) {
+      return res.status(404).json({
+        message: `No department with the id: ${req.params.id} found`,
+      });
+    }
+
+    department = await prisma.department.update({
+      where: { id: req.params.id },
+      data: {
+        name: req.body.name,
+        institutionId: req.body.institutionId,
+      },
+    });
+
+    return res.status(200).json({
+      message: `Department with the id: ${req.params.id} successfully updated`,
+      data: department,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const deleteDepartment = async (req, res) => {
+  try {
+    const department = await prisma.department.findUnique({
+      where: { id: req.params.id },
+    });
+
+    if (!department) {
+      return res.status(404).json({
+        message: `No department with the id: ${req.params.id} found`,
+      });
+    }
+
+    await prisma.department.delete({
+      where: { id: req.params.id },
+    });
+
+    return res.json({
+      message: `Department with the id: ${req.params.id} successfully deleted`,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+export {
+  createDepartment,
+  getDepartments,
+  getDepartment,
+  updateDepartment,
+  deleteDepartment,
+};
+```
+
 ---
 
 ### Main File
