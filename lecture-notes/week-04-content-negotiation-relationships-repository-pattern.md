@@ -156,7 +156,6 @@ Much like the `institution.js` files, create a new `department.js` file in the `
 
 > **Note:** If you get stuck, here is the complete `controllers/department.js` file.
 
-
 ```js
 import prisma from "../prisma/client.js";
 
