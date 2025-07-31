@@ -70,12 +70,14 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
-  const { error } = institutionSchema.validate(req.body);
+  const { error } = institutionSchema.validate(req.body, { abortEarly: false });
 
   if (error) {
-    return res.status(409).json({
-      message: error.details[0].message,
-    });
+    const formattedErrors = error.details.map(({ message, type }) => ({
+      message,
+      type,
+    }));
+    return res.status(409).json({ errors: formattedErrors });
   }
 
   next();
@@ -106,11 +108,12 @@ const validatePutInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(req.body);
 
   if (error) {
-    return res.status(409).json({
-      message: error.details[0].message,
-    });
+    const formattedErrors = error.details.map(({ message, type }) => ({
+      message,
+      type,
+    }));
+    return res.status(409).json({ errors: formattedErrors });
   }
-
   next();
 };
 
