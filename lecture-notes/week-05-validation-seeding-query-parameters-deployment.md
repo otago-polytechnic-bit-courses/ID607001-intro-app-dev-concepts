@@ -132,12 +132,12 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../../controllers/institution.js";
+} from "../controllers/institution.js";
 
 import {
   validatePostInstitution,
   validatePutInstitution,
-} from "../../middleware/validation/institution.js";
+} from "../middleware/validation/institution.js";
 
 const router = express.Router();
 
