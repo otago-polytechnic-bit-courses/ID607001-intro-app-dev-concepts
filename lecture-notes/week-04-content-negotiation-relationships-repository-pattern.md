@@ -14,6 +14,12 @@ Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual St
 
 ---
 
+## Full Code Example
+
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/04-content-negotiation-relationships-repository-pattern>
+
+---
+
 ## Content Negotiation
 
 Content negotiation is the process of selecting the best representation of a resource based on the client's preferences. There are different ways to perform content negotiation. Some of the common ways are:
@@ -395,7 +401,6 @@ Create a `Course` model with the following fields:
 - `name`
 - `description`
 - `departmentId`
-- `userId`
 - `createdAt`
 - `updatedAt`
 
@@ -411,4 +416,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-05-validation-filtering-sorting-api-testing.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)

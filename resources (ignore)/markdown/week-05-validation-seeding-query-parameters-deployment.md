@@ -115,7 +115,7 @@ export { validatePostInstitution, validatePutInstitution };
 
 ## Institution Router
 
-In the `routes/v1` directory, open the `institution.js` file. Update the file as follows.
+In the `routes` directory, open the `institution.js` file. Update the file as follows.
 
 ```javascript
 import express from "express";
@@ -126,7 +126,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../../controllers/v1/institution.js";
+} from "../../controllers/institution.js";
 
 import {
   validatePostInstitution,
@@ -134,8 +134,6 @@ import {
 } from "../../middleware/validation/institution.js";
 
 const router = express.Router();
-
-// Note: Swagger documentation has been removed for brevity
 
 router.post("/", validatePostInstitution, createInstitution);
 router.get("/", getInstitutions);
@@ -148,29 +146,209 @@ export default router;
 
 ---
 
-### POST Request Example
-
-Validating `string.empty`.
-
-![](<../resources (ignore)/img/05/swagger-1.PNG>)
-
-![](<../resources (ignore)/img/05/swagger-2.PNG>)
-
-Validating `any.required`.
-
-![](<../resources (ignore)/img/05/swagger-3.PNG>)
-
-![](<../resources (ignore)/img/05/swagger-4.PNG>)
+### Postman Example
 
 ---
 
-## Filtering
+## Seeding
+
+**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. For this class, we will focus on two methods:
+
+1. **Prisma Client**: Use the Prisma Client to seed the database with data.
+2. **GitHub Gist**: Use a GitHub Gist to seed the database with data.
+
+In the **formative assessment**, you will research and implement a third and fourth method to seed your database.
+
+---
+
+### Script to Seed Data
+
+Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `seed-institutions.js` and add the following code.
+
+```javascript
+import prisma from "../client.js";
+
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
+
+// Simulate an Express-like request and response for validation
+const validateInstitution = (institution) => {
+  const req = { body: institution };
+  const res = {
+    status: (code) => ({
+      json: (message) => {
+        console.log(message.message);
+        process.exit(1);
+      },
+    }),
+  };
+
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+};
+
+const seedInstitutions = async () => {
+  try {
+    // Delete all existing institutions
+    await prisma.institution.deleteMany();
+
+    const institutionData = [
+      {
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      },
+      {
+        name: "Southern Institute of Technology",
+        region: "Southland",
+        country: "New Zealand",
+      },
+    ];
+
+    const data = await Promise.all(
+      institutionData.map(async (institution) => {
+        validateInstitution(institution);
+        return { ...institution };
+      })
+    );
+
+    await prisma.institution.createMany({
+      data: data,
+      skipDuplicates: true, // Prevent duplicate entries if the email already exists
+    });
+
+    console.log("Institutions successfully seeded");
+  } catch (err) {
+    console.log("Seeding failed:", err.message);
+  }
+};
+
+seedInstitutions();
+```
+
+---
+
+## Seeding Data via GitHub Gist
+
+**GitHub Gist** is a simple way to share snippets and pastes with others. We can use GitHub Gist to store our seed data and fetch it to seed our database.
+
+---
+
+### Create a GitHub Gist
+
+Create a [GitHub Gist](https://gist.github.com/) and add the following JSON data.
+
+```json
+[
+  {
+    "name": "University of Auckland",
+    "region": "Auckland",
+    "country": "New Zealand"
+  },
+  {
+    "name": "University of Waikato",
+    "region": "Waikato",
+    "country": "New Zealand"
+  }
+]
+```
+
+Provide the filename as `seed-institutions-github.json` and click on the **Create secret gist** button.
+
+---
+
+### Getting the Raw URL
+
+Click on the **Raw** button to get the raw URL of the **GitHub Gist**. Copy the URL.
+
+---
+
+### Fetching Data from GitHub Gist
+
+To fetch data from the **GitHub Gist**, we will use the `node-fetch` package. Install the package by running the following command.
+
+```bash
+npm install node-fetch
+```
+
+---
+
+### Script to Seed Data
+
+In the `prisma/seeding` directory, create a new file named `seed-institutions-github.js` and add the following code.
+
+```javascript
+import fetch from "node-fetch";
+
+import prisma from "../client.js";
+
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
+
+// Simulate an Express-like request and response for validation
+const validateInstitution = (institution) => {
+  const req = { body: institution };
+  const res = {
+    status: (code) => ({
+      json: (message) => {
+        console.log(message.message);
+        process.exit(1);
+      },
+    }),
+  };
+
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+};
+
+const seedInstitutionsFromGitHub = async () => {
+  try {
+    const gistUrl = "<GIST_RAW_URL>"; // Replace <GIST_RAW_URL> with the raw URL of your GitHub Gist
+    const response = await fetch(gistUrl);
+    const institutionData = await response.json();
+
+    const data = await Promise.all(
+      institutionData.map(async (institution) => {
+        validateInstitution(institution);
+        return { ...institution };
+      })
+    );
+
+    await prisma.institution.createMany({
+      data: data,
+      skipDuplicates: true, // Prevent duplicate entries if the email already exists
+    });
+
+    console.log("Institutions successfully seeded from GitHub Gist");
+  } catch (err) {
+    console.log("Seeding failed:", err.message);
+  }
+};
+
+seedInstitutionsFromGitHub();
+```
+
+> **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
+
+---
+
+## Package JSON File
+
+In the `package.json` file, add the following in the `scripts` block.
+
+```json
+"prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js && node ./prisma/seeding/seed-institutions-github.js"
+```
+
+---
+
+## Query Parameters
+
+---
+
+### Filtering
 
 Filtering is the process of selecting a subset of resources from a larger collection based on certain criteria. By applying filters to an API request, users can control which resources are returned based on specific conditions.
 
 ---
 
-## Institution Repository
+### Institution Repository
 
 In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
 
@@ -195,9 +373,9 @@ async findAll(filters = {}) {
 
 ---
 
-## Institution Controller
+### Institution Controller
 
-In the `controllers/v1` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
+In the `controllers` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -230,36 +408,10 @@ const getInstitutions = async (req, res) => {
 
 ---
 
-## Institution Router
+## Postman Example
 
-In the `routes/v1` directory, open the `institution.js` file. In the `/api/v1/institutions:` block under the `tags:` block, add the following code.
+Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/institutions?name=Otago Polytechnic`
 
-```javascript
- *     parameters:
- *       - in: query
- *         name: name
- *         schema:
- *           type: string
- *         description: Filter institutions by name
- *       - in: query
- *         name: region
- *         schema:
- *           type: string
- *         description: Filter institutions by region
- *       - in: query
- *         name: country
- *         schema:
- *           type: string
- *         description: Filter institutions by country
-```
-
----
-
-## GET Request Example
-
-Here is an example `GET` request that returns all institutions that have the `name` **Otago Polytechnic**: `http://localhost:3000/api/v1/institutions?name=Otago Polytechnic`
-
-![](<../resources (ignore)/img/05/swagger-5.PNG>)
 
 > **Note:** The `%20` in the URL represents a space character. When specifying query parameters in a URL, spaces are often replaced with `%20` to ensure that the URL is properly encoded.
 
@@ -300,7 +452,7 @@ async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
 
 ## Institution Controller
 
-In the `controllers/v1` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
+In the `controllers` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -342,34 +494,64 @@ const getInstitutions = async (req, res) => {
 
 ---
 
-## Institution Router
+## Postman Example
 
-In the `routes/v1` directory, open the `institution.js` file. In the `/api/v1/institutions:` block under the `tags:` block, add the following code.
+Here is an example `GET` request that sorts all institutions by name in ascending order: `http://localhost:3000/api/institutions?sortBy=name&sortOrder=asc`
 
-```javascript
- *       - in: query
- *         name: sortBy
- *         schema:
- *           type: string
- *           enum: [id, name, region, country]
- *         description: Field to sort the institutions by (default is 'id')
- *       - in: query
- *         name: sortOrder
- *         schema:
- *           type: string
- *           enum: [asc, desc]
- *         description: Order to sort the institutions by (default is 'asc')
-```
 
 ---
 
-## GET Request Example
+## Deployment
 
-Here is an example `GET` request that sorts all institutions by name in ascending order: `http://localhost:3000/api/v1/institutions?sortBy=name&sortOrder=asc`
 
-![](<../resources (ignore)/img/05/swagger-6.PNG>)
+---
 
-![](<../resources (ignore)/img/05/swagger-7.PNG>)
+### Render
+
+[Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
+
+---
+
+### PostgreSQL Setup
+
+1. Click the **New +** button, then click the **Postgres** link.
+
+2. Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+
+3. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+
+4. Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
+
+---
+
+### Web Service Setup
+
+1. Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
+
+2. Click the **New +** button, then click the **Web Service** link.
+
+3. Click the **Git Provider** option. Connect to your **s2-25-intro-app-dev-repo-GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+
+4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-formative-assessment**.
+
+> **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
+
+5. Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+
+6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. 
+
+7. Click on the **Deploy Web Service** button.
+
+8. Keep an eye on the logs. Your **web service** is ready when you see the following message.
+
+```bash
+Server is listening on port 10000. Visit http://localhost:10000
+Your service is live 🎉
+```
+
+9. Scroll to the top of the page and click on your **web service's** URL.
+
+> **Resource:** <https://render.com/docs>
 
 ---
 
@@ -382,7 +564,6 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 - Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
 - Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
-**ATTENTION:** The use of AI tools to generate code is **permitted** in formative assessment but **not permitted** in any summative assessments. All submitted work must be entirely your own, reflecting your independent understanding and effort. 
 ---
 
 ### Task One
@@ -403,15 +584,7 @@ Implement a **GET** route that returns an appropriate message if an endpoint doe
 
 ---
 
-### Task Four (Independent Research)
-
-Pagination is the process of dividing a large collection of resources into smaller pages to improve performance and user experience. By paginating the results of an API request, users can retrieve a subset of resources at a time, rather than loading the entire collection at once.
-
-Use the this resource - [Prisma Pagination](https://www.prisma.io/docs/orm/prisma-client/queries/pagination) to implement pagination:
-
----
-
-###  Task Five (Independent Research)
+###  Task Four (Independent Research)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
