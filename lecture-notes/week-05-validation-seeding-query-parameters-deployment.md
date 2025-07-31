@@ -194,7 +194,7 @@ Before we create our tests, let us create a script to seed our database with dat
 ```javascript
 import prisma from "../client.js";
 
-import { validatePostInstitution } from "../middleware/validation/institution.js";
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -202,7 +202,7 @@ const validateInstitution = (institution) => {
   const res = {
     status: (code) => ({
       json: (message) => {
-        console.log(message.message);
+        console.log(message);
         process.exit(1);
       },
     }),
@@ -306,7 +306,7 @@ import fetch from "node-fetch";
 
 import prisma from "../client.js";
 
-import { validatePostInstitution } from "../middleware/validation/institution.js";
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -314,7 +314,7 @@ const validateInstitution = (institution) => {
   const res = {
     status: (code) => ({
       json: (message) => {
-        console.log(message.message);
+        console.log(message);
         process.exit(1);
       },
     }),
@@ -343,7 +343,7 @@ const seedInstitutionsFromGitHub = async () => {
 
     console.log("Institutions successfully seeded from GitHub Gist");
   } catch (err) {
-    console.log("Seeding failed:", err.message);
+    console.log(err.message);
   }
 };
 
