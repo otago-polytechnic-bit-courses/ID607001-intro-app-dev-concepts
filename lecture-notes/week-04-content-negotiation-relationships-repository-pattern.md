@@ -154,7 +154,8 @@ model Institution {
 
 Much like the `institution.js` files, create a new `department.js` file in the `controllers` and `routes` directories. The code in these files should be similar to the `institution.js` files.
 
-Your ``controllers/department.js` should look like the following.
+> **Note:** If you get stuck, here is the complete `controllers/department.js` file.
+
 
 ```js
 import prisma from "../prisma/client.js";
