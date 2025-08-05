@@ -34,7 +34,7 @@ To get started, open a terminal and run the following.
 npm install joi
 ```
 
-> **Note:** There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator. 
+> **Note:** There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator.
 
 ---
 
@@ -157,16 +157,15 @@ export default router;
 
 ### Postman Example
 
-Create a new request and name it **Create an institution - validation**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
-
+Create a new request and name it **Create an institution - validation**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
 
 ```json
 {
-    "name": "Otago Polytechnic"
+  "name": "Otago Polytechnic"
 }
 ```
 
-Click on the **Send** button to send the request. 
+Click on the **Send** button to send the request.
 
 ![](<../resources (ignore)/img/week-5/00-week-5.png>)
 
@@ -357,9 +356,26 @@ In the `package.json` file, add the following in the `scripts` block.
 In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
 
 ```javascript
-async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
+async findAll(
+  filters = {},
+  sortBy = "id",
+  sortOrder = "asc",
+  page = 1,
+  pageSize = 10
+) {
+  page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
+  pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
+
+  const totalCount = await prisma.institution.count({
+    where: filters,
+  });
+
+  const totalPages = Math.ceil(totalCount / pageSize);
+
   const query = {
     orderBy: { [sortBy]: sortOrder },
+    skip: (page - 1) * pageSize,
+    take: pageSize,
   };
 
   if (Object.keys(filters).length > 0) {
@@ -378,9 +394,25 @@ async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
     }
   }
 
-  return await prisma.institution.findMany(query);
+  const institutions = await prisma.institution.findMany(query);
+
+  return {
+    data: institutions,
+    pagination: {
+      currentPage: page,
+      pageSize,
+      totalCount,
+      totalPages,
+      nextPage: page < totalPages ? page + 1 : null,
+      prevPage: page > 1 ? page - 1 : null,
+    },
+  };
 }
 ```
+
+What is happening in the code?
+
+- 
 
 ---
 
@@ -391,30 +423,46 @@ In the `controllers` directory, open the `institution.js` file. Update the `getI
 ```javascript
 const getInstitutions = async (req, res) => {
   try {
-    const filters = {
-      name: req.query.name || undefined,
-      region: req.query.region || undefined,
-      country: req.query.country || undefined,
-    };
+    const {
+      name,
+      region,
+      country,
+      sortBy = "id",
+      sortOrder = "asc",
+      page = 1,
+      pageSize = 10,
+    } = req.query;
 
-    // Extract the sortBy and sortOrder parameters from the query
-    const sortBy = req.query.sortBy || "id";
-    const sortOrder = req.query.sortOrder === "desc" ? "desc" : "asc";
+    const filters = {};
+    if (name) filters.name = name;
+    if (region) filters.region = region;
+    if (country) filters.country = country;
 
-    // Retrieve institutions based on the filters, sorted by the specified column and order
+    const validSortOrders = ["asc", "desc"];
+    const order = validSortOrders.includes(sortOrder.toLowerCase())
+      ? sortOrder.toLowerCase()
+      : "asc";
+
+    const validSortFields = ["id", "name", "region", "country"];
+    const fields = validSortFields.includes(sortBy.toLowerCase())
+      ? sortBy.toLowerCase()
+      : "id";
+
     const institutions = await institutionRepository.findAll(
       filters,
-      sortBy,
-      sortOrder
+      fields,
+      order,
+      page,
+      pageSize
     );
 
-    // Check if there are no institutions
-    if (!institutions) {
+    if (!institutions.data.length) {
       return res.status(404).json({ message: "No institutions found" });
     }
 
     return res.status(200).json({
-      data: institutions,
+      data: institutions.data,
+      pagination: institutions.pagination,
     });
   } catch (err) {
     return res.status(500).json({
@@ -422,21 +470,39 @@ const getInstitutions = async (req, res) => {
     });
   }
 };
-``` 
+```
+
+What is happening in the code?
+
+- 
 
 ---
 
 ## Postman Example
 
+Here is an example of filtering an `institution` by `name`.
 
+![](<../resources (ignore)/img/week-5/02-week-5.png>)
+
+Here is an example of sorting by `country` in `desc` order.
+
+![](<../resources (ignore)/img/week-5/03-week-5.png>)
+
+Here is an example of sorting by `country` in `asc` order.
+
+![](<../resources (ignore)/img/week-5/04-week-5.png>)
+
+Here is an example of paging by `pageSize`.
+
+![](<../resources (ignore)/img/week-5/05-week-5.png>)
 
 ---
 
 ## Deployment
 
-**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel** and **Netlify**. 
+**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel** and **Netlify**.
 
----
+---resources (ignore)/img/week-5/02-week-5.png
 
 ### Render
 
@@ -470,7 +536,7 @@ const getInstitutions = async (req, res) => {
 
 5. Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
 
-6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above. 
+6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
 
 7. Click on the **Deploy Web Service** button.
 
@@ -486,7 +552,6 @@ Your service is live 🎉
 > **Resource:** <https://render.com/docs>
 
 ---
-
 
 ## Formative Assessment
 
@@ -516,7 +581,7 @@ Implement a **GET** route that returns an appropriate message if an endpoint doe
 
 ---
 
-###  Task Four (Independent Research)
+### Task Four (Independent Research)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
