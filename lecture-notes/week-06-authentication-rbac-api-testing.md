@@ -144,7 +144,7 @@ In the `controllers` directory, create a new file called `auth.js`. In the `auth
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import prisma from "../../prisma/client.js";
+import prisma from "../prisma/client.js";
 
 const register = async (req, res) => {
   try {
