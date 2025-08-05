@@ -138,7 +138,7 @@ export default jwtAuth;
 
 ### Auth Controller
 
-In the `controllers/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `controllers` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import bcryptjs from "bcryptjs";
@@ -236,7 +236,7 @@ export { register, login };
 
 ### Auth Router
 
-In the `routes/v1` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+In the `routes` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
 
 ```js
 import express from "express";
