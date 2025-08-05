@@ -183,8 +183,6 @@ Here is an example for the **PUT** method.
 1. **Prisma Client**: Use the Prisma Client to seed the database with data.
 2. **GitHub Gist**: Use a GitHub Gist to seed the database with data.
 
-In the **formative assessment**, you will research and implement a third and fourth method to seed your database.
-
 ---
 
 ### Script to Seed Data
@@ -349,7 +347,6 @@ In the `package.json` file, add the following in the `scripts` block.
 ---
 
 ## Query Parameters
-
 
 **Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
