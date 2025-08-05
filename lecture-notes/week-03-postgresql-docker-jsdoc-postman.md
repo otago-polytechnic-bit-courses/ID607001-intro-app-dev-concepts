@@ -22,7 +22,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ## PostgreSQL
 
-**PostgreSQL** is a free relational database management system. It is a powerful, highly-extensible, and feature-rich database system. It is also known as **Postgres**.
+**PostgreSQL** is a free relational database management system. It is a powerful, highly-extensible and feature-rich database system. It is also known as **Postgres**.
 
 > **Note:** There are different types of databases. For example, **relational databases**, **NoSQL databases**, **graph databases**, etc. **PostgreSQL** is a **relational database**. **Relational databases** store data in tables. Each table has rows and columns. **SQL** (Structured Query Language) is used to interact with **relational databases**.
 
@@ -30,7 +30,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ## Docker
 
-**Docker** is a platform for developing, shipping, and running applications. It allows you to package your application and its dependencies into a container. A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. We are going to use **Docker** to run a **PostgreSQL** container.
+**Docker** is a platform for developing, shipping and running applications. It allows you to package your application and its dependencies into a container. A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. We are going to use **Docker** to run a **PostgreSQL** container.
 
 > **Resource:** <https://www.docker.com>
 
@@ -38,7 +38,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ### Getting Started
 
-To get started, open **Docker Desktop**, and a terminal and run the following.
+To get started, open **Docker Desktop** and a terminal and run the following.
 
 ```bash
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
@@ -86,7 +86,7 @@ An **Object-Relational Mapper (ORM)** is a layer that sits between the database 
 
 ### Setup
 
-The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite**, and **SQL Server**.
+The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite** and **SQL Server**.
 
 To get started, open a terminal and run the following.
 

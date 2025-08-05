@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-01-github-javascript.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-01-github-javascript.md)
 
 ---
 
@@ -35,7 +35,7 @@ You have come across different interfaces before. For example, **Graphical User 
 What is meant by rules and protocols?
 
 - Communication protocols: The most common communication protocols are **Hypertext Transfer Protocol (HTTP)** and **Hypertext Transfer Protocol Secure (HTTPS)**. The protocol is used to send and receive data between different software applications.
-- Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)**, and **DELETE (deleting data)**. For example, the `GET` method is used to retrieve data.
+- Request methods: The most common request methods are **GET (retrieving data)**, **POST (creating data)**, **PUT (updating data)** and **DELETE (deleting data)**. For example, the `GET` method is used to retrieve data.
 - Data formats: The most common data formats are **JavaScript Object Notation (JSON)** and **eXtensible Markup Language (XML)**.
 - Endpoint URLs: Used to access the different resources. For example, `/api/users` is the endpoint URL for accessing the list of users.
 - Authentication and authorisation: Used to restrict access to certain resources. For example, a user must be authenticated and authorised to access the list of users.
@@ -59,7 +59,7 @@ There are nine different **HTTP request methods**:
 - `TRACE`: Performs a message loop-back test along the path to the target resource.
 - `PATCH`: Used to apply partial modifications to a resource.
 
-We will only being using `GET`, `POST`, `PUT`, and `DELETE` in this course.
+We will only being using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
@@ -96,7 +96,7 @@ There are four different **header** groups:
 
 ### Node Package Manager (NPM)
 
-**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share, and distribute code.
+**Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share and distribute code.
 
 > **Resource:** <https://docs.npmjs.com/about-npm>
 
@@ -134,7 +134,7 @@ The `node_modules` directory contains the modules installed by **NPM**. It is re
 
 ### Package JSON File
 
-The `package.json` file is used to manage the **Node.js** project. It contains information about the project, such as the name, version, and dependencies.
+The `package.json` file is used to manage the **Node.js** project. It contains information about the project, such as the name, version and dependencies.
 
 > **Resource:** <https://docs.npmjs.com/files/package.json>
 

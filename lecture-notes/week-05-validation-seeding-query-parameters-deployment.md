@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-04-api-versioning-relationships-repository-pattern.md)
+Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-api-versioning-relationships-repository-pattern.md)
 
 ---
 
@@ -431,7 +431,7 @@ const getInstitutions = async (req, res) => {
 
 ## Deployment
 
-**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel**, and **Netlify**. 
+**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel** and **Netlify**. 
 
 ---
 
@@ -503,7 +503,7 @@ Implement the code examples above.
 
 ### Task Two
 
-Implement validation for the `Department`, `Course`, and `User` resources.
+Implement validation for the `Department`, `Course` and `User` resources.
 
 ---
 
@@ -521,4 +521,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-06-seeding-api-testing.md)
+Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-06-authentication-rbac-api-testing.md)

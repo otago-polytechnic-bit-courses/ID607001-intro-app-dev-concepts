@@ -67,7 +67,7 @@ Here are some examples of **conventional commits**:
 
 ## JavaScript
 
-**JavaScript** is a high-level, interpreted programming language that conforms to the **ECMAScript** specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications**, and building **backend/server-side** applications.
+**JavaScript** is a high-level, interpreted programming language that conforms to the **ECMAScript** specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications** and building **backend/server-side** applications.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript>
 
@@ -101,7 +101,7 @@ We will only be concerned with the first five primitive data types for now. We w
 
 ### Variables
 
-A **variable** is a named container that stores a value. It is like a box that holds a value, and the variable's name is like a label on the box. You can use the variable's name to access its value.
+A **variable** is a named container that stores a value. It is like a box that holds a value and the variable's name is like a label on the box. You can use the variable's name to access its value.
 
 ```javascript
 // A mutable variable named "name" with value "John"
@@ -111,7 +111,7 @@ let name = "John";
 const age = 25;
 ```
 
-A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables, and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
+A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations>
 
@@ -222,7 +222,7 @@ Feel free to read up on the differences between these **loops**.
 
 ### Functions
 
-A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations, and returns some output. A function is a reusable piece of code you can use in your program.
+A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations and returns some output. A function is a reusable piece of code you can use in your program.
 
 ```javascript
 // A function named "add" that takes in two numbers and returns their sum
@@ -287,7 +287,7 @@ console.log(greet()); // Hello, World!
 
 ### Arrays
 
-An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values, and each value is assigned an index starting from 0. You can use a value's index to access its value.
+An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values and each value is assigned an index starting from 0. You can use a value's index to access its value.
 
 ```javascript
 // An array of numbers
@@ -516,7 +516,7 @@ Write a **function** to reverse a string.
 - Test case 1: `reverseString("Hello")` should return `"olleH"`
 - Test case 2: `reverseString("World")` should return `"dlroW"`
 
-> **Hint on how to solve this task:** You can reverse a string by converting it to an **array**, reversing the **array**, and then converting the **array** back to a string. There are three functions you can use to achieve this: `split()`, `reverse()`, and `join()`. You can also use a **for loop** to reverse a string.
+> **Hint on how to solve this task:** You can reverse a string by converting it to an **array**, reversing the **array** and then converting the **array** back to a string. There are three functions you can use to achieve this: `split()`, `reverse()` and `join()`. You can also use a **for loop** to reverse a string.
 
 ---
 
@@ -598,7 +598,7 @@ Write a **function** to find the longest word in a string.
 - Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
 
-> **Hint on how to solve this task:** You can find the longest word in a string by splitting the string into an **array** of words, finding the length of each word, and keeping track of the longest word found so far. You can start by assuming the first word is the longest word and then compare it with the rest of the words in the **array**.
+> **Hint on how to solve this task:** You can find the longest word in a string by splitting the string into an **array** of words, finding the length of each word and keeping track of the longest word found so far. You can start by assuming the first word is the longest word and then compare it with the rest of the words in the **array**.
 
 ---
 
@@ -807,7 +807,7 @@ console.log(availableSeats);
 
 ### Task Twenty
 
-Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move, and "-" represents a space. The **function** should determine the winner or declare it as a tie.
+Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move and "-" represents a space. The **function** should determine the winner or declare it as a tie.
 
 ```javascript
 // A 2D array representing a Tic-Tac-Toe board
@@ -824,10 +824,10 @@ console.log(winner);
 // "X"
 ```
 
-> **Hint on how to solve this task:** You can check the winner of a **Tic-Tac-Toe** game by checking the rows, columns, and diagonals of the **2D array**. You can start by checking the rows and then the columns and diagonals. You can use a series of **if statements** to check the rows, columns, and diagonals for a winner.
+> **Hint on how to solve this task:** You can check the winner of a **Tic-Tac-Toe** game by checking the rows, columns and diagonals of the **2D array**. You can start by checking the rows and then the columns and diagonals. You can use a series of **if statements** to check the rows, columns and diagonals for a winner.
 
 ---
 
 ## Next Class
 
-Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-02-express-http.md)
+Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-02-express-http.md)

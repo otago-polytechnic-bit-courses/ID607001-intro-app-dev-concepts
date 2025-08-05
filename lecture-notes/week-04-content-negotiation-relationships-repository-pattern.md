@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)
 
 ---
 
@@ -36,7 +36,7 @@ In this class, we will use the **Accept Header** to perform content negotiation.
 
 ### Middleware
 
-**Middleware** is a function that has access to the request object (`req`), the response object (`res`), and the next middleware function in the application's request-response cycle. Middleware functions can perform the following tasks:
+**Middleware** is a function that has access to the request object (`req`), the response object (`res`) and the next middleware function in the application's request-response cycle. Middleware functions can perform the following tasks:
 
 - Execute any code.
 - Make changes to the request and the response objects.
@@ -562,4 +562,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-25/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
