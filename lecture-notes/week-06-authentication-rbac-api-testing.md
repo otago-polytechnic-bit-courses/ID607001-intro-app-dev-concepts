@@ -36,7 +36,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ### JSON Web Tokens (JWT)
 
-## **JSON Web Tokens (JWT)** are a compact, URL-safe format for transmitting claims between parties. A **JWT** consists of three parts: a header, a payload and a signature. The payload contains claims about the user, such as their ID and roles. **JWTs** are typically signed using a secret with **HMAC** or a private key with **RSA** or **ECDSA**, allowing the server to verify their integrity and authenticity.
+**JSON Web Tokens (JWT)** are a compact, URL-safe format for transmitting claims between parties. A **JWT** consists of three parts: a header, a payload and a signature. The payload contains claims about the user, such as their ID and roles. **JWTs** are typically signed using a secret with **HMAC** or a private key with **RSA** or **ECDSA**, allowing the server to verify their integrity and authenticity.
 
 ### Setup
 
