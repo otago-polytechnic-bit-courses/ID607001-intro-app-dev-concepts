@@ -103,9 +103,6 @@ In the `middleware` directory, create a new file called `jwtAuth.js`. In the `jw
 ```js
 import jwt from "jsonwebtoken";
 
-/**
- * Middleware that checks for a valid JWT in the Authorization header.
- */
 const jwtAuth = (req, res, next) => {
   try {
     // Look for the Authorization header, which should start with 'Bearer '
