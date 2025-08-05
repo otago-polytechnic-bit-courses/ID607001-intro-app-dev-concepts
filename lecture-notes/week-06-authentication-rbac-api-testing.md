@@ -92,7 +92,7 @@ model User {
 }
 ```
 
-> **Note:** There is one additional fields - `password`.
+> **Note:** There is one additional fields - `password`. Make sure you create a new migration.
 
 ---
 
@@ -368,6 +368,8 @@ model User {
   updatedAt        DateTime      @default(now())
 }
 ```
+
+> **Note:** Make sure you create a new migration.
 
 ---
 
