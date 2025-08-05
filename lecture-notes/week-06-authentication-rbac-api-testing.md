@@ -134,8 +134,6 @@ const jwtAuth = (req, res, next) => {
 export default jwtAuth;
 ```
 
-> **Note:** You will use this middleware in the `app.js` file to protect your routes.
-
 ---
 
 ### Auth Controller
