@@ -314,14 +314,19 @@ import {
   deleteInstitution,
 } from "../controllers/institution.js";
 
+import {
+  validatePostInstitution,
+  validatePutInstitution,
+} from "../middleware/validation/institution.js";
+
 import jwtAuth from "../middleware/jwtAuth.js";
 
 const router = express.Router();
 
-router.post("/", jwtAuth, createInstitution);
-router.get("/",  getInstitutions);
+router.post("/", jwtAuth, validatePostInstitution, createInstitution);
+router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
-router.put("/:id", jwtAuth, updateInstitution);
+router.put("/:id", jwtAuth, validatePutInstitution, updateInstitution);
 router.delete("/:id", jwtAuth, deleteInstitution);
 
 export default router;
@@ -395,7 +400,7 @@ export default rbac;
 
 ### Institution Router
 
-In the `routes/institution.js` file, update the routes to use the `rbac` middleware. For example, if you want to restrict the `createInstitution`, `updateInstitution`, and `deleteInstitution` routes to only users with the `ADMIN` role, you can do the following:
+In the `routes/institution.js` file, update the routes to use the `rbac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role, you can do the following:
 
 ```javascript
 import express from "express";
@@ -417,8 +422,8 @@ const router = express.Router();
 router.post("/", jwtAuth, rbac("ADMIN"), createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
-router.put("/:id", jwtAuth, rbac("ADMIN"), updateInstitution);
-router.delete("/:id", jwtAuth, rbac("ADMIN"), deleteInstitution);
+router.put("/:id", updateInstitution);
+router.delete("/:id", deleteInstitution);
 
 export default router;
 ```
