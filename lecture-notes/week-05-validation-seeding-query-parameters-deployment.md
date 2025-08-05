@@ -359,7 +359,8 @@ seedInstitutionsFromGitHub();
 In the `package.json` file, add the following in the `scripts` block.
 
 ```json
-"prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js && node ./prisma/seeding/seed-institutions-github.js"
+"prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js,
+"prisma:seed-institutions-github": "node ./prisma/seeding/seed-institutions-github.js"
 ```
 
 ---
