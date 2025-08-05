@@ -17,12 +17,46 @@ const createInstitution = async (req, res) => {
 
 const getInstitutions = async (req, res) => {
   try {
-    const institutions = await institutionRepository.findAll();
-    if (!institutions) {
+    const {
+      name,
+      region,
+      country,
+      sortBy = "id",
+      sortOrder = "asc",
+      page = 1,
+      pageSize = 10,
+    } = req.query;
+
+    const filters = {};
+    if (name) filters.name = name;
+    if (region) filters.region = region;
+    if (country) filters.country = country;
+
+    const validSortOrders = ["asc", "desc"];
+    const order = validSortOrders.includes(sortOrder.toLowerCase())
+      ? sortOrder.toLowerCase()
+      : "asc";
+
+    const validSortFields = ["id", "name", "region", "country"];
+    const fields = validSortFields.includes(sortBy.toLowerCase())
+      ? sortBy.toLowerCase()
+      : "id";
+
+    const institutions = await institutionRepository.findAll(
+      filters,
+      fields,
+      order,
+      page,
+      pageSize
+    );
+
+    if (!institutions.data.length) {
       return res.status(404).json({ message: "No institutions found" });
     }
+
     return res.status(200).json({
-      data: institutions,
+      data: institutions.data,
+      pagination: institutions.pagination,
     });
   } catch (err) {
     return res.status(500).json({
