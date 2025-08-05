@@ -326,13 +326,13 @@ const router = express.Router();
 router.post("/", jwtAuth, validatePostInstitution, createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
-router.put("/:id", jwtAuth, validatePutInstitution, updateInstitution);
-router.delete("/:id", jwtAuth, deleteInstitution);
+router.put("/:id", validatePutInstitution, updateInstitution);
+router.delete("/:id", deleteInstitution);
 
 export default router;
 ```
 
-> **Note:** The `jwtAuth` middleware is used to protect the `createInstitution`, `updateInstitution`, and `deleteInstitution` routes. It means that only authenticated users can access these routes.
+> **Note:** The `jwtAuth` middleware is used to protect the `createInstitution` route. It means that only authenticated users can access these routes.
 
 ---
 
