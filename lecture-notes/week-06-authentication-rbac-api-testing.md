@@ -105,7 +105,7 @@ import jwt from "jsonwebtoken";
 
 const jwtAuth = (req, res, next) => {
   try {
-    // Look for the Authorization header, which should start with 'Bearer '
+    // Look for the Authorization header which should start with 'Bearer '
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
@@ -124,7 +124,7 @@ const jwtAuth = (req, res, next) => {
     // Continue to the next middleware or route
     return next();
   } catch (err) {
-    // The token is missing, invalid, or expired
+    // The token is missing, invalid or expired
     return res
       .status(401)
       .json({ message: "Not authorized to access this route" });
