@@ -260,24 +260,7 @@ seedInstitutions();
 
 ### Create a GitHub Gist
 
-Create a [GitHub Gist](https://gist.github.com/) and add the following JSON data.
-
-```json
-[
-  {
-    "name": "University of Auckland",
-    "region": "Auckland",
-    "country": "New Zealand"
-  },
-  {
-    "name": "University of Waikato",
-    "region": "Waikato",
-    "country": "New Zealand"
-  }
-]
-```
-
-Provide the filename as `seed-institutions-github.json` and click on the **Create secret gist** button.
+Create a [GitHub Gist](https://gist.github.com/) with the data in `week-05-seed-institutions-github.json` in the **lecture-notes** directory. Provide the filename as `week-05-seed-institutions-github.json` and click on the **Create secret gist** button.
 
 ---
 
@@ -368,7 +351,7 @@ In the `package.json` file, add the following in the `scripts` block.
 ## Query Parameters
 
 
-Filtering, sorting and paging.
+**Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
 ---
 
@@ -439,9 +422,7 @@ const getInstitutions = async (req, res) => {
     });
   }
 };
-```
-
-> **Note:** Where other functions are using `institutionRepository.findAll()`, pass in the following arguments `({}, "id", "asc")`. For example, `institutionRepository.findAll({}, "id", "asc")`. 
+``` 
 
 ---
 
@@ -453,6 +434,7 @@ const getInstitutions = async (req, res) => {
 
 ## Deployment
 
+**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel**, and **Netlify**. 
 
 ---
 
@@ -476,7 +458,7 @@ const getInstitutions = async (req, res) => {
 
 ### Web Service Setup
 
-1. Sign up for a **Render** account at [https://dashboard.render.com/](https://dashboard.render.com/). Use your **GitHub** account to sign up.
+1. Sign up for a **Render** account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your **GitHub** account to sign up.
 
 2. Click the **New +** button, then click the **Web Service** link.
 
