@@ -357,20 +357,23 @@ In the `package.json` file, add the following in the `scripts` block.
 In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
 
 ```javascript
-// Find all institutions based on the provided filters, sorted by the specified column and order
 async findAll(filters = {}, sortBy = "id", sortOrder = "asc") {
   const query = {
-    orderBy: {
-      [sortBy]: sortOrder, // Sort by the specified column and order
-    },
+    orderBy: { [sortBy]: sortOrder },
   };
 
   if (Object.keys(filters).length > 0) {
     query.where = {};
-    // Loop through the filters and apply them dynamically
+
     for (const [key, value] of Object.entries(filters)) {
-      if (value) {
-        query.where[key] = { contains: value };
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "string") {
+          query.where[key] = { contains: value };
+        } else if (typeof value === "boolean") {
+          query.where[key] = { equals: value };
+        } else if (typeof value === "number") {
+          query.where[key] = { equals: value };
+        }
       }
     }
   }
