@@ -148,7 +148,10 @@ import prisma from "../prisma/client.js";
 
 const register = async (req, res) => {
   try {
-    const { firstName, lastName, emailAddress, password } = req.body;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const emailAddress = req.body.emailAddress;
+    const password = req.body.password;
 
     // Check if user already exists by email address
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -189,7 +192,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { emailAddress, password } = req.body;
+    const emailAddress = req.body.emailAddress;
+    const password = req.body.password;
 
     // Find user by email address
     const user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -415,16 +419,21 @@ import {
   deleteInstitution,
 } from "../controllers/institution.js";
 
+import {
+  validatePostInstitution,
+  validatePutInstitution,
+} from "../middleware/validation/institution.js";
+
 import jwtAuth from "../middleware/jwtAuth.js";
 
 import rbac from "../middleware/rbac.js";
 
 const router = express.Router();
 
-router.post("/", jwtAuth, rbac("ADMIN"), createInstitution);
+router.post("/", validatePostInstitution, jwtAuth, rbac("ADMIN"), createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
-router.put("/:id", updateInstitution);
+router.put("/:id", validatePutInstitution, updateInstitution);
 router.delete("/:id", deleteInstitution);
 
 export default router;
