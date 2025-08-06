@@ -5,7 +5,11 @@ import prisma from "../prisma/client.js";
 
 const register = async (req, res) => {
   try {
-    const { firstName, lastName, emailAddress, password } = req.body;
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const emailAddress = req.body.emailAddress;
+    const password = req.body.password;
+    const role = req.body.role;
 
     // Check if user already exists by email address
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -46,7 +50,8 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const { emailAddress, password } = req.body;
+    const emailAddress = req.body.emailAddress;
+    const password = req.body.password;
 
     // Find user by email address
     const user = await prisma.user.findUnique({ where: { emailAddress } });
