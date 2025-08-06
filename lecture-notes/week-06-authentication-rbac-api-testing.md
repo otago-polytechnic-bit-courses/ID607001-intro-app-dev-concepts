@@ -491,13 +491,13 @@ Here is an example of creating an institution as a normal user. You should get a
 
 ## API Testing
 
-**API testing** is a type of software testing that involves testing APIs directly and as part of integration testing to determine if they meet expectations for functionality, reliability, performance and security.
+**API testing** is the process of testing the functionality, reliability, performance and security of an application programming interface (API). It involves sending requests to the API and verifying that the responses are as expected. API testing can be done manually or automated using various tools and libraries.
 
 ---
 
 ### Dependencies
 
-There are several libraries for testing APIs. We will use **Chai** and **Mocha**. **Chai** is an assertion library that works well with **Mocha**, a testing framework. **Chai** provides a lot of flexibility in terms of how you write your assertions.
+There are several libraries available for API testing in Node.js. In this example, we will use **Mocha** as the test framework, **Chai** as the assertion library and **Supertest** to make HTTP requests to the API.
 
 Install the libraries by running the following command.
 
@@ -519,6 +519,8 @@ root/
     ├── 00-institution.test.js
     └── 01-department.test.js
 ```
+
+> **Note:** The `tests` directory will contain all the test files. The `helpers` directory will contain helper functions that can be used in the test files.
 
 ---
 
@@ -562,6 +564,12 @@ export const disconnectPrisma = async () => {
 };
 ```
 
+What is this code doing?
+
+- The `setupTestAuth` function creates a test user and logs in to get a token.
+- The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables.
+- The `disconnectPrisma` function disconnects the **Prisma** client from the database.
+
 ---
 
 ### Institution CRUD Tests
@@ -579,6 +587,7 @@ describe("Institution CRUD", () => {
   let institutionOneId;
   let institutionTwoId;
 
+  // Setup the test authentication before running the tests
   before(async () => {
     token = await setupTestAuth();
   });
@@ -586,7 +595,8 @@ describe("Institution CRUD", () => {
   it("should create institution one", async () => {
     const res = await request(app)
       .post("/api/institutions")
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
+      .send({
       .send({
         name: "Otago Polytechnic",
         region: "Otago",
@@ -594,17 +604,19 @@ describe("Institution CRUD", () => {
       });
 
     expect(res.status).to.equal(201);
+
+    // Find an institution by name in the response body 
     const newInstitution = res.body.data.find(
       (institution) => institution.name === "Otago Polytechnic"
     );
-    institutionOneId = newInstitution.id;
+
+    institutionOneId = newInstitution.id; // Store the institution id for later use
   });
 
   it("should create institution two", async () => {
     const res = await request(app)
       .post("/api/institutions")
       .set("Authorization", `Bearer ${token}`)
-      .send({
         name: "Southern Institute of Technology",
         region: "Southland",
         country: "New Zealand",
@@ -621,7 +633,7 @@ describe("Institution CRUD", () => {
     const res = await request(app).get("/api/institutions");
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2);
+    expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
   });
 
   it("should get institution one by ID", async () => {
@@ -655,7 +667,7 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId;
+    global.testInstitutionId = institutionTwoId; // Store the institution id for later use in 01-department.test.js
   });
 });
 ```
@@ -676,10 +688,12 @@ describe("Department CRUD", () => {
   let institutionId;
   let departmentOneId;
 
+  // Set up the institution id before running the tests
   before(async () => {
-    institutionId = global.testInstitutionId;
+    institutionId = global.testInstitutionId; 
   });
 
+  // Clean up the database and disconnect Prisma after running the tests
   after(async () => {
     await cleanupDatabase();
     await disconnectPrisma();
@@ -750,7 +764,7 @@ In the `package.json` file, update the `test` script in the `scripts` block to t
 "test": "mocha tests/**/*.js --recursive --timeout 10000 --exit",
 ```
 
-The `--timeout 10000` flag sets the timeout for each test to 10 seconds. The `--exit` flag exits the process once the tests are complete. The `--recursive` flag allows Mocha to run tests in subdirectories.
+> **Note:** The `--recursive` flag allows Mocha to run tests in subdirectories, and the `--timeout` flag sets the maximum time for each test to complete. The `--exit` flag ensures that Mocha exits after all tests are done.
 
 To run the tests, run the following command.
 
