@@ -8,6 +8,7 @@ describe("Institution CRUD", () => {
   let institutionOneId;
   let institutionTwoId;
 
+  // Setup the test authentication before running the tests
   before(async () => {
     token = await setupTestAuth();
   });
@@ -15,7 +16,7 @@ describe("Institution CRUD", () => {
   it("should create institution one", async () => {
     const res = await request(app)
       .post("/api/institutions")
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
       .send({
         name: "Otago Polytechnic",
         region: "Otago",
@@ -23,10 +24,12 @@ describe("Institution CRUD", () => {
       });
 
     expect(res.status).to.equal(201);
+
+    // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
       (institution) => institution.name === "Otago Polytechnic"
     );
-    institutionOneId = newInstitution.id;
+    institutionOneId = newInstitution.id; // Store the institution id for later use
   });
 
   it("should create institution two", async () => {
@@ -50,7 +53,7 @@ describe("Institution CRUD", () => {
     const res = await request(app).get("/api/institutions");
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2);
+    expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
   });
 
   it("should get institution one by ID", async () => {
@@ -84,6 +87,6 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId;
+    global.testInstitutionId = institutionTwoId; // Store the institution id for later use in 01-department.test.js
   });
 });

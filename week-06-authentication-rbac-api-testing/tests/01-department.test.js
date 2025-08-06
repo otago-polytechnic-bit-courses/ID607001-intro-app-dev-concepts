@@ -7,10 +7,12 @@ describe("Department CRUD", () => {
   let institutionId;
   let departmentOneId;
 
+  // Set up the institution id before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
   });
 
+  // Clean up the database and disconnect Prisma after running the tests
   after(async () => {
     await cleanupDatabase();
     await disconnectPrisma();
