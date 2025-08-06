@@ -524,7 +524,7 @@ root/
 
 ### Helper - Auth
 
-
+In `auth.js`, add the following code.
 
 ```js
 import request from "supertest";
