@@ -15,9 +15,6 @@
     "prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js",
     "prisma:seed-institutions-github": "node ./prisma/seeding/seed-institutions-github.js"
   },
-  "prisma": {
-    "seed": "node ./prisma/seeding/seed-institutions.js"
-  },
   "keywords": [],
   "author": "",
   "license": "ISC",
