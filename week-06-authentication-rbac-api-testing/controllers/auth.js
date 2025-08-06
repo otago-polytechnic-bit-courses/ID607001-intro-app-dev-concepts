@@ -26,7 +26,13 @@ const register = async (req, res) => {
 
     // Create a new user with the hashed password
     user = await prisma.user.create({
-      data: { firstName, lastName, emailAddress, password: hashedPassword, role },
+      data: {
+        firstName,
+        lastName,
+        emailAddress,
+        password: hashedPassword,
+        role,
+      },
       select: {
         id: true,
         firstName: true,
@@ -61,7 +67,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email address" });
     }
 
-    // Compare provided password with stored hashed password
+    // Compare the provided password with the hashed password in the database
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
@@ -70,11 +76,12 @@ const login = async (req, res) => {
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
-    // Create a JWT with user id and name as payload
+    // Create a JWT token with the user's ID, role and email address
     const token = jwt.sign(
       {
         id: user.id,
-        name: user.name,
+        role: user.role,
+        emailAddress: user.emailAddress,
       },
       JWT_SECRET,
       { expiresIn: JWT_LIFETIME }
@@ -85,7 +92,6 @@ const login = async (req, res) => {
       token: token,
     });
   } catch (err) {
-    console.error(err.message);
     return res.status(500).json({
       message: err.message,
     });

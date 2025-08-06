@@ -1,10 +1,10 @@
 import express from "express";
 import cors from "cors";
 
+import authRoutes from "./routes/auth.js";
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
-import authRoutes from "./routes/auth.js";
 
 import { isContentTypeApplicationJSON } from "./middleware/utils.js";
 
@@ -17,10 +17,10 @@ app.use(express.json());
 app.use(isContentTypeApplicationJSON);
 app.use(cors());
 
+app.use("/api/auth", authRoutes);
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
-app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(
