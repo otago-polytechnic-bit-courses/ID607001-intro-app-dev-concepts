@@ -105,7 +105,7 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // Ensure at least one field is being updated
 
-  const { error } = institutionSchema.validate(req.body);
+  const { error } = institutionSchema.validate(req.body, { abortEarly: false });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -388,7 +388,7 @@ async findAll(
     for (const [key, value] of Object.entries(filters)) {
       if (value !== undefined && value !== null && value !== "") {
         if (typeof value === "string") {
-          query.where[key] = { contains: value };
+          query.where[key] = { contains: value, mode: "insensitive" };
         } else if (typeof value === "boolean") {
           query.where[key] = { equals: value };
         } else if (typeof value === "number") {
