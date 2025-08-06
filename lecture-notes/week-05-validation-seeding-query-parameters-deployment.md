@@ -504,7 +504,7 @@ Here is an example of paging by `pageSize`.
 
 **Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel** and **Netlify**.
 
----resources (ignore)/img/week-5/02-week-5.png
+---
 
 ### Render
 
