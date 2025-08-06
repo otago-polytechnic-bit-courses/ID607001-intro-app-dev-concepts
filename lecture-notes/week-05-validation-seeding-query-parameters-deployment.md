@@ -363,13 +363,16 @@ async findAll(
   page = 1,
   pageSize = 10
 ) {
+  // Ensure the page and page size are positive integers
   page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
   pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
+  // Get total number of institutions that match the filters
   const totalCount = await prisma.institution.count({
     where: filters,
   });
 
+  // Calculate total number of pages
   const totalPages = Math.ceil(totalCount / pageSize);
 
   const query = {
@@ -378,6 +381,7 @@ async findAll(
     take: pageSize,
   };
 
+  // Add dynamic filtering conditions if filters are provided
   if (Object.keys(filters).length > 0) {
     query.where = {};
 
@@ -396,6 +400,7 @@ async findAll(
 
   const institutions = await prisma.institution.findMany(query);
 
+  // Return the data along with pagination information
   return {
     data: institutions,
     pagination: {
@@ -410,10 +415,6 @@ async findAll(
 }
 ```
 
-What is happening in the code?
-
-- 
-
 ---
 
 ### Institution Controller
@@ -423,6 +424,7 @@ In the `controllers` directory, open the `institution.js` file. Update the `getI
 ```javascript
 const getInstitutions = async (req, res) => {
   try {
+    // Deconstruct query parameters with default values for sorting and pagination
     const {
       name,
       region,
@@ -433,16 +435,19 @@ const getInstitutions = async (req, res) => {
       pageSize = 10,
     } = req.query;
 
+    // Build a filters object based on query parameters
     const filters = {};
     if (name) filters.name = name;
     if (region) filters.region = region;
     if (country) filters.country = country;
 
+    // Validate and normalize sort order. Default to 'asc' if invalid
     const validSortOrders = ["asc", "desc"];
     const order = validSortOrders.includes(sortOrder.toLowerCase())
       ? sortOrder.toLowerCase()
       : "asc";
 
+    // Validate and normalize sort field. Default to 'id' if invalid
     const validSortFields = ["id", "name", "region", "country"];
     const fields = validSortFields.includes(sortBy.toLowerCase())
       ? sortBy.toLowerCase()
@@ -460,6 +465,7 @@ const getInstitutions = async (req, res) => {
       return res.status(404).json({ message: "No institutions found" });
     }
 
+    // Return the data along with pagination information
     return res.status(200).json({
       data: institutions.data,
       pagination: institutions.pagination,
@@ -471,10 +477,6 @@ const getInstitutions = async (req, res) => {
   }
 };
 ```
-
-What is happening in the code?
-
-- 
 
 ---
 
