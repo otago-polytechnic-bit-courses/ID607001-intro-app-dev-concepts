@@ -15,7 +15,7 @@ datasource db {
 
 enum Role {
   ADMIN
-  NORMAL_USER
+  NORMAL
   GUEST
 }
 
@@ -25,7 +25,7 @@ model User {
   lastName         String
   emailAddress     String        @unique
   password         String
-  role             Role          @default(NORMAL_USER)
+  role             Role          @default(NORMAL)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }

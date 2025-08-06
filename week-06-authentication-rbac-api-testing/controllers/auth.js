@@ -26,12 +26,13 @@ const register = async (req, res) => {
 
     // Create a new user with the hashed password
     user = await prisma.user.create({
-      data: { firstName, lastName, emailAddress, password: hashedPassword },
+      data: { firstName, lastName, emailAddress, password: hashedPassword, role },
       select: {
         id: true,
         firstName: true,
         lastName: true,
         emailAddress: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },
