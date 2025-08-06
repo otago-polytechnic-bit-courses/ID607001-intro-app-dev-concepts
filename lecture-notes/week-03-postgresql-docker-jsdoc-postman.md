@@ -73,7 +73,7 @@ docker rm id607001-db-dev
 In the `package.json` file, add the following line to the `scripts` block.
 
 ```json
-"docker:run": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres"
+"docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres"
 ```
 
 ---
