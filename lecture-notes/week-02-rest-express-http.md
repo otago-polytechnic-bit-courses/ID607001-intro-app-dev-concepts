@@ -20,15 +20,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
-## Express
-
-**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
-
-> **Resource:** <https://expressjs.com/>
-
----
-
-### Application Programming Interface (API)
+## Application Programming Interface (API)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.
 
@@ -94,11 +86,19 @@ There are four different **header** groups:
 
 ---
 
-### Node Package Manager (NPM)
+## Node Package Manager (NPM)
 
 **Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share and distribute code.
 
 > **Resource:** <https://docs.npmjs.com/about-npm>
+
+---
+
+## Express
+
+**Express** is a web application framework for **Node.js**. It is designed for building web applications and APIs. It has been called the de facto standard server framework for **Node.js**.
+
+> **Resource:** <https://expressjs.com/>
 
 ---
 
