@@ -6,7 +6,7 @@ const createInstitution = async (req, res) => {
     const newInstitutions = await institutionRepository.findAll();
     return res.status(201).json({
       message: "Institution successfully created",
-      data: newInstitutions,
+      data: newInstitutions.data,
     });
   } catch (err) {
     return res.status(500).json({

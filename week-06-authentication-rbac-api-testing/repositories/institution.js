@@ -33,7 +33,7 @@ class InstitutionRepository {
       for (const [key, value] of Object.entries(filters)) {
         if (value !== undefined && value !== null && value !== "") {
           if (typeof value === "string") {
-            query.where[key] = { contains: value, mode: "insensitive" };
+            query.where[key] = { contains: value };
           } else if (typeof value === "boolean") {
             query.where[key] = { equals: value };
           } else if (typeof value === "number") {
