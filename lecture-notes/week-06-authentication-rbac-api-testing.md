@@ -152,6 +152,7 @@ const register = async (req, res) => {
     const lastName = req.body.lastName;
     const emailAddress = req.body.emailAddress;
     const password = req.body.password;
+    const role = req.body.role;
 
     // Check if user already exists by email address
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -168,12 +169,19 @@ const register = async (req, res) => {
 
     // Create a new user with the hashed password
     user = await prisma.user.create({
-      data: { firstName, lastName, emailAddress, password: hashedPassword },
+      data: {
+        firstName,
+        lastName,
+        emailAddress,
+        password: hashedPassword,
+        role,
+      },
       select: {
         id: true,
         firstName: true,
         lastName: true,
         emailAddress: true,
+        role: true,
         createdAt: true,
         updatedAt: true,
       },
@@ -327,7 +335,7 @@ import jwtAuth from "../middleware/jwtAuth.js";
 
 const router = express.Router();
 
-router.post("/", jwtAuth, validatePostInstitution, createInstitution);
+router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
@@ -353,7 +361,7 @@ In the `prisma.schema` file, add the following enum:
 ```js
 enum Role {
   ADMIN
-  NORMAL_USER
+  NORMAL
   GUEST
 }
 ```
@@ -430,7 +438,13 @@ import rbac from "../middleware/rbac.js";
 
 const router = express.Router();
 
-router.post("/", validatePostInstitution, jwtAuth, rbac("ADMIN"), createInstitution);
+router.post(
+  "/",
+  validatePostInstitution,
+  jwtAuth,
+  rbac("ADMIN"),
+  createInstitution
+);
 router.get("/", getInstitutions);
 router.get("/:id", getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
@@ -445,21 +459,29 @@ export default router;
 
 ## Postman Example
 
+Here is an example of creating an institution with no token.
+
 ![](<../resources (ignore)/img/week-6/00-week-6.png>)
+
+Here is an example of registering an admin user.
 
 ![](<../resources (ignore)/img/week-6/01-week-6.png>)
 
+Here is an example of registering a normal user.
+
 ![](<../resources (ignore)/img/week-6/02-week-6.png>)
 
+Here is an example of logging in as the admin user. Make sure you copy the token from the response.
+
 ![](<../resources (ignore)/img/week-6/03-week-6.png>)
+
+
 
 ![](<../resources (ignore)/img/week-6/04-week-6.png>)
 
 ![](<../resources (ignore)/img/week-6/05-week-6.png>)
 
-![](<../resources (ignore)/img/week-6/0-week-6.png>)
-
-![](<../resources (ignore)/img/week-6/00-week-6.png>)
+![](<../resources (ignore)/img/week-6/06-week-6.png>)
 
 ---
 
