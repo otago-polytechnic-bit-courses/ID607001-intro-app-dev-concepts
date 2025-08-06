@@ -597,7 +597,6 @@ describe("Institution CRUD", () => {
       .post("/api/institutions")
       .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
       .send({
-      .send({
         name: "Otago Polytechnic",
         region: "Otago",
         country: "New Zealand",
@@ -605,11 +604,10 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
 
-    // Find an institution by name in the response body 
+    // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
       (institution) => institution.name === "Otago Polytechnic"
     );
-
     institutionOneId = newInstitution.id; // Store the institution id for later use
   });
 
@@ -617,6 +615,7 @@ describe("Institution CRUD", () => {
     const res = await request(app)
       .post("/api/institutions")
       .set("Authorization", `Bearer ${token}`)
+      .send({
         name: "Southern Institute of Technology",
         region: "Southland",
         country: "New Zealand",
@@ -690,7 +689,7 @@ describe("Department CRUD", () => {
 
   // Set up the institution id before running the tests
   before(async () => {
-    institutionId = global.testInstitutionId; 
+    institutionId = global.testInstitutionId;
   });
 
   // Clean up the database and disconnect Prisma after running the tests
