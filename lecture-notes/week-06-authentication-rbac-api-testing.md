@@ -122,7 +122,7 @@ const jwtAuth = (req, res, next) => {
     req.user = payload;
 
     // Continue to the next middleware or route
-    return next();
+    next();
   } catch (err) {
     // The token is missing, invalid or expired
     return res
