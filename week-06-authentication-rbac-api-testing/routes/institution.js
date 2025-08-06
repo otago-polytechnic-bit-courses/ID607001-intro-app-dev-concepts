@@ -21,9 +21,9 @@ const router = express.Router();
 
 router.post(
   "/",
-  validatePostInstitution,
-  jwtAuth,
-  rbac("ADMIN"),
+  // validatePostInstitution,
+  // jwtAuth,
+  // rbac("ADMIN"),
   createInstitution
 );
 router.get("/", getInstitutions);

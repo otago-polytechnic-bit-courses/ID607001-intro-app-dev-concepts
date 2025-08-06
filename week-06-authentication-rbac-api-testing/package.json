@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha tests/**/*.js --recursive --timeout 10000 --exit",
+    "test": "npm run prisma:reset && mocha tests/**/*.js --recursive --timeout 10000 --exit",
     "dev": "nodemon app.js",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:reset": "npx prisma migrate reset --force",

@@ -1,11 +1,7 @@
 import { expect } from "chai";
 import request from "supertest";
 import app from "../app.js";
-import {
-  setupTestAuth,
-  cleanupDatabase,
-  disconnectPrisma,
-} from "./helpers/auth.js";
+import { cleanupDatabase, disconnectPrisma } from "./helpers/auth.js";
 
 describe("Department CRUD", () => {
   let institutionId;
@@ -13,7 +9,6 @@ describe("Department CRUD", () => {
 
   before(async () => {
     institutionId = global.testInstitutionId;
-    console.log("Institution ID:", institutionId);
   });
 
   after(async () => {
@@ -27,7 +22,6 @@ describe("Department CRUD", () => {
       institutionId: institutionId,
     });
 
-    console.log(res.body)
     expect(res.status).to.equal(201);
     const newDepartment = res.body.data.find(
       (department) => department.name === "Information Technology"

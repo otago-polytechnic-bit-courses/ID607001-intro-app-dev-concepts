@@ -16,11 +16,6 @@ describe("Institution CRUD", () => {
     token = await setupTestAuth();
   });
 
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
-  });
-
   it("should create institution one", async () => {
     const res = await request(app)
       .post("/api/institutions")
