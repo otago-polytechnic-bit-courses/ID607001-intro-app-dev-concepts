@@ -419,9 +419,24 @@ async findAll(
 
 ### Institution Controller
 
-In the `controllers` directory, open the `institution.js` file. Update the `getInstitutions()` function as follows.
+In the `controllers` directory, open the `institution.js` file. Update the `createInstitution()` and `getInstitutions()` functions as follows.
 
 ```javascript
+const createInstitution = async (req, res) => {
+  try {
+    await institutionRepository.create(req.body);
+    const newInstitutions = await institutionRepository.findAll();
+    return res.status(201).json({
+      message: "Institution successfully created",
+      data: newInstitutions.data,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
 const getInstitutions = async (req, res) => {
   try {
     // Deconstruct query parameters with default values for sorting and pagination
