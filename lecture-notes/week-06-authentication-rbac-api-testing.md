@@ -793,6 +793,8 @@ Department CRUD
 11 passing (number of ms)
 ```
 
+> **Note:** The number of milliseconds will vary depending on your computer's performance.
+
 ---
 
 ## Formative Assessment
