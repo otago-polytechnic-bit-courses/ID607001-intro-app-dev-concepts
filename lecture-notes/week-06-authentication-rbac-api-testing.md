@@ -69,7 +69,7 @@ The `.env` file should look like this:
 APP_ENV=development
 DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 JWT_SECRET=HelloWorld123
-JWT_LIFETIME=1hr
+JWT_LIFETIME=1h
 ```
 
 You will use the `JWT_SECRET` environment variable's value, i.e., HelloWorld123, to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour.
@@ -210,7 +210,7 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email address" });
     }
 
-    // Compare provided password with stored hashed password
+    // Compare the provided password with the hashed password in the database
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
@@ -219,11 +219,12 @@ const login = async (req, res) => {
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
-    // Create a JWT with user id and name as payload
+    // Create a JWT token with the user's ID, role and email address
     const token = jwt.sign(
       {
         id: user.id,
-        name: user.name,
+        role: user.role,
+        emailAddress: user.emailAddress,
       },
       JWT_SECRET,
       { expiresIn: JWT_LIFETIME }
@@ -234,7 +235,6 @@ const login = async (req, res) => {
       token: token,
     });
   } catch (err) {
-    console.error(err.message);
     return res.status(500).json({
       message: err.message,
     });
@@ -280,10 +280,10 @@ app.use("/api/auth", authRoutes);
 ```javascript
 import express from "express";
 
+import authRoutes from "./routes/auth.js";
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
-import authRoutes from "./routes/auth.js";
 
 import { isContentTypeApplicationJSON } from "./middleware/utils.js";
 
@@ -295,10 +295,10 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(isContentTypeApplicationJSON);
 
+app.use("/api/auth", authRoutes);
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
-app.use("/api/auth", authRoutes);
 
 app.listen(PORT, () => {
   console.log(
@@ -350,7 +350,7 @@ export default router;
 
 ## Role-Based Access Control (RBAC)
 
-**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `NORMAL_USER`, and `GUEST`, each with different permissions.
+**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `NORMAL`, and `GUEST`, each with different permissions.
 
 ---
 
@@ -375,7 +375,7 @@ model User {
   lastName         String
   emailAddress     String        @unique
   password         String
-  role             Role          @default(NORMAL_USER)
+  role             Role          @default(NORMAL)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }
@@ -475,7 +475,7 @@ Here is an example of logging in as an admin user. Make sure you copy the token 
 
 ![](<../resources (ignore)/img/week-6/03-week-6.png>)
 
-Here is an example of creating an institution as an admin user. 
+Here is an example of creating an institution as an admin user.
 
 ![](<../resources (ignore)/img/week-6/04-week-6.png>)
 
