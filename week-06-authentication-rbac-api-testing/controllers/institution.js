@@ -112,7 +112,7 @@ const deleteInstitution = async (req, res) => {
       });
     }
     await institutionRepository.delete(req.params.id);
-    return res.json({
+    return res.status(200).json({
       message: `Institution with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {

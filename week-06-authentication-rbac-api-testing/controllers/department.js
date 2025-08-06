@@ -78,7 +78,7 @@ const deleteDepartment = async (req, res) => {
       });
     }
     await departmentRepository.delete(req.params.id);
-    return res.json({
+    return res.status(200).json({
       message: `Department with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
