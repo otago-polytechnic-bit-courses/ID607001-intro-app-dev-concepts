@@ -821,4 +821,4 @@ Implement a logout route. The route should invalidate the token. You can do this
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-08-sveltekit-routing-loading-data-form-actions.md
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-07-sveltekit-basics.md)
