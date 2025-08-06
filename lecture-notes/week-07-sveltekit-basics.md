@@ -22,9 +22,74 @@ The full code example for this week is available here - <https://github.com/otag
 
 ## SvelteKit
 
+**SvelteKit** is a modern framework for building web applications using the **Svelte** framework. It provides a powerful set of features for building fast, efficient and scalable web applications. 
+
 ---
 
-##
+### Getting Started
+
+To create a new **SvelteKit** project, run the following command:
+
+```bash
+npx sv create week-07-sveltekit-basics
+```
+
+You will be prompt with the following questions:
+
+```bash
+Which template would you like? SvelteKit minimal
+
+Add type checking with TypeScript? Yes, using JavaScript with JSDoc comments 
+
+What would you like to add to your project? (use arrow keys / space bar) prettier
+
+Which package manager do you want to install dependencies with? npm
+```
+
+To run the **SvelteKit** project, run the following command:
+
+```bash
+cd week-07-sveltekit-basics
+npm run dev
+```
+
+You can then open your browser and navigate to <http://localhost:5173> to see the **SvelteKit** project running.
+
+---
+
+### Directory and File Structure
+
+---
+
+### Runes
+
+---
+
+### Template Syntax
+
+---
+
+### Styling
+
+---
+
+### Lifecycle Hooks
+
+---
+
+### Routing
+
+---
+
+### Data
+
+---
+
+### Form Actions
+
+---
+
+### State Management
 
 ---
 
