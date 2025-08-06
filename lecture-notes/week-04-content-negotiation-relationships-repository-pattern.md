@@ -59,7 +59,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
       });
     }
   }
-  next();
+  return next();
 };
 
 export { isContentTypeApplicationJSON };
