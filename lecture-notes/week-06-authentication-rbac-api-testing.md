@@ -664,6 +664,82 @@ describe("Institution CRUD", () => {
 
 ### Department CRUD Tests
 
+In `01-department.test.js`, add the following code.
+
+```js
+import { expect } from "chai";
+import request from "supertest";
+import app from "../app.js";
+import { cleanupDatabase, disconnectPrisma } from "./helpers/auth.js";
+
+describe("Department CRUD", () => {
+  let institutionId;
+  let departmentOneId;
+
+  before(async () => {
+    institutionId = global.testInstitutionId;
+  });
+
+  after(async () => {
+    await cleanupDatabase();
+    await disconnectPrisma();
+  });
+
+  it("should create department one", async () => {
+    const res = await request(app).post("/api/departments").send({
+      name: "Information Technology",
+      institutionId: institutionId,
+    });
+
+    expect(res.status).to.equal(201);
+    const newDepartment = res.body.data.find(
+      (department) => department.name === "Information Technology"
+    );
+    departmentOneId = newDepartment.id;
+  });
+
+  it("should get all departments", async () => {
+    const res = await request(app).get("/api/departments");
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.length).to.be.at.least(1);
+  });
+
+  it("should get department one by ID", async () => {
+    const res = await request(app).get(`/api/departments/${departmentOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.name).to.equal("Information Technology");
+  });
+
+  it("should update department one", async () => {
+    const res = await request(app)
+      .put(`/api/departments/${departmentOneId}`)
+      .send({
+        name: "Nursing",
+        institutionId: institutionId,
+      });
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully updated`
+    );
+    expect(res.body.data.name).to.equal("Nursing");
+  });
+
+  it("should delete department one", async () => {
+    const res = await request(app).delete(
+      `/api/departments/${departmentOneId}`
+    );
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully deleted`
+    );
+  });
+});
+```
+
 ---
 
 ### Package JSON File
@@ -685,17 +761,23 @@ npm run test
 When you run the tests, you should see the following output.
 
 ```bash
-Institutions
-  ✓ should reject non-string name
-  ✓ should create a valid institution
-  ✓ should retrieve all institutions
-  ✓ should retrieve an institution by ID
-  ✓ should filter institutions by name
-  ✓ should reject non-string country during update
-  ✓ should update a valid institution
-  ✓ should delete an institution by ID
+Institution CRUD
+  ✔ should create institution one
+  ✔ should create institution two
+  ✔ should get all institutions
+  ✔ should get institution one by ID
+  ✔ should update institution two
+  ✔ should delete institution one
 
-8 passing
+Department CRUD
+  ✔ should create department one
+  ✔ should get all departments
+  ✔ should get department one by ID
+  ✔ should update department one
+  ✔ should delete department one
+
+
+11 passing (number of ms)
 ```
 
 ---
