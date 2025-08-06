@@ -471,15 +471,19 @@ Here is an example of registering a normal user.
 
 ![](<../resources (ignore)/img/week-6/02-week-6.png>)
 
-Here is an example of logging in as the admin user. Make sure you copy the token from the response.
+Here is an example of logging in as an admin user. Make sure you copy the token from the response.
 
 ![](<../resources (ignore)/img/week-6/03-week-6.png>)
 
-
+Here is an example of creating an institution as an admin user. 
 
 ![](<../resources (ignore)/img/week-6/04-week-6.png>)
 
+Here is an example of logging in as a normal user. Make sure you copy the token from the response.
+
 ![](<../resources (ignore)/img/week-6/05-week-6.png>)
+
+Here is an example of creating an institution as a normal user. You should get a 403 Forbidden status code because the normal user does not have the required role to create an institution.
 
 ![](<../resources (ignore)/img/week-6/06-week-6.png>)
 
