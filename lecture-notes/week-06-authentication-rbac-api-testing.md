@@ -434,6 +434,26 @@ export default router;
 
 ---
 
+## Postman Example
+
+![](<../resources (ignore)/img/week-6/00-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/01-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/02-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/03-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/04-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/05-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/0-week-6.png>)
+
+![](<../resources (ignore)/img/week-6/00-week-6.png>)
+
+---
+
 ## API Testing
 
 **API testing** is a type of software testing that involves testing APIs directly and as part of integration testing to determine if they meet expectations for functionality, reliability, performance and security.
