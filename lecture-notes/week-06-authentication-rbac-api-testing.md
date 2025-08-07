@@ -453,7 +453,7 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-> **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a 403 Forbidden status code is returned.
+> **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
 
 ---
 
