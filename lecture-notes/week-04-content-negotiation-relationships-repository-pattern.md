@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
 
 ---
 

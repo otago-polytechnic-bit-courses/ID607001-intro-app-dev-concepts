@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-api-versioning-relationships-repository-pattern.md)
+Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-content-negotiation-relationships-repository-pattern.md)
 
 ---
 
