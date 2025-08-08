@@ -122,16 +122,16 @@ The `$props` rune...
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
 
-	let currentMessage = $state(message);
+	let displayMessage = $state(message);
 
 	const increment = () => (count += step);
 	const decrement = () => (count -= step);
 
 	$effect(() => {
 		if (count === targetCount) {
-			currentMessage = `Congratulations! You reached ${targetCount}!`;
+			displayMessage = `Congratulations! You reached ${targetCount}!`;
 		} else {
-			currentMessage = message;
+			displayMessage = message;
 		}
 	});
 </script>
@@ -142,7 +142,7 @@ The `$props` rune...
 
 <p>Count: {count}</p>
 
-<p>{currentMessage}</p>
+<p>{displayMessage}</p>
 ```
 
 ```svelte
@@ -153,6 +153,39 @@ The `$props` rune...
 <Counter />
 <Counter count={5} targetCount={15} step={2} />
 <Counter count={10} targetCount={20} step={5} message="Keep clicking!" />
+```
+
+---
+
+### Derived Rune
+
+The `$derived` rune...
+
+```svelte
+<script>
+	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
+
+	let doubleCount = $derived(count * 2);
+
+	const increment = () => (count += step);
+	const decrement = () => (count -= step);
+
+	const displayMessage = $derived.by(() => {
+		if (doubleCount === targetCount) {
+			return `Congratulations! You reached ${doubleCount}!`;
+		} else {
+			return message;
+		}
+	});
+</script>
+
+<button onclick={increment}> Increment Count </button>
+
+<button onclick={decrement}> Decrement Count </button>
+
+<p>Count: {doubleCount}</p>
+
+<p>{displayMessage}</p>
 ```
 
 
