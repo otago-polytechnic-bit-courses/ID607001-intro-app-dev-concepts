@@ -366,6 +366,10 @@ Here is an example of `#each`.
 
 ## Styling
 
+---
+
+### Scoped Styles
+
 ```svelte
 <!-- /components/GradeTable -->
 
@@ -416,6 +420,12 @@ Here is an example of `#each`.
 	}
 </style>
 ```
+
+---
+
+### CSS Modules
+
+**CSS Modules**...
 
 ---
 
