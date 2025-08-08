@@ -420,6 +420,78 @@ Here is an example of `#each`.
 
 ---
 
+### Event Handling
+
+Here is an example of click events.
+
+```svelte
+<!-- /components/events/ClickEvents.svelte -->
+
+<script>
+	let count = $state(0);
+
+	const increment = () => (count += 1);
+	const reset = () => (count = 0);
+</script>
+
+<button onclick={increment}>Increment Count</button>
+<button ondblclick={reset}>Reset Count</button>
+<p>Count: {count}</p>
+```
+
+Here is an example of form events.
+
+```svelte
+<!-- /components/events/FormEvents.svelte -->
+
+<script>
+	let username = $state('');
+	let firstName = $state('');
+	let lastName = $state('');
+	let message = $state('');
+
+	const handleInput = (e) => (message = `You typed ${e.target.value}`);
+
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		message = `Form successfully submitted. Info: Username: ${username}, First Name: ${firstName}, Last Name: ${lastName}`;
+	};
+
+	const handleFocus = () => (message = 'Username input field focused');
+
+	const handleBlur = () => (message = 'Username input field lost focus');
+</script>
+
+<form onsubmit={handleSubmit}>
+	<label for="username">Username:</label>
+	<input
+		id="username"
+		type="text"
+		bind:value={username}
+		oninput={handleInput}
+		onfocus={handleFocus}
+		onblur={handleBlur}
+		placeholder="Enter username"
+	/>
+
+	<label for="firstName">First Name:</label>
+	<input id="firstName" type="text" bind:value={firstName} placeholder="Enter first name" />
+
+	<label for="lastName">Last Name:</label>
+	<input id="lastName" type="text" bind:value={lastName} placeholder="Enter last name" />
+
+	<button type="submit">Submit</button>
+</form>
+
+<p>{message}</p>
+```
+
+---
+
+### Component Communication
+
+---
+
 ### Routing
 
 ```svelte
@@ -559,14 +631,6 @@ Here is an example of `#each`.
 	<p>User not found</p>
 {/if}
 ```
-
----
-
-### Data
-
----
-
-### State Management
 
 ---
 
