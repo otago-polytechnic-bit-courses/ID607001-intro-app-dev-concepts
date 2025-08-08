@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-render-postgresql-jsdocs-swagger.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
 
 ---
 
@@ -350,7 +350,7 @@ Click on the **Send** button to send the request.
 
 > **Note:** Make sure you have at least one institution.
 
-Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. This collection contains all the requests you need to test the **department** endpoints. For example, create an department, get all departments, get an department by id, update an department by id and delete an department by id.
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. 
 
 ---
 

@@ -453,7 +453,7 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-> **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a 403 Forbidden status code is returned.
+> **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
 
 ---
 
@@ -486,6 +486,8 @@ Here is an example of logging in as a normal user. Make sure you copy the token 
 Here is an example of creating an institution as a normal user. You should get a 403 Forbidden status code because the normal user does not have the required role to create an institution.
 
 ![](<../resources (ignore)/img/week-6/06-week-6.png>)
+
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
 
 ---
 
