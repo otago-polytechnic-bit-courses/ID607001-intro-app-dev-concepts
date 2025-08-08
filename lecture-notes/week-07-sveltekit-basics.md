@@ -453,7 +453,7 @@ Here is an example of `#each`.
 
 ---
 
-## Click Events
+### Click Events
 
 Here is an example of **click events**.
 
