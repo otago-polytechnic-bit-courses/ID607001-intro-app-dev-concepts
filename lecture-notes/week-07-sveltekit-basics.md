@@ -58,6 +58,12 @@ You can then open your browser and navigate to <http://localhost:5173> to see th
 
 ---
 
+## Runes
+
+**Runes**...
+
+---
+
 ### State Rune
 
 The `$state` rune...
@@ -225,8 +231,13 @@ The `$derived` rune...
 <DerivedCounter count={10} targetCount={20} step={5} message="Keep clicking!" />
 ```
 
+---
 
-### Template Syntax
+## Template Syntax
+
+---
+
+### If, Else If and Else
 
 Here is an example of `#if`, `:else if` and `:else`.
 
@@ -349,7 +360,7 @@ Here is an example of `#each`.
 
 ---
 
-### Styling
+## Styling
 
 ```svelte
 <!-- /components/GradeTable -->
@@ -420,9 +431,13 @@ Here is an example of `#each`.
 
 ---
 
-### Event Handling
+## Event Handling
 
-Here is an example of click events.
+---
+
+## Click Events
+
+Here is an example of **click events**.
 
 ```svelte
 <!-- /components/events/ClickEvents.svelte -->
@@ -439,7 +454,11 @@ Here is an example of click events.
 <p>Count: {count}</p>
 ```
 
-Here is an example of form events.
+---
+
+### Form Events
+
+Here is an example of **form events**.
 
 ```svelte
 <!-- /components/events/FormEvents.svelte -->
@@ -504,7 +523,11 @@ Here is an example of form events.
 
 ---
 
-### Component Communication
+## Component Communication
+
+---
+
+### Parent to Child
 
 ```svelte
 <!-- /components/communication/ButtonChild.svelte -->
@@ -551,7 +574,7 @@ Here is an example of form events.
 
 ---
 
-### Routing
+## Routing
 
 ```svelte
 <!-- /routes/about -->
@@ -566,6 +589,10 @@ Here is an example of form events.
 <p>This is the Contact Page</p>
 <a href="/">Go to Home Page</a>
 ```
+
+---
+
+### Dynamic Routing
 
 ```svelte
 <!-- /routes/user/[id] -->
