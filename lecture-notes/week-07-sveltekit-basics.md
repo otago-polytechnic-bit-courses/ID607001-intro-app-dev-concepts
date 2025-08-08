@@ -34,9 +34,6 @@ To create a new **SvelteKit** project, run the following command:
 npx sv create week-07-sveltekit-basics
 ```
 
-You will be prompt with the following questions:
-
-```bash
 You will be prompted with the following questions:
 
 | Question | Answer |
@@ -45,7 +42,6 @@ You will be prompted with the following questions:
 | Add type checking with TypeScript? | Yes, using JavaScript with JSDoc comments |
 | What would you like to add to your project? *(use arrow keys / space bar)* | prettier |
 | Which package manager do you want to install dependencies with? | npm |
-```
 
 To run the **SvelteKit** project, run the following command:
 
