@@ -42,6 +42,19 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
+### HTTP Requests - GET
+
+---
+
+### API Routes
+
+Here is an example of a `GET` request.
+
+Here is an example of a `POST` request.
+
+
+---
+
 ## Formative Assessment
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
