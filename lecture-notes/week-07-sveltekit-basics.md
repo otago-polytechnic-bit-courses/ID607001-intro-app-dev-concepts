@@ -100,12 +100,9 @@ The `$effect` rune...
 	});
 </script>
 
-<button onclick={increment}> Increment Count </button>
-
-<button onclick={decrement}> Decrement Count </button>
-
+<button onclick={increment}>Increment Count</button>
+<button onclick={decrement}>Decrement Count</button>
 <p>Count: {count}</p>
-
 <p>{message}</p>
 ```
 
@@ -133,12 +130,9 @@ The `$props` rune...
 	});
 </script>
 
-<button onclick={increment}> Increment Count </button>
-
-<button onclick={decrement}> Decrement Count </button>
-
+<button onclick={increment}>Increment Count</button>
+<button onclick={decrement}>Decrement Count</button>
 <p>Count: {count}</p>
-
 <p>{displayMessage}</p>
 ```
 
@@ -176,12 +170,9 @@ The `$derived` rune...
 	});
 </script>
 
-<button onclick={increment}> Increment Count </button>
-
-<button onclick={decrement}> Decrement Count </button>
-
+<button onclick={increment}>Increment Count</button>
+<button onclick={decrement}>Decrement Count</button>
 <p>Count: {doubleCount}</p>
-
 <p>{displayMessage}</p>
 ```
 
