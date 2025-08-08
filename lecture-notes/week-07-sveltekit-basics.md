@@ -77,6 +77,16 @@ The `$state` rune...
 <p>Count: {count}</p>
 ```
 
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	import StateCounter from '$lib/components/runes/StateCounter.svelte';
+</script>
+
+<StateCounter />
+```
+
 ---
 
 ### Effect Rune
@@ -106,6 +116,18 @@ The `$effect` rune...
 <button onclick={decrement}>Decrement Count</button>
 <p>Count: {count}</p>
 <p>{message}</p>
+```
+
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	import StateCounter from '$lib/components/runes/StateCounter.svelte';
+	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
+</script>
+
+<StateCounter />
+<EffectCounter />
 ```
 
 ---
@@ -141,13 +163,18 @@ The `$props` rune...
 ```
 
 ```svelte
+<!-- /+page.svelte -->
+
 <script>
-	import Counter from '$lib/components/Counter.svelte';
+	import StateCounter from '$lib/components/runes/StateCounter.svelte';
+	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
+	import PropsCounter from '$lib/components/runes/PropsCounter.svelte';
+	import DerivedCounter from '$lib/components/runes/DerivedCounter.svelte';
 </script>
 
-<Counter />
-<Counter count={5} targetCount={15} step={2} />
-<Counter count={10} targetCount={20} step={5} message="Keep clicking!" />
+<StateCounter />
+<EffectCounter />
+<PropsCounter count={5} targetCount={15} step={2} />
 ```
 
 ---
@@ -157,7 +184,7 @@ The `$props` rune...
 The `$derived` rune...
 
 ```svelte
-<!-- /components/Counter -->
+<!-- /components/runes/DerivedCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
@@ -180,6 +207,22 @@ The `$derived` rune...
 <button onclick={decrement}>Decrement Count</button>
 <p>Count: {doubleCount}</p>
 <p>{displayMessage}</p>
+```
+
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	import StateCounter from '$lib/components/runes/StateCounter.svelte';
+	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
+	import PropsCounter from '$lib/components/runes/PropsCounter.svelte';
+	import DerivedCounter from '$lib/components/runes/DerivedCounter.svelte';
+</script>
+
+<StateCounter />
+<EffectCounter />
+<PropsCounter count={5} targetCount={15} step={2} />
+<DerivedCounter count={10} targetCount={20} step={5} message="Keep clicking!" />
 ```
 
 
