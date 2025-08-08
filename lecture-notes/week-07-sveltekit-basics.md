@@ -215,6 +215,10 @@ The `$derived` rune...
 <p>{displayMessage}</p>
 ```
 
+---
+
+### Usage
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -413,6 +417,10 @@ Here is an example of `#each`.
 </style>
 ```
 
+---
+
+### Usage
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -505,6 +513,10 @@ Here is an example of **form events**.
 <p>{message}</p>
 ```
 
+---
+
+### Usage
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -557,6 +569,10 @@ Here is an example of **form events**.
 <ButtonChild text="Click Me" onclick={handleClick} />
 <p>{message}</p>
 ```
+
+---
+
+### Usage
 
 ```svelte
 <!-- /+page.svelte -->
