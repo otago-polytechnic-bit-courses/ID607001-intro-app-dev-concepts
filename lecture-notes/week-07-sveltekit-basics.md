@@ -486,9 +486,68 @@ Here is an example of form events.
 <p>{message}</p>
 ```
 
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	// Imports omitted for brevity
+
+	import ClickEvents from '$lib/components/events/ClickEvents.svelte';
+	import FormEvents from '$lib/components/events/FormEvents.svelte';
+</script>
+
+<!-- Components for brevity -->
+
+<ClickEvents />
+<FormEvents />
+```
+
 ---
 
 ### Component Communication
+
+```svelte
+<!-- /components/communication/ButtonChild.svelte -->
+
+<script>
+	let { text, onclick } = $props();
+</script>
+
+<button onclick={() => onclick?.('Button clicked')}>
+	{text}
+</button>
+```
+
+```svelte
+<!-- /components/communication/ButtonParent.svelte -->
+
+<script>
+	import ButtonChild from './ButtonChild.svelte';
+
+	let message = $state('');
+
+	const handleClick = (data) => {
+		message = data;
+	};
+</script>
+
+<ButtonChild text="Click Me" onclick={handleClick} />
+<p>{message}</p>
+```
+
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	// Imports omitted for brevity
+
+	import ButtonParent from '$lib/components/communication/ButtonParent.svelte';
+</script>
+
+<!-- Components for brevity -->
+
+<ButtonParent />
+```
 
 ---
 
