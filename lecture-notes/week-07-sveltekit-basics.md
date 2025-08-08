@@ -298,6 +298,20 @@ Here is an example of `bind`.
 {/if}
 ```
 
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	<!-- Imports omitted for brevity -->
+
+	import MarkConverter from '$lib/components/MarkConverter.svelte';
+</script>
+
+<!-- Components for brevity -->
+
+<MarkConverter />
+``
+
 Here is an example of `#each`.
 
 ```svelte
@@ -386,6 +400,22 @@ Here is an example of `#each`.
 		text-align: left;
 	}
 </style>
+```
+
+```svelte
+<!-- /+page.svelte -->
+
+<script>
+	<!-- Imports omitted for brevity -->
+
+	import MarkConverter from '$lib/components/MarkConverter.svelte';
+	import GradeTable from '$lib/components/GradeTable.svelte';
+</script>
+
+<!-- Components for brevity -->
+
+<MarkConverter />
+<GradeTable />
 ```
 
 ---
