@@ -1,30 +1,7 @@
 <script>
-	let { 
-		initialCount = 0,
-		targetCount = 10,
-		step = 1,
-		successMessage = '',
-	} = $props();
-
-	let count = $state(0);
-	let message = $state('');
-
-	const increment = () => (count += 1);
-	const decrement = () => (count -= 1);
-
-	$effect(() => {
-		if (count === 10) {
-			message = 'Congratulations! You reached 10!';
-		} else {
-            message = '';
-        }
-	});
+	import Counter from '$lib/components/Counter.svelte';
 </script>
 
-<button onclick={increment}> Increment Count </button>
-
-<button onclick={decrement}> Decrement Count </button>
-
-<p>Count: {count}</p>
-
-<p>{message}</p>
+<Counter />
+<Counter count={5} targetCount={15} step={2} />
+<Counter count={10} targetCount={20} step={5} message="Keep clicking!" />
