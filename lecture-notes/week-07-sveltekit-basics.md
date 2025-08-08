@@ -220,6 +220,40 @@ Here is an example of `#if`, `:else if` and `:else`.
 {/if}
 ```
 
+Here is an example of `bind`.
+
+```svelte
+<script>
+	let mark = $state(75);
+</script>
+
+<input type="number" bind:value={mark} />
+
+{#if mark >= 90}
+	<p>Grade: A+</p>
+{:else if mark >= 85}
+	<p>Grade: A</p>
+{:else if mark >= 80}
+	<p>Grade: A-</p>
+{:else if mark >= 75}
+	<p>Grade: B+</p>
+{:else if mark >= 70}
+	<p>Grade: B</p>
+{:else if mark >= 65}
+	<p>Grade: B-</p>
+{:else if mark >= 60}
+	<p>Grade: C+</p>
+{:else if mark >= 55}
+	<p>Grade: C</p>
+{:else if mark >= 50}
+	<p>Grade: C-</p>
+{:else if mark >= 40}
+	<p>Grade: D</p>
+{:else}
+	<p>Grade: E</p>
+{/if}
+```
+
 Here is an example of `#each`.
 
 ```svelte
@@ -257,6 +291,55 @@ Here is an example of `#each`.
 
 ### Styling
 
+```svelte
+<script>
+	let learners = $state([
+		{ firstName: 'Alice', lastName: 'Smith', mark: 95 },
+		{ firstName: 'Bob', lastName: 'Johnson', mark: 85 },
+		{ firstName: 'Charlie', lastName: 'Williams', mark: 75 },
+		{ firstName: 'David', lastName: 'Jones', mark: 65 },
+		{ firstName: 'Eve', lastName: 'Brown', mark: 55 }
+	]);
+</script>
+
+<table>
+	<thead>
+		<tr>
+			<th>First Name</th>
+			<th>Last Name</th>
+			<th>Mark</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each learners as learner}
+			<tr>
+				<td>{learner.firstName}</td>
+				<td>{learner.lastName}</td>
+				<td>{learner.mark}</td>
+			</tr>
+		{/each}
+	</tbody>
+</table>
+
+<style>
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+
+	th,
+	td {
+		border: 1px solid #ddd;
+		padding: 8px;
+	}
+
+	th {
+		background-color: #f2f2f2;
+		text-align: left;
+	}
+</style>
+```
+
 ---
 
 ### Lifecycle Hooks
@@ -268,10 +351,6 @@ Here is an example of `#each`.
 ---
 
 ### Data
-
----
-
-### Form Actions
 
 ---
 
