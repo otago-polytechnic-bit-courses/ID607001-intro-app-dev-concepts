@@ -37,13 +37,14 @@ npx sv create week-07-sveltekit-basics
 You will be prompt with the following questions:
 
 ```bash
-Which template would you like? SvelteKit minimal
+You will be prompted with the following questions:
 
-Add type checking with TypeScript? Yes, using JavaScript with JSDoc comments
-
-What would you like to add to your project? (use arrow keys / space bar) prettier
-
-Which package manager do you want to install dependencies with? npm
+| Question | Answer |
+|----------|--------|
+| Which template would you like? | SvelteKit minimal |
+| Add type checking with TypeScript? | Yes, using JavaScript with JSDoc comments |
+| What would you like to add to your project? *(use arrow keys / space bar)* | prettier |
+| Which package manager do you want to install dependencies with? | npm |
 ```
 
 To run the **SvelteKit** project, run the following command:
