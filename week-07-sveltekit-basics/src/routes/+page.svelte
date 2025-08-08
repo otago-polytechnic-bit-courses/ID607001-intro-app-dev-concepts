@@ -1,2 +1,30 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script>
+	let { 
+		initialCount = 0,
+		targetCount = 10,
+		step = 1,
+		successMessage = '',
+	} = $props();
+
+	let count = $state(0);
+	let message = $state('');
+
+	const increment = () => (count += 1);
+	const decrement = () => (count -= 1);
+
+	$effect(() => {
+		if (count === 10) {
+			message = 'Congratulations! You reached 10!';
+		} else {
+            message = '';
+        }
+	});
+</script>
+
+<button onclick={increment}> Increment Count </button>
+
+<button onclick={decrement}> Decrement Count </button>
+
+<p>Count: {count}</p>
+
+<p>{message}</p>
