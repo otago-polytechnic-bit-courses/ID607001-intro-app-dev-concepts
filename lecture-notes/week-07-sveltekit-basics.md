@@ -195,8 +195,6 @@ Here is an example of `#if`, `:else if` and `:else`.
     let mark = $state(75);
 </script>
 
-<input type="number" bind:value={mark} />
-
 {#if mark >= 90}
 	<p>Grade: A+</p>
 {:else if mark >= 85}
@@ -224,7 +222,7 @@ Here is an example of `#if`, `:else if` and `:else`.
 
 Here is an example of `#each`.
 
-```sveltekit
+```svelte
 <script>
 	let learners = $state([
 		{ firstName: 'Alice', lastName: 'Smith', mark: 95 },
