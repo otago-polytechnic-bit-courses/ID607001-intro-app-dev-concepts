@@ -302,7 +302,7 @@ Here is an example of `bind`.
 <!-- /+page.svelte -->
 
 <script>
-	<!-- Imports omitted for brevity -->
+	// Imports omitted for brevity
 
 	import MarkConverter from '$lib/components/MarkConverter.svelte';
 </script>
@@ -406,7 +406,7 @@ Here is an example of `#each`.
 <!-- /+page.svelte -->
 
 <script>
-	<!-- Imports omitted for brevity -->
+	// Imports omitted for brevity
 
 	import MarkConverter from '$lib/components/MarkConverter.svelte';
 	import GradeTable from '$lib/components/GradeTable.svelte';
