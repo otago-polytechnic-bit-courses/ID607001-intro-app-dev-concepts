@@ -69,7 +69,7 @@ You can then open your browser and navigate to <http://localhost:5173> to see th
 The `$state` rune...
 
 ```svelte
-<!-- /components/runes/StateCounter -->
+<!-- /lib/components/runes/StateCounter -->
 
 <script>
 	let count = $state(0);
@@ -100,7 +100,7 @@ The `$state` rune...
 The `$effect` rune...
 
 ```svelte
-<!-- /components/runes/EffectCounter -->
+<!-- /lib/components/runes/EffectCounter -->
 
 <script>
 	let count = $state(0);
@@ -143,7 +143,7 @@ The `$effect` rune...
 The `$props` rune...
 
 ```svelte
-<!-- /components/runes/PropsCounter -->
+<!-- /lib/components/runes/PropsCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
@@ -190,7 +190,7 @@ The `$props` rune...
 The `$derived` rune...
 
 ```svelte
-<!-- /components/runes/DerivedCounter -->
+<!-- /lib/components/runes/DerivedCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
@@ -246,7 +246,7 @@ The `$derived` rune...
 Here is an example of `#if`, `:else if` and `:else`.
 
 ```svelte
-<!-- /components/MarkConverter -->
+<!-- /lib/components/MarkConverter -->
 
 <script>
     let mark = $state(75);
@@ -280,7 +280,7 @@ Here is an example of `#if`, `:else if` and `:else`.
 Here is an example of `bind`.
 
 ```svelte
-<!-- /components/MarkConverter -->
+<!-- /lib/components/MarkConverter -->
 
 <script>
 	let mark = $state(75);
@@ -330,7 +330,7 @@ Here is an example of `bind`.
 Here is an example of `#each`.
 
 ```svelte
-<!-- /components/GradeTable -->
+<!-- /lib/components/GradeTable -->
 
 <script>
 	let learners = $state([
@@ -371,7 +371,7 @@ Here is an example of `#each`.
 ### Scoped Styles
 
 ```svelte
-<!-- /components/GradeTable -->
+<!-- /lib/components/GradeTable -->
 
 <script>
 	let learners = $state([
@@ -458,7 +458,7 @@ Here is an example of `#each`.
 Here is an example of **click events**.
 
 ```svelte
-<!-- /components/events/ClickEvents.svelte -->
+<!-- /lib/components/events/ClickEvents.svelte -->
 
 <script>
 	let count = $state(0);
@@ -479,7 +479,7 @@ Here is an example of **click events**.
 Here is an example of **form events**.
 
 ```svelte
-<!-- /components/events/FormEvents.svelte -->
+<!-- /lib/components/events/FormEvents.svelte -->
 
 <script>
 	let username = $state('');
@@ -552,7 +552,7 @@ Here is an example of **form events**.
 ### Parent to Child
 
 ```svelte
-<!-- /components/communication/ButtonChild.svelte -->
+<!-- /lib/components/communication/ButtonChild.svelte -->
 
 <script>
 	let { text, onclick } = $props();
@@ -564,7 +564,7 @@ Here is an example of **form events**.
 ```
 
 ```svelte
-<!-- /components/communication/ButtonParent.svelte -->
+<!-- /lib/components/communication/ButtonParent.svelte -->
 
 <script>
 	import ButtonChild from './ButtonChild.svelte';
