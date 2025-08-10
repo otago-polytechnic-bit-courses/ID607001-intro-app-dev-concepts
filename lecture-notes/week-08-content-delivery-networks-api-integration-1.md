@@ -72,7 +72,7 @@ The full code example for this week is available here - <https://github.com/otag
 	<h1>Users</h1>
 	<ul>
 		{#each users as user}
-			<li>{user.name}</li>
+			<li>{user.name} - {user.email}</li>
 		{/each}
 	</ul>
 {:else}
