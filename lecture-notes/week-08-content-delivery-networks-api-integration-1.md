@@ -45,11 +45,12 @@ The full code example for this week is available here - <https://github.com/otag
 ### HTTP Requests - GET
 
 ```svelte
+<!-- /client-side/simple-api/+page.svelte -->
+
 <script>
 	import { onMount } from 'svelte';
 
 	let users = $state([]);
-	let loading = $state(true);
 	let error = $state(null);
 
 	onMount(async () => {
@@ -58,21 +59,61 @@ The full code example for this week is available here - <https://github.com/otag
 			users = await res.json();
 		} catch (err) {
 			error = err.message;
-		} finally {
-			loading = false;
-		}
+		} 
 	});
 </script>
 
-{#if loading}
-	<p>Loading...</p>
-{:else if error}
+{#if error}
 	<p>{error}</p>
 {:else if users.length > 0}
 	<h1>Users</h1>
 	<ul>
 		{#each users as user}
-			<li>{user.name} - {user.email}</li>
+			<li>{user.name}</li>
+		{/each}
+	</ul>
+{:else}
+	<p>No users found</p>
+{/if}
+```
+
+```svelte
+// /routes/server-side/simple-api/+page.server.js
+
+export const load = async () => {
+	try {
+		const res = await fetch('https://jsonplaceholder.typicode.com/users');
+		const users = await res.json();
+
+		return {
+			users,
+			error: null
+		};
+	} catch (err) {
+		return {
+			users: [],
+			error: err.message
+		};
+	}
+};
+```
+
+```svelte
+<!-- /server-side/simple-api/+page.svelte -->
+ 
+<script>
+	let { data } = $props();
+	let users = data.users;
+	let error = data.error;
+</script>
+
+{#if error}
+	<p>{error}</p>
+{:else if users.length > 0}
+	<h1>Users</h1>
+	<ul>
+		{#each users as user}
+			<li>{user.name}</li>
 		{/each}
 	</ul>
 {:else}
