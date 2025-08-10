@@ -264,10 +264,10 @@ Your `scripts` block should look like this.
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
-  "prisma:migrate": "npx prisma migrate dev",
-  "prisma:reset": "npx prisma migrate reset --force",
   "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
-  "env:copy": "cp .env.example .env || copy .env.example .env"
+  "env:copy": "cp .env.example .env || copy .env.example .env",
+  "prisma:migrate": "npx prisma migrate dev",
+  "prisma:reset": "npx prisma migrate reset --force"
 },
 ```
 
