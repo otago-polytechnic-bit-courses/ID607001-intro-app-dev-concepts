@@ -26,15 +26,105 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
-### Bootstrap CCS Framework
+## Bootstrap CCS Framework
 
 ---
 
-### Font Awesome Icons
+### Usage
+
+
+```html
+<!-- app.html -->
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	%sveltekit.head%
+
+	<!-- Add Bootstrap CSS and JS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+		crossorigin="anonymous"></script>
+</head>
+
+<body data-sveltekit-preload-data="hover">
+	<div style="display: contents">%sveltekit.body%</div>
+</body>
+
+</html>
+```
+
+```svelte
+<!-- /cdns/bootstrap/+page.svelte -->
+
+<script>
+	const users = $state([
+		{ id: '1', firstName: 'Alice', lastName: 'Smith', age: 25 },
+		{ id: '2', firstName: 'Bob', lastName: 'Johnson', age: 30 },
+		{ id: '3', firstName: 'Charlie', lastName: 'Williams', age: 28 },
+		{ id: '4', firstName: 'David', lastName: 'Jones', age: 22 },
+		{ id: '5', firstName: 'Eve', lastName: 'Brown', age: 27 }
+	]);
+</script>
+
+<table class="table">
+	<thead>
+		<tr>
+			<th scope="col">ID</th>
+			<th scope="col">First Name</th>
+			<th scope="col">Last Name</th>
+			<th scope="col">Age</th>
+		</tr>
+	</thead>
+	<tbody>
+		{#each users as user}
+			<tr>
+				<th scope="row">{user.id}</th>
+				<td>{user.firstName}</td>
+				<td>{user.lastName}</td>
+				<td>{user.age}</td>
+			</tr>
+		{/each}
+	</tbody>
+</table>
+
+{#each users as user}
+	<div class="card" style="width: 18rem;">
+		<img
+			src="https://api.dicebear.com/9.x/pixel-art/svg?seed=={user.firstName}"
+			class="card-img-top"
+			alt="{user.firstName} {user.lastName}"
+		/>
+		<div class="card-body">
+			<h5 class="card-title">{user.firstName} {user.lastName}</h5>
+			<p class="card-text">Age: {user.age} years old.</p>
+			<a href="/user/{user.id}" class="btn btn-primary">View Profile</a>
+		</div>
+	</div>
+{/each}
+```
+
 
 ---
 
-### Google Fonts
+## Font Awesome Icons
+
+---
+
+### Usage
+
+---
+
+## Google Fonts
+
+---
+
+### Usage
 
 ---
 
@@ -42,7 +132,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
-### HTTP Requests - GET
+### Client-Side GET Request
 
 ```svelte
 <!-- /client-side/simple-api/+page.svelte -->
@@ -77,10 +167,14 @@ The full code example for this week is available here - <https://github.com/otag
 {/if}
 ```
 
-```svelte
+---
+
+### Server-Side GET Request - Load Function
+
+```js
 // /routes/server-side/simple-api/+page.server.js
 
-export const load = async () => {
+export const load = async ({ fetch }) => {
 	try {
 		const res = await fetch('https://jsonplaceholder.typicode.com/users');
 		const users = await res.json();
@@ -118,6 +212,106 @@ export const load = async () => {
 	</ul>
 {:else}
 	<p>No users found</p>
+{/if}
+```
+
+---
+
+### Server-Side POST Request - Form Actions
+
+```js
+// /routes/server-side/express-api/+page.server.js
+
+import { env } from '$env/dynamic/private';
+
+const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
+
+export const load = async ({ fetch }) => {
+	try {
+		const res = await fetch(`${API_BASE_URL}/api/institutions`);
+		const institutions = await res.json();
+
+		return {
+			institutions,
+			error: null
+		};
+	} catch (err) {
+		return {
+			institutions: [],
+			error: err.message
+		};
+	}
+};
+
+export const actions = {
+	create: async ({ request }) => {
+		const data = await request.formData();
+		const name = data.get('name');
+		const region = data.get('region');
+		const country = data.get('country');
+		const institution = { name, region, country };
+
+		try {
+			const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(institution)
+			});
+
+			const institutions = await res.json();
+
+			return { success: true, message: institutions.message };
+		} catch (err) {
+			console.log(err);
+			return { success: false, error: err.message };
+		}
+	}
+};
+```
+
+```svelte
+<!-- /server-side/express-api/+page.svelte -->
+
+<script>
+	let { data, form } = $props();
+	let institutions = data.institutions.data;
+	let error = data.error;
+</script>
+
+<form method="POST" action="?/create">
+	<label for="name">Name:</label>
+	<input id="name" name="name" type="text" placeholder="Enter name" />
+
+	<label for="region">Region:</label>
+	<input id="region" name="region" type="text" placeholder="Enter region" />
+
+	<label for="country">Country:</label>
+	<input id="country" name="country" type="text" placeholder="Enter country" />
+
+	<button type="submit">Submit</button>
+</form>
+
+{#if form?.success}
+	<p>{form.message}</p>
+{/if}
+
+{#if form?.success === false}
+	<p>{form.error}</p>
+{/if}
+
+{#if error}
+	<p>{error}</p>
+{:else if institutions.length > 0}
+	<h1>Institutions</h1>
+	<ul>
+		{#each institutions as institution}
+			<li>{institution.name}</li>
+		{/each}
+	</ul>
+{:else}
+	<p>No institutions found</p>
 {/if}
 ```
 
