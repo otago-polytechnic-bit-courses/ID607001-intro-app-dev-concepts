@@ -552,10 +552,6 @@ export const actions = {
 
 ---
 
-### Server-Side POST Request (Auth) - Form Actions
-
----
-
 ## Formative Assessment
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
