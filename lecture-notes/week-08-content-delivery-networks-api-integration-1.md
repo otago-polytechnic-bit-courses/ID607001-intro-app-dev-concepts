@@ -374,74 +374,97 @@ export const load = async ({ fetch }) => {
 ```js
 // /src/routes/server-side/express-api/+page.server.js
 
-import { env } from "$env/dynamic/private";
+import { env } from '$env/dynamic/private';
+import { fail } from '@sveltejs/kit';
 
-const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
+const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
 
 export const load = async ({ fetch }) => {
-  try {
-    const res = await fetch(`${API_BASE_URL}/api/institutions`);
-    const institutions = await res.json();
+	try {
+		const res = await fetch(`${API_BASE_URL}/api/institutions`);
+		const institutions = await res.json();
 
-    return {
-      institutions,
-      error: null,
-    };
-  } catch (err) {
-    return {
-      institutions: [],
-      error: err.message,
-    };
-  }
+		return {
+			institutions,
+			error: null
+		};
+	} catch (err) {
+		return {
+			institutions: [],
+			error: err.message
+		};
+	}
 };
 
 export const actions = {
-  create: async ({ request }) => {
-    const formData = await request.formData();
-    const name = formData.get("name");
-    const region = formData.get("region");
-    const country = formData.get("country");
-    const institution = { name, region, country };
+	create: async ({ request }) => {
+		const formData = await request.formData();
+		const name = formData.get('name');
+		const region = formData.get('region');
+		const country = formData.get('country');
+		const institution = { name, region, country };
 
-    try {
-      const res = await fetch(`${API_BASE_URL}/api/institutions`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(institution),
-      });
+		try {
+			const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(institution)
+			});
 
-      const data = await res.json();
+			const data = await res.json();
 
-      return { success: true, message: data.message };
-    } catch (err) {
-      console.log(err);
-      return { success: false, error: err.message };
-    }
-  },
+			if (!res.ok) {
+				return fail(409, { errors: data.errors, name, region, country });
+			}
+
+			return { success: true, message: data.message };
+		} catch (err) {
+			return fail(500, {
+				success: false,
+				error: err.message,
+				name,
+				region,
+				country
+			});
+		}
+	}
 };
 ```
 
 ```svelte
-<!-- /server-side/express-api/+page.svelte -->
+<!-- /src/routes/server-side/express-api/+page.svelte -->
 
 <script>
 	let { data, form } = $props();
 	let institutions = data.institutions.data;
 	let message = data.institutions.message;
+	let errors = form?.errors;
 	let error = data.error;
 </script>
 
 <form method="POST" action="?/create">
 	<label for="name">Name:</label>
-	<input id="name" name="name" type="text" placeholder="Enter name" />
+	<input id="name" name="name" type="text" value={form?.name ?? ''} placeholder="Enter name" />
 
 	<label for="region">Region:</label>
-	<input id="region" name="region" type="text" placeholder="Enter region" />
+	<input
+		id="region"
+		name="region"
+		type="text"
+		value={form?.region ?? ''}
+		placeholder="Enter region"
+	/>
 
 	<label for="country">Country:</label>
-	<input id="country" name="country" type="text" placeholder="Enter country" />
+	<input
+		id="country"
+		name="country"
+		type="text"
+		value={form?.country ?? ''}
+		placeholder="Enter country"
+	/>
 
 	<button type="submit">Submit</button>
 </form>
@@ -451,20 +474,30 @@ export const actions = {
 {/if}
 
 {#if form?.success === false}
-	<p>{form.error}</p>
+	<p>{form.error}this one</p>
+{/if}
+
+{#if errors && errors.length > 0}
+	<ul>
+		{#each errors as error}
+			<li>{error.message}</li>
+		{/each}
+	</ul>
 {/if}
 
 {#if error}
 	<p>{error}</p>
-{:else if message}
-	<p>{message}</p>
-{:else if institutions && institutions.length > 0}
+{/if}
+
+{#if institutions && institutions.length > 0}
 	<h1>Institutions</h1>
 	<ul>
 		{#each institutions as institution}
 			<li>{institution.name}</li>
 		{/each}
 	</ul>
+{:else if message}
+	<p>{message}</p>
 {/if}
 ```
 
