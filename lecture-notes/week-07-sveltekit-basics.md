@@ -298,10 +298,6 @@ The `$derived` rune allows you to create a variable that is derived from other r
 <p>{displayMessage}</p>
 ```
 
----
-
-### Usage
-
 In `+page.svelte`, add the following code to use the `DerivedCounter` component:
 
 ```svelte
