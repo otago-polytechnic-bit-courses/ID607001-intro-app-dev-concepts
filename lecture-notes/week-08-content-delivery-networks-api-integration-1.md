@@ -433,6 +433,35 @@ export const actions = {
 };
 ```
 
+### Server-Side DELETE Request - Form Actions
+
+```js
+// /src/routes/server-side/express-api/+page.server.js
+
+// Omitted for brevity
+
+export const actions = {
+	// Omitted for brevity
+
+	delete: async ({ request }) => {
+		const formData = await request.formData();
+		const id = formData.get('id');
+		
+		try {
+			const res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
+				method: 'DELETE'
+			});
+
+			const data = await res.json();
+
+			return { success: true, message: data.message };
+		} catch (err) {
+			return { success: false, error: err.message };
+		}
+	}
+};
+```
+
 ```svelte
 <!-- /src/routes/server-side/express-api/+page.svelte -->
 
@@ -474,7 +503,7 @@ export const actions = {
 {/if}
 
 {#if form?.success === false}
-	<p>{form.error}this one</p>
+	<p>{form.error}</p>
 {/if}
 
 {#if errors && errors.length > 0}
@@ -491,11 +520,31 @@ export const actions = {
 
 {#if institutions && institutions.length > 0}
 	<h1>Institutions</h1>
-	<ul>
-		{#each institutions as institution}
-			<li>{institution.name}</li>
-		{/each}
-	</ul>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Region</th>
+				<th>Country</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each institutions as institution}
+				<tr>
+					<td>{institution.name}</td>
+					<td>{institution.region}</td>
+					<td>{institution.country}</td>
+					<td>
+						<form method="POST" action="?/delete">
+							<input type="hidden" name="id" value={institution.id} />
+							<button type="submit">Delete</button>
+						</form>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
 {:else if message}
 	<p>{message}</p>
 {/if}
