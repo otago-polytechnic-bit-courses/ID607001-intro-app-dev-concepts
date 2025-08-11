@@ -433,6 +433,8 @@ export const actions = {
 };
 ```
 
+---
+
 ### Server-Side DELETE Request - Form Actions
 
 ```js
@@ -461,6 +463,10 @@ export const actions = {
 	}
 };
 ```
+
+---
+
+### Usage
 
 ```svelte
 <!-- /src/routes/server-side/express-api/+page.svelte -->
