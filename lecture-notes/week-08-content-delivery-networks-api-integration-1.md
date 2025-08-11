@@ -39,7 +39,7 @@ week-08-content-delivery-networks-api-integration-1
 │   │   ├── cdns/
 │   │   │   └── bootstrap/
 │   │   │   │   └── +page.svelte
- 			│	font-awesome/
+│   │   │   │	font-awesome/
 │   │   │   │    └── +page.svelte
 │   │   │   └── google-fonts/
 │   │   │       └── +page.svelte
