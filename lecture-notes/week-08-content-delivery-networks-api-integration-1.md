@@ -427,6 +427,7 @@ export const actions = {
 <script>
 	let { data, form } = $props();
 	let institutions = data.institutions.data;
+	let message = data.institutions.message;
 	let error = data.error;
 </script>
 
@@ -453,15 +454,15 @@ export const actions = {
 
 {#if error}
 	<p>{error}</p>
-{:else if institutions.length > 0}
+{:else if message}
+	<p>{message}</p>
+{:else if institutions && institutions.length > 0}
 	<h1>Institutions</h1>
 	<ul>
 		{#each institutions as institution}
 			<li>{institution.name}</li>
 		{/each}
 	</ul>
-{:else}
-	<p>No institutions found</p>
 {/if}
 ```
 
