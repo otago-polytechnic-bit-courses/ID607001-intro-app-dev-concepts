@@ -93,7 +93,7 @@ week-07-sveltekit-basics
 
 ### Getting Started
 
-In the `src/lib` directory, create a new directory called `components` and inside it, create another directory called `runes`. In the `runes` directory, create a four files: `StateCounter.svelte`, `EffectCounter.svelte`, `PropsCounter.svelte`, and `DerivedCounter.svelte`.
+In the `src/lib` directory, create a new directory called `components` and inside it, create another directory called `runes`. In the `runes` directory, create a four files: `StateCounter.svelte`, `EffectCounter.svelte`, `PropsCounter.svelte` and `DerivedCounter.svelte`.
 
 ---
 
