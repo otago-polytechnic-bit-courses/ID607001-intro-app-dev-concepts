@@ -397,10 +397,10 @@ export const load = async ({ fetch }) => {
 
 export const actions = {
   create: async ({ request }) => {
-    const data = await request.formData();
-    const name = data.get("name");
-    const region = data.get("region");
-    const country = data.get("country");
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const region = formData.get("region");
+    const country = formData.get("country");
     const institution = { name, region, country };
 
     try {
@@ -412,9 +412,9 @@ export const actions = {
         body: JSON.stringify(institution),
       });
 
-      const institutions = await res.json();
+      const data = await res.json();
 
-      return { success: true, message: institutions.message };
+      return { success: true, message: data.message };
     } catch (err) {
       console.log(err);
       return { success: false, error: err.message };
