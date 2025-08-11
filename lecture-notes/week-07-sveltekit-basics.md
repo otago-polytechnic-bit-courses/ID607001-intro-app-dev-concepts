@@ -704,6 +704,8 @@ This is a simple hierarchy of **components** where the **parent component** (`Bu
 
 **SvelteKit** provides a powerful routing system that allows you to create dynamic routes and nested routes. You can create routes by creating files in the `src/routes` directory.
 
+---
+
 ### Static Routing
 
 **Static routing** is the simplest form of routing. You can create static routes by creating files in the `src/routes` directory. The file name will be used as the route path.
