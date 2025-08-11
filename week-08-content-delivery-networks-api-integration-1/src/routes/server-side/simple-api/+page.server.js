@@ -1,6 +1,6 @@
 // /routes/server-side/simple-api/+page.server.js
 
-export const load = async () => {
+export const load = async ({ fetch }) => {
 	try {
 		const res = await fetch('https://jsonplaceholder.typicode.com/users');
 		const users = await res.json();

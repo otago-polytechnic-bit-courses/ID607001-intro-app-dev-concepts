@@ -4,7 +4,7 @@ import { env } from '$env/dynamic/private';
 
 const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
 
-export const load = async () => {
+export const load = async ({ fetch }) => {
 	try {
 		const res = await fetch(`${API_BASE_URL}/api/institutions`);
 		const institutions = await res.json();
