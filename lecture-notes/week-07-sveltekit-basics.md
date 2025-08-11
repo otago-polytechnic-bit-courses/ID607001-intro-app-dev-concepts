@@ -54,46 +54,91 @@ You can then open your browser and navigate to <http://localhost:5173> to see th
 
 ---
 
-### Directory and File Structure
+## Directory and File Structure
 
 The directory and file structure of a **SvelteKit** project is as follows:
 
 ```bash
 week-07-sveltekit-basics
 ├── src
+│   ├── app.d.ts
+│   ├── app.html
 │   ├── lib
-│   │   └── assets
+│   │   ├── assets/
 │   ├── routes
 │   │   ├── +layout.svelte
 │   │   ├── +page.svelte
-│   ├── app.html
-│   ├── app.d.ts
-├── static
+├── static/
 ├── jsconfig.json
 ├── package.json
 ├── svelte.config.js
 └── vite.config.js
 ```
 
-- `lib` - Contains reusable components, assets and utilities.
-- `routes` - Contains the routes of the application.
 - `app.html` - The main **HTML** file of the application.
 - `app.d.ts` - Contains the **TypeScript** definitions for the application.
+- `lib` - Contains reusable components, assets and utilities.
+- `routes` - Contains the routes of the application.
 - `static` - Contains static assets that are served directly by the server.
 - `jsconfig.json` - Used to configure the **JavaScript** project.
 - `package.json` - Contains the dependencies and scripts for the application.
 - `svelte.config.js` - Used to configure the **Svelte** compiler.
 - `vite.config.js` - Used to configure the **Vite** build tool.
 
+There are other files and directories, but these are the most important ones.
+
+---
+
+### Creating Components and Routes
+
+Create a necessary directory and file structure for the components and routes. The structure should look like this:
+
+```bash
+week-07-sveltekit-basics
+├── src
+│   ├── app.d.ts
+│   ├── app.html
+│   ├── lib
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── communication/
+│   │   │   │   ├── ButtonChild.svelte
+│   │   │   │   └── ButtonParent.svelte
+│   │   │   ├── events/
+│   │   │   │   ├── ClickEvents.svelte
+│   │   │   │   └── FormEvents.svelte
+│   │   │   ├── runes/
+│   │   │   │   ├── DerivedCounter.svelte
+│   │   │   │   ├── EffectCounter.svelte
+│   │   │   │   ├── PropsCounter.svelte
+│   │   │   │   └── StateCounter.svelte
+│   │   │   ├── GradeTable.svelte
+│   │   │   └── MarkConverter.svelte
+│   ├── routes
+│   │   ├── +layout.svelte
+│   │   ├── +page.svelte
+│   │   ├── about/
+│   │   │   └── +page.svelte
+│   │   ├── contact/
+│   │   │   └── +page.svelte
+│   │   └── user/
+│   │       ├── [id]/
+│   │       │   └── +page.svelte
+│   │       └── [role]/
+│   │           └── [slug]/
+│   │               └── +page.svelte
+├── static/
+├── jsconfig.json
+├── package.json
+├── svelte.config.js
+└── vite.config.js
+```
+
 ---
 
 ## Runes
 
 **Runes** are special constructs in **SvelteKit** that allow you to create reactive components.
-
-### Getting Started
-
-In the `src/lib` directory, create a new directory called `components` and inside it, create another directory called `runes`. In the `runes` directory, create a four files: `StateCounter.svelte`, `EffectCounter.svelte`, `PropsCounter.svelte` and `DerivedCounter.svelte`.
 
 ---
 
@@ -102,7 +147,7 @@ In the `src/lib` directory, create a new directory called `components` and insid
 The `$state` rune allows you to create a variable that automatically updates the UI when its value changes. In `StateCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /lib/components/runes/StateCounter -->
+<!-- /src/lib/components/runes/StateCounter -->
 
 <script>
 	let count = $state(0);
@@ -116,7 +161,7 @@ The `$state` rune allows you to create a variable that automatically updates the
 <p>Count: {count}</p>
 ```
 
-In the `+page.svelte` file, add the following code to use the `StateCounter` component:
+In `+page.svelte`, add the following code to use the `StateCounter` component:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -135,7 +180,7 @@ In the `+page.svelte` file, add the following code to use the `StateCounter` com
 The `$effect` rune allows you to run a function whenever a reactive variable changes. In `EffectCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /lib/components/runes/EffectCounter -->
+<!-- /src/lib/components/runes/EffectCounter -->
 
 <script>
 	let count = $state(0);
@@ -159,7 +204,7 @@ The `$effect` rune allows you to run a function whenever a reactive variable cha
 <p>{message}</p>
 ```
 
-In the `+page.svelte` file, add the following code to use the `EffectCounter` component:
+In `+page.svelte`, add the following code to use the `EffectCounter` component:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -180,7 +225,7 @@ In the `+page.svelte` file, add the following code to use the `EffectCounter` co
 The `$props` rune allows you to pass properties to a component. In `PropsCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /lib/components/runes/PropsCounter -->
+<!-- /src/lib/components/runes/PropsCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
@@ -205,7 +250,7 @@ The `$props` rune allows you to pass properties to a component. In `PropsCounter
 <p>{displayMessage}</p>
 ```
 
-In the `+page.svelte` file, add the following code to use the `PropsCounter` component:
+In `+page.svelte`, add the following code to use the `PropsCounter` component:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -228,7 +273,7 @@ In the `+page.svelte` file, add the following code to use the `PropsCounter` com
 The `$derived` rune allows you to create a variable that is derived from other reactive variables. In `DerivedCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /lib/components/runes/DerivedCounter -->
+<!-- /src/lib/components/runes/DerivedCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
@@ -257,7 +302,7 @@ The `$derived` rune allows you to create a variable that is derived from other r
 
 ### Usage
 
-In the `+page.svelte` file, add the following code to use the `DerivedCounter` component:
+In `+page.svelte`, add the following code to use the `DerivedCounter` component:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -279,6 +324,8 @@ In the `+page.svelte` file, add the following code to use the `DerivedCounter` c
 
 ## Template Syntax
 
+You can use template syntax to create dynamic content. It allows you to embed **JavaScript** expressions within your **HTML** markup.
+
 ---
 
 ### If, Else If and Else
@@ -286,7 +333,7 @@ In the `+page.svelte` file, add the following code to use the `DerivedCounter` c
 Here is an example of `#if`, `:else if` and `:else`.
 
 ```svelte
-<!-- /lib/components/MarkConverter -->
+<!-- /src/lib/components/MarkConverter -->
 
 <script>
     let mark = $state(75);
@@ -317,10 +364,16 @@ Here is an example of `#if`, `:else if` and `:else`.
 {/if}
 ```
 
-Here is an example of `bind`.
+--- 
+
+### Binding
+
+**Binding** is a way to create a **two-way data binding** between a variable and an input element using the `bind:` directive. When the input value changes, the variable is updated.
+
+Here is an example of `bind`:
 
 ```svelte
-<!-- /lib/components/MarkConverter -->
+<!-- /src/lib/components/MarkConverter -->
 
 <script>
 	let mark = $state(75);
@@ -353,7 +406,9 @@ Here is an example of `bind`.
 {/if}
 ```
 
-````svelte
+Then in `+page.svelte`, you can use the `MarkConverter` component as follows:
+
+```svelte
 <!-- /+page.svelte -->
 
 <script>
@@ -365,12 +420,18 @@ Here is an example of `bind`.
 <!-- Components for brevity -->
 
 <MarkConverter />
-``
+```
+
+---
+
+### Each
+
+The `#each` block is used to iterate over an array and render a block of **HTML** for each item in the array. 
 
 Here is an example of `#each`.
 
 ```svelte
-<!-- /lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable -->
 
 <script>
 	let learners = $state([
@@ -400,18 +461,22 @@ Here is an example of `#each`.
 		{/each}
 	</tbody>
 </table>
-````
+```
 
 ---
 
 ## Styling
 
+There are many ways to style a component. You can use **inline styles**, **scoped styles**, **global styles** or **CSS frameworks**.
+
 ---
 
 ### Scoped Styles
 
+**Scoped styles** are styles that are applied only to the component they are defined in. You can define **scoped styles** by adding a `<style>` tag at the end of the component file.
+
 ```svelte
-<!-- /lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable -->
 
 <script>
 	let learners = $state([
@@ -461,9 +526,7 @@ Here is an example of `#each`.
 </style>
 ```
 
----
-
-## Usage
+Then in `+page.svelte`, you can use the `GradeTable` component as follows:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -485,14 +548,16 @@ Here is an example of `#each`.
 
 ## Event Handling
 
+You can handle events using the `on` directive. You can use the `onclick`, `ondblclick`, `oninput`, `onfocus` and `onblur` events to handle user interactions.
+
 ---
 
 ### Click Events
 
-Here is an example of **click events**.
+Here is an example of **click events**:
 
 ```svelte
-<!-- /lib/components/events/ClickEvents.svelte -->
+<!-- /src/lib/components/events/ClickEvents.svelte -->
 
 <script>
 	let count = $state(0);
@@ -510,10 +575,10 @@ Here is an example of **click events**.
 
 ### Form Events
 
-Here is an example of **form events**.
+Here is an example of **form events**:
 
 ```svelte
-<!-- /lib/components/events/FormEvents.svelte -->
+<!-- /src/lib/components/events/FormEvents.svelte -->
 
 <script>
 	let username = $state('');
@@ -557,9 +622,8 @@ Here is an example of **form events**.
 <p>{message}</p>
 ```
 
----
 
-### Usage
+Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` components as follows:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -586,7 +650,7 @@ Here is an example of **form events**.
 ### Parent to Child
 
 ```svelte
-<!-- /lib/components/communication/ButtonChild.svelte -->
+<!-- /src/lib/components/communication/ButtonChild.svelte -->
 
 <script>
 	let { text, onclick } = $props();
@@ -598,7 +662,7 @@ Here is an example of **form events**.
 ```
 
 ```svelte
-<!-- /lib/components/communication/ButtonParent.svelte -->
+<!-- /src/lib/components/communication/ButtonParent.svelte -->
 
 <script>
 	import ButtonChild from './ButtonChild.svelte';
