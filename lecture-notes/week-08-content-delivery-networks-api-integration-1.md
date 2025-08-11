@@ -81,7 +81,7 @@ week-08-content-delivery-networks-api-integration-1
 Here is how to use **Bootstrap** in a **SvelteKit** application:
 
 ```html
-<!-- app.html -->
+<!-- /src/app.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +113,7 @@ Here is how to use **Bootstrap** in a **SvelteKit** application:
 In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components. 
 
 ```svelte
-<!-- /cdns/bootstrap/+page.svelte -->
+<!-- /src/routes/cdns/bootstrap/+page.svelte -->
 
 <script>
 	const users = $state([
@@ -179,6 +179,8 @@ Navigate to `http://localhost:5173/cdns/bootstrap` to see the **Bootstrap** appl
 Here is how to use **Font Awesome** in a **SvelteKit** application:
 
 ```html
+<!-- /src/app.html -->
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -204,7 +206,7 @@ Here is how to use **Font Awesome** in a **SvelteKit** application:
 In the `/src/routes/cdns/font-awesome/+page.svelte` file, you can use **Font Awesome** icons as follows:
 
 ```svelte
-<!-- /cdns/font-awesome/+page.svelte -->
+<!-- /src/routes/cdns/font-awesome/+page.svelte -->
 
 <i class="fa-solid fa-house"></i>
 <i class="fa-regular fa-house"></i>
@@ -229,7 +231,7 @@ Navigate to `http://localhost:5173/cdns/font-awesome` to see the **Font Awesome*
 Here is how to use **Google Fonts** in a **SvelteKit** application:
 
 ```html
-<!-- app.html -->
+<!-- /src/app.html -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -258,7 +260,7 @@ Here is how to use **Google Fonts** in a **SvelteKit** application:
 In the `/src/routes/cdns/google-fonts/+page.svelte` file, you can use **Google Fonts** as follows:
 
 ```svelte
-<!-- /cdns/google-fonts/+page.svelte -->
+<!-- /src/routes/cdns/google-fonts/+page.svelte -->
 
 <h1>Hello, World!</h1>
 
@@ -285,7 +287,7 @@ Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts*
 ### Client-Side GET Request
 
 ```svelte
-<!-- /client-side/simple-api/+page.svelte -->
+<!-- /src/routes/client-side/simple-api/+page.svelte -->
 
 <script>
 	import { onMount } from 'svelte';
@@ -322,7 +324,7 @@ Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts*
 ### Server-Side GET Request - Load Function
 
 ```js
-// /routes/server-side/simple-api/+page.server.js
+// /src/routes/server-side/simple-api/+page.server.js
 
 export const load = async ({ fetch }) => {
   try {
@@ -343,7 +345,7 @@ export const load = async ({ fetch }) => {
 ```
 
 ```svelte
-<!-- /server-side/simple-api/+page.svelte -->
+<!-- /src/routes/server-side/simple-api/+page.svelte -->
 
 <script>
 	let { data } = $props();
@@ -370,7 +372,7 @@ export const load = async ({ fetch }) => {
 ### Server-Side POST Request - Form Actions
 
 ```js
-// /routes/server-side/express-api/+page.server.js
+// /src/routes/server-side/express-api/+page.server.js
 
 import { env } from "$env/dynamic/private";
 
