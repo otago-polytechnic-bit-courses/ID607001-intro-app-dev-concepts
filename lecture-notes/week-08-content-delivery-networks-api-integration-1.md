@@ -42,7 +42,7 @@ The full code example for this week is available here - <https://github.com/otag
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     %sveltekit.head%
 
-    <!-- Add Bootstrap CSS and JS -->
+    <!-- Add Bootstrap CDN links -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -120,6 +120,33 @@ The full code example for this week is available here - <https://github.com/otag
 
 ### Usage
 
+```html
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+
+		<!-- Bootstrap links omitted for brevity -->
+
+		<!-- Add Font Awesome CDN link -->
+		<script src="https://kit.fontawesome.com/edaaa690ec.js" crossorigin="anonymous"></script>
+	</head>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+```
+
+```svelte
+<!-- /cdns/font-awesome/+page.svelte -->
+
+<i class="fa-solid fa-house"></i>
+<i class="fa-regular fa-house"></i>
+```
+
 ---
 
 ## Google Fonts
@@ -127,6 +154,48 @@ The full code example for this week is available here - <https://github.com/otag
 ---
 
 ### Usage
+
+```html
+<!-- app.html -->
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		%sveltekit.head%
+
+		<!-- Bootstrap and Font Awesome links omitted for brevity -->
+		
+		<!-- Add Google Fonts CDN links -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+			rel="stylesheet"
+		/>
+	</head>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>
+```
+
+```svelte
+<!-- /cdns/google-fonts/+page.svelte -->
+
+<h1>Hello, World!</h1>
+
+<style>
+	:global(body) {
+		font-family: 'Google Sans Code', monospace;
+		font-optical-sizing: auto;
+		font-weight: 300;
+		font-style: normal;
+	}
+</style>
+```
 
 ---
 
