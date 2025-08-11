@@ -1,4 +1,4 @@
-// /src/routes/server-side/express-api/+page.server.js
+// /src/routes/dashboard/+page.server.js
 
 import { env } from '$env/dynamic/private';
 import { fail } from '@sveltejs/kit';
@@ -23,7 +23,9 @@ export const load = async ({ fetch }) => {
 };
 
 export const actions = {
-	create: async ({ request }) => {
+	create: async ({ request, cookies }) => {
+		const token = cookies.get('token');
+
 		const formData = await request.formData();
 		const name = formData.get('name');
 		const region = formData.get('region');
@@ -34,7 +36,8 @@ export const actions = {
 			const res = await fetch(`${API_BASE_URL}/api/institutions`, {
 				method: 'POST',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${token}`
 				},
 				body: JSON.stringify(institution)
 			});
@@ -42,7 +45,7 @@ export const actions = {
 			const data = await res.json();
 
 			if (!res.ok) {
-				return fail(409, { errors: data.errors, name, region, country });
+				return fail(409, { error: data.message, errors: data.errors, name, region, country });
 			}
 
 			return { success: true, message: data.message };
@@ -54,22 +57,6 @@ export const actions = {
 				region,
 				country
 			});
-		}
-	},
-	delete: async ({ request }) => {
-		const formData = await request.formData();
-		const id = formData.get('id');
-		
-		try {
-			const res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
-				method: 'DELETE'
-			});
-
-			const data = await res.json();
-
-			return { success: true, message: data.message };
-		} catch (err) {
-			return { success: false, error: err.message };
 		}
 	}
 };

@@ -1,4 +1,4 @@
-<!-- /src/routes/server-side/express-api/+page.svelte -->
+<!-- /src/routes/dashboard/+page.svelte -->
 
 <script>
 	let { data, form } = $props();
@@ -6,6 +6,7 @@
 	let message = data.institutions.message;
 	let errors = form?.errors;
 	let error = data.error;
+	let tokenError = form?.error;
 </script>
 
 <form method="POST" action="?/create">
@@ -51,6 +52,10 @@
 
 {#if error}
 	<p>{error}</p>
+{/if}
+
+{#if tokenError}
+	<p>{tokenError}</p>
 {/if}
 
 {#if institutions && institutions.length > 0}
