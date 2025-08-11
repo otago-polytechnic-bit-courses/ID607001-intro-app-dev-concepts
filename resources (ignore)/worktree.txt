@@ -1,0 +1,2 @@
+git worktree add ../ID607001-code-examples code examples
+code ../ID607001-code-examples
