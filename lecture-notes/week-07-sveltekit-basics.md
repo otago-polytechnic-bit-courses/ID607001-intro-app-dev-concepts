@@ -56,17 +56,50 @@ You can then open your browser and navigate to <http://localhost:5173> to see th
 
 ### Directory and File Structure
 
+The directory and file structure of a **SvelteKit** project is as follows:
+
+```bash
+week-07-sveltekit-basics
+├── src
+│   ├── lib
+│   │   └── assets
+│   ├── routes
+│   │   ├── +layout.svelte
+│   │   ├── +page.svelte
+│   ├── app.html
+│   ├── app.d.ts
+├── static
+├── jsconfig.json
+├── package.json
+├── svelte.config.js
+└── vite.config.js
+```
+
+- `lib` - Contains reusable components, assets and utilities.
+- `routes` - Contains the routes of the application. 
+- `app.html` - The main **HTML** file of the application.
+- `app.d.ts` - Contains the **TypeScript** definitions for the application.
+- `static` - Contains static assets that are served directly by the server.
+- `jsconfig.json` - Used to configure the **JavaScript** project.
+- `package.json` - Contains the dependencies and scripts for the application.
+- `svelte.config.js` - Used to configure the **Svelte** compiler.
+- `vite.config.js` - Used to configure the **Vite** build tool.
+
 ---
 
 ## Runes
 
-**Runes**...
+**Runes** are special constructs in **SvelteKit** that allow you to create reactive components. 
+
+### Getting Started
+
+In the `src/lib` directory, create a new directory called `components` and inside it, create another directory called `runes`. In the `runes` directory, create a four files: `StateCounter.svelte`, `EffectCounter.svelte`, `PropsCounter.svelte`, and `DerivedCounter.svelte`.
 
 ---
 
 ### State Rune
 
-The `$state` rune...
+The `$state` rune allows you to create a variable that automatically updates the UI when its value changes. In `StateCounter.svelte`, add the following code:
 
 ```svelte
 <!-- /lib/components/runes/StateCounter -->
@@ -83,6 +116,8 @@ The `$state` rune...
 <p>Count: {count}</p>
 ```
 
+In the `+page.svelte` file, add the following code to use the `StateCounter` component:
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -97,7 +132,7 @@ The `$state` rune...
 
 ### Effect Rune
 
-The `$effect` rune...
+The `$effect` rune allows you to run a function whenever a reactive variable changes. In `EffectCounter.svelte`, add the following code:
 
 ```svelte
 <!-- /lib/components/runes/EffectCounter -->
@@ -124,6 +159,8 @@ The `$effect` rune...
 <p>{message}</p>
 ```
 
+In the `+page.svelte` file, add the following code to use the `EffectCounter` component:
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -140,7 +177,7 @@ The `$effect` rune...
 
 ### Props Rune
 
-The `$props` rune...
+The `$props` rune allows you to pass properties to a component. In `PropsCounter.svelte`, add the following code:
 
 ```svelte
 <!-- /lib/components/runes/PropsCounter -->
@@ -168,6 +205,8 @@ The `$props` rune...
 <p>{displayMessage}</p>
 ```
 
+In the `+page.svelte` file, add the following code to use the `PropsCounter` component:
+
 ```svelte
 <!-- /+page.svelte -->
 
@@ -175,7 +214,6 @@ The `$props` rune...
 	import StateCounter from '$lib/components/runes/StateCounter.svelte';
 	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
 	import PropsCounter from '$lib/components/runes/PropsCounter.svelte';
-	import DerivedCounter from '$lib/components/runes/DerivedCounter.svelte';
 </script>
 
 <StateCounter />
@@ -187,7 +225,7 @@ The `$props` rune...
 
 ### Derived Rune
 
-The `$derived` rune...
+The `$derived` rune allows you to create a variable that is derived from other reactive variables. In `DerivedCounter.svelte`, add the following code:
 
 ```svelte
 <!-- /lib/components/runes/DerivedCounter -->
@@ -218,6 +256,8 @@ The `$derived` rune...
 ---
 
 ### Usage
+
+In the `+page.svelte` file, add the following code to use the `DerivedCounter` component:
 
 ```svelte
 <!-- /+page.svelte -->
