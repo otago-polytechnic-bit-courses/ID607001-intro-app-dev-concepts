@@ -32,27 +32,27 @@ week-08-content-delivery-networks-api-integration-1
 │   ├── app.d.ts
 │   ├── app.html
 │   ├── lib
-│   │   ├── assets/
-│   ├── routes
-│   │   ├── +layout.svelte
-│   │   ├── +page.svelte
-│   │   ├── cdns/
-│   │   │   └── bootstrap/
-│   │   │   │   └── +page.svelte
-│   │   │   │	font-awesome/
-│   │   │   │    └── +page.svelte
-│   │   │   └── google-fonts/
-│   │   │       └── +page.svelte
-│   │   ├── client-side/
-│   │   │   └── simple-api/
-│   │   │       └── +page.svelte
-│   │   ├── server-side/
-│   │   │   ├── simple-api/
-│   │   │   │   └── +page.server.js
-│   │   │   │   └── +page.svelte
-│   │   │   └── express-api/
-│   │   │       ├── +page.server.js
-│   │   │       └── +page.svelte
+│   │   └── assets/
+│   └── routes
+│       ├── +layout.svelte
+│       ├── +page.svelte
+│       ├── cdns/
+│       │   ├── bootstrap/
+│       │   │   └── +page.svelte
+│       │   ├── font-awesome/
+│       │   │   └── +page.svelte
+│       │   └── google-fonts/
+│       │       └── +page.svelte
+│       ├── client-side/
+│       │   └── simple-api/
+│       │       └── +page.svelte
+│       └── server-side/
+│           ├── simple-api/
+│           │   ├── +page.server.js
+│           │   └── +page.svelte
+│           └── express-api/
+│               ├── +page.server.js
+│               └── +page.svelte
 ├── static/
 ├── jsconfig.json
 ├── package.json
