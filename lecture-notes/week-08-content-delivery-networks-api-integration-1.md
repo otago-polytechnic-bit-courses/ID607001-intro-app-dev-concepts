@@ -72,7 +72,7 @@ week-08-content-delivery-networks-api-integration-1
 
 **Bootstrap** is a popular CSS framework that provides pre-designed components and styles for building responsive and mobile-first web applications. It includes a grid system, typography, forms, buttons, navigation and other UI elements that can be easily customised.
 
-> **Resource:** <https://getbootstrap.com/docs/5.3/getting-started/introduction/>
+> **Resource:** <https://getbootstrap.com>
 
 ---
 
@@ -110,11 +110,7 @@ Here is how to use **Bootstrap** in a **SvelteKit** application:
 </html>
 ```
 
-In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components. For example,
-
-Navigate to `http://localhost:5173/cdns/bootstrap` to see the Bootstrap styles applied.
-
-Here is an example of using **Bootstrap** to create a simple table and cards:
+In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components. 
 
 ```svelte
 <!-- /cdns/bootstrap/+page.svelte -->
@@ -166,33 +162,46 @@ Here is an example of using **Bootstrap** to create a simple table and cards:
 {/each}
 ```
 
+Navigate to `http://localhost:5173/cdns/bootstrap` to see the **Bootstrap** applied.
+
 ---
 
 ## Font Awesome Icons
+
+**Font Awesome** is a popular icon library that provides scalable vector icons that can be easily customised with **CSS**. It includes a wide range of icons for various purposes, such as social media, user interface elements and more.
+
+> **Resource:** <https://docs.fontawesome.com>
 
 ---
 
 ### Usage
 
+Here is how to use **Font Awesome** in a **SvelteKit** application:
+
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
 
-		<!-- Bootstrap links omitted for brevity -->
+    <!-- Bootstrap links omitted for brevity -->
 
-		<!-- Add Font Awesome CDN link -->
-		<script src="https://kit.fontawesome.com/edaaa690ec.js" crossorigin="anonymous"></script>
-	</head>
+    <!-- Add Font Awesome CDN link -->
+    <script
+      src="https://kit.fontawesome.com/edaaa690ec.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
 ```
+
+In the `/src/routes/cdns/font-awesome/+page.svelte` file, you can use **Font Awesome** icons as follows:
 
 ```svelte
 <!-- /cdns/font-awesome/+page.svelte -->
@@ -201,40 +210,52 @@ Here is an example of using **Bootstrap** to create a simple table and cards:
 <i class="fa-regular fa-house"></i>
 ```
 
+There are two types of icons: **solid** and **regular**. You can use them by changing the class name.
+
+Navigate to `http://localhost:5173/cdns/font-awesome` to see the **Font Awesome** icons.
+
 ---
 
 ## Google Fonts
+
+**Google Fonts** is a library of free and open-source fonts that can be easily integrated into web applications. It provides a wide variety of fonts that can be customised with different styles, weights and sizes.
+
+> **Resource:** <https://fonts.google.com>
 
 ---
 
 ### Usage
 
+Here is how to use **Google Fonts** in a **SvelteKit** application:
+
 ```html
 <!-- app.html -->
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		%sveltekit.head%
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
 
-		<!-- Bootstrap and Font Awesome links omitted for brevity -->
-		
-		<!-- Add Google Fonts CDN links -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
-			rel="stylesheet"
-		/>
-	</head>
+    <!-- Bootstrap and Font Awesome links omitted for brevity -->
 
-	<body data-sveltekit-preload-data="hover">
-		<div style="display: contents">%sveltekit.body%</div>
-	</body>
+    <!-- Add Google Fonts CDN links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
 ```
+
+In the `/src/routes/cdns/google-fonts/+page.svelte` file, you can use **Google Fonts** as follows:
 
 ```svelte
 <!-- /cdns/google-fonts/+page.svelte -->
@@ -250,6 +271,10 @@ Here is an example of using **Bootstrap** to create a simple table and cards:
 	}
 </style>
 ```
+
+Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts** applied.
+
+> **Note:** The `:global(body)` selector is only applied to the `/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** project.
 
 ---
 
@@ -444,10 +469,7 @@ export const actions = {
 
 ### Server-Side POST Request (Auth) - Form Actions
 
-
 ---
-
-
 
 ## Formative Assessment
 
