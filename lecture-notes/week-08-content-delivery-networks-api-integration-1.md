@@ -276,7 +276,7 @@ In the `/src/routes/cdns/google-fonts/+page.svelte` file, you can use **Google F
 
 Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts** applied.
 
-> **Note:** The `:global(body)` selector is only applied to the `/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** project.
+> **Note:** The `:global(body)` selector is only applied to the `/src/routes/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** project.
 
 ---
 
