@@ -149,7 +149,7 @@ In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap**
 {#each users as user}
 	<div class="card" style="width: 18rem;">
 		<img
-			src="https://api.dicebear.com/9.x/pixel-art/svg?seed=={user.firstName}"
+			src="https://api.dicebear.com/9.x/pixel-art/svg?seed={user.firstName}"
 			class="card-img-top"
 			alt="{user.firstName} {user.lastName}"
 		/>
