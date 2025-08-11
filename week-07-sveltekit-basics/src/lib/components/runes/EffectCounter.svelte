@@ -1,4 +1,4 @@
-<!-- /lib/components/runes/EffectCounter -->
+<!-- /src/lib/components/runes/EffectCounter -->
 
 <script>
 	let count = $state(0);

@@ -1,4 +1,4 @@
-<!-- /cdns/bootstrap/+page.svelte -->
+<!-- /src/routes/cdns/bootstrap/+page.svelte -->
 
 <script>
 	const users = $state([

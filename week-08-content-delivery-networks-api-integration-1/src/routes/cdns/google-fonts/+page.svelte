@@ -1,4 +1,4 @@
-<!-- /cdns/google-fonts/+page.svelte -->
+<!-- /src/routes/cdns/google-fonts/+page.svelte -->
 
 <h1>Hello, World!</h1>
 

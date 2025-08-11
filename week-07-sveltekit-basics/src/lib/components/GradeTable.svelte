@@ -1,4 +1,4 @@
-<!-- /lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable -->
  
 <script>
 	let learners = $state([

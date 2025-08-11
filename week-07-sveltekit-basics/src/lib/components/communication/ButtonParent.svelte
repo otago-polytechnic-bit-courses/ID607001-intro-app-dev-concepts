@@ -1,4 +1,4 @@
-<!-- /lib/components/communication/ButtonParent.svelte -->
+<!-- /src/lib/components/communication/ButtonParent.svelte -->
 
 <script>
 	import ButtonChild from './ButtonChild.svelte';

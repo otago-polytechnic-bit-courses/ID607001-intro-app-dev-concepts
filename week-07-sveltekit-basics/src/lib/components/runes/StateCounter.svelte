@@ -1,4 +1,4 @@
-<!-- /lib/components/runes/StateCounter -->
+<!-- /src/lib/components/runes/StateCounter -->
 
 <script>
 	let count = $state(0);

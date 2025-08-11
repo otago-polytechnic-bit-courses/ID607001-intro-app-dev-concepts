@@ -1,4 +1,4 @@
-<!-- /lib/components/events/FormEvents.svelte -->
+<!-- /src/lib/components/events/FormEvents.svelte -->
 
 <script>
 	let username = $state('');

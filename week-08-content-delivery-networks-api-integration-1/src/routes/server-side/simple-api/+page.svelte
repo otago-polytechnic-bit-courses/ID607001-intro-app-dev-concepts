@@ -1,5 +1,5 @@
-<!-- /server-side/simple-api/+page.svelte -->
- 
+<!-- /src/routes/server-side/simple-api/+page.svelte -->
+
 <script>
 	let { data } = $props();
 	let users = data.users;

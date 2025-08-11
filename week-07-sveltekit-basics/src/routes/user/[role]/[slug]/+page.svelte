@@ -1,4 +1,4 @@
-<!-- /routes/user/[role]/[slug] -->
+<!-- /src/routes/user/[role]/[slug] -->
  
 <script>
 	import { page } from '$app/state';

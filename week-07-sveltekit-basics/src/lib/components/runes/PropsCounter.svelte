@@ -1,4 +1,4 @@
-<!-- /lib/components/runes/PropsCounter -->
+<!-- /src/lib/components/runes/PropsCounter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();

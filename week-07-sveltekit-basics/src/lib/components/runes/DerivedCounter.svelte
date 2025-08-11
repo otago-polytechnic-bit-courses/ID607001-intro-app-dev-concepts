@@ -1,4 +1,4 @@
-<!-- /lib/components/Counter -->
+<!-- /src/lib/components/Counter -->
 
 <script>
 	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();

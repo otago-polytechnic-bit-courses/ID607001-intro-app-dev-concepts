@@ -1,6 +1,7 @@
-// /routes/server-side/express-api/+page.server.js
+// /src/routes/server-side/express-api/+page.server.js
 
 import { env } from '$env/dynamic/private';
+import { fail } from '@sveltejs/kit';
 
 const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
 
@@ -23,10 +24,10 @@ export const load = async ({ fetch }) => {
 
 export const actions = {
 	create: async ({ request }) => {
-		const data = await request.formData();
-		const name = data.get('name');
-		const region = data.get('region');
-		const country = data.get('country');
+		const formData = await request.formData();
+		const name = formData.get('name');
+		const region = formData.get('region');
+		const country = formData.get('country');
 		const institution = { name, region, country };
 
 		try {
@@ -38,12 +39,21 @@ export const actions = {
 				body: JSON.stringify(institution)
 			});
 
-			const institutions = await res.json();
+			const data = await res.json();
 
-			return { success: true, message: institutions.message };
+			if (!res.ok) {
+				return fail(409, { errors: data.errors, name, region, country });
+			}
+
+			return { success: true, message: data.message };
 		} catch (err) {
-			console.log(err);
-			return { success: false, error: err.message };
+			return fail(500, {
+				success: false,
+				error: err.message,
+				name,
+				region,
+				country
+			});
 		}
 	}
 };

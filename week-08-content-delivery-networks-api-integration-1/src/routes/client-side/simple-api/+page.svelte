@@ -1,3 +1,5 @@
+<!-- /src/routes/client-side/simple-api/+page.svelte -->
+
 <script>
 	import { onMount } from 'svelte';
 

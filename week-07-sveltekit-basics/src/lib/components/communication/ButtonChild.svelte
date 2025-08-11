@@ -1,4 +1,4 @@
-<!-- /lib/components/communication/ButtonChild.svelte -->
+<!-- /src/lib/components/communication/ButtonChild.svelte -->
 
 <script>
 	let { text, onclick } = $props();

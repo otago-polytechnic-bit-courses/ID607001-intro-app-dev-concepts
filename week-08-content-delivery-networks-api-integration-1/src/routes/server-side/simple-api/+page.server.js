@@ -1,12 +1,12 @@
-// /routes/server-side/simple-api/+page.server.js
+// /src/routes/server-side/simple-api/+page.server.js
 
 export const load = async ({ fetch }) => {
 	try {
 		const res = await fetch('https://jsonplaceholder.typicode.com/users');
-		const users = await res.json();
+		const data = await res.json();
 
 		return {
-			users,
+			users: data,
 			error: null
 		};
 	} catch (err) {
