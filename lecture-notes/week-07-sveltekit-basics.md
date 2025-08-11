@@ -89,7 +89,7 @@ There are other files and directories, but these are the most important ones.
 
 ---
 
-### Creating Components and Routes
+## Creating Components and Routes
 
 Create a necessary directory and file structure for the components and routes. The structure should look like this:
 

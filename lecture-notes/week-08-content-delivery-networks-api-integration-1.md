@@ -22,15 +22,63 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
-## Content Delivery Networks
+## Creating Components and Routes
+
+Create a necessary directory and file structure for the components and routes. The structure should look like this:
+
+```bash
+week-08-content-delivery-networks-api-integration-1
+├── src
+│   ├── app.d.ts
+│   ├── app.html
+│   ├── lib
+│   │   ├── assets/
+│   ├── routes
+│   │   ├── +layout.svelte
+│   │   ├── +page.svelte
+│   │   ├── cdns/
+│   │   │   └── bootstrap/
+│   │   │   │   └── +page.svelte
+ 			│	font-awesome/
+│   │   │   │    └── +page.svelte
+│   │   │   └── google-fonts/
+│   │   │       └── +page.svelte
+│   │   ├── client-side/
+│   │   │   └── simple-api/
+│   │   │       └── +page.svelte
+│   │   ├── server-side/
+│   │   │   ├── simple-api/
+│   │   │   │   └── +page.server.js
+│   │   │   │   └── +page.svelte
+│   │   │   └── express-api/
+│   │   │       ├── +page.server.js
+│   │   │       └── +page.svelte
+├── static/
+├── jsconfig.json
+├── package.json
+├── svelte.config.js
+└── vite.config.js
+```
 
 ---
 
-## Bootstrap CCS Framework
+## Content Delivery Networks
+
+**Content Delivery Networks (CDNs)** are systems of distributed servers that deliver web content to users based on their geographic location. They help improve the **performance**, **reliability** and **scalability** of **web applications** by caching static **assets**, i.e., images, stylesheets, scripts, etc., closer to the user. **CDNs** reduce latency, decrease load times and offload traffic from the origin server.
+
+---
+
+## Bootstrap CSS Framework
+
+**Bootstrap** is a popular CSS framework that provides pre-designed components and styles for building responsive and mobile-first web applications. It includes a grid system, typography, forms, buttons, navigation and other UI elements that can be easily customised.
+
+> **Resource:** <https://getbootstrap.com/docs/5.3/getting-started/introduction/>
 
 ---
 
 ### Usage
+
+Here is how to use **Bootstrap** in a **SvelteKit** application:
 
 ```html
 <!-- app.html -->
@@ -61,6 +109,12 @@ The full code example for this week is available here - <https://github.com/otag
   </body>
 </html>
 ```
+
+In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components. For example,
+
+Navigate to `http://localhost:5173/cdns/bootstrap` to see the Bootstrap styles applied.
+
+Here is an example of using **Bootstrap** to create a simple table and cards:
 
 ```svelte
 <!-- /cdns/bootstrap/+page.svelte -->
