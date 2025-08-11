@@ -8,7 +8,7 @@ Link to the previous class: [Week 07](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-formative-assessment** from **week-07-formative-assessment**. 
+Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-formative-assessment** from **week-07-formative-assessment**.
 
 Create a new **SvelteKit** project called `week-08-content-delivery-networks-api-integration-1`.
 
@@ -32,30 +32,33 @@ The full code example for this week is available here - <https://github.com/otag
 
 ### Usage
 
-
 ```html
 <!-- app.html -->
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    %sveltekit.head%
 
-<head>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	%sveltekit.head%
+    <!-- Add Bootstrap CSS and JS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+      crossorigin="anonymous"
+    ></script>
+  </head>
 
-	<!-- Add Bootstrap CSS and JS -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
-		crossorigin="anonymous"></script>
-</head>
-
-<body data-sveltekit-preload-data="hover">
-	<div style="display: contents">%sveltekit.body%</div>
-</body>
-
+  <body data-sveltekit-preload-data="hover">
+    <div style="display: contents">%sveltekit.body%</div>
+  </body>
 </html>
 ```
 
@@ -102,13 +105,12 @@ The full code example for this week is available here - <https://github.com/otag
 		/>
 		<div class="card-body">
 			<h5 class="card-title">{user.firstName} {user.lastName}</h5>
-			<p class="card-text">Age: {user.age} years old.</p>
+			<p class="card-text">Age: {user.age} years old</p>
 			<a href="/user/{user.id}" class="btn btn-primary">View Profile</a>
 		</div>
 	</div>
 {/each}
 ```
-
 
 ---
 
@@ -128,7 +130,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
-##  API Integration 1
+## API Integration 1
 
 ---
 
@@ -149,7 +151,7 @@ The full code example for this week is available here - <https://github.com/otag
 			users = await res.json();
 		} catch (err) {
 			error = err.message;
-		} 
+		}
 	});
 </script>
 
@@ -175,26 +177,26 @@ The full code example for this week is available here - <https://github.com/otag
 // /routes/server-side/simple-api/+page.server.js
 
 export const load = async ({ fetch }) => {
-	try {
-		const res = await fetch('https://jsonplaceholder.typicode.com/users');
-		const users = await res.json();
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/users");
+    const users = await res.json();
 
-		return {
-			users,
-			error: null
-		};
-	} catch (err) {
-		return {
-			users: [],
-			error: err.message
-		};
-	}
+    return {
+      users,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      users: [],
+      error: err.message,
+    };
+  }
 };
 ```
 
 ```svelte
 <!-- /server-side/simple-api/+page.svelte -->
- 
+
 <script>
 	let { data } = $props();
 	let users = data.users;
@@ -222,52 +224,52 @@ export const load = async ({ fetch }) => {
 ```js
 // /routes/server-side/express-api/+page.server.js
 
-import { env } from '$env/dynamic/private';
+import { env } from "$env/dynamic/private";
 
-const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
 
 export const load = async ({ fetch }) => {
-	try {
-		const res = await fetch(`${API_BASE_URL}/api/institutions`);
-		const institutions = await res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/institutions`);
+    const institutions = await res.json();
 
-		return {
-			institutions,
-			error: null
-		};
-	} catch (err) {
-		return {
-			institutions: [],
-			error: err.message
-		};
-	}
+    return {
+      institutions,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      institutions: [],
+      error: err.message,
+    };
+  }
 };
 
 export const actions = {
-	create: async ({ request }) => {
-		const data = await request.formData();
-		const name = data.get('name');
-		const region = data.get('region');
-		const country = data.get('country');
-		const institution = { name, region, country };
+  create: async ({ request }) => {
+    const data = await request.formData();
+    const name = data.get("name");
+    const region = data.get("region");
+    const country = data.get("country");
+    const institution = { name, region, country };
 
-		try {
-			const res = await fetch(`${API_BASE_URL}/api/institutions`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(institution)
-			});
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(institution),
+      });
 
-			const institutions = await res.json();
+      const institutions = await res.json();
 
-			return { success: true, message: institutions.message };
-		} catch (err) {
-			console.log(err);
-			return { success: false, error: err.message };
-		}
-	}
+      return { success: true, message: institutions.message };
+    } catch (err) {
+      console.log(err);
+      return { success: false, error: err.message };
+    }
+  },
 };
 ```
 
@@ -322,7 +324,6 @@ export const actions = {
 Here is an example of a `GET` request.
 
 Here is an example of a `POST` request.
-
 
 ---
 
