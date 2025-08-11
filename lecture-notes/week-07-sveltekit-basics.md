@@ -641,9 +641,13 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 
 ## Component Communication
 
+**Components** can communicate with each other using **props** and **events**. You can pass data from a **parent component** to a **child component** using **props**, and you can send data from a **child component** to a **parent component** using **events**.
+
 ---
 
 ### Parent to Child
+
+Here is an example of **parent to child** communication using **props**:
 
 ```svelte
 <!-- /src/lib/components/communication/ButtonChild.svelte -->
@@ -656,6 +660,8 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 	{text}
 </button>
 ```
+
+In the **parent component**, you can use the `ButtonChild` component as follows:
 
 ```svelte
 <!-- /src/lib/components/communication/ButtonParent.svelte -->
@@ -674,9 +680,7 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 <p>{message}</p>
 ```
 
----
-
-### Usage
+Then in `+page.svelte`, you can use the `ButtonParent` component as follows:
 
 ```svelte
 <!-- /+page.svelte -->
@@ -692,9 +696,17 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 <ButtonParent />
 ```
 
+This is a simple hierarchy of **components** where the **parent component** (`ButtonParent`) passes a function to the **child component** (`ButtonChild`) as a prop. When the button in the **child component** is clicked, it calls the function passed from the parent, allowing communication back to the parent.
+
 ---
 
 ## Routing
+
+**SvelteKit** provides a powerful routing system that allows you to create dynamic routes and nested routes. You can create routes by creating files in the `src/routes` directory.
+
+### Static Routing
+
+**Static routing** is the simplest form of routing. You can create static routes by creating files in the `src/routes` directory. The file name will be used as the route path.
 
 ```svelte
 <!-- /routes/about -->
@@ -710,9 +722,15 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 <a href="/">Go to Home Page</a>
 ```
 
+Navigate to `http://localhost:5173/about` to see the **About** page and `http://localhost:5173/contact` to see the **Contact** page.
+
 ---
 
 ### Dynamic Routing
+
+**Dynamic routing** allows you to create routes that can accept parameters. You can create dynamic routes by creating files with square brackets in the `src/routes` directory.
+
+Here is an example:
 
 ```svelte
 <!-- /routes/user/[id] -->
@@ -742,6 +760,10 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 	<p>User not found</p>
 {/if}
 ```
+
+Navigate to `http://localhost:5173/user/1` to see the profile of the user with ID 1, `http://localhost:5173/user/2` for user ID 2 and so on.
+
+Here is an another example:
 
 ```svelte
 <!-- /routes/user/[role]/[slug] -->
@@ -837,6 +859,8 @@ Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` component
 	<p>User not found</p>
 {/if}
 ```
+
+Navigate to `http://localhost:5173/user/admin/frank-miller` to see the profile of the user with role `admin` and slug `frank-miller`, `http://localhost:5173/user/moderator/bob-johnson` for user with role `moderator` and slug `bob-johnson`, and so on.
 
 ---
 
