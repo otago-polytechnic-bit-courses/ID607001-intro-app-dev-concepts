@@ -33,17 +33,14 @@
 	<button type="submit">Submit</button>
 </form>
 
-<!-- Form success message -->
 {#if form?.success}
 	<p>{form.message}</p>
 {/if}
 
-<!-- Form error -->
 {#if form?.success === false}
 	<p>{form.error}this one</p>
 {/if}
 
-<!-- Validation errors -->
 {#if errors && errors.length > 0}
 	<ul>
 		{#each errors as error}
@@ -52,12 +49,10 @@
 	</ul>
 {/if}
 
-<!-- Load error -->
 {#if error}
 	<p>{error}</p>
 {/if}
 
-<!-- Institutions list -->
 {#if institutions && institutions.length > 0}
 	<h1>Institutions</h1>
 	<ul>
