@@ -36,12 +36,12 @@ npx sv create week-07-sveltekit-basics
 
 You will be prompted with the following questions:
 
-| Question | Answer |
-|----------|--------|
-| Which template would you like? | SvelteKit minimal |
-| Add type checking with TypeScript? | Yes, using JavaScript with JSDoc comments |
-| What would you like to add to your project? *(use arrow keys / space bar)* | prettier |
-| Which package manager do you want to install dependencies with? | npm |
+| Question                                                                   | Answer                                    |
+| -------------------------------------------------------------------------- | ----------------------------------------- |
+| Which template would you like?                                             | SvelteKit minimal                         |
+| Add type checking with TypeScript?                                         | Yes, using JavaScript with JSDoc comments |
+| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier                                  |
+| Which package manager do you want to install dependencies with?            | npm                                       |
 
 To run the **SvelteKit** project, run the following command:
 
@@ -313,7 +313,7 @@ Here is an example of `bind`.
 {/if}
 ```
 
-```svelte
+````svelte
 <!-- /+page.svelte -->
 
 <script>
@@ -360,7 +360,7 @@ Here is an example of `#each`.
 		{/each}
 	</tbody>
 </table>
-```
+````
 
 ---
 
@@ -423,13 +423,7 @@ Here is an example of `#each`.
 
 ---
 
-### CSS Modules
-
-**CSS Modules**...
-
----
-
-### Usage
+## Usage
 
 ```svelte
 <!-- /+page.svelte -->
@@ -604,7 +598,7 @@ Here is an example of **form events**.
 
 ```svelte
 <!-- /routes/about -->
- 
+
 <p>This is the About Page</p>
 <a href="/">Go to Home Page</a>
 ```
@@ -651,7 +645,7 @@ Here is an example of **form events**.
 
 ```svelte
 <!-- /routes/user/[role]/[slug] -->
- 
+
 <script>
 	import { page } from '$app/state';
 

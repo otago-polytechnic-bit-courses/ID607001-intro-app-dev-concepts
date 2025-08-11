@@ -388,13 +388,12 @@ export const actions = {
 
 ---
 
-### API Routes
+### Server-Side POST Request (Auth) - Form Actions
 
-Here is an example of a `GET` request.
-
-Here is an example of a `POST` request.
 
 ---
+
+
 
 ## Formative Assessment
 
