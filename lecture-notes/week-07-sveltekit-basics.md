@@ -76,7 +76,7 @@ week-07-sveltekit-basics
 ```
 
 - `lib` - Contains reusable components, assets and utilities.
-- `routes` - Contains the routes of the application. 
+- `routes` - Contains the routes of the application.
 - `app.html` - The main **HTML** file of the application.
 - `app.d.ts` - Contains the **TypeScript** definitions for the application.
 - `static` - Contains static assets that are served directly by the server.
@@ -89,7 +89,7 @@ week-07-sveltekit-basics
 
 ## Runes
 
-**Runes** are special constructs in **SvelteKit** that allow you to create reactive components. 
+**Runes** are special constructs in **SvelteKit** that allow you to create reactive components.
 
 ### Getting Started
 
