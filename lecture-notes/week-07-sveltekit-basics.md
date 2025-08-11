@@ -711,14 +711,14 @@ This is a simple hierarchy of **components** where the **parent component** (`Bu
 **Static routing** is the simplest form of routing. You can create static routes by creating files in the `src/routes` directory. The file name will be used as the route path.
 
 ```svelte
-<!-- /routes/about -->
+<!-- /src/routes/about -->
 
 <p>This is the About Page</p>
 <a href="/">Go to Home Page</a>
 ```
 
 ```svelte
-<!-- /routes/contact -->
+<!-- /src/routes/contact -->
 
 <p>This is the Contact Page</p>
 <a href="/">Go to Home Page</a>
@@ -735,7 +735,7 @@ Navigate to `http://localhost:5173/about` to see the **About** page and `http://
 Here is an example:
 
 ```svelte
-<!-- /routes/user/[id] -->
+<!-- /src/routes/user/[id] -->
 
 <script>
 	import { page } from '$app/state';
@@ -768,7 +768,7 @@ Navigate to `http://localhost:5173/user/1` to see the profile of the user with I
 Here is an another example:
 
 ```svelte
-<!-- /routes/user/[role]/[slug] -->
+<!-- /src/routes/user/[role]/[slug] -->
 
 <script>
 	import { page } from '$app/state';
