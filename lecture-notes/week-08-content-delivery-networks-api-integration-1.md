@@ -443,8 +443,9 @@ export const actions = {
 // Omitted for brevity
 
 export const actions = {
-	// Omitted for brevity
-
+	create: async ({ request }) => {
+		// Omitted for brevity
+	},
 	delete: async ({ request }) => {
 		const formData = await request.formData();
 		const id = formData.get('id');
