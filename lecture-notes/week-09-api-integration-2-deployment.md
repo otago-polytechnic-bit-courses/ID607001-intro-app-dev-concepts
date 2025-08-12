@@ -57,9 +57,13 @@ week-09-api-integration-2-deployment
 
 ## API Integration 2
 
+In this section, we will cover how to make API requests for **authentication** and **role-based access control** in **SvelteKit**. 
+
 ---
 
 ### Server-Side POST Request (Register) - Form Actions
+
+The example below is similar to previous examples.
 
 ```js
 // /src/routes/register/+page.server.js
@@ -119,7 +123,7 @@ export const actions = {
 };
 ```
 
-Then in the `src/routes/auth/register/+page.svelte` file, you can create a form for a user to register:
+Again, example below is similar to previous examples.
 
 ```svelte
 <!-- /src/routes/auth/register/+page.svelte -->
@@ -188,6 +192,14 @@ Then in the `src/routes/auth/register/+page.svelte` file, you can create a form 
 ---
 
 ### Server-Side POST Request (Login) - Form Actions
+
+The example below is similar to previous examples, but with some differences.
+
+What are those differences?
+
+- `login: async ({ ..., cookies }) => { ... }`: Unlike the `register` **form action**, the `login` **form action** receives a `cookies` parameter. It is used to set a **cookie** for the **authentication token**. 
+- `cookies.set("token", data.token, { ... })`: Sets a **cookie** named `token` with the value of the **authentication token** received from the API. The cookie is set to be `httpOnly`, `secure`, and `sameSite: "strict"`, which are important for security.
+- `redirect(303, "/dashboard")`: After a successful login, the user is redirected to the `/dashboard` route.
 
 ```js
 // /src/routes/login/+page.server.js

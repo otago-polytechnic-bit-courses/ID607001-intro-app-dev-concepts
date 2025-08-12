@@ -290,7 +290,7 @@ In this section, we will cover how to make API requests in **SvelteKit**. We wil
 
 Here is an example of how to make a **client-side** **GET** request using the `onMount` function:
 
-```js
+````js
 
 ```svelte
 <!-- /src/routes/client-side/simple-api/+page.svelte -->
@@ -323,7 +323,7 @@ Here is an example of how to make a **client-side** **GET** request using the `o
 {:else}
 	<p>No users found</p>
 {/if}
-```
+````
 
 What is the difference between `onMount` and `$effect`? The `onMount` function runs only once when the component is first rendered, while `$effect` runs whenever a reactive variables changes.
 
@@ -452,13 +452,15 @@ What are the key parts of the code above?
 - `create: async ({ request }) => { ... }`: An action that handles the form submission for creating a new institution.
 - `const formData = await request.formData();`: Retrieves the form data submitted by the user.
 - `const institution = { ... };`: Creates an object using the form data.
-- `const res = await fetch(..., { ... });`: Sends a **POST** request to `/api/institutions`. 
+- `const res = await fetch(..., { ... });`: Sends a **POST** request to `/api/institutions`.
 - `if (!res.ok) { return fail(409, { ... }); }`: Checks if the response is not OK and returns a failure response.
 - `return { success: true, ... };`: Returns a success response.
 
 ---
 
 ### Server-Side DELETE Request - Form Actions
+
+Here is an example of how to make a **server-side** **DELETE** request using **form actions**:
 
 ```js
 // /src/routes/server-side/express-api/+page.server.js
@@ -491,6 +493,10 @@ export const actions = {
 ---
 
 ### Usage
+
+Here is how to use the **server-side** **POST** and **DELETE** actions:
+
+```js
 
 ```svelte
 <!-- /src/routes/server-side/express-api/+page.svelte -->
