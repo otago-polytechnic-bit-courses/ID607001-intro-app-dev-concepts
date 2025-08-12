@@ -305,6 +305,14 @@ Then in the `src/routes/auth/login/+page.svelte` file, you can create a form for
 
 ### Server-Side POST Request (Dashboard) - Form Actions
 
+Again, the example below is similar to previous examples, but with some differences.
+
+What are those differences?
+
+- `const token = cookies.get("token");`: Retrieves the **authentication token** from the cookies. 
+- `Authorization: \`Bearer ${token}\``: Sets the **Authorization** header with the **authentication token**.
+
+
 ```js
 // /src/routes/dashboard/+page.server.js
 
