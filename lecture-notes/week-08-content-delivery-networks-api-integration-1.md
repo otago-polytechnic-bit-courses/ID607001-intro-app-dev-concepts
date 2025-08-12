@@ -451,10 +451,10 @@ What are the key parts of the code above?
 
 - `create: async ({ request }) => { ... }`: An action that handles the form submission for creating a new institution.
 - `const formData = await request.formData();`: Retrieves the form data submitted by the user.
-- `const institution = { name, region, country };`: Creates an object using the form data.
-- `const res = await fetch(`${API_BASE_URL}/api/institutions`, { ... });`: Sends a **POST** request to `/api/institutions`. 
-- `if (!res.ok) { return fail(409, { errors: data.errors, name, region, country }); }`: Checks if the response is not OK and returns a failure response.
-- `return { success: true, message: data.message };`: Returns a success response.
+- `const institution = { ... };`: Creates an object using the form data.
+- `const res = await fetch(..., { ... });`: Sends a **POST** request to `/api/institutions`. 
+- `if (!res.ok) { return fail(409, { ... }); }`: Checks if the response is not OK and returns a failure response.
+- `return { success: true, ... };`: Returns a success response.
 
 ---
 
