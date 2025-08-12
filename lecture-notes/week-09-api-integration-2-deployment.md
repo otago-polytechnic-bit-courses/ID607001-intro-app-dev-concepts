@@ -310,7 +310,7 @@ Again, the example below is similar to previous examples, but with some differen
 What are those differences?
 
 - `const token = cookies.get("token");`: Retrieves the **authentication token** from the cookies. 
-- `Authorization: \`Bearer ${token}\``: Sets the **Authorization** header with the **authentication token**.
+- `Authorization: ...`: Sets the **Authorization** header with the **authentication token**.
 
 
 ```js
