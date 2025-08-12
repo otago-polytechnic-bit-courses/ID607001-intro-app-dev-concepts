@@ -28,7 +28,7 @@ The full code example for this week is available here - <https://github.com/otag
 
 ### Getting Started
 
-To create a new **SvelteKit** project, run the following command:
+To create a new **SvelteKit** application, run the following command:
 
 ```bash
 npx sv create week-07-sveltekit-basics
@@ -43,20 +43,20 @@ You will be prompted with the following questions:
 | What would you like to add to your project? _(use arrow keys / space bar)_ | prettier                                  |
 | Which package manager do you want to install dependencies with?            | npm                                       |
 
-To run the **SvelteKit** project, run the following command:
+To run the **SvelteKit** application, run the following command:
 
 ```bash
 cd week-07-sveltekit-basics
 npm run dev
 ```
 
-You can then open your browser and navigate to <http://localhost:5173> to see the **SvelteKit** project running.
+You can then open your browser and navigate to <http://localhost:5173> to see the **SvelteKit** application running.
 
 ---
 
 ## Directory and File Structure
 
-The directory and file structure of a **SvelteKit** project is as follows:
+The directory and file structure of a **SvelteKit** application is as follows:
 
 ```bash
 week-07-sveltekit-basics

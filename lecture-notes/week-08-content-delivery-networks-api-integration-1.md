@@ -10,7 +10,7 @@ Link to the previous class: [Week 07](https://github.com/otago-polytechnic-bit-c
 
 Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-formative-assessment** from **week-07-formative-assessment**.
 
-Create a new **SvelteKit** project called `week-08-content-delivery-networks-api-integration-1`.
+Create a new **SvelteKit** application called `week-08-content-delivery-networks-api-integration-1`.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -276,7 +276,7 @@ In the `/src/routes/cdns/google-fonts/+page.svelte` file, you can use **Google F
 
 Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts** applied.
 
-> **Note:** The `:global(body)` selector is only applied to the `/src/routes/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** project.
+> **Note:** The `:global(body)` selector is only applied to the `/src/routes/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** application.
 
 ---
 
