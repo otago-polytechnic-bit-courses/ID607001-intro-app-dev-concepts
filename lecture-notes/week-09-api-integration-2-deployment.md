@@ -309,7 +309,7 @@ Again, the example below is similar to previous examples, but with some differen
 
 What are those differences?
 
-- `const token = cookies.get("token");`: Retrieves the **authentication token** from the cookies. 
+- `const token = cookies.get("token")`: Retrieves the **authentication token** from the cookies. 
 - `Authorization: ...`: Sets the **Authorization** header with the **authentication token**.
 
 
