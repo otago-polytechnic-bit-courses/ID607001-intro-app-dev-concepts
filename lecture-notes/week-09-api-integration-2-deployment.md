@@ -119,7 +119,7 @@ export const actions = {
 };
 ```
 
-Then in the `src/routes/auth/register/+page.svelte` file, you can create a form for user registration:
+Then in the `src/routes/auth/register/+page.svelte` file, you can create a form for a user to register:
 
 ```svelte
 <!-- /src/routes/auth/register/+page.svelte -->
@@ -247,7 +247,7 @@ export const actions = {
 };
 ```
 
-Then in the `src/routes/auth/login/+page.svelte` file, you can create a form for user login:
+Then in the `src/routes/auth/login/+page.svelte` file, you can create a form for a user to log in:
 
 ```svelte
 <!-- /src/routes/auth/login/+page.svelte -->
@@ -286,6 +286,176 @@ Then in the `src/routes/auth/login/+page.svelte` file, you can create a form for
 
 {#if form?.success === false}
 	<p>{form.error}</p>
+{/if}
+```
+
+---
+
+### Server-Side POST Request (Dashboard) - Form Actions
+
+```js
+// /src/routes/dashboard/+page.server.js
+
+import { env } from "$env/dynamic/private";
+import { fail } from "@sveltejs/kit";
+
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
+
+export const load = async ({ fetch }) => {
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/institutions`);
+    const institutions = await res.json();
+
+    return {
+      institutions,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      institutions: [],
+      error: err.message,
+    };
+  }
+};
+
+export const actions = {
+  create: async ({ request, cookies }) => {
+    const token = cookies.get("token");
+
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const region = formData.get("region");
+    const country = formData.get("country");
+    const institution = { name, region, country };
+
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(institution),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        return fail(409, {
+          error: data.message,
+          errors: data.errors,
+          name,
+          region,
+          country,
+        });
+      }
+
+      return { success: true, message: data.message };
+    } catch (err) {
+      return fail(500, {
+        success: false,
+        error: err.message,
+        name,
+        region,
+        country,
+      });
+    }
+  },
+};
+```
+
+Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for creating an institution and display the list of institutions:
+
+```svelte
+<!-- /src/routes/dashboard/+page.svelte -->
+
+<script>
+	let { data, form } = $props();
+	let institutions = data.institutions.data;
+	let message = data.institutions.message;
+	let errors = form?.errors;
+	let error = data.error;
+	let tokenError = form?.error;
+</script>
+
+<form method="POST" action="?/create">
+	<label for="name">Name:</label>
+	<input id="name" name="name" type="text" value={form?.name ?? ''} placeholder="Enter name" />
+
+	<label for="region">Region:</label>
+	<input
+		id="region"
+		name="region"
+		type="text"
+		value={form?.region ?? ''}
+		placeholder="Enter region"
+	/>
+
+	<label for="country">Country:</label>
+	<input
+		id="country"
+		name="country"
+		type="text"
+		value={form?.country ?? ''}
+		placeholder="Enter country"
+	/>
+
+	<button type="submit">Submit</button>
+</form>
+
+{#if form?.success}
+	<p>{form.message}</p>
+{/if}
+
+{#if form?.success === false}
+	<p>{form.error}</p>
+{/if}
+
+{#if errors && errors.length > 0}
+	<ul>
+		{#each errors as error}
+			<li>{error.message}</li>
+		{/each}
+	</ul>
+{/if}
+
+{#if error}
+	<p>{error}</p>
+{/if}
+
+{#if tokenError}
+	<p>{tokenError}</p>
+{/if}
+
+{#if institutions && institutions.length > 0}
+	<h1>Institutions</h1>
+	<table>
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Region</th>
+				<th>Country</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{#each institutions as institution}
+				<tr>
+					<td>{institution.name}</td>
+					<td>{institution.region}</td>
+					<td>{institution.country}</td>
+					<td>
+						<form method="POST" action="?/delete">
+							<input type="hidden" name="id" value={institution.id} />
+							<button type="submit">Delete</button>
+						</form>
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+{:else if message}
+	<p>{message}</p>
 {/if}
 ```
 

@@ -110,7 +110,7 @@ Here is how to use **Bootstrap** in a **SvelteKit** application:
 </html>
 ```
 
-In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components. 
+In the `/src/routes/cdns/bootstrap/+page.svelte` file, you can use **Bootstrap** classes to style your components.
 
 ```svelte
 <!-- /src/routes/cdns/bootstrap/+page.svelte -->
@@ -282,9 +282,15 @@ Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts*
 
 ## API Integration 1
 
+In this section, we will cover how to make API requests in **SvelteKit**. We will explore both **client-side** and **server-side** API requests, including **GET**, **POST** and **DELETE** requests.
+
 ---
 
 ### Client-Side GET Request
+
+Here is an example of how to make a **client-side** **GET** request using the `onMount` function:
+
+```js
 
 ```svelte
 <!-- /src/routes/client-side/simple-api/+page.svelte -->
@@ -319,9 +325,13 @@ Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts*
 {/if}
 ```
 
+What is the difference between `onMount` and `$effect`? The `onMount` function runs only once when the component is first rendered, while `$effect` runs whenever a reactive variables changes.
+
 ---
 
 ### Server-Side GET Request - Load Function
+
+Here is an example of how to make a **server-side** **GET** request using the `load` function:
 
 ```js
 // /src/routes/server-side/simple-api/+page.server.js
@@ -343,6 +353,8 @@ export const load = async ({ fetch }) => {
   }
 };
 ```
+
+You can access the data returned by the `load` function using the `$props` function.
 
 ```svelte
 <!-- /src/routes/server-side/simple-api/+page.svelte -->
@@ -371,67 +383,78 @@ export const load = async ({ fetch }) => {
 
 ### Server-Side POST Request - Form Actions
 
+Here is an example of how to make a **server-side** **POST** request using **form actions**:
+
 ```js
 // /src/routes/server-side/express-api/+page.server.js
 
-import { env } from '$env/dynamic/private';
-import { fail } from '@sveltejs/kit';
+import { env } from "$env/dynamic/private";
+import { fail } from "@sveltejs/kit";
 
-const API_BASE_URL = env.API_BASE_URL || 'http://localhost:3000';
+const API_BASE_URL = env.API_BASE_URL || "http://localhost:3000";
 
 export const load = async ({ fetch }) => {
-	try {
-		const res = await fetch(`${API_BASE_URL}/api/institutions`);
-		const institutions = await res.json();
+  try {
+    const res = await fetch(`${API_BASE_URL}/api/institutions`);
+    const institutions = await res.json();
 
-		return {
-			institutions,
-			error: null
-		};
-	} catch (err) {
-		return {
-			institutions: [],
-			error: err.message
-		};
-	}
+    return {
+      institutions,
+      error: null,
+    };
+  } catch (err) {
+    return {
+      institutions: [],
+      error: err.message,
+    };
+  }
 };
 
 export const actions = {
-	create: async ({ request }) => {
-		const formData = await request.formData();
-		const name = formData.get('name');
-		const region = formData.get('region');
-		const country = formData.get('country');
-		const institution = { name, region, country };
+  create: async ({ request }) => {
+    const formData = await request.formData();
+    const name = formData.get("name");
+    const region = formData.get("region");
+    const country = formData.get("country");
+    const institution = { name, region, country };
 
-		try {
-			const res = await fetch(`${API_BASE_URL}/api/institutions`, {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify(institution)
-			});
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(institution),
+      });
 
-			const data = await res.json();
+      const data = await res.json();
 
-			if (!res.ok) {
-				return fail(409, { errors: data.errors, name, region, country });
-			}
+      if (!res.ok) {
+        return fail(409, { errors: data.errors, name, region, country });
+      }
 
-			return { success: true, message: data.message };
-		} catch (err) {
-			return fail(500, {
-				success: false,
-				error: err.message,
-				name,
-				region,
-				country
-			});
-		}
-	}
+      return { success: true, message: data.message };
+    } catch (err) {
+      return fail(500, {
+        success: false,
+        error: err.message,
+        name,
+        region,
+        country,
+      });
+    }
+  },
 };
 ```
+
+What are the key parts of the code above?
+
+- `create: async ({ request }) => { ... }`: An action that handles the form submission for creating a new institution.
+- `const formData = await request.formData();`: Retrieves the form data submitted by the user.
+- `const institution = { name, region, country };`: Creates an object using the form data.
+- `const res = await fetch(`${API_BASE_URL}/api/institutions`, { ... });`: Sends a **POST** request to `/api/institutions`. 
+- `if (!res.ok) { return fail(409, { errors: data.errors, name, region, country }); }`: Checks if the response is not OK and returns a failure response.
+- `return { success: true, message: data.message };`: Returns a success response.
 
 ---
 
@@ -443,25 +466,25 @@ export const actions = {
 // Omitted for brevity
 
 export const actions = {
-	create: async ({ request }) => {
-		// Omitted for brevity
-	},
-	delete: async ({ request }) => {
-		const formData = await request.formData();
-		const id = formData.get('id');
-		
-		try {
-			const res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
-				method: 'DELETE'
-			});
+  create: async ({ request }) => {
+    // Omitted for brevity
+  },
+  delete: async ({ request }) => {
+    const formData = await request.formData();
+    const id = formData.get("id");
 
-			const data = await res.json();
+    try {
+      const res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
+        method: "DELETE",
+      });
 
-			return { success: true, message: data.message };
-		} catch (err) {
-			return { success: false, error: err.message };
-		}
-	}
+      const data = await res.json();
+
+      return { success: true, message: data.message };
+    } catch (err) {
+      return { success: false, error: err.message };
+    }
+  },
 };
 ```
 
