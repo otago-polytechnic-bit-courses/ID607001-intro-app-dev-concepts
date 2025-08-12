@@ -57,7 +57,7 @@ week-09-api-integration-2-deployment
 
 ## API Integration 2
 
-In this section, we will cover how to make API requests for **authentication** and **role-based access control** in **SvelteKit**. 
+In this section, we will cover how to make API requests for **authentication** and **role-based access control** in **SvelteKit**.
 
 ---
 
@@ -197,7 +197,7 @@ The example below is similar to previous examples, but with some differences.
 
 What are those differences?
 
-- `login: async ({ ..., cookies }) => { ... }`: Unlike the `register` **form action**, the `login` **form action** receives a `cookies` parameter. It is used to set a **cookie** for the **authentication token**. 
+- `login: async ({ ..., cookies }) => { ... }`: Unlike the `register` **form action**, the `login` **form action** receives a `cookies` parameter. It is used to set a **cookie** for the **authentication token**.
 - `cookies.set("token", data.token, { ... })`: Sets a **cookie** named `token` with the value of the **authentication token** received from the API. The cookie is set to be `httpOnly`, `secure`, and `sameSite: "strict"`, which are important for security.
 - `redirect(303, "/dashboard")`: After a successful login, the user is redirected to the `/dashboard` route.
 
@@ -309,9 +309,8 @@ Again, the example below is similar to previous examples, but with some differen
 
 What are those differences?
 
-- `const token = cookies.get("token")`: Retrieves the **authentication token** from the cookies. 
+- `const token = cookies.get("token")`: Retrieves the **authentication token** from the cookies.
 - `Authorization: ...`: Sets the **Authorization** header with the **authentication token**.
-
 
 ```js
 // /src/routes/dashboard/+page.server.js
@@ -482,6 +481,39 @@ Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for 
 ---
 
 ## Deployment
+
+In this section, we will cover how to deploy your **SvelteKit** application.
+
+### Vercel
+
+**Vercel** is a platform for deploying web applications. It provides a simple way to deploy your **SvelteKit** application with minimal configuration.
+To deploy your **SvelteKit** application to **Vercel**, follow these steps:
+
+1. Go to [Vercel](https://vercel.com) and create an account if you don't have one.
+
+2. Open your terminal and run the following command to install the **Vercel CLI** globally:
+
+```bash
+npm install -g vercel
+```
+
+3. Run the following command in your terminal to log in to your **Vercel** account:
+
+```bash
+npx vercel login
+```
+
+4.  Navigate to your **SvelteKit** project directory in your terminal and run the following command:
+
+```bash
+vercel
+```
+
+Follow the prompts to deploy your application. You can choose to link your project to a **Vercel** project or create a new one.
+
+5. If your application uses environment variables like `API_BASE_URL`, you can set them in the **Vercel Dashboard** under the **Settings** tab of your project.
+
+6. After the deployment is complete, you will receive a **URL** where your application is hosted. You can visit this **URL** to see your deployed **SvelteKit** application.
 
 ---
 
