@@ -383,7 +383,7 @@ export const actions = {
 };
 ```
 
-Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for creating an institution and display the list of institutions:
+Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for creating an institution and display a list of institutions:
 
 ```svelte
 <!-- /src/routes/dashboard/+page.svelte -->
