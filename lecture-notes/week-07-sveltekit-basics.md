@@ -65,9 +65,9 @@ week-07-sveltekit-basics
 │   ├── app.html
 │   ├── lib
 │   │   ├── assets/
-│   ├── routes
-│   │   ├── +layout.svelte
-│   │   ├── +page.svelte
+│   └── routes
+│       ├── +layout.svelte
+│       └── +page.svelte
 ├── static/
 ├── jsconfig.json
 ├── package.json

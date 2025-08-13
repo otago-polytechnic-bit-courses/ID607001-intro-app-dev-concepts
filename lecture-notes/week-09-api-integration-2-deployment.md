@@ -32,20 +32,20 @@ week-09-api-integration-2-deployment
 │   ├── app.d.ts
 │   ├── app.html
 │   ├── lib
-│   │   ├── assets/
-│   ├── routes
-│   │   ├── +layout.svelte
-│   │   ├── +page.svelte
-│   │   ├── auth/
-│   │   │   ├── login/
-│   │   │   │   └── +page.server.js
-│   │   │   │   └── +page.svelte
-│   │   │   └── register/
-│   │   │       ├── +page.server.js
-│   │   │       └── +page.svelte
-│   │   ├── dashboard/
-│   │   │   ├── +page.server.js
-│   │   │   └── +page.svelte
+│   │   └── assets/
+│   └── routes
+│       ├── +layout.svelte
+│       ├── +page.svelte
+│       ├── auth/
+│       │   ├── login/
+│       │   │   ├── +page.server.js
+│       │   │   └── +page.svelte
+│       │   └── register/
+│       │       ├── +page.server.js
+│       │       └── +page.svelte
+│       └── dashboard/
+│           ├── +page.server.js
+│           └── +page.svelte
 ├── static/
 ├── jsconfig.json
 ├── package.json

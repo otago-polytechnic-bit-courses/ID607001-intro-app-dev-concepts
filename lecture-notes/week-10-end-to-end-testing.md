@@ -22,6 +22,36 @@ The full code example for this week is available here - <https://github.com/otag
 
 ---
 
+## Creating Components and Routes
+
+Create a necessary directory and file structure for the components and routes. The structure should look like this:
+
+```bash
+week-10-end-to-end-testing
+├── src
+│   ├── app.d.ts
+│   ├── app.html
+│   ├── lib
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── events/
+│   │   │   │   ├── ClickEvents.svelte
+│   │   │   │   └── FormEvents.svelte
+│   │   │   └── MarkConverter.svelte
+│   └── routes
+│       ├── +layout.svelte
+│       └── +page.svelte
+├── static/
+├── jsconfig.json
+├── package.json
+├── svelte.config.js
+└── vite.config.js
+```
+
+Copy and paste the **components** from `week-07-sveltekit-basics` into the `lib/components` directory. 
+
+---
+
 ---
 
 ## End-To-End Testing (E2E)
