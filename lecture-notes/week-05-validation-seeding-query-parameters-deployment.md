@@ -235,7 +235,7 @@ const seedInstitutions = async () => {
     );
 
     await prisma.institution.createMany({
-      data: data,
+      data,
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
@@ -318,7 +318,7 @@ const seedInstitutionsFromGitHub = async () => {
     );
 
     await prisma.institution.createMany({
-      data: data,
+      data,
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
