@@ -114,6 +114,7 @@ const validatePutInstitution = (req, res, next) => {
     }));
     return res.status(409).json({ errors: formattedErrors });
   }
+
   next();
 };
 
