@@ -522,7 +522,7 @@ Follow the prompts to deploy your application. You can choose to link your proje
 
 6. After the deployment is complete, you will receive a **URL** where your application is hosted. You can visit this **URL** to see your deployed **SvelteKit** application.
 
-Here is a **URL** example of a deployed **SvelteKit** application on **Vercel**: [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
+Here is a **URL** example of a deployed **SvelteKit** application on **Vercel** - [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
 
 ---
 
