@@ -495,7 +495,7 @@ const getInstitutions = async (req, res) => {
 
 ---
 
-## Postman Example
+### Postman Example
 
 Here is an example of filtering an `institution` by `name`.
 
