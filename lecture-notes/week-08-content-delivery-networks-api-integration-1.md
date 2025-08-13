@@ -10,7 +10,7 @@ Link to the previous class: [Week 07](https://github.com/otago-polytechnic-bit-c
 
 Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-formative-assessment** from **week-07-formative-assessment**.
 
-Create a new **SvelteKit** project called `week-08-content-delivery-networks-api-integration-1`.
+Create a new **SvelteKit** application called `week-08-content-delivery-networks-api-integration-1`.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -276,7 +276,7 @@ In the `/src/routes/cdns/google-fonts/+page.svelte` file, you can use **Google F
 
 Navigate to `http://localhost:5173/cdns/google-fonts` to see the **Google Fonts** applied.
 
-> **Note:** The `:global(body)` selector is only applied to the `/src/routes/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** project.
+> **Note:** The `:global(body)` selector is only applied to the `/src/routes/cdns/google-fonts/+page.svelte` file. If you want to apply the font globally, you can add it to the `app.html` file or the global styles in your **SvelteKit** application.
 
 ---
 
@@ -290,7 +290,7 @@ In this section, we will cover how to make API requests in **SvelteKit**. We wil
 
 Here is an example of how to make a **client-side** **GET** request using the `onMount` function:
 
-```js
+````js
 
 ```svelte
 <!-- /src/routes/client-side/simple-api/+page.svelte -->
@@ -323,7 +323,7 @@ Here is an example of how to make a **client-side** **GET** request using the `o
 {:else}
 	<p>No users found</p>
 {/if}
-```
+````
 
 What is the difference between `onMount` and `$effect`? The `onMount` function runs only once when the component is first rendered, while `$effect` runs whenever a reactive variables changes.
 
@@ -451,14 +451,16 @@ What are the key parts of the code above?
 
 - `create: async ({ request }) => { ... }`: An action that handles the form submission for creating a new institution.
 - `const formData = await request.formData();`: Retrieves the form data submitted by the user.
-- `const institution = { name, region, country };`: Creates an object using the form data.
-- `const res = await fetch(`${API_BASE_URL}/api/institutions`, { ... });`: Sends a **POST** request to `/api/institutions`. 
-- `if (!res.ok) { return fail(409, { errors: data.errors, name, region, country }); }`: Checks if the response is not OK and returns a failure response.
-- `return { success: true, message: data.message };`: Returns a success response.
+- `const institution = { ... };`: Creates an object using the form data.
+- `const res = await fetch(..., { ... });`: Sends a **POST** request to `/api/institutions`.
+- `if (!res.ok) { return fail(409, { ... }); }`: Checks if the response is not OK and returns a failure response.
+- `return { success: true, ... };`: Returns a success response.
 
 ---
 
 ### Server-Side DELETE Request - Form Actions
+
+Here is an example of how to make a **server-side** **DELETE** request using **form actions**:
 
 ```js
 // /src/routes/server-side/express-api/+page.server.js
@@ -491,6 +493,10 @@ export const actions = {
 ---
 
 ### Usage
+
+Here is how to use the **server-side** **POST** and **DELETE** actions:
+
+```js
 
 ```svelte
 <!-- /src/routes/server-side/express-api/+page.svelte -->

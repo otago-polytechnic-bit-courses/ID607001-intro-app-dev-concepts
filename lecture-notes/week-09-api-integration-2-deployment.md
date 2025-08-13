@@ -10,7 +10,7 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-formative-assessment** from **week-08-formative-assessment**.
 
-Create a new **SvelteKit** project called `week-09-api-integration-2-deployment`.
+Create a new **SvelteKit** application called `week-09-api-integration-2-deployment`.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -32,20 +32,20 @@ week-09-api-integration-2-deployment
 │   ├── app.d.ts
 │   ├── app.html
 │   ├── lib
-│   │   ├── assets/
-│   ├── routes
-│   │   ├── +layout.svelte
-│   │   ├── +page.svelte
-│   │   ├── auth/
-│   │   │   ├── login/
-│   │   │   │   └── +page.server.js
-│   │   │   │   └── +page.svelte
-│   │   │   └── register/
-│   │   │       ├── +page.server.js
-│   │   │       └── +page.svelte
-│   │   ├── dashboard/
-│   │   │   ├── +page.server.js
-│   │   │   └── +page.svelte
+│   │   └── assets/
+│   └── routes
+│       ├── +layout.svelte
+│       ├── +page.svelte
+│       ├── auth/
+│       │   ├── login/
+│       │   │   ├── +page.server.js
+│       │   │   └── +page.svelte
+│       │   └── register/
+│       │       ├── +page.server.js
+│       │       └── +page.svelte
+│       └── dashboard/
+│           ├── +page.server.js
+│           └── +page.svelte
 ├── static/
 ├── jsconfig.json
 ├── package.json
@@ -57,9 +57,13 @@ week-09-api-integration-2-deployment
 
 ## API Integration 2
 
+In this section, we will cover how to make API requests for **authentication** and **role-based access control** in **SvelteKit**.
+
 ---
 
 ### Server-Side POST Request (Register) - Form Actions
+
+The example below is similar to previous examples.
 
 ```js
 // /src/routes/register/+page.server.js
@@ -119,7 +123,7 @@ export const actions = {
 };
 ```
 
-Then in the `src/routes/auth/register/+page.svelte` file, you can create a form for a user to register:
+Again, example below is similar to previous examples.
 
 ```svelte
 <!-- /src/routes/auth/register/+page.svelte -->
@@ -188,6 +192,14 @@ Then in the `src/routes/auth/register/+page.svelte` file, you can create a form 
 ---
 
 ### Server-Side POST Request (Login) - Form Actions
+
+The example below is similar to previous examples, but with some differences.
+
+What are those differences?
+
+- `login: async ({ ..., cookies }) => { ... }`: Unlike the `register` **form action**, the `login` **form action** receives a `cookies` parameter. It is used to set a **cookie** for the **authentication token**.
+- `cookies.set("token", data.token, { ... })`: Sets a **cookie** named `token` with the value of the **authentication token** received from the API. The cookie is set to be `httpOnly`, `secure`, and `sameSite: "strict"`, which are important for security.
+- `redirect(303, "/dashboard")`: After a successful login, the user is redirected to the `/dashboard` route.
 
 ```js
 // /src/routes/login/+page.server.js
@@ -292,6 +304,13 @@ Then in the `src/routes/auth/login/+page.svelte` file, you can create a form for
 ---
 
 ### Server-Side POST Request (Dashboard) - Form Actions
+
+Again, the example below is similar to previous examples, but with some differences.
+
+What are those differences?
+
+- `const token = cookies.get("token")`: Retrieves the **authentication token** from the cookies.
+- `Authorization: ...`: Sets the **Authorization** header with the **authentication token**.
 
 ```js
 // /src/routes/dashboard/+page.server.js
@@ -462,6 +481,48 @@ Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for 
 ---
 
 ## Deployment
+
+In this section, we will cover how to deploy your **SvelteKit** application.
+
+---
+
+### Vercel
+
+**Vercel** is a platform for deploying web applications. It provides a simple way to deploy your **SvelteKit** application with minimal configuration.
+
+---
+
+### Getting Started
+
+To deploy your **SvelteKit** application to **Vercel**, follow these steps:
+
+1. Go to [Vercel](https://vercel.com) and create an account if you do not have one.
+
+2. Open your terminal and run the following command to install the **Vercel CLI** globally:
+
+```bash
+npm install -g vercel
+```
+
+3. Run the following command in your terminal to log in to your **Vercel** account:
+
+```bash
+npx vercel login
+```
+
+4.  Navigate to your **SvelteKit** application directory in your terminal and run the following command:
+
+```bash
+npx vercel
+```
+
+Follow the prompts to deploy your application. You can choose to link your project to a **Vercel** project or create a new one.
+
+5. If your application uses environment variables like `API_BASE_URL`, you can set them in the **Vercel Dashboard** under the **Settings** tab of your project.
+
+6. After the deployment is complete, you will receive a **URL** where your application is hosted. You can visit this **URL** to see your deployed **SvelteKit** application.
+
+Here is a **URL** example of a deployed **SvelteKit** application on **Vercel**: [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
 
 ---
 

@@ -10,7 +10,7 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-formative-assessment** from **week-09-formative-assessment**.
 
-Create a new **SvelteKit** project called `week-10-end-to-end-testing`.
+Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -19,6 +19,35 @@ Create a new **SvelteKit** project called `week-10-end-to-end-testing`.
 ## Full Code Example
 
 The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-10-end-to-end-testing>
+
+---
+
+## Creating Components and Routes
+
+Create a necessary directory and file structure for the components and routes. The structure should look like this:
+
+```bash
+week-10-end-to-end-testing
+├── src
+│   ├── app.d.ts
+│   ├── app.html
+│   ├── lib
+│   │   ├── assets/
+│   │   ├── components/
+│   │   │   ├── ClickEvents.svelte
+│   │   │   ├── FormEvents.svelte
+│   │   │   └── MarkConverter.svelte
+│   └── routes
+│       ├── +layout.svelte
+│       └── +page.svelte
+├── static/
+├── jsconfig.json
+├── package.json
+├── svelte.config.js
+└── vite.config.js
+```
+
+Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory. 
 
 ---
 
