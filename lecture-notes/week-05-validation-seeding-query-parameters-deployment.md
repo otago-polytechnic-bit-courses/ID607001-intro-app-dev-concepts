@@ -26,7 +26,7 @@ Validation is the process of ensuring that data is correct and meets certain cri
 
 ---
 
-## Setup
+### Setup
 
 To get started, open a terminal and run the following.
 
@@ -38,7 +38,7 @@ npm install joi
 
 ---
 
-## Validation Middleware
+### Validation Middleware
 
 In the `middleware` directory, create a new directory called `validation`. In the `validation` directory, create a new file called `institution.js`. In the `institution.js` file, add the following code.
 
@@ -122,7 +122,7 @@ export { validatePostInstitution, validatePutInstitution };
 
 ---
 
-## Institution Router
+### Institution Router
 
 In the `routes` directory, open the `institution.js` file. Update the file as follows.
 
