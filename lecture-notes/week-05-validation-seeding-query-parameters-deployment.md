@@ -8,7 +8,7 @@ Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**. Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-formative-assessment** from **week-04-formative-assessment**. Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -547,7 +547,7 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 2. Click the **New +** button, then click the **Web Service** link.
 
-3. Click the **Git Provider** option. Connect to your **s2-25-intro-app-dev-repo-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+3. Click the **Git Provider** option. Connect to your **id607001-s2-25-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-formative-assessment**.
 

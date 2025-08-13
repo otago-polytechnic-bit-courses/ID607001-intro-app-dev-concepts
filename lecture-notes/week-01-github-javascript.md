@@ -422,7 +422,7 @@ In this course, we will use the **object literal** syntax to create **objects**.
 
 ## Formative Assessment
 
-Copy the file `week-01-formative-assessment.js` into your **s2-25-intro-app-dev-repo** repository. Open your **s2-25-intro-app-dev-repo** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-formative-assessment.js` to run the file. You should see the following output.
+Copy the file `week-01-formative-assessment.js` into your **id607001-s2-25** repository. Open your **id607001-s2-25** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-formative-assessment.js` to run the file. You should see the following output.
 
 ```bash
 $ node week-01-formative-assessment.js

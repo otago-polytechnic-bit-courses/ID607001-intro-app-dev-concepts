@@ -8,7 +8,7 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **s2-25-intro-app-dev-repo-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-formative-assessment** from **week-08-formative-assessment**.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-formative-assessment** from **week-08-formative-assessment**.
 
 Create a new **SvelteKit** project called `week-09-api-integration-2-deployment`.
 
