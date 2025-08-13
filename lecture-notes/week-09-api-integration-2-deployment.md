@@ -198,7 +198,7 @@ The example below is similar to previous examples, but with some differences.
 What are those differences?
 
 - `login: async ({ ..., cookies }) => { ... }`: Unlike the `register` **form action**, the `login` **form action** receives a `cookies` parameter. It is used to set a **cookie** for the **authentication token**.
-- `cookies.set("token", data.token, { ... })`: Sets a **cookie** named `token` with the value of the **authentication token** received from the API. The cookie is set to be `httpOnly`, `secure`, and `sameSite: "strict"`, which are important for security.
+- `cookies.set("token", data.token, { ... })`: Sets a **cookie** named `token` with the value of the **authentication token** received from the API. The cookie is set to be `httpOnly`, `secure` and `sameSite: "strict"`, which are important for security.
 - `redirect(303, "/dashboard")`: After a successful login, the user is redirected to the `/dashboard` route.
 
 ```js
