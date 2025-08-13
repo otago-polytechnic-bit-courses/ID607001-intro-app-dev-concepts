@@ -34,9 +34,8 @@ week-10-end-to-end-testing
 │   ├── lib
 │   │   ├── assets/
 │   │   ├── components/
-│   │   │   ├── events/
-│   │   │   │   ├── ClickEvents.svelte
-│   │   │   │   └── FormEvents.svelte
+│   │   │   ├── ClickEvents.svelte
+│   │   │   ├── FormEvents.svelte
 │   │   │   └── MarkConverter.svelte
 │   └── routes
 │       ├── +layout.svelte
@@ -48,7 +47,7 @@ week-10-end-to-end-testing
 └── vite.config.js
 ```
 
-Copy and paste the **components** from `week-07-sveltekit-basics` into the `lib/components` directory. 
+Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory. 
 
 ---
 
