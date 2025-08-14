@@ -290,8 +290,6 @@ In this section, we will cover how to make API requests in **SvelteKit**. We wil
 
 Here is an example of how to make a **client-side** **GET** request using the `onMount` function:
 
-````js
-
 ```svelte
 <!-- /src/routes/client-side/simple-api/+page.svelte -->
 
