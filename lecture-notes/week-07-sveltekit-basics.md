@@ -147,7 +147,7 @@ week-07-sveltekit-basics
 The `$state` rune allows you to create a variable that automatically updates the UI when its value changes. In `StateCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /src/lib/components/runes/StateCounter -->
+<!-- /src/lib/components/runes/StateCounter.svelte -->
 
 <script>
 	let count = $state(0);
@@ -164,7 +164,7 @@ The `$state` rune allows you to create a variable that automatically updates the
 In `+page.svelte`, add the following code to use the `StateCounter` component:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	import StateCounter from '$lib/components/runes/StateCounter.svelte';
@@ -180,7 +180,7 @@ In `+page.svelte`, add the following code to use the `StateCounter` component:
 The `$effect` rune allows you to run a function whenever a reactive variable changes. In `EffectCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /src/lib/components/runes/EffectCounter -->
+<!-- /src/lib/components/runes/EffectCounter.svelte -->
 
 <script>
 	let count = $state(0);
@@ -193,8 +193,8 @@ The `$effect` rune allows you to run a function whenever a reactive variable cha
 		if (count === 10) {
 			message = 'Congratulations! You reached 10!';
 		} else {
-            message = '';
-        }
+			message = '';
+		}
 	});
 </script>
 
@@ -207,7 +207,7 @@ The `$effect` rune allows you to run a function whenever a reactive variable cha
 In `+page.svelte`, add the following code to use the `EffectCounter` component:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	import StateCounter from '$lib/components/runes/StateCounter.svelte';
@@ -225,10 +225,10 @@ In `+page.svelte`, add the following code to use the `EffectCounter` component:
 The `$props` rune allows you to pass properties to a component. In `PropsCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /src/lib/components/runes/PropsCounter -->
+<!-- /src/lib/components/runes/PropsCounter.svelte -->
 
 <script>
-	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
+	let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
 	let displayMessage = $state(message);
 
@@ -253,17 +253,19 @@ The `$props` rune allows you to pass properties to a component. In `PropsCounter
 In `+page.svelte`, add the following code to use the `PropsCounter` component:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	import StateCounter from '$lib/components/runes/StateCounter.svelte';
 	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
 	import PropsCounter from '$lib/components/runes/PropsCounter.svelte';
+
+	let propsCount = $state(5);
 </script>
 
 <StateCounter />
 <EffectCounter />
-<PropsCounter count={5} targetCount={15} step={2} />
+<PropsCounter bind:count={propsCount} targetCount={15} step={2} />
 ```
 
 ---
@@ -273,10 +275,10 @@ In `+page.svelte`, add the following code to use the `PropsCounter` component:
 The `$derived` rune allows you to create a variable that is derived from other reactive variables. In `DerivedCounter.svelte`, add the following code:
 
 ```svelte
-<!-- /src/lib/components/runes/DerivedCounter -->
+<!-- /src/lib/components/runes/DerivedCounter.svelte -->
 
 <script>
-	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
+	let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
 	let doubleCount = $derived(count * 2);
 
@@ -301,19 +303,22 @@ The `$derived` rune allows you to create a variable that is derived from other r
 In `+page.svelte`, add the following code to use the `DerivedCounter` component:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	import StateCounter from '$lib/components/runes/StateCounter.svelte';
 	import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
 	import PropsCounter from '$lib/components/runes/PropsCounter.svelte';
 	import DerivedCounter from '$lib/components/runes/DerivedCounter.svelte';
+
+	let propsCount = $state(5);
+	let derivedCount = $state(10);
 </script>
 
 <StateCounter />
 <EffectCounter />
-<PropsCounter count={5} targetCount={15} step={2} />
-<DerivedCounter count={10} targetCount={20} step={5} message="Keep clicking!" />
+<PropsCounter bind:count={propsCount} targetCount={15} step={2} />
+<DerivedCounter bind:count={derivedCount} targetCount={20} step={5} message="Keep clicking!" />
 ```
 
 ---
@@ -329,10 +334,10 @@ You can use template syntax to create dynamic content. It allows you to embed **
 Here is an example of `#if`, `:else if` and `:else`.
 
 ```svelte
-<!-- /src/lib/components/MarkConverter -->
+<!-- /src/lib/components/MarkConverter.svelte -->
 
 <script>
-    let mark = $state(75);
+	let mark = $state(75);
 </script>
 
 {#if mark >= 90}
@@ -360,7 +365,7 @@ Here is an example of `#if`, `:else if` and `:else`.
 {/if}
 ```
 
---- 
+---
 
 ### Binding
 
@@ -369,7 +374,7 @@ Here is an example of `#if`, `:else if` and `:else`.
 Here is an example of `bind`:
 
 ```svelte
-<!-- /src/lib/components/MarkConverter -->
+<!-- /src/lib/components/MarkConverter.svelte -->
 
 <script>
 	let mark = $state(75);
@@ -405,7 +410,7 @@ Here is an example of `bind`:
 Then in `+page.svelte`, you can use the `MarkConverter` component as follows:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	// Imports omitted for brevity
@@ -422,12 +427,12 @@ Then in `+page.svelte`, you can use the `MarkConverter` component as follows:
 
 ### Each
 
-The `#each` block is used to iterate over an array and render a block of **HTML** for each item in the array. 
+The `#each` block is used to iterate over an array and render a block of **HTML** for each item in the array.
 
 Here is an example of `#each`.
 
 ```svelte
-<!-- /src/lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable.svelte -->
 
 <script>
 	let learners = $state([
@@ -443,7 +448,7 @@ Here is an example of `#each`.
 	<thead>
 		<tr>
 			<th>First Name</th>
-            <th>Last Name</th>
+			<th>Last Name</th>
 			<th>Mark</th>
 		</tr>
 	</thead>
@@ -472,7 +477,7 @@ There are many ways to style a component. You can use **inline styles**, **scope
 **Scoped styles** are styles that are applied only to the component they are defined in. You can define **scoped styles** by adding a `<style>` tag at the end of the component file.
 
 ```svelte
-<!-- /src/lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable.svelte -->
 
 <script>
 	let learners = $state([
@@ -525,7 +530,7 @@ There are many ways to style a component. You can use **inline styles**, **scope
 Then in `+page.svelte`, you can use the `GradeTable` component as follows:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	// Imports omitted for brevity
@@ -618,11 +623,10 @@ Here is an example of **form events**:
 <p>{message}</p>
 ```
 
-
 Then in `+page.svelte`, you can use the `ClickEvents` and `FormEvents` components as follows:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	// Imports omitted for brevity
@@ -683,7 +687,7 @@ In the **parent component**, you can use the `ButtonChild` component as follows:
 Then in `+page.svelte`, you can use the `ButtonParent` component as follows:
 
 ```svelte
-<!-- /+page.svelte -->
+<!-- /src/routes/+page.svelte -->
 
 <script>
 	// Imports omitted for brevity
@@ -711,14 +715,14 @@ This is a simple hierarchy of **components** where the **parent component** (`Bu
 **Static routing** is the simplest form of routing. You can create static routes by creating files in the `src/routes` directory. The file name will be used as the route path.
 
 ```svelte
-<!-- /src/routes/about -->
+<!-- /src/routes/about/+page.svelte -->
 
 <p>This is the About Page</p>
 <a href="/">Go to Home Page</a>
 ```
 
 ```svelte
-<!-- /src/routes/contact -->
+<!-- /src/routes/contact/+page.svelte -->
 
 <p>This is the Contact Page</p>
 <a href="/">Go to Home Page</a>
@@ -735,20 +739,20 @@ Navigate to `http://localhost:5173/about` to see the **About** page and `http://
 Here is an example:
 
 ```svelte
-<!-- /src/routes/user/[id] -->
+<!-- /src/routes/user/[id]/+page.svelte -->
 
 <script>
 	import { page } from '$app/state';
 
 	const userId = page.params.id;
 
-	const users = $state([
+	const users = [
 		{ id: '1', firstName: 'Alice', lastName: 'Smith', age: 25 },
 		{ id: '2', firstName: 'Bob', lastName: 'Johnson', age: 30 },
 		{ id: '3', firstName: 'Charlie', lastName: 'Williams', age: 28 },
 		{ id: '4', firstName: 'David', lastName: 'Jones', age: 22 },
 		{ id: '5', firstName: 'Eve', lastName: 'Brown', age: 27 }
-	]);
+	];
 
 	const user = $derived(users.find((user) => user.id === userId));
 </script>
@@ -765,10 +769,10 @@ Here is an example:
 
 Navigate to `http://localhost:5173/user/1` to see the profile of the user with ID 1, `http://localhost:5173/user/2` for user ID 2 and so on.
 
-Here is an another example:
+Here is another example:
 
 ```svelte
-<!-- /src/routes/user/[role]/[slug] -->
+<!-- /src/routes/user/[role]/[slug]/+page.svelte -->
 
 <script>
 	import { page } from '$app/state';
@@ -776,7 +780,7 @@ Here is an another example:
 	const userRole = page.params.role;
 	const slug = page.params.slug;
 
-	const users = $state([
+	const users = [
 		{
 			id: '1',
 			firstName: 'Alice',
@@ -843,7 +847,7 @@ Here is an another example:
 			emailAddress: 'frank.miller@company.com',
 			permissions: ['user_management', 'system_config', 'reports', 'billing']
 		}
-	]);
+	];
 
 	const user = $derived(users.find((user) => user.role === userRole && user.slug === slug));
 </script>
@@ -887,3 +891,5 @@ Implement the code examples above.
 ---
 
 ## Next Class
+
+Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-08-next-topic.md)
