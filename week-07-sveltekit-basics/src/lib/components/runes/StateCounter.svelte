@@ -1,4 +1,4 @@
-<!-- /src/lib/components/runes/StateCounter -->
+<!-- /src/lib/components/runes/StateCounter.svelte -->
 
 <script>
 	let count = $state(0);

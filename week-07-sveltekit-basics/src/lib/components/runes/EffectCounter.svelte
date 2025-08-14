@@ -1,4 +1,4 @@
-<!-- /src/lib/components/runes/EffectCounter -->
+<!-- /src/lib/components/runes/EffectCounter.svelte -->
 
 <script>
 	let count = $state(0);

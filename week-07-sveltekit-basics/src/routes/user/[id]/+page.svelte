@@ -1,4 +1,4 @@
-<!-- /src/routes/user/[id] -->
+<!-- /src/routes/user/[id]/+page.svelte -->
 
 <script>
 	import { page } from '$app/state';

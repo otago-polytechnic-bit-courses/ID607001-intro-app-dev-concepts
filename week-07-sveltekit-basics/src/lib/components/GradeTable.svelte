@@ -1,4 +1,4 @@
-<!-- /src/lib/components/GradeTable -->
+<!-- /src/lib/components/GradeTable.svelte -->
  
 <script>
 	let learners = $state([

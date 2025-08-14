@@ -1,3 +1,5 @@
+<!-- /src/lib/components/MarkConverter.svelte -->
+
 <script>
 	let mark = $state(75);
 </script>

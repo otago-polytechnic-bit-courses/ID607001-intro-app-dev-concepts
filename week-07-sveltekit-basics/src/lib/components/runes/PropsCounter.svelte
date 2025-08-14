@@ -1,7 +1,7 @@
-<!-- /src/lib/components/runes/PropsCounter -->
+<!-- /src/lib/components/runes/PropsCounter.svelte -->
 
 <script>
-	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
+	let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
 	let displayMessage = $state(message);
 

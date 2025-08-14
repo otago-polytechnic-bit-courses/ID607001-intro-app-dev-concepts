@@ -1,7 +1,7 @@
-<!-- /src/lib/components/Counter -->
+<!-- /src/lib/components/Counter.svelte -->
 
 <script>
-	let { count = 0, targetCount = 10, step = 1, message = '' } = $props();
+	let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
 	let doubleCount = $derived(count * 2);
 
