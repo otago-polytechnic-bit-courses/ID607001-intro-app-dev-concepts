@@ -362,7 +362,6 @@ In the `prisma.schema` file, add the following enum:
 enum Role {
   ADMIN
   NORMAL
-  GUEST
 }
 ```
 
