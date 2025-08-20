@@ -8,7 +8,7 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-formative-assessment** from **week-08-formative-assessment**.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-A NAME THAT MAKES SENSE TO YOU from **week-08-A NAME THAT MAKES SENSE TO YOU**.
 
 Create a new **SvelteKit** application called `week-09-api-integration-2-deployment`.
 
@@ -526,7 +526,7 @@ Here is a **URL** example of a deployed **SvelteKit** application on **Vercel** 
 
 ---
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

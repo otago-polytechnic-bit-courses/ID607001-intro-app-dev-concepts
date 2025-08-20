@@ -8,7 +8,7 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-formative-assessment** from **week-09-formative-assessment**.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-A NAME THAT MAKES SENSE TO YOU from **week-09-A NAME THAT MAKES SENSE TO YOU**.
 
 Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
 
@@ -64,7 +64,7 @@ Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svel
 √ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
 ```
 
-## Formative Assessment
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
