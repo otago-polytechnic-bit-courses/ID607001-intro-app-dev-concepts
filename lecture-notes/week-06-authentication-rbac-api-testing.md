@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
+Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-authentication-rbac-api-testing** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-authentication-rbac-api-testing** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
@@ -221,12 +221,11 @@ const login = async (req, res) => {
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
-    // Create a JWT token with the user's ID, role and email address
+    // Create a JWT token with the user's ID and role
     const token = jwt.sign(
       {
         id: user.id,
         role: user.role,
-        emailAddress: user.emailAddress,
       },
       JWT_SECRET,
       { expiresIn: JWT_LIFETIME }
@@ -287,7 +286,7 @@ import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
-import { isContentTypeApplicationJSON } from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/utils.js";
 
 const app = express();
 
@@ -824,4 +823,4 @@ Implement a logout route. The route should invalidate the token. You can do this
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-07-sveltekit-basics.md)
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-07-sveltekit-basics.md)

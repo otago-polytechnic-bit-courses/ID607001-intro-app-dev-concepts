@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-01-github-javascript.md)
+Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-01-github-javascript.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-rest-express-http** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-rest-express-http** from the previous branch.
 
 > **Note:** There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -415,4 +415,4 @@ Run the `prettier:format` script to format your code.
 
 ## Next Class
 
-Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)

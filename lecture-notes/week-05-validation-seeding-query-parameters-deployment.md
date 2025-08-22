@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-04-content-negotiation-relationships-repository-pattern.md)
+Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-04-content-negotiation-relationships-n-layer-architecture.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-validation-seeding-query-parameters-deployment** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-validation-seeding-query-parameters-deployment** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
@@ -556,7 +556,7 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 2. Click the **New +** button, then click the **Web Service** link.
 
-3. Click the **Git Provider** option. Connect to your **id607001-s2-25-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+3. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-A NAME THAT MAKES SENSE TO YOU**.
 
@@ -591,25 +591,25 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two
+### Task 2
 
-Implement validation for the `Department`, `Course` and `User` resources.
+Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` resources.
 
 ---
 
-### Task Three (Independent Research)
+### Task 3
 
 Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
 
 ---
 
-### Task Four (Independent Research)
+### Task 4
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
@@ -617,4 +617,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-06-authentication-rbac-api-testing.md)
+Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-06-authentication-rbac-api-testing.md)

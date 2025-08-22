@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **wweek-04-content-negotiation-relationships-repository-pattern** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **wweek-04-content-negotiation-relationships-repository-pattern** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
@@ -18,7 +18,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Full Code Example
 
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-04-content-negotiation-relationships-repository-pattern>
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-04-content-negotiation-relationships-n-layer-architecture>
 
 ---
 
@@ -38,7 +38,7 @@ In this class, we will use the **Accept Header** to perform content negotiation.
 
 ### Middleware
 
-**Middleware** is a function that has access to the request object (`req`), the response object (`res`) and the next middleware function in the application's request-response cycle. Middleware functions can perform the following tasks:
+**Middleware** is a function that has access to the request object (`req`), the response object (`res`) and the next middleware function (`next`) in the application's request-response cycle. Middleware functions can perform the following tasks:
 
 - Execute any code.
 - Make changes to the request and the response objects.
@@ -310,7 +310,7 @@ import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
-import { isContentTypeApplicationJSON } from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/utils.js";
 
 const app = express();
 
@@ -356,7 +356,19 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 ---
 
-## Repository Pattern
+## N-Layer Architecture
+
+**N-Layer Architecture** is a software architecture pattern that separates an application into distinct layers, each with its own responsibilities. This separation of concerns makes the application easier to manage, test and scale. The most common layers (in the context of a **REST API**) in an **N-Layer Architecture** are:
+
+1. **Presentation Layer (Controllers and Routes)**: This layer is responsible for handling HTTP requests and responses. It typically consists of controllers that process incoming requests, validate input and return the appropriate HTTP responses.
+
+2. **Application Layer (Services)**: This layer contains the business logic of the application. It processes user input, interacts with the data layer and returns the appropriate response to the presentation layer.
+
+3. **Data Layer (Repositories)**: This layer is responsible for managing the application's data. It interacts with the database or other data sources to retrieve, store and update data.
+
+---
+
+### Repository Pattern
 
 The repository pattern is a design pattern that separates the data access logic from the business logic. It is a common pattern used in modern web applications. The repository pattern has the following benefits:
 
@@ -519,13 +531,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two
+### Task 2
 
 Create a `User` model with the following fields:
 
@@ -536,11 +548,11 @@ Create a `User` model with the following fields:
 - `createdAt`
 - `updatedAt`
 
-Create the necessary controller, router and repository files for the `User` model.
+Create the necessary **controller**, **route** and **repository** files for the `User` model.
 
 ---
 
-### Task Three
+### Task 3
 
 Create a `Course` model with the following fields:
 
@@ -552,11 +564,11 @@ Create a `Course` model with the following fields:
 - `createdAt`
 - `updatedAt`
 
-Create the necessary controller, router and repository files for the `Course` model.
+Create the necessary **controller**, **route** and **repository** files for the `Course` model.
 
 ---
 
-###  Task Four (Independent Research)
+###  Task 4
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
@@ -564,4 +576,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
+Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
