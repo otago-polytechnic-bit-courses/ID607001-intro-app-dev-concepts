@@ -548,7 +548,13 @@ Create a `User` model with the following fields:
 - `createdAt`
 - `updatedAt`
 
-Create the necessary **controller**, **route** and **repository** files for the `User` model.
+Create the necessary **controller**, **route** and **repository** files for the `User` model. 
+
+Test your implementation by:
+
+- Creating multiple users with different email addresses
+- Creating a user with a duplicate email address
+- Testing the CRUD operations
 
 ---
 
@@ -565,6 +571,13 @@ Create a `Course` model with the following fields:
 - `updatedAt`
 
 Create the necessary **controller**, **route** and **repository** files for the `Course` model.
+
+Test your implementation by:
+
+- Creating multiple courses that belong to existing departments
+- Creating a course with a non-existing department
+- Verifying the one-to-many relationship between departments and courses
+- Testing the CRUD operations
 
 ---
 
