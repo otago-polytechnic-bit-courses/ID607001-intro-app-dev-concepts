@@ -8,7 +8,7 @@ Link to the previous class: [Week 07](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-A NAME THAT MAKES SENSE TO YOU from **week-07-A NAME THAT MAKES SENSE TO YOU**.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-08-content-delivery-networks-api-integration-1** from the previous branch.
 
 Create a new **SvelteKit** application called `week-08-content-delivery-networks-api-integration-1`.
 

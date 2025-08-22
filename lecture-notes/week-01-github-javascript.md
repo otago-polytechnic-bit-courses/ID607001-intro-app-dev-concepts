@@ -422,10 +422,10 @@ In this course, we will use the **object literal** syntax to create **objects**.
 
 ## Exercises
 
-Copy the file `week-01-<A NAME THAT MAKES SENSE TO YOU>.js` into your **id607001-s2-25** repository. Open your **id607001-s2-25** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-<A NAME THAT MAKES SENSE TO YOU>.js` to run the file. You should see the following output.
+Copy the file `week-01-github-javascript.js` into your **id607001-s2-25** repository. Open your **id607001-s2-25** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-github-javascript.js` to run the file. You should see the following output.
 
 ```bash
-$ node week-01-<A NAME THAT MAKES SENSE TO YOU>.js
+$ node week-01-github-javascript.js
 Hello, World!
 ```
 
@@ -437,7 +437,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Write a **function** to check whether a given number is prime.
 
@@ -448,7 +448,7 @@ Write a **function** to check whether a given number is prime.
 
 ---
 
-### Task Two
+### Task 2
 
 Write a **function** to reverse a string.
 
@@ -459,7 +459,7 @@ Write a **function** to reverse a string.
 
 ---
 
-### Task Three
+### Task 3
 
 Write a function to find the maximum element in an array.
 
@@ -471,7 +471,7 @@ Write a function to find the maximum element in an array.
 
 ---
 
-### Task Four
+### Task 4
 
 Write a **function** to check whether a given string is a palindrome.
 
@@ -483,7 +483,7 @@ Write a **function** to check whether a given string is a palindrome.
 
 ---
 
-### Task Five
+### Task 5
 
 Write a **function** to calculate the factorial of a number.
 
@@ -495,7 +495,7 @@ Write a **function** to calculate the factorial of a number.
 
 ---
 
-### Task Six
+### Task 6
 
 Write a **function** to sort an array of numbers in ascending order.
 
@@ -507,7 +507,7 @@ Write a **function** to sort an array of numbers in ascending order.
 
 ---
 
-### Task Seven
+### Task 7
 
 Write a **function** to count the number of occurrences of a specific element in an array.
 
@@ -519,7 +519,7 @@ Write a **function** to count the number of occurrences of a specific element in
 
 ---
 
-### Task Eight
+### Task 8
 
 Write a **function** to check whether two strings are anagrams of each other.
 
@@ -530,7 +530,7 @@ Write a **function** to check whether two strings are anagrams of each other.
 
 ---
 
-### Task Nine
+### Task 9
 
 Write a **function** to find the longest word in a string.
 
@@ -541,7 +541,7 @@ Write a **function** to find the longest word in a string.
 
 ---
 
-### Task Ten
+### Task 10
 
 Write a **function** to merge two sorted **arrays** into a single sorted **array**.
 
@@ -552,7 +552,7 @@ Write a **function** to merge two sorted **arrays** into a single sorted **array
 
 ---
 
-### Task Eleven
+### Task 11
 
 Given an **array** of **objects** representing learners with properties `name` and `age`, use the `map` function to create a new **array** of **strings** that contains a message for each learner in the format "name is age years old".
 
@@ -572,7 +572,7 @@ const learners = [
 
 ---
 
-### Task Twelve
+### Task 12
 
 Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20.
 
@@ -598,7 +598,7 @@ const learners = [
 
 ---
 
-### Task Thirteen
+### Task 13
 
 Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20 and younger than 25.
 
@@ -623,7 +623,7 @@ const learners = [
 
 ---
 
-### Task Fourteen
+### Task 14
 
 Given an **array** of **strings**, use the `filter` and `map` functions create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A".
 
@@ -639,7 +639,7 @@ const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 
 ---
 
-### Task Fifteen
+### Task 15
 
 Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result.
 
@@ -655,7 +655,7 @@ const grades = [85, 90, 78, 92, 88];
 
 ---
 
-### Task Sixteen
+### Task 16
 
 Given an **array** of **strings**, use the `reduce` function to count the occurrences of each flavour and return an object that represents the frequency of each flavour.
 
@@ -675,7 +675,7 @@ const flavours = ["chocolate", "vanilla", "chocolate", "strawberry", "vanilla"];
 
 ---
 
-### Task Seventeen
+### Task 17
 
 Given a **2D array** of **numbers**, matrix, write a **function** that finds the maximum value in the entire matrix.
 
@@ -698,7 +698,7 @@ console.log(max);
 
 ---
 
-### Task Eighteen
+### Task 18
 
 Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i + 1` and `j + 1`.
 
@@ -720,7 +720,7 @@ console.log(multiplicationTable);
 
 ---
 
-### Task Nineteen
+### Task 19
 
 A cinema has `n` rows and `m` seats in each row. The seating arrangement is represented by a 2D array, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
 
@@ -744,7 +744,7 @@ console.log(availableSeats);
 
 ---
 
-### Task Twenty
+### Task 20
 
 Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move and "-" represents a space. The **function** should determine the winner or declare it as a tie.
 
