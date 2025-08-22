@@ -518,6 +518,7 @@ root/
 └── tests/
     ├── helpers/
     │   └── auth.js
+    │   └── db.js
     ├── 00-institution.test.js
     └── 01-department.test.js
 ```
@@ -535,9 +536,10 @@ import request from "supertest";
 import app from "../../app.js";
 import prisma from "../../prisma/client.js";
 
-export const setupTestAuth = async () => {
-  await prisma.user.deleteMany();
-  await prisma.institution.deleteMany();
+import { cleanupDatabase } from "./db.js";
+
+const setupTestAuth = async () => {
+  await cleanupDatabase();
 
   await request(app).post("/api/auth/register").send({
     firstName: "John",
@@ -555,22 +557,32 @@ export const setupTestAuth = async () => {
   return res.body.token;
 };
 
-export const cleanupDatabase = async () => {
+export default setupTestAuth;
+```
+
+The `setupTestAuth` function creates a test user and logs in to get a token.
+
+---
+
+### Helper - DB Cleanup
+
+In `db.js`, add the following code.
+
+```javascript
+const cleanupDatabase = async () => {
   await prisma.department.deleteMany();
   await prisma.institution.deleteMany();
   await prisma.user.deleteMany();
 };
 
-export const disconnectPrisma = async () => {
+const disconnectPrisma = async () => {
   await prisma.$disconnect();
 };
+
+export { cleanupDatabase, disconnectPrisma };
 ```
 
-What is this code doing?
-
-- The `setupTestAuth` function creates a test user and logs in to get a token.
-- The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables.
-- The `disconnectPrisma` function disconnects the **Prisma** client from the database.
+The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables, and the `disconnectPrisma` function disconnects the **Prisma** client from the database.
 
 ---
 
@@ -581,8 +593,9 @@ In `00-institution.test.js`, add the following code.
 ```javascript
 import { expect } from "chai";
 import request from "supertest";
+
 import app from "../app.js";
-import { setupTestAuth } from "./helpers/auth.js";
+import setupTestAuth from "./helpers/auth.js";
 
 describe("Institution CRUD", () => {
   let token;
@@ -682,8 +695,9 @@ In `01-department.test.js`, add the following code.
 ```js
 import { expect } from "chai";
 import request from "supertest";
+
 import app from "../app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/auth.js";
+import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
 
 describe("Department CRUD", () => {
   let institutionId;
@@ -809,13 +823,19 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two (Independent Research)
+### Task 2
+
+Create tests for the `Course` resource.
+
+---
+
+### Task 3
 
 Implement a logout route. The route should invalidate the token. You can do this by storing the token in a blacklist. When a user logs out, add the token to the blacklist. When a user tries to access a protected route with a blacklisted token, return a 403 forbidden status code and message.
 
