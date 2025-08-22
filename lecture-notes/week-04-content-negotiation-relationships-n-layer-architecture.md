@@ -581,7 +581,97 @@ Test your implementation by:
 
 ---
 
-###  Task 4
+### Task 4
+
+Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models. 
+
+Here is an example. In the `repositories/institution.js` file, update the following code.
+
+```javascript
+// Omitted for brevity
+
+class InstitutionRepository {
+  // Omitted for brevity
+
+  async findAll(includeOptions = {}) {
+    return await prisma.institution.findMany({
+      include: includeOptions
+    });
+  }
+
+  async findById(id, includeOptions = {}) {
+    return await prisma.institution.findUnique({
+      where: { id },
+      include: includeOptions
+    });
+  }
+
+  // Omitted for brevity
+}
+
+export default new InstitutionRepository();
+```
+
+In the `controllers/institution.js` file, update the following code.
+
+```javascript
+import institutionRepository from "../repositories/institution.js";
+
+// Omitted for brevity
+
+const getInstitutions = async (req, res) => {
+  try {
+    const institutions = await institutionRepository.findAll({
+      departments: true
+    });
+    if (!institutions) {
+      return res.status(404).json({ message: "No institutions found" });
+    }
+    return res.status(200).json({
+      data: institutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+const getInstitution = async (req, res) => {
+  try {
+    const institution = await institutionRepository.findById(req.params.id, {
+      departments: true
+    });
+    if (!institution) {
+      return res.status(404).json({
+        message: `No institution with the id: ${req.params.id} found`,
+      });
+    }
+    return res.status(200).json({
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+
+// Omitted for brevity
+
+export {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
+```
+
+
+---
+
+###  Task 5
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
