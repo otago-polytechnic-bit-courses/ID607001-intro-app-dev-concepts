@@ -725,7 +725,12 @@ Implement the code examples above.
 
 ### Task 2
 
-In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
+In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`. 
+
+After updating the schema:
+- Create and apply a new migration with an appropriate name
+- Update `controller/institution.js` to handle these new fields
+- Test the changes in **Postman** to ensure the new fields work correctly
 
 ---
 
