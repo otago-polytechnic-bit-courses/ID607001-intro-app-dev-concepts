@@ -10,7 +10,7 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-postgresql-docker-jsdoc-postman** from the previous branch.
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
@@ -196,6 +196,8 @@ datasource db {
 
 ### Model
 
+A **model** is a representation of a database table. It defines the structure of the table, including the fields and their data types.
+
 Under `datasource db` block, add the following code.
 
 ```javascript
@@ -212,7 +214,7 @@ model Institution {
 - A `model` is used to define a database table. In this case, we are defining an `Institution` table.
 - The `@id` directive is used to specify the primary key.
 - The `@default` directive is used to specify the default value.
-- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier).
+- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier). It is best practice to use UUIDs as primary keys because they are unique across all tables and databases.
 - The `@unique` directive is used to specify that the value should be unique.
 - The `@default(now())` directive is used to specify that the value should be the current date and time.
 - The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
@@ -231,9 +233,19 @@ To create and apply a migration, run the following command.
 npx prisma migrate dev
 ```
 
-You will be prompted to enter a name for the migration. Do not enter anything and press the `Enter` key. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
+You will be prompted to enter a name for the migration. Name the migration `00_create_institution_table`. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
 
 > **Note:** When you make a change to the `schema.prisma` file, you need to create a new migration and apply it.
+
+---
+
+### Naming Conventions
+
+When creating migrations, it is important to follow a consistent naming convention. This will help you keep track of your migrations and understand their purpose. Here are some examples:
+
+- `00_create_institution_table`
+- `01_add_region_to_institution_table`
+- `02_remove_country_from_institution_table`
 
 ---
 
@@ -466,7 +478,7 @@ export {
 In the `routes` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import express from "express";
+import express from "express"; 
 
 import {
   createInstitution,
@@ -474,7 +486,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institution.js";
+} from "../controllers/institution.js"; 
 
 const router = express.Router();
 
@@ -535,6 +547,49 @@ app.listen(PORT, () => {
 
 export default app;
 ```
+
+---
+
+## Default and Named Exports
+
+In **JavaScript**, there are two types of exports:
+
+- **Default Export:** A module can only have one default export. It is imported without curly braces. Here is an example:
+
+```js
+// controllers/institution.js
+export default {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+}
+```
+
+```js
+// routes/institution.js
+import express from "express"; 
+
+import institutionController from "../controllers/institution.js";
+
+const router = express.Router();
+
+router.post("/", institutionController.createInstitution);
+router.get("/", institutionController.getInstitutions);
+router.get("/:id", institutionController.getInstitution);
+router.put("/:id", institutionController.updateInstitution);
+router.delete("/:id", institutionController.deleteInstitution);
+
+export default router;
+```
+
+- **Named Export:** A module can have multiple named exports. They are imported with curly braces. Refer to the example in the **Institution Router** section.
+
+When should I use default exports vs. named exports?
+
+- Use default exports when you want to export a single value from a module. It makes the import statement cleaner and more concise.
+- Use named exports when you want to export multiple values from a module. It allows for more flexibility and clarity in the import statements.
 
 ---
 

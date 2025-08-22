@@ -12,7 +12,7 @@ Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code*
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the formative assessments. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
@@ -64,7 +64,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
   next();
 };
 
-export { isContentTypeApplicationJSON };
+export default isContentTypeApplicationJSON;
 ```
 
 ---
@@ -74,7 +74,7 @@ export { isContentTypeApplicationJSON };
 In the `app.js` file, add the following code.
 
 ```javascript
-import { isContentTypeApplicationJSON } from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/utils.js";
 
 app.use(isContentTypeApplicationJSON);
 ```
@@ -87,7 +87,7 @@ import express from "express";
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
-import { isContentTypeApplicationJSON } from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/utils.js";
 
 const app = express();
 

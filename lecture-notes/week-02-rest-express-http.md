@@ -330,14 +330,14 @@ Your file structure should look something like this.
 
 ```bash
 .
-├── controllers
+├── controllers/
 │   └── index.js
-├── node_modules
-├── routes
+├── node_modules/
+├── routes/
 │   └── index.js
 ├── app.js
-├── package-lock.json
 ├── package.json
+└── package-lock.json
 ```
 
 When setting up a project, it is important to have a clear file structure. This makes it easier to find files and maintain the project.
@@ -354,24 +354,40 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two
+### Task 2
 
 To get use to creating `controllers` and `routes`, create two `GET` routes for the following.
 
 - <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses/>. Return an **array** of courses you are enrolled in this semester.
 
-You should have new `controller` and `route` files for about and courses.
+Your file structure should look something like this.
+
+```bash
+.
+├── controllers/
+│   ├── about.js
+│   ├── course.js
+│   └── index.js
+├── node_modules/
+├── routes/
+│   ├── about.js
+│   ├── course.js
+│   └── index.js
+├── app.js
+├── package.json
+└── package-lock.json
+```
 
 ---
 
-### Task Three - Prettier (Independent Research)
+### Task 3
 
 **Prettier** is a popular code formatting tool.
 
