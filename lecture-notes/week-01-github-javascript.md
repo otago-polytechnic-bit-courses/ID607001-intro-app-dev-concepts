@@ -249,7 +249,7 @@ console.log(greeting); // Hello, my name is John and I am 30 years old.
 A **class** is a blueprint for creating objects. It defines a set of properties and methods that the created objects will have. In JavaScript, you can define a class using the `class` keyword.
 
 ```javascript
-// Defining a class named "Person"
+// Defining a class named Person
 class Person {
   constructor(name, age) {
     this.name = name;
