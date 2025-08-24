@@ -2,7 +2,7 @@
 
 ## GitHub
 
-This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/8sCyquQ_>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository. 
+This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/8sCyquQ_>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.
 
 > **Note:** You will use this repository for non-assessed work.
 
@@ -228,6 +228,48 @@ console.log(greet()); // Hello, World!
 
 ---
 
+### Template Literals
+
+**Template literals** allow you to create multi-line strings and embed expressions inside strings. **Template literals** are enclosed by backticks (`` ` ``) instead of single or double quotes.
+
+```javascript
+const name = "John";
+const age = 30;
+
+// Using template literals
+const greeting = `Hello, my name is ${name} and I am ${age} years old.`;
+
+console.log(greeting); // Hello, my name is John and I am 30 years old.
+```
+
+---
+
+### Classes
+
+A **class** is a blueprint for creating objects. It defines a set of properties and methods that the created objects will have. In JavaScript, you can define a class using the `class` keyword.
+
+```javascript
+// Defining a class named "Person"
+class Person {
+  constructor(name, age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  // A method to greet the person
+  greet() {
+    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+  }
+}
+
+// Creating an instance of the Person class
+const john = new Person("John", 30);
+
+console.log(john.greet()); // Hello, my name is John and I am 30 years old.
+```
+
+---
+
 ### Arrays
 
 An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values and each value is assigned an index starting from 0. You can use a value's index to access its value.
@@ -238,6 +280,13 @@ const numbers = [1, 2, 3, 4, 5];
 
 // An array of strings
 const fruits = ["Apple", "Banana", "Cherry", "Durian", "Elderberry"];
+
+// An array of Person objects
+const people = [
+  new Person("John", 30),
+  new Person("Jane", 25),
+  new Person("Jack", 35),
+];
 ```
 
 Here is an example of an **array** with values of different data types.
@@ -431,11 +480,11 @@ $ node week-01-github-javascript.js
 Hello, World!
 ```
 
-Learning to use **AI tools** is an important skill. While **AI tools** are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
-- If you provide an **AI tool** with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the **AI tool's** responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what **AI tool** you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the **AI tool** and how you used the response(s) to help you with your work
+- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
@@ -444,15 +493,16 @@ Learning to use **AI tools** is an important skill. While **AI tools** are power
 Write a **function** to check whether a given number is prime.
 
 **Test Cases:**
+
 - `isPrime(1)` should return `false`
 - `isPrime(2)` should return `true`
 - `isPrime(17)` should return `true`
 - `isPrime(25)` should return `false`
 
 ```javascript
-function isPrime(num) {
+const isPrime = (num) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
@@ -464,14 +514,15 @@ function isPrime(num) {
 Write a **function** to reverse a string.
 
 **Test Cases:**
+
 - `reverseString("Hello")` should return `"olleH"`
 - `reverseString("World")` should return `"dlroW"`
 - `reverseString("JavaScript")` should return `"tpircSavaJ"`
 
 ```javascript
-function reverseString(str) {
+const reverseString = (str) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can reverse a string by converting it to an **array**, reversing the **array** and then converting the **array** back to a string. There are three methods you can use: `split()`, `reverse()` and `join()`. Alternatively, you can use a **for loop** to reverse a string.
@@ -483,15 +534,16 @@ function reverseString(str) {
 Write a **function** to find the maximum element in an **array**.
 
 **Test Cases:**
+
 - `findMax([1, 2, 3, 4, 5])` should return `5`
 - `findMax([5, 4, 3, 2, 1])` should return `5`
 - `findMax([1, 3, 5, 2, 4])` should return `5`
 - `findMax([-10, -5, -1, -20])` should return `-1`
 
 ```javascript
-function findMax(arr) {
+const findMax = (arr) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can find the maximum element in an **array** by iterating through the **array** and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the **array**.
@@ -503,15 +555,16 @@ function findMax(arr) {
 Write a **function** to check whether a given string is a palindrome.
 
 **Test Cases:**
+
 - `isPalindrome("racecar")` should return `true`
 - `isPalindrome("rAcEcAr")` should return `true`
 - `isPalindrome("hello")` should return `false`
 - `isPalindrome("A man a plan a canal Panama")` should return `true` (ignoring spaces and case)
 
 ```javascript
-function isPalindrome(str) {
+const isPalindrome = (str) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. Consider handling case sensitivity and spaces. You can use the **function** you wrote in Task 2 to reverse the string.
@@ -523,15 +576,16 @@ function isPalindrome(str) {
 Write a **function** to calculate the factorial of a number.
 
 **Test Cases:**
+
 - `factorial(0)` should return `1`
 - `factorial(1)` should return `1`
 - `factorial(5)` should return `120`
 - `factorial(7)` should return `5040`
 
 ```javascript
-function factorial(n) {
+const factorial = (n) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial using a **for loop**. Remember that `0! = 1` by definition.
@@ -543,15 +597,16 @@ function factorial(n) {
 Write a **function** to sort an **array** of numbers in ascending order.
 
 **Test Cases:**
+
 - `sortArray([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
 - `sortArray([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
 - `sortArray([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
 - `sortArray([-1, 10, -5, 3])` should return `[-5, -1, 3, 10]`
 
 ```javascript
-function sortArray(arr) {
+const sortArray = (arr) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can sort an **array** of numbers in ascending order by using the `sort()` method. The `sort()` method sorts elements as strings by default, so you need to provide a **compare function** to sort numbers correctly: `arr.sort((a, b) => a - b)`.
@@ -563,15 +618,16 @@ function sortArray(arr) {
 Write a **function** to count the number of occurrences of a specific element in an **array**.
 
 **Test Cases:**
+
 - `countOccurrences([1, 2, 3, 4, 5], 1)` should return `1`
 - `countOccurrences([1, 2, 3, 4, 5], 6)` should return `0`
 - `countOccurrences([1, 2, 3, 4, 5, 1], 1)` should return `2`
 - `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` should return `2`
 
 ```javascript
-function countOccurrences(arr, element) {
+const countOccurrences = (arr, element) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can count occurrences by iterating through the **array** and keeping track of matches. Start with a counter at 0 and increment it each time you find the target element.
@@ -583,15 +639,16 @@ function countOccurrences(arr, element) {
 Write a **function** to check whether two strings are anagrams of each other.
 
 **Test Cases:**
+
 - `isAnagram("listen", "silent")` should return `true`
 - `isAnagram("hello", "bello")` should return `false`
 - `isAnagram("elbow", "below")` should return `true`
 - `isAnagram("Study", "dusty")` should return `true` (case insensitive)
 
 ```javascript
-function isAnagram(str1, str2) {
+const isAnagram = (str1, str2) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** An anagram is a word formed by rearranging the letters of another word, using all letters exactly once. You can check if two strings are anagrams by sorting both strings and comparing them. Consider handling case sensitivity.
@@ -603,14 +660,15 @@ function isAnagram(str1, str2) {
 Write a **function** to find the longest word in a string.
 
 **Test Cases:**
+
 - `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - `findLongestWord("May the force be with you")` should return `"force"`
 - `findLongestWord("Hello world")` should return `"Hello"` (or `"world"` - both are valid)
 
 ```javascript
-function findLongestWord(sentence) {
+const findLongestWord = (sentence) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** Split the string into an **array** of words using `split(' ')`, then iterate through the **array** to find the word with the maximum length.
@@ -622,14 +680,15 @@ function findLongestWord(sentence) {
 Write a **function** to merge two sorted **arrays** into a single sorted **array**.
 
 **Test Cases:**
+
 - `mergeSortedArrays([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - `mergeSortedArrays([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
 - `mergeSortedArrays([1, 3, 5], [2, 4, 6])` should return `[1, 2, 3, 4, 5, 6]`
 
 ```javascript
-function mergeSortedArrays(arr1, arr2) {
+const mergeSortedArrays = (arr1, arr2) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can concatenate the **arrays** using the spread operator `[...arr1, ...arr2]` and then sort the result. Alternatively, implement a two-pointer approach to merge efficiently.
@@ -641,6 +700,7 @@ function mergeSortedArrays(arr1, arr2) {
 Given an **array** of **objects** representing students with properties `name` and `age`, use the `map()` method to create a new **array** of **strings** that contains a message for each student.
 
 **Test Case:**
+
 ```javascript
 const students = [
   { name: "Alice", age: 21 },
@@ -654,9 +714,9 @@ console.log(messages);
 ```
 
 ```javascript
-function createStudentMessages(students) {
-  // Your code here using map()
-}
+const createStudentMessages = (students) => {
+  // Your code here
+};
 ```
 
 > **Hint:** Use the `map()` method to transform each student object into a formatted string message.
@@ -668,6 +728,7 @@ function createStudentMessages(students) {
 Given an **array** of **objects** representing students, use `filter()` to create a new **array** containing only students older than 20.
 
 **Test Case:**
+
 ```javascript
 const students = [
   { name: "Alice", age: 21 },
@@ -683,9 +744,9 @@ console.log(adultStudents);
 ```
 
 ```javascript
-function filterAdultStudents(students) {
-  // Your code here using filter()
-}
+const filterAdultStudents = (students) => {
+  // Your code here
+};
 ```
 
 > **Hint:** Use the `filter()` method to return only students whose age is greater than 20.
@@ -697,6 +758,7 @@ function filterAdultStudents(students) {
 Given an **array** of **objects** representing students, use `filter()` to find students aged between 20 and 24 (inclusive).
 
 **Test Case:**
+
 ```javascript
 const students = [
   { name: "Alice", age: 21 },
@@ -712,9 +774,9 @@ console.log(targetAgeStudents);
 ```
 
 ```javascript
-function filterStudentsByAgeRange(students, minAge, maxAge) {
-  // Your code here using filter()
-}
+const filterStudentsByAgeRange = (students, minAge, maxAge) => {
+  // Your code here
+};
 ```
 
 > **Hint:** Use the `filter()` method with a condition that checks if the age is between the minimum and maximum values (inclusive).
@@ -726,6 +788,7 @@ function filterStudentsByAgeRange(students, minAge, maxAge) {
 Given an **array** of **strings**, use `filter()` and `map()` to create a new **array** containing the lengths of strings that don't start with the letter "A".
 
 **Test Case:**
+
 ```javascript
 const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 
@@ -735,9 +798,9 @@ console.log(filteredLengths);
 ```
 
 ```javascript
-function getFilteredStringLengths(words) {
-  // Your code here using filter() and map()
-}
+const getFilteredStringLengths = (words) => {
+  // Your code here
+};
 ```
 
 > **Hint:** First use `filter()` to exclude strings starting with "A", then use `map()` to convert the remaining strings to their lengths.
@@ -749,6 +812,7 @@ function getFilteredStringLengths(words) {
 Given an **array** of **numbers** representing grades, use the `reduce()` method to calculate the average grade.
 
 **Test Case:**
+
 ```javascript
 const grades = [85, 90, 78, 92, 88];
 
@@ -758,9 +822,9 @@ console.log(average);
 ```
 
 ```javascript
-function calculateAverageGrade(grades) {
+const calculateAverageGrade = (grades) => {
   // Your code here using reduce()
-}
+};
 ```
 
 > **Hint:** Use `reduce()` to sum all grades, then divide by the length of the **array** to get the average.
@@ -772,6 +836,7 @@ function calculateAverageGrade(grades) {
 Given an **array** of **strings**, use the `reduce()` method to count the occurrences of each item and return an **object**.
 
 **Test Case:**
+
 ```javascript
 const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
 
@@ -781,9 +846,9 @@ console.log(fruitCount);
 ```
 
 ```javascript
-function countOccurrencesWithReduce(items) {
+const countOccurrencesWithReduce = (items) => {
   // Your code here using reduce()
-}
+};
 ```
 
 > **Hint:** Use `reduce()` with an empty **object** as the initial value. For each item, either increment its count or set it to 1 if it doesn't exist.
@@ -795,6 +860,7 @@ function countOccurrencesWithReduce(items) {
 Given a **2D array** of **numbers**, write a **function** that finds the maximum value in the entire matrix.
 
 **Test Case:**
+
 ```javascript
 const matrix = [
   [1, 2, 3],
@@ -808,9 +874,9 @@ console.log(max);
 ```
 
 ```javascript
-function findMaxValueInMatrix(matrix) {
+const findMaxValueInMatrix = (matrix) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** You can use nested **for loops** to iterate through the **2D array**, or flatten the matrix first using `flat()` method and then find the maximum.
@@ -822,6 +888,7 @@ function findMaxValueInMatrix(matrix) {
 Write a **function** that generates a multiplication table from 1 to a given number `n`, represented as a **2D array**.
 
 **Test Case:**
+
 ```javascript
 const table = generateMultiplicationTable(4);
 console.log(table);
@@ -835,9 +902,9 @@ console.log(table);
 ```
 
 ```javascript
-function generateMultiplicationTable(n) {
+const generateMultiplicationTable = (n) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** Create a **2D array** using nested **for loops**. For each position `[i][j]`, the value should be `(i + 1) * (j + 1)`.
@@ -849,6 +916,7 @@ function generateMultiplicationTable(n) {
 A cinema has rows and seats represented by a **2D array**, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** to count available seats.
 
 **Test Case:**
+
 ```javascript
 const seatingLayout = [
   [0, 0, 1, 0, 1],
@@ -863,9 +931,9 @@ console.log(available);
 ```
 
 ```javascript
-function countAvailableSeats(seatingLayout) {
+const countAvailableSeats = (seatingLayout) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** Iterate through the **2D array** and count the number of `0` values (empty seats).
@@ -877,6 +945,7 @@ function countAvailableSeats(seatingLayout) {
 Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board uses "X" for Player X, "O" for Player O, and "-" for empty spaces.
 
 **Test Cases:**
+
 ```javascript
 const board1 = [
   ["X", "O", "-"],
@@ -902,9 +971,9 @@ console.log(checkTicTacToeWinner(board3)); // Expected: "Tie" or "No winner"
 ```
 
 ```javascript
-function checkTicTacToeWinner(board) {
+const checkTicTacToeWinner = (board) => {
   // Your code here
-}
+};
 ```
 
 > **Hint:** Check all rows, columns, and diagonals for three matching symbols. You can check rows with nested loops, columns by swapping indices, and diagonals with specific index patterns.
