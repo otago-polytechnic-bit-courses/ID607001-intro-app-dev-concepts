@@ -431,11 +431,11 @@ $ node week-01-github-javascript.js
 Hello, World!
 ```
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use **AI tools** is an important skill. While **AI tools** are powerful, you **must** be aware of the following:
 
-- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+- If you provide an **AI tool** with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the **AI tool's** responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what **AI tool** you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the **AI tool** and how you used the response(s) to help you with your work
 
 ---
 
@@ -443,10 +443,19 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 Write a **function** to check whether a given number is prime.
 
-- Test case 1: `isPrime(1)` should return `false`
-- Test case 2: `isPrime(2)` should return `true`
+**Test Cases:**
+- `isPrime(1)` should return `false`
+- `isPrime(2)` should return `true`
+- `isPrime(17)` should return `true`
+- `isPrime(25)` should return `false`
 
-> **Hint on how to solve this task:** A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
+```javascript
+function isPrime(num) {
+  // Your code here
+}
+```
+
+> **Hint:** A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
 
 ---
 
@@ -454,22 +463,38 @@ Write a **function** to check whether a given number is prime.
 
 Write a **function** to reverse a string.
 
-- Test case 1: `reverseString("Hello")` should return `"olleH"`
-- Test case 2: `reverseString("World")` should return `"dlroW"`
+**Test Cases:**
+- `reverseString("Hello")` should return `"olleH"`
+- `reverseString("World")` should return `"dlroW"`
+- `reverseString("JavaScript")` should return `"tpircSavaJ"`
 
-> **Hint on how to solve this task:** You can reverse a string by converting it to an **array**, reversing the **array** and then converting the **array** back to a string. There are three functions you can use to achieve this: `split()`, `reverse()` and `join()`. You can also use a **for loop** to reverse a string.
+```javascript
+function reverseString(str) {
+  // Your code here
+}
+```
+
+> **Hint:** You can reverse a string by converting it to an **array**, reversing the **array** and then converting the **array** back to a string. There are three methods you can use: `split()`, `reverse()` and `join()`. Alternatively, you can use a **for loop** to reverse a string.
 
 ---
 
 ### Task 3
 
-Write a function to find the maximum element in an array.
+Write a **function** to find the maximum element in an **array**.
 
-- Test case 1: `findMax([1, 2, 3, 4, 5])` should return `5`
-- Test case 2: `findMax([5, 4, 3, 2, 1])` should return `5`
-- Test case 3: `findMax([1, 3, 5, 2, 4])` should return `5`
+**Test Cases:**
+- `findMax([1, 2, 3, 4, 5])` should return `5`
+- `findMax([5, 4, 3, 2, 1])` should return `5`
+- `findMax([1, 3, 5, 2, 4])` should return `5`
+- `findMax([-10, -5, -1, -20])` should return `-1`
 
-> **Hint on how to solve this task:** You can find the maximum element in an **array** by iterating through the **array** and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the **array**.
+```javascript
+function findMax(arr) {
+  // Your code here
+}
+```
+
+> **Hint:** You can find the maximum element in an **array** by iterating through the **array** and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the **array**.
 
 ---
 
@@ -477,11 +502,19 @@ Write a function to find the maximum element in an array.
 
 Write a **function** to check whether a given string is a palindrome.
 
-- Test case 1: `isPalindrome("racecar")` should return `true`
-- Test case 2: `isPalindrome("rAcEcAr")` should return `true`
-- Test case 2: `isPalindrome("hello")` should return `false`
+**Test Cases:**
+- `isPalindrome("racecar")` should return `true`
+- `isPalindrome("rAcEcAr")` should return `true`
+- `isPalindrome("hello")` should return `false`
+- `isPalindrome("A man a plan a canal Panama")` should return `true` (ignoring spaces and case)
 
-> **Hint on how to solve this task:** A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. You can use the **function** you wrote in Task Two to reverse the string.
+```javascript
+function isPalindrome(str) {
+  // Your code here
+}
+```
+
+> **Hint:** A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. Consider handling case sensitivity and spaces. You can use the **function** you wrote in Task 2 to reverse the string.
 
 ---
 
@@ -489,35 +522,59 @@ Write a **function** to check whether a given string is a palindrome.
 
 Write a **function** to calculate the factorial of a number.
 
-- Test case 1: `factorial(0)` should return `1`
-- Test case 2: `factorial(1)` should return `1`
-- Test case 3: `factorial(5)` should return `120`
+**Test Cases:**
+- `factorial(0)` should return `1`
+- `factorial(1)` should return `1`
+- `factorial(5)` should return `120`
+- `factorial(7)` should return `5040`
 
-> **Hint on how to solve this task:** The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial of a number by multiplying all positive integers less than or equal to that number. You can use a **for loop** to calculate the factorial of a number. You can also use recursion to calculate the factorial of a number but we will not cover recursion in this course.
+```javascript
+function factorial(n) {
+  // Your code here
+}
+```
+
+> **Hint:** The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial using a **for loop**. Remember that `0! = 1` by definition.
 
 ---
 
 ### Task 6
 
-Write a **function** to sort an array of numbers in ascending order.
+Write a **function** to sort an **array** of numbers in ascending order.
 
-- Test case 1: `sort([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
-- Test case 2: `sort([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
-- Test case 3: `sort([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
+**Test Cases:**
+- `sortArray([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
+- `sortArray([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
+- `sortArray([1, 3, 5, 2, 4])` should return `[1, 2, 3, 4, 5]`
+- `sortArray([-1, 10, -5, 3])` should return `[-5, -1, 3, 10]`
 
-> **Hint on how to solve this task:** You can sort an **array** of numbers in ascending order by using the `sort` method. The `sort` method sorts the elements of an **array** in place and returns the sorted **array**. By default, the `sort` method sorts the elements as strings. You can provide a **compare function** to the `sort` method to sort the elements as numbers.
+```javascript
+function sortArray(arr) {
+  // Your code here
+}
+```
+
+> **Hint:** You can sort an **array** of numbers in ascending order by using the `sort()` method. The `sort()` method sorts elements as strings by default, so you need to provide a **compare function** to sort numbers correctly: `arr.sort((a, b) => a - b)`.
 
 ---
 
 ### Task 7
 
-Write a **function** to count the number of occurrences of a specific element in an array.
+Write a **function** to count the number of occurrences of a specific element in an **array**.
 
-- Test case 1: `count([1, 2, 3, 4, 5], 1)` should return `1`
-- Test case 2: `count([1, 2, 3, 4, 5], 6)` should return `0`
-- Test case 3: `count([1, 2, 3, 4, 5, 1], 1)` should return `2`
+**Test Cases:**
+- `countOccurrences([1, 2, 3, 4, 5], 1)` should return `1`
+- `countOccurrences([1, 2, 3, 4, 5], 6)` should return `0`
+- `countOccurrences([1, 2, 3, 4, 5, 1], 1)` should return `2`
+- `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` should return `2`
 
-> **Hint on how to solve this task:** You can count the number of occurrences of a specific element in an **array** by iterating through the **array** and keeping track of the number of occurrences of that element. You can start by assuming the number of occurrences is 0 and then increment it each time you find the element in the **array**. You can use a **for loop** to count the number of occurrences of a specific element in an **array**.
+```javascript
+function countOccurrences(arr, element) {
+  // Your code here
+}
+```
+
+> **Hint:** You can count occurrences by iterating through the **array** and keeping track of matches. Start with a counter at 0 and increment it each time you find the target element.
 
 ---
 
@@ -525,10 +582,19 @@ Write a **function** to count the number of occurrences of a specific element in
 
 Write a **function** to check whether two strings are anagrams of each other.
 
-- Test case 1: `isAnagram("hello", "olleh")` should return `true`
-- Test case 2: `isAnagram("hello", "world")` should return `false`
+**Test Cases:**
+- `isAnagram("listen", "silent")` should return `true`
+- `isAnagram("hello", "bello")` should return `false`
+- `isAnagram("elbow", "below")` should return `true`
+- `isAnagram("Study", "dusty")` should return `true` (case insensitive)
 
-> **Hint on how to solve this task:** An anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using all the original letters exactly once. You can check if two strings are anagrams of each other by comparing the sorted strings. You can use the **function** you wrote in Task Six to sort the strings.
+```javascript
+function isAnagram(str1, str2) {
+  // Your code here
+}
+```
+
+> **Hint:** An anagram is a word formed by rearranging the letters of another word, using all letters exactly once. You can check if two strings are anagrams by sorting both strings and comparing them. Consider handling case sensitivity.
 
 ---
 
@@ -536,10 +602,18 @@ Write a **function** to check whether two strings are anagrams of each other.
 
 Write a **function** to find the longest word in a string.
 
-- Test case 1: `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
-- Test case 2: `findLongestWord("May the force be with you")` should return `"force"`
+**Test Cases:**
+- `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
+- `findLongestWord("May the force be with you")` should return `"force"`
+- `findLongestWord("Hello world")` should return `"Hello"` (or `"world"` - both are valid)
 
-> **Hint on how to solve this task:** You can find the longest word in a string by splitting the string into an **array** of words, finding the length of each word and keeping track of the longest word found so far. You can start by assuming the first word is the longest word and then compare it with the rest of the words in the **array**.
+```javascript
+function findLongestWord(sentence) {
+  // Your code here
+}
+```
+
+> **Hint:** Split the string into an **array** of words using `split(' ')`, then iterate through the **array** to find the word with the maximum length.
 
 ---
 
@@ -547,40 +621,55 @@ Write a **function** to find the longest word in a string.
 
 Write a **function** to merge two sorted **arrays** into a single sorted **array**.
 
-- Test case 1: `merge([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
-- Test case 2: `merge([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
+**Test Cases:**
+- `mergeSortedArrays([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
+- `mergeSortedArrays([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
+- `mergeSortedArrays([1, 3, 5], [2, 4, 6])` should return `[1, 2, 3, 4, 5, 6]`
 
-> **Hint on how to solve this task:** You can merge two sorted **arrays** into a single sorted **array** by iterating through both **arrays** and comparing the elements in each **array**. You can start by assuming the first element in each **array** is the smallest element and then compare them. You can use two pointers to keep track of the current index in each **array**.
+```javascript
+function mergeSortedArrays(arr1, arr2) {
+  // Your code here
+}
+```
+
+> **Hint:** You can concatenate the **arrays** using the spread operator `[...arr1, ...arr2]` and then sort the result. Alternatively, implement a two-pointer approach to merge efficiently.
 
 ---
 
 ### Task 11
 
-Given an **array** of **objects** representing learners with properties `name` and `age`, use the `map` function to create a new **array** of **strings** that contains a message for each learner in the format "name is age years old".
+Given an **array** of **objects** representing students with properties `name` and `age`, use the `map()` method to create a new **array** of **strings** that contains a message for each student.
 
+**Test Case:**
 ```javascript
-// An array of objects
-const learners = [
+const students = [
   { name: "Alice", age: 21 },
   { name: "Bob", age: 19 },
   { name: "Charlie", age: 20 },
 ];
 
-// Expected output
-["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"];
+const messages = createStudentMessages(students);
+console.log(messages);
+// Expected: ["Alice is 21 years old", "Bob is 19 years old", "Charlie is 20 years old"]
 ```
 
-> **Hint on how to solve this task:** You can create a new **array** of **strings** by iterating through the **array** of **objects** and creating a message for each learner. You can use the `map` function to create a new **array** of **strings**.
+```javascript
+function createStudentMessages(students) {
+  // Your code here using map()
+}
+```
+
+> **Hint:** Use the `map()` method to transform each student object into a formatted string message.
 
 ---
 
 ### Task 12
 
-Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20.
+Given an **array** of **objects** representing students, use `filter()` to create a new **array** containing only students older than 20.
 
+**Test Case:**
 ```javascript
-// An array of objects
-const learners = [
+const students = [
   { name: "Alice", age: 21 },
   { name: "Bob", age: 19 },
   { name: "Charlie", age: 25 },
@@ -588,25 +677,28 @@ const learners = [
   { name: "Eve", age: 22 },
 ];
 
-// Expected output
-// [
-//   { name: "Alice", age: 21 },
-//   { name: "Charlie", age: 25 },
-//   { name: "Eve", age: 22 },
-// ]
+const adultStudents = filterAdultStudents(students);
+console.log(adultStudents);
+// Expected: [{ name: "Alice", age: 21 }, { name: "Charlie", age: 25 }, { name: "Eve", age: 22 }]
 ```
 
-> **Hint on how to solve this task:** You can create a new **array** of **objects** by filtering the **array** of **objects** to include only learners older than 20 and then mapping the filtered **array** of **objects** to create a new **array** of **objects**.
+```javascript
+function filterAdultStudents(students) {
+  // Your code here using filter()
+}
+```
+
+> **Hint:** Use the `filter()` method to return only students whose age is greater than 20.
 
 ---
 
 ### Task 13
 
-Given an **array** of **objects** representing learners with properties `name` and `age`, use the `filter` and `map` functions to create a new **array** of **objects** that contains only learners older than 20 and younger than 25.
+Given an **array** of **objects** representing students, use `filter()` to find students aged between 20 and 24 (inclusive).
 
+**Test Case:**
 ```javascript
-// An array of objects
-const learners = [
+const students = [
   { name: "Alice", age: 21 },
   { name: "Bob", age: 19 },
   { name: "Charlie", age: 25 },
@@ -614,158 +706,208 @@ const learners = [
   { name: "Eve", age: 22 },
 ];
 
-// Expected output
-// [
-//   { name: "Alice", age: 21 },
-//   { name: "Eve", age: 22 },
-// ]
+const targetAgeStudents = filterStudentsByAgeRange(students, 20, 24);
+console.log(targetAgeStudents);
+// Expected: [{ name: "Alice", age: 21 }, { name: "Eve", age: 22 }]
 ```
 
-> **Hint on how to solve this task:** You can create a new **array** of **objects** by filtering the **array** of **objects** to include only learners older than 20 and younger than 25 and then mapping the filtered **array** of **objects** to create a new **array** of **objects**.
+```javascript
+function filterStudentsByAgeRange(students, minAge, maxAge) {
+  // Your code here using filter()
+}
+```
+
+> **Hint:** Use the `filter()` method with a condition that checks if the age is between the minimum and maximum values (inclusive).
 
 ---
 
 ### Task 14
 
-Given an **array** of **strings**, use the `filter` and `map` functions create a new **array** that contains the lengths of each string, excluding any string that starts with the letter "A".
+Given an **array** of **strings**, use `filter()` and `map()` to create a new **array** containing the lengths of strings that don't start with the letter "A".
 
+**Test Case:**
 ```javascript
-// An array of strings
 const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 
-// Expected output
-// [6, 10, 5]
+const filteredLengths = getFilteredStringLengths(words);
+console.log(filteredLengths);
+// Expected: [6, 10, 5] (lengths of "Banana", "Strawberry", "Mango")
 ```
 
-> **Hint on how to solve this task:** You can create a new **array** of lengths by filtering the **array** of **strings** to exclude any string that starts with the letter "A" and then mapping the filtered **array** of **strings** to create a new **array** of lengths.
+```javascript
+function getFilteredStringLengths(words) {
+  // Your code here using filter() and map()
+}
+```
+
+> **Hint:** First use `filter()` to exclude strings starting with "A", then use `map()` to convert the remaining strings to their lengths.
 
 ---
 
 ### Task 15
 
-Given an **array** of **numbers**, use the `reduce` function to calculate the average grade of the learners and return the result.
+Given an **array** of **numbers** representing grades, use the `reduce()` method to calculate the average grade.
 
+**Test Case:**
 ```javascript
-// An array of numbers
 const grades = [85, 90, 78, 92, 88];
 
-// Expected output
-// 86.6
+const average = calculateAverageGrade(grades);
+console.log(average);
+// Expected: 86.6
 ```
 
-> **Hint on how to solve this task:** You can calculate the average grade of the learners by using the `reduce` function to sum the grades and then dividing the sum by the number of grades. You can use the `length` property of the **array** to get the number of grades.
+```javascript
+function calculateAverageGrade(grades) {
+  // Your code here using reduce()
+}
+```
+
+> **Hint:** Use `reduce()` to sum all grades, then divide by the length of the **array** to get the average.
 
 ---
 
 ### Task 16
 
-Given an **array** of **strings**, use the `reduce` function to count the occurrences of each flavour and return an object that represents the frequency of each flavour.
+Given an **array** of **strings**, use the `reduce()` method to count the occurrences of each item and return an **object**.
 
+**Test Case:**
 ```javascript
-// An array of strings
-const flavours = ["chocolate", "vanilla", "chocolate", "strawberry", "vanilla"];
+const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
 
-// Expected output
-// {
-//   chocolate: 2,
-//   vanilla: 2,
-//   strawberry: 1,
-// }
+const fruitCount = countOccurrencesWithReduce(fruits);
+console.log(fruitCount);
+// Expected: { apple: 3, banana: 2, orange: 1 }
 ```
 
-> **Hint on how to solve this task:** You can count the occurrences of each flavour by using the `reduce` function to create an object that represents the frequency of each flavour. You can start by assuming the object is empty and then increment the count of each flavour each time you find the flavour in the **array**.
+```javascript
+function countOccurrencesWithReduce(items) {
+  // Your code here using reduce()
+}
+```
+
+> **Hint:** Use `reduce()` with an empty **object** as the initial value. For each item, either increment its count or set it to 1 if it doesn't exist.
 
 ---
 
 ### Task 17
 
-Given a **2D array** of **numbers**, matrix, write a **function** that finds the maximum value in the entire matrix.
+Given a **2D array** of **numbers**, write a **function** that finds the maximum value in the entire matrix.
 
+**Test Case:**
 ```javascript
-// A 2D array of numbers
 const matrix = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, 9],
 ];
 
-const max = findMaxValue(matrix);
+const max = findMaxValueInMatrix(matrix);
 console.log(max);
-
-// Expected output
-// 9
+// Expected: 9
 ```
 
-> **Hint on how to solve this task:** You can find the maximum value in the entire matrix by iterating through the **2D array** and keeping track of the maximum value found so far. You can start by assuming the first element is the maximum value and then compare it with the rest of the elements in the **2D array**.
+```javascript
+function findMaxValueInMatrix(matrix) {
+  // Your code here
+}
+```
+
+> **Hint:** You can use nested **for loops** to iterate through the **2D array**, or flatten the matrix first using `flat()` method and then find the maximum.
 
 ---
 
 ### Task 18
 
-Write a **function** that generates a multiplication table from 1 to a given number, `n`. The multiplication table should be represented as a **2D array**, where each element at index `[i][j]` represents the product of `i + 1` and `j + 1`.
+Write a **function** that generates a multiplication table from 1 to a given number `n`, represented as a **2D array**.
 
+**Test Case:**
 ```javascript
-const multiplicationTable = generateMultiplicationTable(5);
-console.log(multiplicationTable);
-
-// Expected output
+const table = generateMultiplicationTable(4);
+console.log(table);
+// Expected:
 // [
-//   [1, 2, 3, 4, 5],
-//   [2, 4, 6, 8, 10],
-//   [3, 6, 9, 12, 15],
-//   [4, 8, 12, 16, 20],
-//   [5, 10, 15, 20, 25],
+//   [1, 2, 3, 4],
+//   [2, 4, 6, 8],
+//   [3, 6, 9, 12],
+//   [4, 8, 12, 16],
 // ]
 ```
 
-> **Hint on how to solve this task:** You can generate a multiplication table by creating a **2D array** and then iterating through the **2D array** to calculate the product of `i + 1` and `j + 1`. You can use a **nested for loop** to generate the multiplication table.
+```javascript
+function generateMultiplicationTable(n) {
+  // Your code here
+}
+```
+
+> **Hint:** Create a **2D array** using nested **for loops**. For each position `[i][j]`, the value should be `(i + 1) * (j + 1)`.
 
 ---
 
 ### Task 19
 
-A cinema has `n` rows and `m` seats in each row. The seating arrangement is represented by a 2D array, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** that finds the number of available seats in the cinema.
+A cinema has rows and seats represented by a **2D array**, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** to count available seats.
 
+**Test Case:**
 ```javascript
-// A 2D array of numbers
-const seatingArrangement = [
+const seatingLayout = [
   [0, 0, 1, 0, 1],
   [1, 0, 1, 1, 0],
   [0, 0, 0, 1, 0],
   [1, 0, 0, 0, 0],
 ];
 
-const availableSeats = countAvailableSeats(seatingArrangement);
-console.log(availableSeats);
-
-// Expected output
-// 13
+const available = countAvailableSeats(seatingLayout);
+console.log(available);
+// Expected: 13
 ```
 
-> **Hint on how to solve this task:** You can find the number of available seats in the cinema by iterating through the **2D array** and counting the number of empty seats. You can start by assuming the number of available seats is 0 and then increment it each time you find an empty seat in the **2D array**.
+```javascript
+function countAvailableSeats(seatingLayout) {
+  // Your code here
+}
+```
+
+> **Hint:** Iterate through the **2D array** and count the number of `0` values (empty seats).
 
 ---
 
 ### Task 20
 
-Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board is a 3x3 grid, where "X" represents Player X's move, "O" represents Player O's move and "-" represents a space. The **function** should determine the winner or declare it as a tie.
+Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board uses "X" for Player X, "O" for Player O, and "-" for empty spaces.
 
+**Test Cases:**
 ```javascript
-// A 2D array representing a Tic-Tac-Toe board
-const board = [
+const board1 = [
   ["X", "O", "-"],
   ["-", "X", "O"],
   ["-", "-", "X"],
 ];
 
-const winner = checkWinner(board);
-console.log(winner);
+const board2 = [
+  ["O", "O", "O"],
+  ["X", "X", "-"],
+  ["-", "-", "-"],
+];
 
-// Expected output
-// "X"
+const board3 = [
+  ["X", "O", "X"],
+  ["O", "X", "O"],
+  ["O", "X", "O"],
+];
+
+console.log(checkTicTacToeWinner(board1)); // Expected: "X"
+console.log(checkTicTacToeWinner(board2)); // Expected: "O"
+console.log(checkTicTacToeWinner(board3)); // Expected: "Tie" or "No winner"
 ```
 
-> **Hint on how to solve this task:** You can check the winner of a **Tic-Tac-Toe** game by checking the rows, columns and diagonals of the **2D array**. You can start by checking the rows and then the columns and diagonals. You can use a series of **if statements** to check the rows, columns and diagonals for a winner.
+```javascript
+function checkTicTacToeWinner(board) {
+  // Your code here
+}
+```
+
+> **Hint:** Check all rows, columns, and diagonals for three matching symbols. You can check rows with nested loops, columns by swapping indices, and diagonals with specific index patterns.
 
 ---
 
