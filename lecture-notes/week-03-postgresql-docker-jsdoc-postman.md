@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-02-rest-express-http-development-tools.md)
+Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-02-apis-express-development-tools.md)
 
 ---
 
