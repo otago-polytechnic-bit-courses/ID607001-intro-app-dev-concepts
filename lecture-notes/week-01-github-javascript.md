@@ -83,6 +83,7 @@ There are many other operators in **JavaScript**, but we will only be concerned 
 - **if statement**
 - **if...else statement**
 - **switch statement**
+- **ternary operator**
 
 ```javascript
 // if statement
@@ -96,6 +97,11 @@ if (condition) {
 } else {
   // code to execute if condition is false
 }
+
+const x = condition ? 
+// code to execute if condition is true 
+: 
+// code to execute if condition is false;
 
 // switch statement
 switch (expression) {
@@ -330,6 +336,33 @@ const mixed = [
 
 ---
 
+### Destructuring
+
+**Destructuring** is a convenient way to extract values from arrays or properties from objects into distinct variables. It can make your code cleaner and more readable.
+
+```javascript
+// Array destructuring
+const numbers = [1, 2, 3];
+const [a, b, c] = numbers;
+
+console.log(a); // 1
+console.log(b); // 2
+console.log(c); // 3
+
+// Object destructuring
+const person = { name: "John", age: 30 };
+const { name, age } = person;
+
+console.log(name); // John
+console.log(age); // 30
+```
+
+---
+
+### Spread Operator
+
+---
+
 ### Map, Filter and Reduce
 
 **Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**.
@@ -413,6 +446,20 @@ const person = {
 console.log(person.name); // John
 console.log(person.age); // 25
 console.log(person.isMale); // true
+```
+
+Here is another example of assigning a variable with the same name as the key.
+
+```javascript
+const name = "John";
+const age = 25;
+const isMale = true;
+
+const person = {
+  name,
+  age,
+  isMale,
+};
 ```
 
 Here is another example of an **object** with key-value pairs of different data types.

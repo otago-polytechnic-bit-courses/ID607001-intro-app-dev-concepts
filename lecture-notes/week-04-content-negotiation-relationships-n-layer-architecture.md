@@ -8,7 +8,7 @@ Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **wweek-04-content-negotiation-relationships-repository-pattern** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-repository-pattern** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
@@ -187,7 +187,7 @@ const getDepartments = async (req, res) => {
   try {
     const departments = await prisma.department.findMany();
 
-    if (!departments) {
+    if (departments.length === 0) {
       return res.status(404).json({ message: "No departments found" });
     }
 
@@ -440,7 +440,7 @@ const createInstitution = async (req, res) => {
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await institutionRepository.findAll();
-    if (!institutions) {
+    if (institutions.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
     return res.status(200).json({

@@ -44,10 +44,10 @@ To get started, open **Docker Desktop** and a terminal and run the following.
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
 ```
 
-What does each do? 
+What does each do?
 
 - `docker run`: This command creates a new container.
-- `--name id607001-db-dev`: This command names the container **id607001-db-dev**. 
+- `--name id607001-db-dev`: This command names the container **id607001-db-dev**.
 - `-e POSTGRES_PASSWORD=HelloWorld123`: This command sets the **PostgreSQL** password to **HelloWorld123**.
 - `-p 5432:5432`: This command maps the container's port **5432** to the host's port **5432**.
 - `-d postgres`: This command uses the **PostgreSQL** image to create the container.
@@ -108,7 +108,7 @@ The `.env` file is used to store environment variables. For example, database co
 
 ---
 
-### .env File 
+### .env File
 
 A **.env** file is used to store environment variables. It is used to store sensitive information. For example, database connection string.
 
@@ -137,6 +137,7 @@ The `.env.example` file is used to provide an example of the `.env` file. It is 
 APP_ENV=development
 DATABASE_URL=
 ```
+
 > **Note:** The `.env.example` file is committed to **Git**. The **Node** `.gitignore` file does not ignore the `.env.example` file.
 
 In the `package.json` file, add the following line to the `scripts` block.
@@ -176,7 +177,7 @@ The `datasource` block is used to specify the database provider and URL. The `ur
 Remove the following line:
 
 ```javascript
-output   = "../generated/prisma"
+output = "../generated/prisma";
 ```
 
 Your `schema.prisma` file should look like the following:
@@ -320,6 +321,8 @@ const createInstitution = async (req, res) => {
         name: req.body.name,
         region: req.body.region,
         country: req.body.country,
+        // or
+        // name, region, country
       },
     });
 
@@ -347,7 +350,7 @@ const getInstitutions = async (req, res) => {
     const institutions = await prisma.institution.findMany();
 
     // Check if there are no institutions
-    if (!institutions) {
+    if (institutions.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
 
@@ -473,12 +476,55 @@ export {
 
 ---
 
+### Default and Named Exports
+
+In **JavaScript**, there are two types of exports:
+
+- **Default Export:** A module can only have one default export. It is imported without curly braces. Here is an example:
+
+```js
+// controllers/institution.js
+export default {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+};
+```
+
+```js
+// routes/institution.js
+import express from "express";
+
+import institutionController from "../controllers/institution.js";
+
+const router = express.Router();
+
+router.post("/", institutionController.createInstitution);
+router.get("/", institutionController.getInstitutions);
+router.get("/:id", institutionController.getInstitution);
+router.put("/:id", institutionController.updateInstitution);
+router.delete("/:id", institutionController.deleteInstitution);
+
+export default router;
+```
+
+- **Named Export:** A module can have multiple named exports. They are imported with curly braces. Refer to the example in the **Institution Router** section.
+
+When should I use **default exports** vs. **named exports**?
+
+- Use **default exports** when you want to export a single value from a module. It makes the import statement cleaner and more concise.
+- Use **named exports** when you want to export multiple values from a module. It allows for more flexibility and clarity in the import statements.
+
+---
+
 ### Institution Router
 
 In the `routes` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import express from "express"; 
+import express from "express";
 
 import {
   createInstitution,
@@ -486,7 +532,7 @@ import {
   getInstitution,
   updateInstitution,
   deleteInstitution,
-} from "../controllers/institution.js"; 
+} from "../controllers/institution.js";
 
 const router = express.Router();
 
@@ -513,6 +559,7 @@ In the `app.js` file, add the following code.
 ```javascript
 import institutionRoutes from "./routes/institution.js";
 
+// These middleware functions must be declared before the routes
 app.use(express.urlencoded({ extended: false })); // To parse the incoming requests with urlencoded payloads. For example, form data
 app.use(express.json()); // To parse the incoming requests with JSON payloads. For example, REST API requests
 
@@ -534,7 +581,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.urlencoded({ extended: false }));
-app.use(express.json()); 
+app.use(express.json());
 
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
@@ -550,49 +597,6 @@ export default app;
 
 ---
 
-## Default and Named Exports
-
-In **JavaScript**, there are two types of exports:
-
-- **Default Export:** A module can only have one default export. It is imported without curly braces. Here is an example:
-
-```js
-// controllers/institution.js
-export default {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-}
-```
-
-```js
-// routes/institution.js
-import express from "express"; 
-
-import institutionController from "../controllers/institution.js";
-
-const router = express.Router();
-
-router.post("/", institutionController.createInstitution);
-router.get("/", institutionController.getInstitutions);
-router.get("/:id", institutionController.getInstitution);
-router.put("/:id", institutionController.updateInstitution);
-router.delete("/:id", institutionController.deleteInstitution);
-
-export default router;
-```
-
-- **Named Export:** A module can have multiple named exports. They are imported with curly braces. Refer to the example in the **Institution Router** section.
-
-When should I use default exports vs. named exports?
-
-- Use default exports when you want to export a single value from a module. It makes the import statement cleaner and more concise.
-- Use named exports when you want to export multiple values from a module. It allows for more flexibility and clarity in the import statements.
-
----
-
 ## Postman
 
 **Postman** is a tool for testing APIs. It allows you to send requests to your API and view the responses. It is a powerful tool for testing and debugging APIs.
@@ -601,7 +605,7 @@ When should I use default exports vs. named exports?
 
 ### Getting Started
 
-To get started, navigate to <https://identity.getpostman.com/login> and sign in with your **GitHub** account. You will need to authorise **Postman** to access your **GitHub** account. Once you are signed in, you will see the **Postman** dashboard. 
+To get started, navigate to <https://identity.getpostman.com/login> and sign in with your **GitHub** account. You will need to authorise **Postman** to access your **GitHub** account. Once you are signed in, you will see the **Postman** dashboard.
 
 ---
 
@@ -611,7 +615,7 @@ Once you have setup your workspace, you can create a new collection. A collectio
 
 ![](<../resources (ignore)/img/week-3/00-week-3.png>)
 
-Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection. 
+Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection.
 
 ![](<../resources (ignore)/img/week-3/01-week-3.png>)
 
@@ -619,11 +623,11 @@ Name the request **Get all institutions**. Select the **GET** method from the dr
 
 ![](<../resources (ignore)/img/week-3/02-week-3.png>)
 
-To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**. 
+To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**.
 
 ![](<../resources (ignore)/img/week-3/03-week-3.png>)
 
-Name the request **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
+Name the request **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
 
 ```json
 {
@@ -637,7 +641,7 @@ Click on the **Send** button to send the request. You should see a response with
 
 ![](<../resources (ignore)/img/week-3/04-week-3.png>)
 
-Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. 
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
 
 ---
 
@@ -685,6 +689,8 @@ const createInstitution = async (req, res) => {
         name: req.body.name,
         region: req.body.region,
         country: req.body.country,
+        // or
+        // name, region, country
       },
     });
 
@@ -706,7 +712,6 @@ const createInstitution = async (req, res) => {
 
 ---
 
-
 ## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -725,7 +730,7 @@ Implement the code examples above.
 
 ### Task 2
 
-In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`. 
+In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
 
 After updating the schema:
 
