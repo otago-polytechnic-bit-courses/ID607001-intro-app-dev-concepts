@@ -1029,4 +1029,4 @@ const checkTicTacToeWinner = (board) => {
 
 ## Next Class
 
-Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-02-express-http.md)
+Link to the next class: [Week 02](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-02-express-http-development-tools.md)
