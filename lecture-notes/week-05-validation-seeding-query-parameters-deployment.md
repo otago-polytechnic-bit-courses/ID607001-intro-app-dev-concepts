@@ -18,7 +18,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Full Code Example
 
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-05-validation-seeding-query-parameters-deployment>
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-05-validation-seeding-query-parameters-deployment>
 
 ---
 
@@ -485,7 +485,7 @@ const getInstitutions = async (req, res) => {
       pageSize
     );
 
-    if (!institutions.data.length) {
+    if (institutions.data.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
 
@@ -558,7 +558,7 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 3. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
-4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-A NAME THAT MAKES SENSE TO YOU**.
+4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-validation-seeding-query-parameters-deployment**.
 
 > **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
 

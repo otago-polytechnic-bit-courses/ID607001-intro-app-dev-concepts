@@ -18,7 +18,7 @@ Create a new **SvelteKit** application called `week-09-api-integration-2-deploym
 
 ## Full Code Example
 
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-09-api-integration-2-deployment>
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-09-api-integration-2-deployment>
 
 ---
 

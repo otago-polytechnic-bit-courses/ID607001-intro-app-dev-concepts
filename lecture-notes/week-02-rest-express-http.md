@@ -16,7 +16,7 @@ Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code*
 
 ## Full Code Example
 
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-02-rest-express-http>
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-02-rest-express-http>
 
 ---
 
