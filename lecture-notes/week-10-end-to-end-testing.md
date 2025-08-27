@@ -74,13 +74,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two (Independent Research)
+### Task 2
 
 ---
 
