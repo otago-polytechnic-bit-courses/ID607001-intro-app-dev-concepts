@@ -50,7 +50,7 @@ const getInstitutions = async (req, res) => {
       pageSize
     );
 
-    if (!institutions.data.length) {
+    if (institutions.data.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
 

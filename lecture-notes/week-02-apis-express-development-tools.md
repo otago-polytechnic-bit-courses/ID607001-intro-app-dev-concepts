@@ -51,7 +51,7 @@ There are nine different **HTTP request methods**:
 - `TRACE`: Performs a message loop-back test along the path to the target resource.
 - `PATCH`: Used to apply partial modifications to a resource.
 
-We will only being using `GET`, `POST`, `PUT` and `DELETE` in this course.
+We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods>
 
@@ -237,7 +237,7 @@ This command will run the `dev` script declared in the `package.json` file. The 
 
 Open a browser and navigate to <http://localhost:3000/>. You should see the following message.
 
-```bash
+```json
 {
   "message": "Hello, World!",
   "firstName": "John",
@@ -374,11 +374,15 @@ In the root directory, create a file named `.prettierrc.json`. This file is used
 
 What are these rules?
 
-- `printWidth`: The line length where Prettier will try to wrap.
+- `printWidth`: The line length where **Prettier** will try to wrap.
 - `tabWidth`: Number of spaces per indentation level.
 - `semi`: Print semicolons at the ends of statements.
 - `singleQuote`: Use single quotes instead of double quotes.
 - `trailingComma`: Print trailing commas wherever possible in multi-line comma-separated syntactic structures.
+
+There are many more configuration options available for **Prettier**, including options for handling brackets, arrow function parentheses, etc. 
+
+> **Resource:** <https://prettier.io/docs/en/index.html>
 
 ---
 
@@ -392,6 +396,16 @@ To install **ESLint**, run the following command in your terminal.
 npm install eslint --save-dev
 ```
 
+After installation, you can initialise ESLint in your project by running:
+
+```bash
+npx eslint --init
+```
+
+This will create an `.eslintrc.json` file with configuration options for your project. ESLint can be configured to work alongside Prettier to handle both code quality and formatting.
+
+> **Resource:** <https://eslint.org/docs/user-guide/getting-started>
+
 ---
 
 ### Commitizen
@@ -401,8 +415,23 @@ npm install eslint --save-dev
 To install **Commitizen**, run the following command in your terminal.
 
 ```bash
-npm install commitizen --save-dev 
+npm install commitizen --save-dev
+npm install cz-conventional-changelog --save-dev
 ```
+
+After installation, add the following to your `package.json` file:
+
+```json
+"config": {
+  "commitizen": {
+    "path": "cz-conventional-changelog"
+  }
+}
+```
+
+You can then use `npx cz` instead of `git commit` to create standardised commit messages.
+
+> **Resource:** <https://github.com/commitizen/cz-cli>
 
 ---
 
@@ -415,6 +444,18 @@ To install **Husky**, run the following command in your terminal.
 ```bash
 npm install husky --save-dev
 ```
+
+After installation, you can set up Git hooks by running:
+
+```bash
+npx husky install
+```
+
+You can then add hooks to run scripts before commits or pushes, such as running tests or code formatting.
+
+> **Resource:** <https://typicode.github.io/husky/#/>
+
+---
 
 ## Exercises
 
@@ -434,7 +475,7 @@ Implement the code examples above.
 
 ### Task 2
 
-To get use to creating `controllers` and `routes`, create two `GET` routes for the following.
+To get used to creating `controllers` and `routes`, create two `GET` routes for the following.
 
 - <http://localhost:3000/about/>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses/>. Return an **array** of courses you are enrolled in this semester.
@@ -456,32 +497,6 @@ Your file structure should look something like this.
 ├── package.json
 └── package-lock.json
 ```
-
----
-
-### Task 3
-
-**Prettier** is a popular code formatting tool.
-
-Read the documentation on [Prettier](https://prettier.io/docs/en/index.html), particularly the **Usage > Install**, **Usage > Ignoring Code** and **Configuring Prettier > Configuration File** sections. Use this information to format your code based on the rules specified in the `.prettierrc.json` file.
-
-In the `.prettierrc.json` file, implement the following rules:
-
-- Print width is 80
-- Tab width is 2
-- Semi-colons are required
-- Single quotes are required
-- Trailing commas wherever possible
-
-In the `package.json` file, add the following line to the `scripts` block.
-
-```json
-"prettier:format": "npx prettier --write ."
-```
-
-The `prettier:format` script is used to format the code based on the rules specified in the `.prettierrc.json` file.
-
-Run the `prettier:format` script to format your code.
 
 ---
 

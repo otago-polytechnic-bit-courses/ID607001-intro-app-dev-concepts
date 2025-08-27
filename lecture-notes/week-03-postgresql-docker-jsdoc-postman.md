@@ -321,9 +321,21 @@ const createInstitution = async (req, res) => {
         name: req.body.name,
         region: req.body.region,
         country: req.body.country,
-        // or
-        // name, region, country
       },
+
+      // or
+
+      // data: {
+      //   name
+      //   region
+      //   country
+      // },
+
+      // or
+
+      // data: {
+      //   ...req.body
+      // },
     });
 
     // Get all institutions from the institution table

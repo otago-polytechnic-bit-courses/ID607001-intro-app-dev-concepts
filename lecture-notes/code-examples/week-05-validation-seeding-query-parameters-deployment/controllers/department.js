@@ -18,7 +18,7 @@ const createDepartment = async (req, res) => {
 const getDepartments = async (req, res) => {
   try {
     const departments = await departmentRepository.findAll();
-    if (!departments) {
+    if (departments.length === 0) {
       return res.status(404).json({ message: "No departments found" });
     }
     return res.status(200).json({

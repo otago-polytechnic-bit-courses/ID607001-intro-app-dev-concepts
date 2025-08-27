@@ -33,7 +33,7 @@ const getInstitutions = async (req, res) => {
     const institutions = await prisma.institution.findMany();
 
     // Check if there are no institutions
-    if (!institutions) {
+    if (institutions.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
 
