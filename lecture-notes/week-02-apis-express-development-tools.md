@@ -589,7 +589,7 @@ In the `package.json` file, add the following under the `scripts` block.
 ```json
 "lint-staged": {
   "*.js": "prettier --write"
-}
+},
 ```
 
 > **Note:** If you want to format other file types, you can add more entries. For example, `"*.{js,json}": "prettier --write"`.
