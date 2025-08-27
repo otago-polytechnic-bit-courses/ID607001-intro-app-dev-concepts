@@ -594,7 +594,7 @@ In the `package.json` file, add the following under the `scripts` block.
 
 > **Note:** If you want to format other file types, you can add more entries. For example, `"*.{js,json}": "prettier --write"`.
 
-In the root directory, create a file named `.prettierignore`. This file specifies files and directories that should be ignored by Prettier:
+In the root directory, create a file named `.prettierignore`. This file specifies files and directories that should be ignored by **Prettier**:
 
 ```bash
 node_modules
