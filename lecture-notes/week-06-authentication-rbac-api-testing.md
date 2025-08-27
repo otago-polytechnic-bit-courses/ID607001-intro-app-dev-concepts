@@ -527,48 +527,13 @@ root/
 
 ---
 
-### Helper - Auth
-
-In `auth.js`, add the following code.
-
-```js
-import request from "supertest";
-import app from "../../app.js";
-import prisma from "../../prisma/client.js";
-
-import { cleanupDatabase } from "./db.js";
-
-const setupTestAuth = async () => {
-  await cleanupDatabase();
-
-  await request(app).post("/api/auth/register").send({
-    firstName: "John",
-    lastName: "Doe",
-    emailAddress: "jane.doe@example.com",
-    password: "janedoe123",
-    role: "ADMIN",
-  });
-
-  const res = await request(app).post("/api/auth/login").send({
-    emailAddress: "jane.doe@example.com",
-    password: "janedoe123",
-  });
-
-  return res.body.token;
-};
-
-export default setupTestAuth;
-```
-
-The `setupTestAuth` function creates a test user and logs in to get a token.
-
----
-
 ### Helper - DB Cleanup
 
 In `db.js`, add the following code.
 
 ```javascript
+import prisma from "../../prisma/client.js";
+
 const cleanupDatabase = async () => {
   await prisma.department.deleteMany();
   await prisma.institution.deleteMany();
@@ -585,6 +550,44 @@ export { cleanupDatabase, disconnectPrisma };
 The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables, and the `disconnectPrisma` function disconnects the **Prisma** client from the database.
 
 ---
+
+### Helper - Auth
+
+In `auth.js`, add the following code.
+
+```js
+import request from "supertest";
+
+import app from "../../app.js";
+import { cleanupDatabase } from "./db.js";
+
+const setupTestAuth = async () => {
+  await cleanupDatabase();
+
+  await request(app).post("/api/auth/register").send({
+    firstName: "Jane",
+    lastName: "Doe",
+    emailAddress: "jane.doe@example.com",
+    password: "janedoe123",
+    role: "ADMIN",
+  });
+
+  const res = await request(app).post("/api/auth/login").send({
+    emailAddress: "jane.doe@example.com",
+    password: "janedoe123",
+  });
+
+  return res.body.token;
+};
+
+export default setupTestAuth;
+
+```
+
+The `setupTestAuth` function creates a test user and logs in to get a token.
+
+---
+
 
 ### Institution CRUD Tests
 

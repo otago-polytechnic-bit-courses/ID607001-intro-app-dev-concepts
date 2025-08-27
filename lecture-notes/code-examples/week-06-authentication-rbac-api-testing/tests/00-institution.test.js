@@ -1,7 +1,8 @@
 import { expect } from "chai";
 import request from "supertest";
+
 import app from "../app.js";
-import { setupTestAuth } from "./helpers/auth.js";
+import setupTestAuth from "./helpers/auth.js";
 
 describe("Institution CRUD", () => {
   let token;

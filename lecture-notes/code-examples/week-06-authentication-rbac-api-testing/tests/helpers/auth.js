@@ -1,13 +1,13 @@
 import request from "supertest";
-import app from "../../app.js";
-import prisma from "../../prisma/client.js";
 
-export const setupTestAuth = async () => {
-  await prisma.user.deleteMany();
-  await prisma.institution.deleteMany();
+import app from "../../app.js";
+import { cleanupDatabase } from "./db.js";
+
+const setupTestAuth = async () => {
+  await cleanupDatabase();
 
   await request(app).post("/api/auth/register").send({
-    firstName: "John",
+    firstName: "Jane",
     lastName: "Doe",
     emailAddress: "jane.doe@example.com",
     password: "janedoe123",
@@ -22,12 +22,4 @@ export const setupTestAuth = async () => {
   return res.body.token;
 };
 
-export const cleanupDatabase = async () => {
-  await prisma.department.deleteMany();
-  await prisma.institution.deleteMany();
-  await prisma.user.deleteMany();
-};
-
-export const disconnectPrisma = async () => {
-  await prisma.$disconnect();
-};
+export default setupTestAuth;
