@@ -346,7 +346,7 @@ When setting up a project, it is important to have a clear file structure. This 
 
 ## Development Tools
 
-There are many development tools that can help you during the development process. Some of these tools include **Prettier**, **ESLint**, **Commitizen** and **Husky**.
+There are many development tools that can help you during the development process. Some of these tools include **Prettier**, **ESLint** and **Commitizen**.
 
 ---
 
@@ -404,19 +404,68 @@ npm init @eslint/config@latest
 
 You will be prompted with the following questions:
 
-| Question | Answer |
-|----------|--------|
-| What do you want to lint? | javascript |
-| How would you like to use ESLint? | problems |
-| What type of modules does your project use? | esm |
-| Which framework does your project use? | none |
-| Does your project use TypeScript? | No |
-| Where does your code run? | browser |
-| Required dependencies | eslint, @eslint/js, globals |
-| Would you like to install them now? | Yes |
-| Which package manager do you want to use? | npm |
+| Question                                    | Answer                      |
+| ------------------------------------------- | --------------------------- |
+| What do you want to lint?                   | javascript                  |
+| How would you like to use ESLint?           | problems                    |
+| What type of modules does your project use? | esm                         |
+| Which framework does your project use?      | none                        |
+| Does your project use TypeScript?           | No                          |
+| Where does your code run?                   | browser                     |
+| Required dependencies                       | eslint, @eslint/js, globals |
+| Would you like to install them now?         | Yes                         |
+| Which package manager do you want to use?   | npm                         |
 
 This will create an `eslint.config.js` file with configuration options for your project. **ESLint** can be configured to work alongside **Prettier** to handle both code quality and formatting.
+
+To setup **ESLint** to work with **Prettier**, you need to install the following additional packages.
+
+```bash
+npm install eslint-config-prettier eslint-plugin-prettier --save-dev
+```
+
+In the `eslint.config.js` file, update the file to the following.
+
+```javascript
+import js from '@eslint/js';
+import globals from 'globals';
+import { defineConfig } from 'eslint/config';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+
+export default defineConfig([
+  {
+    files: ['**/*.{js,mjs,cjs}'],
+    plugins: { js },
+    extends: ['js/recommended'],
+    languageOptions: { globals: globals.browser },
+  },
+  eslintPluginPrettierRecommended,
+]);
+```
+
+`eslintPluginPrettierRecommended` should be the last item in the `defineConfig` array to ensure that **Prettier** rules take precedence over other rules.
+
+In the `package.json` file, add the following line to the `scripts` block.
+
+```json
+"lint": "eslint ."
+```
+
+Your `scripts` block should look like this.
+
+```json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon app.js",
+  "lint": "eslint ."
+},
+```
+
+To run **ESLint**, use the following command in your terminal.
+
+```bash
+npm run lint
+```
 
 > **Resource:** <https://eslint.org/docs/user-guide/getting-started>
 
@@ -432,41 +481,22 @@ To install **Commitizen**, run the following commands in your terminal.
 npm install commitizen cz-conventional-changelog --save-dev
 ```
 
-After installation, add the following to your `package.json` file:
+In the `package.json` file, add the following under the `scripts` block.
+
 
 ```json
 "config": {
   "commitizen": {
     "path": "cz-conventional-changelog"
   }
-}
+},
 ```
 
 You can then use `npx cz` instead of `git commit` to create standardised commit messages.
 
+You will be prompted with a series of questions to help you structure your commit message.
+
 > **Resource:** <https://github.com/commitizen/cz-cli>
-
----
-
-### Husky
-
-**Husky** is a tool that helps you manage **Git** hooks and enforce code quality checks. It can prevent bad `git commit`, `git push` and more by using hooks.
-
-To install **Husky**, run the following command in your terminal.
-
-```bash
-npm install husky --save-dev
-```
-
-After installation, you can set up Git hooks by running:
-
-```bash
-npx husky install
-```
-
-You can then add hooks to run scripts before commits or pushes, such as running tests or code formatting.
-
-> **Resource:** <https://typicode.github.io/husky/#/>
 
 ---
 
