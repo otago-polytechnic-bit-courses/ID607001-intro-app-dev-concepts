@@ -344,6 +344,78 @@ When setting up a project, it is important to have a clear file structure. This 
 
 ---
 
+## Development Tools
+
+There are many development tools that can help you during the development process. Some of these tools include **Prettier**, **ESLint**, **Commitizen** and **Husky**.
+
+---
+
+### Prettier
+
+**Prettier** is a popular code formatting tool. It helps maintain a consistent code style by parsing your code and re-printing it with its own rules.
+
+To install **Prettier**, run the following command in your terminal.
+
+```bash
+npm install prettier --save-dev
+```
+
+In the root directory, create a file named `.prettierrc.json`. This file is used to specify the rules for formatting the code. In the `.prettierrc.json` file, add the following code.
+
+```json
+{
+  "printWidth": 80,
+  "tabWidth": 2,
+  "semi": true,
+  "singleQuote": true,
+  "trailingComma": "es5"
+}
+```
+
+What are these rules?
+
+- `printWidth`: The line length where Prettier will try to wrap.
+- `tabWidth`: Number of spaces per indentation level.
+- `semi`: Print semicolons at the ends of statements.
+- `singleQuote`: Use single quotes instead of double quotes.
+- `trailingComma`: Print trailing commas wherever possible in multi-line comma-separated syntactic structures.
+
+---
+
+### ESLint
+
+**ESLint** is a popular linting tool for identifying and fixing problems in **JavaScript** code. It helps ensure that your code adheres to a consistent style and can catch common errors.
+
+To install **ESLint**, run the following command in your terminal.
+
+```bash
+npm install eslint --save-dev
+```
+
+---
+
+### Commitizen
+
+**Commitizen** is a tool that helps you write consistent commit messages. It provides a standard way to structure your commit messages, making it easier to understand the history of your project.
+
+To install **Commitizen**, run the following command in your terminal.
+
+```bash
+npm install commitizen --save-dev 
+```
+
+---
+
+### Husky
+
+**Husky** is a tool that helps you manage **Git** hooks and enforce code quality checks. It can prevent bad `git commit`, `git push` and more by using hooks.
+
+To install **Husky**, run the following command in your terminal.
+
+```bash
+npm install husky --save-dev
+```
+
 ## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
