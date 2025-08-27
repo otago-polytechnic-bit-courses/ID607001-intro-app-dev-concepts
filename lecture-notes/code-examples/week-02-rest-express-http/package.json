@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "lint": "eslint .",
-    "prepare": "husky"
+    "format": "prettier --write .",
+    "lint": "eslint ."
   },
   "config": {
     "commitizen": {
@@ -29,7 +29,6 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.3.0",
-    "husky": "^9.1.7",
     "nodemon": "^3.1.10",
     "prettier": "3.6.2"
   }

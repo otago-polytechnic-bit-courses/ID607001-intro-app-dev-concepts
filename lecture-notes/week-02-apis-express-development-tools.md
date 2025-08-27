@@ -382,6 +382,28 @@ What are these rules?
 
 There are many more configuration options available for **Prettier**, including options for handling brackets, arrow function parentheses, etc.
 
+In the `package.json` file, add the following line to the `scripts` block.
+
+```json
+"format": "prettier --write ."
+```
+
+Your `scripts` block should look like this.
+
+```json
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "nodemon app.js",
+  "pretty": "prettier --write ."
+},
+```
+
+To run **Prettier**, use the following command in your terminal.
+
+```bash
+npm run format
+```
+
 > **Resource:** <https://prettier.io/docs/en/index.html>
 
 ---
@@ -457,6 +479,7 @@ Your `scripts` block should look like this.
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
+  "format": "prettier --write .",
   "lint": "eslint ."
 },
 ```
