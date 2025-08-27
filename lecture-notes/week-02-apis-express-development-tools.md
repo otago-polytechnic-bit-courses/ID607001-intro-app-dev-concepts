@@ -433,7 +433,7 @@ You will be prompted with the following questions:
 | What type of modules does your project use? | esm                         |
 | Which framework does your project use?      | none                        |
 | Does your project use TypeScript?           | No                          |
-| Where does your code run?                   | browser                     |
+| Where does your code run?                   | node                        |
 | Required dependencies                       | eslint, @eslint/js, globals |
 | Would you like to install them now?         | Yes                         |
 | Which package manager do you want to use?   | npm                         |
@@ -449,16 +449,16 @@ npm install eslint-config-prettier eslint-plugin-prettier --save-dev
 In the `eslint.config.js` file, update the file to the following.
 
 ```javascript
-import js from '@eslint/js';
-import globals from 'globals';
-import { defineConfig } from 'eslint/config';
-import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
+import js from "@eslint/js";
+import globals from "globals";
+import { defineConfig } from "eslint/config";
+import eslintPluginPrettierRecommended from "eslint-plugin-prettier/recommended";
 
 export default defineConfig([
   {
-    files: ['**/*.{js,mjs,cjs}'],
+    files: ["**/*.{js,mjs,cjs}"],
     plugins: { js },
-    extends: ['js/recommended'],
+    extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
   },
   eslintPluginPrettierRecommended,
@@ -565,9 +565,44 @@ Your file structure should look something like this.
 
 ---
 
-### Task 3
+# Task 3
+
+The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that do not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
+
+Using the `lint-staged` dependency, configure **Prettier** to only format files that are staged for commit.
+
+To install `lint-staged`, run the following commands in your terminal.
+
+```bash
+npm install lint-staged --save-dev
+```
+
+In the `package.json` file, update the `format` script to the following.
+
+```json
+"format": "lint-staged"
+```
+
+In the `package.json` file, add the following under the `scripts` block.
 
 
+```json
+"lint-staged": {
+  "*.js": "prettier --write"
+}
+```
+
+In the root directory, create a file named `.prettierignore`. This file specifies files and directories that should be ignored by Prettier:
+
+```bash
+node_modules
+```
+
+To run **Prettier** on staged files, use the following command in your terminal.
+
+```bash
+npm run format
+```
 
 ---
 
