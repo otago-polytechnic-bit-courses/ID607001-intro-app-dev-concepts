@@ -10,9 +10,6 @@
     "format": "lint-staged",
     "lint": "eslint ."
   },
-  "lint-staged": {
-  "*.js": "prettier --write"
-},
   "config": {
     "commitizen": {
       "path": "cz-conventional-changelog"
@@ -32,7 +29,6 @@
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
     "globals": "^16.3.0",
-    "lint-staged": "^16.1.5",
     "nodemon": "^3.1.10",
     "prettier": "3.6.2"
   }
