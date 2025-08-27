@@ -565,7 +565,7 @@ Your file structure should look something like this.
 
 ---
 
-# Task 3
+### Task 3
 
 The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that do not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
 
