@@ -277,6 +277,7 @@ Your `scripts` block should look like this.
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
+  "format": "prettier --write .",
   "lint": "eslint .",
   "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
   "env:copy": "cp .env.example .env || copy .env.example .env",
@@ -323,20 +324,6 @@ const createInstitution = async (req, res) => {
         region: req.body.region,
         country: req.body.country,
       },
-
-      // or
-
-      // data: {
-      //   name
-      //   region
-      //   country
-      // },
-
-      // or
-
-      // data: {
-      //   ...req.body
-      // },
     });
 
     // Get all institutions from the institution table

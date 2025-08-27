@@ -394,7 +394,7 @@ Your `scripts` block should look like this.
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
-  "pretty": "prettier --write ."
+  "format": "prettier --write ."
 },
 ```
 
@@ -567,7 +567,7 @@ Your file structure should look something like this.
 
 ### Task 3
 
-The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that do not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
+The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that does not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
 
 Using the `lint-staged` dependency, configure **Prettier** to only format files that are staged for commit.
 

@@ -337,7 +337,7 @@ export default app;
 
 ### Postman Example
 
-Create a new request and name it **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body. 
+Create a new request and name it **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
 
 ```json
 {
@@ -346,13 +346,13 @@ Create a new request and name it **Create a department**. Select the **POST** me
 }
 ```
 
-Click on the **Send** button to send the request. 
+Click on the **Send** button to send the request.
 
 ![](<../resources (ignore)/img/week-4/00-week-4.png>)
 
 > **Note:** Make sure you have at least one institution.
 
-Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>. 
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
 
 ---
 
@@ -548,7 +548,7 @@ Create a `User` model with the following fields:
 - `createdAt`
 - `updatedAt`
 
-Create the necessary **controller**, **route** and **repository** files for the `User` model. 
+Create the necessary **controller**, **route** and **repository** files for the `User` model.
 
 Test your implementation by:
 
@@ -583,7 +583,7 @@ Test your implementation by:
 
 ### Task 4
 
-Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models. 
+Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models.
 
 Here is an example. In the `repositories/institution.js` file, update the following code.
 
@@ -595,14 +595,14 @@ class InstitutionRepository {
 
   async findAll(includeOptions = {}) {
     return await prisma.institution.findMany({
-      include: includeOptions
+      include: includeOptions,
     });
   }
 
   async findById(id, includeOptions = {}) {
     return await prisma.institution.findUnique({
       where: { id },
-      include: includeOptions
+      include: includeOptions,
     });
   }
 
@@ -622,7 +622,7 @@ import institutionRepository from "../repositories/institution.js";
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await institutionRepository.findAll({
-      departments: true
+      departments: true,
     });
     if (institutions.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
@@ -640,7 +640,7 @@ const getInstitutions = async (req, res) => {
 const getInstitution = async (req, res) => {
   try {
     const institution = await institutionRepository.findById(req.params.id, {
-      departments: true
+      departments: true,
     });
     if (!institution) {
       return res.status(404).json({
@@ -668,10 +668,9 @@ export {
 };
 ```
 
-
 ---
 
-###  Task 5
+### Task 5
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
