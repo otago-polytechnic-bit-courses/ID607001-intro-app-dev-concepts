@@ -624,7 +624,7 @@ const getInstitutions = async (req, res) => {
     const institutions = await institutionRepository.findAll({
       departments: true
     });
-    if (!institutions) {
+    if (institutions.length === 0) {
       return res.status(404).json({ message: "No institutions found" });
     }
     return res.status(200).json({
