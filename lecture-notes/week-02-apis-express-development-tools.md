@@ -506,7 +506,6 @@ npm install commitizen cz-conventional-changelog --save-dev
 
 In the `package.json` file, add the following under the `scripts` block.
 
-
 ```json
 "config": {
   "commitizen": {
@@ -563,6 +562,12 @@ Your file structure should look something like this.
 ├── package.json
 └── package-lock.json
 ```
+
+---
+
+### Task 3
+
+
 
 ---
 
