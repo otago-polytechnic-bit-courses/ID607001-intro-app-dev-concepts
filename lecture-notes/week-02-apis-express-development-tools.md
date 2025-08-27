@@ -380,7 +380,7 @@ What are these rules?
 - `singleQuote`: Use single quotes instead of double quotes.
 - `trailingComma`: Print trailing commas wherever possible in multi-line comma-separated syntactic structures.
 
-There are many more configuration options available for **Prettier**, including options for handling brackets, arrow function parentheses, etc. 
+There are many more configuration options available for **Prettier**, including options for handling brackets, arrow function parentheses, etc.
 
 > **Resource:** <https://prettier.io/docs/en/index.html>
 
@@ -399,10 +399,24 @@ npm install eslint --save-dev
 After installation, you can initialise ESLint in your project by running:
 
 ```bash
-npx eslint --init
+npm init @eslint/config@latest
 ```
 
-This will create an `.eslintrc.json` file with configuration options for your project. ESLint can be configured to work alongside Prettier to handle both code quality and formatting.
+You will be prompted with the following questions:
+
+| Question | Answer |
+|----------|--------|
+| What do you want to lint? | javascript |
+| How would you like to use ESLint? | problems |
+| What type of modules does your project use? | esm |
+| Which framework does your project use? | none |
+| Does your project use TypeScript? | No |
+| Where does your code run? | browser |
+| Required dependencies | eslint, @eslint/js, globals |
+| Would you like to install them now? | Yes |
+| Which package manager do you want to use? | npm |
+
+This will create an `eslint.config.js` file with configuration options for your project. **ESLint** can be configured to work alongside **Prettier** to handle both code quality and formatting.
 
 > **Resource:** <https://eslint.org/docs/user-guide/getting-started>
 
@@ -412,11 +426,10 @@ This will create an `.eslintrc.json` file with configuration options for your pr
 
 **Commitizen** is a tool that helps you write consistent commit messages. It provides a standard way to structure your commit messages, making it easier to understand the history of your project.
 
-To install **Commitizen**, run the following command in your terminal.
+To install **Commitizen**, run the following commands in your terminal.
 
 ```bash
-npm install commitizen --save-dev
-npm install cz-conventional-changelog --save-dev
+npm install commitizen cz-conventional-changelog --save-dev
 ```
 
 After installation, add the following to your `package.json` file:
