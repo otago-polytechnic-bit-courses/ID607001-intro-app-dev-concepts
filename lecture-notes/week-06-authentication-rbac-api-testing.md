@@ -62,7 +62,7 @@ In the `.env` file, add the following environment variables:
 
 ```bash
 JWT_SECRET=HelloWorld123
-JWT_LIFETIME=1hr
+JWT_LIFETIME=1h
 ```
 
 The `.env` file should look like this:
