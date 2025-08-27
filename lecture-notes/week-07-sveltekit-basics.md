@@ -892,4 +892,4 @@ Implement the code examples above.
 
 ## Next Class
 
-Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-08-next-topic.md)
+Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-08-content-delivery-networks-api-integration-1.md)
