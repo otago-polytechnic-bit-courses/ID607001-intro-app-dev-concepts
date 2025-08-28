@@ -527,7 +527,7 @@ root/
 
 ---
 
-### Helper - DB Cleanup
+### Helper - DB
 
 In `db.js`, add the following code.
 
