@@ -886,38 +886,50 @@ Implement the code examples above.
 
 ---
 
-### Task 2 
+### Task 2
 
-In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. In this component, implementing the following functionality:
+In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. In this component, implement the following functionality:
 
-- Use the `$state` rune to manage an array of objects called `cartItems`. Each object should have the following properties: `id`, `name`, `price` and `quantity`.
-- Use the `$derived` rune to create a variable called `totalPrice` that calculates the total price of all items in the cart.
-- Use the `$effect` rune to display a message when the total price exceeds $100.
-- Use the `#each` block to display a table of all items in the cart, including their name, price, quantity and total price.
-- Use the `#if` and `:else` blocks to display a message when the cart is empty.
-- Add a form to add new items to the cart. The form should have input fields for the item name, price and quantity. When the form is submitted, the new item should be added to the `cartItems` array.
-- Add a button to remove an item from the cart. When the button is clicked, the item should be removed from the `cartItems` array.
+- Use the `$state` **rune** to manage an **array** of **objects** called `cartItems`. Each object should have the following properties: `id`, `name`, `price` and `quantity`.
+- Use the `$state` **rune** to manage **form** input data with properties: `itemName`, `itemPrice`, and `itemQuantity`.
+- Use the `$derived` **rune** to create a variable called `totalPrice` that calculates the total price of all items in the cart (sum of price × quantity for each item).
+- Use the `$effect` **rune** to display a warning message above the cart table when the total price exceeds $100. The message should auto-hide after 3 seconds.
+- Use the `#each` block to display a table of all items in the cart with columns for name, price, quantity, item total, and a remove button for each item.
+- Use the `#if` and `:else` blocks to display "Your cart is empty" message when no items exist in the cart.
+- Add a **form** to add new items to the cart with input fields for item name, price, and quantity. Use `bind:value` for two-way data binding.
+- Validate **form** inputs to ensure the item name is not empty (trim whitespace), price is a positive number, and quantity is a positive integer.
+- Use `#if` blocks to display validation error messages for invalid inputs.
+- Generate unique IDs for new items using `Date.now()` or a counter.
+- Clear the **form** after successful submission and prevent the default form submission behavior.
+- Add a "Remove" button for each cart item that removes the item from the `cartItems` **array** when clicked.
+- Display the total price formatted to 2 decimal places below the cart table.
 
 ---
 
-### Task 3
+### Task 2
 
 In the `src/lib/components` directory, create two new components called `GradeCalculator.svelte` (parent) and `CourseInput.svelte` (child).
 
 In the `GradeCalculator.svelte` component, implement the following functionality:
 
-- Manage an array of courses and grades.
-- Calculate and display the average grade.
-- Implement parent-to-child communication by passing course and grade data to the `CourseInput.svelte` component.
-- Implement child-to-parent communication by receiving new course and grade data from the `CourseInput.svelte` component and updating the array of courses and grades.
+- Use `$state` rune to manage an array of course objects with `courseName` and `grade` properties
+- Use `$derived` rune to calculate and display the average grade
+- Use `#each` block to display a table of all courses and grades
+- Use `#if/:else` blocks to show "No courses added" when the array is empty
+- Pass a callback function to `CourseInput` for receiving new course data
+- Display the calculated average grade (rounded to 1 decimal place)
 
 In the `CourseInput.svelte` component, implement the following functionality:
 
--
-
----
-
-### Task 4
+- Use `$props` rune to accept a callback function from the parent
+- Use `$state` rune to manage form data (`courseName`, `grade`) and error messages
+- Create a form with appropriate input fields and validation
+- Validate that:
+  - Course name is not empty (trim whitespace)
+  - Grade is a valid number between 0 and 100
+- Use `#if` blocks to display error messages for invalid input
+- On successful submission, call the parent's callback function and clear the form
+- Show a success message briefly after successful submission
 
 ---
 
