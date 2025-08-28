@@ -586,7 +586,7 @@ Here is how to use the **server-side** **POST** and **DELETE** actions:
 
 ---
 
-## Exercises
+# Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -596,13 +596,54 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+## Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+## Task 2
+
+Create a **client-side API** integration that demonstrates CRUD operations.
+
+Create the route `/src/routes/client-side/posts/+page.svelte` that:
+
+- Fetches posts from https://jsonplaceholder.typicode.com/posts using `onMount`
+- Displays posts in a table with columns for ID, title and actions
+- Implements a form to create new posts using a **POST** request with client-side fetch
+- Adds delete functionality for each post using a **DELETE** request with client-side fetch
+- Uses reactive variables with the `$state` **rune** to manage the array of posts, loading states and error messages
+- Handles loading and error states appropriately with conditional rendering
+- Provides user feedback for successful operations and error handling
+
+---
+
+## Task 3
+
+Create a **server-side API** integration that connects to your **Express REST API** from previous weeks.
+
+In the `/src/routes/server-side/departments/` directory, create the following files:
+
+- `+page.server.js`
+- `+page.svelte`
+
+In `/src/routes/server-side/departments/+page.server.js`, implement the following functionality:
+
+- Use a load function to fetch departments from your **Express REST API**
+- Create form actions for both create and update department operations
+- The create action should accept name and institutionId from form data
+- The update action should accept id, name, and institutionId from form data
+- Handle validation errors and return appropriate responses using `fail()`
+- Use environment variables for the API base URL
+- Implement proper error handling for network requests
+
+In `/src/routes/server-side/departments/+page.svelte`, implement the following functionality:
+
+- Display departments in a table with edit functionality
+- Create forms for adding new departments and updating existing ones
+- Show success/error messages based on form responses
+- Use conditional rendering to handle loading, error and success states
+- Pre-populate form fields when editing a department
 
 ---
 
