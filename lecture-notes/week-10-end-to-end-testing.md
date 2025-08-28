@@ -57,12 +57,14 @@ Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svel
 
 ---
 
-```
-√ Do you want to use TypeScript or JavaScript? · JavaScript
-√ Where to put your end-to-end tests? · tests 
-√ Add a GitHub Actions workflow? (y/N) · false
-√ Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) · true
-```
+| Question | Answer |
+|----------|--------|
+| Do you want to use TypeScript or JavaScript? | JavaScript |
+| Where to put your end-to-end tests? | tests |
+| Add a GitHub Actions workflow? (y/N) | false |
+| Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true |
+
+---
 
 ## Exercises
 
