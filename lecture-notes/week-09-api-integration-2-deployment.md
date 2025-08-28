@@ -536,13 +536,64 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+## Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+## Task 2
+
+Extend the dashboard functionality by implementing a **delete** action for institutions.
+
+In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete` that:
+
+- Retrieves the authentication token from cookies
+- Accepts an institution ID from the form data
+- Makes a DELETE request to your API with the authorization header
+- Handles success and error responses appropriately
+- Returns appropriate success or error messages
+
+Update the dashboard page to handle the delete response and provide user feedback for successful deletions or errors.
+
+---
+
+## Task 3
+
+Implement user session management and authentication middleware.
+
+Create a new file `/src/hooks.server.js` in your project root that implements:
+
+- A server-side hook to check for authentication tokens in cookies
+- Protection for routes that require authentication (such as `/dashboard`)
+- Automatic redirection to `/auth/login` for unauthenticated users trying to access protected routes
+- Token validation by making a request to your API's token verification endpoint
+
+The hook should allow public routes like `/`, `/auth/login`, and `/auth/register` to be accessed without authentication.
+
+---
+
+## Task 4
+
+Implement a logout functionality that:
+
+- Creates a logout form action in an appropriate route file
+- Clears the authentication token cookie when the user logs out
+- Redirects the user to the login page after successful logout
+- Adds a logout button to the dashboard page that submits to this action
+
+---
+
+## Task 5
+
+Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above.
+
+After deployment:
+
+- Set up your environment variables (like `API_BASE_URL`) in the Vercel Dashboard
+- Test the deployed application to ensure authentication, CRUD operations, and API integration work correctly
+- Document your deployed application URL in your project's README.md file
+- Verify that your Express API is accessible from the deployed SvelteKit application (you may need to deploy your API as well or ensure CORS is properly configured)
 
 ---
 

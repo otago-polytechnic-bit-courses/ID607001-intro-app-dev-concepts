@@ -888,21 +888,23 @@ Implement the code examples above.
 
 ### Task 2
 
-In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. In this component, implement the following functionality:
+In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. 
 
-- Use the `$state` **rune** to manage an **array** of **objects** called `cartItems`. Each object should have the following properties: `id`, `name`, `price` and `quantity`.
-- Use the `$state` **rune** to manage **form** input data with properties: `itemName`, `itemPrice` and `itemQuantity`.
-- Use the `$derived` **rune** to create a variable called `totalPrice` that calculates the total price of all items in the cart (sum of price × quantity for each item).
-- Use the `$effect` **rune** to display a warning message above the cart table when the total price exceeds $100. The message should auto-hide after 3 seconds.
-- Use the `#each` block to display a table of all items in the cart with columns for name, price, quantity, item total and a remove button for each item.
-- Use the `#if` and `:else` blocks to display "Your cart is empty" message when no items exist in the cart.
-- Add a **form** to add new items to the cart with input fields for item name, price, and quantity. Use `bind:value` for two-way data binding.
-- Validate **form** inputs to ensure the item name is not empty (trim whitespace), price is a positive number and quantity is a positive integer.
-- Use `#if` blocks to display validation error messages for invalid inputs.
-- Generate unique IDs for new items using `Date.now()` or a counter.
-- Clear the **form** after successful submission and prevent the default form submission behaviour.
-- Add a "Remove" button for each cart item that removes the item from the `cartItems` **array** when clicked.
-- Display the total price formatted to 2 decimal places below the cart table.
+In the `ShoppingCart.svelte` component, implement the following functionality:
+
+- Use the `$state` **rune** to manage an **array** of **objects** called `cartItems`. Each object should have the following properties: `id`, `name`, `price` and `quantity`
+- Use the `$state` **rune** to manage **form** input data with properties: `itemName`, `itemPrice` and `itemQuantity`
+- Use the `$derived` **rune** to create a variable called `totalPrice` that calculates the total price of all items in the cart (sum of price × quantity for each item)
+- Use the `$effect` **rune** to display a warning message above the cart table when the total price exceeds $100. The message should auto-hide after 3 seconds
+- Use the `#each` block to display a table of all items in the cart with columns for name, price, quantity, item total and a remove button for each item
+- Use the `#if` and `:else` blocks to display "Your cart is empty" message when no items exist in `cartItems` **array**
+- Add a **form** to add new items to the cart with input fields for item name, price, and quantity. Use `bind:value` for two-way data binding
+- Validate **form** inputs to ensure the item name is not empty, price is a positive number and quantity is a positive integer
+- Use `#if` blocks to display validation error messages for invalid inputs
+- Generate unique IDs for new items using a counter
+- Clear the **form** after successful submission and prevent the default form submission behaviour
+- Add a "Remove" button for each cart item that removes the item from the `cartItems` **array** when clicked
+- Display the total price formatted to 2 decimal places below the cart table
 
 ---
 
@@ -912,10 +914,10 @@ In the `src/lib/components` directory, create two new components called `GradeCa
 
 In the `GradeCalculator.svelte` component, implement the following functionality:
 
-- Use `$state` **rune** to manage an **array** of **objects** with `courseName` and `grade` properties
-- Use `$derived` **rune** to calculate and display the average grade
-- Use `#each` block to display a table of all courses and grades
-- Use `#if/:else` blocks to show "No courses added" when the array is empty
+- Use `$state` **rune** to manage an **array** of **objects** called `courses`. Each object should have `id`, `courseName`, `mark` and `grade` properties
+- Use `$derived` **rune** to create a variable called `averageGrade` that calculates the average grade of all courses (sum of grades divided by number of courses)
+- Use `#each` block to display a table of all courses with columns for name, mark, grade and a remove button for each course
+- Use the `#if` and `:else` blocks to display a "No courses added yet" message when no courses exist in the `courses` **array**
 - Pass a callback function to `CourseInput.svelte` for receiving new course data
 - Display the calculated average grade (rounded to 1 decimal place)
 
