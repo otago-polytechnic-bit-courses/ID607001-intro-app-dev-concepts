@@ -80,7 +80,7 @@ You will use the `JWT_SECRET` environment variable's value, i.e., HelloWorld123,
 
 ### Schema
 
-In week 04's formative assessment, you were asked to create a `User` model. If you have not done this, in the `prisma.schema` file, add the following model:
+In week 04's formative assessment, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
 
 ```js
 model User {
@@ -94,7 +94,7 @@ model User {
 }
 ```
 
-> **Note:** There is one additional fields - `password`. Make sure you create a new migration.
+> **Note:** There is one additional fields - `password`. Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 ---
 
@@ -351,13 +351,13 @@ export default router;
 
 ## Role-Based Access Control (RBAC)
 
-**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `NORMAL`, and `GUEST`, each with different permissions.
+**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN` and `NORMAL` each with different permissions.
 
 ---
 
 ### Schema Prisma File
 
-In the `prisma.schema` file, add the following enum:
+In the `schema.prisma` file, add the following enum:
 
 ```js
 enum Role {
@@ -381,7 +381,7 @@ model User {
 }
 ```
 
-> **Note:** Make sure you create a new migration.
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 ---
 
@@ -581,13 +581,11 @@ const setupTestAuth = async () => {
 };
 
 export default setupTestAuth;
-
 ```
 
 The `setupTestAuth` function creates a test user and logs in to get a token.
 
 ---
-
 
 ### Institution CRUD Tests
 
@@ -834,11 +832,202 @@ Implement the code examples above.
 
 ### Task 2
 
-Create tests for the `Course` resource.
+Create five **tests** for the `Course` resource. The **tests** should cover the following scenarios:
+
+1. Create a course
+2. Get all courses
+3. Get a course by ID
+4. Update a course
+5. Delete a course
 
 ---
 
 ### Task 3
+
+Refactor the `rbac` middleware to accept either a single role or an array of roles, allowing users with any of the specified roles to access the route.
+
+In `routes/institution.js`, update the `rbac` middleware usage to allow both `ADMIN` and `NORMAL` roles to access the **GET** route.
+
+```js
+router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
+
+router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
+```
+
+---
+
+### Task 4
+
+Create a `Profile` model with the following fields:
+
+- `id`
+- `bio`
+- `avatarUrl`
+- `userId`
+- `createdAt`
+- `updatedAt`
+
+Update the `User` model to include a one-to-one relationship with the `Profile` model.
+
+```js
+model User {
+  id               String        @id @default(uuid())
+  firstName        String
+  lastName         String
+  emailAddress     String        @unique
+  password         String
+  role             Role          @default(NORMAL)
+  profile          Profile?      @relation(fields: [profileId], references: [id])
+  profileId       String?       @unique
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @default(now())
+}
+```
+
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+
+Update the `register` function in the `controllers/auth.js` file to create a profile when a user is registered.
+
+```js
+user = await prisma.user.create({
+  data: {
+    firstName,
+    lastName,
+    emailAddress,
+    password: hashedPassword,
+    role,
+    profile: {
+      create: {
+        bio: "",
+        avatarUrl: `https://api.dicebear.com/6.x/initials/svg?seed=${firstName}+${lastName}`,
+      },
+    },
+  },
+  select: {
+    id: true,
+    firstName: true,
+    lastName: true,
+    emailAddress: true,
+    role: true,
+    profile: true,
+    createdAt: true,
+    updatedAt: true,
+  },
+});
+```
+
+---
+
+### Task 5
+
+Implement **confirm password** functionality during user registration. The user should provide a `confirmPassword` field in the request body, and the server should check if it matches the `password` field. If they do not match, return a 400 bad request status code with an appropriate message.
+
+---
+
+### Task 6
+
+Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes. You can do this by adding two new fields to the `User` model in the `schema.prisma` file:
+
+```js
+model User {
+  id                  String    @id @default(uuid())
+  firstName           String
+  lastName            String
+  emailAddress        String    @unique
+  password            String
+  role                Role      @default(NORMAL)
+  failedLoginAttempts Int       @default(0)
+  lockoutUntil        DateTime?
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @default(now())
+}
+```
+
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+
+Here is an example of how to implement account lockout in the `login` function in the `controllers/auth.js` file. You need to replace the existing `login` function with the following code:
+
+```js
+const login = async (req, res) => {
+  try {
+    const emailAddress = req.body.emailAddress;
+    const password = req.body.password;
+
+    const user = await prisma.user.findUnique({ where: { emailAddress } });
+
+    if (!user) {
+      return res.status(401).json({ message: "Invalid email address" });
+    }
+
+    if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
+      const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60))
+
+      // TODO 2: Return 423 with "Account locked. Try again in X minutes" message
+    }
+
+    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+
+      const newFailedAttempts = // TODO 3: Increment failed attempts count
+
+      const shouldLockAccount = // TODO 4: Check if should lock account (>= 5 attempts)
+
+      await prisma.user.update({
+        where: { id: user.id },
+        data: {
+          failedLoginAttempts: newFailedAttempts,
+          lockoutUntil: shouldLockAccount ? new Date(now + 15 minutes) : user.lockoutUntil
+          updatedAt: new Date()
+        }
+      });
+
+      if (shouldLockAccount) {
+        // TODO 5: Return 423 with "Account locked due to 5 failed attempts" message
+      } else {
+
+        const attemptsRemaining = // TODO 6: Calculate attempts remaining (5 - newFailedAttempts)
+        // TODO 7: Return 401 with "Invalid password. X attempts remaining" message
+      }
+    }
+
+    await prisma.user.update({
+      where: { id: user.id },
+      data: {
+        failedLoginAttempts: 0,
+        lockoutUntil: null,
+        updatedAt: new Date()
+      }
+    });
+
+    const { JWT_SECRET, JWT_LIFETIME } = process.env;
+
+    const token = jwt.sign(
+      {
+        id: user.id,
+        role: user.role,
+      },
+      JWT_SECRET,
+      { expiresIn: JWT_LIFETIME }
+    );
+
+    return res.status(200).json({
+      message: "User successfully logged in",
+      token: token,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+```
+
+You need to replace the `// TODO` comments with the appropriate code.
+
+---
+
+### Task 7
 
 Implement a logout route. The route should invalidate the token. You can do this by storing the token in a blacklist. When a user logs out, add the token to the blacklist. When a user tries to access a protected route with a blacklisted token, return a 403 forbidden status code and message.
 

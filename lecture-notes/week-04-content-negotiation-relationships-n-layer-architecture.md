@@ -548,6 +548,8 @@ Create a `User` model with the following fields:
 - `createdAt`
 - `updatedAt`
 
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+
 Create the necessary **controller**, **route** and **repository** files for the `User` model.
 
 Test your implementation by:
@@ -563,12 +565,14 @@ Test your implementation by:
 Create a `Course` model with the following fields:
 
 - `id`
-- `code`
+- `code` 
 - `name`
 - `description`
 - `departmentId`
 - `createdAt`
 - `updatedAt`
+
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 Create the necessary **controller**, **route** and **repository** files for the `Course` model.
 
