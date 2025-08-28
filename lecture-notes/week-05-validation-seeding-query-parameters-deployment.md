@@ -617,7 +617,7 @@ Implement **scripts** to seed the `Department`, `Course` and `User` **resources*
 Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
 - Clear existing data before seeding
 - Create realistic sample records for each **resource**
-- Maintain proper relationships between **resources** (departments belong to institutions, courses belong to departments, etc.)
+- Maintain proper relationships between **resources**, i.e., departments belong to institutions, courses belong to departments, etc.
 - Be repeatable without causing duplicate data errors
 
 ---
