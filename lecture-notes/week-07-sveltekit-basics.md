@@ -912,8 +912,8 @@ In the `src/lib/components` directory, create two new components called `GradeCa
 
 In the `GradeCalculator.svelte` component, implement the following functionality:
 
-- Use `$state` rune to manage an array of course objects with `courseName` and `grade` properties
-- Use `$derived` rune to calculate and display the average grade
+- Use `$state` **rune** to manage an **array** of **objects** with `courseName` and `grade` properties
+- Use `$derived` **rune** to calculate and display the average grade
 - Use `#each` block to display a table of all courses and grades
 - Use `#if/:else` blocks to show "No courses added" when the array is empty
 - Pass a callback function to `CourseInput.svelte` for receiving new course data
@@ -921,11 +921,11 @@ In the `GradeCalculator.svelte` component, implement the following functionality
 
 In the `CourseInput.svelte` component, implement the following functionality:
 
-- Use `$props` rune to accept a callback function from the parent
-- Use `$state` rune to manage form data (`courseName`, `grade`) and error messages
+- Use `$props` **rune** to accept a callback function from the parent
+- Use `$state` **rune** to manage form data and error messages
 - Create a form with appropriate input fields and validation
 - Validate that:
-  - Course name is not empty (trim whitespace)
+  - Course name is not empty
   - Grade is a valid number between 0 and 100
 - Use `#if` blocks to display error messages for invalid input
 - On successful submission, call the parent's callback function and clear the form
