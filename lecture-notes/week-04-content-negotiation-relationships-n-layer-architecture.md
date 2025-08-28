@@ -541,38 +541,59 @@ Implement the code examples above.
 
 ### Task 2
 
-Create a `User` model with the following fields:
+Create a `User` **model** with the following fields:
 
-- `id`
-- `firstName`
-- `lastName`
-- `emailAddress` which should be unique
-- `createdAt`
-- `updatedAt`
+- `id` - String, primary key, default UUID
+- `firstName` - String
+- `lastName` - String
+- `emailAddress` - String, unique constraint
+- `createdAt` - DateTime, default now
+- `updatedAt` - DateTime, default now
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `User` model.
+Create the necessary **controller**, **route** and **repository** files for the `User` **model**.
 
 Test your implementation by:
 
 - Creating multiple users with different email addresses
-- Creating a user with a duplicate email address
-- Testing the CRUD operations
+- Attempting to create a user with a duplicate email address. This should fail.
+- Testing all CRUD operations
 
 ---
 
 ### Task 3
 
-Create a `Course` model with the following fields:
+Create a `Course` **model** with the following fields:
 
-- `id`
-- `code` 
-- `name`
-- `description`
-- `departmentId`
-- `createdAt`
-- `updatedAt`
+- `id` - String, primary key, default UUID
+- `code` - String
+- `name` - String
+- `description` - String
+- `departmentId` - String, foreign key
+- `createdAt` - DateTime, default now
+- `updatedAt` - DateTime, default now
+
+Update the `Department` **model** to include the one-to-many relationship:
+
+```js
+model Department {
+ // Omitted for brevity
+ courses Course[]
+}
+
+model Course {
+ id           String     @id @default(uuid())
+ code         String
+ name         String
+ description  String
+ departmentId String
+ department   Department @relation(fields: [departmentId], references: [id])
+ createdAt    DateTime   @default(now())
+ updatedAt    DateTime   @default(now())
+}
+```
+
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
@@ -581,9 +602,9 @@ Create the necessary **controller**, **route** and **repository** files for the 
 Test your implementation by:
 
 - Creating multiple courses that belong to existing departments
-- Creating a course with a non-existing department
+- Attempting to create a course with a non-existing department ID. This should fail.
 - Verifying the one-to-many relationship between departments and courses
-- Testing the CRUD operations
+- Testing all CRUD operations
 
 ---
 
@@ -591,7 +612,7 @@ Test your implementation by:
 
 Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models.
 
-Here is an example. In the `repositories/institution.js` file, update the following code.
+Update the **repository** files to accept optional `include` parameters:
 
 ```javascript
 // Omitted for brevity
@@ -618,7 +639,7 @@ class InstitutionRepository {
 export default new InstitutionRepository();
 ```
 
-In the `controllers/institution.js` file, update the following code.
+Update the **controller** files to use relationship queries:
 
 ```javascript
 import institutionRepository from "../repositories/institution.js";
@@ -673,6 +694,18 @@ export {
   deleteInstitution,
 };
 ```
+
+Apply similar changes to:
+
+- `Department` **repository** and **controller** to include related courses and institution
+- `Course` **repository** and **controller** to include related department
+- `User` **repository** and **controller**, if relationships exist
+
+Test the relationship queries by:
+
+- Fetching institutions with their departments
+- Fetching departments with their courses and parent institution
+- Fetching courses with their parent department
 
 ---
 
