@@ -876,8 +876,7 @@ model User {
   emailAddress     String        @unique
   password         String
   role             Role          @default(NORMAL)
-  profile          Profile?      @relation(fields: [profileId], references: [id])
-  profileId       String?       @unique
+  profile          Profile?
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }
@@ -935,6 +934,7 @@ model User {
   emailAddress        String    @unique
   password            String
   role                Role      @default(NORMAL)
+  profile             Profile?
   failedLoginAttempts Int       @default(0)
   lockoutUntil        DateTime?
   createdAt           DateTime  @default(now())
