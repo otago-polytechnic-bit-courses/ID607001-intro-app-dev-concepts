@@ -611,13 +611,56 @@ Implement a scripts to seed the `Department`, `Course` and `User` resources. Use
 
 ### Task 4
 
-Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
+In `app.js`, implement a **catch-all** route that returns 404 with "Endpoint not found" message.
+
+```javascript
+// Omitted for brevity
+
+app.use("/", indexRoutes);
+app.use("/api/institutions", institutionRoutes);
+app.use("/api/departments", departmentRoutes);
+
+app.use((req, res) => {
+  // Return a 404 status code with a JSON message
+});
+
+// Omitted for brevity
+```
 
 ---
 
 ### Task 5
 
 Implement a **GET** route that returns a list of all available endpoints in your API. You can either hardcode the endpoints or generate them dynamically using the `express-list-endpoints` dependency.
+
+Here is a sample response.
+
+```json
+{
+  "endpoints": [
+    {
+      "method": "GET",
+      "path": "/api/institutions"
+    },
+    {
+      "method": "POST",
+      "path": "/api/institutions"
+    },
+    {
+      "method": "GET",
+      "path": "/api/institutions/:id"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/institutions/:id"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/institutions/:id"
+    }
+  ]
+}
+```
 
 ---
 

@@ -918,13 +918,17 @@ user = await prisma.user.create({
 
 ### Task 5
 
-Implement **confirm password** functionality during user registration. The user should provide a `confirmPassword` field in the request body, and the server should check if it matches the `password` field. If they do not match, return a 400 bad request status code with an appropriate message.
+Implement **confirm password** functionality. In the `register` function in `controllers/auth.js`, check if the `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a 400 status code with "Passwords do not match" message.
+
+> **Note:** You do not need to store `req.body.confirmPassword` in the database.
 
 ---
 
 ### Task 6
 
-Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes. You can do this by adding two new fields to the `User` model in the `schema.prisma` file:
+Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
+
+You can implement this by adding two new fields to the `User` model in the `schema.prisma` file:
 
 ```js
 model User {
@@ -961,7 +965,7 @@ const login = async (req, res) => {
     if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
       const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60))
 
-      // TODO 2: Return 423 with "Account locked. Try again in X minutes" message
+      // TODO 2: Return 423 status code with "Account locked. Try again in X minutes" message
     }
 
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
@@ -982,11 +986,11 @@ const login = async (req, res) => {
       });
 
       if (shouldLockAccount) {
-        // TODO 5: Return 423 with "Account locked due to 5 failed attempts" message
+        // TODO 5: Return 423 status code with "Account locked due to 5 failed attempts" message
       } else {
 
         const attemptsRemaining = // TODO 6: Calculate attempts remaining (5 - newFailedAttempts)
-        // TODO 7: Return 401 with "Invalid password. X attempts remaining" message
+        // TODO 7: Return 401 status code with "Invalid password. X attempts remaining" message. Note: X is attemptsRemaining
       }
     }
 
@@ -1028,7 +1032,110 @@ You need to replace the `// TODO` comments with the appropriate code.
 
 ### Task 7
 
-Implement a logout route. The route should invalidate the token. You can do this by storing the token in a blacklist. When a user logs out, add the token to the blacklist. When a user tries to access a protected route with a blacklisted token, return a 403 forbidden status code and message.
+Implement **token blacklist** functionality. When a user logs out, the token should be added to a blacklist to prevent its further use.
+
+You can implement this by adding a `TokenBlacklist` model to the `schema.prisma` file:
+
+```js
+model TokenBlacklist {
+  id        String   @id @default(uuid())
+  token     String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+```
+
+> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+
+In the `controllers/auth.js` file, add the following `logout` function:
+
+```js
+const logout = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+    await prisma.tokenBlacklist.create({
+      data: {
+        token,
+        expiresAt: // TODO 1: Convert payload.exp (in seconds) to a Date object (in milliseconds)
+      }
+    });
+
+    return res.status(200).json({
+      message: "User successfully logged out"
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+```
+
+Update the `routes/auth.js` file to include the logout route:
+
+```js
+import express from "express";
+
+import { register, login, logout } from "../controllers/auth.js";
+
+const router = express.Router();
+
+router.route("/register").post(register);
+router.route("/login").post(login);
+
+// TODO 2: Add a POST /logout route that uses the logout controller function
+
+export default router;
+```
+
+In the `middleware/jwtAuth.js` file, update the `jwtAuth` middleware to check if the token is blacklisted:
+
+```js
+import jwt from "jsonwebtoken";
+
+import prisma from "../prisma/client.js";
+
+const jwtAuth = async (req, res, next) => {
+  try {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+      return res.status(401).json({ message: "No token provided" });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    const blacklistedToken = // TODO 3: Check if token is blacklisted
+
+    if (blacklistedToken) {
+      // TODO 4: Return 403 status code with "Token has been invalidated" message
+    }
+
+    const payload = jwt.verify(token, process.env.JWT_SECRET);
+
+    req.user = payload;
+
+    next();
+  } catch (err) {
+    return res
+      .status(401)
+      .json({ message: "Not authorized to access this route" });
+  }
+};
+
+export default jwtAuth;
+```
+
+You need to replace the `// TODO` comments with the appropriate code.
 
 ---
 
