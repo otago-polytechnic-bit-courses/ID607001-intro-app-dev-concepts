@@ -888,6 +888,37 @@ Implement the code examples above.
 
 ### Task 2 
 
+In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. In this component, implementing the following functionality:
+
+- Use the `$state` rune to manage an array of objects called `cartItems`. Each object should have the following properties: `id`, `name`, `price` and `quantity`.
+- Use the `$derived` rune to create a variable called `totalPrice` that calculates the total price of all items in the cart.
+- Use the `$effect` rune to display a message when the total price exceeds $100.
+- Use the `#each` block to display a table of all items in the cart, including their name, price, quantity and total price.
+- Use the `#if` and `:else` blocks to display a message when the cart is empty.
+- Add a form to add new items to the cart. The form should have input fields for the item name, price and quantity. When the form is submitted, the new item should be added to the `cartItems` array.
+- Add a button to remove an item from the cart. When the button is clicked, the item should be removed from the `cartItems` array.
+
+---
+
+### Task 3
+
+In the `src/lib/components` directory, create two new components called `GradeCalculator.svelte` (parent) and `CourseInput.svelte` (child).
+
+In the `GradeCalculator.svelte` component, implement the following functionality:
+
+- Manage an array of courses and grades.
+- Calculate and display the average grade.
+- Implement parent-to-child communication by passing course and grade data to the `CourseInput.svelte` component.
+- Implement child-to-parent communication by receiving new course and grade data from the `CourseInput.svelte` component and updating the array of courses and grades.
+
+In the `CourseInput.svelte` component, implement the following functionality:
+
+-
+
+---
+
+### Task 4
+
 ---
 
 ## Next Class

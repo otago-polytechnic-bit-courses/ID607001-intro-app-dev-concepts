@@ -613,7 +613,7 @@ Implement a scripts to seed the `Department`, `Course` and `User` resources. Use
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
-In `app.js`, implement a **catch-all** route that returns 404 with "Endpoint not found" message.
+In `app.js`, implement a **catch-all** route that returns 404 with "Endpoint X not found" message. `X` is the requested URL which can be accessed via `req.originalUrl`.
 
 ```javascript
 // Omitted for brevity
@@ -628,6 +628,8 @@ app.use((req, res) => {
 
 // Omitted for brevity
 ```
+
+> **Note:** The **catch-all** route should be the last route defined in the file.
 
 ---
 
