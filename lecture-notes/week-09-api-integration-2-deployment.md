@@ -565,7 +565,7 @@ Implement **authentication middleware**.
 Create a new file `/src/hooks.server.js` in your project root that implements:
 
 - A server-side hook to check for authentication tokens in cookies
-- Protection for routes that require authentication (such as `/dashboard`)
+- Protection for routes that require authentication such as `/dashboard`
 - Automatic redirection to `/auth/login` for unauthenticated users trying to access protected routes
 - Token validation by making a request to your API's token verification endpoint
 
