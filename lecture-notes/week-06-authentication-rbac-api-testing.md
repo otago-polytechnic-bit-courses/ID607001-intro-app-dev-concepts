@@ -884,7 +884,7 @@ model User {
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Update the `register` function in the `controllers/auth.js` file to create a profile when a user is registered.
+In `controllers/auth.js`, update the `register` function to create a profile for the user when they register. 
 
 ```js
 user = await prisma.user.create({
