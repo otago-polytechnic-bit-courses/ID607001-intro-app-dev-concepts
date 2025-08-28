@@ -366,6 +366,8 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 3. **Data Layer (Repositories)**: This layer is responsible for managing the application's data. It interacts with the database or other data sources to retrieve, store and update data.
 
+For simplicity, we will use only the **presentation** and **data layers** in this course.
+
 ---
 
 ### Repository Pattern

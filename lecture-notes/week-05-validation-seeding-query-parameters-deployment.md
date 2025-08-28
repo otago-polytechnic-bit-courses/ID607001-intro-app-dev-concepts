@@ -611,6 +611,8 @@ Implement a scripts to seed the `Department`, `Course` and `User` resources. Use
 
 ### Task 4
 
+A **catch-all** route is a route that matches any request that does not match any of the other routes.
+
 In `app.js`, implement a **catch-all** route that returns 404 with "Endpoint not found" message.
 
 ```javascript
@@ -630,41 +632,6 @@ app.use((req, res) => {
 ---
 
 ### Task 5
-
-Implement a **GET** route that returns a list of all available endpoints in your API. You can either hardcode the endpoints or generate them dynamically using the `express-list-endpoints` dependency.
-
-Here is a sample response.
-
-```json
-{
-  "endpoints": [
-    {
-      "method": "GET",
-      "path": "/api/institutions"
-    },
-    {
-      "method": "POST",
-      "path": "/api/institutions"
-    },
-    {
-      "method": "GET",
-      "path": "/api/institutions/:id"
-    },
-    {
-      "method": "PUT",
-      "path": "/api/institutions/:id"
-    },
-    {
-      "method": "DELETE",
-      "path": "/api/institutions/:id"
-    }
-  ]
-}
-```
-
----
-
-### Task 6
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
