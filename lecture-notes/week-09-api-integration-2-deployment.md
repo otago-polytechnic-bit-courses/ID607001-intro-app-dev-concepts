@@ -548,9 +548,9 @@ Extend the dashboard functionality by implementing a **delete** action for insti
 
 In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete` that:
 
-- Retrieves the authentication token from cookies
+- Retrieves the authentication token from `cookies`
 - Accepts an institution ID from the form data
-- Makes a DELETE request to your API with the authorization header
+- Performs a **DELETE** request to your **Express REST API** with the `Authorization` header
 - Handles success and error responses appropriately
 - Returns appropriate success or error messages
 
@@ -560,7 +560,7 @@ Update the dashboard page to handle the delete response and provide user feedbac
 
 ## Task 3
 
-Implement user session management and authentication middleware.
+Implement **authentication** middleware.
 
 Create a new file `/src/hooks.server.js` in your project root that implements:
 
@@ -590,10 +590,10 @@ Deploy your **SvelteKit** application to **Vercel** following the deployment ins
 
 After deployment:
 
-- Set up your environment variables (like `API_BASE_URL`) in the Vercel Dashboard
-- Test the deployed application to ensure authentication, CRUD operations, and API integration work correctly
-- Document your deployed application URL in your project's README.md file
-- Verify that your Express API is accessible from the deployed SvelteKit application (you may need to deploy your API as well or ensure CORS is properly configured)
+- Set up your environment variables in the **Vercel Dashboard**
+- Test the deployed application to ensure all functionalities work as expected
+- Document your deployed application URL in your project's `README.md` file
+- Verify that your **Express REST API** is accessible from the deployed **SvelteKit** application 
 
 ---
 

@@ -586,7 +586,7 @@ Here is how to use the **server-side** **POST** and **DELETE** actions:
 
 ---
 
-# Exercises
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -608,7 +608,7 @@ Create a **client-side API** integration that demonstrates CRUD operations.
 
 Create the route `/src/routes/client-side/posts/+page.svelte` that:
 
-- Fetches posts from https://jsonplaceholder.typicode.com/posts using `onMount`
+- Fetches posts from <https://jsonplaceholder.typicode.com/posts> using `onMount`
 - Displays posts in a table with columns for ID, title and actions
 - Implements a form to create new posts using a **POST** request with client-side fetch
 - Adds delete functionality for each post using a **DELETE** request with client-side fetch

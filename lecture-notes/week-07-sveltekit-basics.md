@@ -880,13 +880,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+## Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+## Task 2
 
 In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. 
 
@@ -908,15 +908,15 @@ In the `ShoppingCart.svelte` component, implement the following functionality:
 
 ---
 
-### Task 2
+## Task 3
 
 In the `src/lib/components` directory, create two new components called `GradeCalculator.svelte` (parent) and `CourseInput.svelte` (child).
 
 In the `GradeCalculator.svelte` component, implement the following functionality:
 
-- Use `$state` **rune** to manage an **array** of **objects** called `courses`. Each object should have `id`, `courseName`, `mark` and `grade` properties
+- Use `$state` **rune** to manage an **array** of **objects** called `courses`. Each object should have `id`, `name` and `grade` properties
 - Use `$derived` **rune** to create a variable called `averageGrade` that calculates the average grade of all courses (sum of grades divided by number of courses)
-- Use `#each` block to display a table of all courses with columns for name, mark, grade and a remove button for each course
+- Use `#each` block to display a table of all courses with columns for name, grade and a remove button for each course
 - Use the `#if` and `:else` blocks to display a "No courses added yet" message when no courses exist in the `courses` **array**
 - Pass a callback function to `CourseInput.svelte` for receiving new course data
 - Display the calculated average grade (rounded to 1 decimal place)
@@ -932,8 +932,6 @@ In the `CourseInput.svelte` component, implement the following functionality:
 - Use `#if` blocks to display error messages for invalid input
 - On successful submission, call the parent's callback function and clear the form
 - Show a success message briefly after successful submission
-
----
 
 ## Next Class
 
