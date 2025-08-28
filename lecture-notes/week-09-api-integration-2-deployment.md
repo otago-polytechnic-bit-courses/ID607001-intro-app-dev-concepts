@@ -536,13 +536,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-## Task 1
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-## Task 2
+### Task 2
 
 Extend the **dashboard** functionality by implementing a **delete** action for institutions.
 
@@ -558,7 +558,7 @@ Update the dashboard page to handle the delete response and provide user feedbac
 
 ---
 
-## Task 3
+### Task 3
 
 Implement **authentication middleware**.
 
@@ -573,7 +573,7 @@ The hook should allow public routes like `/`, `/auth/login`, and `/auth/register
 
 ---
 
-## Task 4
+### Task 4
 
 Implement a **logout** functionality that:
 
@@ -584,7 +584,7 @@ Implement a **logout** functionality that:
 
 ---
 
-## Task 5
+### Task 5
 
 Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above.
 

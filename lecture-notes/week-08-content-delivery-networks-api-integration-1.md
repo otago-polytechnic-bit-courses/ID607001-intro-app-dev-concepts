@@ -596,13 +596,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-## Task 1
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-## Task 2
+### Task 2
 
 Create a **client-side API** integration that demonstrates CRUD operations.
 
@@ -618,7 +618,7 @@ Create the route `/src/routes/client-side/posts/+page.svelte` that:
 
 ---
 
-## Task 3
+### Task 3
 
 Create a **server-side API** integration that connects to your **Express REST API** from previous weeks.
 

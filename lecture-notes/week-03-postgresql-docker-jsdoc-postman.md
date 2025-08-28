@@ -710,7 +710,7 @@ const createInstitution = async (req, res) => {
 
 ---
 
-# Exercises
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -720,13 +720,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-## Task 1
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-## Task 2
+### Task 2
 
 In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
 
@@ -738,7 +738,7 @@ After updating the schema:
 
 ---
 
-## Task 3
+### Task 3
 
 **Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 

@@ -880,13 +880,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-## Task 1
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-## Task 2
+### Task 2
 
 In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. 
 
@@ -908,7 +908,7 @@ In the `ShoppingCart.svelte` component, implement the following functionality:
 
 ---
 
-## Task 3
+### Task 3
 
 In the `src/lib/components` directory, create two new components called `GradeCalculator.svelte` (parent) and `CourseInput.svelte` (child).
 
@@ -932,6 +932,8 @@ In the `CourseInput.svelte` component, implement the following functionality:
 - Use `#if` blocks to display error messages for invalid input
 - On successful submission, call the parent's callback function and clear the form
 - Show a success message briefly after successful submission
+
+---
 
 ## Next Class
 

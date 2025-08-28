@@ -522,7 +522,7 @@ You will be prompted with a series of questions to help you structure your commi
 
 ---
 
-# Exercises
+## Exercises
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -532,13 +532,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-## Task 1
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-## Task 2
+### Task 2
 
 To get used to creating `controllers` and `routes`, create two `GET` routes for the following.
 
@@ -565,7 +565,7 @@ Your file structure should look something like this.
 
 ---
 
-## Task 3
+### Task 3
 
 The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that does not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
 
