@@ -834,19 +834,19 @@ Implement the code examples above.
 
 Create five **tests** for the `Course` resource. The **tests** should cover the following scenarios:
 
-1. Create a course
-2. Get all courses
-3. Get a course by ID
-4. Update a course
-5. Delete a course
+- Create a course
+- Get all courses
+- Get a course by ID
+- Update a course
+- Delete a course
 
 ---
 
 ### Task 3
 
-Refactor the `rbac` middleware to accept either a single role or an array of roles, allowing users with any of the specified roles to access the route.
+Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
-In `routes/institution.js`, update the `rbac` middleware usage to allow both `ADMIN` and `NORMAL` roles to access the **GET** route.
+In `routes/institution.js`, update the `rbac` **middleware** usage to allow both `ADMIN` and `NORMAL` roles to access the **GET** routes:
 
 ```js
 router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
@@ -857,16 +857,16 @@ router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 
 ### Task 4
 
-Create a `Profile` model with the following fields:
+Create a `Profile` **model** with the following fields:
 
-- `id`
-- `bio`
-- `avatarUrl`
-- `userId`
-- `createdAt`
-- `updatedAt`
+- `id` - String, primary key, default UUID
+- `bio` - String
+- `avatarUrl` - String  
+- `userId` - String, foreign key
+- `createdAt` - DateTime, default now
+- `updatedAt` - DateTime, default now
 
-Update the `User` model to include a one-to-one relationship with the `Profile` model.
+Update the `User` **model** to include a one-to-one relationship with the `Profile` **model**:
 
 ```js
 model User {
@@ -884,7 +884,7 @@ model User {
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-In `controllers/auth.js`, update the `register` function to create a profile for the user when they register. 
+In `controllers/auth.js`, update the `register` **function** to create a **profile** for the user when they register:
 
 ```js
 user = await prisma.user.create({
@@ -918,7 +918,9 @@ user = await prisma.user.create({
 
 ### Task 5
 
-Implement **confirm password** functionality. In the `register` function in `controllers/auth.js`, check if the `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a 400 status code with "Passwords do not match" message.
+Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
+
+Check if `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a `400` status code with the message "Passwords do not match".
 
 > **Note:** You do not need to store `req.body.confirmPassword` in the database.
 
@@ -928,7 +930,7 @@ Implement **confirm password** functionality. In the `register` function in `con
 
 Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
-You can implement this by adding two new fields to the `User` model in the `schema.prisma` file:
+Add two new fields to the `User` **model** in the `schema.prisma` file:
 
 ```js
 model User {
@@ -948,7 +950,7 @@ model User {
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Here is an example of how to implement account lockout in the `login` function in the `controllers/auth.js` file. You need to replace the existing `login` function with the following code:
+Replace the existing `login` **function** in `controllers/auth.js` with the following code and complete the **TODO** sections:
 
 ```js
 const login = async (req, res) => {
@@ -962,8 +964,11 @@ const login = async (req, res) => {
       return res.status(401).json({ message: "Invalid email address" });
     }
 
+    const now = Date.now();
+    const lockoutUntil = user.lockoutUntil ? user.lockoutUntil.getTime() : null;
+
     if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
-      const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60))
+      const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60));
 
       // TODO 2: Return 423 status code with "Account locked. Try again in X minutes" message
     }
@@ -971,16 +976,14 @@ const login = async (req, res) => {
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-
-      const newFailedAttempts = // TODO 3: Increment failed attempts count
-
-      const shouldLockAccount = // TODO 4: Check if should lock account (>= 5 attempts)
+      const newFailedAttempts = /* TODO 3: Increment failed attempts count */;
+      const shouldLockAccount = /* TODO 4: Check if should lock account (>= 5 attempts) */;
 
       await prisma.user.update({
         where: { id: user.id },
         data: {
           failedLoginAttempts: newFailedAttempts,
-          lockoutUntil: shouldLockAccount ? new Date(now + 15 minutes) : user.lockoutUntil
+          lockoutUntil: shouldLockAccount ? new Date(now + 15 * 60 * 1000) : user.lockoutUntil,
           updatedAt: new Date()
         }
       });
@@ -988,9 +991,8 @@ const login = async (req, res) => {
       if (shouldLockAccount) {
         // TODO 5: Return 423 status code with "Account locked due to 5 failed attempts" message
       } else {
-
-        const attemptsRemaining = // TODO 6: Calculate attempts remaining (5 - newFailedAttempts)
-        // TODO 7: Return 401 status code with "Invalid password. X attempts remaining" message. Note: X is attemptsRemaining
+        const attemptsRemaining = /* TODO 6: Calculate attempts remaining (5 - newFailedAttempts) */;
+        // TODO 7: Return 401 status code with "Invalid password. X attempts remaining" message
       }
     }
 
@@ -1026,15 +1028,15 @@ const login = async (req, res) => {
 };
 ```
 
-You need to replace the `// TODO` comments with the appropriate code.
+Complete all **TODO** sections with the appropriate code.
 
 ---
 
 ### Task 7
 
-Implement **token blacklist** functionality. When a user logs out, the token should be added to a blacklist to prevent its further use.
+Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
 
-You can implement this by adding a `TokenBlacklist` model to the `schema.prisma` file:
+Add a `TokenBlacklist` **model** to the `schema.prisma` file:
 
 ```js
 model TokenBlacklist {
@@ -1047,7 +1049,7 @@ model TokenBlacklist {
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-In the `controllers/auth.js` file, add the following `logout` function:
+In `controllers/auth.js`, add the following `logout` **function** and complete the **TODO** sections:
 
 ```js
 const logout = async (req, res) => {
@@ -1059,13 +1061,12 @@ const logout = async (req, res) => {
     }
 
     const token = authHeader.split(" ")[1];
-
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
     await prisma.tokenBlacklist.create({
       data: {
         token,
-        expiresAt: // TODO 1: Convert payload.exp (in seconds) to a Date object (in milliseconds)
+        expiresAt: /* TODO 1: Convert payload.exp (in seconds) to a Date object (in milliseconds) */
       }
     });
 
@@ -1080,7 +1081,7 @@ const logout = async (req, res) => {
 };
 ```
 
-Update the `routes/auth.js` file to include the logout route:
+Update the `routes/auth.js` file to include the **logout** route:
 
 ```js
 import express from "express";
@@ -1097,7 +1098,7 @@ router.route("/login").post(login);
 export default router;
 ```
 
-In the `middleware/jwtAuth.js` file, update the `jwtAuth` middleware to check if the token is blacklisted:
+Update the `middleware/jwtAuth.js` file to check if the **token** is blacklisted and complete the **TODO** sections:
 
 ```js
 import jwt from "jsonwebtoken";
@@ -1114,14 +1115,13 @@ const jwtAuth = async (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
 
-    const blacklistedToken = // TODO 3: Check if token is blacklisted
+    const blacklistedToken = /* TODO 3: Check if token is blacklisted */;
 
     if (blacklistedToken) {
       // TODO 4: Return 403 status code with "Token has been invalidated" message
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET);
-
     req.user = payload;
 
     next();
@@ -1135,7 +1135,7 @@ const jwtAuth = async (req, res, next) => {
 export default jwtAuth;
 ```
 
-You need to replace the `// TODO` comments with the appropriate code.
+Complete all **TODO** sections with the appropriate code.
 
 ---
 

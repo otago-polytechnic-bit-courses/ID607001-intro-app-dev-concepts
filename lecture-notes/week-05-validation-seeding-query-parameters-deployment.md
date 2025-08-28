@@ -599,13 +599,26 @@ Implement the code examples above.
 
 ### Task 2
 
-Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` resources.
+Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
+
+Create validation **middleware** in the `middleware/validation` directory for each **resource**:
+- `department.js` - validate `name` and `institutionId`
+- `course.js` - validate `name`, `code`, `description` and `departmentId`  
+- `user.js` - validate user `firstName`, `lastName` and `emailAddress`
+
+Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
 
 ---
 
 ### Task 3
 
-Implement a scripts to seed the `Department`, `Course` and `User` resources. Use one of the two methods described above.
+Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
+
+Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
+- Clear existing data before seeding
+- Create realistic sample records for each **resource**
+- Maintain proper relationships between **resources** (departments belong to institutions, courses belong to departments, etc.)
+- Be repeatable without causing duplicate data errors
 
 ---
 
@@ -613,7 +626,7 @@ Implement a scripts to seed the `Department`, `Course` and `User` resources. Use
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
-In `app.js`, implement a **catch-all** route that returns 404 with "Endpoint X not found" message. `X` is the requested URL which can be accessed via `req.originalUrl`.
+In `app.js`, implement a **catch-all** route that returns a `404` status code with "Endpoint X not found" message, where `X` is the requested URL accessed via `req.originalUrl`:
 
 ```javascript
 // Omitted for brevity
@@ -623,13 +636,13 @@ app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
 
 app.use((req, res) => {
-  // Return a 404 status code with a JSON message
+ // Return a 404 status code with a JSON message
 });
 
 // Omitted for brevity
 ```
 
-> **Note:** The **catch-all** route should be the last route defined in the file.
+> **Note:** The catch-all route should be the last route defined in the file.
 
 ---
 
