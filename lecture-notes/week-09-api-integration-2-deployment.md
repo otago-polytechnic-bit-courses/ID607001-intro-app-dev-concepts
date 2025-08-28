@@ -544,7 +544,7 @@ Implement the code examples above.
 
 ## Task 2
 
-Extend the dashboard functionality by implementing a **delete** action for institutions.
+Extend the **dashboard** functionality by implementing a **delete** action for institutions.
 
 In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete` that:
 
@@ -560,7 +560,7 @@ Update the dashboard page to handle the delete response and provide user feedbac
 
 ## Task 3
 
-Implement **authentication** middleware.
+Implement **authentication middleware**.
 
 Create a new file `/src/hooks.server.js` in your project root that implements:
 
@@ -575,7 +575,7 @@ The hook should allow public routes like `/`, `/auth/login`, and `/auth/register
 
 ## Task 4
 
-Implement a logout functionality that:
+Implement a **logout** functionality that:
 
 - Creates a logout form action in an appropriate route file
 - Clears the authentication token cookie when the user logs out
