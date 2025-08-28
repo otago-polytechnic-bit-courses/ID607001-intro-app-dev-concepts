@@ -80,7 +80,7 @@ You will use the `JWT_SECRET` environment variable's value, i.e., HelloWorld123,
 
 ### Schema
 
-In week 04's formative assessment, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
+In week 04's exercises, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
 
 ```js
 model User {
