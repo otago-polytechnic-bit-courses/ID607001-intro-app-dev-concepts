@@ -465,13 +465,13 @@ const getInstitutions = async (req, res) => {
     if (region) filters.region = region;
     if (country) filters.country = country;
 
-    // Validate and normalize sort order. Default to 'asc' if invalid
+    // Validate and normalise sort order. Default to 'asc' if invalid
     const validSortOrders = ["asc", "desc"];
     const order = validSortOrders.includes(sortOrder.toLowerCase())
       ? sortOrder.toLowerCase()
       : "asc";
 
-    // Validate and normalize sort field. Default to 'id' if invalid
+    // Validate and normalise sort field. Default to 'id' if invalid
     const validSortFields = ["id", "name", "region", "country"];
     const fields = validSortFields.includes(sortBy.toLowerCase())
       ? sortBy.toLowerCase()
