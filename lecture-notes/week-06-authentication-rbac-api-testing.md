@@ -850,7 +850,6 @@ In `routes/institution.js`, update the `rbac` middleware usage to allow both `AD
 
 ```js
 router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
-
 router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 ```
 

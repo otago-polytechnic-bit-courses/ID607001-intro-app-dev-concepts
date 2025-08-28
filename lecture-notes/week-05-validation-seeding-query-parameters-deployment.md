@@ -605,11 +605,23 @@ Implement **POST** and **PUT** validation for the `Department`, `Course` and `Us
 
 ### Task 3
 
-Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
+Implement a scripts to seed the `Department`, `Course` and `User` resources. Use one of the two methods described above.
 
 ---
 
 ### Task 4
+
+Implement a **GET** route that returns an appropriate message if an endpoint does not exist.
+
+---
+
+### Task 5
+
+Implement a **GET** route that returns a list of all available endpoints in your API. You can either hardcode the endpoints or generate them dynamically using the `express-list-endpoints` dependency.
+
+---
+
+### Task 6
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
