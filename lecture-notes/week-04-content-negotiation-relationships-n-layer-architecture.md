@@ -699,7 +699,6 @@ Apply similar changes to:
 
 - `Department` **repository** and **controller** to include related courses and institution
 - `Course` **repository** and **controller** to include related department
-- `User` **repository** and **controller**, if relationships exist
 
 Test the relationship queries by:
 
