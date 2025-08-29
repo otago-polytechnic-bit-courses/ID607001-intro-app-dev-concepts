@@ -221,6 +221,10 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+What is `process.env`?
+
+`process.env` is a global object in **Node.js** that provides access to the user's environment variables. Environment variables are key-value pairs that are set outside of the application, typically in the operating system, shell or deployment environment. They are commonly used to configure applications without hardcoding values, such as database URLs, API keys or the current environment, i.e., development, testing, production, etc. You can access them using `process.env.VARIABLE_NAME`.
+
 > **Note:** The `app.js` file is the entry point of the application. It is used to start the server and define the routes.
 
 ---
