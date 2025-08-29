@@ -98,9 +98,9 @@ if (condition) {
   // code to execute if condition is false
 }
 
-const x = condition ? 
-// code to execute if condition is true 
-: 
+const x = condition ?
+// code to execute if condition is true
+:
 // code to execute if condition is false;
 
 // switch statement

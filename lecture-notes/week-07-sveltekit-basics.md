@@ -888,7 +888,7 @@ Implement the code examples above.
 
 ### Task 2
 
-In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`. 
+In the `src/lib/components` directory, create a new component called `ShoppingCart.svelte`.
 
 In the `ShoppingCart.svelte` component, implement the following functionality:
 

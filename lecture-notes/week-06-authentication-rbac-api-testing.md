@@ -861,7 +861,7 @@ Create a `Profile` **model** with the following fields:
 
 - `id` - String, primary key, default UUID
 - `bio` - String
-- `avatarUrl` - String  
+- `avatarUrl` - String
 - `userId` - String, foreign key
 - `createdAt` - DateTime, default now
 - `updatedAt` - DateTime, default now

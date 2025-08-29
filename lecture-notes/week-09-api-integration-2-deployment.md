@@ -561,7 +561,7 @@ In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete
 Implement a **logout** functionality that:
 
 - Creates a **logout** form action in an appropriate route file
-- Clears the authentication token from `cookies` 
+- Clears the authentication token from `cookies`
 - Redirects the user to the login page after successful logout
 - Adds a logout button to the dashboard page that submits to this action
 

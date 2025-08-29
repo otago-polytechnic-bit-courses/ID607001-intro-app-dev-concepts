@@ -602,8 +602,9 @@ Implement the code examples above.
 Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
 
 Create validation **middleware** in the `middleware/validation` directory for each **resource**:
+
 - `department.js` - validate `name` and `institutionId`
-- `course.js` - validate `name`, `code`, `description` and `departmentId`  
+- `course.js` - validate `name`, `code`, `description` and `departmentId`
 - `user.js` - validate user `firstName`, `lastName` and `emailAddress`
 
 Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
@@ -615,6 +616,7 @@ Use the validation **middleware** in the appropriate **routes** to validate inco
 Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
 
 Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
+
 - Clear existing data before seeding
 - Create realistic sample records for each **resource**
 - Maintain proper relationships between **resources**, i.e., departments belong to institutions, courses belong to departments, etc.
@@ -636,7 +638,7 @@ app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
 
 app.use((req, res) => {
- // Return a 404 status code with a JSON message
+  // Return a 404 status code with a JSON message
 });
 
 // Omitted for brevity

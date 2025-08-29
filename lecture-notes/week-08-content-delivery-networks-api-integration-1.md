@@ -321,7 +321,7 @@ Here is an example of how to make a **client-side** **GET** request using the `o
 {:else}
 	<p>No users found</p>
 {/if}
-````
+```
 
 What is the difference between `onMount` and `$effect`? The `onMount` function runs only once when the component is first rendered, while `$effect` runs whenever a reactive variables changes.
 
@@ -494,7 +494,7 @@ export const actions = {
 
 Here is how to use the **server-side** **POST** and **DELETE** actions:
 
-```js
+````js
 
 ```svelte
 <!-- /src/routes/server-side/express-api/+page.svelte -->
@@ -582,7 +582,7 @@ Here is how to use the **server-side** **POST** and **DELETE** actions:
 {:else if message}
 	<p>{message}</p>
 {/if}
-```
+````
 
 ---
 

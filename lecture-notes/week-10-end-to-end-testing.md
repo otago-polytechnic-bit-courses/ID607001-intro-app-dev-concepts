@@ -47,7 +47,7 @@ week-10-end-to-end-testing
 └── vite.config.js
 ```
 
-Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory. 
+Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory.
 
 ---
 
@@ -57,12 +57,12 @@ Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svel
 
 ---
 
-| Question | Answer |
-|----------|--------|
-| Do you want to use TypeScript or JavaScript? | JavaScript |
-| Where to put your end-to-end tests? | tests |
-| Add a GitHub Actions workflow? (y/N) | false |
-| Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true |
+| Question                                                                               | Answer     |
+| -------------------------------------------------------------------------------------- | ---------- |
+| Do you want to use TypeScript or JavaScript?                                           | JavaScript |
+| Where to put your end-to-end tests?                                                    | tests      |
+| Add a GitHub Actions workflow? (y/N)                                                   | false      |
+| Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true       |
 
 ---
 
@@ -83,4 +83,3 @@ Implement the code examples above.
 ---
 
 ### Task 2
-

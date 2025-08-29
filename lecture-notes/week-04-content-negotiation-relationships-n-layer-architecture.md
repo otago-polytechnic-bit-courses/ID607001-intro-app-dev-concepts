@@ -594,7 +594,6 @@ model Course {
 }
 ```
 
-
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 Create the necessary **controller**, **route** and **repository** files for the `Course` model.
