@@ -551,49 +551,25 @@ In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete
 - Retrieves the authentication token from `cookies`
 - Accepts an institution ID from the form data
 - Performs a **DELETE** request to your **Express REST API** with the `Authorization` header
-- Handles success and error responses appropriately
+- Handles and return success and error responses appropriately
 - Returns appropriate success or error messages
-
-Update the dashboard page to handle the delete response and provide user feedback for successful deletions or errors.
 
 ---
 
 ### Task 3
 
-Implement **authentication middleware**.
-
-Create a new file `/src/hooks.server.js` in your project root that implements:
-
-- A server-side hook to check for authentication tokens in cookies
-- Protection for routes that require authentication such as `/dashboard`
-- Automatic redirection to `/auth/login` for unauthenticated users trying to access protected routes
-- Token validation by making a request to your API's token verification endpoint
-
-The hook should allow public routes like `/`, `/auth/login`, and `/auth/register` to be accessed without authentication.
-
----
-
-### Task 4
-
 Implement a **logout** functionality that:
 
-- Creates a logout form action in an appropriate route file
-- Clears the authentication token cookie when the user logs out
+- Creates a **logout** form action in an appropriate route file
+- Clears the authentication token from `cookies` 
 - Redirects the user to the login page after successful logout
 - Adds a logout button to the dashboard page that submits to this action
 
 ---
 
-### Task 5
+### Task 4
 
-Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above.
-
-After deployment:
-
-- Set up your environment variables in the **Vercel Dashboard**
-- Test the deployed application to ensure all functionalities work as expected
-- Document your deployed application URL in your project's `README.md` file
-- Verify that your **Express REST API** is accessible from the deployed **SvelteKit** application 
+Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file
 
 ---
 
