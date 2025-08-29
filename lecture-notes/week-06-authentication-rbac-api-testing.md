@@ -896,7 +896,7 @@ user = await prisma.user.create({
     role,
     profile: {
       create: {
-        bio: "",
+        bio,
         avatarUrl: `https://api.dicebear.com/6.x/initials/svg?seed=${firstName}+${lastName}`,
       },
     },
