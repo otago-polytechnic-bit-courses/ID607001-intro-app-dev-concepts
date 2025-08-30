@@ -14,7 +14,7 @@ Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code*
 
 ---
 
-## Application Programming Interface (API)
+## Application Programming Interfaces (APIs)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.
 
