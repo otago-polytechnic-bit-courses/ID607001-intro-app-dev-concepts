@@ -16,12 +16,6 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-05-validation-seeding-query-parameters-deployment>
-
----
-
 ## Validation
 
 Validation is the process of ensuring that data is correct and meets certain criteria before it is used or stored. In the context of web development, validation is often used to ensure that user input is correct and meets the requirements of the application.

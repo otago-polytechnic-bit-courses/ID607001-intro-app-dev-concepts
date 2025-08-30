@@ -16,12 +16,6 @@ Create a new **SvelteKit** application called `week-09-api-integration-2-deploym
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-09-api-integration-2-deployment>
-
----
-
 ## Creating Components and Routes
 
 Create a necessary directory and file structure for the components and routes. The structure should look like this:
@@ -544,20 +538,6 @@ Implement the code examples above.
 
 ### Task 2
 
-Extend the **dashboard** functionality by implementing a **delete** action for institutions.
-
-In `/src/routes/dashboard/+page.server.js`, add a new form action called `delete` that:
-
-- Retrieves the authentication token from `cookies`
-- Accepts an institution ID from the form data
-- Performs a **DELETE** request to your **Express REST API** with the `Authorization` header
-- Handles and return success and error responses appropriately
-- Returns appropriate success or error messages
-
----
-
-### Task 3
-
 Implement a **logout** functionality that:
 
 - Creates a **logout** form action in an appropriate route file
@@ -567,7 +547,7 @@ Implement a **logout** functionality that:
 
 ---
 
-### Task 4
+### Task 3
 
 Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file
 

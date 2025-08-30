@@ -16,12 +16,6 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-04-content-negotiation-relationships-n-layer-architecture>
-
----
-
 ## Content Negotiation
 
 Content negotiation is the process of selecting the best representation of a resource based on the client's preferences. There are different ways to perform content negotiation. Some of the common ways are:

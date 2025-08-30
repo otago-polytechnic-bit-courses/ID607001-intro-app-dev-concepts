@@ -16,12 +16,6 @@ Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-10-end-to-end-testing>
-
----
-
 ## Creating Components and Routes
 
 Create a necessary directory and file structure for the components and routes. The structure should look like this:

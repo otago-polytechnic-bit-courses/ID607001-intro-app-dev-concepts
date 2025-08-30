@@ -14,12 +14,6 @@ Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code*
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-02-rest-express-http>
-
----
-
 ## Application Programming Interface (API)
 
 You have come across different interfaces before. For example, **Graphical User Interface (GUI)** and **Command Line Interface (CLI)**. An **Application Programming Interface (API)** is a set of rules and protocols that allows different software applications to communicate with each other.

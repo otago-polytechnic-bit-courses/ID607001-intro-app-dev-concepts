@@ -16,12 +16,6 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-06-authentication-rbac-api-testing>
-
----
-
 ## Authentication
 
 **Authentication** is the process of verifying the identity of a user or system. It ensures that the user is who they claim to be. Authentication is typically done by checking the user's credentials, such as a username and password.

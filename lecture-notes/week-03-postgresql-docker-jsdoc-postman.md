@@ -14,12 +14,6 @@ Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code*
 
 ---
 
-## Full Code Example
-
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/code-examples/week-03-postgresql-docker-jsdoc-postman>
-
----
-
 ## PostgreSQL
 
 **PostgreSQL** is a free relational database management system. It is a powerful, highly-extensible and feature-rich database system. It is also known as **Postgres**.
