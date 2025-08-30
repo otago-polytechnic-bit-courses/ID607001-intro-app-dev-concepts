@@ -98,9 +98,12 @@ There are four different **header** groups:
 
 ### Setup
 
+In the root directory, create a new directory called `backend`.
+
 Open a terminal and run the following.
 
 ```bash
+cd backend
 npm init -y
 npm install express
 npm install nodemon --save-dev
@@ -327,7 +330,7 @@ export default app;
 Your file structure should look something like this.
 
 ```bash
-.
+backend
 ├── controllers/
 │   └── index.js
 ├── node_modules/
@@ -546,7 +549,7 @@ To get used to creating `controllers` and `routes`, create two `GET` routes for 
 Your file structure should look something like this.
 
 ```bash
-.
+backend
 ├── controllers/
 │   ├── about.js
 │   ├── course.js
