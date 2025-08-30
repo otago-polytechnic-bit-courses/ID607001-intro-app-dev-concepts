@@ -632,7 +632,7 @@ In `/src/routes/server-side/departments/+page.server.js`, implement the followin
 - Use a load function to fetch departments from your **Express REST API**
 - Create form actions for both create and update department operations
 - The create action should accept name and institutionId from form data
-- The update action should accept id, name, and institutionId from form data
+- The update action should accept id, name and institutionId from form data
 - Handle validation errors and return appropriate responses using `fail()`
 - Use environment variables for the API base URL
 - Implement proper error handling for network requests

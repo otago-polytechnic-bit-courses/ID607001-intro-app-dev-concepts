@@ -624,7 +624,7 @@ describe("Institution CRUD", () => {
     const newInstitution = res.body.data.find(
       (institution) => institution.name === "Otago Polytechnic"
     );
-    institutionOneId = newInstitution.id; // Store the institution id for later use
+    institutionOneId = newInstitution.id; // Store the institution ID for later use
   });
 
   it("should create institution two", async () => {
@@ -682,7 +682,7 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId; // Store the institution id for later use in 01-department.test.js
+    global.testInstitutionId = institutionTwoId; // Store the institution ID for later use in 01-department.test.js
   });
 });
 ```
@@ -704,7 +704,7 @@ describe("Department CRUD", () => {
   let institutionId;
   let departmentOneId;
 
-  // Set up the institution id before running the tests
+  // Set up the institution ID before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
   });

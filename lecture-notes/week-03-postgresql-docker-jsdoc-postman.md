@@ -397,7 +397,7 @@ To update an institution, use the `prisma.institution.update` function.
 ```js
 const updateInstitution = async (req, res) => {
   try {
-    // Find the institution by id
+    // Find the institution by ID
     let institution = await prisma.institution.findUnique({
       where: { id: req.params.id },
     });
@@ -548,7 +548,7 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-`:id` is a route parameter. It is used to retrieve the id from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/uuid>, the `:id` value will be `uuid`.
+`:id` is a route parameter. It is used to retrieve the ID from the request URL. For example, if the request URL is <http://localhost:3000/api/institutions/uuid>, the `:id` value will be `uuid`.
 
 ---
 

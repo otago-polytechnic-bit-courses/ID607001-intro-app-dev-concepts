@@ -546,7 +546,7 @@ Implement the code examples above.
 
 To get used to creating `controllers` and `routes`, create two `GET` routes for the following.
 
-- <http://localhost:3000/about>. Return your learner id, first name, last name, email address and one thing you enjoy about IT.
+- <http://localhost:3000/about>. Return your learner ID, first name, last name, email address and one thing you enjoy about IT.
 - <http://localhost:3000/courses>. Return an **array** of courses you are enrolled in this semester.
 
 Your file structure should look something like this.
