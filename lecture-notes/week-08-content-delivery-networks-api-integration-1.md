@@ -625,8 +625,8 @@ In `/src/routes/server-side/departments/+page.server.js`, implement the followin
 
 - Use a load function to fetch departments from your **Express REST API**
 - Create form actions for both create and update department operations
-- The create action should accept name and institutionId from form data
-- The update action should accept id, name and institutionId from form data
+- The create action should accept `name` and `institutionId` from form data
+- The update action should accept `id`, `name` and `institutionId` from form data
 - Handle validation errors and return appropriate responses using `fail()`
 - Use environment variables for the API base URL
 - Implement proper error handling for network requests
@@ -638,6 +638,8 @@ In `/src/routes/server-side/departments/+page.svelte`, implement the following f
 - Show success/error messages based on form responses
 - Use conditional rendering to handle loading, error and success states
 - Pre-populate form fields when editing a department
+
+Use **Bootstrap** for styling, **Font Awesome** for icons and **Google Fonts** for typography.
 
 ---
 

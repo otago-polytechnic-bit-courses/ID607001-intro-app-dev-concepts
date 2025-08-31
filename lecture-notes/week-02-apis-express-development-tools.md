@@ -29,6 +29,13 @@ What is meant by rules and protocols?
 
 ---
 
+### REST
+
+**Representational State Transfer (REST)** is an architectural style for designing networked applications. It is based on a set of principles and constraints that allow for the creation of scalable and maintainable web services.
+
+
+---
+
 ### HTTP Request Methods
 
 An **HTTP request method** is a **verb** that indicates the desired action to be performed for a given resource. For example, the `GET` method requests a representation of the specified resource.

@@ -549,7 +549,7 @@ Implement a **logout** functionality that:
 
 ### Task 3
 
-Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file
+Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file.
 
 ---
 
