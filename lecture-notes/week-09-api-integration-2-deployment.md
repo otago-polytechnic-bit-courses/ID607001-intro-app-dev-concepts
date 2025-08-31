@@ -549,6 +549,17 @@ Implement a **logout** functionality that:
 
 ### Task 3
 
+Implement role-based content and permissions in the dashboard that:
+
+- Shows different content in `src/routes/dashboard/+page.svelte` based on the user's role
+- Restricts certain actions based on the user's role  
+- Displays the user's role on the dashboard
+- Shows a message indicating the user's specific permissions
+
+---
+
+### Task 4
+
 Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file.
 
 ---
