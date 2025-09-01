@@ -1,11 +1,2 @@
-<!-- /+page.svelte -->
-
-<script>
-	import ClickEvents from '$lib/components/ClickEvents.svelte';
-	import FormEvents from '$lib/components/FormEvents.svelte';
-	import MarkConverter from '$lib/components/MarkConverter.svelte';
-</script>
-
-<ClickEvents />
-<FormEvents />
-<MarkConverter />
+<h1>Welcome to SvelteKit</h1>
+<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
