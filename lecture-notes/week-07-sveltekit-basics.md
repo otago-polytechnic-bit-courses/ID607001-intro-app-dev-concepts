@@ -741,14 +741,14 @@ Here is an example:
 	const userId = page.params.id;
 
 	const users = [
-		{ id: '1', firstName: 'Alice', lastName: 'Smith', age: 25 },
-		{ id: '2', firstName: 'Bob', lastName: 'Johnson', age: 30 },
-		{ id: '3', firstName: 'Charlie', lastName: 'Williams', age: 28 },
-		{ id: '4', firstName: 'David', lastName: 'Jones', age: 22 },
-		{ id: '5', firstName: 'Eve', lastName: 'Brown', age: 27 }
+		{ id: 1, firstName: 'Alice', lastName: 'Smith', age: 25 },
+		{ id: 2, firstName: 'Bob', lastName: 'Johnson', age: 30 },
+		{ id: 3, firstName: 'Charlie', lastName: 'Williams', age: 28 },
+		{ id: 4, firstName: 'David', lastName: 'Jones', age: 22 },
+		{ id: 5, firstName: 'Eve', lastName: 'Brown', age: 27 }
 	];
 
-	const user = $derived(users.find((user) => user.id === userId));
+	const user = $derived(users.find((user) => user.id === parseInt(userId)));
 </script>
 
 {#if user}
@@ -776,7 +776,7 @@ Here is another example:
 
 	const users = [
 		{
-			id: '1',
+			id: 1,
 			firstName: 'Alice',
 			lastName: 'Smith',
 			age: 25,
@@ -787,7 +787,7 @@ Here is another example:
 			permissions: ['user_management', 'system_config', 'reports']
 		},
 		{
-			id: '2',
+			id: 2,
 			firstName: 'Bob',
 			lastName: 'Johnson',
 			age: 30,
@@ -798,7 +798,7 @@ Here is another example:
 			permissions: ['content_moderation', 'user_warnings', 'community_management']
 		},
 		{
-			id: '3',
+			id: 3,
 			firstName: 'Charlie',
 			lastName: 'Williams',
 			age: 28,
@@ -809,7 +809,7 @@ Here is another example:
 			permissions: ['content_edit', 'publish_articles', 'review_submissions']
 		},
 		{
-			id: '4',
+			id: 4,
 			firstName: 'David',
 			lastName: 'Jones',
 			age: 22,
@@ -820,7 +820,7 @@ Here is another example:
 			permissions: ['create_posts', 'comment', 'like_content']
 		},
 		{
-			id: '5',
+			id: 5,
 			firstName: 'Eve',
 			lastName: 'Brown',
 			age: 27,
@@ -831,7 +831,7 @@ Here is another example:
 			permissions: ['create_posts', 'comment', 'like_content']
 		},
 		{
-			id: '6',
+			id: 6,
 			firstName: 'Frank',
 			lastName: 'Miller',
 			age: 35,
