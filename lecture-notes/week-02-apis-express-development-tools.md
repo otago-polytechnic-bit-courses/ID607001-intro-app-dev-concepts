@@ -33,6 +33,13 @@ What is meant by rules and protocols?
 
 **Representational State Transfer (REST)** is an architectural style for designing networked applications. It is based on a set of principles and constraints that allow for the creation of scalable and maintainable web services.
 
+| **Principle**               | **Description**                                                                 |
+|-----------------------------|---------------------------------------------------------------------------------|
+| Statelessness               | Each API request from a client contains all the information needed to process the request. |
+| Client-Server Separation    | The client and server are separate entities that communicate over a network.   |
+| Cacheability                | Responses from the server can be cached by the client to improve performance.   |
+| Layered System              | The API can be composed of multiple layers, each with its own responsibilities. |
+| Uniform Interface           | The API has a consistent and standardised way of interacting with resources.   |
 
 ---
 
