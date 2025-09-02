@@ -62,7 +62,7 @@ JWT_LIFETIME=1h
 The `.env` file should look like this:
 
 ```bash
-APP_ENV=development
+NODE_ENV=development
 DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 JWT_SECRET=HelloWorld123
 JWT_LIFETIME=1h
