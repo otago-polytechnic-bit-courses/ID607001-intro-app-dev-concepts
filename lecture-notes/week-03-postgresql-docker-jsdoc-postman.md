@@ -115,7 +115,7 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 Update the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
-APP_ENV=development
+NODE_ENV=development
 DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 ```
 
@@ -128,7 +128,7 @@ DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
 The `.env.example` file is used to provide an example of the `.env` file. It is committed to **Git**. It is used to show other developers what environment variables are required. It is also used to provide default values. Here is an example of the `.env.example` file.
 
 ```bash
-APP_ENV=development
+NODE_ENV=development
 DATABASE_URL=
 ```
 
