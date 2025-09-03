@@ -220,7 +220,7 @@ model Institution {
 
 ### UUIDs vs. Auto-Increment IDs
 
-<ADD TEXT HERE>
+**UUIDs** provide better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID in the sequence and access data they should not have access to. For example, if an attacker knows that the last user ID is `10`, they can easily guess that the next user ID is `11` and try to access that user's data. With 128 bits of entropy, there are 2^128 (approximately 3.4 x 10^38) possible UUIDs. This makes it virtually impossible for an attacker to guess a valid UUID. However, **UUIDs** should be viewed as an obscurity measure, not a security measure. Proper authentication and authorization mechanisms should still be implemented to protect sensitive data.
 
 ---
 
