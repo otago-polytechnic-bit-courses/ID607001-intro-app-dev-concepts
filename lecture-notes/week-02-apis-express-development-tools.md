@@ -104,7 +104,6 @@ There are four different **header** groups:
 
 <ADD TEXT HERE>
 
-
 ---
 
 ### CORS
@@ -113,7 +112,7 @@ There are four different **header** groups:
 
 ---
 
-### HTP Caching
+### HTTP Caching
 
 <ADD TEXT HERE>
 
