@@ -16,6 +16,12 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
+## Common Vulnerabilities in API Design
+
+<ADD TEXT HERE>
+
+---
+
 ## Authentication
 
 **Authentication** is the process of verifying the identity of a user or system. It ensures that the user is who they claim to be. Authentication is typically done by checking the user's credentials, such as a username and password.
