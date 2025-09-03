@@ -43,6 +43,12 @@ What is meant by rules and protocols?
 
 ---
 
+### HTTP Versions
+
+<ADD TEXT HERE>
+
+---
+
 ### HTTP Request Methods
 
 An **HTTP request method** is a **verb** that indicates the desired action to be performed for a given resource. For example, the `GET` method requests a representation of the specified resource.
@@ -91,6 +97,25 @@ There are four different **header** groups:
 4. Payload headers
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers>
+
+---
+
+### Cookies
+
+<ADD TEXT HERE>
+
+
+---
+
+### CORS
+
+<ADD TEXT HERE>
+
+---
+
+### HTP Caching
+
+<ADD TEXT HERE>
 
 ---
 
