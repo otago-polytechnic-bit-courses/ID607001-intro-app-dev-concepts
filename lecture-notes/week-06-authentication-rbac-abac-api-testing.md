@@ -485,6 +485,12 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 ---
 
+## Attribute-Based Access Control (ABAC)
+
+<ADD TEST HERE>
+
+---
+
 ## API Testing
 
 **API testing** is the process of testing the functionality, reliability, performance and security of an application programming interface (API). It involves sending requests to the API and verifying that the responses are as expected. API testing can be done manually or automated using various tools and libraries.
