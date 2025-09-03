@@ -740,6 +740,10 @@ After updating the schema:
 
 ---
 
+### Task 4
+
+**Error handling**...
+
 ## Next Class
 
 Link to the next class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-04-content-negotiation-relationships-n-layer-architecture.md)
