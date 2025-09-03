@@ -218,6 +218,12 @@ model Institution {
 
 ---
 
+### UUIDs vs. Auto-Increment IDs
+
+<ADD TEXT HERE>
+
+---
+
 ### Create and Apply a Migration
 
 A **migration** is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
