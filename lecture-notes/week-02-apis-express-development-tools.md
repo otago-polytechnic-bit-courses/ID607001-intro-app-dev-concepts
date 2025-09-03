@@ -71,6 +71,18 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 ---
 
+### Idempotency 
+
+<ADD TEXT HERE>
+
+---
+
+### HATEOAS
+
+**Hypertext As The Engine Of Application State (HATEOAS)** is...
+
+---
+
 ### HTTP Status Codes
 
 An **HTTP response status code** indicates whether a specific **HTTP request** has been successfully completed. Responses are grouped in five classes:
