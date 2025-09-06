@@ -45,7 +45,43 @@ What is meant by rules and protocols?
 
 ### HTTP Versions
 
-<ADD TEXT HERE>
+**Hypertext Transfer Protocol (HTTP)** is an application protocol for distributed, collaborative, hypermedia information systems. It is the foundation of data communication for the World Wide Web.
+
+There are five different versions of **HTTP**:
+
+- **HTTP/0.9 (1991)**. The original version of **HTTP**, released in 1991. It was extremely simple, supporting only GET requests for HTML documents. There were no HTTP headers, status codes, or error codes. The server would simply return the HTML content and close the connection.
+
+- **HTTP/1.0 (1996)**. The first standardised version of **HTTP**, formally specified in RFC 1945. It introduced several key features:
+  - Request methods beyond **GET**
+  - HTTP headers for both requests and responses
+  - Status codes
+  - Support for different content types
+  - Each request required a separate TCP connection, which could be slow and inefficient
+
+- **HTTP/1.1 (1997)**. Released in 1997 and updated in RFC 7230-7237 (2014). This became the dominant version for nearly two decades, introducing major improvements:
+  - Multiple requests could reuse the same TCP connection
+  - Allowed streaming of content without knowing the full size upfront
+  - Better caching strategies
+  - Enabled virtual hosting 
+  - Multiple requests could be sent without waiting for responses, though rarely implemented
+
+- **HTTP/2 (2015)**. A major revision released in 2015 (RFC 7540), introducing a binary protocol with significant performance improvements:
+  - More efficient parsing compared to text-based HTTP/1.x
+  - Multiple requests and responses over a single connection without head-of-line blocking
+  - Reduced overhead from repetitive headers
+  - Ability to prioritise certain requests
+  - Servers can proactively send resources to clients
+  - Better management of data transmission rates
+
+- **HTTP/3 (2022)**. The latest version, standardized in RFC 9114 in June 2022. It represents a fundamental shift in transport layer:
+  - Runs over UDP instead of TCP, providing built-in encryption
+  - Faster initial connections with 0-RTT capability
+  - Connections can survive network changes 
+  - Even at the transport layer
+  - Encryption is mandatory and integrated into QUIC
+  - Faster connection setup and data transmission
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP>
 
 ---
 
