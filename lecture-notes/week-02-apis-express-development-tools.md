@@ -155,14 +155,14 @@ Open a terminal and run the following.
 ```bash
 cd backend
 npm init -y
-npm install express
+npm install express cors
 npm install nodemon --save-dev
 ```
 
 What does each do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
-- `npm install express`: Installs the **Express** module.
+- `npm install express cors`: Installs the **Express** and **CORS** modules.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
 You will notice new files and directories in the root directory. These include:
@@ -245,6 +245,9 @@ const app = express();
 
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
+
+// Enable CORS
+app.use(cors());
 
 // Create a GET route. req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
 app.get("/", (req, res) => {
@@ -358,6 +361,9 @@ const app = express();
 
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
+
+// Enable CORS
+app.use(cors());
 
 // Use the routes module
 app.use("/", indexRoutes);
