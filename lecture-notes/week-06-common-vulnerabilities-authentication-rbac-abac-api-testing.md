@@ -325,32 +325,15 @@ export default app;
 In the `routes/institution.js` file, add the following code to protect the routes with the `jwtAuth` middleware.
 
 ```javascript
-import express from "express";
-
-import {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-} from "../controllers/institution.js";
-
-import {
-  validatePostInstitution,
-  validatePutInstitution,
-} from "../middleware/validation/institution.js";
+// Omitted for brevity
 
 import jwtAuth from "../middleware/jwtAuth.js";
 
-const router = express.Router();
+// Omitted for brevity
 
 router.post("/", validatePostInstitution, jwtAuth, createInstitution);
-router.get("/", getInstitutions);
-router.get("/:id", getInstitution);
-router.put("/:id", validatePutInstitution, updateInstitution);
-router.delete("/:id", deleteInstitution);
 
-export default router;
+// Omitted for brevity
 ```
 
 > **Note:** The `jwtAuth` middleware is used to protect the `createInstitution` route. It means that only authenticated users can access these routes.
@@ -400,17 +383,14 @@ In the `middleware` directory, create a new file called `rbac.js`. In the `rbac.
 ```js
 const rbac = (requiredRole) => {
   return (req, res, next) => {
-    // Check if the user is authenticated
     if (!req.user || !req.user.role) {
       return res.status(403).json({ message: "Forbidden" });
     }
 
-    // Check if the user's role matches the required role
     if (req.user.role !== requiredRole) {
       return res.status(403).json({ message: "Forbidden" });
     }
 
-    // User has the required role, continue to the next middleware or route
     next();
   };
 };
@@ -425,26 +405,11 @@ export default rbac;
 In the `routes/institution.js` file, update the routes to use the `rbac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role, you can do the following:
 
 ```javascript
-import express from "express";
-
-import {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-} from "../controllers/institution.js";
-
-import {
-  validatePostInstitution,
-  validatePutInstitution,
-} from "../middleware/validation/institution.js";
-
-import jwtAuth from "../middleware/jwtAuth.js";
+// Omitted for brevity
 
 import rbac from "../middleware/rbac.js";
 
-const router = express.Router();
+// Omitted for brevity
 
 router.post(
   "/",
@@ -453,19 +418,15 @@ router.post(
   rbac("ADMIN"),
   createInstitution
 );
-router.get("/", getInstitutions);
-router.get("/:id", getInstitution);
-router.put("/:id", validatePutInstitution, updateInstitution);
-router.delete("/:id", deleteInstitution);
 
-export default router;
+// Omitted for brevity
 ```
 
 > **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
 
 ---
 
-## Postman Example
+### Postman Example
 
 Here is an example of creating an institution with no token.
 
@@ -502,6 +463,62 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 ## Attribute-Based Access Control (ABAC)
 
 **Attribute-Based Access Control (ABAC)** is a more fine-grained access control mechanism that uses attributes of the user, resource and environment to determine access. In **ABAC**, policies are defined based on attributes rather than roles. For example, you can have a policy that allows users with the `ADMIN` role to create institutions only if they are in the `Information Technology` department.
+
+---
+
+### Middleware
+
+In the `middleware` directory, create a new file called `abac.js`. In the `abac.js` file, add the following code:
+
+```js
+const abac = (requiredAttributes) => {
+  return (req, res, next) => {
+    if (!req.user || !req.user.role || !req.user.department) {
+      return res.status(403).json({ message: "Forbidden" });
+    }
+
+    for (const key in requiredAttributes) {
+      if (req.user[key] !== requiredAttributes[key]) {
+        return res.status(403).json({ message: "Forbidden" });
+      }
+    }
+
+    next();
+  };
+};
+
+export default abac;
+```
+
+---
+
+### Institution Router
+
+In the `routes/institution.js` file, update the routes to use the `abac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role and `Information Technology` department, you can do the following:
+
+```javascript
+// Omitted for brevity
+
+import abac from "../middleware/abac.js";
+
+// Omitted for brevity
+
+router.post(
+  "/",
+  validatePostInstitution,
+  jwtAuth,
+  abac({ role: "ADMIN", department: "Information Technology" }),
+  createInstitution
+);
+
+// Omitted for brevity
+```
+
+> **Note:** Implementing **ABAC** can be complex and may require a more sophisticated policy engine. It is recommended to use a library or framework that supports **ABAC** if you need this level of access control.
+
+---
+
+### Postman Example
 
 ---
 
