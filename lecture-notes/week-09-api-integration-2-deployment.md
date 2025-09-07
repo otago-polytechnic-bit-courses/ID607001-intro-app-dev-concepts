@@ -536,14 +536,40 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task One
+### Task 1
 
 Implement the code examples above.
 
 ---
 
-### Task Two (Independent Research)
+### Task 2
+
+Implement a **logout** functionality that:
+
+- Creates a **logout** form action in an appropriate route file
+- Clears the authentication token from `cookies`
+- Redirects the user to the login page after successful logout
+- Adds a logout button to the dashboard page that submits to this action
+
+---
+
+### Task 3
+
+Implement role-based content and permissions in the dashboard that:
+
+- Shows different content in `src/routes/dashboard/+page.svelte` based on the user's role
+- Restricts certain actions based on the user's role  
+- Displays the user's role on the dashboard
+- Shows a message indicating the user's specific permissions
+
+---
+
+### Task 4
+
+Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file.
 
 ---
 
 ## Next Class
+
+Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-10-end-to-end-testing.md)
