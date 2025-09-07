@@ -72,7 +72,7 @@ Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonw
 In the `.env` file, add the following environment variables:
 
 ```bash
-JWT_SECRET=HelloWorld123
+JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
@@ -81,11 +81,11 @@ The `.env` file should look like this:
 ```bash
 NODE_ENV=development
 DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
-JWT_SECRET=HelloWorld123
+JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-You will use the `JWT_SECRET` environment variable's value, i.e., HelloWorld123, to sign the **JWT**. The lifetime of the **JWT** is the `JWT_LIFETIME` environment variable's value, i.e., 1 hour.
+> **Note:** Make sure you change the `JWT_SECRET` value to a strong secret key. In production, use a secret key that is at least 256 bits long.
 
 ---
 
@@ -384,11 +384,11 @@ In the `middleware` directory, create a new file called `rbac.js`. In the `rbac.
 const rbac = (requiredRole) => {
   return (req, res, next) => {
     if (!req.user || !req.user.role) {
-      return res.status(403).json({ message: "Forbidden" });
+      return res.status(403).json({ message: "Forbidden. User is not authenticated" });
     }
 
     if (req.user.role !== requiredRole) {
-      return res.status(403).json({ message: "Forbidden" });
+      return res.status(403).json({ message: `Forbidden. Insufficient privileges for ${requiredRole}` });
     }
 
     next();
@@ -473,13 +473,24 @@ In the `middleware` directory, create a new file called `abac.js`. In the `abac.
 ```js
 const abac = (requiredAttributes) => {
   return (req, res, next) => {
-    if (!req.user || !req.user.role || !req.user.department) {
-      return res.status(403).json({ message: "Forbidden" });
+    if (!req.user) {
+      return res
+        .status(403)
+        .json({ message: "Forbidden. User not authenticated" });
     }
 
-    for (const key in requiredAttributes) {
-      if (req.user[key] !== requiredAttributes[key]) {
-        return res.status(403).json({ message: "Forbidden" });
+    // Check each required attribute
+    for (const [key, value] of Object.entries(requiredAttributes)) {
+      if (!req.user[key]) {
+        return res.status(403).json({
+          message: `Forbidden. Missing attribute '${key}'`,
+        });
+      }
+
+      if (req.user[key] !== value) {
+        return res.status(403).json({
+          message: `Forbidden. Insufficient privileges for attribute '${key}'`,
+        });
       }
     }
 
