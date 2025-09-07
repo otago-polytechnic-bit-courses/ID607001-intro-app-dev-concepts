@@ -558,7 +558,7 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 3. Click the **Git Provider** option. Connect to your **id607001-s2-25-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
-4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-A NAME THAT MAKES SENSE TO YOU**.
+4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-validation-seeding-query-parameters-deployment**.
 
 > **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
 
