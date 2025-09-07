@@ -388,7 +388,7 @@ const rbac = (requiredRole) => {
     }
 
     if (req.user.role !== requiredRole) {
-      return res.status(403).json({ message: `Forbidden. Insufficient privileges for ${requiredRole}` });
+      return res.status(403).json({ message: `Forbidden. Insufficient privileges for role: ${requiredRole}` });
     }
 
     next();
@@ -483,13 +483,13 @@ const abac = (requiredAttributes) => {
     for (const [key, value] of Object.entries(requiredAttributes)) {
       if (!req.user[key]) {
         return res.status(403).json({
-          message: `Forbidden. Missing attribute '${key}'`,
+          message: `Forbidden. Missing attribute: ${key}`,
         });
       }
 
       if (req.user[key] !== value) {
         return res.status(403).json({
-          message: `Forbidden. Insufficient privileges for attribute '${key}'`,
+          message: `Forbidden. Insufficient privileges for attribute: ${key}`,
         });
       }
     }
