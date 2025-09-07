@@ -42,6 +42,7 @@ In the `middleware` directory, create a new directory called `validation`. In th
 import Joi from "joi";
 
 const validatePostInstitution = (req, res, next) => {
+  const { name, region, country } = req.body;
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
       "string.base": "name should be a string",
@@ -66,10 +67,13 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
-  const { error } = institutionSchema.validate(req.body, {
-    abortEarly: false,
-    convert: false,
-  });
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    {
+      abortEarly: false,
+      convert: false,
+    }
+  );
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -83,6 +87,7 @@ const validatePostInstitution = (req, res, next) => {
 };
 
 const validatePutInstitution = (req, res, next) => {
+  const { name, region, country } = req.body;
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
       "string.base": "name should be a string",
@@ -104,10 +109,13 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // Ensure at least one field is being updated
 
-  const { error } = institutionSchema.validate(req.body, {
-    abortEarly: false,
-    convert: false,
-  });
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    {
+      abortEarly: false,
+      convert: false,
+    }
+  );
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -427,7 +435,8 @@ In the `controllers` directory, open the `institution.js` file. Update the `crea
 ```javascript
 const createInstitution = async (req, res) => {
   try {
-    await institutionRepository.create(req.body);
+    const { name, region, country } = req.body;
+    await institutionRepository.create({ name, region, country });
     const newInstitutions = await institutionRepository.findAll();
     return res.status(201).json({
       message: "Institution successfully created",

@@ -159,10 +159,12 @@ import prisma from "../prisma/client.js";
 
 const createDepartment = async (req, res) => {
   try {
+    const { name, institutionId } = req.body;
+
     await prisma.department.create({
       data: {
-        name: req.body.name,
-        institutionId: req.body.institutionId,
+        name,
+        institutionId,
       },
     });
 
@@ -199,13 +201,15 @@ const getDepartments = async (req, res) => {
 
 const getDepartment = async (req, res) => {
   try {
+    const { id } = req.params;
+
     const department = await prisma.department.findUnique({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
 
@@ -221,26 +225,28 @@ const getDepartment = async (req, res) => {
 
 const updateDepartment = async (req, res) => {
   try {
+    const { id } = req.params;
+    const { name, institutionId } = req.body;
     let department = await prisma.department.findUnique({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
 
     department = await prisma.department.update({
-      where: { id: req.params.id },
+      where: { id },
       data: {
-        name: req.body.name,
-        institutionId: req.body.institutionId,
+        name,
+        institutionId,
       },
     });
 
     return res.status(200).json({
-      message: `Department with the id: ${req.params.id} successfully updated`,
+      message: `Department with the id: ${id} successfully updated`,
       data: department,
     });
   } catch (err) {
@@ -252,22 +258,24 @@ const updateDepartment = async (req, res) => {
 
 const deleteDepartment = async (req, res) => {
   try {
+    const { id } = req.params;
+
     const department = await prisma.department.findUnique({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
 
     await prisma.department.delete({
-      where: { id: req.params.id },
+      where: { id },
     });
 
     return res.status(200).json({
-      message: `Department with the id: ${req.params.id} successfully deleted`,
+      message: `Department with the id: ${id} successfully deleted`,
     });
   } catch (err) {
     return res.status(500).json({
@@ -422,7 +430,8 @@ import institutionRepository from "../repositories/institution.js";
 
 const createInstitution = async (req, res) => {
   try {
-    await institutionRepository.create(req.body);
+    const { name, region, country } = req.body;
+    await institutionRepository.create({ name, region, country });
     const newInstitutions = await institutionRepository.findAll();
     return res.status(201).json({
       message: "Institution successfully created",
@@ -453,10 +462,11 @@ const getInstitutions = async (req, res) => {
 
 const getInstitution = async (req, res) => {
   try {
-    const institution = await institutionRepository.findById(req.params.id);
+    const { id } = req.params;
+    const institution = await institutionRepository.findById(id);
     if (!institution) {
       return res.status(404).json({
-        message: `No institution with the id: ${req.params.id} found`,
+        message: `No institution with the id: ${id} found`,
       });
     }
     return res.status(200).json({
@@ -471,15 +481,21 @@ const getInstitution = async (req, res) => {
 
 const updateInstitution = async (req, res) => {
   try {
-    let institution = await institutionRepository.findById(req.params.id);
+    const { id } = req.params;
+    const { name, region, country } = req.body;
+    let institution = await institutionRepository.findById(id);
     if (!institution) {
       return res.status(404).json({
-        message: `No institution with the id: ${req.params.id} found`,
+        message: `No institution with the id: ${id} found`,
       });
     }
-    institution = await institutionRepository.update(req.params.id, req.body);
+    institution = await institutionRepository.update(id, {
+      name,
+      region,
+      country,
+    });
     return res.status(200).json({
-      message: `Institution with the id: ${req.params.id} successfully updated`,
+      message: `Institution with the id: ${id} successfully updated`,
       data: institution,
     });
   } catch (err) {
@@ -491,15 +507,16 @@ const updateInstitution = async (req, res) => {
 
 const deleteInstitution = async (req, res) => {
   try {
-    const institution = await institutionRepository.findById(req.params.id);
+    const { id } = req.params;
+    const institution = await institutionRepository.findById(id);
     if (!institution) {
       return res.status(404).json({
-        message: `No institution with the id: ${req.params.id} found`,
+        message: `No institution with the id: ${id} found`,
       });
     }
-    await institutionRepository.delete(req.params.id);
+    await institutionRepository.delete(id);
     return res.status(200).json({
-      message: `Institution with the id: ${req.params.id} successfully deleted`,
+      message: `Institution with the id: ${id} successfully deleted`,
     });
   } catch (err) {
     return res.status(500).json({
@@ -661,12 +678,13 @@ const getInstitutions = async (req, res) => {
 
 const getInstitution = async (req, res) => {
   try {
-    const institution = await institutionRepository.findById(req.params.id, {
+    const { id } = req.params;
+    const institution = await institutionRepository.findById(id, {
       departments: true,
     });
     if (!institution) {
       return res.status(404).json({
-        message: `No institution with the id: ${req.params.id} found`,
+        message: `No institution with the id: ${id} found`,
       });
     }
     return res.status(200).json({

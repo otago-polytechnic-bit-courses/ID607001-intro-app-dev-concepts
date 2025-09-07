@@ -109,13 +109,13 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 ### Idempotency 
 
-<ADD TEXT HERE>
+**Idempotency** is a property of certain operations in mathematics and computer science. An operation is idempotent if performing it multiple times has the same effect as performing it once. For example, the `PUT` and `DELETE` methods are idempotent because performing them multiple times will have the same effect as performing them once. The `GET` method is also idempotent because it does not change the state of the resource. The `POST` method is not idempotent because performing it multiple times may result in the creation of multiple resources.
 
 ---
 
 ### HATEOAS
 
-**Hypertext As The Engine Of Application State (HATEOAS)** is...
+**Hypermedia As The Engine Of Application State (HATEOAS)** is a constraint of the **REST** application architecture. It is a way for a client to interact with a server by using hypermedia links provided by the server. The client does not need to know the structure of the API or the available resources. The client can discover the available resources and actions by following the links provided by the server. For example, a `GET` request to the `/api/users` endpoint may return a list of users along with links to view, update or delete each user.
 
 ---
 
@@ -150,19 +150,25 @@ There are four different **header** groups:
 
 ### Cookies
 
-<ADD TEXT HERE>
+**Cookies** are small pieces of data that are sent from a server and stored on the client's computer. They are used to remember information about the user, such as login credentials or preferences. Cookies are sent with every HTTP request to the same domain, allowing the server to identify the user.
 
 ---
 
 ### CORS
 
-<ADD TEXT HERE>
+**Cross-Origin Resource Sharing (CORS)** is a security feature implemented by web browsers to prevent malicious websites from making requests to a different domain than the one that served the web page. **CORS** allows servers to specify who can access their resources and which HTTP methods are allowed.
+For example, a web application hosted on `https://example.com` may want to make requests to an API hosted on `https://api.example.com`. To allow this, the API server can include the following header in its response:
+
+```Access-Control-Allow-Origin: https://example.com
+```
+
+This allows the web application to make requests to the API without being blocked by the browser's same-origin policy.
 
 ---
 
 ### HTTP Caching
 
-<ADD TEXT HERE>
+**HTTP caching** is a mechanism that allows web browsers to store copies of web resources, such as HTML pages, images and stylesheets, on the client's computer. This allows the browser to load the resources from the cache instead of making a new request to the server, which can improve performance and reduce bandwidth usage.
 
 ---
 

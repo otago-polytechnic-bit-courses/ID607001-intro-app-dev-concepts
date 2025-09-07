@@ -18,7 +18,18 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Common Vulnerabilities in API Design
 
-<ADD TEXT HERE>
+**Common vulnerabilities in API design** include:
+
+- **Broken Object Level Authorization**: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
+- **Broken User Authentication**: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
+- **Excessive Data Exposure**: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
+- **Lack of Rate Limiting**: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
+- **Mass Assignment**: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
+- **Security Misconfiguration**: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
+- **Injection**: This occurs when an API does not properly validate user input, allowing attackers to inject malicious code into the system.
+- **Improper Assets Management**: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
+- **Insufficient Logging & Monitoring**: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
+- **Using Components with Known Vulnerabilities**: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
 
 ---
 
@@ -150,11 +161,7 @@ import prisma from "../prisma/client.js";
 
 const register = async (req, res) => {
   try {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const emailAddress = req.body.emailAddress;
-    const password = req.body.password;
-    const role = req.body.role;
+    const { firstName, lastName, emailAddress, password, role } = req.body;
 
     // Check if user already exists by email address
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -202,8 +209,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const emailAddress = req.body.emailAddress;
-    const password = req.body.password;
+    const { emailAddress, password } = req.body;
 
     // Find user by email address
     const user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -495,7 +501,7 @@ Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/
 
 ## Attribute-Based Access Control (ABAC)
 
-<ADD TEST HERE>
+**Attribute-Based Access Control (ABAC)** is a more fine-grained access control mechanism that uses attributes of the user, resource and environment to determine access. In **ABAC**, policies are defined based on attributes rather than roles. For example, you can have a policy that allows users with the `ADMIN` role to create institutions only if they are in the `Information Technology` department.
 
 ---
 
