@@ -2,7 +2,8 @@ import departmentRepository from "../repositories/department.js";
 
 const createDepartment = async (req, res) => {
   try {
-    await departmentRepository.create(req.body);
+    const { name, institutionId } = req.body;
+    await departmentRepository.create({ name, institutionId });
     const newDepartments = await departmentRepository.findAll();
     return res.status(201).json({
       message: "Department successfully created",
@@ -33,10 +34,11 @@ const getDepartments = async (req, res) => {
 
 const getDepartment = async (req, res) => {
   try {
-    const department = await departmentRepository.findById(req.params.id);
+    const { id } = req.params;
+    const department = await departmentRepository.findById(id);
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
     return res.status(200).json({
@@ -51,15 +53,17 @@ const getDepartment = async (req, res) => {
 
 const updateDepartment = async (req, res) => {
   try {
-    let department = await departmentRepository.findById(req.params.id);
+    const { id } = req.params;
+    const { name, institutionId } = req.body;
+    let department = await departmentRepository.findById(id);
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
-    department = await departmentRepository.update(req.params.id, req.body);
+    department = await departmentRepository.update(id, { name, institutionId });
     return res.status(200).json({
-      message: `Department with the id: ${req.params.id} successfully updated`,
+      message: `Department with the id: ${id} successfully updated`,
       data: department,
     });
   } catch (err) {
@@ -71,15 +75,16 @@ const updateDepartment = async (req, res) => {
 
 const deleteDepartment = async (req, res) => {
   try {
-    const department = await departmentRepository.findById(req.params.id);
+    const { id } = req.params;
+    const department = await departmentRepository.findById(id);
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
-    await departmentRepository.delete(req.params.id);
+    await departmentRepository.delete(id);
     return res.status(200).json({
-      message: `Department with the id: ${req.params.id} successfully deleted`,
+      message: `Department with the id: ${id} successfully deleted`,
     });
   } catch (err) {
     return res.status(500).json({

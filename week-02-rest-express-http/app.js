@@ -1,5 +1,7 @@
-// Import the Express module
+// Import the Express, CORS and Compression modules
 import express from "express";
+import cors from "cors";
+import compression from "compression";
 
 // Import the index routes module
 import indexRoutes from "./routes/index.js";
@@ -9,6 +11,10 @@ const app = express();
 
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
+
+// Enable CORS and Compression
+app.use(cors());
+app.use(compression());
 
 // Use the routes module
 app.use("/", indexRoutes);

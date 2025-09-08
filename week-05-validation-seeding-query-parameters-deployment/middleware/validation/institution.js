@@ -25,7 +25,10 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
-  const { error } = institutionSchema.validate(req.body, { abortEarly: false });
+  const { error } = institutionSchema.validate(req.body, {
+    abortEarly: false,
+    convert: false,
+  });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
@@ -60,7 +63,10 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // Ensure at least one field is being updated
 
-  const { error } = institutionSchema.validate(req.body, { abortEarly: false });
+  const { error } = institutionSchema.validate(req.body, {
+    abortEarly: false,
+    convert: false,
+  });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({

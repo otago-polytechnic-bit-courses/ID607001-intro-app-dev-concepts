@@ -5,11 +5,7 @@ import prisma from "../prisma/client.js";
 
 const register = async (req, res) => {
   try {
-    const firstName = req.body.firstName;
-    const lastName = req.body.lastName;
-    const emailAddress = req.body.emailAddress;
-    const password = req.body.password;
-    const role = req.body.role;
+    const { firstName, lastName, emailAddress, password, role } = req.body;
 
     // Check if user already exists by email address
     let user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -57,8 +53,7 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   try {
-    const emailAddress = req.body.emailAddress;
-    const password = req.body.password;
+    const { emailAddress, password } = req.body;
 
     // Find user by email address
     const user = await prisma.user.findUnique({ where: { emailAddress } });
@@ -76,12 +71,11 @@ const login = async (req, res) => {
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
-    // Create a JWT token with the user's ID, role and email address
+    // Create a JWT token with the user's ID and role
     const token = jwt.sign(
       {
         id: user.id,
         role: user.role,
-        emailAddress: user.emailAddress,
       },
       JWT_SECRET,
       { expiresIn: JWT_LIFETIME }
