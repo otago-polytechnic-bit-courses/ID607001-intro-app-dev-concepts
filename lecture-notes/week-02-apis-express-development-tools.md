@@ -111,7 +111,7 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 **Idempotency** is a property of certain operations in mathematics and computer science. An operation is idempotent if performing it multiple times has the same effect as performing it once. For example, the `PUT` and `DELETE` methods are idempotent because performing them multiple times will have the same effect as performing them once. The `GET` method is also idempotent because it does not change the state of the resource. The `POST` method is not idempotent because performing it multiple times may result in the creation of multiple resources.
 
-> **Resource:** <https://restfulapi.net/idempotent-rest-apis/>
+> **Resource:** <https://restfulapi.net/idempotent-rest-apis>
 
 ---
 
@@ -119,7 +119,7 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 **Hypermedia As The Engine Of Application State (HATEOAS)** is a constraint of the **REST** application architecture. It is a way for a client to interact with a server by using hypermedia links provided by the server. The client does not need to know the structure of the API or the available resources. The client can discover the available resources and actions by following the links provided by the server. For example, a `GET` request to the `/api/users` endpoint may return a list of users along with links to view, update or delete each user.
 
-> **Resource:** <https://restfulapi.net/hateoas/>
+> **Resource:** <https://restfulapi.net/hateoas>
 
 ---
 
