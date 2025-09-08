@@ -47,7 +47,6 @@
 	<select id="role" name="role">
 		<option value="ADMIN" selected={form?.role === 'ADMIN'}>Admin</option>
 		<option value="NORMAL" selected={form?.role === 'NORMAL'}>Normal</option>
-		<option value="GUEST" selected={form?.role === 'GUEST'}>Guest</option>
 	</select>
 	<button type="submit">Submit</button>
 </form>

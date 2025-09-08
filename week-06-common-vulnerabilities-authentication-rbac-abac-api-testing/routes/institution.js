@@ -16,14 +16,22 @@ import {
 import jwtAuth from "../middleware/jwtAuth.js";
 
 import rbac from "../middleware/rbac.js";
+import abac from "../middleware/abac.js";
 
 const router = express.Router();
 
+// router.post(
+//   "/",
+//   validatePostInstitution,
+//   jwtAuth,
+//   rbac("ADMIN"),
+//   createInstitution
+// );
 router.post(
   "/",
   validatePostInstitution,
   jwtAuth,
-  rbac("ADMIN"),
+  abac({ role: "ADMIN", department: "Information Technology Services" }),
   createInstitution
 );
 router.get("/", getInstitutions);

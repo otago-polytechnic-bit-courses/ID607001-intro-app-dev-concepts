@@ -1,7 +1,8 @@
 const abac = (requiredAttributes) => {
   return (req, res, next) => {
+    const { user } = req;
     // Check if the user is authenticated
-    if (!req.user) {
+    if (!user) {
       return res
         .status(403)
         .json({ message: "Forbidden. User not authenticated" });
@@ -9,14 +10,14 @@ const abac = (requiredAttributes) => {
 
     for (const [key, value] of Object.entries(requiredAttributes)) {
       // Check if the user has the required attribute
-      if (!req.user[key]) {
+      if (!user[key]) {
         return res.status(403).json({
           message: `Forbidden. Missing attribute: ${key}`,
         });
       }
 
       // Check if the user's attribute matches the required value
-      if (req.user[key] !== value) {
+      if (user[key] !== value) {
         return res.status(403).json({
           message: `Forbidden. Insufficient privileges for attribute: ${key}`,
         });
