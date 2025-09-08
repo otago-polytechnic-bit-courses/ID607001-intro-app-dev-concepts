@@ -42,7 +42,6 @@ In the `middleware` directory, create a new directory called `validation`. In th
 import Joi from "joi";
 
 const validatePostInstitution = (req, res, next) => {
-  const { name, region, country } = req.body;
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).required().messages({
       "string.base": "name should be a string",
@@ -67,6 +66,7 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
+  const { name, region, country } = req.body;
   const { error } = institutionSchema.validate(
     { name, region, country },
     {
@@ -87,7 +87,6 @@ const validatePostInstitution = (req, res, next) => {
 };
 
 const validatePutInstitution = (req, res, next) => {
-  const { name, region, country } = req.body;
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
       "string.base": "name should be a string",
@@ -109,6 +108,7 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // Ensure at least one field is being updated
 
+  const { name, region, country } = req.body;
   const { error } = institutionSchema.validate(
     { name, region, country },
     {

@@ -169,7 +169,6 @@ Again, example below is similar to previous examples.
 	<select id="role" name="role">
 		<option value="ADMIN" selected={form?.role === 'ADMIN'}>Admin</option>
 		<option value="NORMAL" selected={form?.role === 'NORMAL'}>Normal</option>
-		<option value="GUEST" selected={form?.role === 'GUEST'}>Guest</option>
 	</select>
 	<button type="submit">Submit</button>
 </form>
@@ -552,7 +551,7 @@ Implement a **logout** functionality that:
 Implement role-based content and permissions in the dashboard that:
 
 - Shows different content in `src/routes/dashboard/+page.svelte` based on the user's role
-- Restricts certain actions based on the user's role  
+- Restricts certain actions based on the user's role
 - Displays the user's role on the dashboard
 - Shows a message indicating the user's specific permissions
 
