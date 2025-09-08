@@ -20,16 +20,16 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 **Common vulnerabilities in API design** include:
 
-- **Broken Object Level Authorization**: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
-- **Broken User Authentication**: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
-- **Excessive Data Exposure**: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
-- **Lack of Rate Limiting**: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
-- **Mass Assignment**: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
-- **Security Misconfiguration**: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
+- **Broken object level authorisation**: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
+- **Broken user authentication**: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
+- **Excessive data exposure**: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
+- **Lack of rate limiting**: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
+- **Mass assignment**: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
+- **Security misconfiguration**: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
 - **Injection**: This occurs when an API does not properly validate user input, allowing attackers to inject malicious code into the system.
-- **Improper Assets Management**: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
-- **Insufficient Logging & Monitoring**: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
-- **Using Components with Known Vulnerabilities**: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
+- **Improper assets management**: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
+- **Insufficient logging and monitoring**: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
+- **Using components with known vulnerabilities**: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
 
 ---
 
@@ -287,6 +287,7 @@ app.use("/api/auth", authRoutes);
 ```javascript
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 
 import authRoutes from "./routes/auth.js";
 import indexRoutes from "./routes/index.js";
@@ -300,6 +301,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(isContentTypeApplicationJSON);
@@ -383,12 +385,18 @@ In the `middleware` directory, create a new file called `rbac.js`. In the `rbac.
 ```js
 const rbac = (requiredRole) => {
   return (req, res, next) => {
+    // Check if the user is authenticated and has a role
     if (!req.user || !req.user.role) {
-      return res.status(403).json({ message: "Forbidden. User is not authenticated" });
+      return res
+        .status(403)
+        .json({ message: "Forbidden. User is not authenticated" });
     }
 
+    // Check if the user's role matches the required role
     if (req.user.role !== requiredRole) {
-      return res.status(403).json({ message: `Forbidden. Insufficient privileges for role: ${requiredRole}` });
+      return res.status(403).json({
+        message: `Forbidden. Insufficient privileges for role: ${requiredRole}`,
+      });
     }
 
     next();
@@ -473,20 +481,22 @@ In the `middleware` directory, create a new file called `abac.js`. In the `abac.
 ```js
 const abac = (requiredAttributes) => {
   return (req, res, next) => {
+    // Check if the user is authenticated
     if (!req.user) {
       return res
         .status(403)
         .json({ message: "Forbidden. User not authenticated" });
     }
 
-    // Check each required attribute
     for (const [key, value] of Object.entries(requiredAttributes)) {
+      // Check if the user has the required attribute
       if (!req.user[key]) {
         return res.status(403).json({
           message: `Forbidden. Missing attribute: ${key}`,
         });
       }
 
+      // Check if the user's attribute matches the required value
       if (req.user[key] !== value) {
         return res.status(403).json({
           message: `Forbidden. Insufficient privileges for attribute: ${key}`,
@@ -505,7 +515,7 @@ export default abac;
 
 ### Institution Router
 
-In the `routes/institution.js` file, update the routes to use the `abac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role and `Information Technology` department, you can do the following:
+In the `routes/institution.js` file, update the routes to use the `abac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role and `Information Technology Services` department, you can do the following:
 
 ```javascript
 // Omitted for brevity
@@ -518,7 +528,7 @@ router.post(
   "/",
   validatePostInstitution,
   jwtAuth,
-  abac({ role: "ADMIN", department: "Information Technology" }),
+  abac({ role: "ADMIN", department: "Information Technology Services" }),
   createInstitution
 );
 
@@ -526,6 +536,16 @@ router.post(
 ```
 
 > **Note:** Implementing **ABAC** can be complex and may require a more sophisticated policy engine. It is recommended to use a library or framework that supports **ABAC** if you need this level of access control.
+
+---
+
+### Postman Example
+
+---
+
+## Rate Limiting
+
+**Rate limiting** is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as **fixed window**, **sliding window** and **token bucket**.
 
 ---
 

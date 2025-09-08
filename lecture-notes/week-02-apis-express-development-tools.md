@@ -111,11 +111,15 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 **Idempotency** is a property of certain operations in mathematics and computer science. An operation is idempotent if performing it multiple times has the same effect as performing it once. For example, the `PUT` and `DELETE` methods are idempotent because performing them multiple times will have the same effect as performing them once. The `GET` method is also idempotent because it does not change the state of the resource. The `POST` method is not idempotent because performing it multiple times may result in the creation of multiple resources.
 
+> **Resource:** <https://restfulapi.net/idempotent-rest-apis/>
+
 ---
 
 ### HATEOAS
 
 **Hypermedia As The Engine Of Application State (HATEOAS)** is a constraint of the **REST** application architecture. It is a way for a client to interact with a server by using hypermedia links provided by the server. The client does not need to know the structure of the API or the available resources. The client can discover the available resources and actions by following the links provided by the server. For example, a `GET` request to the `/api/users` endpoint may return a list of users along with links to view, update or delete each user.
+
+> **Resource:** <https://restfulapi.net/hateoas/>
 
 ---
 
@@ -150,25 +154,50 @@ There are four different **header** groups:
 
 ### Cookies
 
-**Cookies** are small pieces of data that are sent from a server and stored on the client's computer. They are used to remember information about the user, such as login credentials or preferences. Cookies are sent with every HTTP request to the same domain, allowing the server to identify the user.
+**Cookies** are small pieces of data that are sent from a server and stored on the client's computer. They are used to remember information about the user, such as login credentials or preferences. **Cookies** are sent with every **HTTP** request to the same domain, allowing the server to identify the user.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies>
 
 ---
 
 ### CORS
 
 **Cross-Origin Resource Sharing (CORS)** is a security feature implemented by web browsers to prevent malicious websites from making requests to a different domain than the one that served the web page. **CORS** allows servers to specify who can access their resources and which HTTP methods are allowed.
+
 For example, a web application hosted on `https://example.com` may want to make requests to an API hosted on `https://api.example.com`. To allow this, the API server can include the following header in its response:
 
-```Access-Control-Allow-Origin: https://example.com
+```bash
+Access-Control-Allow-Origin: https://example.com
 ```
 
 This allows the web application to make requests to the API without being blocked by the browser's same-origin policy.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS>
+
+---
+
+### Compression
+
+**HTTP compression** is a technique used to reduce the size of **HTTP** responses. This can improve the performance of web applications by reducing the amount of data that needs to be transferred over the network.
+
+There are two types of compression:
+1. **Lossless compression**: This type of compression reduces the size of the data without losing any information. The most common lossless compression algorithms are **gzip** and **deflate**.
+2. **Lossy compression**: This type of compression reduces the size of the data by removing some information. The most common lossy compression algorithms are **JPEG** and **MP3**.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression>
 
 ---
 
 ### HTTP Caching
 
 **HTTP caching** is a mechanism that allows web browsers to store copies of web resources, such as HTML pages, images and stylesheets, on the client's computer. This allows the browser to load the resources from the cache instead of making a new request to the server, which can improve performance and reduce bandwidth usage.
+
+There are two types of caching:
+
+1. **Client-side caching**: The browser stores the resources in its cache and uses them for subsequent requests.
+2. **Server-side caching**: The server stores the resources in its cache and serves them to the client for subsequent requests.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching>
 
 ---
 
@@ -197,14 +226,14 @@ Open a terminal and run the following.
 ```bash
 cd backend
 npm init -y
-npm install express cors
+npm install express cors compression
 npm install nodemon --save-dev
 ```
 
 What does each do?
 
 - `npm init -y`: Initialises a **Node.js** project. The `-y` flag is used to accept the default values.
-- `npm install express cors`: Installs the **Express** and **CORS** modules.
+- `npm install express cors compression`: Installs the **Express**, **CORS**, and **Compression** modules.
 - `npm install nodemon --save-dev`: Installs the **Nodemon** module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
 You will notice new files and directories in the root directory. These include:
@@ -279,8 +308,10 @@ This will allow you to use **ES6 modules** in your project. For example, `import
 In the root directory, create a file named `app.js`. In the `app.js` file, add the following code.
 
 ```javascript
-// Import the Express module
+// Import the Express, CORS and Compression modules
 import express from "express";
+import cors from "cors";
+import compression from "compression";
 
 // Create an Express application
 const app = express();
@@ -288,8 +319,9 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS
+// Enable CORS and Compression
 app.use(cors());
+app.use(compression());
 
 // Create a GET route. req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
 app.get("/", (req, res) => {
@@ -392,8 +424,10 @@ export default router;
 In the `app.js` file, replace the existing code with the following code to use the `index` routes module.
 
 ```javascript
-// Import the Express module
+// Import the Express, CORS and Compression modules
 import express from "express";
+import cors from "cors";
+import compression from "compression";
 
 // Import the index routes module
 import indexRoutes from "./routes/index.js";
@@ -404,8 +438,9 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
-// Enable CORS
+// Enable CORS and Compression
 app.use(cors());
+app.use(compression());
 
 // Use the routes module
 app.use("/", indexRoutes);

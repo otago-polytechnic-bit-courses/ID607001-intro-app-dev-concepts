@@ -78,6 +78,7 @@ app.use(isContentTypeApplicationJSON);
 ```javascript
 import express from "express";
 import cors from "cors";
+import compression from "compression";
 
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
@@ -89,6 +90,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(cors());
+app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(isContentTypeApplicationJSON);
@@ -309,6 +311,8 @@ app.use("/api/departments", departmentRoutes);
 
 ```javascript
 import express from "express";
+import cors from "cors";
+import compression from "compression";
 
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
@@ -320,6 +324,8 @@ const app = express();
 
 const PORT = process.env.PORT || 3000;
 
+app.use(cors());
+app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(isContentTypeApplicationJSON);
@@ -532,6 +538,60 @@ export {
   updateInstitution,
   deleteInstitution,
 };
+```
+
+---
+
+## N + 1 Problem
+
+The **N + 1 problem** is a common performance issue that occurs when an application makes **N + 1** database queries to retrieve related data. For example, if you have a list of institutions and you want to retrieve their departments, you would first query the database for the list of institutions (1 query) and then for each institution, you would query the database for their departments (N queries). This results in **N + 1** queries. The **N + 1 problem** can be solved by using **eager loading** or **batching**.
+
+Here are two examples of the **N + 1 problem**:
+
+```js
+const institutions = await prisma.institution.findMany(); // 1 query
+
+for (const institution of institutions) {
+  const departments = await prisma.department.findMany({
+    where: { institutionId: institution.id },
+  }); // N queries
+  institution.departments = departments;
+}
+```
+
+---
+
+### Eager Loading
+
+**Eager loading** is a technique where related data is loaded at the same time as the main data. This can be done using **JOIN** queries in SQL or by using the **include** option in **Prisma**. For example, if you want to retrieve a list of institutions and their departments in a single query, you can use eager loading.
+
+Here is an example of eager loading using **Prisma**.
+
+```javascript
+const institutions = await prisma.institution.findMany({
+  include: {
+    departments: true,
+  },
+});
+```
+
+---
+
+### Batching
+
+**Batching** is a technique where multiple queries are combined into a single query. This can be done using the **IN** operator in SQL or by using the **findMany** method in **Prisma**. For example, if you want to retrieve the posts for a list of institutions, you can use batching to retrieve all the departments in a single query.
+
+Here is an example of batching using **Prisma**.
+
+```javascript
+const institutions = await prisma.institution.findMany();
+const departments = await prisma.department.findMany({
+  where: {
+    institutionId: {
+      in: institutions.map((institution) => institution.id),
+    },
+  },
+});
 ```
 
 ---
