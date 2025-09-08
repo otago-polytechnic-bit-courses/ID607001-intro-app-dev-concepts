@@ -385,17 +385,18 @@ In the `middleware` directory, create a new file called `rbac.js`. In the `rbac.
 ```js
 const rbac = (requiredRole) => {
   return (req, res, next) => {
+    const { user } = req;
     // Check if the user is authenticated and has a role
-    if (!req.user || !req.user.role) {
+    if (!user || !user.role) {
       return res
         .status(403)
         .json({ message: "Forbidden. User is not authenticated" });
     }
 
     // Check if the user's role matches the required role
-    if (req.user.role !== requiredRole) {
+    if (user.role !== requiredRole) {
       return res.status(403).json({
-        message: `Forbidden. Insufficient privileges for role: ${requiredRole}`,
+        message: `Forbidden. Insufficient privileges for role: ${user.role}`,
       });
     }
 
@@ -481,8 +482,9 @@ In the `middleware` directory, create a new file called `abac.js`. In the `abac.
 ```js
 const abac = (requiredAttributes) => {
   return (req, res, next) => {
+    const { user } = req;
     // Check if the user is authenticated
-    if (!req.user) {
+    if (!user) {
       return res
         .status(403)
         .json({ message: "Forbidden. User not authenticated" });
@@ -490,14 +492,14 @@ const abac = (requiredAttributes) => {
 
     for (const [key, value] of Object.entries(requiredAttributes)) {
       // Check if the user has the required attribute
-      if (!req.user[key]) {
+      if (!user[key]) {
         return res.status(403).json({
           message: `Forbidden. Missing attribute: ${key}`,
         });
       }
 
       // Check if the user's attribute matches the required value
-      if (req.user[key] !== value) {
+      if (user[key] !== value) {
         return res.status(403).json({
           message: `Forbidden. Insufficient privileges for attribute: ${key}`,
         });
