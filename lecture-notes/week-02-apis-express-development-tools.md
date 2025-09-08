@@ -546,7 +546,7 @@ npm run format
 
 **ESLint** is a popular linting tool for identifying and fixing problems in **JavaScript** code. It helps ensure that your code adheres to a consistent style and can catch common errors.
 
-To initialise **ESLint** n your project, run the following command in your terminal.
+To initialise **ESLint** in your project, run the following command in your terminal.
 
 ```bash
 npm init @eslint/config@latest
