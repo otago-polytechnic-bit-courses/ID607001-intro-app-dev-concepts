@@ -501,7 +501,7 @@ In the root directory, create a file named `.prettierrc.json`. This file is used
   "printWidth": 80,
   "tabWidth": 2,
   "semi": true,
-  "singleQuote": true,
+  "singleQuote": false,
   "trailingComma": "es5"
 }
 ```
