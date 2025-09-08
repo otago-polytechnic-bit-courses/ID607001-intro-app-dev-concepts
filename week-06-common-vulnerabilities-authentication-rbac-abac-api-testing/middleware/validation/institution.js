@@ -25,7 +25,8 @@ const validatePostInstitution = (req, res, next) => {
     }),
   });
 
-  const { error } = institutionSchema.validate(req.body, {
+  const { name, region, country } = req.body;
+  const { error } = institutionSchema.validate({ name, region, country }, {
     abortEarly: false,
     convert: false,
   });
@@ -63,7 +64,8 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // Ensure at least one field is being updated
 
-  const { error } = institutionSchema.validate(req.body, {
+  const { name, region, country } = req.body;
+  const { error } = institutionSchema.validate({ name, region, country }, {
     abortEarly: false,
     convert: false,
   });

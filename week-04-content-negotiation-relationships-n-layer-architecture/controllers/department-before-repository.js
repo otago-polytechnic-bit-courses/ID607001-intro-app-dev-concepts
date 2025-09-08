@@ -83,7 +83,7 @@ const updateDepartment = async (req, res) => {
     // Check if there is no department
     if (!department) {
       return res.status(404).json({
-        message: `No department with the id: ${req.params.id} found`,
+        message: `No department with the id: ${id} found`,
       });
     }
 

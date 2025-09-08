@@ -84,7 +84,7 @@ const updateInstitution = async (req, res) => {
     // Check if there is no institution
     if (!institution) {
       return res.status(404).json({
-        message: `No institution with the id: ${req.params.id} found`,
+        message: `No institution with the id: ${id} found`,
       });
     }
 
