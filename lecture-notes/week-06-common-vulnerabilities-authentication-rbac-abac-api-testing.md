@@ -1017,8 +1017,7 @@ Replace the existing `login` **function** in `controllers/auth.js` with the foll
 ```js
 const login = async (req, res) => {
   try {
-    const emailAddress = req.body.emailAddress;
-    const password = req.body.password;
+    const { emailAddress, password } = req.body;
 
     const user = await prisma.user.findUnique({ where: { emailAddress } });
 
