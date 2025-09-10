@@ -596,23 +596,22 @@ const departments = await prisma.department.findMany({
 
 ---
 
-## Full-Stack Development
+
+## System Design
 
 In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately. 
 
-In **Part A** of the **Project** assessment, you will required to a design document that covers the **system** and **UI/UX** design of your **full-stack** application.
+In **Part A** of the **Project** assessment, you will required to a **Microsoft Word** document that covers the **system design** of your **full-stack** application.
 
 Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
----
-
-### System Design
-
-**System design** is the process of defining the architecture, components, modules, interfaces and data for a system to satisfy specified requirements. The **system design** should include the following:
+The **system design**  should include the following, but not limited to:
 
 - **System architecture:**
   - What architecture pattern will you use?
   - What technology stack will you use for the **database**, **backend** and **frontend**?
+  - How will the **database**, **backend** and **frontend** communicate with each other?
+  - How will you structure the **database**, **backend** and **frontend** code?
 
 - **Database:**
   - What tables will you have?
@@ -620,31 +619,34 @@ Firstly, you need to decide on a topic for your **full-stack** application. The 
   - What relationships will you have between the tables?
   - How will you manage database migrations?
 
-- **API:**
+- **Security:**
+  - How will sensitive data be managed?
+  - What input validation will you implement?
+  - What headers will you implement?
+
+- **REST API:**
   - What endpoints will you have?
   - What HTTP methods will you use for each endpoint?
   - What request parameters will you need for each endpoint?
+  - What response format will you use?
+  - What status codes will you use for each endpoint?
+  - What error handling will you implement?
   - How will you document your **REST API**?
 
 - **Authentication and authorization:**
   - What authentication and authorisation method will you use?
+  - How will you manage the authentication and authorisation?
   - What roles will you have and what permissions will each role have?
 
-- **Security:**
-  - What data will you need to encrypt?
-  - What input validation will you implement?
-  - What headers will you implement?
+- **Testing:**
+  - What testing library and/or framework will you use?
+  - What types of tests will you implement?
+  - How will you structure your tests?
+  - How will you manage test data?
 
-- **Infrastructure  and **
-  - How will you deploy your **database**, **backend** and **frontend** applications?
-
-
-
----
-
-### UI/UX Design
-
-**UI/UX design** is the process of designing the user interface and user experience of a system. The **UI/UX design** should include the following:
+- **Infrastructure and deployment:**
+  - What services will you use for deployment?
+  - How will you manage environment variables?
 
 ---
 
