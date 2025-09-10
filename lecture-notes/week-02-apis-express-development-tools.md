@@ -33,13 +33,13 @@ What is meant by rules and protocols?
 
 **Representational State Transfer (REST)** is an architectural style for designing networked applications. It is based on a set of principles and constraints that allow for the creation of scalable and maintainable web services.
 
-| **Principle**               | **Description**                                                                 |
-|-----------------------------|---------------------------------------------------------------------------------|
-| Statelessness               | Each API request from a client contains all the information needed to process the request. |
-| Client-Server Separation    | The client and server are separate entities that communicate over a network.   |
-| Cacheability                | Responses from the server can be cached by the client to improve performance.   |
-| Layered System              | The API can be composed of multiple layers, each with its own responsibilities. |
-| Uniform Interface           | The API has a consistent and standardised way of interacting with resources.   |
+| **Principle**            | **Description**                                                                            |
+| ------------------------ | ------------------------------------------------------------------------------------------ |
+| Statelessness            | Each API request from a client contains all the information needed to process the request. |
+| Client-Server Separation | The client and server are separate entities that communicate over a network.               |
+| Cacheability             | Responses from the server can be cached by the client to improve performance.              |
+| Layered System           | The API can be composed of multiple layers, each with its own responsibilities.            |
+| Uniform Interface        | The API has a consistent and standardised way of interacting with resources.               |
 
 ---
 
@@ -52,6 +52,7 @@ There are five different versions of **HTTP**:
 - **HTTP/0.9 (1991)**. The original version of **HTTP**, released in 1991. It was extremely simple, supporting only **GET** requests for **HTML** documents. There were no **HTTP** headers, status codes or error codes. The server would simply return the **HTML** content and close the connection.
 
 - **HTTP/1.0 (1996)**. The first standardised version of **HTTP**, formally specified in **RFC 1945**. It introduced several key features:
+
   - Request methods beyond **GET**
   - HTTP headers for both requests and responses
   - Status codes
@@ -59,13 +60,15 @@ There are five different versions of **HTTP**:
   - Each request required a separate **TCP** connection, which could be slow and inefficient
 
 - **HTTP/1.1 (1997)**. Released in 1997 and updated in **RFC 7230-7237 (2014)**. This became the dominant version for nearly two decades, introducing major improvements:
+
   - Multiple requests could reuse the same **TCP** connection
   - Allowed streaming of content without knowing the full size upfront
   - Better caching strategies
-  - Enabled virtual hosting 
+  - Enabled virtual hosting
   - Multiple requests could be sent without waiting for responses, though rarely implemented
 
 - **HTTP/2 (2015)**. A major revision released in 2015 **(RFC 7540)**, introducing a binary protocol with significant performance improvements:
+
   - More efficient parsing compared to text-based **HTTP/1.x**
   - Multiple requests and responses over a single connection without head-of-line blocking
   - Reduced overhead from repetitive headers
@@ -76,7 +79,7 @@ There are five different versions of **HTTP**:
 - **HTTP/3 (2022)**. The latest version, standardised in **RFC 9114** in June 2022. It represents a fundamental shift in transport layer:
   - Runs over **UDP** instead of **TCP**, providing built-in encryption
   - Faster initial connections with **0-RTT** capability
-  - Connections can survive network changes 
+  - Connections can survive network changes
   - Even at the transport layer
   - Encryption is mandatory and integrated into **QUIC**
   - Faster connection setup and data transmission
@@ -107,7 +110,7 @@ We will only be using `GET`, `POST`, `PUT` and `DELETE` in this course.
 
 ---
 
-### Idempotency 
+### Idempotency
 
 **Idempotency** is a property of certain operations in mathematics and computer science. An operation is idempotent if performing it multiple times has the same effect as performing it once. For example, the `PUT` and `DELETE` methods are idempotent because performing them multiple times will have the same effect as performing them once. The `GET` method is also idempotent because it does not change the state of the resource. The `POST` method is not idempotent because performing it multiple times may result in the creation of multiple resources.
 
@@ -181,6 +184,7 @@ This allows the web application to make requests to the API without being blocke
 **HTTP compression** is a technique used to reduce the size of **HTTP** responses. This can improve the performance of web applications by reducing the amount of data that needs to be transferred over the network.
 
 There are two types of compression:
+
 1. **Lossless compression**: This type of compression reduces the size of the data without losing any information. The most common lossless compression algorithms are **gzip** and **deflate**.
 2. **Lossy compression**: This type of compression reduces the size of the data by removing some information. The most common lossy compression algorithms are **JPEG** and **MP3**.
 
@@ -323,7 +327,6 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(compression());
 
-// Create a GET route. req is an object that contains information about the HTTP request. res is an object that contains information about the HTTP response.
 app.get("/", (req, res) => {
   return res.status(200).json({
     message: "Hello, World!",
@@ -331,6 +334,18 @@ app.get("/", (req, res) => {
     lastName: "Doe",
     age: 20,
     hobbies: ["Reading", "Gaming", "Cooking"],
+  });
+});
+
+app.get("/languages", (req, res) => {
+  return res.status(200).json({
+    languages: [
+      { name: "C++", author: "Bjarne Stroustrup" },
+      { name: "Java", author: "James Gosling" },
+      { name: "JavaScript", author: "Brendan Eich" },
+      { name: "Python", author: "Guido van Rossum" },
+      { name: "Ruby", author: "Yukihiro Matsumoto" },
+    ],
   });
 });
 
@@ -375,6 +390,20 @@ Open a browser and navigate to <http://localhost:3000/>. You should see the foll
 }
 ```
 
+Navigate to <http://localhost:3000/languages>. You should see the following message.
+
+```json
+{
+  "languages": [
+    { "name": "C++", "author": "Bjarne Stroustrup" },
+    { "name": "Java", "author": "James Gosling" },
+    { "name": "JavaScript", "author": "Brendan Eich" },
+    { "name": "Python", "author": "Guido van Rossum" },
+    { "name": "Ruby", "author": "Yukihiro Matsumoto" }
+  ]
+}
+```
+
 ---
 
 ### Controller
@@ -383,7 +412,7 @@ In the root directory, create a directory named `controllers`. In the `controlle
 
 ```javascript
 // Create a GET route
-const getIndex = (req, res) => {
+const getFunctionExample1 = (req, res) => {
   return res.status(200).json({
     message: "Hello, World!",
     firstName: "John",
@@ -393,8 +422,20 @@ const getIndex = (req, res) => {
   });
 };
 
-// Export the getIndex function. May be used by other modules. For example, the index routes module
-export { getIndex };
+const getFunctionExample2 = (req, res) => {
+  return res.status(200).json({
+    languages: [
+      { name: "C++", author: "Bjarne Stroustrup" },
+      { name: "Java", author: "James Gosling" },
+      { name: "JavaScript", author: "Brendan Eich" },
+      { name: "Python", author: "Guido van Rossum" },
+      { name: "Ruby", author: "Yukihiro Matsumoto" },
+    ],
+  });
+};
+
+// Export the controller functions. May be used by other modules. For example, the index routes module
+export { getFunctionExample1, getFunctionExample2 };
 ```
 
 > **Resource:** <https://expressjs.com/en/guide/routing.html>
@@ -409,13 +450,17 @@ In the root directory, create a directory named `routes`. In the `routes` direct
 import express from "express";
 
 // Import the index controllers module
-import { getIndex } from "../controllers/index.js";
+import {
+  getFunctionExample1,
+  getFunctionExample2,
+} from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
 
 // Create a GET route
-router.get("/", getIndex); // The first argument is the route path, the second argument is the controller function
+router.get("/", getFunctionExample1); // The first argument is the route path, the second argument is the controller function
+router.get("/languages", getFunctionExample2);
 
 // Export the router
 export default router;
