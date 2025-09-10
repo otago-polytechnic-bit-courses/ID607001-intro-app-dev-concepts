@@ -563,7 +563,7 @@ for (const institution of institutions) {
 
 ### Eager Loading
 
-**Eager loading** is a technique where related data is loaded at the same time as the main data. This can be done using **JOIN** queries in SQL or by using the **include** option in **Prisma**. For example, if you want to retrieve a list of institutions and their departments in a single query, you can use eager loading.
+**Eager loading** is a technique where related data is loaded at the same time as the main data. This can be done using `JOIN` queries in **SQL** or by using the **include** option in **Prisma**. For example, if you want to retrieve a list of institutions and their departments in a single query, you can use eager loading.
 
 Here is an example of eager loading using **Prisma**.
 
@@ -579,7 +579,7 @@ const institutions = await prisma.institution.findMany({
 
 ### Batching
 
-**Batching** is a technique where multiple queries are combined into a single query. This can be done using the **IN** operator in SQL or by using the **findMany** method in **Prisma**. For example, if you want to retrieve the posts for a list of institutions, you can use batching to retrieve all the departments in a single query.
+**Batching** is a technique where multiple queries are combined into a single query. This can be done using the `IN` operator in **SQL** or by using the **findMany** method in **Prisma**. For example, if you want to retrieve the posts for a list of institutions, you can use batching to retrieve all the departments in a single query.
 
 Here is an example of batching using **Prisma**.
 
@@ -593,6 +593,58 @@ const departments = await prisma.department.findMany({
   },
 });
 ```
+
+---
+
+## Full-Stack Development
+
+In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately. 
+
+In **Part A** of the **Project** assessment, you will required to a design document that covers the **system** and **UI/UX** design of your **full-stack** application.
+
+Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
+
+---
+
+### System Design
+
+**System design** is the process of defining the architecture, components, modules, interfaces and data for a system to satisfy specified requirements. The **system design** should include the following:
+
+- **System architecture:**
+  - What architecture pattern will you use?
+  - What technology stack will you use for the **database**, **backend** and **frontend**?
+
+- **Database:**
+  - What tables will you have?
+  - What fields, data types and constraints will each table have?
+  - What relationships will you have between the tables?
+  - How will you manage database migrations?
+
+- **API:**
+  - What endpoints will you have?
+  - What HTTP methods will you use for each endpoint?
+  - What request parameters will you need for each endpoint?
+  - How will you document your **REST API**?
+
+- **Authentication and authorization:**
+  - What authentication and authorisation method will you use?
+  - What roles will you have and what permissions will each role have?
+
+- **Security:**
+  - What data will you need to encrypt?
+  - What input validation will you implement?
+  - What headers will you implement?
+
+- **Infrastructure  and **
+  - How will you deploy your **database**, **backend** and **frontend** applications?
+
+
+
+---
+
+### UI/UX Design
+
+**UI/UX design** is the process of designing the user interface and user experience of a system. The **UI/UX design** should include the following:
 
 ---
 
