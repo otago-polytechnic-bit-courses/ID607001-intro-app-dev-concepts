@@ -517,6 +517,8 @@ Follow the prompts to deploy your application. You can choose to link your proje
 
 Here is a **URL** example of a deployed **SvelteKit** application on **Vercel** - [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
 
+> **Note:** You can setup **Continuous Deployment** by linking your **GitHub** repository to **Vercel**. This way, every time you push changes to your repository, **Vercel** will automatically deploy the latest version of your application.
+
 ---
 
 ## Exercises
