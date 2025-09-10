@@ -1126,4 +1126,4 @@ Complete all **TODO** sections with the appropriate code.
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-07-sveltekit-basics.md)
+Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-07-sveltekit-js.md)
