@@ -1,3 +1,4 @@
+// /e2e/ClickEvents.test.js
 import { expect, test } from '@playwright/test';
 
 test('ClickEvents component - increment and reset functionality', async ({ page }) => {

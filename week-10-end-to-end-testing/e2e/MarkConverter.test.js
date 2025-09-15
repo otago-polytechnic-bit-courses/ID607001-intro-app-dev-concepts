@@ -1,4 +1,4 @@
-// /tests/MarkConverter.test.js
+// /e2e/MarkConverter.test.js
 import { expect, test } from '@playwright/test';
 
 test('MarkConverter component - grade calculation', async ({ page }) => {
