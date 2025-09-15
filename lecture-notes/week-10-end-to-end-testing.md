@@ -67,7 +67,7 @@ In `src/routes/+page.svelte`, add the following code:
 
 ### Playwright
 
-**Playwright** is an open-source end-to-end testing framework developed by Microsoft. It allows developers to write tests that simulate user interactions with web applications across different browsers and platforms. Playwright provides a high-level API for automating browser actions, making it easier to create reliable and maintainable tests.
+**Playwright** is an open-source **end-to-end testing** framework developed by **Microsoft**. It allows developers to write tests that simulate user interactions with web applications across different browsers and platforms. **Playwright** provides a high-level API for automating browser actions, making it easier to create reliable and maintainable tests.
 
 > **Resource:** <https://playwright.dev>
 
@@ -75,7 +75,7 @@ In `src/routes/+page.svelte`, add the following code:
 
 ### Setting Up Playwright
 
-To set up **Playwright** in your SvelteKit application, run the following command in the terminal:
+To set up **Playwright** in your **SvelteKit** application, run the following command in the terminal:
 
 ```bash
 npm init playwright@latest
@@ -90,16 +90,20 @@ You will be prompted with the following questions. The recommended answers are p
 | Add a GitHub Actions workflow? (y/N)                                                   | false      |
 | Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true       |
 
-This will create a `tests` directory with an example test file and a `playwright.config.js` file in the root directory.
+This will create a `e2e` directory with an example test file and a configuration file called `playwright.config.js` in the root directory. Also, in `package.json`, you will see the following scripts added:
 
+```json
+"test:e2e": "playwright test",
+"test": "npm run test:e2e",
+```
 ---
 
 ### Writing Tests
 
-In the `tests` directory, rename the example test file to `ClickEvents.test.js` and add the following code:
+In the `e2e` directory, rename the example test file to `ClickEvents.test.js` and add the following code:
 
 ```javascript
-// /tests/ClickEvents.test.js
+// /e2e/ClickEvents.test.js
 import { expect, test } from '@playwright/test';
 
 test('ClickEvents component - increment and reset functionality', async ({ page }) => {
@@ -130,10 +134,10 @@ test('ClickEvents component - increment and reset functionality', async ({ page 
 });
 ```
 
-In the `tests` directory, create a new file called `FormEvents.test.js` and add the following code:
+In the `e2e` directory, create a new file called `FormEvents.test.js` and add the following code:
 
 ```javascript
-// /tests/FormEvents.test.js
+// /e2e/FormEvents.test.js
 import { expect, test } from '@playwright/test';
 
 test('FormEvents component form - interactions and submission', async ({ page }) => {
@@ -173,10 +177,10 @@ test('FormEvents component form - interactions and submission', async ({ page })
 });
 ```
 
-In the `tests` directory, create a new file called `MarkConverter.test.js` and add the following code:
+In the `e2e` directory, create a new file called `MarkConverter.test.js` and add the following code:
 
 ```javascript
-// /tests/MarkConverter.test.js
+// /e2e/MarkConverter.test.js
 import { expect, test } from '@playwright/test';
 
 test('MarkConverter component - grade calculation', async ({ page }) => {
@@ -247,6 +251,34 @@ test('MarkConverter component - grade calculation', async ({ page }) => {
 });
 ```
 
+---
+
+### Running Tests
+
+To run the tests, use the following command in the terminal:
+
+```bash
+npm run test
+```
+
+This will execute all the tests in the `e2e` directory and display the results in the terminal.
+
+You see the following output:
+
+```plaintext
+Running 3 tests using 3 workers
+
+  ✓  1 e2e/ClickEvents.test.js:3:1 › ClickEvents component - increment and reset functionality (number of ms)
+  ✓  2 e2e/MarkConverter.test.js:4:1 › MarkConverter component - grade calculation (number of ms)
+  ✓  3 e2e/FormEvents.test.js:4:1 › FormEvents component form interactions and submission (number of ms)
+
+  3 passed (number of ms)
+```
+
+> **Note:** The number of milliseconds will vary depending on your computer's performance.
+
+
+---
 
 
 ## Exercises
