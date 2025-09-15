@@ -43,13 +43,45 @@ week-10-end-to-end-testing
 
 Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory.
 
----
+In `src/routes/+page.svelte`, add the following code:
+
+```svelte
+<!-- /src/routes/+page.svelte -->
+
+<script>
+	import ClickEvents from '$lib/components/ClickEvents.svelte';
+    import FormEvents from '$lib/components/FormEvents.svelte';
+    import MarkConverter from '$lib/components/MarkConverter.svelte';
+</script>
+
+<ClickEvents />
+<FormEvents />
+<MarkConverter />
+```
+
+## End-To-End Testing
+
+**End-to-end testing** is a software testing methodology that involves testing an application from start to finish to ensure that all components and systems work together as expected. The goal of **end-to-end testing** is to simulate real user scenarios and validate the entire application flow, including interactions with external systems, databases and APIs.
 
 ---
 
-## End-To-End Testing (E2E)
+### Playwright
+
+**Playwright** is an open-source end-to-end testing framework developed by Microsoft. It allows developers to write tests that simulate user interactions with web applications across different browsers and platforms. Playwright provides a high-level API for automating browser actions, making it easier to create reliable and maintainable tests.
+
+> **Resource:** <https://playwright.dev>
 
 ---
+
+### Setting Up Playwright
+
+To set up **Playwright** in your SvelteKit application, run the following command in the terminal:
+
+```bash
+npm init playwright@latest
+```
+
+You will be prompted with the following questions. The recommended answers are provided in the table below:
 
 | Question                                                                               | Answer     |
 | -------------------------------------------------------------------------------------- | ---------- |
@@ -58,7 +90,164 @@ Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svel
 | Add a GitHub Actions workflow? (y/N)                                                   | false      |
 | Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true       |
 
+This will create a `tests` directory with an example test file and a `playwright.config.js` file in the root directory.
+
 ---
+
+### Writing Tests
+
+In the `tests` directory, rename the example test file to `ClickEvents.test.js` and add the following code:
+
+```javascript
+// /tests/ClickEvents.test.js
+import { expect, test } from '@playwright/test';
+
+test('ClickEvents component - increment and reset functionality', async ({ page }) => {
+	await page.goto('/');
+
+	// Test initial state
+	const countText = page.locator('p').filter({ hasText: 'Count:' });
+	await expect(countText).toHaveText('Count: 0');
+
+	// Test increment button
+	const incrementButton = page.locator('button', { hasText: 'Increment Count' });
+	await incrementButton.click();
+	await expect(countText).toHaveText('Count: 1');
+
+	// Test multiple increments
+	await incrementButton.click();
+	await incrementButton.click();
+	await expect(countText).toHaveText('Count: 3');
+
+	// Test reset button (double-click)
+	const resetButton = page.locator('button', { hasText: 'Reset Count' });
+	await resetButton.dblclick();
+	await expect(countText).toHaveText('Count: 0');
+
+	// Test increment after reset
+	await incrementButton.click();
+	await expect(countText).toHaveText('Count: 1');
+});
+```
+
+In the `tests` directory, create a new file called `FormEvents.test.js` and add the following code:
+
+```javascript
+// /tests/FormEvents.test.js
+import { expect, test } from '@playwright/test';
+
+test('FormEvents component form - interactions and submission', async ({ page }) => {
+	await page.goto('/');
+
+	const messageText = page.locator('form').locator('+ p');
+	const usernameInput = page.locator('#username');
+	const firstNameInput = page.locator('#firstName');
+	const lastNameInput = page.locator('#lastName');
+	const submitButton = page.locator('button[type="submit"]');
+
+	// Test initial state (message should be empty)
+	await expect(messageText).toHaveText('');
+
+	// Test focus event
+	await usernameInput.focus();
+	await expect(messageText).toHaveText('Username input field focused');
+
+	// Test input event
+	await usernameInput.fill('john_doe');
+	await expect(messageText).toHaveText('You typed john_doe');
+
+	// Test blur event
+	await usernameInput.blur();
+	await expect(messageText).toHaveText('Username input field lost focus');
+
+	// Fill out complete form
+	await usernameInput.fill('testuser');
+	await firstNameInput.fill('John');
+	await lastNameInput.fill('Doe');
+
+	// Test form submission
+	await submitButton.click();
+	await expect(messageText).toHaveText(
+		'Form successfully submitted. Info: Username: testuser, First Name: John, Last Name: Doe'
+	);
+});
+```
+
+In the `tests` directory, create a new file called `MarkConverter.test.js` and add the following code:
+
+```javascript
+// /tests/MarkConverter.test.js
+import { expect, test } from '@playwright/test';
+
+test('MarkConverter component - grade calculation', async ({ page }) => {
+	await page.goto('/');
+	
+	const markInput = page.locator('input[type="number"]');
+	const gradeText = page.locator('p').filter({ hasText: 'Grade:' });
+	
+	// Test initial state (mark = 75)
+	await expect(gradeText).toHaveText('Grade: B+');
+	
+	// Test A+ grade
+	await markInput.fill('95');
+	await expect(gradeText).toHaveText('Grade: A+');
+	
+	// Test A grade
+	await markInput.fill('88');
+	await expect(gradeText).toHaveText('Grade: A');
+	
+	// Test A- grade
+	await markInput.fill('82');
+	await expect(gradeText).toHaveText('Grade: A-');
+	
+	// Test B+ grade
+	await markInput.fill('77');
+	await expect(gradeText).toHaveText('Grade: B+');
+	
+	// Test B grade
+	await markInput.fill('72');
+	await expect(gradeText).toHaveText('Grade: B');
+	
+	// Test B- grade
+	await markInput.fill('67');
+	await expect(gradeText).toHaveText('Grade: B-');
+	
+	// Test C+ grade
+	await markInput.fill('62');
+	await expect(gradeText).toHaveText('Grade: C+');
+	
+	// Test C grade
+	await markInput.fill('57');
+	await expect(gradeText).toHaveText('Grade: C');
+	
+	// Test C- grade
+	await markInput.fill('52');
+	await expect(gradeText).toHaveText('Grade: C-');
+	
+	// Test D grade
+	await markInput.fill('45');
+	await expect(gradeText).toHaveText('Grade: D');
+	
+	// Test E grade (fail)
+	await markInput.fill('35');
+	await expect(gradeText).toHaveText('Grade: E');
+	
+	// Test boundary conditions
+	await markInput.fill('90');
+	await expect(gradeText).toHaveText('Grade: A+');
+	
+	await markInput.fill('89');
+	await expect(gradeText).toHaveText('Grade: A');
+	
+	await markInput.fill('40');
+	await expect(gradeText).toHaveText('Grade: D');
+	
+	await markInput.fill('39');
+	await expect(gradeText).toHaveText('Grade: E');
+});
+```
+
+
 
 ## Exercises
 
