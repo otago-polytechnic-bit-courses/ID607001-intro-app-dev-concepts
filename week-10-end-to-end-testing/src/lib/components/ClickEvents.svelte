@@ -1,4 +1,4 @@
-<!-- /src/lib/components/events/ClickEvents.svelte -->
+<!-- /src/lib/components/ClickEvents.svelte -->
 
 <script>
 	let count = $state(0);
