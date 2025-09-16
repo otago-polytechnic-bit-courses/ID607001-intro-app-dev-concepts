@@ -570,6 +570,12 @@ Deploy your **SvelteKit** application to **Vercel** following the deployment ins
 
 ---
 
+### Task 5
+
+Currently, you have to use the **Vercel CLI** to deploy your application. Automate the deployment process using **GitHub** and **Vercel** integration so that every time you push changes to the **week-09-api-integration-2-deployment** branch, your application is automatically deployed.
+
+---
+
 ## Next Class
 
 Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-10-end-to-end-testing.md)
