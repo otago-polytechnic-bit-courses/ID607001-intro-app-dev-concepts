@@ -2,17 +2,23 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-08-content-delivery-networks-api-integration-1.md)
+Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-08-content-delivery-networks-api-integration-1.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-api-integration-2-deployment** from the previous branch.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-api-integration-2-deployment** from the previous branch.
 
 Create a new **SvelteKit** application called `week-09-api-integration-2-deployment`.
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> **Note:** There are a lot of code examples. These code examples do not include code from the exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+
+---
+
+## Full Code Example
+
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-09-api-integration-2-deployment>
 
 ---
 
@@ -169,6 +175,7 @@ Again, example below is similar to previous examples.
 	<select id="role" name="role">
 		<option value="ADMIN" selected={form?.role === 'ADMIN'}>Admin</option>
 		<option value="NORMAL" selected={form?.role === 'NORMAL'}>Normal</option>
+		<option value="GUEST" selected={form?.role === 'GUEST'}>Guest</option>
 	</select>
 	<button type="submit">Submit</button>
 </form>
@@ -517,8 +524,6 @@ Follow the prompts to deploy your application. You can choose to link your proje
 
 Here is a **URL** example of a deployed **SvelteKit** application on **Vercel** - [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
 
-> **Note:** You can setup **Continuous Deployment** by linking your **GitHub** repository to **Vercel**. This way, every time you push changes to your repository, **Vercel** will automatically deploy the latest version of your application.
-
 ---
 
 ## Exercises
@@ -553,7 +558,7 @@ Implement a **logout** functionality that:
 Implement role-based content and permissions in the dashboard that:
 
 - Shows different content in `src/routes/dashboard/+page.svelte` based on the user's role
-- Restricts certain actions based on the user's role
+- Restricts certain actions based on the user's role  
 - Displays the user's role on the dashboard
 - Shows a message indicating the user's specific permissions
 
@@ -565,6 +570,12 @@ Deploy your **SvelteKit** application to **Vercel** following the deployment ins
 
 ---
 
+### Task 5
+
+Currently, you have to use the **Vercel CLI** to deploy your **SvelteKit** application. Automate the deployment process using **GitHub** and **Vercel** integration so that every time you push changes to the **week-09-api-integration-2-deployment** branch, your application is automatically deployed.
+
+---
+
 ## Next Class
 
-Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-10-end-to-end-testing.md)
+Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-10-end-to-end-testing.md)
