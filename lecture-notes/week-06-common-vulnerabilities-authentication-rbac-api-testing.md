@@ -467,6 +467,8 @@ Here is an example of creating an institution as a normal user. You should get a
 
 Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
 
+---
+
 ## Rate Limiting
 
 **Rate limiting** is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as **fixed window**, **sliding window** and **token bucket**.
