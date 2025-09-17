@@ -5,9 +5,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
       return res.status(409).json({
-        error: {
-          message: "Content-Type must be application/json",
-        },
+        message: "Content-Type must be application/json",
       });
     }
   }

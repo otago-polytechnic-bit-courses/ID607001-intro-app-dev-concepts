@@ -16,26 +16,20 @@ import {
 import jwtAuth from "../middleware/jwtAuth.js";
 
 import rbac from "../middleware/rbac.js";
-import abac from "../middleware/abac.js";
+
+import rateLimiter from "../middleware/rateLimiter.js";
 
 const router = express.Router();
 
-// router.post(
-//   "/",
-//   validatePostInstitution,
-//   jwtAuth,
-//   rbac("ADMIN"),
-//   createInstitution
-// );
 router.post(
   "/",
   validatePostInstitution,
   jwtAuth,
-  abac({ role: "ADMIN", department: "Information Technology Services" }),
+  rbac("ADMIN"),
   createInstitution
 );
-router.get("/", getInstitutions);
-router.get("/:id", getInstitution);
+router.get("/", rateLimiter, getInstitutions);
+router.get("/:id", rateLimiter, getInstitution);
 router.put("/:id", validatePutInstitution, updateInstitution);
 router.delete("/:id", deleteInstitution);
 

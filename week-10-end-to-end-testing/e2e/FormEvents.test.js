@@ -1,7 +1,7 @@
 // /e2e/FormEvents.test.js
 import { expect, test } from '@playwright/test';
 
-test('FormEvents component form - interactions and submission', async ({ page }) => {
+test('FormEvents component - form interactions and submission', async ({ page }) => {
 	await page.goto('/');
 
 	const messageText = page.locator('form').locator('+ p');
