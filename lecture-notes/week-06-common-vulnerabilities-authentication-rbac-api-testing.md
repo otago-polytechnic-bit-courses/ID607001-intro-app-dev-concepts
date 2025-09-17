@@ -465,17 +465,82 @@ Here is an example of creating an institution as a normal user. You should get a
 
 ![](<../resources (ignore)/img/week-6/06-week-6.png>)
 
-Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
-
 ---
 
 ## Rate Limiting
 
-**Rate limiting** is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as **fixed window**, **sliding window** and **token bucket**.
+**Rate limiting** is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as **fixed window**, **sliding window** and **token bucket**. However, for simplicity, we will use the `express-rate-limit` dependency which implements a basic fixed window algorithm.
+
+---
+
+### Setup
+
+To get started, install the `express-rate-limit` dependency by running the following command:
+
+```bash
+npm install express-rate-limit
+```
+
+Check the `package.json` file to ensure you have installed `express-rate-limit`.
+
+---
+
+### Middleware
+
+In the `middleware` directory, create a new file called `rateLimiter.js`. In the `rateLimiter.js` file, add the following code:
+
+```js
+import rateLimit from "express-rate-limit";
+
+const rateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: {
+    message: "Too many requests, please try again later.",
+  }
+});
+
+export default rateLimiter;
+```
+
+What does each property mean?
+
+- `windowMs`: The time frame for which requests are counted. In this case, it is set to 15 minutes.
+- `max`: The maximum number of requests allowed from a single IP address within the `windowMs` time frame. In this case, it is set to 100 requests.
+- `standardHeaders`: If set to `true`, it adds rate limit information to the `RateLimit-*` headers in the response.
+- `legacyHeaders`: If set to `false`, it disables the `X-RateLimit-*` headers in the response.
+- `message`: The error message returned when the rate limit is exceeded.
+
+---
+
+### Institution Router
+
+In the `routes/institution.js` file, import the `rateLimiter` middleware and use it to protect the routes. For example, you can do the following:
+
+```js
+// Omitted for brevity
+
+import rateLimiter from "../middleware/rateLimiter.js";
+
+// Omitted for brevity
+
+router.get("/", rateLimiter, getInstitutions);
+router.get("/:id", rateLimiter, getInstitution);
+
+// Omitted for brevity
+```
 
 ---
 
 ### Postman Example
+
+Here is an example of exceeding the rate limit when trying to get all institutions. After 5 requests in 15 minutes, you should get a `429 Too Many Requests` status code.
+
+![](<../resources (ignore)/img/week-6/07-week-6.png>)
+
+Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
 
 ---
 

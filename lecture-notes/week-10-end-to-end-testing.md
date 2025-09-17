@@ -100,13 +100,15 @@ This will create a `e2e` directory with an example test file and a configuration
 
 ### Writing Tests
 
+> **Note:** Please read the comments in each example test file to understand the code.
+
 In the `e2e` directory, rename the example test file to `ClickEvents.test.js` and add the following code:
 
 ```javascript
 // /e2e/ClickEvents.test.js
 import { expect, test } from '@playwright/test';
 
-test('ClickEvents component - increment and reset functionality', async ({ page }) => {
+test('ClickEvents component - increment and reset', async ({ page }) => {
 	await page.goto('/');
 
 	// Test initial state
@@ -140,7 +142,7 @@ In the `e2e` directory, create a new file called `FormEvents.test.js` and add th
 // /e2e/FormEvents.test.js
 import { expect, test } from '@playwright/test';
 
-test('FormEvents component form - interactions and submission', async ({ page }) => {
+test('FormEvents component - form interactions and submission', async ({ page }) => {
 	await page.goto('/');
 
 	const messageText = page.locator('form').locator('+ p');
@@ -268,18 +270,16 @@ You see the following output:
 ```plaintext
 Running 3 tests using 3 workers
 
-  ✓  1 e2e/ClickEvents.test.js:3:1 › ClickEvents component - increment and reset functionality (number of ms)
+  ✓  1 e2e/ClickEvents.test.js:3:1 › ClickEvents component - increment and reset (number of ms)
   ✓  2 e2e/MarkConverter.test.js:4:1 › MarkConverter component - grade calculation (number of ms)
-  ✓  3 e2e/FormEvents.test.js:4:1 › FormEvents component form interactions and submission (number of ms)
+  ✓  3 e2e/FormEvents.test.js:4:1 › FormEvents component - form interactions and submission (number of ms)
 
   3 passed (number of ms)
 ```
 
 > **Note:** The number of milliseconds will vary depending on your computer's performance.
 
-
 ---
-
 
 ## Exercises
 

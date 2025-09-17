@@ -49,9 +49,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
     const contentType = req.headers["content-type"];
     if (!contentType || contentType !== "application/json") {
       return res.status(409).json({
-        error: {
-          message: "Content-Type must be application/json",
-        },
+        message: "Content-Type must be application/json",
       });
     }
   }
@@ -596,35 +594,38 @@ const departments = await prisma.department.findMany({
 
 ---
 
-
 ## System Design
 
-In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately. 
+In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately.
 
 In **Part A** of the **Project** assessment, you will required to a **Microsoft Word** document that covers the **system design** of your **full-stack** application.
 
 Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
-The **system design**  should include the following, but not limited to:
+The **system design** should include the following, but not limited to:
 
 - **System architecture:**
+
   - What architecture pattern will you use?
   - What technology stack will you use for the **database**, **backend** and **frontend**?
   - How will the **database**, **backend** and **frontend** communicate with each other?
   - How will you structure the **database**, **backend** and **frontend** code?
 
 - **Database:**
+
   - What tables will you have?
   - What fields, data types and constraints will each table have?
   - What relationships will you have between the tables?
   - How will you manage database migrations?
 
 - **Security:**
+
   - How will sensitive data be managed?
   - What input validation will you implement?
   - What headers will you implement?
 
 - **REST API:**
+
   - What endpoints will you have?
   - What HTTP methods will you use for each endpoint?
   - What request parameters will you need for each endpoint?
@@ -634,11 +635,13 @@ The **system design**  should include the following, but not limited to:
   - How will you document your **REST API**?
 
 - **Authentication and authorization:**
+
   - What authentication and authorisation method will you use?
   - How will you manage the authentication and authorisation?
   - What roles will you have and what permissions will each role have?
 
 - **Testing:**
+
   - What testing library and/or framework will you use?
   - What types of tests will you implement?
   - How will you structure your tests?
