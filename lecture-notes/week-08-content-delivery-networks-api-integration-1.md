@@ -578,6 +578,10 @@ Here is how to use the **server-side** **POST** and **DELETE** actions:
 {/if}
 ````
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ## Exercises
@@ -610,6 +614,10 @@ Create the route `/src/routes/client-side/posts/+page.svelte` that:
 - Handles loading and error states appropriately with conditional rendering
 - Provides user feedback for successful operations and error handling
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ### Task 3
@@ -640,6 +648,10 @@ In `/src/routes/server-side/departments/+page.svelte`, implement the following f
 - Pre-populate form fields when editing a department
 
 Use **Bootstrap** for styling, **Font Awesome** for icons and **Google Fonts** for typography.
+
+Here is the expected output:
+
+<ADD IMAGE HERE>
 
 ---
 

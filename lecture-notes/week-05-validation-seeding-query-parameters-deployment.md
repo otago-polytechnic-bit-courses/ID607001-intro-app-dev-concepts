@@ -679,6 +679,10 @@ app.use((req, res) => {
 
 > **Note:** The catch-all route should be the last route defined in the file.
 
+Here is the expected output:
+
+<ADD GIF HERE>
+
 ---
 
 ### Task 5

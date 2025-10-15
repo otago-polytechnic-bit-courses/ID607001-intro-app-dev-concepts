@@ -914,6 +914,10 @@ router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
 router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 ```
 
+Here is the expected output:
+
+<ADD GIF HERE>
+
 ---
 
 ### Task 4
@@ -975,6 +979,10 @@ user = await prisma.user.create({
 });
 ```
 
+Here is the expected output:
+
+<ADD GIF HERE>
+
 ---
 
 ### Task 5
@@ -984,6 +992,10 @@ Implement **confirm password** functionality in the `register` **function** in `
 Check if `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a `400` status code with the message "Passwords do not match".
 
 > **Note:** You do not need to store `req.body.confirmPassword` in the database.
+
+Here is the expected output:
+
+<ADD GIF HERE>
 
 ---
 
@@ -1089,6 +1101,10 @@ const login = async (req, res) => {
 ```
 
 Complete all **TODO** sections with the appropriate code.
+
+Here is the expected output:
+
+<ADD GIF HERE>
 
 ---
 
@@ -1196,6 +1212,10 @@ export default jwtAuth;
 ```
 
 Complete all **TODO** sections with the appropriate code.
+
+Here is the expected output:
+
+<ADD GIF HERE>
 
 ---
 

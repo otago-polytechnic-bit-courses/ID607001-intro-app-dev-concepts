@@ -724,6 +724,10 @@ This is a simple hierarchy of **components** where the **parent component** (`Bu
 
 Navigate to `http://localhost:5173/about` to see the **About** page and `http://localhost:5173/contact` to see the **Contact** page.
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ### Dynamic Routing
@@ -762,6 +766,10 @@ Here is an example:
 ```
 
 Navigate to `http://localhost:5173/user/1` to see the profile of the user with ID 1, `http://localhost:5173/user/2` for user ID 2 and so on.
+
+Here is the expected output:
+
+<ADD IMAGE HERE>
 
 Here is another example:
 
@@ -862,6 +870,10 @@ Here is another example:
 
 Navigate to `http://localhost:5173/user/admin/frank-miller` to see the profile of the user with role `admin` and slug `frank-miller`, `http://localhost:5173/user/moderator/bob-johnson` for user with role `moderator` and slug `bob-johnson`, and so on.
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ## Exercises
@@ -900,6 +912,10 @@ In the `ShoppingCart.svelte` component, implement the following functionality:
 - Add a "Remove" button for each cart item that removes the item from the `cartItems` **array** when clicked
 - Display the total price formatted to 2 decimal places below the cart table
 
+Here is an example output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ### Task 3
@@ -915,6 +931,10 @@ In the `GradeCalculator.svelte` component, implement the following functionality
 - Pass a callback function to `CourseInput.svelte` for receiving new course data
 - Display the calculated average grade (rounded to 1 decimal place)
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 In the `CourseInput.svelte` component, implement the following functionality:
 
 - Use `$props` **rune** to accept a callback function from the parent
@@ -927,6 +947,9 @@ In the `CourseInput.svelte` component, implement the following functionality:
 - On successful submission, call the parent's callback function and clear the form
 - Show a success message briefly after successful submission
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
 ---
 
 ## Next Class

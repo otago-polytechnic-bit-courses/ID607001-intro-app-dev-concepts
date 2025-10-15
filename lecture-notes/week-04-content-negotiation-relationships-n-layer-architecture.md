@@ -634,7 +634,7 @@ The **system design** should include the following, but not limited to:
   - What error handling will you implement?
   - How will you document your **REST API**?
 
-- **Authentication and authorization:**
+- **Authentication and authorisation:**
 
   - What authentication and authorisation method will you use?
   - How will you manage the authentication and authorisation?
@@ -836,11 +836,21 @@ Test the relationship queries by:
 - Fetching departments with their courses and parent institution
 - Fetching courses with their parent department
 
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
 ---
 
 ### Task 5
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+---
+
+### Task 6
+
+In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
 
 ---
 
