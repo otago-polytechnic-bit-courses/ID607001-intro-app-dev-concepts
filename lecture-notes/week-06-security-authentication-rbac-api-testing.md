@@ -18,7 +18,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Security
 
-
+**Security** is the practice of protecting systems, networks and data from unauthorised access, use, disclosure, disruption, modification or destruction. It involves implementing measures to prevent, detect and respond to security threats and vulnerabilities.
 
 ---
 
