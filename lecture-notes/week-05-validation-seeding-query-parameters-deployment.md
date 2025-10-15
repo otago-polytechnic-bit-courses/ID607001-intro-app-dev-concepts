@@ -16,6 +16,36 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
+## Setup Script
+
+Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes > utils** directory. 
+
+The script will:
+
+1. Check for required dependencies: `docker`, `node` and `npm`
+2. Select a project from the current directory
+3. Check if the **Docker** daemon is running and attempt to start it if not
+4. Check for an existing **PostgreSQL Docker** container and handle it appropriately
+5. Start a new **PostgreSQL Docker** container if needed
+6. Wait for **PostgreSQL** to be ready
+7. Copy environment variables from a template file
+8. Install **Node.js** dependencies
+9. Run **Prisma** migrations
+
+Copy the `setup.sh` script to your repository's root directory. Open a terminal in **Visual Studio Code**, read the script to understand what it does and run the following command to give execute permissions to the script.
+
+```bash
+chmod +x setup.sh
+```
+
+Run the script by executing the following command.
+
+```bash
+./setup.sh
+```
+
+---
+
 ## Validation
 
 Validation is the process of ensuring that data is correct and meets certain criteria before it is used or stored. In the context of web development, validation is often used to ensure that user input is correct and meets the requirements of the application.
@@ -659,4 +689,4 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-06-authentication-rbac-api-testing.md)
+Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-06-security-authentication-rbac-api-testing.md)

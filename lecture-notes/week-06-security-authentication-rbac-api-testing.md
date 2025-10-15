@@ -8,7 +8,7 @@ Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-c
 
 ## Before We Start
 
-Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-authentication-rbac-api-testing** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-security-authentication-rbac-api-testing** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
@@ -16,7 +16,13 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ---
 
-## Common Vulnerabilities in API Design
+## Security
+
+
+
+---
+
+### Common vulnerabilities
 
 **Common vulnerabilities in API design** include:
 
@@ -80,7 +86,9 @@ The `.env` file should look like this:
 
 ```bash
 NODE_ENV=development
-DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
+PORT=3000
+API_BASE_URL=http://localhost
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
@@ -313,7 +321,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
   );
 });
 

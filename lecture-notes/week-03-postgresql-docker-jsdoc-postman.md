@@ -115,8 +115,7 @@ DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=pub
 Update the `DATABASE_URL` environment variable's value with the following code.
 
 ```bash
-NODE_ENV=development
-DATABASE_URL="postgresql://postgres:HelloWorld123@localhost:5432/postgres"
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
 > **Note:** The `.env` file is not committed to **Git**. The **Node** `.gitignore` file ignores the `.env` file.
@@ -129,7 +128,9 @@ The `.env.example` file is used to provide an example of the `.env` file. It is 
 
 ```bash
 NODE_ENV=development
-DATABASE_URL=
+PORT=3000
+API_BASE_URL=http://localhost
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
 > **Note:** The `.env.example` file is committed to **Git**. The **Node** `.gitignore` file does not ignore the `.env.example` file.
@@ -602,7 +603,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
   );
 });
 

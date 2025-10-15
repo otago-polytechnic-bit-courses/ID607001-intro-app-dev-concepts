@@ -98,7 +98,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
   );
 });
 
@@ -334,7 +334,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
   );
 });
 
