@@ -87,7 +87,7 @@ At the successful completion of this course, learners will be able to:
 
 ### Software
 
-This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for **Microsoft Visual Studio Code** and **Node.js** are available: [https://code.visualstudio.com/download](https://code.visualstudio.com/download) and [https://nodejs.org/en/download](https://nodejs.org/en/download). Please refer any problems with downloads or installers to **Rob Broadley** in D205a.
+This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for **Microsoft Visual Studio Code** and **Node.js** are available: [https://code.visualstudio.com/download](https://code.visualstudio.com/download) and [https://nodejs.org/en/download](https://nodejs.org/en/download). 
 
 ### Readings
 
@@ -150,7 +150,7 @@ In case of sickness contact the course lecturer or **Head of Information Technol
 
 ### Appeals
 
-If you are concerned about any aspect of your assessment, approach the course lecturer in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)** and **Second/Third-Year Coordinator (Grayson Orr)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
+If you are concerned about any aspect of your assessment, approach the course lecturer in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
 
 ### Other Documents
 
