@@ -4,9 +4,6 @@ import compression from "compression";
 
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
-import departmentRoutes from "./routes/department.js";
-
-import isContentTypeApplicationJSON from "./middleware/utils.js";
 
 const app = express();
 
@@ -16,17 +13,9 @@ app.use(cors());
 app.use(compression());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(isContentTypeApplicationJSON);
 
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
-app.use("/api/departments", departmentRoutes);
-
-app.use((req, res) => {
-  res
-    .status(404)
-    .json({ message: `Endpoint ${req.method} ${req.originalUrl} not found` });
-});
 
 app.listen(PORT, () => {
   console.log(
