@@ -81,7 +81,7 @@ At the successful completion of this course, learners will be able to:
 
 ### Software
 
-This paper will be taught using [Microsoft Visual Studio Code](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/en/download).
+This course will be taught using [Microsoft Visual Studio Code](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/en/download).
 
 ### Readings
 
@@ -95,7 +95,7 @@ This course requires 150 hours of learning. This time includes 60 hours directed
 
 ### Criteria for Passing
 
-To pass this paper, you must achieve a cumulative pass mark of 50% over all assessments. There are no reassessments or resits.
+To pass this course, you must achieve a cumulative pass mark of 50% over all assessments. There are no reassessments or resits.
 
 ### Attendance
 
