@@ -146,15 +146,15 @@ Familiarise yourself with the assessment due dates. Extensions will **only** be 
 
 ### Impairment
 
-In case of sickness contact the teaching staff or **Head of Information Technology (Michael Holtz)** as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
+In case of sickness contact the teaching staff or **Head of Information Technology** as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
 
 ### Appeals
 
-If you are concerned about any aspect of your assessment, approach the teaching staff in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
+If you are concerned about any aspect of your assessment, approach the teaching staff in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
 
 ### Other Documents
 
-Regulatory documents relating to this course can be found on the **Otago Polytechnic** website.
+Regulatory documents relating to this course can be found on the [Otago Polytechnic](https://www.op.ac.nz) website.
 
 ---
 
