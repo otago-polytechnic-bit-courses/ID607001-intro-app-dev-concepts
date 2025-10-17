@@ -87,7 +87,7 @@ At the successful completion of this course, learners will be able to:
 
 ### Software
 
-This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for **Microsoft Visual Studio Code** and **Node.js** are available: [https://code.visualstudio.com/download](https://code.visualstudio.com/download) and [https://nodejs.org/en/download](https://nodejs.org/en/download). 
+This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for [Microsoft Visual Studio Code](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/en/download) are available.
 
 ### Readings
 
@@ -114,7 +114,7 @@ To pass this paper, you must achieve a cumulative pass mark of **50%** over all 
 
 ### Snow Days/Polytechnic Closure
 
-In the event **Otago Polytechnic** is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the course lecturer will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the **Otago Polytechnic Facebook** page [https://www.facebook.com/OtagoPoly](https://www.facebook.com/OtagoPoly).
+In the event **Otago Polytechnic** is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the teaching staff will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the [Otago Polytechnic Facebook](https://www.facebook.com/OtagoPoly).
 
 ### Group Work and Originality
 
@@ -130,7 +130,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ### Referencing
 
-Appropriate referencing is required for all work. Referencing standards will be specified by the course lecturer.
+Appropriate referencing is required for all work. Referencing standards will be specified by the teaching staff.
 
 ### Plagiarism
 
@@ -142,15 +142,15 @@ All assessments are to be submitted by the time, date and method given when the 
 
 ### Extensions
 
-Familiarise yourself with the assessment due dates. Extensions will **only** be granted if you are unable to complete the assessment by the due date because of **unforeseen circumstances outside your control**. The length of the extension granted will depend on the circumstances and **must** be negotiated with the course lecturer before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
+Familiarise yourself with the assessment due dates. Extensions will **only** be granted if you are unable to complete the assessment by the due date because of **unforeseen circumstances outside your control**. The length of the extension granted will depend on the circumstances and **must** be negotiated with the teaching staff before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
 
 ### Impairment
 
-In case of sickness contact the course lecturer or **Head of Information Technology (Michael Holtz)** as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
+In case of sickness contact the teaching staff or **Head of Information Technology (Michael Holtz)** as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
 
 ### Appeals
 
-If you are concerned about any aspect of your assessment, approach the course lecturer in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
+If you are concerned about any aspect of your assessment, approach the teaching staff in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
 
 ### Other Documents
 
