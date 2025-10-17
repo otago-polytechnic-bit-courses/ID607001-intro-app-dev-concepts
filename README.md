@@ -6,23 +6,21 @@
 
 ## Course Information
 
-Level: 6  
-Credits: 15  
-Prerequisite: ID511001: Programming 2  
-Timetable: TBC
+| Level | Credits | Prerequisite | Timetable |
+|---|---|---|---|
+| 6 | 15 | ID511001: Programming 2 | TBC |
 
 ## Teaching Staff
 
-Name: Grayson Orr  
-Position: Principal Lecturer  
-Office Location: D309  
-Email Address: grayson.orr@op.ac.nz
+| Name | Position | Office Location | Email Address |
+|---|---|---|---|
+| Grayson Orr | Principal Lecturer | D309 | grayson.orr@op.ac.nz |
 
 ## Course Dates
 
-Term 1 (8 weeks): TBC  
-Mid-Semester Break: TBC  
-Term 2 (8 weeks): TBC
+| Term 1 (8 weeks) | Mid-Semester Break | Term 2 (8 weeks) |
+|---|---|---|
+| TBC | TBC | TBC |
 
 ## Aims
 
