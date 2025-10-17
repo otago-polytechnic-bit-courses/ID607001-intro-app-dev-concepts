@@ -782,4 +782,4 @@ npm run format
 
 ## Next Class
 
-Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
+Link to the next class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-orm-jsdoc-postman.md)

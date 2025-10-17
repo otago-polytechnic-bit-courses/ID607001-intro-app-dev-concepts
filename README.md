@@ -60,13 +60,13 @@ At the successful completion of this course, learners will be able to:
 | Week | Topics |
 |---|---|
 | 1/Tahi | GitHub and JavaScript |
-| 2/Rua | REST, Express, HTTP Methods, HTTP Status Codes and HTTP Headers |
+| 2/Rua | APIs, Express and Development Tools |
 | 3/Toru | PostgreSQL, Docker, ORM, JSDoc and Postman |
-| 4/Whā | Content Negotiation, Relationships and Repository Pattern |
+| 4/Whā | Content Negotiation, Relationships and N-Layer Architecture |
 | 5/Rima | Validation, Seeding, Query Parameters and Deployment |
-| 6/Ono | Authentication, Role-Based Access Control and API Testing |
-| 7/Whitu | SvelteKit Basics - Runes, Template Syntax, Styling, Event Handling, Component Communication and Routing |
-| 8/Waru | Content Delivery Networks and API Integration 1 - Client/Server-Side Data Loading and Form Actions |
+| 6/Ono | Security, Authentication, Role-Based Access Control and API Testing |
+| 7/Whitu | SvelteKit.js and UX Design |
+| 8/Waru | Content Delivery Networks and API Integration 1 |
 | | Mid Semester Break |
 | 9/Whitu | API Integration 2 and Deployment |
 | 10/Tekau | End-To-End Testing |

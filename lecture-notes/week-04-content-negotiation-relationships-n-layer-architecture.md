@@ -2,13 +2,13 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-jsdoc-postman.md)
+Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-03-postgresql-docker-orm-jsdoc-postman.md)
 
 ---
 
 ## Before We Start
 
-Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-repository-pattern** from the previous branch.
+Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-n-layer-architecture** from the previous branch.
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
