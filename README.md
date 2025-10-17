@@ -3,9 +3,6 @@
 <img src="./resources (ignore)/img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
 
 # ID607001: Introductory Application Development Concepts
-## Semester Two, 2025
-
----
 
 ## Course Information
 
