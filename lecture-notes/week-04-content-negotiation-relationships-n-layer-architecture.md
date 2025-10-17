@@ -598,7 +598,7 @@ const departments = await prisma.department.findMany({
 
 In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately.
 
-In **Part A** of the **Project** assessment, you will required to a **Microsoft Word** document that covers the **system design** of your **full-stack** application.
+In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application. 
 
 Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
