@@ -24,10 +24,6 @@ Term 1 (8 weeks): TBC
 Mid-Semester Break: TBC  
 Term 2 (8 weeks): TBC
 
-## Public Holidays and Anniversary Days
-
-A list of public holidays and anniversary days can be found here: [https://www.op.ac.nz/students/importantdates](https://www.op.ac.nz/students/importantdates)
-
 ## Aims
 
 To introduce the concepts of application development including algorithms, data structures and design patterns that are required to use a simple, industry-relevant development framework.
