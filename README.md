@@ -20,8 +20,8 @@
 
 ## Course Dates
 
-**Term 1 (8 weeks):** TBC 
-**Mid-Semester Break:** TBC 
+**Term 1 (8 weeks):** TBC  
+**Mid-Semester Break:** TBC  
 **Term 2 (8 weeks):** TBC
 
 ## Public Holidays and Anniversary Days
