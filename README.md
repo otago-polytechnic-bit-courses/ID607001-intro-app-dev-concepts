@@ -6,21 +6,21 @@
 
 ## Course Information
 
-| Level | Credits | Prerequisite | Timetable |
-|---|---|---|---|
-| 6 | 15 | ID511001: Programming 2 | TBC |
+| Level | Credits | Prerequisite            | Timetable |
+| ----- | ------- | ----------------------- | --------- |
+| 6     | 15      | ID511001: Programming 2 | TBC       |
 
 ## Teaching Staff
 
-| Name | Position | Office Location | Email Address |
-|---|---|---|---|
-| Grayson Orr | Principal Lecturer | D309 | grayson.orr@op.ac.nz |
+| Name        | Position           | Office Location | Email Address        |
+| ----------- | ------------------ | --------------- | -------------------- |
+| Grayson Orr | Principal Lecturer | D309            | grayson.orr@op.ac.nz |
 
 ## Course Dates
 
 | Term 1 (8 weeks) | Mid-Semester Break | Term 2 (8 weeks) |
-|---|---|---|
-| TBC | TBC | TBC |
+| ---------------- | ------------------ | ---------------- |
+| TBC              | TBC                | TBC              |
 
 ## Aims
 
@@ -35,47 +35,47 @@ At the successful completion of this course, learners will be able to:
 ## Assessments
 
 | Assessment | Weighting | Due Date | Learning Outcome |
-|---|---|---|---|
-| Practical | 20% | TBC | 1 |
-| Project | 80% | TBC | 1 |
+| ---------- | --------- | -------- | ---------------- |
+| Practical  | 20%       | TBC      | 1                |
+| Project    | 80%       | TBC      | 1                |
 
 ## Grade Table - Criterion Referenced
 
-| Grade | Mark Range |
-|---|---|
-| A+ | Met all course requirements - mark in range [90-100] |
-| A | Met all course requirements - mark in range [85-89] |
-| A- | Met all course requirements - mark in range [80-84] |
-| B+ | Met all course requirements - mark in range [75-79] |
-| B | Met all course requirements - mark in range [70-74] |
-| B- | Met all course requirements - mark in range [65-69] |
-| C+ | Met all course requirements - mark in range [60-64] |
-| C | Met all course requirements - mark in range [55-59] |
-| C- | Met all course requirements - mark in range [50-54] |
-| D | There at end. Did not meet course requirements. Mark in range [40-49] |
-| E | There at end. Did not meet course requirements. Mark in range [0-39] |
+| Grade | Mark Range                                                            |
+| ----- | --------------------------------------------------------------------- |
+| A+    | Met all course requirements - mark in range [90-100]                  |
+| A     | Met all course requirements - mark in range [85-89]                   |
+| A-    | Met all course requirements - mark in range [80-84]                   |
+| B+    | Met all course requirements - mark in range [75-79]                   |
+| B     | Met all course requirements - mark in range [70-74]                   |
+| B-    | Met all course requirements - mark in range [65-69]                   |
+| C+    | Met all course requirements - mark in range [60-64]                   |
+| C     | Met all course requirements - mark in range [55-59]                   |
+| C-    | Met all course requirements - mark in range [50-54]                   |
+| D     | There at end. Did not meet course requirements. Mark in range [40-49] |
+| E     | There at end. Did not meet course requirements. Mark in range [0-39]  |
 
 ## Provisional Schedule
 
-| Week | Topics |
-|---|---|
-| 1/Tahi | GitHub and JavaScript |
-| 2/Rua | APIs, Express and Development Tools |
-| 3/Toru | PostgreSQL, Docker, ORM, JSDoc and Postman |
-| 4/Whā | Content Negotiation, Relationships and N-Layer Architecture |
-| 5/Rima | Validation, Seeding, Query Parameters and Deployment |
-| 6/Ono | Security, Authentication, Role-Based Access Control and API Testing |
-| 7/Whitu | SvelteKit.js and UX Design |
-| 8/Waru | Content Delivery Networks and API Integration 1 |
-| | Mid Semester Break |
-| 9/Whitu | API Integration 2 and Deployment |
-| 10/Tekau | End-To-End Testing |
-| 11/Tekau mā tahi | Assessment Work |
-| 12/Tekau mā rua | Assessment Work |
-| 13/Tekau mā toru | Assessment Work |
-| 14/Tekau mā whā | Assessment Work |
-| 15/Tekau mā rima | Assessment Work |
-| 16/Tekau mā ono | Catch Up Week |
+| Week             | Topics                                                              |
+| ---------------- | ------------------------------------------------------------------- |
+| 1/Tahi           | GitHub and JavaScript                                               |
+| 2/Rua            | APIs, Express and Development Tools                                 |
+| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                          |
+| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture         |
+| 5/Rima           | Validation, Seeding, Query Parameters and Deployment                |
+| 6/Ono            | Security, Authentication, Role-Based Access Control and API Testing |
+| 7/Whitu          | SvelteKit.js and UX Design                                          |
+| 8/Waru           | Content Delivery Networks and API Integration 1                     |
+|                  | Mid Semester Break                                                  |
+| 9/Whitu          | API Integration 2 and Deployment                                    |
+| 10/Tekau         | End-To-End Testing                                                  |
+| 11/Tekau mā tahi | Assessment Work                                                     |
+| 12/Tekau mā rua  | Assessment Work                                                     |
+| 13/Tekau mā toru | Assessment Work                                                     |
+| 14/Tekau mā whā  | Assessment Work                                                     |
+| 15/Tekau mā rima | Assessment Work                                                     |
+| 16/Tekau mā ono  | Catch Up Week                                                       |
 
 ## Resources
 
@@ -152,5 +152,5 @@ Regulatory documents relating to this course can be found on the [Otago Polytech
 
 ---
 
-*Author: Grayson Orr*  
-*Course: ID607001: Introductory Application Development Concepts*
+_Author: Grayson Orr_  
+_Course: ID607001: Introductory Application Development Concepts_
