@@ -18,7 +18,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Setup Script
 
-Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes > utils** directory. 
+Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes** directory. 
 
 The script will:
 
@@ -100,8 +100,8 @@ const validatePostInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(
     { name, region, country },
     {
-      abortEarly: false,
-      convert: false,
+      abortEarly: false, 
+      convert: false, 
     }
   );
 
