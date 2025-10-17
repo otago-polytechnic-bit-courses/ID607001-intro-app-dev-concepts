@@ -1,0 +1,168 @@
+# Course Directive
+
+<img src="../img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
+
+# ID607001: Introductory Application Development Concepts
+## Semester Two, 2025
+
+---
+
+## Course Information
+
+**Level:** 6  
+**Credits:** 15  
+**Prerequisite:** ID511001: Programming 2  
+**Timetable:** Wednesday 3.00 PM D207 and Friday 8.00 AM D207
+
+## Teaching Staff
+
+**Name:** Grayson Orr  
+**Position:** Principal Lecturer and Second/Third-Year Coordinator  
+**Office Location:** D309  
+**Email Address:** grayson.orr@op.ac.nz
+
+## Course Dates
+
+**Term 1 (10 weeks):** 14th July - 19th September  
+**Mid-Semester Break:** 22nd September - 3rd October  
+**Term 2 (6 weeks):** 6th October - 14th November  
+**Dale's Day:** 15th August (Friday, Week 5)  
+**Graduation:** 12th September (Friday, Week 9)  
+**Labour Day:** 27th October (Monday, Week 14)
+
+## Public Holidays and Anniversary Days
+
+A list of public holidays and anniversary days can be found here: [https://www.op.ac.nz/students/importantdates](https://www.op.ac.nz/students/importantdates)
+
+## Aims
+
+To introduce the concepts of application development including algorithms, data structures and design patterns that are required to use a simple, industry-relevant development framework.
+
+## Learning Outcome
+
+At the successful completion of this course, learners will be able to:
+
+1. Design and build secure applications with dynamic database functionality following an appropriate software development methodology.
+
+## Assessments
+
+| Assessment | Weighting | Due Date | Learning Outcome |
+|---|---|---|---|
+| Practical | 20% | Sunday 7th September at 11.59 PM | 1 |
+| Project | 80% | Sunday 9th November at 11.59 PM | 1 |
+
+## Grade Table - Criterion Referenced
+
+| Grade | Mark Range |
+|---|---|
+| A+ | Met all course requirements - mark in range [90-100] |
+| A | Met all course requirements - mark in range [85-89] |
+| A- | Met all course requirements - mark in range [80-84] |
+| B+ | Met all course requirements - mark in range [75-79] |
+| B | Met all course requirements - mark in range [70-74] |
+| B- | Met all course requirements - mark in range [65-69] |
+| C+ | Met all course requirements - mark in range [60-64] |
+| C | Met all course requirements - mark in range [55-59] |
+| C- | Met all course requirements - mark in range [50-54] |
+| D | There at end. Did not meet course requirements. Mark in range [40-49] |
+| E | There at end. Did not meet course requirements. Mark in range [0-39] |
+
+## Provisional Schedule
+
+| Week | Topics |
+|---|---|
+| 1/Tahi | GitHub and JavaScript |
+| 2/Rua | REST, Express, HTTP Methods, HTTP Status Codes and HTTP Headers |
+| 3/Toru | PostgreSQL, Docker, ORM, JSDoc and Postman |
+| 4/Whā | Content Negotiation, Relationships and Repository Pattern |
+| 5/Rima | Validation, Seeding, Query Parameters and Deployment |
+| 6/Ono | Authentication, Role-Based Access Control and API Testing |
+| 7/Whitu | SvelteKit Basics - Runes, Template Syntax, Styling, Event Handling, Component Communication and Routing |
+| 8/Waru | Content Delivery Networks and API Integration 1 - Client/Server-Side Data Loading and Form Actions |
+| 9/Whitu | API Integration 2 and Deployment |
+| 10/Tekau | End-To-End Testing |
+| | **Mid Semester Break** |
+| 11/Tekau mā tahi | Assessment Work |
+| 12/Tekau mā rua | Assessment Work |
+| 13/Tekau mā toru | Assessment Work |
+| 14/Tekau mā whā | Assessment Work |
+| 15/Tekau mā rima | Assessment Work |
+| 16/Tekau mā ono | Catch Up Week |
+
+## Resources
+
+### Software
+
+This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for **Microsoft Visual Studio Code** and **Node.js** are available: [https://code.visualstudio.com/download](https://code.visualstudio.com/download) and [https://nodejs.org/en/download](https://nodejs.org/en/download). Please refer any problems with downloads or installers to **Rob Broadley** in D205a.
+
+### Readings
+
+No textbook is required for this course. URLs to useful resources will be provided in the lecture notes.
+
+## Course Requirements and Expectations
+
+### Learning Hours
+
+This course requires **150 hours** of learning. This time includes **60 hours** directed learning hours and **90** self-directed learning hours.
+
+### Criteria for Passing
+
+To pass this paper, you must achieve a cumulative pass mark of **50%** over all assessments. There are no reassessments or resits.
+
+### Attendance
+
+- Learners are expected to attend all classes, including lectures and labs.
+- If you cannot attend for a few days for any reason, contact the course.
+
+### Communication
+
+**Microsoft Outlook/Teams** are the official communication channels for this course. It is your responsibility to regularly check **Microsoft Outlook/Teams** and [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for important course material, including changes to class scheduling or assessment details. Not checking will not be accepted as an excuse.
+
+### Snow Days/Polytechnic Closure
+
+In the event **Otago Polytechnic** is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the course lecturer will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the **Otago Polytechnic Facebook** page [https://www.facebook.com/OtagoPoly](https://www.facebook.com/OtagoPoly).
+
+### Group Work and Originality
+
+Learners in the **Bachelor of Information Technology** programme are expected to hand in original work. Learners are encouraged to discuss assessments with their fellow learners, however, all assessments are to be completed as individual works unless group work is explicitly required (i.e. if it doesn't say it is group work then it is not group work - even if a group consultation was involved). Failure to submit your original work will be treated as plagiarism.
+
+### AI Tools
+
+Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+
+- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
+- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+
+### Referencing
+
+Appropriate referencing is required for all work. Referencing standards will be specified by the course lecturer.
+
+### Plagiarism
+
+Plagiarism is submitting someone else's work as your own. Plagiarism offences are taken seriously and an assessment that has been plagiarised may be awarded a zero mark. A definition of plagiarism is in the Student Handbook, available online or at the school office.
+
+### Submission Requirements
+
+All assessments are to be submitted by the time, date and method given when the assessment is issued. Failure to meet all requirements will result in a penalty of up to **10%** per day, including weekends.
+
+### Extensions
+
+Familiarise yourself with the assessment due dates. Extensions will **only** be granted if you are unable to complete the assessment by the due date because of **unforeseen circumstances outside your control**. The length of the extension granted will depend on the circumstances and **must** be negotiated with the course lecturer before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
+
+### Impairment
+
+In case of sickness contact the course lecturer or **Head of Information Technology (Michael Holtz)** as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
+
+### Appeals
+
+If you are concerned about any aspect of your assessment, approach the course lecturer in the first instance. We support an open-door policy and aim to resolve issues promptly. Further support is available from the **Head of Information Technology (Michael Holtz)** and **Second/Third-Year Coordinator (Grayson Orr)**. **Otago Polytechnic** has a formal process for academic appeals if necessary.
+
+### Other Documents
+
+Regulatory documents relating to this course can be found on the **Otago Polytechnic** website.
+
+---
+
+*Author: Grayson Orr*  
+*Course: ID607001: Introductory Application Development Concepts*
