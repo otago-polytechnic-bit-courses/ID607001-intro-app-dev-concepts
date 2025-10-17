@@ -87,7 +87,7 @@ At the successful completion of this course, learners will be able to:
 
 ### Software
 
-This paper will be taught using **Microsoft Visual Studio Code** and **Node.js**. An installer for [Microsoft Visual Studio Code](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/en/download) are available.
+This paper will be taught using [Microsoft Visual Studio Code](https://code.visualstudio.com/download) and [Node.js](https://nodejs.org/en/download).
 
 ### Readings
 
@@ -114,7 +114,7 @@ To pass this paper, you must achieve a cumulative pass mark of **50%** over all 
 
 ### Snow Days/Polytechnic Closure
 
-In the event **Otago Polytechnic** is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the teaching staff will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the [Otago Polytechnic Facebook](https://www.facebook.com/OtagoPoly).
+In the event **Otago Polytechnic** is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the teaching staff will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the [Otago Polytechnic Facebook](https://www.facebook.com/OtagoPoly) page.
 
 ### Group Work and Originality
 
