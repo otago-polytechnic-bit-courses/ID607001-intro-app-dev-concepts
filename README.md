@@ -9,23 +9,20 @@
 **Level:** 6  
 **Credits:** 15  
 **Prerequisite:** ID511001: Programming 2  
-**Timetable:** Wednesday 3.00 PM D207 and Friday 8.00 AM D207
+**Timetable:** TBC
 
 ## Teaching Staff
 
 **Name:** Grayson Orr  
-**Position:** Principal Lecturer and Second/Third-Year Coordinator  
+**Position:** Principal Lecturer  
 **Office Location:** D309  
 **Email Address:** grayson.orr@op.ac.nz
 
 ## Course Dates
 
-**Term 1 (10 weeks):** 14th July - 19th September  
-**Mid-Semester Break:** 22nd September - 3rd October  
-**Term 2 (6 weeks):** 6th October - 14th November  
-**Dale's Day:** 15th August (Friday, Week 5)  
-**Graduation:** 12th September (Friday, Week 9)  
-**Labour Day:** 27th October (Monday, Week 14)
+**Term 1 (8 weeks):** TBC
+**Mid-Semester Break:** TBC
+**Term 2 (8 weeks):** TBC
 
 ## Public Holidays and Anniversary Days
 
@@ -45,8 +42,8 @@ At the successful completion of this course, learners will be able to:
 
 | Assessment | Weighting | Due Date | Learning Outcome |
 |---|---|---|---|
-| Practical | 20% | Sunday 7th September at 11.59 PM | 1 |
-| Project | 80% | Sunday 9th November at 11.59 PM | 1 |
+| Practical | 20% | TBC | 1 |
+| Project | 80% | TBC | 1 |
 
 ## Grade Table - Criterion Referenced
 
