@@ -656,8 +656,6 @@ Click on the **Send** button to send the request. You should see a response with
 
 ![](<../resources (ignore)/img/week-3/04-week-3.png>)
 
-Here is a link to the full collection - <https://grayson-orr-2794452.postman.co/workspace/Grayson-Orr's-Workspace~c3775962-5297-4c9f-8a5c-ca352ffb2691/collection/47141768-0cdf430e-d611-44fb-a6ee-4eec7b8d0341?action=share&creator=47141768>.
-
 ---
 
 ## JSDoc
