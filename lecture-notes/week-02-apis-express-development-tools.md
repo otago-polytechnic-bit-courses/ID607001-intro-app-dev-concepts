@@ -6,6 +6,12 @@ Link to the previous class: [Week 01](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Lecture Video
+
+Link to the lecture video: [Week 02 Lecture Video]()
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-apis-express-development-tools** from the previous branch.

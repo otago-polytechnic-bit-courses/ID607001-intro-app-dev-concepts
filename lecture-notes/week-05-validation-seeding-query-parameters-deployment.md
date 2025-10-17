@@ -6,6 +6,12 @@ Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Lecture Video
+
+Link to the lecture video: [Week 05 Lecture Video]()
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-05-validation-seeding-query-parameters-deployment** from the previous branch.
@@ -18,7 +24,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Setup Script
 
-Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes** directory. 
+Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes** directory.
 
 The script will:
 
@@ -100,8 +106,8 @@ const validatePostInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(
     { name, region, country },
     {
-      abortEarly: false, 
-      convert: false, 
+      abortEarly: false,
+      convert: false,
     }
   );
 
@@ -677,9 +683,9 @@ app.use((req, res) => {
 
 > **Note:** The catch-all route should be the last route defined in the file.
 
-Here is the expected output:
+Here is an example request in **Postman**:
 
-<ADD GIF HERE>
+![](<../resources (ignore)/img/week-5/excercises-00-week-5.png>)
 
 ---
 

@@ -1,5 +1,11 @@
 # Week 01
 
+## Lecture Video
+
+Link to the lecture video: [Week 01 Lecture Video]()
+
+---
+
 ## GitHub
 
 This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/8sCyquQ_>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.

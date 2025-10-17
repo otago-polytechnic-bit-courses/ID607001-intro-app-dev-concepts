@@ -6,6 +6,12 @@ Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Lecture Video
+
+Link to the lecture video: [Week 10 Lecture Video]()
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-10-end-to-end-testing** from the previous branch.

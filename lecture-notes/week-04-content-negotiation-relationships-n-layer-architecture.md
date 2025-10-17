@@ -6,6 +6,12 @@ Link to the previous class: [Week 03](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Lecture Video
+
+Link to the lecture video: [Week 04 Lecture Video]()
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-n-layer-architecture** from the previous branch.

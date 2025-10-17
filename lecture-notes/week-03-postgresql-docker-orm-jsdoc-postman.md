@@ -6,6 +6,12 @@ Link to the previous class: [Week 02](https://github.com/otago-polytechnic-bit-c
 
 ---
 
+## Lecture Video
+
+Link to the lecture video: [Week 03 Lecture Video]()
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-03-postgresql-docker-jsdoc-postman** from the previous branch.
@@ -751,6 +757,10 @@ After updating the schema:
 - Create and apply a new migration with an appropriate name
 - Update `controller/institution.js` to handle `website` and `emailAddress`
 - Test the updates in **Postman** to ensure `website` and `emailAddress` work correctly
+
+Here is an example request in **Postman**:
+
+![](<../resources (ignore)/img/week-3/excercises-00-week-3.png>)
 
 ---
 
