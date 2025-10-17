@@ -67,9 +67,9 @@ At the successful completion of this course, learners will be able to:
 | 6/Ono | Authentication, Role-Based Access Control and API Testing |
 | 7/Whitu | SvelteKit Basics - Runes, Template Syntax, Styling, Event Handling, Component Communication and Routing |
 | 8/Waru | Content Delivery Networks and API Integration 1 - Client/Server-Side Data Loading and Form Actions |
+| | Mid Semester Break |
 | 9/Whitu | API Integration 2 and Deployment |
 | 10/Tekau | End-To-End Testing |
-| | Mid Semester Break |
 | 11/Tekau mā tahi | Assessment Work |
 | 12/Tekau mā rua | Assessment Work |
 | 13/Tekau mā toru | Assessment Work |
