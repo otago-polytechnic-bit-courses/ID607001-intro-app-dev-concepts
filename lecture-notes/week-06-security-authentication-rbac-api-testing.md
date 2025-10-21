@@ -889,13 +889,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+### Task 1 (Basic)
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+### Task 2 (Basic)
 
 Create five **tests** for the `Course` resource. The **tests** should cover the following scenarios:
 
@@ -907,7 +907,21 @@ Create five **tests** for the `Course` resource. The **tests** should cover the 
 
 ---
 
-### Task 3
+### Task 3 (Basic)
+
+Create an endpoint that displays all available endpoints in your **REST API**.
+
+Here is an example request in **Postman**:
+
+---
+
+### Task 4 (Basic)
+
+In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
+
+---
+
+### Task 5 (Intermediate)
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
@@ -924,21 +938,7 @@ Here is the expected output:
 
 ---
 
-### Task 4
-
-Create an endpoint that displays all available endpoints in your **REST API**.
-
-Here is an example request in **Postman**:
-
----
-
-### Task 5
-
-In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
-
----
-
-### Task 6
+### Task 6 (Intermediate)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1003,7 +1003,7 @@ Here is the expected output:
 
 ---
 
-### Task 7
+### Task 7 (Intermediate)
 
 Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
 
