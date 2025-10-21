@@ -667,13 +667,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+### Task 1 (Basic)
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+### Task 2 (Basic)
 
 Create a `User` **model** with the following fields:
 
@@ -696,7 +696,7 @@ Test your implementation by:
 
 ---
 
-### Task 3
+### Task 3 (Basic)
 
 Create a `Course` **model** with the following fields:
 
@@ -741,7 +741,25 @@ Test your implementation by:
 
 ---
 
-### Task 4
+### Task 4 (Basic)
+
+In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `status-codes.js` with the following code.
+
+```javascript
+const STATUS_CODES = {
+  OK: 200,
+  CREATED: 201,
+  // Add other status codes as needed
+};
+
+export default STATUS_CODES;
+```
+
+Update your **controller** files to use the status codes from the `status-codes.js` file.
+
+---
+
+### Task 5 (Intermediate)
 
 Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models.
 
@@ -846,25 +864,7 @@ Here is the expected output:
 
 ---
 
-### Task 6
-
-In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `status-codes.js` with the following code.
-
-```javascript
-const STATUS_CODES = {
-  OK: 200,
-  CREATED: 201,
-  // Add other status codes as needed
-};
-
-export default STATUS_CODES;
-```
-
-Update your **controller** files to use the status codes from the `status-codes.js` file.
-
----
-
-### Task 7
+### Task 6 (Intermediate)
 
 In `week-02-apis-express-development-tools`, we briefly discussed caching. In the `middleware` directory, create a new file called `cache.js` with the following code.
 
@@ -966,13 +966,19 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 8
+### Task 7 (Intermediate)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
 ---
 
-### Task 9
+## Advanced Exercises
+
+These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+
+---
+
+### Task 1
 
 In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
 

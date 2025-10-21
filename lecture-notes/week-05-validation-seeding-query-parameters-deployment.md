@@ -628,13 +628,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+### Task 1 (Basic)
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+### Task 2 (Basic)
 
 Create an endpoint that displays all available endpoints in your **REST API**.
 
@@ -642,40 +642,13 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 3
+### Task 3 (Basic)
 
 In the `week-05-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**. We will discuss your analysis in the next week.
 
 ---
 
-### Task 4
-
-Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
-
-Create validation **middleware** in the `middleware/validation` directory for each **resource**:
-
-- `department.js` - validate `name` and `institutionId`
-- `course.js` - validate `name`, `code`, `description` and `departmentId`
-- `user.js` - validate user `firstName`, `lastName` and `emailAddress`
-
-Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
-
----
-
-### Task 5
-
-Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
-
-Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
-
-- Clear existing data before seeding
-- Create realistic sample records for each **resource**
-- Maintain proper relationships between **resources**, i.e., departments belong to institutions, courses belong to departments, etc.
-- Be repeatable without causing duplicate data errors
-
----
-
-### Task 6
+### Task 4 (Intermediate)
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
@@ -703,9 +676,89 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 7
+### Task 5 (Intermediate)
+
+Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
+
+Create validation **middleware** in the `middleware/validation` directory for each **resource**:
+
+- `department.js` - validate `name` and `institutionId`
+- `course.js` - validate `name`, `code`, `description` and `departmentId`
+- `user.js` - validate user `firstName`, `lastName` and `emailAddress`
+
+Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
+
+---
+
+### Task 6 (Intermediate)
+
+Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
+
+Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
+
+- Clear existing data before seeding
+- Create realistic sample records for each **resource**
+- Maintain proper relationships between **resources**, i.e., departments belong to institutions, courses belong to departments, etc.
+- Be repeatable without causing duplicate data errors
+
+---
+
+### Task 7 (Intermediate)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+---
+
+## Advanced Exercises
+
+These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+
+---
+
+### Task 1
+
+Extend the **query parameters** functionality to support advanced filtering options:
+
+- **Range queries:** `?createdAt[gte]=2023-01-01&createdAt[lte]=2023-12-31`
+- **Array queries:** `?country[in]=Australia,New Zealand`
+- **Exclusion queries:** `?region[not]=Otago`
+- **Partial match queries:** `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`	
+- **Case sensitivity control:** `?name=otago polytechnic&caseSensitive=false`
+
+Implement these filtering options in the `Institution` **repository** and **controller**. Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
+
+Test your implementation by:
+- Filtering institutions created within a specific date range
+- Filtering institutions by multiple countries
+- Excluding institutions from a specific region
+- Finding institutions whose names start with or end with specific text
+- Testing case-sensitive and case-insensitive searches
+
+Here are some example requests in **Postman**:
+
+**Filtering institutions created within a specific date range:**
+
+<ADD IMAGE HERE>
+
+**Filtering institutions by multiple countries:**
+
+<ADD IMAGE HERE>
+
+**Excluding institutions from a specific region:**
+
+<ADD IMAGE HERE>
+
+**Finding institutions whose names start with or end with specific text:**
+
+<ADD IMAGE HERE>
+
+**Testing case-sensitive and case-insensitive searches:**
+
+<ADD IMAGE HERE>
+
+---
+
+### Task 2
 
 ---
 
