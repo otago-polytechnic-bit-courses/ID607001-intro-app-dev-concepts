@@ -873,8 +873,7 @@ const cache = {};
 
 const cacheMiddleware = (duration) => {
   return (req, res, next) => {
-    // Generate a cache key from the request originalUrl
-    const key = req.originalUrl;
+    const key = req.originalUrl; // Use the request URL as the cache key
 
     const cachedResponse = // TODO 1: Check if the cache contains the key
 
@@ -884,31 +883,25 @@ const cacheMiddleware = (duration) => {
       const isExpired = // TODO 2: Check if the cache age is greater than the duration
 
       if (!isExpired) {
-        // Return the cached response with a custom header
-        res.set("X-Cache", "HIT");
+        // TODO 3: Set the 'X-Cache' header to 'HIT'
+
         return res.status(200).json(cachedResponse.data);
       } else {
-        // Delete expired cache entry
-        delete cache[key];
+        // TODO 4: Delete the cache entry for the key
       }
     }
+    const originalJson = res.json.bind(res); // If no cached response or cache is expired, proceed to the next middleware
 
-    // If no cache or expired, modify res.json to cache the response
-    const originalJson = res.json.bind(res);
-
-    // Override res.json to cache the response before sending it
+    // Override the res.json method to store the response in cache
     res.json = (body) => {
-      // Store the response in cache with timestamp
-      cache[key] = {
+      cache[key] = { // Store the response in cache
         data: body,
         timestamp: Date.now(),
       };
 
-      // Add 'X-Cache: MISS' header to indicate cache was not used
-      res.set("X-Cache", "MISS");
+      // TODO 5: Set the 'X-Cache' header to 'MISS'
 
-      // Call the original json function
-      return originalJson(body);
+      return originalJson(body); // Call the original res.json method
     };
 
     next();
@@ -917,9 +910,52 @@ const cacheMiddleware = (duration) => {
 
 const clearCache = () => {
   Object.keys(cache).forEach((key) => {
-    delete cache[key];
+    // TODO 6: Delete each key from the cache
   });
 };
+
+// TODO 7: Export cacheMiddleware and clearCache
+```
+
+In the **routes** files, import and use the `cacheMiddleware` for the **GET** endpoints. For example, in the `routes/institution.js` file:
+
+```javascript
+// Omitted for brevity
+
+// TODO 8: Import cacheMiddleware from the cache middleware
+
+// Omitted for brevity
+
+const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
+
+// Omitted for brevity
+```
+
+> **Note:** The `POST`, `PUT` and `DELETE` endpoints do not use the `cacheMiddleware`.
+
+In the **controllers** files, import and use the `clearCache` function to clear the cache after the data is modified. For example, in the `controllers/institution.js` file:
+
+```javascript
+// Omitted for brevity
+
+// TODO 10: Import clearCache from the cache middleware
+
+const createInstitution = async (req, res) => {
+  try {
+    // Omitted for brevity
+    
+    // TODO 11: Clear the cache after creating a new institution
+    
+    // Omitted for brevity
+  } catch (err) {
+    // Omitted for brevity
+  }
+};
+
+// Omitted for brevity
 ```
 
 Complete all **TODO** sections with the appropriate code.
