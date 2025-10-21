@@ -1019,7 +1019,7 @@ Here is the expected output:
 
 ## Advanced Exercises
 
-These exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also achieve high marks in the **Project** assessment.
+These exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
 
 ---
 
