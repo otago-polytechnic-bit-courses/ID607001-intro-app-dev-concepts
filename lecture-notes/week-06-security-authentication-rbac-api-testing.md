@@ -1017,7 +1017,13 @@ Here is the expected output:
 
 ---
 
-### Task 8
+## Advanced Exercises
+
+These exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also achieve high marks in the **Project** assessment.
+
+---
+
+### Task 1
 
 Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
@@ -1126,7 +1132,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 9
+### Task 2
 
 Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
 
