@@ -774,7 +774,16 @@ Here is an example request in **Postman**:
 
 ### Task 4
 
-**Error handling**...
+Error handling is an important part of any application. It is important to handle errors gracefully and provide meaningful error messages to the user.
+
+Implement error handling to handle the following scenarios:
+
+-
+
+Here are example requests in **Postman**:
+
+<ADD IMAGES HERE >
+
 
 ## Next Class
 

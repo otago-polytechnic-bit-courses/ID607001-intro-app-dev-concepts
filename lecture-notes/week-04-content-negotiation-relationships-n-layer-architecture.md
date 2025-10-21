@@ -45,7 +45,7 @@ In this class, we will use the **Accept Header** to perform content negotiation.
 - End the request-response cycle.
 - Call the next middleware function in the stack.
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `utils.js`. Add the following code.
+In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `content-type.js`. Add the following code.
 
 ```javascript
 const isContentTypeApplicationJSON = (req, res, next) => {
@@ -72,7 +72,7 @@ export default isContentTypeApplicationJSON;
 In the `app.js` file, add the following code.
 
 ```javascript
-import isContentTypeApplicationJSON from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/content-type.js";
 
 app.use(isContentTypeApplicationJSON);
 ```
@@ -87,7 +87,7 @@ import compression from "compression";
 import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 
-import isContentTypeApplicationJSON from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/content-type.js";
 
 const app = express();
 
@@ -322,7 +322,7 @@ import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
-import isContentTypeApplicationJSON from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/content-type.js";
 
 const app = express();
 
@@ -602,7 +602,7 @@ const departments = await prisma.department.findMany({
 
 In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately.
 
-In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application. 
+In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application.
 
 Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
@@ -846,13 +846,97 @@ Here is the expected output:
 
 ---
 
-### Task 5
+### Task 6
+
+In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `status-codes.js` with the following code.
+
+```javascript
+const STATUS_CODES = {
+  OK: 200,
+  CREATED: 201,
+  // Add other status codes as needed
+};
+
+export default STATUS_CODES;
+```
+
+Update your **controller** files to use the status codes from the `status-codes.js` file.
+
+---
+
+### Task 7
+
+In `week-02-apis-express-development-tools`, we briefly discussed caching. In the `middleware` directory, create a new file called `cache.js` with the following code.
+
+```javascript
+const cache = {};
+
+const cacheMiddleware = (duration) => {
+  return (req, res, next) => {
+    // Generate a cache key from the request originalUrl
+    const key = req.originalUrl;
+
+    const cachedResponse = // TODO 1: Check if the cache contains the key
+
+    if (cachedResponse) {
+      const currentTime = Date.now();
+      const cacheAge = currentTime - cachedResponse.timestamp;
+      const isExpired = // TODO 2: Check if the cache age is greater than the duration
+
+      if (!isExpired) {
+        // Return the cached response with a custom header
+        res.set("X-Cache", "HIT");
+        return res.status(200).json(cachedResponse.data);
+      } else {
+        // Delete expired cache entry
+        delete cache[key];
+      }
+    }
+
+    // If no cache or expired, modify res.json to cache the response
+    const originalJson = res.json.bind(res);
+
+    // Override res.json to cache the response before sending it
+    res.json = (body) => {
+      // Store the response in cache with timestamp
+      cache[key] = {
+        data: body,
+        timestamp: Date.now(),
+      };
+
+      // Add 'X-Cache: MISS' header to indicate cache was not used
+      res.set("X-Cache", "MISS");
+
+      // Call the original json function
+      return originalJson(body);
+    };
+
+    next();
+  };
+};
+
+const clearCache = () => {
+  Object.keys(cache).forEach((key) => {
+    delete cache[key];
+  });
+};
+```
+
+Complete all **TODO** sections with the appropriate code.
+
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
+---
+
+### Task 8
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
 ---
 
-### Task 6
+### Task 9
 
 In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
 

@@ -105,7 +105,7 @@ JWT_LIFETIME=1h
 
 ### Schema
 
-In week 04's exercises, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
+In the `week-04-content-negotiation-relationships-n-layer-architecture` exercises, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
 
 ```js
 model User {
@@ -308,7 +308,7 @@ import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
-import isContentTypeApplicationJSON from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/content-type.js";
 
 const app = express();
 
@@ -513,7 +513,7 @@ const rateLimiter = rateLimit({
   legacyHeaders: false,
   message: {
     message: "Too many requests, please try again later.",
-  }
+  },
 });
 
 export default rateLimiter;
@@ -920,11 +920,25 @@ router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 
 Here is the expected output:
 
-<ADD GIF HERE>
+<ADD IMAGE HERE>
 
 ---
 
 ### Task 4
+
+Create an endpoint that displays all available endpoints in your **REST API**.
+
+Here is an example request in **Postman**:
+
+---
+
+### Task 5
+
+In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
+
+---
+
+### Task 6
 
 Create a `Profile` **model** with the following fields:
 
@@ -985,11 +999,11 @@ user = await prisma.user.create({
 
 Here is the expected output:
 
-<ADD GIF HERE>
+<ADD IMAGE HERE>
 
 ---
 
-### Task 5
+### Task 7
 
 Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
 
@@ -999,11 +1013,11 @@ Check if `req.body.password` and `req.body.confirmPassword` match. If they do no
 
 Here is the expected output:
 
-<ADD GIF HERE>
+<ADD IMAGE HERE>
 
 ---
 
-### Task 6
+### Task 8
 
 Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
@@ -1106,13 +1120,13 @@ const login = async (req, res) => {
 
 Complete all **TODO** sections with the appropriate code.
 
-Here is the expected output:
+Here is an example request in **Postman**:
 
-<ADD GIF HERE>
+<ADD IMAGE HERE>
 
 ---
 
-### Task 7
+### Task 9
 
 Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
 
@@ -1217,9 +1231,9 @@ export default jwtAuth;
 
 Complete all **TODO** sections with the appropriate code.
 
-Here is the expected output:
+Here is an example request in **Postman**:
 
-<ADD GIF HERE>
+<ADD IMAGE HERE>
 
 ---
 

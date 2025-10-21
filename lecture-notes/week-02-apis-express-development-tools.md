@@ -211,6 +211,22 @@ There are two types of caching:
 
 ---
 
+### TCP/IP 
+
+**TCP/IP (Transmission Control Protocol/Internet Protocol)** is a set of protocols that govern how data is transmitted over the internet. It is the foundation of the internet and enables communication between devices.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#underlying_protocols_tcpip>
+
+---
+
+### DNS
+
+**Domain Name System (DNS)** is a hierarchical system that translates human-readable domain names (like `www.example.com`) into IP addresses (like `192.0.2.1`). This is essential for locating and accessing resources on the internet.
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#domain_name_system_dns>
+
+---
+
 ## Node Package Manager (NPM)
 
 **Node Package Manager (NPM)** is a package manager for **Node.js**. It is used to install, share and distribute code.

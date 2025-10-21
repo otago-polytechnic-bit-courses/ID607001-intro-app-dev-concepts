@@ -636,6 +636,20 @@ Implement the code examples above.
 
 ### Task 2
 
+Create an endpoint that displays all available endpoints in your **REST API**.
+
+Here is an example request in **Postman**:
+
+---
+
+### Task 3
+
+In the `week-05-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**. We will discuss your analysis in the next week.
+
+---
+
+### Task 4
+
 Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
 
 Create validation **middleware** in the `middleware/validation` directory for each **resource**:
@@ -648,7 +662,7 @@ Use the validation **middleware** in the appropriate **routes** to validate inco
 
 ---
 
-### Task 3
+### Task 5
 
 Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
 
@@ -661,7 +675,7 @@ Create seed **scripts** that populate your database with sample data for testing
 
 ---
 
-### Task 4
+### Task 6
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
@@ -689,7 +703,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 5
+### Task 7
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
