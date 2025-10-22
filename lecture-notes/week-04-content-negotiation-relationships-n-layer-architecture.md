@@ -866,6 +866,18 @@ Here is the expected output:
 
 ### Task 6 (Intermediate)
 
+You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+---
+
+## Advanced Exercises
+
+These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+
+---
+
+### Task 1
+
 In `week-02-apis-express-development-tools`, we briefly discussed caching. In the `middleware` directory, create a new file called `cache.js` with the following code.
 
 ```javascript
@@ -966,25 +978,9 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 7 (Intermediate)
-
-You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
-
----
-
-## Advanced Exercises
-
-These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
-
----
-
-### Task 1
+### Task 2
 
 In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
-
----
-
-### Task 2
 
 ---
 

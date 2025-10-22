@@ -579,11 +579,19 @@ Here is an example of paging by `pageSize`.
 
 1. Click the **New +** button, then click the **Postgres** link.
 
+<ADD IMAGE HERE>
+
 2. Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+
+<ADD IMAGE HERE>
 
 3. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
 
+<ADD IMAGE HERE>
+
 4. Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
+
+<ADD IMAGE HERE>
 
 ---
 
@@ -593,17 +601,29 @@ Here is an example of paging by `pageSize`.
 
 2. Click the **New +** button, then click the **Web Service** link.
 
+<ADD IMAGE HERE>
+
 3. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+
+<ADD IMAGE HERE>
 
 4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-validation-seeding-query-parameters-deployment**.
 
 > **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
 
+<ADD IMAGE HERE>
+
 5. Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+
+<ADD IMAGE HERE>
 
 6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
 
+<ADD IMAGE HERE>
+
 7. Click on the **Deploy Web Service** button.
+
+<ADD IMAGE HERE>
 
 8. Keep an eye on the logs. Your **web service** is ready when you see the following message.
 
@@ -789,10 +809,6 @@ Here are some example requests in **Postman**:
 **Case sensitivity:**
 
 <ADD IMAGE HERE>
-
----
-
-### Task 3
 
 ---
 
