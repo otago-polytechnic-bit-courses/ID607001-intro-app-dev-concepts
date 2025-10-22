@@ -672,7 +672,7 @@ app.use((req, res) => {
 
 Here is an example request in **Postman**:
 
-![](<../resources (ignore)/img/week-5/excercises-00-week-5.png>)
+![](<../resources (ignore)/img/week-5/exercises-00-week-5.png>)
 
 ---
 
@@ -749,6 +749,10 @@ Errors encountered: None
 ```
 
 Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
+
+Here is an example output in the terminal:
+
+<ADD GIF HERE>
 
 ---
 
