@@ -686,7 +686,7 @@ Create a `User` **model** with the following fields:
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `User` **model**.
+Create the necessary **controller**, **route** and **repository** files for the `User` **model**. However, only implement **Read**, **Update** and **Delete** operations. Do not implement the **Create** operation. 
 
 Test your implementation by:
 

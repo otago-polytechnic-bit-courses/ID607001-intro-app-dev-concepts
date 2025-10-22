@@ -782,7 +782,7 @@ Implement error handling to handle the following scenarios:
 
 Here are example requests in **Postman**:
 
-<ADD IMAGES HERE >
+<ADD IMAGES HERE>
 
 
 ## Next Class
