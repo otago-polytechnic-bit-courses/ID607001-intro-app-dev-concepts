@@ -729,22 +729,22 @@ Here is an example of what the report should look like:
 
 ```
 ==========================================
-Seeding Report
+Seeding report
 ==========================================
 Resource: Institutions
-  Records Created: 10
-  Time Taken: 2.5s
+  Records created: 10
+  Time taken: 2.5s
 ------------------------------------------
 Resource: Departments
-  Records Created: 50
-  Time Taken: 5.0s
+  Records created: 50
+  Time taken: 5.0s
 ------------------------------------------
 Resource: Courses
-  Records Created: 200
-  Time Taken: 10.0s
+  Records created: 200
+  Time taken: 10.0s
 ------------------------------------------
-Total Time: 17.5s
-Errors Encountered: None
+Total time: 17.5s
+Errors encountered: None
 ==========================================
 ```
 
