@@ -686,12 +686,12 @@ Create a `User` **model** with the following fields:
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `User` **model**. However, only implement **Read**, **Update** and **Delete** operations. Do not implement the **Create** operation. 
+Create the necessary **controller**, **route** and **repository** files for the `User` **model**. 
 
 Test your implementation by:
 
 - Creating multiple users with different email addresses
-- Attempting to create a user with a duplicate email address. This should fail.
+- Attempting to create a user with a duplicate email address. This should fail
 - Testing all CRUD operations
 
 ---
@@ -735,7 +735,7 @@ Create the necessary **controller**, **route** and **repository** files for the 
 Test your implementation by:
 
 - Creating multiple courses that belong to existing departments
-- Attempting to create a course with a non-existing department ID. This should fail.
+- Attempting to create a course with a non-existing department ID. This should fail
 - Verifying the one-to-many relationship between departments and courses
 - Testing all CRUD operations
 
@@ -743,7 +743,7 @@ Test your implementation by:
 
 ### Task 4 (Basic)
 
-In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `status-codes.js` with the following code.
+In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `statusCodes.js` with the following code.
 
 ```javascript
 const STATUS_CODES = {
@@ -755,7 +755,7 @@ const STATUS_CODES = {
 export default STATUS_CODES;
 ```
 
-Update your **controller** files to use the status codes from the `status-codes.js` file.
+Update your **controller** files to use the status codes from the `statusCodes.js` file.
 
 ---
 
@@ -896,6 +896,7 @@ const cacheMiddleware = (duration) => {
 
       if (!isExpired) {
         // TODO 3: Set the 'X-Cache' header to 'HIT'
+        console.log(`Cache hit for key: ${key}`);
 
         return res.status(200).json(cachedResponse.data);
       } else {
@@ -912,6 +913,7 @@ const cacheMiddleware = (duration) => {
       };
 
       // TODO 5: Set the 'X-Cache' header to 'MISS'
+      console.log(`Cache miss for key: ${key}`);
 
       return originalJson(body); // Call the original res.json method
     };
@@ -932,18 +934,20 @@ const clearCache = () => {
 In the **routes** files, import and use the `cacheMiddleware` for the **GET** endpoints. For example, in the `routes/institution.js` file:
 
 ```javascript
-// Omitted for brevity
+/// Omitted for brevity
 
-// TODO 8: Import cacheMiddleware from the cache middleware
+import { cacheMiddleware } from "../middleware/cache.js";
 
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
 
+// Omitted for brevity
+
 router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
-// Omitted for brevity
+/// Omitted for brevity
 ```
 
 > **Note:** The `POST`, `PUT` and `DELETE` endpoints do not use the `cacheMiddleware`.
