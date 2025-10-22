@@ -7,7 +7,7 @@ import indexRoutes from "./routes/index.js";
 import institutionRoutes from "./routes/institution.js";
 import departmentRoutes from "./routes/department.js";
 
-import isContentTypeApplicationJSON from "./middleware/utils.js";
+import isContentTypeApplicationJSON from "./middleware/contentType.js";
 
 const app = express();
 
