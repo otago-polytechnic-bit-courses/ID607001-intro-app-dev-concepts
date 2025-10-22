@@ -984,6 +984,14 @@ In this task, you will create a **system design** document for your **full-stack
 
 ---
 
+### Task 2
+
+---
+
+### Task 3
+
+---
+
 ## Next Class
 
 Link to the next class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)

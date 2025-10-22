@@ -717,48 +717,78 @@ These following exercises will require you to do some research and problem-solvi
 
 ### Task 1
 
+Extend your **seeding scripts** to generate a detailed report after seeding completes. The report should include:
+
+- Total number of records created for each resource
+- Time taken to seed each resource
+- Any validation or database errors encountered
+
+Update all your seeding scripts to implement this reporting feature.
+
+Here is an example of what the report should look like:
+
+```
+==========================================
+Seeding Report
+==========================================
+Resource: Institutions
+  Records Created: 10
+  Time Taken: 2.5s
+------------------------------------------
+Resource: Departments
+  Records Created: 50
+  Time Taken: 5.0s
+------------------------------------------
+Resource: Courses
+  Records Created: 200
+  Time Taken: 10.0s
+------------------------------------------
+Total Time: 17.5s
+Errors Encountered: None
+==========================================
+```
+
+Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
+
+---
+
+### Task 2
+
 Extend the **query parameters** functionality to support advanced filtering options:
 
-- **Range queries:** `?createdAt[gte]=2023-01-01&createdAt[lte]=2023-12-31`
-- **Array queries:** `?country[in]=Australia,New Zealand`
-- **Exclusion queries:** `?region[not]=Otago`
-- **Partial match queries:** `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`	
-- **Case sensitivity control:** `?name=otago polytechnic&caseSensitive=false`
+- **Range:** createdAt[lte]=2023-12-31 or `?createdAt[gte]=2023-01-01&`
+- **Array:** `?country[in]=Australia,New Zealand`
+- **Exclusion:** `?region[not]=Otago`
+- **Partial match:** `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`
+- **Case sensitivity:** `?name=otago polytechnic&caseSensitive=false`
 
-Implement these filtering options in the `Institution` **repository** and **controller**. Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
-
-Test your implementation by:
-- Filtering institutions created within a specific date range
-- Filtering institutions by multiple countries
-- Excluding institutions from a specific region
-- Finding institutions whose names start with or end with specific text
-- Testing case-sensitive and case-insensitive searches
+Implement these filtering options in your . Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
 
 Here are some example requests in **Postman**:
 
-**Filtering institutions created within a specific date range:**
+**Range:**
 
 <ADD IMAGE HERE>
 
-**Filtering institutions by multiple countries:**
+**Array:**
 
 <ADD IMAGE HERE>
 
-**Excluding institutions from a specific region:**
+**Exclusion:**
 
 <ADD IMAGE HERE>
 
-**Finding institutions whose names start with or end with specific text:**
+**Partial match:**
 
 <ADD IMAGE HERE>
 
-**Testing case-sensitive and case-insensitive searches:**
+**Case sensitivity:**
 
 <ADD IMAGE HERE>
 
 ---
 
-### Task 2
+### Task 3
 
 ---
 
