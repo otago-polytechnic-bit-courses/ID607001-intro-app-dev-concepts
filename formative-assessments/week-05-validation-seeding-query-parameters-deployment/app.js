@@ -25,7 +25,7 @@ app.use("/api/departments", departmentRoutes);
 app.use((req, res) => {
   res
     .status(404)
-    .json({ message: `Endpoint ${req.method} ${req.originalUrl} not found` });
+    .json({ message: `Endpoint: ${req.method} ${req.originalUrl} not found` });
 });
 
 app.listen(PORT, () => {

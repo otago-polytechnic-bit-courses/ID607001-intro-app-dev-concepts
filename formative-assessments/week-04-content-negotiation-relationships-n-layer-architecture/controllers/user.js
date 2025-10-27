@@ -1,4 +1,4 @@
-import userRepository from "../repositories/institution.js";
+import userRepository from "../repositories/user.js";
 import STATUS_CODES from "../middleware/statusCodes.js";
 
 const createUser = async (req, res) => {
