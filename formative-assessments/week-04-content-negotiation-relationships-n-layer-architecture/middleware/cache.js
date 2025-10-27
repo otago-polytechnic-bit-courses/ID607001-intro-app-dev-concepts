@@ -13,6 +13,9 @@ const cacheMiddleware = (duration) => {
 
       if (!isExpired) {
         res.setHeader("X-Cache", "HIT");
+
+        console.log(`Cache hit for key: ${key}`);
+
         return res.status(200).json(cachedResponse.data);
       } else {
         delete cache[key];
@@ -29,6 +32,8 @@ const cacheMiddleware = (duration) => {
       };
 
       res.setHeader("X-Cache", "MISS");
+      
+      console.log(`Cache miss for key: ${key}`);
 
       return originalJson(body); // Call the original res.json method
     };
