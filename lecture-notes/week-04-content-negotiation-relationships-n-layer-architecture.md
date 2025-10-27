@@ -686,13 +686,11 @@ Create a `User` **model** with the following fields:
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `User` **model**. 
+Create the necessary **controller**, **route** and **repository** files for the `User` **model**. Test your implementation in **Postman**.
 
-Test your implementation by:
+Here is an example output in **Postman**:
 
-- Creating multiple users with different email addresses
-- Attempting to create a user with a duplicate email address. This should fail
-- Testing all CRUD operations
+![](../resources (ignore)/img/week-4/exercises-01-week-4.png)
 
 ---
 
@@ -730,14 +728,7 @@ model Course {
 
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `Course` model.
-
-Test your implementation by:
-
-- Creating multiple courses that belong to existing departments
-- Attempting to create a course with a non-existing department ID. This should fail
-- Verifying the one-to-many relationship between departments and courses
-- Testing all CRUD operations
+Create the necessary **controller**, **route** and **repository** files for the `Course` model. Test your implementation in **Postman**.
 
 ---
 
@@ -847,20 +838,17 @@ export {
 };
 ```
 
-Apply similar changes to:
+Apply similar changes to the `Department` **controller** and **repository** files to include the `Course` relationship.
 
-- `Department` **repository** and **controller** to include related courses and institution
-- `Course` **repository** and **controller** to include related department
+Here is the expected output in **Postman**:
 
-Test the relationship queries by:
+![](../resources (ignore)/img/week-4/exercises-02-week-4.png)
 
-- Fetching institutions with their departments
-- Fetching departments with their courses and parent institution
-- Fetching courses with their parent department
+To replicate this, in **Postman**, send the following:
 
-Here is the expected output:
-
-<ADD IMAGE HERE>
+1. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
+2. A **POST** request to `http://localhost:3000/api/departments to create a new department
+3. A **GET** request to `http://localhost:3000/api/institutions` to retrieve the list of institutions along with their departments
 
 ---
 
@@ -878,7 +866,7 @@ These following exercise will require you to do some research and problem-solvin
 
 ### Task 1
 
-In `week-02-apis-express-development-tools`, we briefly discussed caching. In the `middleware` directory, create a new file called `cache.js` with the following code.
+In `week-02-apis-express-development-tools`, we briefly discussed **caching**. In the `middleware` directory, create a new file called `cache.js` with the following code.
 
 ```javascript
 const cache = {};
@@ -896,6 +884,8 @@ const cacheMiddleware = (duration) => {
 
       if (!isExpired) {
         // TODO 3: Set the 'X-Cache' header to 'HIT'
+
+        // This is here for debugging purposes. Removve this line before you add, commit and push your changes to GitHub
         console.log(`Cache hit for key: ${key}`);
 
         return res.status(200).json(cachedResponse.data);
@@ -913,6 +903,8 @@ const cacheMiddleware = (duration) => {
       };
 
       // TODO 5: Set the 'X-Cache' header to 'MISS'
+
+      // This is here for debugging purposes. Removve this line before you add, commit and push your changes to GitHub
       console.log(`Cache miss for key: ${key}`);
 
       return originalJson(body); // Call the original res.json method
@@ -941,10 +933,9 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+  // Omitted for brevity
 
-// Omitted for brevity
-
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 /// Omitted for brevity
@@ -962,9 +953,7 @@ In the **controllers** files, import and use the `clearCache` function to clear 
 const createInstitution = async (req, res) => {
   try {
     // Omitted for brevity
-    
     // TODO 11: Clear the cache after creating a new institution
-    
     // Omitted for brevity
   } catch (err) {
     // Omitted for brevity
@@ -976,9 +965,16 @@ const createInstitution = async (req, res) => {
 
 Complete all **TODO** sections with the appropriate code.
 
-Here is an example request in **Postman**:
+Here is an example output in the **terminal**:
 
-<ADD IMAGE HERE>
+![](<../resources (ignore)/img/week-4/exercises-00-week-4.png>)
+
+To replicate this, in **Postman**, send the following:
+
+1. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss
+2. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
+3. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss again
+4. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache hit 
 
 ---
 
