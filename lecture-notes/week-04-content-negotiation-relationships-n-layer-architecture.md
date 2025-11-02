@@ -875,7 +875,7 @@ const cacheMiddleware = (duration) => {
   return (req, res, next) => {
     const key = req.originalUrl; // Use the request URL as the cache key
 
-    const cachedResponse = // TODO 1: Check if the cache contains the key
+    const cachedResponse = // TODO 1: Retrieve the cached response for the key
 
     if (cachedResponse) {
       const currentTime = Date.now();
@@ -933,9 +933,9 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
-  // Omitted for brevity
+// Omitted for brevity
 
-  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 /// Omitted for brevity
@@ -953,7 +953,9 @@ In the **controllers** files, import and use the `clearCache` function to clear 
 const createInstitution = async (req, res) => {
   try {
     // Omitted for brevity
+    
     // TODO 11: Clear the cache after creating a new institution
+    
     // Omitted for brevity
   } catch (err) {
     // Omitted for brevity
@@ -967,24 +969,20 @@ Complete all **TODO** sections with the appropriate code.
 
 Here is an example output in the **terminal**:
 
-![](<../resources (ignore)/img/week-4/exercises-00-week-4.png>)
+![](../resources (ignore)/img/week-4/exercises-0-week-4.png)
 
 To replicate this, in **Postman**, send the following:
 
 1. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss
 2. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
 3. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss again
-4. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache hit 
+4. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache hit
 
 ---
 
 ### Task 2
 
 In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
-
----
-
-### Task 3
 
 ---
 

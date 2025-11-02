@@ -169,6 +169,64 @@ export { validatePostInstitution, validatePutInstitution };
 
 ---
 
+### Validating Other Types
+
+You can validate other types such as `number`, `boolean`, `date`, `array` and `object`. Here are some examples.
+
+```javascript
+const someSchema = Joi.object({
+  numberField: Joi.number().integer().min(1).max(100).required().messages({
+    "number.base": "numberField should be a number",
+    "number.integer": "numberField should be an integer",
+    "number.min": "numberField should be at least {#limit}",
+    "number.max": "numberField should be at most {#limit}",
+    "any.required": "numberField is required",
+  }),
+  booleanField: Joi.boolean().required().messages({
+    "boolean.base": "booleanField should be a boolean",
+    "any.required": "booleanField is required",
+  }),
+  dateField: Joi.date().iso().required().messages({
+    "date.base": "dateField should be a valid date",
+    "date.format": "dateField should be in ISO 8601 format",
+    "any.required": "dateField is required",
+  }),
+  arrayField: Joi.array()
+    .items(Joi.string().min(3).max(100))
+    .required()
+    .messages({
+      "array.base": "arrayField should be an array",
+      "array.includes": "arrayField should only contain strings",
+      "any.required": "arrayField is required",
+    }),
+  objectField: Joi.object({
+    key1: Joi.string().min(3).max(100).required().messages({
+      "string.base": "key1 should be a string",
+      "string.empty": "key1 cannot be empty",
+      "string.min": "key1 should have a minimum length of {#limit}",
+      "string.max": "key1 should have a maximum length of {#limit}",
+      "any.required": "key1 is required",
+    }),
+    key2: Joi.number().integer().min(1).max(100).required().messages({
+      "number.base": "key2 should be a number",
+      "number.integer": "key2 should be an integer",
+      "number.min": "key2 should be at least {#limit}",
+      "number.max": "key2 should be at most {#limit}",
+      "any.required": "key2 is required",
+    }),
+  })
+    .required()
+    .messages({
+      "object.base": "objectField should be an object",
+      "any.required": "objectField is required",
+    }),
+});
+```
+
+> **Resource:** <https://joi.dev/api/?v=18.0.1>
+
+---
+
 ### Institution Router
 
 In the `routes` directory, open the `institution.js` file. Update the file as follows.
