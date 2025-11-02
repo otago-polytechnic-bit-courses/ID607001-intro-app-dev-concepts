@@ -921,7 +921,17 @@ In the `week-06-security-considerations.md` file, analyse the security implicati
 
 ---
 
-### Task 5 (Intermediate)
+### Task 4 (Basic)
+
+Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role.
+
+Here is the expected output:
+
+<ADD IMAGE HERE>
+
+---
+
+### Task 6 (Intermediate)
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
