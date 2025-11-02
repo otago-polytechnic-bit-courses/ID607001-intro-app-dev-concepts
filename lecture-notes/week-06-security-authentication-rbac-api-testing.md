@@ -913,7 +913,7 @@ Create an endpoint that displays all available endpoints in your **REST API**.
 
 Here is an example request in **Postman**:
 
-
+<ADD IMAGE HERE>
 
 ---
 
