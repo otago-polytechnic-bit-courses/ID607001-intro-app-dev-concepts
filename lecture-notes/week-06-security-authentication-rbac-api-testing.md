@@ -913,6 +913,8 @@ Create an endpoint that displays all available endpoints in your **REST API**.
 
 Here is an example request in **Postman**:
 
+
+
 ---
 
 ### Task 4 (Basic)
@@ -921,13 +923,9 @@ In the `week-06-security-considerations.md` file, analyse the security implicati
 
 ---
 
-### Task 4 (Basic)
+### Task 5 (Basic)
 
-Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role.
-
-Here is the expected output:
-
-<ADD IMAGE HERE>
+Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
 
 ---
 
@@ -942,13 +940,9 @@ router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
 router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 ```
 
-Here is the expected output:
-
-<ADD IMAGE HERE>
-
 ---
 
-### Task 6 (Intermediate)
+### Task 7 (Intermediate)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1020,10 +1014,6 @@ Implement **confirm password** functionality in the `register` **function** in `
 Check if `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a `400` status code with the message "Passwords do not match".
 
 > **Note:** You do not need to store `req.body.confirmPassword` in the database.
-
-Here is the expected output:
-
-<ADD IMAGE HERE>
 
 ---
 

@@ -171,7 +171,7 @@ export { validatePostInstitution, validatePutInstitution };
 
 ### Validating Other Types
 
-You can validate other types such as `number`, `boolean`, `date`, `array` and `object`. Here are some examples.
+You can validate other types such as `number`, `boolean`, `date`, `array`, `object` and `uuid`. Here are some examples.
 
 ```javascript
 const someSchema = Joi.object({
@@ -220,6 +220,11 @@ const someSchema = Joi.object({
       "object.base": "objectField should be an object",
       "any.required": "objectField is required",
     }),
+  uuidField: Joi.string().uuid().required().messages({
+    "string.base": "uuidField should be a string",
+    "string.guid": "uuidField should be a valid UUID",
+    "any.required": "uuidField is required",
+  }),
 });
 ```
 
@@ -393,6 +398,8 @@ import prisma from "../client.js";
 
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
+const BASE_URL = "<GIST_RAW_URL>"; // Replace <GIST_RAW_URL> with the raw URL of your GitHub Gist
+
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
@@ -410,8 +417,7 @@ const validateInstitution = (institution) => {
 
 const seedInstitutionsFromGitHub = async () => {
   try {
-    const gistUrl = "<GIST_RAW_URL>"; // Replace <GIST_RAW_URL> with the raw URL of your GitHub Gist
-    const response = await fetch(gistUrl);
+    const response = await fetch(BASE_URL);
     const institutionData = await response.json();
 
     const data = await Promise.all(
@@ -828,10 +834,6 @@ Errors encountered: None
 
 Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
 
-Here is an example output in the terminal:
-
-<ADD GIF HERE>
-
 ---
 
 ### Task 2
@@ -845,28 +847,6 @@ Extend the **query parameters** functionality to support advanced filtering opti
 - **Case sensitivity:** `?name=otago polytechnic&caseSensitive=false`
 
 Implement these filtering options in your . Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
-
-Here are some example requests in **Postman**:
-
-**Range:**
-
-<ADD IMAGE HERE>
-
-**Array:**
-
-<ADD IMAGE HERE>
-
-**Exclusion:**
-
-<ADD IMAGE HERE>
-
-**Partial match:**
-
-<ADD IMAGE HERE>
-
-**Case sensitivity:**
-
-<ADD IMAGE HERE>
 
 ---
 
