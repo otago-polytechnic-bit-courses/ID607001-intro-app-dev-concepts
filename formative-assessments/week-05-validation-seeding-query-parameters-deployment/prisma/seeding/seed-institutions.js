@@ -8,7 +8,7 @@ const validateInstitution = (institution) => {
   const res = {
     status: (code) => ({
       json: (message) => {
-        console.log(message.message);
+        console.log(message);
         process.exit(1);
       },
     }),
@@ -49,6 +49,7 @@ const seedInstitutions = async () => {
 
     console.log("Institutions successfully seeded");
   } catch (err) {
+    console.log(err)
     console.log(err.message);
   }
 };

@@ -4,6 +4,8 @@ import prisma from "../client.js";
 
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
+const BASE_URL = "https://gist.githubusercontent.com/Grayson-Orr/8c18a8d452534cb6fe4b5688f2a2b080/raw/2f5b54f5ab3ca65a06294563abbf1cdbb63a5a26/week-05-seed-institutions-github.json";
+
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
@@ -21,8 +23,7 @@ const validateInstitution = (institution) => {
 
 const seedInstitutionsFromGitHub = async () => {
   try {
-    const gistUrl = "https://gist.githubusercontent.com/Grayson-Orr/8c18a8d452534cb6fe4b5688f2a2b080/raw/2f5b54f5ab3ca65a06294563abbf1cdbb63a5a26/week-05-seed-institutions-github.json";
-    const response = await fetch(gistUrl);
+    const response = await fetch(BASE_URL);
     const institutionData = await response.json();
 
     const data = await Promise.all(

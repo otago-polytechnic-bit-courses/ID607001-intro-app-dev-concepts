@@ -8,12 +8,21 @@ import {
   deleteDepartment,
 } from "../controllers/department.js";
 
+import { cacheMiddleware } from "../middleware/cache.js";
+
+import {
+  validatePostDepartment,
+  validatePutDepartment,
+} from "../middleware/validation/department.js";
+
 const router = express.Router();
 
-router.post("/", createDepartment);
-router.get("/", getDepartments);
-router.get("/:id", getDepartment);
-router.put("/:id", updateDepartment);
+const MAX_CACHE_DURATION = 5 * 60 * 1000;
+
+router.post("/", validatePostDepartment, createDepartment);
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getDepartments);
+router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getDepartment);
+router.put("/:id", validatePutDepartment, updateDepartment);
 router.delete("/:id", deleteDepartment);
 
 export default router;
