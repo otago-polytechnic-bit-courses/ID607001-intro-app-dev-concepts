@@ -933,6 +933,7 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+
 // Omitted for brevity
 
 router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
@@ -969,7 +970,11 @@ Complete all **TODO** sections with the appropriate code.
 
 Here is an example output in the **terminal**:
 
-![](../resources (ignore)/img/week-4/exercises-0-week-4.png)
+```
+Cache miss for key: /api/institutions
+Cache miss for key: /api/institutions
+Cache hit for key: /api/institutions
+```
 
 To replicate this, in **Postman**, send the following:
 
