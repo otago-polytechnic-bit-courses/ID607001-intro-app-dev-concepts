@@ -16,7 +16,7 @@ const validateInstitution = (institution) => {
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
 };
 
 const seedInstitutionsFromGitHub = async () => {

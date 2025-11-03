@@ -5,19 +5,28 @@ import { validatePostInstitution } from "../../middleware/validation/institution
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
+  const validationError = null;
+
   const res = {
     status: (code) => ({
       json: (message) => {
-        console.log(message.message);
-        process.exit(1);
+        validationError = message;
       },
     }),
   };
 
   validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
+
+  if (validationError) {
+    throw new Error(validationError.message);
+  }
 };
 
-const seedInstitutions = async () => {
+export const seedInstitutions = async () => {
+  const startTime = Date.now();
+  const errors = [];
+  let count = 0;
+
   try {
     // Delete all existing institutions
     await prisma.institution.deleteMany();
@@ -47,10 +56,19 @@ const seedInstitutions = async () => {
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
-    console.log("Institutions successfully seeded");
+    count = result.count;
   } catch (err) {
-    console.log(err.message);
+    errors.push(err.message);
+  } finally {
+    await prisma.$disconnect();
   }
-};
 
-seedInstitutions();
+  const time = ((Date.now() - startTime) / 1000).toFixed(1);
+
+  return {
+    resource: "Users",
+    count,
+    time,
+    errors,
+  };
+};

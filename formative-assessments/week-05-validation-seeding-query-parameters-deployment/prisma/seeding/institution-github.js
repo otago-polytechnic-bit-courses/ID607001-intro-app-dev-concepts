@@ -1,6 +1,10 @@
+import fetch from "node-fetch";
+
 import prisma from "../client.js";
 
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
+
+const BASE_URL = "https://gist.githubusercontent.com/Grayson-Orr/8c18a8d452534cb6fe4b5688f2a2b080/raw/2f5b54f5ab3ca65a06294563abbf1cdbb63a5a26/week-05-seed-institutions-github.json";
 
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
@@ -14,26 +18,13 @@ const validateInstitution = (institution) => {
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
 };
 
-const seedInstitutions = async () => {
+const seedInstitutionsFromGitHub = async () => {
   try {
-    // Delete all existing institutions
-    await prisma.institution.deleteMany();
-
-    const institutionData = [
-      {
-        name: "Otago Polytechnic",
-        region: "Otago",
-        country: "New Zealand",
-      },
-      {
-        name: "Southern Institute of Technology",
-        region: "Southland",
-        country: "New Zealand",
-      },
-    ];
+    const response = await fetch(BASE_URL);
+    const institutionData = await response.json();
 
     const data = await Promise.all(
       institutionData.map(async (institution) => {
@@ -47,11 +38,10 @@ const seedInstitutions = async () => {
       skipDuplicates: true, // Prevent duplicate entries if the email already exists
     });
 
-    console.log("Institutions successfully seeded");
+    console.log("Institutions successfully seeded from GitHub Gist");
   } catch (err) {
-    console.log(err)
     console.log(err.message);
   }
 };
 
-seedInstitutions();
+seedInstitutionsFromGitHub();
