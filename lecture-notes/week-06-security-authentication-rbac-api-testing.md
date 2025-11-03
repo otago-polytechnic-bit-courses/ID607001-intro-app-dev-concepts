@@ -1250,8 +1250,6 @@ Here is an example request in **Postman**:
 
 ### Task 5
 
-**RabbitMQ** is a message broker that enables applications to communicate with each other by sending and receiving messages. It is often used in microservices architectures to decouple services and improve scalability. For this class, we are going to use **RabbitMQ** to send an email notification when a new user registers.
-
 ---
 
 ## Next Class
