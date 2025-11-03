@@ -149,7 +149,7 @@ const validatePutInstitution = (req, res, next) => {
     { name, region, country },
     {
       abortEarly: false,
-      convert: false, 
+      convert: false,
     }
   );
 
@@ -287,10 +287,7 @@ Here is an example for the **PUT** method.
 
 ## Seeding
 
-**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. For this class, we will focus on two methods:
-
-1. **Prisma Client**: Use the Prisma Client to seed the database with data.
-2. **GitHub Gist**: Use a GitHub Gist to seed the database with data.
+**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. For this class, we will focus on using the **Prisma Client** to seed the database with data.
 
 ---
 
@@ -306,7 +303,7 @@ import { validatePostInstitution } from "../../middleware/validation/institution
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
-  const validationError = null;
+  let validationError = null;
 
   const res = {
     status: (code) => ({
@@ -316,22 +313,26 @@ const validateInstitution = (institution) => {
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
+  validatePostInstitution(req, res, () => {});
 
   if (validationError) {
-    throw new Error(validationError.message);
+    const errorMessage = typeof validationError === 'object' 
+      ? JSON.stringify(validationError) 
+      : validationError;
+    throw new Error(errorMessage);
   }
 };
 
-const seedInstitutions = async () => {
+export const seedInstitutions = async () => {
+  const startTime = Date.now();
+  const errors = [];
+
   try {
     // Delete all existing institutions
     await prisma.institution.deleteMany();
 
     const institutionData = [
       {
-        name: "Otago Polytechnic",
-        region: "Otago",
         country: "New Zealand",
       },
       {
@@ -341,112 +342,51 @@ const seedInstitutions = async () => {
       },
     ];
 
-    const data = await Promise.all(
-      institutionData.map(async (institution) => {
+    const validatedData = [];
+    for (const institution of institutionData) {
+      try {
         validateInstitution(institution);
-        return { ...institution };
-      })
-    );
+        validatedData.push(institution);
+      } catch (err) {
+        errors.push(err.message);
+      }
+    }
 
-    await prisma.institution.createMany({
-      data,
-      skipDuplicates: true, // Prevent duplicate entries if the email already exists
-    });
-
-    console.log("Institutions successfully seeded");
+    if (validatedData.length > 0) {
+      const result = await prisma.institution.createMany({
+        data: validatedData,
+        skipDuplicates: true,
+      });
+    }
   } catch (err) {
-    console.log(err.message);
+    errors.push(err.message);
+  } finally {
+    await prisma.$disconnect();
   }
-};
 
-seedInstitutions();
-```
+  const time = ((Date.now() - startTime) / 1000).toFixed(1);
 
----
-
-### Seeding Data via GitHub Gist
-
-**GitHub Gist** is a simple way to share snippets and pastes with others. We can use GitHub Gist to store our seed data and fetch it to seed our database.
-
----
-
-### Create a GitHub Gist
-
-Create a [GitHub Gist](https://gist.github.com/) with the data in `week-05-seed-institutions-github.json` in the **lecture-notes** directory. Provide the filename as `week-05-seed-institutions-github.json` and click on the **Create secret gist** button.
-
----
-
-### Getting the Raw URL
-
-Click on the **Raw** button to get the raw URL of the **GitHub Gist**. Copy the URL.
-
----
-
-### Fetching Data from GitHub Gist
-
-To fetch data from the **GitHub Gist**, we will use the `node-fetch` package. Install the package by running the following command.
-
-```bash
-npm install node-fetch
-```
-
----
-
-### Script to Seed Data
-
-In the `prisma/seeding` directory, create a new file named `institution-github.js` and add the following code.
-
-```javascript
-import fetch from "node-fetch";
-
-import prisma from "../client.js";
-
-import { validatePostInstitution } from "../../middleware/validation/institution.js";
-
-const BASE_URL = "<GIST_RAW_URL>"; // Replace <GIST_RAW_URL> with the raw URL of your GitHub Gist
-
-// Simulate an Express-like request and response for validation
-const validateInstitution = (institution) => {
-  const req = { body: institution };
-  const res = {
-    status: (code) => ({
-      json: (message) => {
-        console.log(message);
-        process.exit(1);
-      },
-    }),
+  return {
+    resource: "Institutions",
+    time,
+    errors,
   };
-
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
 };
 
-const seedInstitutionsFromGitHub = async () => {
-  try {
-    const response = await fetch(BASE_URL);
-    const institutionData = await response.json();
-
-    const data = await Promise.all(
-      institutionData.map(async (institution) => {
-        validateInstitution(institution);
-        return { ...institution };
-      })
-    );
-
-    await prisma.institution.createMany({
-      data,
-      skipDuplicates: true, // Prevent duplicate entries if the email already exists
-    });
-
-    console.log("Institutions successfully seeded from GitHub Gist");
-  } catch (err) {
-    console.log(err.message);
+seedInstitutions().then((report) => {
+  console.log("==========================================");
+  console.log("Seeding report");
+  console.log("==========================================");
+  console.log(`Resource: ${report.resource}`);
+  console.log(`  Time taken: ${report.time}s`);
+  if (report.errors.length > 0) {
+    // Display error message
+  } else {
+    // Display no error message
   }
-};
-
-seedInstitutionsFromGitHub();
+  console.log("==========================================");
+});
 ```
-
-> **Note:** Replace `<GIST_RAW_URL>` with the raw URL of your **GitHub Gist**.
 
 ---
 
@@ -455,8 +395,13 @@ seedInstitutionsFromGitHub();
 In the `package.json` file, add the following in the `scripts` block.
 
 ```json
-"prisma:seed-institutions": "node ./prisma/seeding/institution.js",
-"prisma:seed-institutions-github": "node ./prisma/seeding/institution-github.js"
+"prisma:seed-institutions": "node ./prisma/seeding/institution.js"
+```
+
+To run the seed script, open a terminal and run the following command.
+
+```bash
+npm run prisma:seed-institutions
 ```
 
 ---
@@ -464,11 +409,6 @@ In the `package.json` file, add the following in the `scripts` block.
 ## Query Parameters
 
 **Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
-
-```json
-"prisma:seed-institutions": "node ./prisma/seeding/institution.js",
-"prisma:seed-institutions-github": "node ./prisma/seeding/institution-github.js"
-```
 
 ---
 
@@ -792,9 +732,7 @@ Use the validation **middleware** in the appropriate **routes** to validate inco
 
 ### Task 6 (Intermediate)
 
-Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Use one of the two methods described above.
-
-Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
+Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
 
 - Clear existing data before seeding
 - Create realistic sample records for each **resource**

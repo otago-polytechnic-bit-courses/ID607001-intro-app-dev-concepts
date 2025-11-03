@@ -1023,7 +1023,7 @@ These following exercises will require you to do some research and problem-solvi
 
 ---
 
-### Task 1
+### Task 2
 
 Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
@@ -1132,7 +1132,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 2
+### Task 3
 
 Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
 
@@ -1240,6 +1240,17 @@ Complete all **TODO** sections with the appropriate code.
 Here is an example request in **Postman**:
 
 <ADD IMAGE HERE>
+
+---
+
+### Task 4
+
+
+---
+
+### Task 5
+
+**RabbitMQ** is a message broker that enables applications to communicate with each other by sending and receiving messages. It is often used in microservices architectures to decouple services and improve scalability. For this class, we are going to use **RabbitMQ** to send an email notification when a new user registers.
 
 ---
 
