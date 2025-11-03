@@ -5,7 +5,7 @@ import { validatePostInstitution } from "../../middleware/validation/institution
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
-  const validationError = null;
+  let validationError = null;
 
   const res = {
     status: (code) => ({
@@ -15,10 +15,13 @@ const validateInstitution = (institution) => {
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
+  validatePostInstitution(req, res, () => {});
 
   if (validationError) {
-    throw new Error(validationError.message);
+    const errorMessage = typeof validationError === 'object' 
+      ? JSON.stringify(validationError) 
+      : validationError;
+    throw new Error(errorMessage);
   }
 };
 
@@ -33,8 +36,6 @@ export const seedInstitutions = async () => {
 
     const institutionData = [
       {
-        name: "Otago Polytechnic",
-        region: "Otago",
         country: "New Zealand",
       },
       {
@@ -44,19 +45,23 @@ export const seedInstitutions = async () => {
       },
     ];
 
-    const data = await Promise.all(
-      institutionData.map(async (institution) => {
+    const validatedData = [];
+    for (const institution of institutionData) {
+      try {
         validateInstitution(institution);
-        return { ...institution };
-      })
-    );
+        validatedData.push(institution);
+      } catch (err) {
+        errors.push(err.message);
+      }
+    }
 
-    await prisma.institution.createMany({
-      data: data,
-      skipDuplicates: true, // Prevent duplicate entries if the email already exists
-    });
-
-    count = result.count;
+    if (validatedData.length > 0) {
+      const result = await prisma.institution.createMany({
+        data: validatedData,
+        skipDuplicates: true,
+      });
+      count = result.count;
+    }
   } catch (err) {
     errors.push(err.message);
   } finally {
@@ -66,7 +71,7 @@ export const seedInstitutions = async () => {
   const time = ((Date.now() - startTime) / 1000).toFixed(1);
 
   return {
-    resource: "Users",
+    resource: "Institutions",
     count,
     time,
     errors,

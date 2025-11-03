@@ -5,7 +5,7 @@ import { validatePostCourse } from "../../middleware/validation/course.js";
 // Simulate an Express-like request and response for validation
 const validateCourse = (course) => {
   const req = { body: course };
-  const validationError = null;
+  let validationError = null;
   const res = {
     status: (code) => ({
       json: (message) => {
@@ -14,10 +14,14 @@ const validateCourse = (course) => {
     }),
   };
 
-  validatePostCourse(req, res, () => {}); // Pass an empty function since we are not using next()
+  validatePostCourse(req, res, () => {});
 
   if (validationError) {
-    throw new Error(validationError.message);
+    const errorMessage =
+      typeof validationError === "object"
+        ? JSON.stringify(validationError)
+        : validationError;
+    throw new Error(errorMessage);
   }
 };
 
@@ -33,7 +37,13 @@ export const seedCourses = async () => {
     const departmentData = await prisma.department.findMany();
 
     if (departmentData.length === 0) {
-      throw new Error("No departments found");
+      errors.push("No departments found");
+      return {
+        resource: "Courses",
+        count,
+        time: ((Date.now() - startTime) / 1000).toFixed(1),
+        errors,
+      };
     }
 
     const courseData = [
@@ -51,25 +61,29 @@ export const seedCourses = async () => {
       },
     ];
 
-    const data = await Promise.all(
-      courseData.map(async (course) => {
+    const validatedData = [];
+    for (const course of courseData) {
+      try {
         validateCourse(course);
-        return { ...course };
-      })
-    );
+        validatedData.push(course);
+      } catch (err) {
+        errors.push(err.message);
+      }
+    }
 
-    await prisma.course.createMany({
-      data: data,
-      skipDuplicates: true, // Prevent duplicate entries if the email already exists
-    });
-
-    count = result.count;
+    if (validatedData.length > 0) {
+      const result = await prisma.course.createMany({
+        data: validatedData,
+        skipDuplicates: true,
+      });
+      count = result.count;
+    }
   } catch (err) {
-    console.log(err.message);
-    process.exit(1);
+    errors.push(err.message);
   } finally {
     await prisma.$disconnect();
   }
+
   const time = ((Date.now() - startTime) / 1000).toFixed(1);
 
   return {

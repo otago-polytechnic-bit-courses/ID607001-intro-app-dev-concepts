@@ -14,10 +14,14 @@ const validateUser = (user) => {
     }),
   };
 
-  validatePostUser(req, res, () => {}); // Pass an empty function since we are not using next()
+  validatePostUser(req, res, () => {});
 
   if (validationError) {
-    throw new Error(JSON.stringify(validationError));
+    const errorMessage =
+      typeof validationError === "object"
+        ? JSON.stringify(validationError)
+        : validationError;
+    throw new Error(errorMessage);
   }
 };
 
@@ -42,19 +46,23 @@ export const seedUsers = async () => {
       },
     ];
 
-    const data = await Promise.all(
-      userData.map(async (user) => {
+    const validatedData = [];
+    for (const user of userData) {
+      try {
         validateUser(user);
-        return { ...user };
-      })
-    );
+        validatedData.push(user);
+      } catch (err) {
+        errors.push(err.message);
+      }
+    }
 
-    const result = await prisma.user.createMany({
-      data: data,
-      skipDuplicates: true,
-    });
-
-    count = result.count;
+    if (validatedData.length > 0) {
+      const result = await prisma.user.createMany({
+        data: validatedData,
+        skipDuplicates: true,
+      });
+      count = result.count;
+    }
   } catch (err) {
     errors.push(err.message);
   } finally {

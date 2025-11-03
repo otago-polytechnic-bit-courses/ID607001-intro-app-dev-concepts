@@ -11,17 +11,17 @@ const seedAll = async () => {
   const startTime = Date.now();
   const results = [];
 
-//   // Seed institutions
-//   const institutionsResult = await seedInstitutions();
-//   results.push(institutionsResult);
+  // Seed institutions
+  const institutionsResult = await seedInstitutions();
+  results.push(institutionsResult);
 
-//   // Seed departments
-//   const departmentsResult = await seedDepartments();
-//   results.push(departmentsResult);
+  // Seed departments
+  const departmentsResult = await seedDepartments();
+  results.push(departmentsResult);
 
-//   // Seed courses
-//   const coursesResult = await seedCourses();
-//   results.push(coursesResult);
+  // Seed courses
+  const coursesResult = await seedCourses();
+  results.push(coursesResult);
 
   // Seed users
   const usersResult = await seedUsers();

@@ -5,7 +5,7 @@ import { validatePostDepartment } from "../../middleware/validation/department.j
 // Simulate an Express-like request and response for validation
 const validateDepartment = (department) => {
   const req = { body: department };
-  const validationError = null;
+  let validationError = null;
   const res = {
     status: (code) => ({
       json: (message) => {
@@ -14,10 +14,13 @@ const validateDepartment = (department) => {
     }),
   };
 
-  validatePostDepartment(req, res, () => {}); // Pass an empty function since we are not using next()
+  validatePostDepartment(req, res, () => {});
 
   if (validationError) {
-    throw new Error(validationError.message);
+    const errorMessage = typeof validationError === 'object' 
+      ? JSON.stringify(validationError) 
+      : validationError;
+    throw new Error(errorMessage);
   }
 };
 
@@ -33,7 +36,13 @@ export const seedDepartments = async () => {
     const institutionData = await prisma.institution.findMany();
 
     if (institutionData.length === 0) {
-      throw new Error("No institutions found");
+      errors.push("No institutions found");
+      return {
+        resource: "Departments",
+        count,
+        time: ((Date.now() - startTime) / 1000).toFixed(1),
+        errors,
+      };
     }
 
     const departmentData = [
@@ -47,22 +56,25 @@ export const seedDepartments = async () => {
       },
     ];
 
-    const data = await Promise.all(
-      departmentData.map(async (department) => {
+    const validatedData = [];
+    for (const department of departmentData) {
+      try {
         validateDepartment(department);
-        return { ...department };
-      })
-    );
+        validatedData.push(department);
+      } catch (err) {
+        errors.push(err.message);
+      }
+    }
 
-    await prisma.department.createMany({
-      data: data,
-      skipDuplicates: true, // Prevent duplicate entries if the email already exists
-    });
-
-    count = result.count;
+    if (validatedData.length > 0) {
+      const result = await prisma.department.createMany({
+        data: validatedData,
+        skipDuplicates: true,
+      });
+      count = result.count;
+    }
   } catch (err) {
-    console.log(err.message);
-    process.exit(1);
+    errors.push(err.message);
   } finally {
     await prisma.$disconnect();
   }
