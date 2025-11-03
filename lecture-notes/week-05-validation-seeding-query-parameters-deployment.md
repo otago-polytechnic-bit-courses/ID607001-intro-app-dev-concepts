@@ -107,7 +107,7 @@ const validatePostInstitution = (req, res, next) => {
     { name, region, country },
     {
       abortEarly: false,
-      convert: false,
+      convert: false, // Disable type conversion
     }
   );
 
@@ -149,7 +149,7 @@ const validatePutInstitution = (req, res, next) => {
     { name, region, country },
     {
       abortEarly: false,
-      convert: false,
+      convert: false, 
     }
   );
 
@@ -296,7 +296,7 @@ Here is an example for the **PUT** method.
 
 ### Script to Seed Data
 
-Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `seed-institutions.js` and add the following code.
+Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `institution.js` and add the following code.
 
 ```javascript
 import prisma from "../client.js";
@@ -306,16 +306,21 @@ import { validatePostInstitution } from "../../middleware/validation/institution
 // Simulate an Express-like request and response for validation
 const validateInstitution = (institution) => {
   const req = { body: institution };
+  const validationError = null;
+
   const res = {
     status: (code) => ({
       json: (message) => {
-        console.log(message);
-        process.exit(1);
+        validationError = message;
       },
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
+
+  if (validationError) {
+    throw new Error(validationError.message);
+  }
 };
 
 const seedInstitutions = async () => {
@@ -389,7 +394,7 @@ npm install node-fetch
 
 ### Script to Seed Data
 
-In the `prisma/seeding` directory, create a new file named `seed-institutions-github.js` and add the following code.
+In the `prisma/seeding` directory, create a new file named `institution-github.js` and add the following code.
 
 ```javascript
 import fetch from "node-fetch";
@@ -412,7 +417,7 @@ const validateInstitution = (institution) => {
     }),
   };
 
-  validatePostInstitution(req, res, () => {}); // Pass an empty function since we're not using next()
+  validatePostInstitution(req, res, () => {}); // Pass an empty function since we are not using next()
 };
 
 const seedInstitutionsFromGitHub = async () => {
@@ -450,8 +455,19 @@ seedInstitutionsFromGitHub();
 In the `package.json` file, add the following in the `scripts` block.
 
 ```json
-"prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js",
-"prisma:seed-institutions-github": "node ./prisma/seeding/seed-institutions-github.js"
+"prisma:seed-institutions": "node ./prisma/seeding/institution.js",
+"prisma:seed-institutions-github": "node ./prisma/seeding/institution-github.js"
+```
+
+---
+
+## Query Parameters
+
+**Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
+
+```json
+"prisma:seed-institutions": "node ./prisma/seeding/institution.js",
+"prisma:seed-institutions-github": "node ./prisma/seeding/institution-github.js"
 ```
 
 ---
@@ -827,7 +843,11 @@ Resource: Courses
   Records created: 200
   Time taken: 10.0s
 ------------------------------------------
-Total time: 17.5s
+Resource: Users
+  Records created: 100
+  Time taken: 5.0s
+------------------------------------------
+Total time: 22.5s
 Errors encountered: None
 ==========================================
 ```
@@ -846,7 +866,15 @@ Extend the **query parameters** functionality to support advanced filtering opti
 - **Partial match:** `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`
 - **Case sensitivity:** `?name=otago polytechnic&caseSensitive=false`
 
-Implement these filtering options in your . Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
+Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
+
+Here is are example requests in **Postman**:
+
+**Range:**
+
+<ADD IMAGE HERE>
+
+**Array:**
 
 ---
 

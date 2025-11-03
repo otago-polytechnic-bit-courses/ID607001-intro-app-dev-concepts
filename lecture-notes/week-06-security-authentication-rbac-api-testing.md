@@ -853,7 +853,7 @@ To run the tests, run the following command.
 npm run test
 ```
 
-When you run the tests, you should see the following output.
+When you run the tests, you should see the following output in the terminal:
 
 ```bash
 Institution CRUD
