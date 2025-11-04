@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](<../week-05-validation-seeding-query-parameters-deployment)
+Link to the previous class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
 
 ---
 
