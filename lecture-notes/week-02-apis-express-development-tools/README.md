@@ -13,6 +13,7 @@ Link to the lecture video: [Week 02 Lecture Video]()
 ---
 
 ## Code Example
+
 This week's code example is available [here](code-example)
 
 ---
@@ -216,7 +217,7 @@ There are two types of caching:
 
 ---
 
-### TCP/IP 
+### TCP/IP
 
 **TCP/IP (Transmission Control Protocol/Internet Protocol)** is a set of protocols that govern how data is transmitted over the internet. It is the foundation of the internet and enables communication between devices.
 
@@ -805,6 +806,8 @@ To run **Prettier** on staged files, use the following command in your terminal.
 npm run format
 ```
 
+---
+
 ## Hard Exercises
 
 These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Practical** assessment.
@@ -812,6 +815,26 @@ These following exercise will require you to do some research and problem-solvin
 ---
 
 ### Task 1
+
+In the `controllers` directory, create a file named `quiz.js`. In the `quiz.js` file, create two functions called `getCategories` and `getQuiz`. The `getCategories` function should return a list of quiz categories and the `getQuiz` function should return a quiz based on the category selected. You will fetch the data from the [Open Trivia Database API](https://opentdb.com/api_config.php).
+
+Here is an example of how the `quiz.js` file should look like.
+
+```javascript
+import fetch from "node-fetch";
+
+const getCategories = async (req, res) => {
+  // Write your code here
+};
+
+const getQuiz = async (req, res) => {
+  // Write your code here
+};
+
+export { getCategories, getQuiz };
+```
+
+In the `routes` directory, create a file named `quiz.js`. In the `quiz.js` file, create two routes called `/categories` and `/quiz`. The `/categories` route should call the `getCategories` function and the `/quiz` route should call the `getQuiz` function.
 
 ---
 
