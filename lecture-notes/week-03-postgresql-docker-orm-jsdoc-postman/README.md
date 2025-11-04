@@ -760,7 +760,7 @@ After updating the schema:
 
 Here is an example request in **Postman**:
 
-![](<../resources (ignore)/img/week-3/excercises-00-week-3.png>)
+![](<../resources (ignore)/img/week-3/exercises-00-week-3.png>)
 
 ---
 
@@ -778,12 +778,9 @@ Error handling is an important part of any application. It is important to handl
 
 Implement error handling to handle the following scenarios:
 
--
-
 Here are example requests in **Postman**:
 
 <ADD IMAGES HERE>
-
 
 ## Next Class
 
