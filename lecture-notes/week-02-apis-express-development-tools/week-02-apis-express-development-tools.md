@@ -12,6 +12,11 @@ Link to the lecture video: [Week 02 Lecture Video]()
 
 ---
 
+## Code Example
+This week's code example is available [here](code-example)
+
+---
+
 ## Before We Start
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-02-apis-express-development-tools** from the previous branch.
