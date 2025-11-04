@@ -668,13 +668,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1 (Basic)
+### Task 1 (Easy)
 
 Implement the code examples above.
 
 ---
 
-### Task 2 (Basic)
+### Task 2 (Easy)
 
 Create an endpoint that displays all available endpoints in your **REST API**.
 
@@ -682,7 +682,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 3 (Basic)
+### Task 3 (Easy)
 
 In the `week-05-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**. We will discuss your analysis in the next week.
 
@@ -747,7 +747,7 @@ You notice there is a lot of code duplication. Refactor the code to reduce the d
 
 ---
 
-## Advanced Exercises
+## Hard Exercises
 
 These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
 
@@ -813,6 +813,12 @@ Here is are example requests in **Postman**:
 <ADD IMAGE HERE>
 
 **Array:**
+
+---
+
+### Task 3
+
+
 
 ---
 

@@ -742,13 +742,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1 (Basic)
+### Task 1 (Easy)
 
 Implement the code examples above.
 
 ---
 
-### Task 2 (Basic)
+### Task 2 (Easy)
 
 In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
 
@@ -764,7 +764,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 3 (Basic)
+### Task 3 (Easy)
 
 **Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 

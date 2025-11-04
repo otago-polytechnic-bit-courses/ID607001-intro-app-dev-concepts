@@ -889,13 +889,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1 (Basic)
+### Task 1 (Easy)
 
 Implement the code examples above.
 
 ---
 
-### Task 2 (Basic)
+### Task 2 (Easy)
 
 Create five **tests** for the `Course` resource. The **tests** should cover the following scenarios:
 
@@ -907,7 +907,7 @@ Create five **tests** for the `Course` resource. The **tests** should cover the 
 
 ---
 
-### Task 3 (Basic)
+### Task 3 (Easy)
 
 Create an endpoint that displays all available endpoints in your **REST API**.
 
@@ -917,13 +917,13 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 4 (Basic)
+### Task 4 (Easy)
 
 In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
 
 ---
 
-### Task 5 (Basic)
+### Task 5 (Easy)
 
 Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
 
@@ -1017,7 +1017,7 @@ Check if `req.body.password` and `req.body.confirmPassword` match. If they do no
 
 ---
 
-## Advanced Exercises
+## Hard Exercises
 
 These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
 

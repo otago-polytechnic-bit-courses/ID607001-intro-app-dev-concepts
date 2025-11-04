@@ -732,13 +732,13 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 ---
 
-### Task 1
+### Task 1 (Easy)
 
 Implement the code examples above.
 
 ---
 
-### Task 2
+### Task 2 (Easy)
 
 To get used to creating `controllers` and `routes`, create two `GET` routes for the following.
 
@@ -765,7 +765,7 @@ backend
 
 ---
 
-### Task 3
+### Task 3 (Medium)
 
 The current way **Prettier** is configured is not ideal as it formats all files, including files in the `node_modules` directory. It is unnecessary since `node_modules` contains third-party code that does not need formatting. Additionally, formatting every file in your project can be slow and inefficient.
 
@@ -804,6 +804,14 @@ To run **Prettier** on staged files, use the following command in your terminal.
 ```bash
 npm run format
 ```
+
+## Hard Exercises
+
+These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Practical** assessment.
+
+---
+
+### Task 1
 
 ---
 
