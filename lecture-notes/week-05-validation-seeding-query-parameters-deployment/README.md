@@ -814,11 +814,23 @@ Here is are example requests in **Postman**:
 
 **Array:**
 
+<ADD IMAGE HERE>
+
+**Exclusion:**
+
+<ADD IMAGE HERE>
+
+**Partial match:**
+
+<ADD IMAGE HERE>
+
+**Case sensitivity:**
+
+<ADD IMAGE HERE>
+
 ---
 
 ### Task 3
-
-
 
 ---
 
