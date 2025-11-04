@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-05-validation-seeding-query-parameters-deployment.md)
+Link to the previous class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
 
 ---
 
@@ -1254,4 +1254,4 @@ Here is an example request in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 07](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-07-sveltekit-js-ui-design.md)
+Link to the next class: [Week 07](h../week-07-sveltekit-js-ui-design)

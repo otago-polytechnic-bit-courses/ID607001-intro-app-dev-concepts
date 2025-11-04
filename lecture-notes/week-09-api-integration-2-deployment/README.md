@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-08-content-delivery-networks-api-integration-1.md)
+Link to the previous class: [Week 08](../week-08-content-delivery-networks-api-integration-1)
 
 ---
 
@@ -583,4 +583,4 @@ Currently, you have to use the **Vercel CLI** to deploy your **SvelteKit** appli
 
 ## Next Class
 
-Link to the next class: [Week 10](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s2-25/lecture-notes/week-10-end-to-end-testing.md)
+Link to the next class: [Week 10](../week-10-end-to-end-testing)

@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-09-api-integration-2-deployment.md)
+Link to the previous class: [Week 09](../week-09-api-integration-2-deployment)
 
 ---
 

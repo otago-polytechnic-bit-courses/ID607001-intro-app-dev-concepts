@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-04-content-negotiation-relationships-n-layer-architecture.md)
+Link to the previous class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
 
 ---
 
@@ -818,4 +818,4 @@ Here is are example requests in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-06-security-authentication-rbac-api-testing.md)
+Link to the next class: [Week 06](../week-06-security-authentication-rbac-api-testing)

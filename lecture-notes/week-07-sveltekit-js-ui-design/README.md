@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 06](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-06-security-authentication-rbac-api-testing.md)
+Link to the previous class: [Week 06](../week-06-security-authentication-rbac-api-testing)
 
 ---
 
@@ -960,4 +960,4 @@ Here is the expected output:
 
 ## Next Class
 
-Link to the next class: [Week 08](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/blob/s1-26/lecture-notes/week-08-content-delivery-networks-api-integration-1.md)
+Link to the next class: [Week 08](../week-08-content-delivery-networks-api-integration-1)
