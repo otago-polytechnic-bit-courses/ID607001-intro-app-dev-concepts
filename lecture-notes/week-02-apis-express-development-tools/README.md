@@ -14,7 +14,7 @@ Link to the lecture video: [Week 02 Lecture Video]()
 
 ## Code Example
 
-This week's code example is available [here](code-example)
+Link to the code example: [Code Example](code-example)
 
 ---
 
