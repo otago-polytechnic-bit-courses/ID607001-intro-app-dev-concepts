@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](<../week-04-content-negotiation-relationships-n-layer-architecture)
+Link to the previous class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
 
 ---
 
@@ -836,4 +836,4 @@ Here is are example requests in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 06](<../week-06-security-authentication-rbac-api-testing)
+Link to the next class: [Week 06](../week-06-security-authentication-rbac-api-testing)

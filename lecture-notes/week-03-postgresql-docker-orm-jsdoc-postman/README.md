@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 02](<../week-02-apis-express-development-tools)
+Link to the previous class: [Week 02](../week-02-apis-express-development-tools)
 
 ---
 
@@ -784,4 +784,4 @@ Here are example requests in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 04](<../week-04-content-negotiation-relationships-n-layer-architecture)
+Link to the next class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)

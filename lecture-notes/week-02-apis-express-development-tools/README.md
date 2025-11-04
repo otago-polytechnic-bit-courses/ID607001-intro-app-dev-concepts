@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 01](<../week-01-github-javascript)
+Link to the previous class: [Week 01](../week-01-github-javascript)
 
 ---
 
@@ -840,4 +840,4 @@ In the `routes` directory, create a file named `quiz.js`. In the `quiz.js` file,
 
 ## Next Class
 
-Link to the next class: [Week 03](<../week-03-postgresql-docker-orm-jsdoc-postman)
+Link to the next class: [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman)

@@ -1254,4 +1254,4 @@ Here is an example request in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 07](<../week-07-sveltekit-js-ui-design)
+Link to the next class: [Week 07](../week-07-sveltekit-js-ui-design)

@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](<../week-03-postgresql-docker-orm-jsdoc-postman)
+Link to the previous class: [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman)
 
 ---
 
@@ -998,4 +998,4 @@ To replicate this, in **Postman**, send the following:
 
 ## Next Class
 
-Link to the next class: [Week 05](<../week-05-validation-seeding-query-parameters-deployment)
+Link to the next class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
