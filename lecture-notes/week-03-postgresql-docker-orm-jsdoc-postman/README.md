@@ -788,6 +788,8 @@ Here are example requests in **Postman**:
 
 <ADD IMAGES HERE>
 
+---
+
 ## Next Class
 
 Link to the next class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
