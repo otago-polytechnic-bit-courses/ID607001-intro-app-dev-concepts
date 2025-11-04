@@ -2,13 +2,19 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 09](<../week-09-api-integration-2-deployment)
+Link to the previous class: [Week 09](../week-09-api-integration-2-deployment)
 
 ---
 
 ## Lecture Video
 
 Link to the lecture video: [Week 10 Lecture Video]()
+
+---
+
+## Code Example
+
+This week's code example is available [here](code-example)
 
 ---
 

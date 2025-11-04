@@ -2,13 +2,19 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](<../week-08-content-delivery-networks-api-integration-1)
+Link to the previous class: [Week 08](../week-08-content-delivery-networks-api-integration-1)
 
 ---
 
 ## Lecture Video
 
 Link to the lecture video: [Week 09 Lecture Video]()
+
+---
+
+## Code Example
+
+This week's code example is available [here](code-example)
 
 ---
 
@@ -583,4 +589,4 @@ Currently, you have to use the **Vercel CLI** to deploy your **SvelteKit** appli
 
 ## Next Class
 
-Link to the next class: [Week 10](<../week-10-end-to-end-testing)
+Link to the next class: [Week 10](../week-10-end-to-end-testing)
