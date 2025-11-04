@@ -362,7 +362,7 @@ Create a new request and name it **Create a department**. Select the **POST** me
 
 Click on the **Send** button to send the request.
 
-![](<../resources (ignore)/img/week-4/00-week-4.png>)
+![](../resources (ignore)/img/week-4/00-week-4.png)
 
 > **Note:** Make sure you have at least one institution.
 

@@ -634,19 +634,19 @@ To get started, navigate to <https://identity.getpostman.com/login> and sign in 
 
 Once you have setup your workspace, you can create a new collection. A collection is a group of requests. You can create a new collection by clicking on the **Create Collection** button in the left sidebar. Name the collection appropriately.
 
-![](<../resources (ignore)/img/week-3/00-week-3.png>)
+![](../resources (ignore)/img/week-3/00-week-3.png)
 
 Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection.
 
-![](<../resources (ignore)/img/week-3/01-week-3.png>)
+![](../resources (ignore)/img/week-3/01-week-3.png)
 
 Name the request **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. You should see the response in the response section. If you have not created any institutions, you will see an empty array. Click on the **Save** button to save the request in the collection.
 
-![](<../resources (ignore)/img/week-3/02-week-3.png>)
+![](../resources (ignore)/img/week-3/02-week-3.png)
 
 To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**.
 
-![](<../resources (ignore)/img/week-3/03-week-3.png>)
+![](../resources (ignore)/img/week-3/03-week-3.png)
 
 Name the request **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
 
@@ -660,7 +660,7 @@ Name the request **Create an institution**. Select the **POST** method from the 
 
 Click on the **Send** button to send the request. You should see a response with a success message and the newly created institution in the response body. Again, click on the **Save** button to save the request in the collection.
 
-![](<../resources (ignore)/img/week-3/04-week-3.png>)
+![](../resources (ignore)/img/week-3/04-week-3.png)
 
 ---
 
@@ -760,7 +760,7 @@ After updating the schema:
 
 Here is an example request in **Postman**:
 
-![](<../resources (ignore)/img/week-3/exercises-00-week-3.png>)
+![](../resources (ignore)/img/week-3/exercises-00-week-3.png)
 
 ---
 
