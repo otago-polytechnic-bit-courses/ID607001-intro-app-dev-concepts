@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
+Link to the previous class: [Week 04](<../week-04-content-negotiation-relationships-n-layer-architecture)
 
 ---
 
@@ -277,11 +277,11 @@ Create a new request and name it **Create an institution - validation**. Select 
 
 Click on the **Send** button to send the request.
 
-![](../resources (ignore)/img/week-5/00-week-5.png)
+![](<../resources (ignore)/img/week-5/00-week-5.png>)
 
 Here is an example for the **PUT** method.
 
-![](../resources (ignore)/img/week-5/01-week-5.png)
+![](<../resources (ignore)/img/week-5/01-week-5.png>)
 
 ---
 
@@ -567,19 +567,19 @@ const getInstitutions = async (req, res) => {
 
 Here is an example of filtering an `institution` by `name`.
 
-![](../resources (ignore)/img/week-5/02-week-5.png)
+![](<../resources (ignore)/img/week-5/02-week-5.png>)
 
 Here is an example of sorting by `country` in `desc` order.
 
-![](../resources (ignore)/img/week-5/03-week-5.png)
+![](<../resources (ignore)/img/week-5/03-week-5.png>)
 
 Here is an example of sorting by `country` in `asc` order.
 
-![](../resources (ignore)/img/week-5/04-week-5.png)
+![](<../resources (ignore)/img/week-5/04-week-5.png>)
 
 Here is an example of paging by `pageSize`.
 
-![](../resources (ignore)/img/week-5/05-week-5.png)
+![](<../resources (ignore)/img/week-5/05-week-5.png>)
 
 ---
 
@@ -712,7 +712,7 @@ app.use((req, res) => {
 
 Here is an example request in **Postman**:
 
-![](../resources (ignore)/img/week-5/exercises-00-week-5.png)
+![](<../resources (ignore)/img/week-5/exercises-00-week-5.png>)
 
 ---
 
@@ -836,4 +836,4 @@ Here is are example requests in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 06](../week-06-security-authentication-rbac-api-testing)
+Link to the next class: [Week 06](<../week-06-security-authentication-rbac-api-testing)

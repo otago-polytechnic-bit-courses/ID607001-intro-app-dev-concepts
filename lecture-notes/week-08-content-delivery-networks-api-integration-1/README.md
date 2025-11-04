@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 07](../week-07-sveltekit-js-ui-design)
+Link to the previous class: [Week 07](<../week-07-sveltekit-js-ui-design)
 
 ---
 
@@ -450,7 +450,7 @@ What are the key parts of the code above?
 - `create: async ({ request }) => { ... }`: An action that handles the form submission for creating a new institution.
 - `const formData = await request.formData();`: Retrieves the form data submitted by the user.
 - `const institution = { ... };`: Creates an object using the form data.
-- `const res = await fetch(..., { ... });`: Sends a **POST** request to `/api/institutions`.
+- `const res = await fetch(<..., { ... });`: Sends a **POST** request to `/api/institutions`.
 - `if (!res.ok) { return fail(409, { ... }); }`: Checks if the response is not OK and returns a failure response.
 - `return { success: true, ... };`: Returns a success response.
 
@@ -663,4 +663,4 @@ Here is the expected output:
 
 ## Next Class
 
-Link to the next class: [Week 09](../week-09-api-integration-2-deployment)
+Link to the next class: [Week 09](<../week-09-api-integration-2-deployment)

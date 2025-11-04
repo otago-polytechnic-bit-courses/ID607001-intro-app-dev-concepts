@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
+Link to the previous class: [Week 05](<../week-05-validation-seeding-query-parameters-deployment)
 
 ---
 
@@ -453,31 +453,31 @@ router.post(
 
 Here is an example of creating an institution with no token.
 
-![](../resources (ignore)/img/week-6/00-week-6.png)
+![](<../resources (ignore)/img/week-6/00-week-6.png>)
 
 Here is an example of registering an admin user.
 
-![](../resources (ignore)/img/week-6/01-week-6.png)
+![](<../resources (ignore)/img/week-6/01-week-6.png>)
 
 Here is an example of registering a normal user.
 
-![](../resources (ignore)/img/week-6/02-week-6.png)
+![](<../resources (ignore)/img/week-6/02-week-6.png>)
 
 Here is an example of logging in as an admin user. Make sure you copy the token from the response.
 
-![](../resources (ignore)/img/week-6/03-week-6.png)
+![](<../resources (ignore)/img/week-6/03-week-6.png>)
 
 Here is an example of creating an institution as an admin user.
 
-![](../resources (ignore)/img/week-6/04-week-6.png)
+![](<../resources (ignore)/img/week-6/04-week-6.png>)
 
 Here is an example of logging in as a normal user. Make sure you copy the token from the response.
 
-![](../resources (ignore)/img/week-6/05-week-6.png)
+![](<../resources (ignore)/img/week-6/05-week-6.png>)
 
 Here is an example of creating an institution as a normal user. You should get a `403 Forbidden` status code because the normal user does not have the required role to create an institution.
 
-![](../resources (ignore)/img/week-6/06-week-6.png)
+![](<../resources (ignore)/img/week-6/06-week-6.png>)
 
 ---
 
@@ -552,7 +552,7 @@ router.get("/:id", rateLimiter, getInstitution);
 
 Here is an example of exceeding the rate limit when trying to get all institutions. After 5 requests in 15 minutes, you should get a `429 Too Many Requests` status code.
 
-![](../resources (ignore)/img/week-6/07-week-6.png)
+![](<../resources (ignore)/img/week-6/07-week-6.png>)
 
 ---
 
@@ -1254,4 +1254,4 @@ Here is an example request in **Postman**:
 
 ## Next Class
 
-Link to the next class: [Week 07](h../week-07-sveltekit-js-ui-design)
+Link to the next class: [Week 07](<../week-07-sveltekit-js-ui-design)

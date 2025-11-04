@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman)
+Link to the previous class: [Week 03](<../week-03-postgresql-docker-orm-jsdoc-postman)
 
 ---
 
@@ -362,7 +362,7 @@ Create a new request and name it **Create a department**. Select the **POST** me
 
 Click on the **Send** button to send the request.
 
-![](../resources (ignore)/img/week-4/00-week-4.png)
+![](<../resources (ignore)/img/week-4/00-week-4.png>)
 
 > **Note:** Make sure you have at least one institution.
 
@@ -696,7 +696,7 @@ Create the necessary **controller**, **route** and **repository** files for the 
 
 Here is an example output in **Postman**:
 
-![](../resources (ignore)/img/week-4/exercises-01-week-4.png)
+![](<../resources (ignore)/img/week-4/exercises-01-week-4.png>)
 
 ---
 
@@ -848,7 +848,7 @@ Apply similar changes to the `Department` **controller** and **repository** file
 
 Here is the expected output in **Postman**:
 
-![](../resources (ignore)/img/week-4/exercises-02-week-4.png)
+![](<../resources (ignore)/img/week-4/exercises-02-week-4.png>)
 
 To replicate this, in **Postman**, send the following:
 
@@ -998,4 +998,4 @@ To replicate this, in **Postman**, send the following:
 
 ## Next Class
 
-Link to the next class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
+Link to the next class: [Week 05](<../week-05-validation-seeding-query-parameters-deployment)

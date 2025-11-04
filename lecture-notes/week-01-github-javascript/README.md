@@ -1035,4 +1035,4 @@ const checkTicTacToeWinner = (board) => {
 
 ## Next Class
 
-Link to the next class: [Week 02](../week-02-apis-express-development-tools)
+Link to the next class: [Week 02](<../week-02-apis-express-development-tools)
