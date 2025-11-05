@@ -12,8 +12,7 @@
     "env:copy": "cp .env.example .env || copy .env.example .env",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:reset": "npx prisma migrate reset --force",
-    "prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js",
-    "prisma:seed-institutions-github": "node ./prisma/seeding/seed-institutions-github.js"
+    "prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js"
   },
   "keywords": [],
   "author": "",
