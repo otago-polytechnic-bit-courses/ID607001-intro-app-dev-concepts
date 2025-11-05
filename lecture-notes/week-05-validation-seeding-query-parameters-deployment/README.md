@@ -597,6 +597,8 @@ Here is an example of paging by `pageSize`.
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
 
+Sign up for a **Render** account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your **GitHub** account to sign up.
+
 ---
 
 ### PostgreSQL Setup
@@ -617,13 +619,9 @@ Here is an example of paging by `pageSize`.
 
 ### Web Service Setup
 
-1. Sign up for a **Render** account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your **GitHub** account to sign up.
+1. Click the **New +** button, then click the **Web Service** link.
 
-2. Click the **New +** button, then click the **Web Service** link.
-
-<ADD IMAGE HERE>
-
-3. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+2. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 <ADD IMAGE HERE>
 
