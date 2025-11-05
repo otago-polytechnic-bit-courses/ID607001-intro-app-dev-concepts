@@ -603,19 +603,15 @@ Here is an example of paging by `pageSize`.
 
 1. Click the **New +** button, then click the **Postgres** link.
 
-<ADD IMAGE HERE>
+![](<../../resources (ignore)/img/week-5/06-week-5.png>)
 
-2. Name your **New PostgreSQL**. For example, **id607001-db-prod**.
+2. Name your **New PostgreSQL**. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
 
-<ADD IMAGE HERE>
+![](<../../resources (ignore)/img/week-5/07-week-5.jpeg>)
 
-3. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+4. Copy the **External Database URL**.
 
-<ADD IMAGE HERE>
-
-4. Click on the **Connect** button and the **External** tab. Copy the **External Database URL**.
-
-<ADD IMAGE HERE>
+![](<../../resources (ignore)/img/week-5/08-week-5.jpeg>)
 
 ---
 
