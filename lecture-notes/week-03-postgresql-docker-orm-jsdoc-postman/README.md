@@ -774,6 +774,8 @@ Here is an example request in **Postman**:
 
 **Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
 
+<ADD IMAGES HERE>
+
 > **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
 
 ---
