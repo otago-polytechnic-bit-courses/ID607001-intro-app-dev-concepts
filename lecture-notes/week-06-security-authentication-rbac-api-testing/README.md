@@ -935,7 +935,7 @@ Refactor the `controllers/auth.js` file prevent users from registering with the 
 
 ---
 
-### Task 6 (Intermediate)
+### Task 6 (Medium)
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
@@ -948,7 +948,7 @@ router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 
 ---
 
-### Task 7 (Intermediate)
+### Task 7 (Medium)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1013,7 +1013,7 @@ Here is the expected output:
 
 ---
 
-### Task 7 (Intermediate)
+### Task 7 (Medium)
 
 Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
 

@@ -780,7 +780,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 4 (Intermediate)
+### Task 4 (Medium)
 
 Error handling is an important part of any application. It is important to handle errors gracefully and provide meaningful error messages to the user.
 

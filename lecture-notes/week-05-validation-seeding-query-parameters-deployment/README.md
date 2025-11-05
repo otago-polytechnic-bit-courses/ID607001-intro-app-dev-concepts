@@ -691,7 +691,7 @@ In the `week-05-security-considerations.md` file, analyse the security implicati
 
 ---
 
-### Task 3 (Intermediate)
+### Task 3 (Medium)
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
@@ -719,19 +719,17 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 4 (Intermediate)
+### Task 4 (Medium)
 
-Create an endpoint that displays all available endpoints in your **REST API**. You can either hardcode a list of endpoints or use a package like `express-list-endpoints` to generate the list automatically.
+Create an endpoint that displays all endpoints in your **REST API**.
 
 Here is an example request in **Postman**:
 
-<ADD IMAGE HERE>
-
-> **Resource:** <https://www.npmjs.com/package/express-list-endpoints>
+![](<../../resources (ignore)/img/week-5/exercises-01-week-5.png>)
 
 ---
 
-### Task 5 (Intermediate)
+### Task 5 (Medium)
 
 Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
 
@@ -745,7 +743,7 @@ Use the validation **middleware** in the appropriate **routes** to validate inco
 
 ---
 
-### Task 6 (Intermediate)
+### Task 6 (Medium)
 
 Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
 
@@ -756,7 +754,7 @@ Implement **scripts** to seed the `Department`, `Course` and `User` **resources*
 
 ---
 
-### Task 7 (Intermediate)
+### Task 7 (Medium)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
