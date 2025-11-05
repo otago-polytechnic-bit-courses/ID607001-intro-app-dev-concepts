@@ -27,6 +27,30 @@ app.use(`${BASE_URL}/institutions`, institutionRoutes);
 app.use(`${BASE_URL}/departments`, departmentRoutes);
 app.use(`${BASE_URL}/courses`, courseRoutes);
 app.use(`${BASE_URL}/users`, userRoutes);
+app.get(`${BASE_URL}/endpoints`, (req, res) => {
+  res.json({
+    endpoints: [
+      // Institutions
+      { method: "GET", path: "/api/institutions", description: "List all institutions" },
+      { method: "GET", path: "/api/institutions/:id", description: "Get institution by ID" },
+      { method: "POST", path: "/api/institutions", description: "Create institution" },
+      { method: "PUT", path: "/api/institutions/:id", description: "Update institution" },
+      { method: "DELETE", path: "/api/institutions/:id", description: "Delete institution" },
+      
+      // Departments
+      { method: "GET", path: "/api/departments", description: "List all departments" },
+      { method: "GET", path: "/api/departments/:id", description: "Get department by ID" },
+      { method: "POST", path: "/api/departments", description: "Create department" },
+      { method: "PUT", path: "/api/departments/:id", description: "Update department" },
+      { method: "DELETE", path: "/api/departments/:id", description: "Delete department" },
+    ],
+  });
+});
+app.use((req, res) => {
+  res.status(404).json({
+    message: `${req.method} ${req.originalUrl} not found` 
+  });
+});
 
 app.listen(PORT, () => {
   console.log(
