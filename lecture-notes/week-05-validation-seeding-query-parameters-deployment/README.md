@@ -30,7 +30,7 @@ Setup up your development environment, i.e., **Docker**, **environment variables
 
 ## Setup Script
 
-Setting up your development environment can be time-consuming. To make it easier, I have provided a setup script called `setup.sh` in the **lecture-notes** directory.
+Setting up your development environment can be time-consuming. To make it easier, a script called `application-setup.sh` has been provided to automate the setup process.
 
 The script will:
 
@@ -44,17 +44,19 @@ The script will:
 8. Install **Node.js** dependencies
 9. Run **Prisma** migrations
 
-Copy the `setup.sh` script to your repository's root directory. Open a terminal in **Visual Studio Code**, read the script to understand what it does and run the following command to give execute permissions to the script.
+Copy the `application-setup.sh` script to your repository's root directory. Open a terminal in **Visual Studio Code**, read the script to understand what it does and run the following command to give execute permissions to the script.
 
 ```bash
-chmod +x setup.sh
+chmod +x application-setup.sh
 ```
 
 Run the script by executing the following command.
 
 ```bash
-./setup.sh
+./application-setup.sh
 ```
+
+<ADD GIF HERE>
 
 ---
 
@@ -113,7 +115,7 @@ const validatePostInstitution = (req, res, next) => {
     { name, region, country },
     {
       abortEarly: false,
-      convert: false, // Disable type conversion
+      convert: false, // Disable type conversion, e.g., "123" to 123
     }
   );
 
@@ -269,6 +271,8 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
+> **Note:** The order of the middleware is important. The validation middleware must be placed before the controller function to ensure that the data is validated before it is processed.
+
 ---
 
 ### Postman Example
@@ -293,7 +297,7 @@ Here is an example for the **PUT** method.
 
 ## Seeding
 
-**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. For this class, we will focus on using the **Prisma Client** to seed the database with data.
+**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. Here, we will focus on using the **Prisma Client** to seed the database with data.
 
 ---
 
@@ -359,7 +363,7 @@ export const seedInstitutions = async () => {
     }
 
     if (validatedData.length > 0) {
-      const result = await prisma.institution.createMany({
+      await prisma.institution.createMany({
         data: validatedData,
         skipDuplicates: true,
       });
@@ -409,12 +413,6 @@ To run the seed script, open a terminal and run the following command.
 ```bash
 npm run prisma:seed-institutions
 ```
-
----
-
-## Query Parameters
-
-**Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
 ---
 
@@ -682,9 +680,13 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-Create an endpoint that displays all available endpoints in your **REST API**.
+Create an endpoint that displays all available endpoints in your **REST API**. You can either manually create a list of endpoints or use a package like `express-list-endpoints` to generate the list automatically.
 
 Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
+> **Resource:** <https://www.npmjs.com/package/express-list-endpoints>
 
 ---
 
@@ -730,7 +732,7 @@ Create validation **middleware** in the `middleware/validation` directory for ea
 
 - `department.js` - validate `name` and `institutionId`
 - `course.js` - validate `name`, `code`, `description` and `departmentId`
-- `user.js` - validate user `firstName`, `lastName` and `emailAddress`
+- `user.js` - validate `firstName`, `lastName` and `emailAddress`
 
 Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
 
@@ -798,6 +800,8 @@ Errors encountered: None
 
 Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
 
+**Hint:** The recommended approach is to create a file, e.g., `index.js` in `prisma/seeding` that imports and runs all seeding scripts sequentially, collects their results, e.g., resource, records created, time taken, errors, and then generates the final report.
+
 ---
 
 ### Task 2
@@ -837,6 +841,8 @@ Here is are example requests in **Postman**:
 ---
 
 ### Task 3
+
+You have seen one way of seeding data.
 
 ---
 
