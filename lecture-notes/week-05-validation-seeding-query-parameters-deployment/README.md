@@ -414,6 +414,19 @@ To run the seed script, open a terminal and run the following command.
 npm run prisma:seed-institutions
 ```
 
+Here is an example output:
+
+```bash
+==========================================
+Seeding report
+==========================================
+Resource: Institutions
+  Time taken: 0.5s
+  Errors encountered:
+    {"errors":[{"message":"name is required","type":"any.required"},{"message":"region is required","type":"any.required"}]}
+==========================================
+```
+
 ---
 
 ## Query Parameters
@@ -674,23 +687,11 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-Create an endpoint that displays all available endpoints in your **REST API**. You can either manually create a list of endpoints or use a package like `express-list-endpoints` to generate the list automatically.
-
-Here is an example request in **Postman**:
-
-<ADD IMAGE HERE>
-
-> **Resource:** <https://www.npmjs.com/package/express-list-endpoints>
-
----
-
-### Task 3 (Easy)
-
 In the `week-05-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**. We will discuss your analysis in the next week.
 
 ---
 
-### Task 4 (Intermediate)
+### Task 3 (Intermediate)
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
@@ -715,6 +716,18 @@ app.use((req, res) => {
 Here is an example request in **Postman**:
 
 ![](<../../resources (ignore)/img/week-5/exercises-00-week-5.png>)
+
+---
+
+### Task 4 (Intermediate)
+
+Create an endpoint that displays all available endpoints in your **REST API**. You can either hardcode a list of endpoints or use a package like `express-list-endpoints` to generate the list automatically.
+
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
+> **Resource:** <https://www.npmjs.com/package/express-list-endpoints>
 
 ---
 
