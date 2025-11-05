@@ -792,6 +792,72 @@ Here are example requests in **Postman**:
 
 ---
 
+### Task 5
+
+In your repository's **README.md** file, document the steps to set up and run the application. Here is an example structure for the **README.md** file:
+
+# Project Title
+
+## Description
+
+A brief description of the project.
+
+## Prerequisites
+
+- Node.js
+- Docker
+
+## Setup Instructions
+
+1. Clone the repository:
+```bash
+git clone <repository-url>
+```
+2. Navigate to the project directory:
+```bash
+cd <project-directory>
+```
+3. Install the dependencies:
+```bash
+npm install
+```
+4. Copy the example environment variables file:
+```bash
+npm run env:copy
+```
+5. Start the **PostgreSQL** **Docker** container:
+```bash
+npm run docker:run:dev
+```
+6. Create and apply the database migrations:
+```bash
+npm run prisma:migrate
+```
+
+## Running the Application
+
+To run the application, use the following command:
+
+```bash
+npm run dev
+```
+
+Navigate to `http://localhost:3000` in your browser.
+
+## API Endpoints
+
+```markdown
+Institution endpoints:
+
+- POST /api/institutions - Create a new institution
+- GET /api/institutions - Get all institutions
+- GET /api/institutions/:id - Get an institution by ID
+- PUT /api/institutions/:id - Update an institution by ID
+- DELETE /api/institutions/:id - Delete an institution by ID
+```
+
+---
+
 ## Next Class
 
 Link to the next class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
