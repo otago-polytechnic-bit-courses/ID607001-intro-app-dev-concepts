@@ -1,4 +1,4 @@
-1. What are the potential benefits of exposing an endpoints list, e.g., `/api/endpoints`?
+1. What are the potential benefits of exposing a list of available endpoints, e.g., `/api/endpoints`?
 
 2. What are the security risks of exposing `/api/endpoints` in a production environment?
 

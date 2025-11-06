@@ -685,13 +685,7 @@ Implement the code examples above.
 
 ---
 
-### Task 2 (Easy)
-
-In the `week-05-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**. We will discuss your analysis in the next week.
-
----
-
-### Task 3 (Medium)
+### Task 2 (Medium)
 
 A **catch-all** route is a route that matches any request that does not match any of the other routes.
 
@@ -719,9 +713,9 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 4 (Medium)
+### Task 3 (Medium)
 
-Create an endpoint that displays all endpoints in your **REST API**.
+Create an endpoint that displays a list of available endpoints in your **REST API**.
 
 Here is an example request in **Postman**:
 
@@ -729,7 +723,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 5 (Medium)
+### Task 4 (Medium)
 
 Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
 
@@ -743,7 +737,7 @@ Use the validation **middleware** in the appropriate **routes** to validate inco
 
 ---
 
-### Task 6 (Medium)
+### Task 5 (Medium)
 
 Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
 
@@ -754,7 +748,7 @@ Implement **scripts** to seed the `Department`, `Course` and `User` **resources*
 
 ---
 
-### Task 7 (Medium)
+### Task 6 (Medium)
 
 You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
 
@@ -842,12 +836,6 @@ Here is are example requests in **Postman**:
 **Case sensitivity:**
 
 <ADD IMAGE HERE>
-
----
-
-### Task 3
-
-You have seen one way of seeding data.
 
 ---
 

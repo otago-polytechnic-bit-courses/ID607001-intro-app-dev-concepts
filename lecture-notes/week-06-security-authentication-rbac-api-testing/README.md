@@ -915,7 +915,7 @@ Create five **tests** for the `Course` resource. The **tests** should cover the 
 
 ### Task 3 (Easy)
 
-In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
+In the `week-06-security-considerations.md` file, analyse the security implications of displaying a list of all available endpoints in your **REST API**.
 
 ---
 
@@ -1011,6 +1011,10 @@ Check if `req.body.password` and `req.body.confirmPassword` match. If they do no
 
 > **Note:** You do not need to store `req.body.confirmPassword` in the database.
 
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
 ---
 
 ## Hard Exercises
@@ -1020,6 +1024,8 @@ These following exercises will require you to do some research and problem-solvi
 ---
 
 ### Task 1
+
+Implement...
 
 ---
 
@@ -1245,13 +1251,16 @@ Here is an example request in **Postman**:
 
 ### Task 4
 
+Implement...
 
 ---
 
 ### Task 5
 
+Implement...
+
 ---
 
 ## Next Class
 
-Link to the next class: [Week 07](../week-07-sveltekit-js-ui-design)
+Link to the next class: [Week 07](../week-07-vite-sveltekit-js-api-integration-1)

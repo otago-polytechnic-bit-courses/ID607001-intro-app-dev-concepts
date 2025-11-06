@@ -68,7 +68,7 @@ At the successful completion of this course, learners will be able to:
 | 7/Whitu          | Vite, SvelteKit.js and API Integration 1                            |
 | 8/Waru           | API Integration 2, Deployment and Content Delivery Networks         |
 |                  | Mid Semester Break                                                  |
-| 9/Whitu          | Performance and UI/UX Design                                        |
+| 9/Whitu          | GitHub Actions, Performance and UI/UX Design                        |
 | 10/Tekau         | Tailwind CSS and Shadcn UI                                          |
 | 11/Tekau mā tahi | Component Testing and End-To-End Testing                            |
 | 12/Tekau mā rua  | Assessment Work                                                     |
