@@ -1025,12 +1025,6 @@ These following exercises will require you to do some research and problem-solvi
 
 ### Task 1
 
-Implement...
-
----
-
-### Task 2
-
 Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
 Add two new fields to the `User` **model** in the `schema.prisma` file:
@@ -1138,7 +1132,7 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 3
+### Task 2
 
 Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
 
@@ -1247,19 +1241,7 @@ Here is an example request in **Postman**:
 
 <ADD IMAGE HERE>
 
----
-
-### Task 4
-
-Implement...
-
----
-
-### Task 5
-
-Implement...
-
----
+--- 
 
 ## Next Class
 
