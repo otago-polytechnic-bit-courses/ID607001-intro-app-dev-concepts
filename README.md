@@ -65,17 +65,17 @@ At the successful completion of this course, learners will be able to:
 | 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture         |
 | 5/Rima           | Validation, Seeding, Query Parameters and Deployment                |
 | 6/Ono            | Security, Authentication, Role-Based Access Control and API Testing |
-| 7/Whitu          | SvelteKit.js and UX Design                                          |
-| 8/Waru           | Content Delivery Networks and API Integration 1                     |
+| 7/Whitu          | Vite, SvelteKit.js and API Integration 1                            |
+| 8/Waru           | API Integration 2, Deployment and Content Delivery Networks         |
 |                  | Mid Semester Break                                                  |
-| 9/Whitu          | API Integration 2 and Deployment                                    |
-| 10/Tekau         | End-To-End Testing                                                  |
-| 11/Tekau mā tahi | Assessment Work                                                     |
+| 9/Whitu          | Performance and UI/UX Design                                        |
+| 10/Tekau         | Tailwind CSS and Shadcn UI                                          |
+| 11/Tekau mā tahi | Component Testing and End-To-End Testing                            |
 | 12/Tekau mā rua  | Assessment Work                                                     |
 | 13/Tekau mā toru | Assessment Work                                                     |
 | 14/Tekau mā whā  | Assessment Work                                                     |
 | 15/Tekau mā rima | Assessment Work                                                     |
-| 16/Tekau mā ono  | Catch Up Week                                                       |
+| 16/Tekau mā ono  | Assessment Work                                                     |
 
 ## Resources
 
