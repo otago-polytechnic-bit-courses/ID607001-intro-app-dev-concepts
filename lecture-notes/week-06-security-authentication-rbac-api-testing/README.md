@@ -848,7 +848,7 @@ describe("Department CRUD", () => {
 In the `package.json` file, update the `test` script in the `scripts` block to the following.
 
 ```json
-"test": "mocha tests/**/*.js --recursive --timeout 10000 --exit",
+"test": "mocha tests --recursive --timeout 10000 --exit",
 ```
 
 > **Note:** The `--recursive` flag allows Mocha to run tests in subdirectories, and the `--timeout` flag sets the maximum time for each test to complete. The `--exit` flag ensures that Mocha exits after all tests are done.
@@ -915,27 +915,17 @@ Create five **tests** for the `Course` resource. The **tests** should cover the 
 
 ### Task 3 (Easy)
 
-Create an endpoint that displays all available endpoints in your **REST API**.
-
-Here is an example request in **Postman**:
-
-<ADD IMAGE HERE>
+In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
 
 ---
 
 ### Task 4 (Easy)
 
-In the `week-06-security-considerations.md` file, analyse the security implications of displaying all available endpoints in your **REST API**.
-
----
-
-### Task 5 (Easy)
-
 Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
 
 ---
 
-### Task 6 (Medium)
+### Task 5 (Medium)
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
@@ -948,7 +938,7 @@ router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 
 ---
 
-### Task 7 (Medium)
+### Task 6 (Medium)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1026,6 +1016,10 @@ Check if `req.body.password` and `req.body.confirmPassword` match. If they do no
 ## Hard Exercises
 
 These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+
+---
+
+### Task 1
 
 ---
 
