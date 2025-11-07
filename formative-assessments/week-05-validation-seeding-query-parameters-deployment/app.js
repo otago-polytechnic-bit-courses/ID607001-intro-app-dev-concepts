@@ -10,6 +10,8 @@ import userRoutes from "./routes/user.js";
 
 import isContentTypeApplicationJSON from "./middleware/contentType.js";
 
+import { endpoints } from "./data/endpoints.js";
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -29,26 +31,15 @@ app.use(`${BASE_URL}/courses`, courseRoutes);
 app.use(`${BASE_URL}/users`, userRoutes);
 app.get(`${BASE_URL}/endpoints`, (_, res) => {
   res.json({
-    endpoints: [
-      // Institutions
-      { method: "GET", path: `/${BASE_URL}/institutions`, description: "Get all institutions" },
-      { method: "GET", path: `${BASE_URL}/institutions/:id`, description: "Get an institution by ID" },
-      { method: "POST", path: `${BASE_URL}/institutions`, description: "Create an institution" },
-      { method: "PUT", path: `${BASE_URL}/institutions/:id`, description: "Update an institution" },
-      { method: "DELETE", path: `${BASE_URL}/institutions/:id`, description: "Delete an institution" },
-
-      // Departments
-      { method: "GET", path: `${BASE_URL}/departments`, description: "Get all departments" },
-      { method: "GET", path: `${BASE_URL}/departments/:id`, description: "Get a department by ID" },
-      { method: "POST", path: `${BASE_URL}/departments`, description: "Create a department" },
-      { method: "PUT", path: `${BASE_URL}/departments/:id`, description: "Update a department" },
-      { method: "DELETE", path: `${BASE_URL}/departments/:id`, description: "Delete a department" },
-    ],
+    endpoints,
   });
+});
+app.use(`${BASE_URL}/health`, (req, res) => {
+  
 });
 app.use((req, res) => {
   res.status(404).json({
-    message: `${req.method} ${req.originalUrl} not found` 
+    message: `${req.method} ${req.originalUrl} not found`,
   });
 });
 
