@@ -675,7 +675,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+- Acknowledge what AI tool you have used. In the assessment's repository `README.md` file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
@@ -715,7 +715,7 @@ Here is an example request in **Postman**:
 
 ### Task 3 (Medium)
 
-Create an endpoint that displays a list of available endpoints in your **REST API**.
+Implement an endpoint, e.g., `/api/endpoints`, that displays a list of available endpoints in your **REST API**.
 
 Here is an example request in **Postman**:
 
@@ -836,6 +836,22 @@ Here is are example requests in **Postman**:
 **Case sensitivity:**
 
 <ADD IMAGE HERE>
+
+---
+
+### Task 3
+
+Implement an endpoint, e.g., `/api/health`, that provides a health check for your **REST API**. The health check should verify that application's status, database connectivity and uptime. 
+
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
+---
+
+## README.md File
+
+Update the `README.md` file in your repository to any new endpoints you have created.
 
 ---
 

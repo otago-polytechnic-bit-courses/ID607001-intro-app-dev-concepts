@@ -744,7 +744,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. In the assessment's repository **README.md** file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+- Acknowledge what AI tool you have used. In the assessment's repository `README.md` file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
 
 ---
 
@@ -788,21 +788,11 @@ You can create a new record for the `Institution` model.
 
 ---
 
-### Task 4 (Medium)
+### Task 4 (Easy)
 
-Error handling is an important part of any application. It is important to handle errors gracefully and provide meaningful error messages to the user.
+In your repository's `README.md` file, document the steps to set up and run the application. 
 
-Implement error handling to handle the following scenarios:
-
-Here are example requests in **Postman**:
-
-<ADD IMAGES HERE>
-
----
-
-### Task 5
-
-In your repository's **README.md** file, document the steps to set up and run the application. Here is an example structure for the **README.md** file:
+Here is an example structure for the `README.md` file:
 
 # Project Title
 
