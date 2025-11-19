@@ -167,7 +167,7 @@ The `$state` rune allows you to create a variable that automatically updates the
 <p>Count: {count}</p>
 ```
 
-In `+page.svelte`, add the following code to use the `StateCounter` component:
+In `+page.svelte`, add the following Code to use the `StateCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -210,7 +210,7 @@ The `$effect` rune allows you to run a function whenever a reactive variable cha
 <p>{message}</p>
 ```
 
-In `+page.svelte`, add the following code to use the `EffectCounter` component:
+In `+page.svelte`, add the following Code to use the `EffectCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -256,7 +256,7 @@ The `$props` rune allows you to pass properties to a component. In `PropsCounter
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the following code to use the `PropsCounter` component:
+In `+page.svelte`, add the following Code to use the `PropsCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -306,7 +306,7 @@ The `$derived` rune allows you to create a variable that is derived from other r
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the following code to use the `DerivedCounter` component:
+In `+page.svelte`, add the following Code to use the `DerivedCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->

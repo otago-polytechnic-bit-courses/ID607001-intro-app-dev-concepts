@@ -22,6 +22,12 @@ Link to the code example: [Code Example](code-example)
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-06-security-authentication-rbac-api-testing** from the previous branch.
 
+Here is the command to create a new branch and switch to it.
+
+```bash
+git checkout -b week-06-security-authentication-rbac-api-testing
+```
+
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
@@ -344,7 +350,7 @@ export default app;
 
 ### Institution Router
 
-In the `routes/institution.js` file, add the following code to protect the routes with the `jwtAuth` middleware.
+In the `routes/institution.js` file, add the following Code to protect the routes with the `jwtAuth` middleware.
 
 ```javascript
 // Omitted for brevity
@@ -921,11 +927,25 @@ In the `week-06-security-considerations.md` file, analyse the security implicati
 
 ### Task 4 (Easy)
 
-Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
+Refactor `/api/endpoints` route to be only accessible by users with the `ADMIN` role and if `NODE_ENV` is set to `development`.
+
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE> 
 
 ---
 
-### Task 5 (Medium)
+### Task 5 (Easy)
+
+Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
+
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
+---
+
+### Task 6 (Medium)
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
@@ -936,9 +956,13 @@ router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
 router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
 ```
 
+Here is an example request in **Postman**:
+
+<ADD IMAGE HERE>
+
 ---
 
-### Task 6 (Medium)
+### Task 7 (Medium)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1003,7 +1027,7 @@ Here is the expected output:
 
 ---
 
-### Task 7 (Medium)
+### Task 8 (Medium)
 
 Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
 
@@ -1251,4 +1275,4 @@ Update the `README.md` file in your repository to any new endpoints you have cre
 
 ## Next Class
 
-Link to the next class: [Week 07](../week-07-vite-sveltekit-js-api-integration-1)
+Link to the next class: [Week 07](../week-07-javascript-2-vite-sveltekit-js-api-integration-1)

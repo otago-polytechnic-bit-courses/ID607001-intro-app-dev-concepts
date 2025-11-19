@@ -59,17 +59,17 @@ At the successful completion of this course, learners will be able to:
 
 | Week             | Topics                                                              |
 | ---------------- | ------------------------------------------------------------------- |
-| 1/Tahi           | GitHub and JavaScript                                               |
+| 1/Tahi           | GitHub, Markdown and JavaScript 1                                   |
 | 2/Rua            | APIs, Express and Development Tools                                 |
 | 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                          |
 | 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture         |
 | 5/Rima           | Validation, Seeding, Query Parameters and Deployment                |
 | 6/Ono            | Security, Authentication, Role-Based Access Control and API Testing |
-| 7/Whitu          | Vite, SvelteKit.js and API Integration 1                            |
-| 8/Waru           | API Integration 2, Deployment and Content Delivery Networks         |
+| 7/Whitu          | JavaScript 2                                                        |
+| 8/Waru           | Vite, SvelteKit.js, API Integration 1 and Deployment                |
 |                  | Mid Semester Break                                                  |
-| 9/Whitu          | GitHub Actions, Performance and UI/UX Design                        |
-| 10/Tekau         | Tailwind CSS and Shadcn UI                                          |
+| 9/Whitu          | API Integration 2, Content Delivery Networks and CSS Frameworks     |
+| 10/Tekau         | GitHub Actions, Performance and UI/UX Design                        |
 | 11/Tekau mā tahi | Component Testing and End-To-End Testing                            |
 | 12/Tekau mā rua  | Assessment Work                                                     |
 | 13/Tekau mā toru | Assessment Work                                                     |

@@ -494,7 +494,7 @@ router.get("/languages", getFunctionExample2);
 export default router;
 ```
 
-In the `app.js` file, replace the existing code with the following code to use the `index` routes module.
+In the `app.js` file, replace the existing code with the following Code to use the `index` routes module.
 
 ```javascript
 // Import the Express, CORS and Compression modules
@@ -805,36 +805,6 @@ To run **Prettier** on staged files, use the following command in your terminal.
 ```bash
 npm run format
 ```
-
----
-
-## Hard Exercises
-
-These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Practical** assessment.
-
----
-
-### Task 1
-
-In the `controllers` directory, create a file named `quiz.js`. In the `quiz.js` file, create two functions called `getCategories` and `getQuiz`. The `getCategories` function should return a list of quiz categories and the `getQuiz` function should return a quiz based on the category selected. You will fetch the data from the [Open Trivia Database API](https://opentdb.com/api_config.php).
-
-Here is an example of how the `quiz.js` file should look like.
-
-```javascript
-import fetch from "node-fetch";
-
-const getCategories = async (req, res) => {
-  // Write your code here
-};
-
-const getQuiz = async (req, res) => {
-  // Write your code here
-};
-
-export { getCategories, getQuiz };
-```
-
-In the `routes` directory, create a file named `quiz.js`. In the `quiz.js` file, create two routes called `/categories` and `/quiz`. The `/categories` route should call the `getCategories` function and the `/quiz` route should call the `getQuiz` function.
 
 ---
 

@@ -8,7 +8,7 @@ Link to the lecture video: [Week 01 Lecture Video]()
 
 ## GitHub
 
-This course will use **GitHub** and **GitHub Classroom** to manage our development. Begin by clicking this link <https://classroom.github.com/a/aXgtaeo6>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.
+This course will use **GitHub** to manage our development. Begin by clicking this link <https://classroom.github.com/a/aXgtaeo6>. You will be prompted to accept an assignment. Click on the **Accept this assignment** button. **GitHub Classroom** will create a new repository.
 
 > **Note:** You will use this repository for non-assessed work.
 
@@ -94,31 +94,31 @@ There are many other operators in **JavaScript**, but we will only be concerned 
 ```javascript
 // if statement
 if (condition) {
-  // code to execute if condition is true
+  // Code to execute if condition is true
 }
 
 // if...else statement
 if (condition) {
-  // code to execute if condition is true
+  // Code to execute if condition is true
 } else {
-  // code to execute if condition is false
+  // Code to execute if condition is false
 }
 
-const x = condition ?
-// code to execute if condition is true
-:
-// code to execute if condition is false;
+const x = condition ? // The question mark indicates the start of the ternary operator
+// Code to execute if condition is true
+: // The colon separates the two expressions
+// Code to execute if condition is false;
 
 // switch statement
 switch (expression) {
   case value1:
-    // code to execute if expression is equal to value1
+    // Code to execute if expression is equal to value1
     break;
   case value2:
-    // code to execute if expression is equal to value2
+    // Code to execute if expression is equal to value2
     break;
   default:
-  // code to execute if expression is not equal to any of the values
+  // Code to execute if expression is not equal to any of the values
 }
 ```
 
@@ -140,32 +140,32 @@ switch (expression) {
 ```javascript
 // for loop
 for (let i = 0; i < 10; i++) {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 }
 
 // while loop
 while (condition) {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 }
 
 // do...while loop
 do {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 } while (condition);
 
 // for...in loop
 for (let key in object) {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 }
 
 // for...of loop
 for (let element of array) {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 }
 
 // forEach() method
 array.forEach(function (element) {
-  // code to execute repeatedly
+  // Code to execute repeatedly
 });
 ```
 

@@ -22,6 +22,12 @@ Link to the code example: [Code Example](code-example)
 
 Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-n-layer-architecture** from the previous branch.
 
+Here is the command to create a new branch and switch to it.
+
+```bash
+git checkout -b week-04-content-negotiation-relationships-n-layer-architecture
+```
+
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
@@ -866,7 +872,7 @@ To replicate this, in **Postman**, send the following:
 
 ### Task 6 (Medium)
 
-You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+You notice there is a lot of code duplication. Refactor the Code to reduce the duplication.
 
 ---
 
