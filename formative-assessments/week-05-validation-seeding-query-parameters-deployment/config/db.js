@@ -21,7 +21,7 @@ export const checkDatabaseHealth = async () => {
     await pool.query("SELECT 1");
     return { connected: true };
   } catch (err) {
-    return { connected: false, error: err.message };
+    return { connected: false };
   }
 }
 

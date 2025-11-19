@@ -12,6 +12,8 @@ import isContentTypeApplicationJSON from "./middleware/contentType.js";
 
 import { endpoints } from "./data/endpoints.js";
 
+import { connectDatabase, checkDatabaseHealth } from "./config/db.js";
+
 const app = express();
 
 const PORT = process.env.PORT || 3000;
@@ -29,13 +31,19 @@ app.use(`${BASE_URL}/institutions`, institutionRoutes);
 app.use(`${BASE_URL}/departments`, departmentRoutes);
 app.use(`${BASE_URL}/courses`, courseRoutes);
 app.use(`${BASE_URL}/users`, userRoutes);
-app.get(`${BASE_URL}/endpoints`, (_, res) => {
-  res.json({
-    endpoints,
+if (process.env.NODE_ENV === "development") {
+  app.get(`${BASE_URL}/endpoints`, (_, res) => {
+    res.json({
+      endpoints,
+    });
   });
-});
-app.use(`${BASE_URL}/health`, (req, res) => {
-  
+}
+app.use(`${BASE_URL}/health`, async (req, res) => {
+  const dbHealth = await checkDatabaseHealth();
+  res.json({
+    connected: dbHealth.connected,
+    message: (dbHealth.connected && "Database connection successful") || "Database connection unsuccessful",
+  });
 });
 app.use((req, res) => {
   res.status(404).json({
