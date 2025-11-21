@@ -299,7 +299,20 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
 - Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. In the assessment's repository `README.md` file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
+- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+
+Here is an example **JSDoc** comment:
+
+```js
+/**
+ * @fileoverview Brief description of what this file does
+ * @ai-assisted This file was developed with assistance from [AI Tool Name]
+ * @prompts
+ * - "Your first prompt here"
+ * - "Your second prompt here"
+ * @usage Describe how you used the AI responses to help you with your work
+ */
+```
 
 ---
 
