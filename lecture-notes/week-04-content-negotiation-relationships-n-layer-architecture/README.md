@@ -20,7 +20,7 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your **id607001-s1-26-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-n-layer-architecture** from the previous branch.
+Open your repository in **Visual Studio Code**. Create a new branch called **week-04-content-negotiation-relationships-n-layer-architecture** from the previous branch.
 
 Here is the command to create a new branch and switch to it.
 
