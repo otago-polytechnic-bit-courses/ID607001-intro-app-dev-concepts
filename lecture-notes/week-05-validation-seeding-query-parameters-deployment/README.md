@@ -640,7 +640,7 @@ Sign up for a **Render** account at [https://dashboard.render.com/register](http
 
 1. Click the **New +** button, then click the **Web Service** link.
 
-2. Click the **Git Provider** option. Connect to your **id607001-s1-26-your GitHub username** repository. You may need to authorise **Render** access to your **GitHub** repositories.
+2. Click the **Git Provider** option. Connect to your repository. You may need to authorise **Render** access to your **GitHub** repositories.
 
 <ADD IMAGE HERE>
 
