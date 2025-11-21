@@ -370,7 +370,7 @@ router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 
 ## Role-Based Access Control (RBAC)
 
-**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN` and `NORMAL` each with different permissions.
+**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `STAFF` and `STUDENT` each with different permissions.
 
 ---
 
@@ -380,8 +380,9 @@ In the `schema.prisma` file, add the following enum:
 
 ```js
 enum Role {
-  ADMIN
-  NORMAL
+  ADMIN // Administrator with full access
+  STAFF // Staff member with limited access
+  STUDENT // Student with restricted access
 }
 ```
 
@@ -394,7 +395,7 @@ model User {
   lastName         String
   emailAddress     String        @unique
   password         String
-  role             Role          @default(NORMAL)
+  role             Role          @default(STUDENT)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }
@@ -465,31 +466,31 @@ router.post(
 
 Here is an example of creating an institution with no token.
 
-![](<../../resources (ignore)/img/week-6/00-week-6.png>)
+<ADD IMAGE HERE>
 
 Here is an example of registering an admin user.
 
-![](<../../resources (ignore)/img/week-6/01-week-6.png>)
+<ADD IMAGE HERE>
 
-Here is an example of registering a normal user.
+Here is an example of registering a student user.
 
-![](<../../resources (ignore)/img/week-6/02-week-6.png>)
+<ADD IMAGE HERE>
 
 Here is an example of logging in as an admin user. Make sure you copy the token from the response.
 
-![](<../../resources (ignore)/img/week-6/03-week-6.png>)
+<ADD IMAGE HERE>
 
 Here is an example of creating an institution as an admin user.
 
-![](<../../resources (ignore)/img/week-6/04-week-6.png>)
+<ADD IMAGE HERE>
 
 Here is an example of logging in as a normal user. Make sure you copy the token from the response.
 
-![](<../../resources (ignore)/img/week-6/05-week-6.png>)
+<ADD IMAGE HERE>
+  
+Here is an example of creating an institution as a student user. You should get a `403 Forbidden` status code because the student user does not have the required role to create an institution.
 
-Here is an example of creating an institution as a normal user. You should get a `403 Forbidden` status code because the normal user does not have the required role to create an institution.
-
-![](<../../resources (ignore)/img/week-6/06-week-6.png>)
+<ADD IMAGE HERE>
 
 ---
 
@@ -931,13 +932,13 @@ Refactor `/api/endpoints` route to be only accessible by users with the `ADMIN` 
 
 Here is an example request in **Postman**:
 
-<ADD IMAGE HERE> 
+<ADD IMAGE HERE>
 
 ---
 
 ### Task 5 (Easy)
 
-Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role. 
+Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role.
 
 Here is an example request in **Postman**:
 
@@ -962,7 +963,33 @@ Here is an example request in **Postman**:
 
 ---
 
-### Task 7 (Medium)
+### Task 7 (Easy)
+
+Implement the following permissions for each resource:
+
+| Resource    | Action     | Admin | Staff | Student |
+| ----------- | ---------- | ----- | ----- | ------- |
+| Institution | View       | Yes   | Yes   | Yes     |
+| Institution | Create     | Yes   | Yes   | No      |
+| Institution | Update     | Yes   | Yes   | No      |
+| Institution | Delete     | Yes   | No    | No      |
+| Department  | View       | Yes   | Yes   | Yes     |
+| Department  | Create     | Yes   | Yes   | No      |
+| Department  | Update     | Yes   | Yes   | No      |
+| Department  | Delete     | Yes   | No    | No      |
+| Course      | View       | Yes   | Yes   | Yes     |
+| Course      | Create     | Yes   | Yes   | No      |
+| Course      | Update     | Yes   | Yes   | No      |
+| Course      | Delete     | Yes   | No    | No      |
+| User        | View All   | Yes   | Yes   | No      |
+| User        | View Own   | Yes   | Yes   | Yes     |
+| User        | Update All | Yes   | Yes   | No      |
+| User        | Update Own | Yes   | Yes   | Yes     |
+| User        | Delete     | Yes   | No    | No      |
+
+---
+
+### Task 8 (Medium)
 
 Create a `Profile` **model** with the following fields:
 
@@ -1027,7 +1054,7 @@ Here is the expected output:
 
 ---
 
-### Task 8 (Medium)
+### Task 9 (Easy)
 
 Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
 
@@ -1265,7 +1292,7 @@ Here is an example request in **Postman**:
 
 <ADD IMAGE HERE>
 
---- 
+---
 
 ## README.md File
 
