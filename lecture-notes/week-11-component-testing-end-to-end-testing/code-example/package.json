@@ -16,7 +16,7 @@
 		"lint": "prettier --check ."
 	},
 	"devDependencies": {
-		"@playwright/test": "^1.49.1",
+		"@playwright/test": "^1.56.1",
 		"@sveltejs/adapter-auto": "^6.0.0",
 		"@sveltejs/kit": "^2.22.0",
 		"@sveltejs/vite-plugin-svelte": "^6.0.0",
