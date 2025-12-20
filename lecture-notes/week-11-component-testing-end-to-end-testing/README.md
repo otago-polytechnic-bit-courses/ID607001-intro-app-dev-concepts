@@ -20,7 +20,7 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-10-end-to-end-testing** from the previous branch.
+Open your repository in **Visual Studio Code**. Check out to the branch - **week-10-end-to-end-testing**.
 
 Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
 
@@ -53,7 +53,7 @@ week-10-end-to-end-testing
 └── vite.config.js
 ```
 
-Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-07-sveltekit-basics` into the `lib/components` directory.
+Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-08-vite-sveltekit-js-api-integration-1-deployment` into the `lib/components` directory.
 
 In `src/routes/+page.svelte`, add the following code:
 

@@ -20,7 +20,7 @@ Link to the code example: [Code Example](code-example)
 ---
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-08-content-delivery-networks-api-integration-1** from the previous branch.
+Open your repository in **Visual Studio Code**. Check out to the branch - **week-08-content-delivery-networks-api-integration-1**.
 
 Create a new **SvelteKit** application called `week-08-content-delivery-networks-api-integration-1`.
 

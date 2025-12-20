@@ -252,6 +252,8 @@ const greeting = `Hello, my name is ${name} and I am ${age} years old.`;
 console.log(greeting); // Hello, my name is John and I am 30 years old.
 ```
 
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>
+
 ---
 
 ### Classes
@@ -277,6 +279,8 @@ const john = new Person("John", 30);
 
 console.log(john.greet()); // Hello, my name is John and I am 30 years old.
 ```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
 
 ---
 
@@ -342,7 +346,7 @@ const mixed = [
 
 ### Destructuring
 
-**Destructuring** is a convenient way to extract values from arrays or properties from objects into distinct variables. It can make your code cleaner and more readable.
+**Destructuring** is a convenient way to extract values from arrays or properties from objects into distinct variables. It can make your code cleaner and more readable. Here are some examples of using **destructuring**.
 
 ```javascript
 // Array destructuring
@@ -361,17 +365,43 @@ console.log(name); // John
 console.log(age); // 30
 ```
 
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
+
 ---
 
 ### Spread Operator
+
+The **spread operator** (`...`) allows you to expand an iterable like an array or object into individual elements. It is useful for copying arrays or objects, merging arrays or objects, and passing multiple arguments to functions. Here are some examples of using the **spread operator**.
+
+```javascript
+// Copying an array
+const numbers = [1, 2, 3];
+const copyOfNumbers = [...numbers];
+console.log(copyOfNumbers); // [1, 2, 3]
+
+// Merging arrays
+const moreNumbers = [4, 5, 6];
+const mergedNumbers = [...numbers, ...moreNumbers];
+console.log(mergedNumbers); // [1, 2, 3, 4, 5, 6]
+
+// Copying an object
+const person = { name: "John", age: 30 };
+const copyOfPerson = { ...person };
+console.log(copyOfPerson); // { name: "John", age: 30 }
+
+// Merging objects
+const moreDetails = { isMale: true, country: "USA" };
+const mergedPerson = { ...person, ...moreDetails };
+console.log(mergedPerson); // { name: "John", age: 30, isMale: true, country: "USA" }
+```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
 
 ---
 
 ### Map, Filter and Reduce
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**.
-
-**Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
+**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
 
 ```javascript
 // An array of numbers
@@ -549,6 +579,8 @@ Here is an example **JSDoc** comment:
  * @usage Describe how you used the AI responses to help you with your work
  */
 ```
+
+> **Note:** You will learn more about **JSDoc** comments in **Week 03**.
 
 ---
 

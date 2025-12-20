@@ -20,12 +20,10 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Create a new branch called **week-05-validation-seeding-query-parameters-deployment** from the previous branch.
-
-Here is the command to create a new branch and switch to it.
+Open your repository in **Visual Studio Code**. Check out to the **Week 05** branch using the following command:
 
 ```bash
-git checkout -b week-05-validation-seeding-query-parameters-deployment
+git checkout week-05-validation-seeding-query-parameters-deployment
 ```
 
 Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
@@ -868,7 +866,7 @@ Here is an example request in **Postman**:
 
 ---
 
-## README.md File
+## README File
 
 Update the `README.md` file in your repository to any new endpoints you have created.
 

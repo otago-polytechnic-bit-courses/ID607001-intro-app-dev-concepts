@@ -20,7 +20,7 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Create a new branch called **week-09-api-integration-2-deployment** from the previous branch.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Check out to the branch - **week-09-api-integration-2-deployment**.
 
 Create a new **SvelteKit** application called `week-09-api-integration-2-deployment`.
 
