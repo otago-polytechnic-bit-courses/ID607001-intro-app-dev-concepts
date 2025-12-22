@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](../week-08-content-delivery-networks-api-integration-1)
+Link to the previous class: [Week 08](../week-08-vite-sveltekit-js-api-integration-1-deployment)
 
 ---
 
@@ -20,9 +20,9 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Check out to the branch - **week-09-api-integration-2-deployment**.
+Open your **id607001-s2-25-GitHub username** repository in **Visual Studio Code**. Check out to the branch - **week-09-api-integration-content-delivery-networks**.
 
-Create a new **SvelteKit** application called `week-09-api-integration-2-deployment`.
+Create a new **SvelteKit** application called `week-09-api-integration-content-delivery-networks`.
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -30,7 +30,7 @@ Create a new **SvelteKit** application called `week-09-api-integration-2-deploym
 
 ## Full Code Example
 
-The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-09-api-integration-2-deployment>
+The full code example for this week is available here - <https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts/tree/code-examples/week-09-api-integration-content-delivery-networks>
 
 ---
 
@@ -39,7 +39,7 @@ The full code example for this week is available here - <https://github.com/otag
 Create a necessary directory and file structure for the components and routes. The structure should look like this:
 
 ```bash
-week-09-api-integration-2-deployment
+week-09-api-integration-2-content-delivery-networks-css-frameworks
 ├── src
 │   ├── app.d.ts
 │   ├── app.html
@@ -67,7 +67,7 @@ week-09-api-integration-2-deployment
 
 ---
 
-## API Integration 2
+## API Integration
 
 In this section, we will cover how to make API requests for **authentication** and **role-based access control** in **SvelteKit**.
 
@@ -491,53 +491,9 @@ Then in the `src/routes/dashboard/+page.svelte` file, you can create a form for 
 
 ---
 
-## Deployment
-
-In this section, we will cover how to deploy your **SvelteKit** application.
-
----
-
-### Vercel
-
-**Vercel** is a platform for deploying web applications. It provides a simple way to deploy your **SvelteKit** application with minimal configuration.
-
----
-
-### Getting Started
-
-To deploy your **SvelteKit** application to **Vercel**, follow these steps:
-
-1. Go to [Vercel](https://vercel.com) and create an account if you do not have one.
-
-2. Open your terminal and run the following command to install the **Vercel CLI** globally:
-
-```bash
-npm install -g vercel
-```
-
-3. Run the following command in your terminal to log in to your **Vercel** account:
-
-```bash
-npx vercel login
-```
-
-4.  Navigate to your **SvelteKit** application directory in your terminal and run the following command:
-
-```bash
-npx vercel
-```
-
-Follow the prompts to deploy your application. You can choose to link your project to a **Vercel** project or create a new one.
-
-5. If your application uses environment variables like `API_BASE_URL`, you can set them in the **Vercel Dashboard** under the **Settings** tab of your project.
-
-6. After the deployment is complete, you will receive a **URL** where your application is hosted. You can visit this **URL** to see your deployed **SvelteKit** application.
-
-Here is a **URL** example of a deployed **SvelteKit** application on **Vercel** - [https://week-09-api-integration-2-deploymen.vercel.app](https://week-09-api-integration-2-deploymen.vercel.app).
-
----
-
 ## Exercises
+
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -588,18 +544,6 @@ Implement role-based content and permissions in the dashboard that:
 
 ---
 
-### Task 4
-
-Deploy your **SvelteKit** application to **Vercel** following the deployment instructions above. Document your deployed application URL in your project's `README.md` file.
-
----
-
-### Task 5
-
-Currently, you have to use the **Vercel CLI** to deploy your **SvelteKit** application. Automate the deployment process using **GitHub** and **Vercel** integration so that every time you push changes to the **week-09-api-integration-2-deployment** branch, your application is automatically deployed.
-
----
-
 ## Next Class
 
-Link to the next class: [Week 10](../week-10-end-to-end-testing)
+Link to the next class: [Week 10](../week-10-github-actions-performance-ui-ux-design)

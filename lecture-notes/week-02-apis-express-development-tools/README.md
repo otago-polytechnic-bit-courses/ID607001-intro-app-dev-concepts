@@ -498,7 +498,7 @@ router.get("/languages", getFunctionExample2);
 export default router;
 ```
 
-In the `app.js` file, replace the existing code with the following Code to use the `index` routes module.
+In the `app.js` file, replace the existing code with the following code to use the `index` routes module.
 
 ```javascript
 // Import the Express, CORS and Compression modules
@@ -728,6 +728,7 @@ You will be prompted with a series of questions to help you structure your commi
 ---
 
 ## Exercises
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

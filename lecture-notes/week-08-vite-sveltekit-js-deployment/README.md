@@ -30,6 +30,12 @@ git checkout week-08-vite-sveltekit-js-api-integration-1-deployment
 
 ---
 
+## Vite
+
+> **Resource:** <https://vitejs.dev>
+
+---
+
 ## SvelteKit
 
 **SvelteKit** is a modern framework for building web applications using the **Svelte** framework. It provides a powerful set of features for building fast, efficient and scalable web applications.
@@ -46,12 +52,12 @@ npx sv create week-08-vite-sveltekit-js-api-integration-1-deployment
 
 You will be prompted with the following questions:
 
-| Question                                                                   | Answer                                    |
-| -------------------------------------------------------------------------- | ----------------------------------------- |
-| Which template would you like?                                             | SvelteKit minimal                         |
+| Question                                                                   | Answer                                        |
+| -------------------------------------------------------------------------- | --------------------------------------------- |
+| Which template would you like?                                             | SvelteKit minimal                             |
 | Add type checking with TypeScript?                                         | Yes, using JavaScript with **JSDoc** comments |
-| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier                                  |
-| Which package manager do you want to install dependencies with?            | npm                                       |
+| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier                                      |
+| Which package manager do you want to install dependencies with?            | npm                                           |
 
 To run the **SvelteKit** application, run the following command:
 
@@ -171,7 +177,7 @@ The `$state` rune allows you to create a variable that automatically updates the
 <p>Count: {count}</p>
 ```
 
-In `+page.svelte`, add the following Code to use the `StateCounter` component:
+In `+page.svelte`, add the following code to use the `StateCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -214,7 +220,7 @@ The `$effect` rune allows you to run a function whenever a reactive variable cha
 <p>{message}</p>
 ```
 
-In `+page.svelte`, add the following Code to use the `EffectCounter` component:
+In `+page.svelte`, add the following code to use the `EffectCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -260,7 +266,7 @@ The `$props` rune allows you to pass properties to a component. In `PropsCounter
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the following Code to use the `PropsCounter` component:
+In `+page.svelte`, add the following code to use the `PropsCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -310,7 +316,7 @@ The `$derived` rune allows you to create a variable that is derived from other r
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the following Code to use the `DerivedCounter` component:
+In `+page.svelte`, add the following code to use the `DerivedCounter` component:
 
 ```svelte
 <!-- /src/routes/+page.svelte -->
@@ -892,7 +898,15 @@ Here is the expected output:
 
 ---
 
+## Deployment
+
+> **Resource:** <https://render.com/docs/deploy-sveltekit>
+
+---
+
 ## Exercises
+
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
@@ -979,8 +993,7 @@ In the `CourseInput.svelte` component, implement the following functionality:
 Here is the expected output:
 
 <ADD IMAGE HERE>
----
 
 ## Next Class
 
-Link to the next class: [Week 08](../week-08-content-delivery-networks-api-integration-1)
+Link to the next class: [Week 09](../week-09-api-integration-content-delivery-networks)

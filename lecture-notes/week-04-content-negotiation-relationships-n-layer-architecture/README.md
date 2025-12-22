@@ -666,6 +666,7 @@ The **system design** should include the following, but not limited to:
 ---
 
 ## Exercises
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

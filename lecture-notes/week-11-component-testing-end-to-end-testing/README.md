@@ -1,14 +1,14 @@
-# Week 10
+# Week 11
 
 ## Previous Class
 
-Link to the previous class: [Week 09](../week-09-api-integration-2-deployment)
+Link to the previous class: [Week 09](../week-10-github-actions-performance-ui-ux-design)
 
 ---
 
 ## Lecture Video
 
-Link to the lecture video: [Week 10 Lecture Video]()
+Link to the lecture video: [Week 11 Lecture Video]()
 
 ---
 
@@ -20,9 +20,11 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Check out to the branch - **week-10-end-to-end-testing**.
+Open your repository in **Visual Studio Code**. Check out to the **Week 11** branch using the following command:
 
-Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
+```bash
+git checkout week-11-component-testing-end-to-end-testing
+```
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
@@ -33,7 +35,7 @@ Create a new **SvelteKit** application called `week-10-end-to-end-testing`.
 Create a necessary directory and file structure for the components and routes. The structure should look like this:
 
 ```bash
-week-10-end-to-end-testing
+week-11-component-testing-end-to-end-testing
 ├── src
 │   ├── app.d.ts
 │   ├── app.html
@@ -294,6 +296,7 @@ Running 3 tests using 3 workers
 ---
 
 ## Exercises
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 

@@ -8,7 +8,11 @@ Link to the lecture video: [Week 01 Lecture Video]()
 
 ## GitHub
 
-This course will use **GitHub** to manage our development. Create a new **private** repository and add **grayson-orr** as a collaborator. 
+This course will use **GitHub** to manage our development. Create a new **private** repository and add **grayson-orr** as a collaborator.
+
+---
+
+## Markdown
 
 ---
 
@@ -56,6 +60,10 @@ let name = "John";
 
 // An immutable variable named "age" with the value 25
 const age = 25;
+
+// Get a variable's data type
+console.log(typeof name); // string
+console.log(typeof age); // number
 ```
 
 A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
@@ -191,6 +199,12 @@ function greet(name) {
 }
 
 console.log(greet("John")); // Hello, John!
+
+// Get a function's data type
+console.log(typeof add); // function
+
+// Get a function's return type
+console.log(typeof add(1, 2)); // number
 ```
 
 An **arrow function** is a newer way of declaring a **function**.
@@ -234,6 +248,42 @@ const greet = (_) => "Hello, World!";
 console.log(greet()); // Hello, World!
 ```
 
+When should I use a regular function and when should I use an arrow function?
+
+Given the following example:
+
+```javascript
+const person = {
+  name: "John",
+  hobbies: ["reading", "coding"],
+  showHobbies: function () {
+    this.hobbies.forEach(function (hobby) {
+      console.log(this.name + " likes " + hobby);
+    });
+  },
+};
+
+person.showHobbies(); // undefined likes reading
+// undefined likes coding
+```
+
+The above code will not work as expected because the `this` keyword inside the `forEach` callback function does not refer to the `person` object. To fix this, you can use an arrow function for the `forEach` callback, which will inherit the `this` value from the enclosing context.
+
+```javascript
+const person = {
+  name: "John",
+  hobbies: ["reading", "coding"],
+  showHobbies: function () {
+    this.hobbies.forEach((hobby) => {
+      console.log(this.name + " likes " + hobby);
+    });
+  },
+};
+
+person.showHobbies(); // John likes reading
+// John likes coding
+```
+
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
 
 ---
@@ -247,9 +297,9 @@ const name = "John";
 const age = 30;
 
 // Using template literals
-const greeting = `Hello, my name is ${name} and I am ${age} years old.`;
+const greeting = `Hello, my name is ${name} and I am ${age} years old`;
 
-console.log(greeting); // Hello, my name is John and I am 30 years old.
+console.log(greeting); // Hello, my name is John and I am 30 years old
 ```
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>
@@ -270,14 +320,14 @@ class Person {
 
   // A method to greet the person
   greet() {
-    return `Hello, my name is ${this.name} and I am ${this.age} years old.`;
+    return `Hello, my name is ${this.name} and I am ${this.age} years old`;
   }
 }
 
 // Creating an instance of the Person class
 const john = new Person("John", 30);
 
-console.log(john.greet()); // Hello, my name is John and I am 30 years old.
+console.log(john.greet()); // Hello, my name is John and I am 30 years old
 ```
 
 > **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
@@ -560,6 +610,8 @@ Copy the file `week-01-github-javascript.js` into your **id607001-s1-26** reposi
 $ node week-01-github-javascript.js
 Hello, World!
 ```
+
+> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
 
