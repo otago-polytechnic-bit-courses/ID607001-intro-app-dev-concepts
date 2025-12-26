@@ -330,9 +330,10 @@ const validateInstitution = (institution) => {
   validatePostInstitution(req, res, () => {});
 
   if (validationError) {
-    const errorMessage = typeof validationError === 'object' 
-      ? JSON.stringify(validationError) 
-      : validationError;
+    const errorMessage =
+      typeof validationError === "object"
+        ? JSON.stringify(validationError)
+        : validationError;
     throw new Error(errorMessage);
   }
 };
@@ -674,6 +675,7 @@ Your service is live 🎉
 ---
 
 ## Exercises
+
 > **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -859,7 +861,7 @@ Here is are example requests in **Postman**:
 
 ### Task 3
 
-Implement an endpoint, e.g., `/api/health`, that provides a health check for your **REST API**. The health check should verify that application's status, database connectivity and uptime. 
+Implement an endpoint, e.g., `/api/health`, that provides a health check for your **REST API**. The health check should verify that application's status, database connectivity and uptime.
 
 Here is an example request in **Postman**:
 

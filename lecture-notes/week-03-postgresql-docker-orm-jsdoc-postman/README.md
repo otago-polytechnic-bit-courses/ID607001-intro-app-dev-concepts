@@ -743,6 +743,7 @@ const createInstitution = async (req, res) => {
 ---
 
 ## Exercises
+
 > **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -808,7 +809,7 @@ You can create a new record for the `Institution` model.
 
 ### Task 4 (Easy)
 
-In your repository's `README.md` file, document the steps to set up and run the application. 
+In your repository's `README.md` file, document the steps to set up and run the application.
 
 Here is an example structure for the `README.md` file:
 
@@ -821,31 +822,42 @@ A brief description of the project.
 ## Prerequisites
 
 - Node.js
-- Docker 
+- Docker
 
 ## Setup Instructions
 
 1. Clone the repository:
+
 ```bash
 git clone <repository-url>
 ```
+
 2. Navigate to the project directory:
+
 ```bash
 cd <project-directory>
 ```
+
 3. Install the dependencies:
+
 ```bash
 npm install
 ```
+
 4. Copy the example environment variables file:
+
 ```bash
 npm run env:copy
 ```
+
 5. Start the **PostgreSQL** **Docker** container:
+
 ```bash
 npm run docker:run:dev
 ```
+
 6. Create and apply the database migrations:
+
 ```bash
 npm run prisma:migrate
 ```

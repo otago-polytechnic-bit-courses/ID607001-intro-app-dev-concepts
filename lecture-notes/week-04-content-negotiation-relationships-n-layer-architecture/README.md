@@ -612,7 +612,7 @@ const departments = await prisma.department.findMany({
 
 In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately.
 
-In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application.
+In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application, focusing primarily on the **database** and **backend**.
 
 Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
@@ -621,9 +621,9 @@ The **system design** should include the following, but not limited to:
 - **System architecture:**
 
   - What architecture pattern will you use?
-  - What technology stack will you use for the **database**, **backend** and **frontend**?
-  - How will the **database**, **backend** and **frontend** communicate with each other?
-  - How will you structure the **database**, **backend** and **frontend** code?
+  - What technology stack will you use for the **database** and **backend**?
+  - How will the **database** and **backend** communicate with each other?
+  - How will you structure the **database** and **backend** code?
 
 - **Database:**
 
@@ -668,6 +668,7 @@ The **system design** should include the following, but not limited to:
 ---
 
 ## Exercises
+
 > **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -963,10 +964,9 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+  // Omitted for brevity
 
-// Omitted for brevity
-
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 /// Omitted for brevity
@@ -984,9 +984,7 @@ In the **controllers** files, import and use the `clearCache` function to clear 
 const createInstitution = async (req, res) => {
   try {
     // Omitted for brevity
-    
     // TODO 11: Clear the cache after creating a new institution
-    
     // Omitted for brevity
   } catch (err) {
     // Omitted for brevity
