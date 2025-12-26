@@ -436,8 +436,10 @@ class InstitutionRepository {
   }
 }
 
-export default new InstitutionRepository();
+export default new InstitutionRepository(); // Export a singleton instance of the InstitutionRepository class
 ```
+
+> **Note:** A singleton is a design pattern that restricts the instantiation of a class to a single instance. This is useful when exactly one object is needed to coordinate actions across the system.
 
 In the `controllers/institution.js` file, update the following code.
 

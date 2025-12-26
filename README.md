@@ -66,9 +66,9 @@ At the successful completion of this course, learners will be able to:
 | 5/Rima           | Validation, Seeding, Query Parameters and Deployment                |
 | 6/Ono            | Security, Authentication, Role-Based Access Control and API Testing |
 | 7/Whitu          | JavaScript 2                                                        |
-| 8/Waru           | Vite, SvelteKit.js, API Integration 1 and Deployment                |
+| 8/Waru           | Vite, SvelteKit.js and Deployment                                   |
 |                  | Mid Semester Break                                                  |
-| 9/Whitu          | API Integration 2, Content Delivery Networks and CSS Frameworks     |
+| 9/Whitu          | API Integration and Content Delivery Networks                       |
 | 10/Tekau         | GitHub Actions, Performance and UI/UX Design                        |
 | 11/Tekau mā tahi | Component Testing and End-To-End Testing                            |
 | 12/Tekau mā rua  | Assessment Work                                                     |

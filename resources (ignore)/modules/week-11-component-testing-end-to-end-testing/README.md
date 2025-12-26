@@ -55,7 +55,7 @@ week-11-component-testing-end-to-end-testing
 └── vite.config.js
 ```
 
-Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-08-vite-sveltekit-js-api-integration-1-deployment` into the `lib/components` directory.
+Copy and paste `ClickEvents.svelte`, `FormEvents.svelte` and `MarkConverter.svelte` from `week-08-vite-sveltekit-js-deployment` into the `lib/components` directory.
 
 In `src/routes/+page.svelte`, add the following code:
 

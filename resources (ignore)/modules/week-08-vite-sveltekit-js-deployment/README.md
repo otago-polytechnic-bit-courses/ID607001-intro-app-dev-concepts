@@ -8,7 +8,7 @@ Link to the previous class: [Week 07](../week-07-javascript-2)
 
 ## Lecture Video
 
-Link to the lecture video: [Week 07 Lecture Video]()
+Link to the lecture video: [Week 08 Lecture Video]()
 
 ---
 
@@ -20,10 +20,10 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Check out to the branch - **week-08-vite-sveltekit-js-api-integration-1-deployment** using the following command:
+Open your repository in **Visual Studio Code**. Check out to the branch - **week-08-vite-sveltekit-js-deployment** using the following command:
 
 ```bash
-git checkout week-08-vite-sveltekit-js-api-integration-1-deployment
+git checkout week-08-vite-sveltekit-js-deployment
 ```
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
@@ -47,7 +47,7 @@ git checkout week-08-vite-sveltekit-js-api-integration-1-deployment
 To create a new **SvelteKit** application, run the following command:
 
 ```bash
-npx sv create week-08-vite-sveltekit-js-api-integration-1-deployment
+npx sv create week-08-vite-sveltekit-js-deployment
 ```
 
 You will be prompted with the following questions:
@@ -62,7 +62,7 @@ You will be prompted with the following questions:
 To run the **SvelteKit** application, run the following command:
 
 ```bash
-cd week-08-vite-sveltekit-js-api-integration-1-deployment
+cd week-08-vite-sveltekit-js-deployment
 npm run dev
 ```
 
@@ -75,7 +75,7 @@ You can then open your browser and navigate to <http://localhost:5173> to see th
 The directory and file structure of a **SvelteKit** application is as follows:
 
 ```bash
-week-08-vite-sveltekit-js-api-integration-1-deployment
+week-08-vite-sveltekit-js-deployment
 ├── src
 │   ├── app.d.ts
 │   ├── app.html
@@ -110,7 +110,7 @@ There are other files and directories, but these are the most important ones.
 Create a necessary directory and file structure for the components and routes. The structure should look like this:
 
 ```bash
-week-08-vite-sveltekit-js-api-integration-1-deployment
+week-08-vite-sveltekit-js-deployment
 ├── src
 │   ├── app.d.ts
 │   ├── app.html

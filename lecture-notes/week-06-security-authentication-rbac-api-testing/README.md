@@ -462,31 +462,31 @@ router.post(
 
 ### Postman Example
 
-Here is an example of creating an institution with no token.
+Here is an example of creating an `Institution` with no token.
 
 <ADD IMAGE HERE>
 
-Here is an example of registering an admin user.
+Here is an example of registering an `ADMIN` user.
 
 <ADD IMAGE HERE>
 
-Here is an example of registering a student user.
+Here is an example of registering a `STUDENT` user.
 
 <ADD IMAGE HERE>
 
-Here is an example of logging in as an admin user. Make sure you copy the token from the response.
+Here is an example of logging in as an `ADMIN` user. Make sure you copy the token from the response.
 
 <ADD IMAGE HERE>
 
-Here is an example of creating an institution as an admin user.
+Here is an example of creating an `Institution` as an `ADMIN` user.
 
 <ADD IMAGE HERE>
 
-Here is an example of logging in as a normal user. Make sure you copy the token from the response.
+Here is an example of logging in as a `STUDENT` user. Make sure you copy the token from the response.
 
 <ADD IMAGE HERE>
   
-Here is an example of creating an institution as a student user. You should get a `403 Forbidden` status code because the student user does not have the required role to create an institution.
+Here is an example of creating an `Institution` as a `STUDENT` user. You should get a `403 Forbidden` status code because the `STUDENT` user does not have the required role to create an `Institution`.
 
 <ADD IMAGE HERE>
 
@@ -675,9 +675,29 @@ import app from "../app.js";
 import setupTestAuth from "./helpers/auth.js";
 
 describe("Institution CRUD", () => {
+  const BASE_URL = "/api/institutions";
+
   let token;
   let institutionOneId;
   let institutionTwoId;
+
+  const institutionData = [
+    {
+      name: "Ara Institute of Canterbury",
+      region: "Canterbury",
+      country: "New Zealand",
+    },
+    {
+      name: "Otago Polytechnic",
+      region: "Otago",
+      country: "New Zealand",
+    },
+    {
+      name: "Southern Institute of Technology",
+      region: "Southland",
+      country: "New Zealand",
+    },
+  ];
 
   // Setup the test authentication before running the tests
   before(async () => {
@@ -686,70 +706,61 @@ describe("Institution CRUD", () => {
 
   it("should create institution one", async () => {
     const res = await request(app)
-      .post("/api/institutions")
+      .post(BASE_URL)
       .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
-      .send({
-        name: "Otago Polytechnic",
-        region: "Otago",
-        country: "New Zealand",
-      });
+      .send(institutionData[1]);
 
     expect(res.status).to.equal(201);
 
     // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === "Otago Polytechnic"
+      (institution) => institution.name === institutionData[1].name // "Otago Polytechnic"
     );
     institutionOneId = newInstitution.id; // Store the institution ID for later use
   });
 
   it("should create institution two", async () => {
     const res = await request(app)
-      .post("/api/institutions")
+      .post(BASE_URL)
       .set("Authorization", `Bearer ${token}`)
-      .send({
-        name: "Southern Institute of Technology",
-        region: "Southland",
-        country: "New Zealand",
-      });
+      .send(institutionData[2]);
 
     expect(res.status).to.equal(201);
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === "Southern Institute of Technology"
+      (institution) => institution.name === institutionData[2].name // "Southern Institute of Technology"
     );
     institutionTwoId = newInstitution.id;
   });
 
   it("should get all institutions", async () => {
-    const res = await request(app).get("/api/institutions");
+    const res = await request(app).get(BASE_URL);
 
     expect(res.status).to.equal(200);
     expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
   });
 
   it("should get institution one by ID", async () => {
-    const res = await request(app).get(`/api/institutions/${institutionOneId}`);
+    const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal("Otago Polytechnic");
+    expect(res.body.data.name).to.equal(institutionData[1].name); // "Otago Polytechnic"
   });
 
   it("should update institution two", async () => {
-    const res = await request(app)
-      .put(`/api/institutions/${institutionTwoId}`)
-      .send({ name: "Ara Institute of Canterbury", region: "Canterbury" });
+    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
+      name: institutionData[0].name,
+      region: institutionData[0].region,
+    });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
       `Institution with the id: ${institutionTwoId} successfully updated`
     );
-    expect(res.body.data.name).to.equal("Ara Institute of Canterbury");
+    expect(res.body.data.name).to.equal(institutionData[0].name);
   });
 
   it("should delete institution one", async () => {
-    const res = await request(app).delete(
-      `/api/institutions/${institutionOneId}`
-    );
+    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -777,8 +788,22 @@ import app from "../app.js";
 import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
 
 describe("Department CRUD", () => {
+  const BASE_URL = "/api/departments";
+
   let institutionId;
   let departmentOneId;
+
+  const departmentData = [
+    {
+      name: "Information Technology",
+    },
+    {
+      name: "Nursing",
+    },
+    {
+      name: "Business",
+    },
+  ];
 
   // Set up the institution ID before running the tests
   before(async () => {
@@ -792,51 +817,47 @@ describe("Department CRUD", () => {
   });
 
   it("should create department one", async () => {
-    const res = await request(app).post("/api/departments").send({
-      name: "Information Technology",
+    const res = await request(app).post(BASE_URL).send({
+      name: departmentData[0].name,
       institutionId: institutionId,
     });
 
     expect(res.status).to.equal(201);
     const newDepartment = res.body.data.find(
-      (department) => department.name === "Information Technology"
+      (department) => department.name === departmentData[0].name // "Information Technology"
     );
     departmentOneId = newDepartment.id;
   });
 
   it("should get all departments", async () => {
-    const res = await request(app).get("/api/departments");
+    const res = await request(app).get(BASE_URL);
 
     expect(res.status).to.equal(200);
     expect(res.body.data.length).to.be.at.least(1);
   });
 
   it("should get department one by ID", async () => {
-    const res = await request(app).get(`/api/departments/${departmentOneId}`);
+    const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal("Information Technology");
+    expect(res.body.data.name).to.equal(departmentData[0].name);
   });
 
   it("should update department one", async () => {
-    const res = await request(app)
-      .put(`/api/departments/${departmentOneId}`)
-      .send({
-        name: "Nursing",
-        institutionId: institutionId,
-      });
+    const res = await request(app).put(`${BASE_URL}/${departmentOneId}`).send({
+      name: departmentData[1].name,
+      institutionId: institutionId,
+    });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
       `Department with the id: ${departmentOneId} successfully updated`
     );
-    expect(res.body.data.name).to.equal("Nursing");
+    expect(res.body.data.name).to.equal(departmentData[1].name);
   });
 
   it("should delete department one", async () => {
-    const res = await request(app).delete(
-      `/api/departments/${departmentOneId}`
-    );
+    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -891,6 +912,7 @@ Department CRUD
 ---
 
 ## Exercises
+
 > **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
@@ -950,7 +972,7 @@ Here is an example request in **Postman**:
 
 ### Task 5 (Easy)
 
-Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `NORMAL` role.
+Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `STUDENT` role.
 
 Here is an example request in **Postman**:
 
@@ -962,11 +984,11 @@ Here is an example request in **Postman**:
 
 Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
 
-In `routes/institution.js`, update the `rbac` **middleware** usage to allow both `ADMIN` and `NORMAL` roles to access the **GET** routes:
+In `routes/institution.js`, update the `rbac` **middleware** usage to allow both `ADMIN` and `STUDENT` roles to access the **GET** routes:
 
 ```js
-router.get("/", rbac(["ADMIN", "NORMAL"]), getInstitutions);
-router.get("/:id", rbac(["ADMIN", "NORMAL"]), getInstitution);
+router.get("/", rbac(["ADMIN", "STUDENT"]), getInstitutions);
+router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 ```
 
 Here is an example request in **Postman**:
@@ -979,25 +1001,25 @@ Here is an example request in **Postman**:
 
 Implement the following permissions for each resource:
 
-| Resource    | Action     | Admin | Staff | Student |
-| ----------- | ---------- | ----- | ----- | ------- |
-| Institution | View       | Yes   | Yes   | Yes     |
-| Institution | Create     | Yes   | Yes   | No      |
-| Institution | Update     | Yes   | Yes   | No      |
-| Institution | Delete     | Yes   | No    | No      |
-| Department  | View       | Yes   | Yes   | Yes     |
-| Department  | Create     | Yes   | Yes   | No      |
-| Department  | Update     | Yes   | Yes   | No      |
-| Department  | Delete     | Yes   | No    | No      |
-| Course      | View       | Yes   | Yes   | Yes     |
-| Course      | Create     | Yes   | Yes   | No      |
-| Course      | Update     | Yes   | Yes   | No      |
-| Course      | Delete     | Yes   | No    | No      |
-| User        | View All   | Yes   | Yes   | No      |
-| User        | View Own   | Yes   | Yes   | Yes     |
-| User        | Update All | Yes   | Yes   | No      |
-| User        | Update Own | Yes   | Yes   | Yes     |
-| User        | Delete     | Yes   | No    | No      |
+| Resource    | Action          | Admin | Staff | Student |
+| ----------- | --------------- | ----- | ----- | ------- |
+| Institution | Read All and ID | Yes   | Yes   | Yes     |
+| Institution | Create          | Yes   | Yes   | No      |
+| Institution | Update          | Yes   | Yes   | No      |
+| Institution | Delete          | Yes   | No    | No      |
+| Department  | Read All and ID | Yes   | Yes   | Yes     |
+| Department  | Create          | Yes   | Yes   | No      |
+| Department  | Update          | Yes   | Yes   | No      |
+| Department  | Delete          | Yes   | No    | No      |
+| Course      | Read All and ID | Yes   | Yes   | Yes     |
+| Course      | Create          | Yes   | Yes   | No      |
+| Course      | Update          | Yes   | Yes   | No      |
+| Course      | Delete          | Yes   | No    | No      |
+| User        | View All        | Yes   | Yes   | No      |
+| User        | View Own        | Yes   | Yes   | Yes     |
+| User        | Update All      | Yes   | Yes   | No      |
+| User        | Update Own      | Yes   | Yes   | Yes     |
+| User        | Delete          | Yes   | No    | No      |
 
 ---
 
@@ -1021,7 +1043,7 @@ model User {
   lastName         String
   emailAddress     String        @unique
   password         String
-  role             Role          @default(NORMAL)
+  role             Role          @default(STUDENT)
   profile          Profile?
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
@@ -1039,7 +1061,7 @@ user = await prisma.user.create({
     lastName,
     emailAddress,
     password: hashedPassword,
-    role,
+    role: "STUDENT",
     profile: {
       create: {
         bio,

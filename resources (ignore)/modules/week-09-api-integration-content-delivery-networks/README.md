@@ -2,7 +2,7 @@
 
 ## Previous Class
 
-Link to the previous class: [Week 08](../week-08-vite-sveltekit-js-api-integration-1-deployment)
+Link to the previous class: [Week 08](../week-08-vite-sveltekit-js-deployment)
 
 ---
 
