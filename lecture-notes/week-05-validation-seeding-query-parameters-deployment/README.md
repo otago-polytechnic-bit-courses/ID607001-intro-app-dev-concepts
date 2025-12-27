@@ -770,6 +770,12 @@ Implement **scripts** to seed the `Department`, `Course` and `User` **resources*
 
 ### Task 6 (Medium)
 
+> **Resource:** <https://www.prisma.io/postgres>
+
+---
+
+### Task 7 (Medium)
+
 You notice there is a lot of code duplication. Refactor the Code to reduce the duplication.
 
 ---

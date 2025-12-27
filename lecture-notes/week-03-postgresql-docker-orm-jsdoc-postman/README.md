@@ -646,19 +646,33 @@ Once you have setup your workspace, you can create a new collection. A collectio
 
 ![](<../../resources (ignore)/img/week-3/00-week-3.png>)
 
-Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection.
+Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection. 
+
+We will create sub-folders to organise our requests better. To create a sub-folder, hover over the collection name, click on the horizontal ellipsis (three dots) next to the collection name and select **Add folder**.
 
 ![](<../../resources (ignore)/img/week-3/01-week-3.png>)
 
-Name the request **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. You should see the response in the response section. If you have not created any institutions, you will see an empty array. Click on the **Save** button to save the request in the collection.
+In the screenshot below, we have created sub-folders for the **lecture-notes** and **exercises**.
 
 ![](<../../resources (ignore)/img/week-3/02-week-3.png>)
 
-To add a new request, click on the horizontal ellipsis (three dots) next to the collection name and select **Add request**.
+In the **lecture-notes/week-03** folder, click on **Add a request** button to create a new request.
 
 ![](<../../resources (ignore)/img/week-3/03-week-3.png>)
 
-Name the request **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
+Rename the request to **Get All Institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. 
+
+You should see a **Postman Agent** error. 
+
+![](<../../resources (ignore)/img/week-3/04-week-3.png>)
+
+Change the **Postman Agent** from **Cloud Agent** to **Browser Agent**.
+
+![](<../../resources (ignore)/img/week-3/05-week-3.png>)
+
+Click on the **Send** button again to send the request. You should see a response. The `data` field should be an empty array since there are no institutions in the database.
+
+![](<../../resources (ignore)/img/week-3/06-week-3.png>)
 
 ```json
 {
@@ -668,9 +682,13 @@ Name the request **Create an institution**. Select the **POST** method from the 
 }
 ```
 
-Click on the **Send** button to send the request. You should see a response with a success message and the newly created institution in the response body. Again, click on the **Save** button to save the request in the collection.
+![](<../../resources (ignore)/img/week-3/07-week-3.png>)
 
-![](<../../resources (ignore)/img/week-3/04-week-3.png>)
+![](<../../resources (ignore)/img/week-3/08-week-3.png>)
+
+![](<../../resources (ignore)/img/week-3/09-week-3.png>)
+
+![](<../../resources (ignore)/img/week-3/10-week-3.png>)
 
 ---
 
