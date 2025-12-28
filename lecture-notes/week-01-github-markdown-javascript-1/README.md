@@ -8,7 +8,9 @@ Link to the lecture video: [Week 01 Lecture Video]()
 
 ## GitHub
 
-This course will use **GitHub** to manage our development. Create a new **private** repository and add **grayson-orr** as a collaborator.
+This course will use **GitHub Classroom** to manage our development. Click on the link below to accept your assignment.
+
+Link to repository: [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/your-assignment-link)
 
 ---
 
@@ -449,9 +451,9 @@ console.log(mergedPerson); // { name: "John", age: 30, isMale: true, country: "U
 
 ---
 
-### Map, Filter and Reduce
+### Map
 
-**Map**, **filter** and **reduce** are higher-order functions that are commonly used with **arrays**. **Map** transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
+**Map** is a higher-order function that transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
 
 ```javascript
 // An array of numbers
@@ -472,7 +474,25 @@ const numbersSquared = numbers.map(square);
 console.log(numbersSquared); // [1, 4, 9, 16, 25]
 ```
 
-**Filter** filters an **array** by removing elements not satisfying a condition and returning a new **array**. Here is an example of using the `filter` function.
+Here is before and after execution model of the `map` function:
+
+```bash
+Input array        Callback                Output array
+
+index 0: 1  ─────▶ num => num * num ─────▶ index 0: 1
+index 1: 2  ─────▶ num => num * num ─────▶ index 1: 4
+index 2: 3  ─────▶ num => num * num ─────▶ index 2: 9
+index 3: 4  ─────▶ num => num * num ─────▶ index 3: 16
+index 4: 5  ─────▶ num => num * num ─────▶ index 4: 25
+```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map>
+
+---
+
+### Filter
+
+**Filter** is a higher-order function that filters an **array** by removing elements not satisfying a condition and returning a new **array**. Here is an example of using the `filter` function.
 
 ```javascript
 // An array of numbers
@@ -493,11 +513,32 @@ const evenNumbers = numbers.filter(isEven);
 console.log(evenNumbers); // [2, 4]
 ```
 
-**Reduce** reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value. Here is an example of using the `reduce` function.
+Here is before and after execution model of the `filter` function:
+
+```bash
+Input array        Callback                    Output array
+
+index 0: 1  ─────▶ num => num % 2 === 0 ─────▶ removed
+index 1: 2  ─────▶ num => num % 2 === 0 ─────▶ index 0: 2
+index 2: 3  ─────▶ num => num % 2 === 0 ─────▶ removed
+index 3: 4  ─────▶ num => num % 2 === 0 ─────▶ index 1: 4
+index 4: 5  ─────▶ num => num % 2 === 0 ─────▶ removed
+```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
+
+---
+
+### Reduce
+
+**Reduce** is a higher-order function that reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value. Here is an example of using the `reduce` function.
 
 ```javascript
+// An array of numbers
+const numbers = [1, 2, 3, 4, 5];
+
 // Reduce
-const sum = numbers.reduce((total, num) => total + num, 0);
+const sum = numbers.reduce((total, num) => total + num, 0); // The intial value is 0
 
 console.log(sum); // 15
 
@@ -506,12 +547,24 @@ function add(total, num) {
   return total + num;
 }
 
-const sum = numbers.reduce(add, 0);
+const sum = numbers.reduce(add, 5); // The intial value is 5
 
-console.log(sum); // 15
+console.log(sum); // 20
 ```
 
-> **Note:** For **map** and **filter**, the original **array** is not modified.
+
+Here is before and after execution model of the `reduce` function:
+
+```bash
+Input array        Callback                           Accumulator value
+index 0: 1  ─────▶ (total, num) => total + num ─────▶ 5 + 1 = 6
+index 1: 2  ─────▶ (total, num) => total + num ─────▶ 6 + 2 = 8
+index 2: 3  ─────▶ (total, num) => total + num ─────▶ 8 + 3 = 11
+index 3: 4  ─────▶ (total, num) => total + num ─────▶ 11 + 4 = 15
+index 4: 5  ─────▶ (total, num) => total + num ─────▶ 15 + 5 = 20
+```
+
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
 
 ---
 

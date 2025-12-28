@@ -20,10 +20,10 @@ Link to the code example: [Code Example](code-example)
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Check out to the **Week 03** branch using the following command:
+Open your repository in **Visual Studio Code**. Switch to the **Week 03** branch using the following command:
 
 ```bash
-git checkout week-03-postgresql-docker-jsdoc-postman
+git switch week-03-postgresql-docker-jsdoc-postman
 ```
 
 > **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
@@ -660,7 +660,7 @@ In the **lecture-notes/week-03** folder, click on **Add a request** button to cr
 
 ![](<../../resources (ignore)/img/week-3/03-week-3.png>)
 
-Rename the request to **Get All Institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. 
+Rename the request to **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. 
 
 You should see a **Postman Agent** error. 
 
@@ -674,6 +674,8 @@ Click on the **Send** button again to send the request. You should see a respons
 
 ![](<../../resources (ignore)/img/week-3/06-week-3.png>)
 
+Create a new request called **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Body** tab. Select the **raw** radio button. Select **JSON** from the dropdown. Enter the following code in the text area. Click on the **Send** button to send the request. You should see a response with the newly created institution.
+
 ```json
 {
   "name": "Otago Polytechnic",
@@ -684,11 +686,19 @@ Click on the **Send** button again to send the request. You should see a respons
 
 ![](<../../resources (ignore)/img/week-3/07-week-3.png>)
 
+Here is an example of getting an institution by ID. 
+
 ![](<../../resources (ignore)/img/week-3/08-week-3.png>)
+
+Here is an example of updating an institution by ID. 
 
 ![](<../../resources (ignore)/img/week-3/09-week-3.png>)
 
+Here is an example of deleting an institution by ID. 
+
 ![](<../../resources (ignore)/img/week-3/10-week-3.png>)
+
+What happens if you try to get an institution that does not exist? Give it a try. Do the same for updating and deleting an institution that does not exist.
 
 ---
 
