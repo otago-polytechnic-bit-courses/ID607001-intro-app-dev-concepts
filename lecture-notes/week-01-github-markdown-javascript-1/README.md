@@ -8,9 +8,35 @@ Link to the lecture video: [Week 01 Lecture Video]()
 
 ## GitHub
 
-This course will use **GitHub Classroom** to manage our development. Click on the link below to accept your assignment.
+This course will use **GitHub Classroom** to manage our development. Link to repository: [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/your-assignment-link)
 
-Link to repository: [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/your-assignment-link)
+---
+
+### Useful Git Commands
+
+| Command                          | Description                                         |
+| -------------------------------- | --------------------------------------------------- |
+| `git clone <repository-url>`     | Clone a repository to your local machine            |
+| `git status`                     | Check the status of your local repository           |
+| `git add <file>`                 | Stage changes for the next commit                   |
+| `git commit -m "commit message"` | Commit staged changes with a descriptive message    |
+| `git push`                       | Push committed changes to the remote repository     |
+| `git pull`                       | Pull the latest changes from the remote repository  |
+| `git branch`                     | List all branches in the repository                 |
+| `git switch <branch>`            | Switch to a different branch                        |
+| `git restore <file>`             | Discard changes in the working directory for a file |
+| `git checkout <branch>`          | Switch to a different branch (older command)        |
+| `git fetch`                      | Fetch changes from the remote repository            |
+| `git merge <branch>`             | Merge a branch into the current branch              |
+| `git log`                        | View the commit history                             |
+
+What is the difference between `git switch` and `git checkout`?
+
+`git switch` is a newer command introduced to simplify branch switching, while `git checkout` is an older command that can also be used for switching branches but has additional functionalities like restoring files. For branch switching, it is recommended to use `git switch` for clarity.
+
+
+
+> **Resource:** <https://guides.github.com/introduction/git-handbook/>
 
 ---
 
@@ -551,7 +577,6 @@ const sum = numbers.reduce(add, 5); // The intial value is 5
 
 console.log(sum); // 20
 ```
-
 
 Here is before and after execution model of the `reduce` function:
 

@@ -803,6 +803,24 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
+**Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
+
+Here are examples of **Prisma Studio** in action:
+
+You can view all institutions in the database. Currently, there are no institutions.
+
+![](<../../resources (ignore)/img/week-3/exercises-00-week-3.png>)
+
+You can create a new record for the `Institution` model.
+
+![](<../../resources (ignore)/img/week-3/exercises-01-week-3.png>)
+
+> **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
+
+---
+
+### Task 3 (Easy)
+
 In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
 
 After updating the schema:
@@ -813,25 +831,8 @@ After updating the schema:
 
 Here is an example request in **Postman**:
 
-![](<../../resources (ignore)/img/week-3/exercises-00-week-3.png>)
-
----
-
-### Task 3 (Easy)
-
-**Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
-
-Here are examples of **Prisma Studio** in action:
-
-You can view all institutions in the database. Currently, there are no institutions.
-
-![](<../../resources (ignore)/img/week-3/exercises-01-week-3.png>)
-
-You can create a new record for the `Institution` model.
-
 ![](<../../resources (ignore)/img/week-3/exercises-02-week-3.png>)
 
-> **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
 
 ---
 
