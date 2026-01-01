@@ -53,7 +53,7 @@ app.use((req, res) => {
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
   );
 });
 
