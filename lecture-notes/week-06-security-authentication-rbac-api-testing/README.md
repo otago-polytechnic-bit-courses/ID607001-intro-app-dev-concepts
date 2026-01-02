@@ -1,13 +1,15 @@
 # Week 06
 
+---
+
 ## Important Links
 
-| Section | Link |
-|---------|------|
+| Section        | Link                                                                 |
+| -------------- | -------------------------------------------------------------------- |
 | Previous Class | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
-| Lecture Video | [Week 06 Lecture Video]() |
-| Code Example | [Code Example](code-example) |
-| Next Class | [Week 07](../) |
+| Lecture Video  | [Week 06 Lecture Video]()                                            |
+| Code Example   | [Code Example](code-example)                                         |
+| Next Class     | [Week 07](../)                                                       |
 
 ---
 

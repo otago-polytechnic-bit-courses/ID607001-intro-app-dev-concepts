@@ -1,18 +1,19 @@
 # Week 01
 
-## Lecture Video
+---
 
-Link to the lecture video: [Week 01 Lecture Video]()
+## Important Links
+
+| Section       | Link                                                                                     |
+| ------------- | ---------------------------------------------------------------------------------------- |
+| GitHub        | [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/your-assignment-link) |
+| Lecture Video | [Week 01 Lecture Video]()                                                                |
+| Code Example  | [Code Example](code-example)                                                             |
+| Next Class    | [Week 02](../week-02-apis-express-development-tools)                                     |
 
 ---
 
-## GitHub
-
-This course will use **GitHub Classroom** to manage our development. Link to repository: [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/your-assignment-link)
-
----
-
-### Useful Git Commands
+## Useful Git Commands
 
 | Command                          | Description                                         |
 | -------------------------------- | --------------------------------------------------- |
@@ -33,8 +34,6 @@ This course will use **GitHub Classroom** to manage our development. Link to rep
 What is the difference between `git switch` and `git checkout`?
 
 `git switch` is a newer command introduced to simplify branch switching, while `git checkout` is an older command that can also be used for switching branches but has additional functionalities like restoring files. For branch switching, it is recommended to use `git switch` for clarity.
-
-
 
 > **Resource:** <https://guides.github.com/introduction/git-handbook/>
 

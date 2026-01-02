@@ -1,20 +1,15 @@
 # Week 02
 
-## Previous Class
-
-Link to the previous class: [Week 01](../week-01-github-javascript)
-
 ---
 
-## Lecture Video
+## Important Links
 
-Link to the lecture video: [Week 02 Lecture Video]()
-
----
-
-## Code Example
-
-Link to the code example: [Code Example](code-example)
+| Section        | Link                                                      |
+| -------------- | --------------------------------------------------------- |
+| Previous Class | [Week 01](../week-01-github-javascript-1)                 |
+| Lecture Video  | [Week 02 Lecture Video]()                                 |
+| Code Example   | [Code Example](code-example)                              |
+| Next Class     | [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman) |
 
 ---
 
@@ -824,9 +819,3 @@ To run **Prettier** on staged files, use the following command in your terminal.
 ```bash
 npm run format
 ```
-
----
-
-## Next Class
-
-Link to the next class: [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman)

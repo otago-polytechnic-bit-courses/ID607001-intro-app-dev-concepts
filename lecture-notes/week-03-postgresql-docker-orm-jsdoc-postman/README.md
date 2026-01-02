@@ -1,13 +1,15 @@
 # Week 03
 
+---
+
 ## Important Links
 
-| Section | Link |
-|---------|------|
-| Previous Class | [Week 02](../week-02-apis-express-development-tools) |
-| Lecture Video | [Week 03 Lecture Video]() |
-| Code Example | [Code Example](code-example) |
-| Next Class | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
+| Section        | Link                                                                         |
+| -------------- | ---------------------------------------------------------------------------- |
+| Previous Class | [Week 02](../week-02-apis-express-development-tools)                         |
+| Lecture Video  | [Week 03 Lecture Video]()                                                    |
+| Code Example   | [Code Example](code-example)                                                 |
+| Next Class     | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
 
 ---
 
@@ -639,7 +641,7 @@ Once you have setup your workspace, you can create a new collection. A collectio
 
 ![](<../../resources (ignore)/img/week-3/00-week-3.png>)
 
-Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection. 
+Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection.
 
 We will create sub-folders to organise our requests better. To create a sub-folder, hover over the collection name, click on the horizontal ellipsis (three dots) next to the collection name and select **Add folder**.
 
@@ -653,9 +655,9 @@ In the **lecture-notes/week-03** folder, click on **Add a request** button to cr
 
 ![](<../../resources (ignore)/img/week-3/03-week-3.png>)
 
-Rename the request to **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request. 
+Rename the request to **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request.
 
-You should see a **Postman Agent** error. 
+You should see a **Postman Agent** error.
 
 ![](<../../resources (ignore)/img/week-3/04-week-3.png>)
 
@@ -679,15 +681,15 @@ Create a new request called **Create an institution**. Select the **POST** metho
 
 ![](<../../resources (ignore)/img/week-3/07-week-3.png>)
 
-Here is an example of getting an institution by ID. 
+Here is an example of getting an institution by ID.
 
 ![](<../../resources (ignore)/img/week-3/08-week-3.png>)
 
-Here is an example of updating an institution by ID. 
+Here is an example of updating an institution by ID.
 
 ![](<../../resources (ignore)/img/week-3/09-week-3.png>)
 
-Here is an example of deleting an institution by ID. 
+Here is an example of deleting an institution by ID.
 
 ![](<../../resources (ignore)/img/week-3/10-week-3.png>)
 
@@ -800,7 +802,7 @@ Implement the code examples above.
 
 Here are examples of **Prisma Studio** in action:
 
-You can see that the `Institution` model is available in **Prisma Studio**. 
+You can see that the `Institution` model is available in **Prisma Studio**.
 
 ![](<../../resources (ignore)/img/week-3/exercises-00-week-3.png>)
 

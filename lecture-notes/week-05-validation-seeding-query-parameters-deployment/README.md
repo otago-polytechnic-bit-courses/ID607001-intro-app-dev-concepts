@@ -1,13 +1,15 @@
 # Week 05
 
+---
+
 ## Important Links
 
-| Section | Link |
-|---------|------|
+| Section        | Link                                                                         |
+| -------------- | ---------------------------------------------------------------------------- |
 | Previous Class | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
-| Lecture Video | [Week 05 Lecture Video]() |
-| Code Example | [Code Example](code-example) |
-| Next Class | [Week 06](../week-06-security-authentication-rbac-api-testing) |
+| Lecture Video  | [Week 05 Lecture Video]()                                                    |
+| Code Example   | [Code Example](code-example)                                                 |
+| Next Class     | [Week 06](../week-06-security-authentication-rbac-api-testing)               |
 
 ---
 

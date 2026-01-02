@@ -1,13 +1,15 @@
 # Week 04
 
+---
+
 ## Important Links
 
-| Section | Link |
-|---------|------|
-| Previous Class | [Week 02](../week-02-apis-express-development-tools) |
-| Lecture Video | [Week 04 Lecture Video]() |
-| Code Example | [Code Example](code-example) |
-| Next Class | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
+| Section        | Link                                                                 |
+| -------------- | -------------------------------------------------------------------- |
+| Previous Class | [Week 02](../week-02-apis-express-development-tools)                 |
+| Lecture Video  | [Week 04 Lecture Video]()                                            |
+| Code Example   | [Code Example](code-example)                                         |
+| Next Class     | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
 
 ---
 
