@@ -1,20 +1,13 @@
 # Week 04
 
-## Previous Class
+## Important Links
 
-Link to the previous class: [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman)
-
----
-
-## Lecture Video
-
-Link to the lecture video: [Week 04 Lecture Video]()
-
----
-
-## Code Example
-
-Link to the code example: [Code Example](code-example)
+| Section | Link |
+|---------|------|
+| Previous Class | [Week 02](../week-02-apis-express-development-tools) |
+| Lecture Video | [Week 04 Lecture Video]() |
+| Code Example | [Code Example](code-example) |
+| Next Class | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
 
 ---
 
@@ -1015,10 +1008,4 @@ To replicate this, in **Postman**, send the following:
 
 ## README File
 
-Update the `README.md` file in your repository to any new endpoints you have created.
-
----
-
-## Next Class
-
-Link to the next class: [Week 05](../week-05-validation-seeding-query-parameters-deployment)
+Update the `README.md` file in your repository to any new endpoints you have created. Include instructions on how to set up and run the project, as well as any other relevant information for users or developers.

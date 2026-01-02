@@ -1,20 +1,13 @@
 # Week 05
 
-## Previous Class
+## Important Links
 
-Link to the previous class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
-
----
-
-## Lecture Video
-
-Link to the lecture video: [Week 05 Lecture Video]()
-
----
-
-## Code Example
-
-Link to the code example: [Code Example](code-example)
+| Section | Link |
+|---------|------|
+| Previous Class | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
+| Lecture Video | [Week 05 Lecture Video]() |
+| Code Example | [Code Example](code-example) |
+| Next Class | [Week 06](../week-06-security-authentication-rbac-api-testing) |
 
 ---
 
@@ -877,10 +870,4 @@ Here is an example request in **Postman**:
 
 ## README File
 
-Update the `README.md` file in your repository to any new endpoints you have created.
-
----
-
-## Next Class
-
-Link to the next class: [Week 06](../week-06-security-authentication-rbac-api-testing)
+Update the `README.md` file in your repository to any new endpoints you have created. Include instructions on how to set up and run the project, as well as any other relevant information for users or developers.

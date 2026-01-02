@@ -1,20 +1,13 @@
 # Week 03
 
-## Previous Class
+## Important Links
 
-Link to the previous class: [Week 02](../week-02-apis-express-development-tools)
-
----
-
-## Lecture Video
-
-Link to the lecture video: [Week 03 Lecture Video]()
-
----
-
-## Code Example
-
-Link to the code example: [Code Example](code-example)
+| Section | Link |
+|---------|------|
+| Previous Class | [Week 02](../week-02-apis-express-development-tools) |
+| Lecture Video | [Week 03 Lecture Video]() |
+| Code Example | [Code Example](code-example) |
+| Next Class | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
 
 ---
 
@@ -807,7 +800,7 @@ Implement the code examples above.
 
 Here are examples of **Prisma Studio** in action:
 
-You can view all institutions in the database. Currently, there are no institutions.
+You can see that the `Institution` model is available in **Prisma Studio**. 
 
 ![](<../../resources (ignore)/img/week-3/exercises-00-week-3.png>)
 
@@ -833,10 +826,33 @@ Here is an example request in **Postman**:
 
 ![](<../../resources (ignore)/img/week-3/exercises-02-week-3.png>)
 
-
 ---
 
 ### Task 4 (Easy)
+
+In **Primsa**, there is a `select` option that allows you to select specific fields to be returned from a query.
+
+Update the `createInstitution`, `getInstitutions`, `getInstitution` and `updateInstitution` functions in the `controllers/institution.js` file to return all fields except for the `updatedAt` and `createdAt` fields.
+
+Here is an example of how to use the `select` option:
+
+```js
+const institutions = await prisma.institution.findMany({
+  select: {
+    id: true,
+  },
+});
+```
+
+Here is an example request in **Postman**:
+
+![](<../../resources (ignore)/img/week-3/exercises-03-week-3.png>)
+
+As you can see, only the `id`, `name`, and `country` fields are returned for each institution. This is useful when you want to limit the amount of data returned from a query.
+
+---
+
+### Task 5 (Easy)
 
 In your repository's `README.md` file, document the steps to set up and run the application.
 
@@ -912,9 +928,3 @@ Institution endpoints:
 - PUT /api/institutions/:id - Update an institution by ID
 - DELETE /api/institutions/:id - Delete an institution by ID
 ```
-
----
-
-## Next Class
-
-Link to the next class: [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture)
