@@ -1202,9 +1202,3 @@ const checkTicTacToeWinner = (board) => {
 ```
 
 > **Hint:** Check all rows, columns, and diagonals for three matching symbols. You can check rows with nested loops, columns by swapping indices, and diagonals with specific index patterns.
-
----
-
-## Next Class
-
-Link to the next class: [Week 02](../week-02-apis-express-development-tools)
