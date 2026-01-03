@@ -95,6 +95,7 @@ import isContentTypeApplicationJSON from "./middleware/content-type.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
 
 app.use(cors());
 app.use(compression());
@@ -107,7 +108,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 
@@ -164,7 +165,7 @@ Much like the `institution.js` files, create a new `department.js` file in the `
 > **Note:** If you get stuck, here is the complete `controllers/department.js` file.
 
 ```js
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 const createDepartment = async (req, res) => {
   try {
@@ -330,6 +331,7 @@ import isContentTypeApplicationJSON from "./middleware/content-type.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
 
 app.use(cors());
 app.use(compression());
@@ -343,7 +345,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 
@@ -400,7 +402,7 @@ The repository pattern is a design pattern that separates the data access logic 
 In the root directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 class InstitutionRepository {
   async create(data) {

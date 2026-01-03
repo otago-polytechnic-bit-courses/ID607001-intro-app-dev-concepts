@@ -302,7 +302,7 @@ Your `scripts` block should look like this.
 
 ### Prisma Client
 
-In the `prisma` directory, create a new file called `client.js`. Add the following code.
+In the `prisma` directory, create a new file called `db.js`. Add the following code.
 
 ```javascript
 import { PrismaClient } from "@prisma/client";
@@ -319,7 +319,7 @@ export default prisma;
 In the `controllers` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 ```
 
 To create an institution, use the `prisma.institution.create` function.
@@ -603,6 +603,7 @@ import institutionRoutes from "./routes/institution.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
 
 app.use(cors());
 app.use(compression());
@@ -614,7 +615,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 

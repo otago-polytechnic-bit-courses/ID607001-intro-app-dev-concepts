@@ -1,4 +1,4 @@
-import prisma from "../../prisma/client.js";
+import prisma from "../../prisma/db.js";
 
 const cleanupDatabase = async () => {
   await prisma.department.deleteMany();

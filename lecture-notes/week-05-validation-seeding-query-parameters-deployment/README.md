@@ -305,7 +305,7 @@ Here is an example for the **PUT** method.
 Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `institution.js` and add the following code.
 
 ```javascript
-import prisma from "../client.js";
+import prisma from "../db.js";
 
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
 

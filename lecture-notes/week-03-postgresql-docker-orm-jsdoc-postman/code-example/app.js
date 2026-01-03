@@ -8,6 +8,7 @@ import institutionRoutes from "./routes/institution.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
 
 app.use(cors());
 app.use(compression());
@@ -19,7 +20,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 

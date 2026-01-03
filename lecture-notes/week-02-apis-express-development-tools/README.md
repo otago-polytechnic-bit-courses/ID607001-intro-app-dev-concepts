@@ -350,6 +350,9 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
+// Use the API_BASE_URL environment variable or localhost
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
+
 // Enable CORS and Compression
 app.use(cors());
 app.use(compression());
@@ -364,9 +367,9 @@ app.get("/", (req, res) => {
   });
 });
 
-app.get("/languages", (req, res) => {
+app.get("/progLangs", (req, res) => {
   return res.status(200).json({
-    languages: [
+    progLangs: [
       { name: "C++", author: "Bjarne Stroustrup" },
       { name: "Java", author: "James Gosling" },
       { name: "JavaScript", author: "Brendan Eich" },
@@ -417,11 +420,11 @@ Open a browser and navigate to <http://localhost:3000/>. You should see the foll
 }
 ```
 
-Navigate to <http://localhost:3000/languages>. You should see the following message.
+Navigate to <http://localhost:3000/progLangs>. You should see the following message.
 
 ```json
 {
-  "languages": [
+  "progLangs": [
     { "name": "C++", "author": "Bjarne Stroustrup" },
     { "name": "Java", "author": "James Gosling" },
     { "name": "JavaScript", "author": "Brendan Eich" },
@@ -439,7 +442,7 @@ In the root directory, create a directory named `controllers`. In the `controlle
 
 ```javascript
 // Create a GET route
-const getFunctionExample1 = (req, res) => {
+const getPersonInfo = (req, res) => {
   return res.status(200).json({
     message: "Hello, World!",
     firstName: "John",
@@ -449,9 +452,9 @@ const getFunctionExample1 = (req, res) => {
   });
 };
 
-const getFunctionExample2 = (req, res) => {
+const getProgLangs = (req, res) => {
   return res.status(200).json({
-    languages: [
+    progLangs: [
       { name: "C++", author: "Bjarne Stroustrup" },
       { name: "Java", author: "James Gosling" },
       { name: "JavaScript", author: "Brendan Eich" },
@@ -462,7 +465,7 @@ const getFunctionExample2 = (req, res) => {
 };
 
 // Export the controller functions. May be used by other modules. For example, the index routes module
-export { getFunctionExample1, getFunctionExample2 };
+export { getPersonInfo, getProgLangs };
 ```
 
 > **Resource:** <https://expressjs.com/en/guide/routing.html>
@@ -478,16 +481,16 @@ import express from "express";
 
 // Import the index controllers module
 import {
-  getFunctionExample1,
-  getFunctionExample2,
+  getPersonInfo,
+  getProgLangs,
 } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
 
-// Create a GET route
-router.get("/", getFunctionExample1); // The first argument is the route path, the second argument is the controller function
-router.get("/languages", getFunctionExample2);
+// Create a GET routes
+router.get("/", getPersonInfo); // The first argument is the route path, the second argument is the controller function
+router.get("/progLangs", getProgLangs);
 
 // Export the router
 export default router;
@@ -510,6 +513,9 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
+// Use the API_BASE_URL environment variable or localhost
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
+
 // Enable CORS and Compression
 app.use(cors());
 app.use(compression());
@@ -520,7 +526,7 @@ app.use("/", indexRoutes);
 // Start the server on port 3000
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 

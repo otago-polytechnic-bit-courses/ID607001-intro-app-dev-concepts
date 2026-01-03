@@ -1,4 +1,4 @@
-import prisma from "../client.js";
+import prisma from "../db.js";
 
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
 

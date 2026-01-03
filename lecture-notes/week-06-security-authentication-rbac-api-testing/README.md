@@ -176,7 +176,7 @@ In the `controllers` directory, create a new file called `auth.js`. In the `auth
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 const register = async (req, res) => {
   try {
@@ -318,6 +318,7 @@ import isContentTypeApplicationJSON from "./middleware/content-type.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
 
 app.use(cors());
 app.use(compression());
@@ -332,7 +333,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${process.env.API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
   );
 });
 
@@ -603,7 +604,7 @@ root/
 In `db.js`, add the following code.
 
 ```javascript
-import prisma from "../../prisma/client.js";
+import prisma from "../../prisma/db.js";
 
 const cleanupDatabase = async () => {
   await prisma.department.deleteMany();
@@ -1285,7 +1286,7 @@ Update the `middleware/jwtAuth.js` file to check if the **token** is blacklisted
 ```js
 import jwt from "jsonwebtoken";
 
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 const jwtAuth = async (req, res, next) => {
   try {

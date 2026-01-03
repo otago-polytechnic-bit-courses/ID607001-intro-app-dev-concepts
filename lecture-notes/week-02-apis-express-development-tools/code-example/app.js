@@ -12,6 +12,9 @@ const app = express();
 // Use the PORT environment variable or 3000
 const PORT = process.env.PORT || 3000;
 
+// Use the API_BASE_URL environment variable or localhost
+const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
+
 // Enable CORS and Compression
 app.use(cors());
 app.use(compression());

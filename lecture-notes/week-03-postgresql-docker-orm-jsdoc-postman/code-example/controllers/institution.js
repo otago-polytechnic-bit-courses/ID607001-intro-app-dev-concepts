@@ -1,4 +1,4 @@
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions

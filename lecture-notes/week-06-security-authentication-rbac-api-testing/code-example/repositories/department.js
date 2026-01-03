@@ -1,4 +1,4 @@
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 class DepartmentRepository {
   async create(data) {
