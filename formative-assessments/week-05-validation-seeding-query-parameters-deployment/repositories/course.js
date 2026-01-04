@@ -1,29 +1,29 @@
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 class CourseRepository {
   async create(data) {
-    return await prisma.course.create({ data });
+    return prisma.course.create({ data });
   }
 
   async findAll() {
-    return await prisma.course.findMany();
+    return prisma.course.findMany();
   }
 
   async findById(id) {
-    return await prisma.course.findUnique({
+    return prisma.course.findUnique({
       where: { id },
     });
   }
 
   async update(id, data) {
-    return await prisma.course.update({
+    return prisma.course.update({
       where: { id },
       data,
     });
   }
 
   async delete(id) {
-    return await prisma.course.delete({
+    return prisma.course.delete({
       where: { id },
     });
   }

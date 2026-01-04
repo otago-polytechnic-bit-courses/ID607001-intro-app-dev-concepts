@@ -5,10 +5,10 @@ const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
     await departmentRepository.create({ name, institutionId });
-    const newDepartments = await departmentRepository.findAll();
+    const departments = await departmentRepository.findAll();
     return res.status(STATUS_CODES.CREATED).json({
       message: "Department successfully created",
-      data: newDepartments,
+      data: departments,
     });
   } catch (err) {
     return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({

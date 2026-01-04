@@ -1,4 +1,4 @@
-import prisma from "../prisma/client.js";
+import prisma from "../prisma/db.js";
 
 const createInstitution = async (req, res) => {
   // Try/catch blocks are used to handle exceptions
@@ -17,7 +17,7 @@ const createInstitution = async (req, res) => {
     });
 
     // Get all institutions from the institution table
-    const newInstitutions = await prisma.institution.findMany();
+    const institutions = await prisma.institution.findMany();
 
     // Send a JSON response
     return res.status(201).json({

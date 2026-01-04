@@ -7,10 +7,10 @@ const createCourse = async (req, res) => {
     const { code, name, description, departmentId } = req.body;
     await courseRepository.create({ code, name, description, departmentId });
     clearCache();
-    const newCourses = await courseRepository.findAll();
+    const courses = await courseRepository.findAll();
     return res.status(STATUS_CODES.CREATED).json({
       message: "Course successfully created",
-      data: newCourses,
+      data: courses,
     });
   } catch (err) {
     return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({

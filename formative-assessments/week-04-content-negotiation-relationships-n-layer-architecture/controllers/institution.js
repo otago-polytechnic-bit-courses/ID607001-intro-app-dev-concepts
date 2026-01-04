@@ -6,11 +6,11 @@ const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
     await institutionRepository.create({ name, region, country });
-    const newInstitutions = await institutionRepository.findAll();
+    const institutions = await institutionRepository.findAll();
     clearCache();
     return res.status(STATUS_CODES.CREATED).json({
       message: "Institution successfully created",
-      data: newInstitutions,
+      data: institutions,
     });
   } catch (err) {
     return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({

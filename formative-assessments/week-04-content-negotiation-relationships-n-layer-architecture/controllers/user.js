@@ -5,10 +5,10 @@ const createUser = async (req, res) => {
   try {
     const { firstName, lastName, emailAddress } = req.body;
     await userRepository.create({ firstName, lastName, emailAddress });
-    const newUsers = await userRepository.findAll();
+    const users = await userRepository.findAll();
     return res.status(STATUS_CODES.CREATED).json({
       message: "User successfully created",
-      data: newUsers,
+      data: users,
     });
   } catch (err) {
     return res.status(STATUS_CODES.INTERNAL_SERVER_ERROR).json({
