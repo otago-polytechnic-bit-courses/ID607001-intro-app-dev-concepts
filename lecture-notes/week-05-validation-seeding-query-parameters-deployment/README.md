@@ -510,10 +510,10 @@ const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
     await institutionRepository.create({ name, region, country });
-    const newInstitutions = await institutionRepository.findAll();
+    const institutions = await institutionRepository.findAll();
     return res.status(201).json({
       message: "Institution successfully created",
-      data: newInstitutions.data,
+      data: institutions.data,
     });
   } catch (err) {
     return res.status(500).json({

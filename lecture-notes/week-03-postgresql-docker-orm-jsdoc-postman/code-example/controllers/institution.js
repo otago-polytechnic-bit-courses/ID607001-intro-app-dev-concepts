@@ -15,12 +15,12 @@ const createInstitution = async (req, res) => {
     });
 
     // Get all institutions from the institution table
-    const newInstitutions = await prisma.institution.findMany();
+    const institutions = await prisma.institution.findMany();
 
     // Send a JSON response
     return res.status(201).json({
       message: "Institution successfully created",
-      data: newInstitutions,
+      data: institutions,
     });
   } catch (err) {
     return res.status(500).json({

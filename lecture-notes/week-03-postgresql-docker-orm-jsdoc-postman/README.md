@@ -63,6 +63,8 @@ To check if the container is running, run the following command.
 docker ps
 ```
 
+> **Note:** `ps` stands for "process status". It lists all the running containers.
+
 To stop the container, run the following command.
 
 ```bash
@@ -87,17 +89,21 @@ In the `package.json` file, add the following line to the `scripts` block.
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
+> **Note:** There are many **ORMs** available for **Node.js**. For example, **Sequelize**, **TypeORM**, **Objection.js**, etc. 
+
 ---
 
 ### Setup
 
 The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite** and **SQL Server**.
 
+> **Note:** **Prisma** 7.0 was recently released. However, we will use **Prisma** 6.12.0 for this course as it is more stable and works better with **JavaScript** projects.
+
 To get started, open a terminal and run the following.
 
 ```bash
-npm install @prisma/client
-npm install prisma --save-dev
+npm install @prisma/client@^6.12.0
+npm install prisma@^6.12.0 --save-dev
 npx prisma init
 ```
 
@@ -105,8 +111,8 @@ npx prisma init
 
 What does each do?
 
-- `npm install @prisma/client`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
-- `npm install prisma --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
+- `npm install @prisma/client@^6.12.0`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
+- `npm install prisma@^6.12.0 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
 - `npx prisma init`: Initialises **Prisma** in your project. It creates the `.env` file and the `prisma` directory.
 
 The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
@@ -312,6 +318,8 @@ const prisma = new PrismaClient();
 export default prisma;
 ```
 
+The `PrismaClient` class is used to create a new instance of the **Prisma Client**. The instance is then exported for use in other files. This is a design pattern called the **Singleton Pattern**. It ensures that there is only one instance of the **Prisma Client** throughout the application.
+
 ---
 
 ### Institution Controller
@@ -341,12 +349,12 @@ const createInstitution = async (req, res) => {
     });
 
     // Get all institutions from the institution table
-    const newInstitutions = await prisma.institution.findMany();
+    const institutions = await prisma.institution.findMany();
 
     // Send a JSON response
     return res.status(201).json({
       message: "Institution successfully created",
-      data: newInstitutions,
+      data: institutions,
     });
   } catch (err) {
     return res.status(500).json({
@@ -748,11 +756,11 @@ const createInstitution = async (req, res) => {
       },
     });
 
-    const newInstitutions = await prisma.institution.findMany();
+    const institutions = await prisma.institution.findMany();
 
     return res.status(201).json({
       message: "Institution successfully created",
-      data: newInstitutions,
+      data: institutions,
     });
   } catch (err) {
     return res.status(500).json({

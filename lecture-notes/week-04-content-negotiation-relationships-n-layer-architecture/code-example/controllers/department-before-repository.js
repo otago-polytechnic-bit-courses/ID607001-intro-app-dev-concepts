@@ -14,12 +14,12 @@ const createDepartment = async (req, res) => {
     });
 
     // Get all departments from the department table
-    const newDepartments = await prisma.department.findMany();
+    const departments = await prisma.department.findMany();
 
     // Send a JSON response
     return res.status(201).json({
       message: "Department successfully created",
-      data: newDepartments,
+      data: departments,
     });
   } catch (err) {
     return res.status(500).json({
