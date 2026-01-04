@@ -452,7 +452,7 @@ async findAll(
   pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
   // Get total number of institutions that match the filters
-  const totalCount = await prisma.institution.count({
+  const totalCount = prisma.institution.count({
     where: filters,
   });
 
@@ -482,7 +482,7 @@ async findAll(
     }
   }
 
-  const institutions = await prisma.institution.findMany(query);
+  const institutions = prisma.institution.findMany(query);
 
   // Return the data along with pagination information
   return {
@@ -553,7 +553,7 @@ const getInstitutions = async (req, res) => {
       ? sortBy.toLowerCase()
       : "id";
 
-    const institutions = await institutionRepository.findAll(
+    const institutions = institutionRepository.findAll(
       filters,
       fields,
       order,
