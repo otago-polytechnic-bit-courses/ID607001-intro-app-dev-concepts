@@ -356,16 +356,16 @@ export default app;
 
 ### Postman Example
 
-Create a new request and name it **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
+In the **lecture-notes/week-04** folder, create a new request called **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. Click on the **Body** tab. Select the **raw** radio button. Select **JSON** from the dropdown. Enter the following code in the text area. Click on the **Send** button to send the request.
 
 ```json
 {
   "name": "Information Technology",
-  "institutionId": "<Replace with an institution's id>"
+  "institutionId": "Replace with an institution's id"
 }
 ```
 
-Click on the **Send** button to send the request.
+You should see a response with the newly created department.
 
 ![](<../../resources (ignore)/img/week-4/00-week-4.png>)
 
@@ -607,13 +607,11 @@ const departments = await prisma.department.findMany({
 
 ## System Design
 
-In the **Project** assessment, you will be required to design and implement a **full-stack** application which has a **database**, **backend** and **frontend**. The **backend** and **frontend** applications will be developed separately.
+In the **Project** assessment, you will be required to design and implement a **REST API** that has a **database** and **backend**.
 
-In **Part A** of the **Project** assessment, you will required to document the **system design** of your **full-stack** application, focusing primarily on the **database** and **backend**.
+Firstly, you need to decide on a topic for your **REST API**. The topic should be something you are interested in and passionate about. Previously, learners have either used their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
 
-Firstly, you need to decide on a topic for your **full-stack** application. The topic should be something you are interested in and passionate about. Previously, learners have either their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
-
-The **system design** should include the following, but not limited to:
+The **system design** document should include the following, but not limited to:
 
 - **System architecture:**
 
@@ -659,6 +657,7 @@ The **system design** should include the following, but not limited to:
   - How will you manage test data?
 
 - **Infrastructure and deployment:**
+
   - What services will you use for deployment?
   - How will you manage environment variables?
 
@@ -697,7 +696,7 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-In this task, you will create a **system design** document for your **full-stack** application. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
+In this task, you will create a draft **system design** document for your **REST API**. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
 
 ---
 
@@ -791,13 +790,13 @@ class InstitutionRepository {
   // Omitted for brevity
 
   async findAll(includeOptions = {}) {
-    return await prisma.institution.findMany({
+    return prisma.institution.findMany({
       include: includeOptions,
     });
   }
 
   async findById(id, includeOptions = {}) {
-    return await prisma.institution.findUnique({
+    return prisma.institution.findUnique({
       where: { id },
       include: includeOptions,
     });
@@ -880,12 +879,6 @@ To replicate this, in **Postman**, send the following:
 
 ---
 
-### Task 6 (Medium)
-
-You notice there is a lot of code duplication. Refactor the Code to reduce the duplication.
-
----
-
 ## Hard Exercises
 
 These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
@@ -961,9 +954,10 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
-  // Omitted for brevity
 
-  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+// Omitted for brevity
+
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 /// Omitted for brevity
@@ -1007,6 +1001,18 @@ To replicate this, in **Postman**, send the following:
 2. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
 3. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss again
 4. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache hit
+
+---
+
+### Task 2
+
+You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+Here are some suggestions:
+
+- Create a module called `server.js` that contains running the server. The `app.listen` code should be moved to this module
+- Create a base repository class called `BaseRepository` that contains common methods that can be extended by other repository classes
+- Create a base controller class called `BaseController` that contains common methods that can be extended by other controller classes
 
 ---
 

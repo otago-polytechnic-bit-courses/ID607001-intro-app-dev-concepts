@@ -89,7 +89,7 @@ In the `package.json` file, add the following line to the `scripts` block.
 
 An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
 
-> **Note:** There are many **ORMs** available for **Node.js**. For example, **Sequelize**, **TypeORM**, **Objection.js**, etc. 
+> **Note:** There are many **ORMs** available for **Node.js**. For example, **Sequelize**, **TypeORM**, **Objection.js**, etc.
 
 ---
 
@@ -864,6 +864,43 @@ As you can see, only the `id`, `name`, and `country` fields are returned for eac
 ---
 
 ### Task 5 (Easy)
+
+What happens if you try to update or delete an institution without providing an `id` in the URL parameter? Try it in **Postman** by sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an `id`. You should see a response like this:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Error</title>
+</head>
+
+<body>
+    <pre>Cannot PUT /api/institutions/</pre>
+</body>
+
+</html>
+```
+
+This response is not very helpful. In the `routes/institution.js` file, add a check to ensure that the `id` parameter is provided in the URL for the `PUT` and `DELETE` routes. If the `id` parameter is missing, return a `400 Bad Request` response with a message indicating that the `id` is required.
+
+```js
+// Ommitted for brevity
+
+router.put("/:id", updateInstitution);
+router.put("/", (req, res) => {
+  return res.status(400).json({
+    message: "id is required in the URL parameter",
+  });
+});
+
+// Ommitted for brevity
+```
+
+---
+
+### Task 6 (Easy)
 
 In your repository's `README.md` file, document the steps to set up and run the application.
 

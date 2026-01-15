@@ -763,18 +763,6 @@ Implement **scripts** to seed the `Department`, `Course` and `User` **resources*
 
 ---
 
-### Task 6 (Medium)
-
-> **Resource:** <https://www.prisma.io/postgres>
-
----
-
-### Task 7 (Medium)
-
-You notice there is a lot of code duplication. Refactor the Code to reduce the duplication.
-
----
-
 ## Hard Exercises
 
 These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
@@ -867,6 +855,17 @@ Implement an endpoint, e.g., `/api/health`, that provides a health check for you
 Here is an example request in **Postman**:
 
 <ADD IMAGE HERE>
+
+---
+
+### Task 4
+
+You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+
+Here are some suggestions:
+
+- Create a base validation middleware module called `BaseValidationMiddleware` that contains common validation logic that can be extended by other validation middleware modules
+- Create a base seeding script module called `BaseSeedingScript` that contains common seeding logic that can be extended by other seeding script modules
 
 ---
 

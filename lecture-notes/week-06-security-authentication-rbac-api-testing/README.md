@@ -514,7 +514,7 @@ In the `middleware` directory, create a new file called `rateLimiter.js`. In the
 import rateLimit from "express-rate-limit";
 
 const rateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
+  windowMs: 15 * 60 * 1000, // 15 minutes
   max: 5,
   standardHeaders: true,
   legacyHeaders: false,
@@ -1119,7 +1119,7 @@ model User {
   lastName            String
   emailAddress        String    @unique
   password            String
-  role                Role      @default(NORMAL)
+  role                Role      @default(STUDENT)
   profile             Profile?
   failedLoginAttempts Int       @default(0)
   lockoutUntil        DateTime?
@@ -1328,10 +1328,4 @@ Here is an example request in **Postman**:
 
 ## README File
 
-Update the `README.md` file in your repository to any new endpoints you have created.
-
----
-
-## Next Class
-
-Link to the next class: [Week 07](../week-07-javascript-2-vite-sveltekit-js-api-integration-1)
+Update the `README.md` file in your repository to any new endpoints you have created. Include instructions on how to set up and run the project, as well as any other relevant information for users or developers.
