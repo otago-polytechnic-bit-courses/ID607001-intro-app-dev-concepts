@@ -37,6 +37,8 @@ Content negotiation is the process of selecting the best representation of a res
 
 In this class, we will use the **Accept Header** to perform content negotiation.
 
+> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation>
+
 ---
 
 ### Middleware
@@ -67,6 +69,8 @@ const isContentTypeApplicationJSON = (req, res, next) => {
 
 export default isContentTypeApplicationJSON;
 ```
+
+> **Resource:** <https://expressjs.com/en/guide/writing-middleware.html>
 
 ---
 
@@ -125,6 +129,10 @@ In **Prisma**, we can define different types of relationships between models. He
 - **One-to-many:** A single model instance is associated with multiple instances of another model.
 - **Many-to-many:** Multiple instances of a model are associated with multiple instances of another model.
 
+> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/relations>
+
+---
+
 ### Prisma Schema File
 
 In the `schema.prisma` file, add the following code under the `model Institution` block.
@@ -154,7 +162,7 @@ model Institution {
 }
 ```
 
-> What type of relationship is this? This is a **one-to-many** relationship. A single institution can have multiple departments.
+What type of relationship is this? This is a **one-to-many** relationship. A single institution can have multiple departments.
 
 ---
 
@@ -385,6 +393,8 @@ You should see a response with the newly created department.
 
 For simplicity, we will use only the **presentation** and **data layers** in this course.
 
+> **Resource:** <https://martinfowler.com/bliki/PresentationDomainDataLayering.html>
+
 ---
 
 ### Repository Pattern
@@ -394,6 +404,8 @@ The repository pattern is a design pattern that separates the data access logic 
 - **Separation of Concerns:** The repository pattern separates the data access logic from the business logic. This makes the code easier to maintain and test.
 - **Testability:** The repository pattern makes it easier to test the data access logic and the business logic separately. For example, you can write unit tests for the data access logic without having to set up a database.
 - **Flexibility:** The repository pattern makes it easier to switch between different data access technologies. For example, you can switch from a SQL database to a NoSQL database without changing the business logic.
+
+> **Resource:** <https://martinfowler.com/eaaCatalog/repository.html>
 
 ---
 
