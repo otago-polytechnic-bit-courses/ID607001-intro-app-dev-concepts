@@ -9,6 +9,7 @@
     "dev": "nodemon app.js",
     "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
     "env:copy": "cp .env.example .env || copy .env.example .env",
+    "prisma:generate": "npx prisma generate",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:reset": "npx prisma migrate reset --force"
   },

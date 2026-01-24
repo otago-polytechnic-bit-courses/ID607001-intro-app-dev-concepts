@@ -4,12 +4,13 @@
 
 ## Important Links
 
-| Section        | Link                                                                 |
-| -------------- | -------------------------------------------------------------------- |
-| Previous Class | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
-| Lecture Video  | [Week 06 Lecture Video]()                                            |
-| Code Example   | [Code Example](code-example)                                         |
-| Next Class     | [Week 07](../)                                                       |
+| Section                    | Link                                                                 |
+| -------------------------- | -------------------------------------------------------------------- |
+| Previous Class             | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
+| Lecture Video              | [Week 06 Lecture Video]()                                            |
+| Code Example               | [Code Example](code-example)                                         |
+| Advanced Auth Code Example | [Advanced Auth Code Example](advanced-auth-code-example)             |
+| Next Class                 | [Week 07]()                                                       |
 
 ---
 
@@ -253,7 +254,7 @@ const login = async (req, res) => {
         role: user.role,
       },
       JWT_SECRET,
-      { expiresIn: JWT_LIFETIME }
+      { expiresIn: JWT_LIFETIME },
     );
 
     return res.status(200).json({
@@ -333,7 +334,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
@@ -446,7 +447,7 @@ router.post(
   validatePostInstitution,
   jwtAuth,
   rbac("ADMIN"),
-  createInstitution
+  createInstitution,
 );
 
 // Omitted for brevity
@@ -485,6 +486,19 @@ Here is an example of logging in as a `STUDENT` user. Make sure you copy the tok
 Here is an example of creating an `Institution` as a `STUDENT` user. You should get a `403 Forbidden` status code because the `STUDENT` user does not have the required role to create an `Institution`.
 
 <ADD IMAGE HERE>
+
+---
+
+### Limitations
+
+The current approach uses a `Role` enum on the `User` model. This works for basic scenarios but has limitations:
+
+- **Tightly coupled user types and roles** - User types are directly tied to roles, making it difficult to manage complex or nuanced permissions (e.g., a student who is also a teaching assistant).
+- **No support for type-specific data** - Difficult to add user-type specific attributes such as department information for lecturers or enrollment data for students.
+- **Poor scalability** - Hard to extend when different user types require different fields and relationships.
+- **Mixed concerns** - Authentication/authorization logic is mixed with user identity, leading to maintenance challenges as the system grows.
+
+See the advanced auth code example for a more flexible approach using separate `User`, `Role` and `Permission` models.
 
 ---
 
@@ -712,7 +726,7 @@ describe("Institution CRUD", () => {
 
     // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[1].name // "Otago Polytechnic"
+      (institution) => institution.name === institutionData[1].name, // "Otago Polytechnic"
     );
     institutionOneId = newInstitution.id; // Store the institution ID for later use
   });
@@ -725,7 +739,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[2].name // "Southern Institute of Technology"
+      (institution) => institution.name === institutionData[2].name, // "Southern Institute of Technology"
     );
     institutionTwoId = newInstitution.id;
   });
@@ -752,7 +766,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionTwoId} successfully updated`
+      `Institution with the id: ${institutionTwoId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(institutionData[0].name);
   });
@@ -762,7 +776,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionOneId} successfully deleted`
+      `Institution with the id: ${institutionOneId} successfully deleted`,
     );
   });
 
@@ -822,7 +836,7 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(201);
     const newDepartment = res.body.data.find(
-      (department) => department.name === departmentData[0].name // "Information Technology"
+      (department) => department.name === departmentData[0].name, // "Information Technology"
     );
     departmentOneId = newDepartment.id;
   });
@@ -849,7 +863,7 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`
+      `Department with the id: ${departmentOneId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(departmentData[1].name);
   });
@@ -859,7 +873,7 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`
+      `Department with the id: ${departmentOneId} successfully deleted`,
     );
   });
 });
