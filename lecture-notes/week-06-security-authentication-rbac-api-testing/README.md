@@ -548,6 +548,8 @@ What does each property mean?
 - `legacyHeaders`: If set to `false`, it disables the `X-RateLimit-*` headers in the response.
 - `message`: The error message returned when the rate limit is exceeded.
 
+> **Resource:** <https://express-rate-limit.mintlify.app/overview>
+
 ---
 
 ### Institution Router
@@ -648,6 +650,8 @@ import app from "../../app.js";
 import { cleanupDatabase } from "./db.js";
 
 const setupTestAuth = async () => {
+  const BASE_URL = "/api/auth";
+
   const user = {
     firstName: "Jane",
     lastName: "Doe",
@@ -658,9 +662,9 @@ const setupTestAuth = async () => {
 
   await cleanupDatabase();
 
-  await request(app).post("/api/auth/register").send();
+  await request(app).post(`${BASE_URL}/register`).send(user);
 
-  const res = await request(app).post("/api/auth/login").send({
+  const res = await request(app).post(`${BASE_URL}/login`).send({
     emailAddress: user.emailAddress,
     password: user.password,
   });
