@@ -14,8 +14,9 @@ datasource db {
 }
 
 enum Role {
-  ADMIN
-  NORMAL
+  ADMIN // Administrator with full access
+  STAFF // Staff member with limited access
+  STUDENT // Student with restricted access
 }
 
 model User {
@@ -24,7 +25,7 @@ model User {
   lastName         String
   emailAddress     String        @unique
   password         String
-  role             Role          @default(NORMAL)
+  role             Role          @default(STUDENT)
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @default(now())
 }

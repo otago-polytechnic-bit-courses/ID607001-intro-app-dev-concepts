@@ -119,6 +119,12 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+Copy and paste the **Create an institution** request from the **lecture-notes/week-03** folder to the **lecture-notes/week-04** folder. Select **Text** from the dropdown. Click on the **Send** button to send the request.
+
+You should see the **content negotiation** in action.
+
+![](<../../resources (ignore)/img/week-4/00-week-4.png>)
+
 ---
 
 ## Relationships
@@ -137,7 +143,7 @@ In **Prisma**, we can define different types of relationships between models. He
 
 In the `schema.prisma` file, add the following code under the `model Institution` block.
 
-```prisma
+```js
 model Department {
   id            String      @id @default(uuid())
   name          String
@@ -150,7 +156,7 @@ model Department {
 
 Also, update the `model Institution` block.
 
-```prisma
+```js
 model Institution {
   id          String       @id @default(uuid())
   name        String
@@ -375,7 +381,7 @@ In the **lecture-notes/week-04** folder, create a new request called **Create a 
 
 You should see a response with the newly created department.
 
-![](<../../resources (ignore)/img/week-4/00-week-4.png>)
+![](<../../resources (ignore)/img/week-4/01-week-4.png>)
 
 > **Note:** Make sure you have at least one institution.
 

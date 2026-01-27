@@ -498,7 +498,7 @@ The current approach uses a `Role` enum on the `User` model. This works for basi
 - **Poor scalability** - Hard to extend when different user types require different fields and relationships.
 - **Mixed concerns** - Authentication/authorization logic is mixed with user identity, leading to maintenance challenges as the system grows.
 
-See the advanced auth code example for a more flexible approach using separate `User`, `Role` and `Permission` models.
+See the advanced auth code example for a more flexible approach.
 
 ---
 
@@ -533,7 +533,7 @@ const rateLimiter = rateLimit({
   standardHeaders: true,
   legacyHeaders: false,
   message: {
-    message: "Too many requests, please try again later.",
+    message: "Too many requests, please try again later",
   },
 });
 
