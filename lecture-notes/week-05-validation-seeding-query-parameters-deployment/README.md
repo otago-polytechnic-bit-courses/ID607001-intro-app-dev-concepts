@@ -55,8 +55,6 @@ Run the script by executing the following command.
 ./application-setup.sh
 ```
 
-<ADD GIF HERE>
-
 ---
 
 ## Validation
@@ -128,7 +126,16 @@ const validatePostInstitution = (req, res, next) => {
 
   next();
 };
+```
 
+What is this code doing?
+
+We are defining a middleware function, `validatePostInstitution`, which accepts the `req`, `res`, and `next` parameters. Within this function, a schema for the `Institution` resource is created using `Joi.object()`, specifying the expected structure and validation rules for each field. The incoming request data is then validated against this schema using `institutionSchema.validate()`, with options set to prevent early abortion of validation and to disable type conversion. If any validation errors are detected, they are formatted and returned with a `409` status code and the corresponding error messages in the response. If no validation errors occur, `next()` is called to pass control to the subsequent middleware or route handler.
+
+Below the `validatePostInstitution` function, add the following code to define the `validatePutInstitution` function.
+
+
+```js
 const validatePutInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
@@ -173,6 +180,10 @@ const validatePutInstitution = (req, res, next) => {
 
 export { validatePostInstitution, validatePutInstitution };
 ```
+
+What is the difference between the `validatePostInstitution` and `validatePutInstitution` functions?
+
+The `validatePostInstitution` function is used to validate data when creating a new institution, requiring all fields to be present. In contrast, the `validatePutInstitution` function validates data when updating an existing institution, where all fields are optional but at least one must be provided for the update to be considered valid.
 
 ---
 
@@ -326,7 +337,7 @@ const validateInstitution = (institution) => {
 
   if (validationError) {
     const errorMessage =
-      typeof validationError === "object"
+      typeof validationError === "object" // Check if validationError is an object (e.g., { errors: [...] })
         ? JSON.stringify(validationError)
         : validationError;
     throw new Error(errorMessage);
@@ -430,6 +441,8 @@ Resource: Institutions
 ---
 
 ## Query Parameters
+
+Have you ever shopped online and used filtering and sorting options to find the product you are looking for? For example, you may have filtered and/or sorted products by price. This is an example of using **query parameters** to filter and sort data.
 
 **Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
