@@ -906,19 +906,20 @@ const clearCache = () => {
 In the **routes** files, import and use the `cacheMiddleware` for the **GET** endpoints. For example, in the `routes/institution.js` file:
 
 ```javascript
-/// Omitted for brevity
+// Omitted for brevity
 
 import { cacheMiddleware } from "../middleware/cache.js";
 
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
-  // Omitted for brevity
 
-  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+// Omitted for brevity
+
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
-/// Omitted for brevity
+// Omitted for brevity
 ```
 
 > **Note:** The `POST`, `PUT` and `DELETE` endpoints do not use the `cacheMiddleware`.
@@ -933,7 +934,9 @@ In the **controllers** files, import and use the `clearCache` function to clear 
 const createInstitution = async (req, res) => {
   try {
     // Omitted for brevity
+
     // TODO 11: Clear the cache after creating a new institution
+    
     // Omitted for brevity
   } catch (err) {
     // Omitted for brevity
