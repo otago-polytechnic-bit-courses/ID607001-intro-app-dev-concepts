@@ -10,7 +10,7 @@
 | Lecture Video              | [Week 06 Lecture Video]()                                            |
 | Code Example               | [Code Example](code-example)                                         |
 | Advanced Auth Code Example | [Advanced Auth Code Example](advanced-auth-code-example)             |
-| Next Class                 | [Week 07]()                                                       |
+| Next Class                 | [Week 07]()                                                          |
 
 ---
 
@@ -1017,7 +1017,7 @@ Here is an example request in **Postman**:
 
 Implement the following permissions for each resource:
 
-| Resource    | Action          | Admin | Staff | Student |
+| Resource    | Operation       | Admin | Staff | Student |
 | ----------- | --------------- | ----- | ----- | ------- |
 | Institution | Read All and ID | Yes   | Yes   | Yes     |
 | Institution | Create          | Yes   | Yes   | No      |

@@ -112,7 +112,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
@@ -206,45 +206,11 @@ const createDepartment = async (req, res) => {
 };
 
 const getDepartments = async (req, res) => {
-  try {
-    const departments = await prisma.department.findMany();
-
-    if (departments.length === 0) {
-      return res.status(404).json({ message: "No departments found" });
-    }
-
-    return res.status(200).json({
-      data: departments,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
+  // Omitted for brevity
 };
 
 const getDepartment = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const department = await prisma.department.findUnique({
-      where: { id },
-    });
-
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-
-    return res.status(200).json({
-      data: department,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
+  // Omitted for brevity
 };
 
 const updateDepartment = async (req, res) => {
@@ -281,31 +247,7 @@ const updateDepartment = async (req, res) => {
 };
 
 const deleteDepartment = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const department = await prisma.department.findUnique({
-      where: { id },
-    });
-
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-
-    await prisma.department.delete({
-      where: { id },
-    });
-
-    return res.status(200).json({
-      message: `Department with the id: ${id} successfully deleted`,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
+  // Omitted for brevity
 };
 
 export {
@@ -359,7 +301,7 @@ app.use("/api/departments", departmentRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
@@ -632,27 +574,23 @@ Firstly, you need to decide on a topic for your **REST API**. The topic should b
 The **system design** document should include the following, but not limited to:
 
 - **System architecture:**
-
   - What architecture pattern will you use?
   - What technology stack will you use for the **database** and **backend**?
   - How will the **database** and **backend** communicate with each other?
   - How will you structure the **database** and **backend** code?
 
 - **Database:**
-
   - What tables will you have?
   - What fields, data types and constraints will each table have?
   - What relationships will you have between the tables?
   - How will you manage database migrations?
 
 - **Security:**
-
   - How will sensitive data be managed?
   - What input validation will you implement?
   - What headers will you implement?
 
 - **REST API:**
-
   - What endpoints will you have?
   - What HTTP methods will you use for each endpoint?
   - What request parameters will you need for each endpoint?
@@ -662,20 +600,17 @@ The **system design** document should include the following, but not limited to:
   - How will you document your **REST API**?
 
 - **Authentication and authorisation:**
-
   - What authentication and authorisation method will you use?
   - How will you manage the authentication and authorisation?
   - What roles will you have and what permissions will each role have?
 
 - **Testing:**
-
   - What testing library and/or framework will you use?
   - What types of tests will you implement?
   - How will you structure your tests?
   - How will you manage test data?
 
 - **Infrastructure and deployment:**
-
   - What services will you use for deployment?
   - How will you manage environment variables?
 
@@ -735,7 +670,7 @@ Create the necessary **controller**, **route** and **repository** files for the 
 
 Here is an example output in **Postman**:
 
-![](<../../resources (ignore)/img/week-4/exercises-01-week-4.png>)
+![](<../../resources (ignore)/img/week-4/exercises-00-week-4.png>)
 
 ---
 
@@ -774,6 +709,10 @@ model Course {
 > **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 Create the necessary **controller**, **route** and **repository** files for the `Course` model. Test your implementation in **Postman**.
+
+Here is an example output in **Postman**:
+
+![](<../../resources (ignore)/img/week-4/exercises-01-week-4.png>)
 
 ---
 
@@ -895,6 +834,8 @@ To replicate this, in **Postman**, send the following:
 2. A **POST** request to `http://localhost:3000/api/departments to create a new department
 3. A **GET** request to `http://localhost:3000/api/institutions` to retrieve the list of institutions along with their departments
 
+When you look at the response, are there any issues? Can you identify any performance issues? How would you solve these issues?
+
 ---
 
 ## Hard Exercises
@@ -972,10 +913,9 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+  // Omitted for brevity
 
-// Omitted for brevity
-
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 /// Omitted for brevity

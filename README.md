@@ -18,7 +18,7 @@
 
 ## Course Dates
 
-| Term 1 (8 weeks) | Mid-Semester Break | Term 2 (8 weeks) |
+| Term 1 (7 weeks) | Mid-Semester Break | Term 2 (9 weeks) |
 | ---------------- | ------------------ | ---------------- |
 | TBC              | TBC                | TBC              |
 
@@ -75,7 +75,7 @@ At the successful completion of this course, learners will be able to:
 | 13/Tekau mā toru | Assessment Work                                                     |
 | 14/Tekau mā whā  | Assessment Work                                                     |
 | 15/Tekau mā rima | Assessment Work                                                     |
-| 16/Tekau mā ono  | Assessment Work                                                     |
+| 16/Tekau mā ono  | Assessment Marking                                                  |
 
 ## Resources
 

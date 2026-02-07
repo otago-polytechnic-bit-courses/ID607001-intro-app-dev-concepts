@@ -113,7 +113,7 @@ const validatePostInstitution = (req, res, next) => {
     {
       abortEarly: false,
       convert: false, // Disable type conversion, e.g., "123" to 123
-    }
+    },
   );
 
   if (error) {
@@ -130,10 +130,11 @@ const validatePostInstitution = (req, res, next) => {
 
 What is this code doing?
 
-We are defining a middleware function, `validatePostInstitution`, which accepts the `req`, `res`, and `next` parameters. Within this function, a schema for the `Institution` resource is created using `Joi.object()`, specifying the expected structure and validation rules for each field. The incoming request data is then validated against this schema using `institutionSchema.validate()`, with options set to prevent early abortion of validation and to disable type conversion. If any validation errors are detected, they are formatted and returned with a `409` status code and the corresponding error messages in the response. If no validation errors occur, `next()` is called to pass control to the subsequent middleware or route handler.
+- Defining a validation schema using Joi. The schema defines the expected structure and constraints for the `name`, `region` and `country` fields.
+- Validating the incoming request data against the schema. If there are validation errors, it formats the errors and returns a `409` status code with the error details in the response.
+- If the validation is successful, it calls `next()` to pass control to the next middleware or route handler.
 
 Below the `validatePostInstitution` function, add the following code to define the `validatePutInstitution` function.
-
 
 ```js
 const validatePutInstitution = (req, res, next) => {
@@ -164,7 +165,7 @@ const validatePutInstitution = (req, res, next) => {
     {
       abortEarly: false,
       convert: false,
-    }
+    },
   );
 
   if (error) {
@@ -183,7 +184,9 @@ export { validatePostInstitution, validatePutInstitution };
 
 What is the difference between the `validatePostInstitution` and `validatePutInstitution` functions?
 
-The `validatePostInstitution` function is used to validate data when creating a new institution, requiring all fields to be present. In contrast, the `validatePutInstitution` function validates data when updating an existing institution, where all fields are optional but at least one must be provided for the update to be considered valid.
+- The `validatePostInstitution` function is used for validating data when creating a new institution. It requires all fields to be present and valid.
+
+- The `validatePutInstitution` function is used for validating data when updating an existing institution. It allows partial updates, so all fields are optional, but at least one field must be provided.
 
 ---
 
@@ -571,7 +574,7 @@ const getInstitutions = async (req, res) => {
       fields,
       order,
       page,
-      pageSize
+      pageSize,
     );
 
     if (institutions.data.length === 0) {
@@ -619,6 +622,21 @@ Here is an example of paging by `pageSize`.
 
 ---
 
+### Package JSON File
+
+In the `package.json` file, add the following in the `scripts` block.
+
+```json
+"build": "npm install && npx prisma generate && npx prisma migrate deploy"
+```
+
+What is the difference between `npx primsa migrate dev` and `npx prisma migrate deploy`? 
+
+- `npx prisma migrate dev` is used for **development** purposes. It creates a new migration file based on the changes in your **Prisma** schema and applies it to your local database. It also updates the **Prisma Client**.
+- `npx prisma migrate deploy` is used for **production** deployment. It applies all pending migrations to the **production** database without creating new migration files. It does not update the **Prisma Client**, so you should ensure that your **Prisma Client** is up to date before running this command in **production**.
+
+---
+
 ### Render
 
 [Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
@@ -657,7 +675,7 @@ Sign up for a **Render** account at [https://dashboard.render.com/register](http
 
 <ADD IMAGE HERE>
 
-5. Change the **Build Command** to `npm install` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+5. Change the **Build Command** to `npm run build` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
 
 <ADD IMAGE HERE>
 
