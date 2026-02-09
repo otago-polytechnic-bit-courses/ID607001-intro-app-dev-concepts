@@ -1,11 +1,13 @@
 import departmentRepository from "../repositories/department.js";
 import STATUS_CODES from "../middleware/statusCodes.js";
+import { clearCache } from "../middleware/cache.js";
 
 const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
     await departmentRepository.create({ name, institutionId });
     const departments = await departmentRepository.findAll();
+    clearCache();
     return res.status(STATUS_CODES.CREATED).json({
       message: "Department successfully created",
       data: departments,
@@ -63,6 +65,7 @@ const updateDepartment = async (req, res) => {
       });
     }
     department = await departmentRepository.update(id, { name, institutionId });
+    clearCache();
     return res.status(STATUS_CODES.OK).json({
       message: `Department with the id: ${id} successfully updated`,
       data: department,
@@ -84,6 +87,7 @@ const deleteDepartment = async (req, res) => {
       });
     }
     await departmentRepository.delete(id);
+    clearCache();
     return res.status(STATUS_CODES.OK).json({
       message: `Department with the id: ${id} successfully deleted`,
     });
