@@ -290,7 +290,7 @@ export default router;
 
 ### Postman Example
 
-Create a new request and name it **Create an institution - validation**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. In the **Body** tab, select **raw** and then select **JSON** from the dropdown. Enter the following JSON in the body.
+Copy and paste the **Create an institution** request from the **lecture-notes/week-03** folder to the **lecture-notes/week-05** folder. Enter the following code in the text area.
 
 ```json
 {
@@ -298,7 +298,7 @@ Create a new request and name it **Create an institution - validation**. Select 
 }
 ```
 
-Click on the **Send** button to send the request.
+Click on the **Send** button to send the request. You should see the following response.
 
 ![](<../../resources (ignore)/img/week-5/00-week-5.png>)
 

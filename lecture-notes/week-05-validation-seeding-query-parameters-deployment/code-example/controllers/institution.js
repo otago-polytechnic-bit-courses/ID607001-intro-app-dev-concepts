@@ -48,7 +48,7 @@ const getInstitutions = async (req, res) => {
       fields,
       order,
       page,
-      pageSize
+      pageSize,
     );
 
     if (!institutions.data.length) {
@@ -99,6 +99,10 @@ const updateInstitution = async (req, res) => {
       name,
       region,
       country,
+    });
+    return res.status(200).json({
+      message: `Institution with the id: ${id} successfully updated`,
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({

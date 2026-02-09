@@ -623,7 +623,7 @@ app.use("/api/institutions", institutionRoutes);
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
@@ -870,16 +870,14 @@ What happens if you try to update or delete an institution without providing an 
 ```html
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="utf-8">
+  <head>
+    <meta charset="utf-8" />
     <title>Error</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <pre>Cannot PUT /api/institutions/</pre>
-</body>
-
+  </body>
 </html>
 ```
 
