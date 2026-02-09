@@ -443,6 +443,8 @@ Resource: Institutions
 ==========================================
 ```
 
+> **Note:** The output assumes you have replaced the comments **"Display error message"** and **"Display no error message"** with code to display the appropriate messages based on whether there are errors or not.
+
 ---
 
 ## Query Parameters
