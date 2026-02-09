@@ -306,6 +306,8 @@ Here is an example for the **PUT** method.
 
 ![](<../../resources (ignore)/img/week-5/01-week-5.png>)
 
+> **Note:** You will notice that the an array of validation errors is returned in the response. This is a common practice as it allows the client to see all validation issues at once and address them in a single request, rather than having to fix one issue at a time and resubmit the request multiple times.
+
 ---
 
 ## Seeding
@@ -445,7 +447,7 @@ Resource: Institutions
 
 ## Query Parameters
 
-Have you ever shopped online and used filtering and sorting options to find the product you are looking for? For example, you may have filtered and/or sorted products by price. This is an example of using **query parameters** to filter and sort data.
+Have you ever shopped online and used the filters to narrow down your search results, or sorted products by price, or navigated through multiple pages of search results? These features are made possible by **query parameters** in the URL.
 
 **Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
