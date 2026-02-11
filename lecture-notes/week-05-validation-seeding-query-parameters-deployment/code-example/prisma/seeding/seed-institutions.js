@@ -18,9 +18,10 @@ const validateInstitution = (institution) => {
   validatePostInstitution(req, res, () => {});
 
   if (validationError) {
-    const errorMessage = typeof validationError === 'object' 
-      ? JSON.stringify(validationError) 
-      : validationError;
+    const errorMessage =
+      typeof validationError === "object"
+        ? JSON.stringify(validationError)
+        : validationError;
     throw new Error(errorMessage);
   }
 };
@@ -35,6 +36,8 @@ export const seedInstitutions = async () => {
 
     const institutionData = [
       {
+        name: "Otago Polytechnic",
+        region: "Otago",
         country: "New Zealand",
       },
       {

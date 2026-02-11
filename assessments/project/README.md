@@ -12,7 +12,7 @@
 
 ## Assessment Overview
 
-In this **individual** assessment, you will design and develop a backend application using **Express** and a frontend application using **SvelteKit**. 
+In this **individual** assessment, you will design and develop a backend application using **Express** and a frontend application using **SvelteKit**.
 
 ## Learning Outcome
 
@@ -79,15 +79,26 @@ Resits and reassessments are not applicable in **ID607001: Introductory Applicat
 
 ## Assessment Requirements - Backend Application using Express
 
-### Design - Learning Outcome 1 (10%)
+### Design Phase - Learning Outcome 1 (5%)
 
+To move onto the **Development Phase**, the **course lecturer** must approve your design document. In `documentation.md`, include the following:
 
+- An **Entity Relationship Diagram (ERD)** showing **six models**, their fields and relationships. For each field, include its **name**, **data type** and if applicable, **constraints**. For **enum** fields, include the possible values.
+- A list of **endpoints** you will implement. Include the **HTTP method**, **endpoint URL**, a brief description of what the **endpoint** does, if **authentication** is required, if **role-based access control** is required and what **roles** have access, **path parameters**, **query parameters** and **body parameters**.
 
-### Development - Learning Outcome 1 (25%)
+Here is an example of how to document an endpoint:
+
+| HTTP Method | Endpoint URL        | Description              | Authentication Required | Role-Based Access Control Required and Roles | Path Parameters | Query Parameters | Body Parameters                                                                |
+| ----------- | ------------------- | ------------------------ | ----------------------- | -------------------------------------------- | --------------- | ---------------- | ------------------------------------------------------------------------------ |
+| **POST**        | `/api/institutions` | Create a new institution | Yes                     | Yes. Admin                                   | None            | None             | name (string, required), region (string, required), country (string, required) |
+
+### Development Phase - Learning Outcome 1 (15%)
+
+In this phase, you will use the **Agile** software development methodology. **Sprints** will be **two weeks** long. You will need to create a **GitHub Project** to manage your work. The project should include columns for **Backlog**, **To Do**, **In Progress** and **Done**. You should create issues for each task and move them across the columns as you work on them.
 
 **Database:**
 
-- Use **Prisma** to interact with a **PostgreSQL** database.
+- Use **Prisma** to interact with a **PostgreSQL** database in development, testing and production.
 
 **Models:**
 
@@ -101,164 +112,57 @@ Resits and reassessments are not applicable in **ID607001: Introductory Applicat
 
 **CRUD:**
 
-- Register, login and logout users
-- Implement **CRUD** operations for each model.
+- Implement the following endpoints:
+  - **CRUD** operations (**create**, **read all**, **read by ID**, **update** and **delete**) for each model.
+  - Register, login and logout using **token-based authentication**.
+  - Catch all .
+  - Health check that verifies the application's status, database connectivity and uptime.
+
 - Implement validation on **create** and **update** operations.
 - Implement **filtering**, **sorting** and **pagination** on **read all** operations.
-- Implement role-based access control with at least two roles. Each role should have different permissions for CRUD operations on the models.
+- Implement **role-based access control** with at least two roles. Each role should have distinct permissions.
+- Implement **content negotation** middleware to return responses in **JSON** format.
+- Implement **cache** middleware for **read all** and **read by ID** operations for each model.
+- Implement **rate limiting** middleware based on the user's role. For example, users with the "x" role may have a higher rate limit than users with the "y" role.
 
-**Security:**
+- Implement **API tests** for the following:
+  - CRUD operations for each model.
+  - Register, login and logout.
+  - Catch all.
+  - Validation.
+  - Filtering, sorting and pagination.
+  - Permissions based on the user's role.
 
+**Scripts:**
 
+- Include scripts in the **package.json** file to:
+  - Run the application in development
+  - Format your code
+  - Lint your code
+  - Create and run a **PostgreSQL** database in development
+  - Create and run a **PostgreSQL** database for testing
+  - Create a database migration
+  - Reset the database
+  - Seed the database with **five records** for each model
+  - Build the application for production
+  - Run the **API tests**
 
-## Assessment Requirements - Frontend Application using SvelteKit
+**Deployment:**
 
-## Functionality - Learning Outcome 1 (25%)
+- Deploy the application to **Render**.
+- Provide a **URL** to the deployed application in the repository's **README.md** file.
 
-### 
-
-- Backend application with the following functionality:
-  - Five **models** with a minimum of four **fields**.
-  - One model should have an enum field.
-  - One **one-to-many** relationship and one **many-to-many** relationship.
-  - **CRUD** operations for each model.
-  - Validation on **Create** and **Update** operations.
-  - **Filter**, **sort** and **paginate** using **query parameters**.
-  - Allow users to register, login and logout.
-  - Role-based access control:
-    - An **admin user** can perform **CRUD** operations on all **models**.
-    - A **normal user** can perform **Read all** and **Read by UUID** operations on all **models**.
-  - Content negotiation to support **JSON** format.
-  - Seed script to populate the database with initial data.
-  - API tests covering **CRUD** operations for each model.
-  - Deploy to **Render**.
-
-- Frontend application with the following functionality:
-  - Consume the backend application on **Render** to perform **CRUD** operations based on role.
-  - Styled using **Bootstrap**.
-  - Authentication with secure token handling.
-  - Display data with support for **filtering**, **sorting** and **paging**.
-  - Forms with validation for **Create** and **Update** operations.
-  - Render UI elements and actions based on role.
-  - Ten end-to-end tests covering the main features.
-  - Deploy to **Vercel**.
-
-### Code Quality and Best Practices - Learning Outcome 1 (40%)
-
-- Write clean, readable and maintainable code.
-- Use modular, reusable components and avoid code duplication.
-- Keep code simple and easy to understand.
-- Optimise performance by managing resources efficiently.
-
-### Version Control - Learning Outcome 1 (5%)
-
-- Regular commits are made throughout development, demonstrating meaningful progress.
-- Commit messages are clear and descriptive.
-- The repository shows a clean and logical commit history that reflects the development process of the applications.
+### Code Quality and Best Practices - Learning Outcome 1 (20%)
 
 ---
 
-## Marking Rubric
+## Assessment Requirements - Frontend Application using SvelteKit
 
-### Functionality - Learning Outcome 1 (25%)
+### Design - Learning Outcome 1 (10%)
 
-#### Models and Relationships (4%)
+### Development - Learning Outcome 1 (20%)
 
-| Excellent (A)                                                                                                                               | Good (B)                                                                     | Satisfactory (C)                                                       | Not Yet Achieved (D)                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------- |
-| All five models implemented with 4+ fields each. Enum field present. Both one-to-many and many-to-many relationships correctly implemented. | Five models with 4+ fields. Minor issues with enum or one relationship type. | 4-5 models present. Some fields or relationships missing or incorrect. | Fewer than 4 models or significant issues with structure. |
-
-#### CRUD Operations and Validation (4%)
-
-| Excellent (A)                                                                                         | Good (B)                                                                            | Satisfactory (C)                                                                      | Not Yet Achieved (D)                                                         |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Complete CRUD for all models with robust validation on Create and Update. Error handling implemented. | CRUD operations present for all models. Validation mostly complete with minor gaps. | CRUD operations present but some missing or incomplete. Basic validation implemented. | Multiple CRUD operations missing or not functional. Little to no validation. |
-
-#### Filter, Sort and Pagination (3%)
-
-| Excellent (A)                                                                          | Good (B)                                                                                 | Satisfactory (C)                                                              | Not Yet Achieved (D)                                         |
-| -------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Filter, sort and pagination fully functional using query parameters across all models. | Filter, sort and pagination implemented but with minor issues or limited to some models. | Basic filtering, sorting or pagination present but incomplete implementation. | Filtering, sorting and pagination missing or non-functional. |
-
-#### Authentication and Authorization (3%)
-
-| Excellent (A)                                                                                                                          | Good (B)                                                                                  | Satisfactory (C)                                                                    | Not Yet Achieved (D)                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| Complete registration, login, logout. Role-based access control fully implemented with admin and normal user roles enforced correctly. | Authentication functional. Role-based access mostly correct with minor permission issues. | Authentication present but role-based access partially implemented or inconsistent. | Authentication missing or non-functional. No role-based access control. |
-
-#### Backend Additional Requirements (3%)
-
-| Excellent (A)                                                                           | Good (B)                                                                    | Satisfactory (C)                                                                                  | Not Yet Achieved (D)                             |
-| --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Content negotiation, seed script, API tests and Render deployment all fully functional. | Most requirements met. Minor issues with tests or deployment configuration. | Some requirements missing or partially implemented (e.g., limited tests, seed script incomplete). | Multiple requirements missing or non-functional. |
-
-#### Frontend Integration and Features (4%)
-
-| Excellent (A)                                                                                                                                                       | Good (B)                                                                                                     | Satisfactory (C)                                                                                             | Not Yet Achieved (D)                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Frontend consumes backend API correctly. All CRUD operations work based on role. Bootstrap styling applied consistently. Authentication with secure token handling. | Frontend mostly functional. Minor issues with API integration or role-based rendering. Good styling applied. | Frontend partially functional. Some CRUD operations work. Basic styling present. Token handling implemented. | Frontend non-functional or major features missing. Poor integration with backend. |
-
-#### Frontend Data Display and Forms (2%)
-
-| Excellent (A)                                                                                                                           | Good (B)                                                                    | Satisfactory (C)                                                             | Not Yet Achieved (D)                                           |
-| --------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | -------------------------------------------------------------- |
-| Data display with filtering, sorting and paging fully functional. Forms with comprehensive validation for Create and Update operations. | Data display mostly functional. Forms have good validation with minor gaps. | Basic data display. Forms present but validation incomplete or inconsistent. | Data display or forms non-functional. Little to no validation. |
-
-#### Frontend Testing and Deployment (2%)
-
-| Excellent (A)                                                                                             | Good (B)                                                                | Satisfactory (C)                                                           | Not Yet Achieved (D)                                                             |
-| --------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| Ten end-to-end tests covering main features, all passing. Successfully deployed to Vercel and accessible. | 8-10 tests present, most passing. Deployed to Vercel with minor issues. | 5-7 tests present. Deployment completed but may have accessibility issues. | Fewer than 5 tests or non-functional. Not deployed or deployment non-functional. |
-
-### Code Quality and Best Practices - Learning Outcome 1 (40%)
-
-#### Code Readability and Maintainability (10%)
-
-| Excellent (A)                                                                                                                                                                    | Good (B)                                                                                                                        | Satisfactory (C)                                                                                     | Not Yet Achieved (D)                                                                       |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Code is exceptionally clean and readable with consistent formatting. Meaningful variable and function names. Well-organised file structure. Comprehensive comments where needed. | Code is clean and readable with good naming conventions. Organised structure with some helpful comments. Minor inconsistencies. | Code is mostly readable. Some unclear naming or inconsistent formatting. Basic organisation present. | Code is difficult to read with poor naming conventions. Inconsistent or chaotic structure. |
-
-#### Modularity and Reusability (10%)
-
-| Excellent (A)                                                                                                                                         | Good (B)                                                                                                     | Satisfactory (C)                                                                                    | Not Yet Achieved (D)                                                         |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Excellent use of modular, reusable components. Functions and components are well-abstracted. No code duplication. DRY principles followed throughout. | Good modular structure with reusable components. Minimal code duplication. Most code follows DRY principles. | Some modular components present. Some code duplication exists. Partial adherence to DRY principles. | Little modularity. Significant code duplication. Poor component abstraction. |
-
-#### Code Simplicity and Clarity (10%)
-
-| Excellent (A)                                                                                                                                   | Good (B)                                                                                      | Satisfactory (C)                                                                           | Not Yet Achieved (D)                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| Code is simple, elegant and easy to understand. Complex logic is well-explained. Appropriate use of language features without over-engineering. | Code is generally simple and clear. Most logic is easy to follow with minor complex sections. | Code works but contains unnecessarily complex sections. Some logic is difficult to follow. | Code is overly complex or convoluted. Difficult to understand the implementation. |
-
-#### Performance and Resource Management (10%)
-
-| Excellent (A)                                                                                                                       | Good (B)                                                                                               | Satisfactory (C)                                                                                                      | Not Yet Achieved (D)                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| Excellent resource management. Efficient database queries. Proper error handling and memory management. No performance bottlenecks. | Good resource management. Mostly efficient queries. Adequate error handling with room for improvement. | Basic resource management. Some inefficient queries or error handling gaps. Performance acceptable but not optimised. | Poor resource management. Inefficient queries. Missing error handling. Performance issues present. |
-
-### Version Control - Learning Outcome 1 (5%)
-
-#### Commit History and Messages (5%)
-
-| Excellent (A)                                                                                                                                                  | Good (B)                                                                                                       | Satisfactory (C)                                                                                             | Not Yet Achieved (D)                                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
-| Regular, meaningful commits throughout development. Clear, descriptive commit messages. Logical progression showing development process. Clean commit history. | Regular commits with mostly clear messages. Commit history shows good development progression with minor gaps. | Commits present but irregular or clustered. Some commit messages unclear. Basic development history visible. | Few commits or poor timing. Unclear messages (e.g., "update", "fix"). No clear development progression. |
-
-### Reflection - Learning Outcome 1 (5%)
-
-#### Reflection Quality (5%)
-
-| Excellent (A)                                                                                                                                                                     | Good (B)                                                                                                                         | Satisfactory (C)                                                                                              | Not Yet Achieved (D)                                                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| Thoughtful reflection (300-500 words) covering all required points. Clear articulation of challenges, solutions and learning. Demonstrates deep understanding and self-awareness. | Good reflection covering all required points. Adequate discussion of challenges and learning with some depth. Within word count. | Reflection present covering most points. Brief or superficial discussion. May be slightly outside word count. | Reflection missing, incomplete or significantly outside word count. Lacks depth or doesn't cover required points. |
-
-### Presentation - Learning Outcome 1 (5%)
-
-#### Video Demonstration (5%)
-
-| Excellent (A)                                                                                                                                                                                | Good (B)                                                                                                                      | Satisfactory (C)                                                                                                  | Not Yet Achieved (D)                                                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| Clear 5-10 minute recording demonstrating all backend and frontend features. Well-paced, professional presentation. Easy to follow with good audio/visual quality. Link submitted correctly. | Good recording within time limit. Most features demonstrated. Generally clear with minor audio/visual issues. Link submitted. | Recording present but may be too short/long. Some features demonstrated. Quality acceptable but could be clearer. | Recording missing, significantly outside time limit, unclear, or doesn't demonstrate key features. Poor quality. |
+### Code Quality and Best Practices - Learning Outcome 1 (10%)
 
 ---
 

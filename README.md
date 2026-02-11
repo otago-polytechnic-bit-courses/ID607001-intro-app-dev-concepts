@@ -18,9 +18,9 @@
 
 ## Course Dates
 
-| Term 1 (7 weeks) | Mid-Semester Break | Term 2 (9 weeks) |
-| ---------------- | ------------------ | ---------------- |
-| TBC              | TBC                | TBC              |
+| Term 1 (7 weeks)       | Mid-Semester Break  | Term 2 (9 weeks)   |
+| ---------------------- | ------------------- | ------------------ |
+| 23 February - 10 April | 11 April - 27 April | 28 April - 03 July |
 
 ## Aims
 
@@ -91,7 +91,7 @@ No textbook is required for this course. URLs to useful resources will be provid
 
 ### Learning Hours
 
-This course requires 150 hours of learning. This time includes 60 hours directed learning hours and 90 self-directed learning hours.
+This course requires 150 hours of learning. This time includes 60 hours of directed learning hours and 90 of self-directed learning hours.
 
 ### Criteria for Passing
 
@@ -108,11 +108,11 @@ Microsoft Outlook/Teams are the official communication channels for this course.
 
 ### Snow Days/Polytechnic Closure
 
-In the event Otago Polytechnic is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the teaching staff will not be able to attend either, so classes will not physically be meeting. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the [Otago Polytechnic Facebook](https://www.facebook.com/OtagoPoly) page.
+In the event Otago Polytechnic is closed or has a delayed opening because of snow or bad weather, you should not attempt to attend class if it is unsafe to do so. It is possible that the teaching staff will not be able to attend either, so classes will not physically meet. However, this does not become a holiday. Rather, the course material will be made available on [GitHub](https://github.com/otago-polytechnic-bit-courses/ID607001-intro-app-dev-concepts) for classes affected by the closure. You are responsible for any course material presented in this manner. Information about closure will be posted on the [Otago Polytechnic Facebook](https://www.facebook.com/OtagoPoly) page.
 
 ### Group Work and Originality
 
-Learners in the Bachelor of Information Technology programme are expected to hand in original work. Learners are encouraged to discuss assessments with their fellow learners, however, all assessments are to be completed as individual works unless group work is explicitly required (i.e. if it doesn't say it is group work then it is not group work - even if a group consultation was involved). Failure to submit your original work will be treated as plagiarism.
+Learners in the Bachelor of Information Technology programme are expected to hand in original work. Learners are encouraged to discuss assessments with their fellow learners. However, all assessments are to be completed as individual works unless group work is explicitly required (i.e. if it doesn't say it is group work, then it is not group work - even if a group consultation was involved). Failure to submit your original work will be treated as plagiarism.
 
 ### AI Tools
 
@@ -128,7 +128,7 @@ Appropriate referencing is required for all work. Referencing standards will be 
 
 ### Plagiarism
 
-Plagiarism is submitting someone else's work as your own. Plagiarism offences are taken seriously and an assessment that has been plagiarised may be awarded a zero mark. A definition of plagiarism is in the Student Handbook, available online or at the school office.
+Plagiarism is submitting someone else's work as your own. Plagiarism offences are taken seriously, and an assessment that has been plagiarised may be awarded a zero mark. A definition of plagiarism is in the Student Handbook, available online or at the school office.
 
 ### Submission Requirements
 
@@ -136,11 +136,11 @@ All assessments are to be submitted by the time, date and method given when the 
 
 ### Extensions
 
-Familiarise yourself with the assessment due dates. Extensions will only be granted if you are unable to complete the assessment by the due date because of unforeseen circumstances outside your control. The length of the extension granted will depend on the circumstances and must be negotiated with the teaching staff before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or pressure of other assessments.
+Familiarise yourself with the assessment due dates. Extensions will only be granted if you are unable to complete the assessment by the due date because of unforeseen circumstances outside your control. The length of the extension granted will depend on the circumstances and must be negotiated with the teaching staff before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted for poor time management or the pressure of other assessments.
 
 ### Impairment
 
-In case of sickness contact the teaching staff or Head of Information Technology as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance on the student handbook.
+In case of sickness, contact the teaching staff or Head of Information Technology as soon as possible, preferably before the assessment is due. The policy regarding the granting of a mark that considers impaired performance requires a medical certificate and a medical practitioner's signature on a form. You may refer to the guide on impaired performance in the student handbook.
 
 ### Appeals
 
