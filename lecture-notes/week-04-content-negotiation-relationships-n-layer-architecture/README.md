@@ -15,13 +15,13 @@
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Switch to the **Week 04** branch using the following command:
+Open your repository in Visual Studio Code. Switch to the Week 04 branch using the following command:
 
 ```bash
 git switch week-04-content-negotiation-relationships-n-layer-architecture
 ```
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
@@ -29,21 +29,21 @@ git switch week-04-content-negotiation-relationships-n-layer-architecture
 
 Content negotiation is the process of selecting the best representation of a resource based on the client's preferences. There are different ways to perform content negotiation. Some of the common ways are:
 
-1. **Accept Header:** In the Accept header, the client specifies the media types it can accept. For example, `Accept: application/json`.
+1. Accept Header: In the Accept header, the client specifies the media types it can accept. For example, `Accept: application/json`.
 
-2. **Content-Type Header:** In the Content-Type header, the client specifies the media type of the request body. For example, `Content-Type: application/json`.
+2. Content-Type Header: In the Content-Type header, the client specifies the media type of the request body. For example, `Content-Type: application/json`.
 
-3. **Query Parameter:** In the query parameter, the client specifies the media type. For example, `https://api.example.com/products?format=json`.
+3. Query Parameter: In the query parameter, the client specifies the media type. For example, `https://api.example.com/products?format=json`.
 
-In this class, we will use the **Accept Header** to perform content negotiation.
+In this class, we will use the Accept Header to perform content negotiation.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation>
 
 ---
 
 ### Middleware
 
-**Middleware** is a function that has access to the request object (`req`), the response object (`res`) and the next middleware function (`next`) in the application's request-response cycle. Middleware functions can perform the following tasks:
+Middleware is a function that has access to the request object (`req`), the response object (`res`) and the next middleware function (`next`) in the application's request-response cycle. Middleware functions can perform the following tasks:
 
 - Execute any code.
 - Make changes to the request and the response objects.
@@ -70,7 +70,7 @@ const isContentTypeApplicationJSON = (req, res, next) => {
 export default isContentTypeApplicationJSON;
 ```
 
-> **Resource:** <https://expressjs.com/en/guide/writing-middleware.html>
+> Resource: <https://expressjs.com/en/guide/writing-middleware.html>
 
 ---
 
@@ -84,7 +84,7 @@ import isContentTypeApplicationJSON from "./middleware/content-type.js";
 app.use(isContentTypeApplicationJSON);
 ```
 
-> **Note:** If you get stuck, here is the complete `app.js` file.
+> Note: If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
@@ -119,9 +119,9 @@ app.listen(PORT, () => {
 export default app;
 ```
 
-Copy and paste the **Create an institution** request from the **lecture-notes/week-03** folder to the **lecture-notes/week-04** folder. Select **Text** from the dropdown. Click on the **Send** button to send the request.
+Copy and paste the Create an institution request from the lecture-notes/week-03 folder to the lecture-notes/week-04 folder. Select Text from the dropdown. Click on the Send button to send the request.
 
-You should see the **content negotiation** in action.
+You should see the content negotiation in action.
 
 ![](<../../resources (ignore)/img/week-4/00-week-4.png>)
 
@@ -129,13 +129,13 @@ You should see the **content negotiation** in action.
 
 ## Relationships
 
-In **Prisma**, we can define different types of relationships between models. Here are three types you will encounter most often.
+In Prisma, we can define different types of relationships between models. Here are three types you will encounter most often.
 
-- **One-to-one:** A single model instance is associated with a single instance of another model.
-- **One-to-many:** A single model instance is associated with multiple instances of another model.
-- **Many-to-many:** Multiple instances of a model are associated with multiple instances of another model.
+- One-to-one: A single model instance is associated with a single instance of another model.
+- One-to-many: A single model instance is associated with multiple instances of another model.
+- Many-to-many: Multiple instances of a model are associated with multiple instances of another model.
 
-> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/relations>
+> Resource: <https://www.prisma.io/docs/orm/prisma-schema/data-model/relations>
 
 ---
 
@@ -168,7 +168,7 @@ model Institution {
 }
 ```
 
-What type of relationship is this? This is a **one-to-many** relationship. A single institution can have multiple departments.
+What type of relationship is this? This is a one-to-many relationship. A single institution can have multiple departments.
 
 ---
 
@@ -176,7 +176,7 @@ What type of relationship is this? This is a **one-to-many** relationship. A sin
 
 Much like the `institution.js` files, create a new `department.js` file in the `controllers` and `routes` directories. The code in these files should be similar to the `institution.js` files.
 
-> **Note:** If you get stuck, here is the complete `controllers/department.js` file.
+> Note: If you get stuck, here is the complete `controllers/department.js` file.
 
 ```js
 import prisma from "../prisma/db.js";
@@ -271,7 +271,7 @@ import departmentRoutes from "./routes/department.js";
 app.use("/api/departments", departmentRoutes);
 ```
 
-> **Note:** If you get stuck, here is the complete `app.js` file.
+> Note: If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
@@ -312,7 +312,7 @@ export default app;
 
 ### Postman Example
 
-In the **lecture-notes/week-04** folder, create a new request called **Create a department**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. Click on the **Body** tab. Select the **raw** radio button. Select **JSON** from the dropdown. Enter the following code in the text area. Click on the **Send** button to send the request.
+In the lecture-notes/week-04 folder, create a new request called Create a department. Select the POST method from the dropdown. Enter the request URL as `http://localhost:3000/api/departments`. Click on the Body tab. Select the raw radio button. Select JSON from the dropdown. Enter the following code in the text area. Click on the Send button to send the request.
 
 ```json
 {
@@ -325,23 +325,23 @@ You should see a response with the newly created department.
 
 ![](<../../resources (ignore)/img/week-4/01-week-4.png>)
 
-> **Note:** Make sure you have at least one institution.
+> Note: Make sure you have at least one institution.
 
 ---
 
 ## N-Layer Architecture
 
-**N-Layer Architecture** is a software architecture pattern that separates an application into distinct layers, each with its own responsibilities. This separation of concerns makes the application easier to manage, test and scale. The most common layers (in the context of a **REST API**) in an **N-Layer Architecture** are:
+N-Layer Architecture is a software architecture pattern that separates an application into distinct layers, each with its own responsibilities. This separation of concerns makes the application easier to manage, test and scale. The most common layers (in the context of a REST API) in an N-Layer Architecture are:
 
-1. **Presentation Layer (Controllers and Routes)**: This layer is responsible for handling HTTP requests and responses. It typically consists of controllers that process incoming requests, validate input and return the appropriate HTTP responses.
+1. Presentation Layer (Controllers and Routes): This layer is responsible for handling HTTP requests and responses. It typically consists of controllers that process incoming requests, validate input and return the appropriate HTTP responses.
 
-2. **Application Layer (Services)**: This layer contains the business logic of the application. It processes user input, interacts with the data layer and returns the appropriate response to the presentation layer.
+2. Application Layer (Services): This layer contains the business logic of the application. It processes user input, interacts with the data layer and returns the appropriate response to the presentation layer.
 
-3. **Data Layer (Repositories)**: This layer is responsible for managing the application's data. It interacts with the database or other data sources to retrieve, store and update data.
+3. Data Layer (Repositories): This layer is responsible for managing the application's data. It interacts with the database or other data sources to retrieve, store and update data.
 
-For simplicity, we will use only the **presentation** and **data layers** in this course.
+For simplicity, we will use only the presentation and data layers in this course.
 
-> **Resource:** <https://martinfowler.com/bliki/PresentationDomainDataLayering.html>
+> Resource: <https://martinfowler.com/bliki/PresentationDomainDataLayering.html>
 
 ---
 
@@ -349,11 +349,11 @@ For simplicity, we will use only the **presentation** and **data layers** in thi
 
 The repository pattern is a design pattern that separates the data access logic from the business logic. It is a common pattern used in modern web applications. The repository pattern has the following benefits:
 
-- **Separation of Concerns:** The repository pattern separates the data access logic from the business logic. This makes the code easier to maintain and test.
-- **Testability:** The repository pattern makes it easier to test the data access logic and the business logic separately. For example, you can write unit tests for the data access logic without having to set up a database.
-- **Flexibility:** The repository pattern makes it easier to switch between different data access technologies. For example, you can switch from a SQL database to a NoSQL database without changing the business logic.
+- Separation of Concerns: The repository pattern separates the data access logic from the business logic. This makes the code easier to maintain and test.
+- Testability: The repository pattern makes it easier to test the data access logic and the business logic separately. For example, you can write unit tests for the data access logic without having to set up a database.
+- Flexibility: The repository pattern makes it easier to switch between different data access technologies. For example, you can switch from a SQL database to a NoSQL database without changing the business logic.
 
-> **Resource:** <https://martinfowler.com/eaaCatalog/repository.html>
+> Resource: <https://martinfowler.com/eaaCatalog/repository.html>
 
 ---
 
@@ -396,7 +396,7 @@ class InstitutionRepository {
 export default new InstitutionRepository(); // Export a singleton instance of the InstitutionRepository class
 ```
 
-> **Note:** A singleton is a design pattern that restricts the instantiation of a class to a single instance. This is useful when exactly one object is needed to coordinate actions across the system.
+> Note: A singleton is a design pattern that restricts the instantiation of a class to a single instance. This is useful when exactly one object is needed to coordinate actions across the system.
 
 In the `controllers/institution.js` file, update the following code.
 
@@ -513,9 +513,9 @@ export {
 
 ## N + 1 Problem
 
-The **N + 1 problem** is a common performance issue that occurs when an application makes **N + 1** database queries to retrieve related data. For example, if you have a list of institutions and you want to retrieve their departments, you would first query the database for the list of institutions (1 query) and then for each institution, you would query the database for their departments (N queries). This results in **N + 1** queries. The **N + 1 problem** can be solved by using **eager loading** or **batching**.
+The N + 1 problem is a common performance issue that occurs when an application makes N + 1 database queries to retrieve related data. For example, if you have a list of institutions and you want to retrieve their departments, you would first query the database for the list of institutions (1 query) and then for each institution, you would query the database for their departments (N queries). This results in N + 1 queries. The N + 1 problem can be solved by using eager loading or batching.
 
-Here are two examples of the **N + 1 problem**:
+Here are two examples of the N + 1 problem:
 
 ```js
 const institutions = await prisma.institution.findMany(); // 1 query
@@ -532,9 +532,9 @@ for (const institution of institutions) {
 
 ### Eager Loading
 
-**Eager loading** is a technique where related data is loaded at the same time as the main data. This can be done using `JOIN` queries in **SQL** or by using the **include** option in **Prisma**. For example, if you want to retrieve a list of institutions and their departments in a single query, you can use eager loading.
+Eager loading is a technique where related data is loaded at the same time as the main data. This can be done using `JOIN` queries in SQL or by using the include option in Prisma. For example, if you want to retrieve a list of institutions and their departments in a single query, you can use eager loading.
 
-Here is an example of eager loading using **Prisma**.
+Here is an example of eager loading using Prisma.
 
 ```javascript
 const institutions = await prisma.institution.findMany({
@@ -548,9 +548,9 @@ const institutions = await prisma.institution.findMany({
 
 ### Batching
 
-**Batching** is a technique where multiple queries are combined into a single query. This can be done using the `IN` operator in **SQL** or by using the **findMany** method in **Prisma**. For example, if you want to retrieve the posts for a list of institutions, you can use batching to retrieve all the departments in a single query.
+Batching is a technique where multiple queries are combined into a single query. This can be done using the `IN` operator in SQL or by using the findMany method in Prisma. For example, if you want to retrieve the posts for a list of institutions, you can use batching to retrieve all the departments in a single query.
 
-Here is an example of batching using **Prisma**.
+Here is an example of batching using Prisma.
 
 ```javascript
 const institutions = await prisma.institution.findMany();
@@ -567,50 +567,50 @@ const departments = await prisma.department.findMany({
 
 ## System Design
 
-In the **Project** assessment, you will be required to design and implement a **REST API** that has a **database** and **backend**.
+In the Project assessment, you will be required to design and implement a REST API that has a database and backend.
 
-Firstly, you need to decide on a topic for your **REST API**. The topic should be something you are interested in and passionate about. Previously, learners have either used their database design in **ID502001: Studio 1** or **frontend** application in **ID512001: Fundamentals of Web Development**.
+Firstly, you need to decide on a topic for your REST API. The topic should be something you are interested in and passionate about. Previously, learners have either used their database design in ID502001: Studio 1 or frontend application in ID512001: Fundamentals of Web Development.
 
-The **system design** document should include the following, but not limited to:
+The system design document should include the following, but not limited to:
 
-- **System architecture:**
+- System architecture:
   - What architecture pattern will you use?
-  - What technology stack will you use for the **database** and **backend**?
-  - How will the **database** and **backend** communicate with each other?
-  - How will you structure the **database** and **backend** code?
+  - What technology stack will you use for the database and backend?
+  - How will the database and backend communicate with each other?
+  - How will you structure the database and backend code?
 
-- **Database:**
+- Database:
   - What tables will you have?
   - What fields, data types and constraints will each table have?
   - What relationships will you have between the tables?
   - How will you manage database migrations?
 
-- **Security:**
+- Security:
   - How will sensitive data be managed?
   - What input validation will you implement?
   - What headers will you implement?
 
-- **REST API:**
+- REST API:
   - What endpoints will you have?
   - What HTTP methods will you use for each endpoint?
   - What request parameters will you need for each endpoint?
   - What response format will you use?
   - What status codes will you use for each endpoint?
   - What error handling will you implement?
-  - How will you document your **REST API**?
+  - How will you document your REST API?
 
-- **Authentication and authorisation:**
+- Authentication and authorisation:
   - What authentication and authorisation method will you use?
   - How will you manage the authentication and authorisation?
   - What roles will you have and what permissions will each role have?
 
-- **Testing:**
+- Testing:
   - What testing library and/or framework will you use?
   - What types of tests will you implement?
   - How will you structure your tests?
   - How will you manage test data?
 
-- **Infrastructure and deployment:**
+- Infrastructure and deployment:
   - What services will you use for deployment?
   - How will you manage environment variables?
 
@@ -618,18 +618,18 @@ The **system design** document should include the following, but not limited to:
 
 ## Exercises
 
-> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
 
-Here is an example **JSDoc** comment:
+Here is an example JSDoc comment:
 
 ```js
-/**
+/*
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -649,13 +649,13 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-In this task, you will create a draft **system design** document for your **REST API**. Please refer to the **System Design** section above for guidance on what to include in your document. Please email your **system design** document to the course lecturer by the end of **week 5**. Feedback will be provided in **week 6**.
+In this task, you will create a draft system design document for your REST API. Please refer to the System Design section above for guidance on what to include in your document. Please email your system design document to the course lecturer by the end of week 5. Feedback will be provided in week 6.
 
 ---
 
 ### Task 3 (Easy)
 
-Create a `User` **model** with the following fields:
+Create a `User` model with the following fields:
 
 - `id` - String, primary key, default UUID
 - `firstName` - String
@@ -664,11 +664,11 @@ Create a `User` **model** with the following fields:
 - `createdAt` - DateTime, default now
 - `updatedAt` - DateTime, default now
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `User` **model**. Test your implementation in **Postman**.
+Create the necessary controller, route and repository files for the `User` model. Test your implementation in Postman.
 
-Here is an example output in **Postman**:
+Here is an example output in Postman:
 
 ![](<../../resources (ignore)/img/week-4/exercises-00-week-4.png>)
 
@@ -676,7 +676,7 @@ Here is an example output in **Postman**:
 
 ### Task 4 (Easy)
 
-Create a `Course` **model** with the following fields:
+Create a `Course` model with the following fields:
 
 - `id` - String, primary key, default UUID
 - `code` - String
@@ -686,7 +686,7 @@ Create a `Course` **model** with the following fields:
 - `createdAt` - DateTime, default now
 - `updatedAt` - DateTime, default now
 
-Update the `Department` **model** to include the one-to-many relationship:
+Update the `Department` model to include the one-to-many relationship:
 
 ```js
 model Department {
@@ -706,11 +706,11 @@ model Course {
 }
 ```
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Create the necessary **controller**, **route** and **repository** files for the `Course` model. Test your implementation in **Postman**.
+Create the necessary controller, route and repository files for the `Course` model. Test your implementation in Postman.
 
-Here is an example output in **Postman**:
+Here is an example output in Postman:
 
 ![](<../../resources (ignore)/img/week-4/exercises-01-week-4.png>)
 
@@ -730,15 +730,15 @@ const STATUS_CODES = {
 export default STATUS_CODES;
 ```
 
-Update your **controller** files to use the status codes from the `statusCodes.js` file.
+Update your controller files to use the status codes from the `statusCodes.js` file.
 
 ---
 
 ### Task 5 (Medium)
 
-Refactor your **controller** and **repository** files to include relationship queries for the `Institution`, `Department` and `Course` models.
+Refactor your controller and repository files to include relationship queries for the `Institution`, `Department` and `Course` models.
 
-Update the **repository** files to accept optional `include` parameters:
+Update the repository files to accept optional `include` parameters:
 
 ```javascript
 // Omitted for brevity
@@ -765,7 +765,7 @@ class InstitutionRepository {
 export default new InstitutionRepository();
 ```
 
-Update the **controller** files to use relationship queries:
+Update the controller files to use relationship queries:
 
 ```javascript
 import institutionRepository from "../repositories/institution.js";
@@ -822,17 +822,17 @@ export {
 };
 ```
 
-Apply similar changes to the `Department` **controller** and **repository** files to include the `Course` relationship.
+Apply similar changes to the `Department` controller and repository files to include the `Course` relationship.
 
-Here is the expected output in **Postman**:
+Here is the expected output in Postman:
 
 ![](<../../resources (ignore)/img/week-4/exercises-02-week-4.png>)
 
-To replicate this, in **Postman**, send the following:
+To replicate this, in Postman, send the following:
 
-1. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
-2. A **POST** request to `http://localhost:3000/api/departments to create a new department
-3. A **GET** request to `http://localhost:3000/api/institutions` to retrieve the list of institutions along with their departments
+1. A POST request to `http://localhost:3000/api/institutions` to create a new institution
+2. A POST request to `http://localhost:3000/api/departments to create a new department
+3. A GET request to `http://localhost:3000/api/institutions` to retrieve the list of institutions along with their departments
 
 When you look at the response, are there any issues? Can you identify any performance issues? How would you solve these issues?
 
@@ -840,13 +840,13 @@ When you look at the response, are there any issues? Can you identify any perfor
 
 ## Hard Exercises
 
-These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+These following exercise will require you to do some research and problem-solving independently. Completing this exercise will help you deepen you understanding of REST API development, but also help you achieve high marks in the Project assessment.
 
 ---
 
 ### Task 1
 
-In `week-02-apis-express-development-tools`, we briefly discussed **caching**. In the `middleware` directory, create a new file called `cache.js` with the following code.
+In `week-02-apis-express-development-tools`, we briefly discussed caching. In the `middleware` directory, create a new file called `cache.js` with the following code.
 
 ```javascript
 const cache = {};
@@ -903,7 +903,7 @@ const clearCache = () => {
 // TODO 7: Export cacheMiddleware and clearCache
 ```
 
-In the **routes** files, import and use the `cacheMiddleware` for the **GET** endpoints. For example, in the `routes/institution.js` file:
+In the routes files, import and use the `cacheMiddleware` for the GET endpoints. For example, in the `routes/institution.js` file:
 
 ```javascript
 // Omitted for brevity
@@ -922,9 +922,9 @@ router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 // Omitted for brevity
 ```
 
-> **Note:** The `POST`, `PUT` and `DELETE` endpoints do not use the `cacheMiddleware`.
+> Note: The `POST`, `PUT` and `DELETE` endpoints do not use the `cacheMiddleware`.
 
-In the **controllers** files, import and use the `clearCache` function to clear the cache after the data is modified. For example, in the `controllers/institution.js` file:
+In the controllers files, import and use the `clearCache` function to clear the cache after the data is modified. For example, in the `controllers/institution.js` file:
 
 ```javascript
 // Omitted for brevity
@@ -946,9 +946,9 @@ const createInstitution = async (req, res) => {
 // Omitted for brevity
 ```
 
-Complete all **TODO** sections with the appropriate code.
+Complete all TODO sections with the appropriate code.
 
-Here is an example output in the **terminal**:
+Here is an example output in the terminal:
 
 ```
 Cache miss for key: /api/institutions
@@ -956,12 +956,12 @@ Cache miss for key: /api/institutions
 Cache hit for key: /api/institutions
 ```
 
-To replicate this, in **Postman**, send the following:
+To replicate this, in Postman, send the following:
 
-1. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss
-2. A **POST** request to `http://localhost:3000/api/institutions` to create a new institution
-3. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache miss again
-4. A **GET** request to `http://localhost:3000/api/institutions`. This should be a cache hit
+1. A GET request to `http://localhost:3000/api/institutions`. This should be a cache miss
+2. A POST request to `http://localhost:3000/api/institutions` to create a new institution
+3. A GET request to `http://localhost:3000/api/institutions`. This should be a cache miss again
+4. A GET request to `http://localhost:3000/api/institutions`. This should be a cache hit
 
 ---
 

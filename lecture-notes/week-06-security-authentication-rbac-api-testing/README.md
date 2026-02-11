@@ -16,58 +16,58 @@
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Switch to the **Week 06** branch using the following command:
+Open your repository in Visual Studio Code. Switch to the Week 06 branch using the following command:
 
 ```bash
 git switch week-06-security-authentication-rbac-api-testing
 ```
 
-Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
+Setup up your development environment, i.e., Docker, environment variables, etc.
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
 ## Security
 
-**Security** is the practice of protecting systems, networks and data from unauthorised access, use, disclosure, disruption, modification or destruction. It involves implementing measures to prevent, detect and respond to security threats and vulnerabilities.
+Security is the practice of protecting systems, networks and data from unauthorised access, use, disclosure, disruption, modification or destruction. It involves implementing measures to prevent, detect and respond to security threats and vulnerabilities.
 
 ---
 
 ### Common vulnerabilities
 
-**Common vulnerabilities in API design** include:
+Common vulnerabilities in API design include:
 
-- **Broken object level authorisation**: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
-- **Broken user authentication**: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
-- **Excessive data exposure**: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
-- **Lack of rate limiting**: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
-- **Mass assignment**: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
-- **Security misconfiguration**: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
-- **Injection**: This occurs when an API does not properly validate user input, allowing attackers to inject malicious code into the system.
-- **Improper assets management**: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
-- **Insufficient logging and monitoring**: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
-- **Using components with known vulnerabilities**: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
+- Broken object level authorisation: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
+- Broken user authentication: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
+- Excessive data exposure: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
+- Lack of rate limiting: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
+- Mass assignment: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
+- Security misconfiguration: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
+- Injection: This occurs when an API does not properly validate user input, allowing attackers to inject malicious code into the system.
+- Improper assets management: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
+- Insufficient logging and monitoring: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
+- Using components with known vulnerabilities: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
 
 ---
 
 ## Authentication
 
-**Authentication** is the process of verifying the identity of a user or system. It ensures that the user is who they claim to be. Authentication is typically done by checking the user's credentials, such as a username and password.
+Authentication is the process of verifying the identity of a user or system. It ensures that the user is who they claim to be. Authentication is typically done by checking the user's credentials, such as a username and password.
 
 ---
 
 ### Token vs. Session
 
-**Token-based authentication** is a stateless authentication mechanism. When a user successfully logs in, the server generates a token and returns it to the client. The client stores the token commonly in memory or local storage and includes it in the `Authorization` header of each request. The server validates the token on every request without needing to remember anything about the session.
+Token-based authentication is a stateless authentication mechanism. When a user successfully logs in, the server generates a token and returns it to the client. The client stores the token commonly in memory or local storage and includes it in the `Authorization` header of each request. The server validates the token on every request without needing to remember anything about the session.
 
-**Session-based authentication** is a stateful mechanism. When a user logs in, the server creates a session often stored in memory or a database and returns a session ID to the client, typically via a cookie. The client sends this session ID with each request, and the server uses it to look up the session and authenticate the user.
+Session-based authentication is a stateful mechanism. When a user logs in, the server creates a session often stored in memory or a database and returns a session ID to the client, typically via a cookie. The client sends this session ID with each request, and the server uses it to look up the session and authenticate the user.
 
 ---
 
 ### JSON Web Tokens (JWT)
 
-**JSON Web Tokens (JWT)** are a compact, URL-safe format for transmitting claims between parties. A **JWT** consists of three parts: a header, a payload and a signature. The payload contains claims about the user, such as their ID and roles. **JWTs** are typically signed using a secret with **HMAC** or a private key with **RSA** or **ECDSA**, allowing the server to verify their integrity and authenticity.
+JSON Web Tokens (JWT) are a compact, URL-safe format for transmitting claims between parties. A JWT consists of three parts: a header, a payload and a signature. The payload contains claims about the user, such as their ID and roles. JWTs are typically signed using a secret with HMAC or a private key with RSA or ECDSA, allowing the server to verify their integrity and authenticity.
 
 ---
 
@@ -81,7 +81,7 @@ npm install bcryptjs jsonwebtoken
 
 Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonwebtoken`.
 
-> **Note:** The `bcryptjs` library is used to hash passwords and the `jsonwebtoken` library is used to create and verify **JWTs**.
+> Note: The `bcryptjs` library is used to hash passwords and the `jsonwebtoken` library is used to create and verify JWTs.
 
 ---
 
@@ -105,7 +105,7 @@ JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-> **Note:** Make sure you change the `JWT_SECRET` value to a strong secret key. In production, use a secret key that is at least 256 bits long.
+> Note: Make sure you change the `JWT_SECRET` value to a strong secret key. In production, use a secret key that is at least 256 bits long.
 
 ---
 
@@ -125,7 +125,7 @@ model User {
 }
 ```
 
-> **Note:** There is one additional fields - `password`. Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: There is one additional fields - `password`. Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 ---
 
@@ -302,7 +302,7 @@ import authRoutes from "./routes/auth.js";
 app.use("/api/auth", authRoutes);
 ```
 
-> **Note:** If you get stuck, here is the complete `app.js` file.
+> Note: If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
@@ -359,13 +359,13 @@ router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 // Omitted for brevity
 ```
 
-> **Note:** The `jwtAuth` middleware is used to protect the `createInstitution` route. It means that only authenticated users can access these routes.
+> Note: The `jwtAuth` middleware is used to protect the `createInstitution` route. It means that only authenticated users can access these routes.
 
 ---
 
 ## Role-Based Access Control (RBAC)
 
-**Role-Based Access Control (RBAC)** is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `STAFF` and `STUDENT` each with different permissions.
+Role-Based Access Control (RBAC) is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `STAFF` and `STUDENT` each with different permissions.
 
 ---
 
@@ -396,7 +396,7 @@ model User {
 }
 ```
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
 ---
 
@@ -453,7 +453,7 @@ router.post(
 // Omitted for brevity
 ```
 
-> **Note:** The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
+> Note: The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
 
 ---
 
@@ -493,10 +493,10 @@ Here is an example of creating an `Institution` as a `STUDENT` user. You should 
 
 The current approach uses a `Role` enum on the `User` model. This works for basic scenarios but has limitations:
 
-- **Tightly coupled user types and roles** - User types are directly tied to roles, making it difficult to manage complex or nuanced permissions (e.g., a student who is also a teaching assistant).
-- **No support for type-specific data** - Difficult to add user-type specific attributes such as department information for lecturers or enrollment data for students.
-- **Poor scalability** - Hard to extend when different user types require different fields and relationships.
-- **Mixed concerns** - Authentication/authorization logic is mixed with user identity, leading to maintenance challenges as the system grows.
+- Tightly coupled user types and roles - User types are directly tied to roles, making it difficult to manage complex or nuanced permissions (e.g., a student who is also a teaching assistant).
+- No support for type-specific data - Difficult to add user-type specific attributes such as department information for lecturers or enrollment data for students.
+- Poor scalability - Hard to extend when different user types require different fields and relationships.
+- Mixed concerns - Authentication/authorization logic is mixed with user identity, leading to maintenance challenges as the system grows.
 
 See the advanced auth code example for a more flexible approach.
 
@@ -504,7 +504,7 @@ See the advanced auth code example for a more flexible approach.
 
 ## Rate Limiting
 
-**Rate limiting** is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as **fixed window**, **sliding window** and **token bucket**. However, for simplicity, we will use the `express-rate-limit` dependency which implements a basic fixed window algorithm.
+Rate limiting is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as fixed window, sliding window and token bucket. However, for simplicity, we will use the `express-rate-limit` dependency which implements a basic fixed window algorithm.
 
 ---
 
@@ -548,7 +548,7 @@ What does each property mean?
 - `legacyHeaders`: If set to `false`, it disables the `X-RateLimit-*` headers in the response.
 - `message`: The error message returned when the rate limit is exceeded.
 
-> **Resource:** <https://express-rate-limit.mintlify.app/overview>
+> Resource: <https://express-rate-limit.mintlify.app/overview>
 
 ---
 
@@ -581,13 +581,13 @@ Here is an example of exceeding the rate limit when trying to get all institutio
 
 ## API Testing
 
-**API testing** is the process of testing the functionality, reliability, performance and security of an application programming interface (API). It involves sending requests to the API and verifying that the responses are as expected. API testing can be done manually or automated using various tools and libraries.
+API testing is the process of testing the functionality, reliability, performance and security of an application programming interface (API). It involves sending requests to the API and verifying that the responses are as expected. API testing can be done manually or automated using various tools and libraries.
 
 ---
 
 ### Dependencies
 
-There are several libraries available for API testing in Node.js. In this example, we will use **Mocha** as the test framework, **Chai** as the assertion library and **Supertest** to make HTTP requests to the API.
+There are several libraries available for API testing in Node.js. In this example, we will use Mocha as the test framework, Chai as the assertion library and Supertest to make HTTP requests to the API.
 
 Install the libraries by running the following command.
 
@@ -611,7 +611,7 @@ root/
     └── 01-department.test.js
 ```
 
-> **Note:** The `tests` directory will contain all the test files. The `helpers` directory will contain helper functions that can be used in the test files.
+> Note: The `tests` directory will contain all the test files. The `helpers` directory will contain helper functions that can be used in the test files.
 
 ---
 
@@ -635,7 +635,7 @@ const disconnectPrisma = async () => {
 export { cleanupDatabase, disconnectPrisma };
 ```
 
-The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables, and the `disconnectPrisma` function disconnects the **Prisma** client from the database.
+The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables, and the `disconnectPrisma` function disconnects the Prisma client from the database.
 
 ---
 
@@ -893,7 +893,7 @@ In the `package.json` file, update the `test` script in the `scripts` block to t
 "test": "mocha tests --recursive --timeout 10000 --exit",
 ```
 
-> **Note:** The `--recursive` flag allows Mocha to run tests in subdirectories, and the `--timeout` flag sets the maximum time for each test to complete. The `--exit` flag ensures that Mocha exits after all tests are done.
+> Note: The `--recursive` flag allows Mocha to run tests in subdirectories, and the `--timeout` flag sets the maximum time for each test to complete. The `--exit` flag ensures that Mocha exits after all tests are done.
 
 To run the tests, run the following command.
 
@@ -923,24 +923,24 @@ Department CRUD
 11 passing (number of ms)
 ```
 
-> **Note:** The number of milliseconds will vary depending on your computer's performance.
+> Note: The number of milliseconds will vary depending on your computer's performance.
 
 ---
 
 ## Exercises
 
-> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
 
-Here is an example **JSDoc** comment:
+Here is an example JSDoc comment:
 
 ```js
-/**
+/*
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -960,7 +960,7 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-Create five **tests** for the `Course` resource. The **tests** should cover the following scenarios:
+Create five tests for the `Course` resource. The tests should cover the following scenarios:
 
 - Create a course
 - Get all courses
@@ -972,7 +972,7 @@ Create five **tests** for the `Course` resource. The **tests** should cover the 
 
 ### Task 3 (Easy)
 
-In the `week-06-security-considerations.md` file, analyse the security implications of displaying a list of all available endpoints in your **REST API**.
+In the `week-06-security-considerations.md` file, analyse the security implications of displaying a list of all available endpoints in your REST API.
 
 ---
 
@@ -980,7 +980,7 @@ In the `week-06-security-considerations.md` file, analyse the security implicati
 
 Refactor `/api/endpoints` route to be only accessible by users with the `ADMIN` role and if `NODE_ENV` is set to `development`.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 
@@ -990,7 +990,7 @@ Here is an example request in **Postman**:
 
 Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `STUDENT` role.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 
@@ -998,16 +998,16 @@ Here is an example request in **Postman**:
 
 ### Task 6 (Medium)
 
-Refactor the `rbac` **middleware** to accept either a single role or an **array** of roles, allowing users with any of the specified roles to access the route.
+Refactor the `rbac` middleware to accept either a single role or an array of roles, allowing users with any of the specified roles to access the route.
 
-In `routes/institution.js`, update the `rbac` **middleware** usage to allow both `ADMIN` and `STUDENT` roles to access the **GET** routes:
+In `routes/institution.js`, update the `rbac` middleware usage to allow both `ADMIN` and `STUDENT` roles to access the GET routes:
 
 ```js
 router.get("/", rbac(["ADMIN", "STUDENT"]), getInstitutions);
 router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 ```
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 
@@ -1041,7 +1041,7 @@ Implement the following permissions for each resource:
 
 ### Task 8 (Medium)
 
-Create a `Profile` **model** with the following fields:
+Create a `Profile` model with the following fields:
 
 - `id` - String, primary key, default UUID
 - `bio` - String
@@ -1050,7 +1050,7 @@ Create a `Profile` **model** with the following fields:
 - `createdAt` - DateTime, default now
 - `updatedAt` - DateTime, default now
 
-Update the `User` **model** to include a one-to-one relationship with the `Profile` **model**:
+Update the `User` model to include a one-to-one relationship with the `Profile` model:
 
 ```js
 model User {
@@ -1066,9 +1066,9 @@ model User {
 }
 ```
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-In `controllers/auth.js`, update the `register` **function** to create a **profile** for the user when they register:
+In `controllers/auth.js`, update the `register` function to create a profile for the user when they register:
 
 ```js
 user = await prisma.user.create({
@@ -1106,13 +1106,13 @@ Here is the expected output:
 
 ### Task 9 (Easy)
 
-Implement **confirm password** functionality in the `register` **function** in `controllers/auth.js`.
+Implement confirm password functionality in the `register` function in `controllers/auth.js`.
 
 Check if `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a `400` status code with the message "Passwords do not match".
 
-> **Note:** You do not need to store `req.body.confirmPassword` in the database.
+> Note: You do not need to store `req.body.confirmPassword` in the database.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 
@@ -1120,15 +1120,15 @@ Here is an example request in **Postman**:
 
 ## Hard Exercises
 
-These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of REST API development, but also help you achieve high marks in the Project assessment.
 
 ---
 
 ### Task 1
 
-Implement **account lockout** functionality. After five failed login attempts, the account should be locked for 15 minutes.
+Implement account lockout functionality. After five failed login attempts, the account should be locked for 15 minutes.
 
-Add two new fields to the `User` **model** in the `schema.prisma` file:
+Add two new fields to the `User` model in the `schema.prisma` file:
 
 ```js
 model User {
@@ -1146,9 +1146,9 @@ model User {
 }
 ```
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-Replace the existing `login` **function** in `controllers/auth.js` with the following code and complete the **TODO** sections:
+Replace the existing `login` function in `controllers/auth.js` with the following code and complete the TODO sections:
 
 ```js
 const login = async (req, res) => {
@@ -1225,9 +1225,9 @@ const login = async (req, res) => {
 };
 ```
 
-Complete all **TODO** sections with the appropriate code.
+Complete all TODO sections with the appropriate code.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 
@@ -1235,9 +1235,9 @@ Here is an example request in **Postman**:
 
 ### Task 2
 
-Implement **token blacklist** functionality. When a user logs out, the **token** should be added to a blacklist to prevent its further use.
+Implement token blacklist functionality. When a user logs out, the token should be added to a blacklist to prevent its further use.
 
-Add a `TokenBlacklist` **model** to the `schema.prisma` file:
+Add a `TokenBlacklist` model to the `schema.prisma` file:
 
 ```js
 model TokenBlacklist {
@@ -1248,9 +1248,9 @@ model TokenBlacklist {
 }
 ```
 
-> **Note:** Make sure you create and apply a migration after updating the `schema.prisma` file.
+> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
 
-In `controllers/auth.js`, add the following `logout` **function** and complete the **TODO** sections:
+In `controllers/auth.js`, add the following `logout` function and complete the TODO sections:
 
 ```js
 const logout = async (req, res) => {
@@ -1282,7 +1282,7 @@ const logout = async (req, res) => {
 };
 ```
 
-Update the `routes/auth.js` file to include the **logout** route:
+Update the `routes/auth.js` file to include the logout route:
 
 ```js
 import express from "express";
@@ -1299,7 +1299,7 @@ router.route("/login").post(login);
 export default router;
 ```
 
-Update the `middleware/jwtAuth.js` file to check if the **token** is blacklisted and complete the **TODO** sections:
+Update the `middleware/jwtAuth.js` file to check if the token is blacklisted and complete the TODO sections:
 
 ```js
 import jwt from "jsonwebtoken";
@@ -1336,9 +1336,9 @@ const jwtAuth = async (req, res, next) => {
 export default jwtAuth;
 ```
 
-Complete all **TODO** sections with the appropriate code.
+Complete all TODO sections with the appropriate code.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 

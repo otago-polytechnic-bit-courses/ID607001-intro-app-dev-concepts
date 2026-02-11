@@ -15,15 +15,15 @@
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Switch to the **Week 05** branch using the following command:
+Open your repository in Visual Studio Code. Switch to the Week 05 branch using the following command:
 
 ```bash
 git switch week-05-validation-seeding-query-parameters-deployment
 ```
 
-Setup up your development environment, i.e., **Docker**, **environment variables**, etc.
+Setup up your development environment, i.e., Docker, environment variables, etc.
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
@@ -35,15 +35,15 @@ The script will:
 
 1. Check for required dependencies: `docker`, `node` and `npm`
 2. Select a project from the current directory
-3. Check if the **Docker** daemon is running and attempt to start it if not
-4. Check for an existing **PostgreSQL Docker** container and handle it appropriately
-5. Start a new **PostgreSQL Docker** container if needed
-6. Wait for **PostgreSQL** to be ready
+3. Check if the Docker daemon is running and attempt to start it if not
+4. Check for an existing PostgreSQL Docker container and handle it appropriately
+5. Start a new PostgreSQL Docker container if needed
+6. Wait for PostgreSQL to be ready
 7. Copy environment variables from a template file
-8. Install **Node.js** dependencies
-9. Run **Prisma** migrations
+8. Install Node.js dependencies
+9. Run Prisma migrations
 
-Copy the `application-setup.sh` script to your repository's root directory. Open a terminal in **Visual Studio Code**, read the script to understand what it does and run the following command to give execute permissions to the script.
+Copy the `application-setup.sh` script to your repository's root directory. Open a terminal in Visual Studio Code, read the script to understand what it does and run the following command to give execute permissions to the script.
 
 ```bash
 chmod +x application-setup.sh
@@ -71,7 +71,7 @@ To get started, open a terminal and run the following.
 npm install joi
 ```
 
-> **Note:** There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator.
+> Note: There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator.
 
 ---
 
@@ -249,7 +249,7 @@ const someSchema = Joi.object({
 });
 ```
 
-> **Resource:** <https://joi.dev/api/?v=18.0.1>
+> Resource: <https://joi.dev/api/?v=18.0.1>
 
 ---
 
@@ -284,13 +284,13 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-> **Note:** The order of the middleware is important. The validation middleware must be placed before the controller function to ensure that the data is validated before it is processed.
+> Note: The order of the middleware is important. The validation middleware must be placed before the controller function to ensure that the data is validated before it is processed.
 
 ---
 
 ### Postman Example
 
-Copy and paste the **Create an institution** request from the **lecture-notes/week-03** folder to the **lecture-notes/week-05** folder. Enter the following code in the text area.
+Copy and paste the Create an institution request from the lecture-notes/week-03 folder to the lecture-notes/week-05 folder. Enter the following code in the text area.
 
 ```json
 {
@@ -298,21 +298,21 @@ Copy and paste the **Create an institution** request from the **lecture-notes/we
 }
 ```
 
-Click on the **Send** button to send the request. You should see the following response.
+Click on the Send button to send the request. You should see the following response.
 
 ![](<../../resources (ignore)/img/week-5/00-week-5.png>)
 
-Here is an example for the **PUT** method.
+Here is an example for the PUT method.
 
 ![](<../../resources (ignore)/img/week-5/01-week-5.png>)
 
-> **Note:** You will notice that the an array of validation errors is returned in the response. This is a common practice as it allows the client to see all validation issues at once and address them in a single request, rather than having to fix one issue at a time and resubmit the request multiple times.
+> Note: You will notice that the an array of validation errors is returned in the response. This is a common practice as it allows the client to see all validation issues at once and address them in a single request, rather than having to fix one issue at a time and resubmit the request multiple times.
 
 ---
 
 ## Seeding
 
-**Seeding** is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. Here, we will focus on using the **Prisma Client** to seed the database with data.
+Seeding is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. Here, we will focus on using the Prisma Client to seed the database with data.
 
 ---
 
@@ -443,15 +443,15 @@ Resource: Institutions
 ==========================================
 ```
 
-> **Note:** The output assumes you have replaced the comments **"Display error message"** and **"Display no error message"** with code to display the appropriate messages based on whether there are errors or not.
+> Note: The output assumes you have replaced the comments "Display error message" and "Display no error message" with code to display the appropriate messages based on whether there are errors or not.
 
 ---
 
 ## Query Parameters
 
-Have you ever shopped online and used the filters to narrow down your search results, or sorted products by price, or navigated through multiple pages of search results? These features are made possible by **query parameters** in the URL.
+Have you ever shopped online and used the filters to narrow down your search results, or sorted products by price, or navigated through multiple pages of search results? These features are made possible by query parameters in the URL.
 
-**Query parameters** are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
+Query parameters are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
 
 ---
 
@@ -622,7 +622,7 @@ Here is an example of paging by `pageSize`.
 
 ## Deployment
 
-**Deployment** is the process of making your application available to users. There are several platforms that you can use to deploy your application such as **Render**, **Heroku**, **Vercel** and **Netlify**.
+Deployment is the process of making your application available to users. There are several platforms that you can use to deploy your application such as Render, Heroku, Vercel and Netlify.
 
 ---
 
@@ -636,30 +636,30 @@ In the `package.json` file, add the following in the `scripts` block.
 
 What is the difference between `npx primsa migrate dev` and `npx prisma migrate deploy`? 
 
-- `npx prisma migrate dev` is used for **development** purposes. It creates a new migration file based on the changes in your **Prisma** schema and applies it to your local database. It also updates the **Prisma Client**.
-- `npx prisma migrate deploy` is used for **production** deployment. It applies all pending migrations to the **production** database without creating new migration files. It does not update the **Prisma Client**, so you should ensure that your **Prisma Client** is up to date before running this command in **production**.
+- `npx prisma migrate dev` is used for development purposes. It creates a new migration file based on the changes in your Prisma schema and applies it to your local database. It also updates the Prisma Client.
+- `npx prisma migrate deploy` is used for production deployment. It applies all pending migrations to the production database without creating new migration files. It does not update the Prisma Client, so you should ensure that your Prisma Client is up to date before running this command in production.
 
 ---
 
 ### Render
 
-[Render](https://render.com/) is a **cloud platform** that makes it easy for developers and teams to deploy and host **web applications** and **static websites**.
+[Render](https://render.com/) is a cloud platform that makes it easy for developers and teams to deploy and host web applications and static websites.
 
-Sign up for a **Render** account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your **GitHub** account to sign up.
+Sign up for a Render account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your GitHub account to sign up.
 
 ---
 
 ### PostgreSQL Setup
 
-1. Click the **New +** button, then click the **Postgres** link.
+1. Click the New + button, then click the Postgres link.
 
 ![](<../../resources (ignore)/img/week-5/06-week-5.png>)
 
-2. Name your **New PostgreSQL**. Leave the **Instance Type** as **Free**. Click on the **Create Database** button.
+2. Name your New PostgreSQL. Leave the Instance Type as Free. Click on the Create Database button.
 
 ![](<../../resources (ignore)/img/week-5/07-week-5.jpeg>)
 
-4. Copy the **External Database URL**.
+4. Copy the External Database URL.
 
 ![](<../../resources (ignore)/img/week-5/08-week-5.jpeg>)
 
@@ -667,57 +667,57 @@ Sign up for a **Render** account at [https://dashboard.render.com/register](http
 
 ### Web Service Setup
 
-1. Click the **New +** button, then click the **Web Service** link.
+1. Click the New + button, then click the Web Service link.
 
-2. Click the **Git Provider** option. Connect to your repository. You may need to authorise **Render** access to your **GitHub** repositories.
-
-<ADD IMAGE HERE>
-
-4. Name your **web service**. For example, **id607001-rest-api**. Change the **Language** to **Node** and **Branch** to **week-05-validation-seeding-query-parameters-deployment**.
-
-> **Note:** As you progress through the next few weeks, you will manually change the **Branch**.
+2. Click the Git Provider option. Connect to your repository. You may need to authorise Render access to your GitHub repositories.
 
 <ADD IMAGE HERE>
 
-5. Change the **Build Command** to `npm run build` and **Start Command** to `node app.js`. Leave the **Instance Type** as **Free**.
+4. Name your web service. For example, id607001-rest-api. Change the Language to Node and Branch to week-05-validation-seeding-query-parameters-deployment.
+
+> Note: As you progress through the next few weeks, you will manually change the Branch.
 
 <ADD IMAGE HERE>
 
-6. Add the environment variable called `DATABASE_URL`. The value should be the **External Database URL** you copied above.
+5. Change the Build Command to `npm run build` and Start Command to `node app.js`. Leave the Instance Type as Free.
 
 <ADD IMAGE HERE>
 
-7. Click on the **Deploy Web Service** button.
+6. Add the environment variable called `DATABASE_URL`. The value should be the External Database URL you copied above.
 
 <ADD IMAGE HERE>
 
-8. Keep an eye on the logs. Your **web service** is ready when you see the following message.
+7. Click on the Deploy Web Service button.
+
+<ADD IMAGE HERE>
+
+8. Keep an eye on the logs. Your web service is ready when you see the following message.
 
 ```bash
 Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
-9. Scroll to the top of the page and click on your **web service's** URL.
+9. Scroll to the top of the page and click on your web service's URL.
 
-> **Resource:** <https://render.com/docs>
+> Resource: <https://render.com/docs>
 
 ---
 
 ## Exercises
 
-> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
 
-Here is an example **JSDoc** comment:
+Here is an example JSDoc comment:
 
 ```js
-/**
+/*
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -737,9 +737,9 @@ Implement the code examples above.
 
 ### Task 2 (Medium)
 
-A **catch-all** route is a route that matches any request that does not match any of the other routes.
+A catch-all route is a route that matches any request that does not match any of the other routes.
 
-In `app.js`, implement a **catch-all** route that returns a `404` status code with "Endpoint X Y not found" message, where `X` is the HTTP method and `Y` is the requested URL. Use `req.method` for the HTTP method and `req.originalUrl` for the requested URL.
+In `app.js`, implement a catch-all route that returns a `404` status code with "Endpoint X Y not found" message, where `X` is the HTTP method and `Y` is the requested URL. Use `req.method` for the HTTP method and `req.originalUrl` for the requested URL.
 
 ```javascript
 // Omitted for brevity
@@ -755,9 +755,9 @@ app.use((req, res) => {
 // Omitted for brevity
 ```
 
-> **Note:** The catch-all route should be the last route defined in the file.
+> Note: The catch-all route should be the last route defined in the file.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 ![](<../../resources (ignore)/img/week-5/exercises-00-week-5.png>)
 
@@ -765,9 +765,9 @@ Here is an example request in **Postman**:
 
 ### Task 3 (Medium)
 
-Implement an endpoint, e.g., `/api/endpoints`, that displays a list of available endpoints in your **REST API**.
+Implement an endpoint, e.g., `/api/endpoints`, that displays a list of available endpoints in your REST API.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 ![](<../../resources (ignore)/img/week-5/exercises-01-week-5.png>)
 
@@ -775,38 +775,38 @@ Here is an example request in **Postman**:
 
 ### Task 4 (Medium)
 
-Implement **POST** and **PUT** validation for the `Department`, `Course` and `User` **resources**.
+Implement POST and PUT validation for the `Department`, `Course` and `User` resources.
 
-Create validation **middleware** in the `middleware/validation` directory for each **resource**:
+Create validation middleware in the `middleware/validation` directory for each resource:
 
 - `department.js` - validate `name` and `institutionId`
 - `course.js` - validate `name`, `code`, `description` and `departmentId`
 - `user.js` - validate `firstName`, `lastName` and `emailAddress`
 
-Use the validation **middleware** in the appropriate **routes** to validate incoming request data before processing.
+Use the validation middleware in the appropriate routes to validate incoming request data before processing.
 
 ---
 
 ### Task 5 (Medium)
 
-Implement **scripts** to seed the `Department`, `Course` and `User` **resources**. Create seed **scripts** that populate your database with sample data for testing and development purposes. The **scripts** should:
+Implement scripts to seed the `Department`, `Course` and `User` resources. Create seed scripts that populate your database with sample data for testing and development purposes. The scripts should:
 
 - Clear existing data before seeding
-- Create realistic sample records for each **resource**
-- Maintain proper relationships between **resources**, i.e., departments belong to institutions, courses belong to departments, etc.
+- Create realistic sample records for each resource
+- Maintain proper relationships between resources, i.e., departments belong to institutions, courses belong to departments, etc.
 - Be repeatable without causing duplicate data errors
 
 ---
 
 ## Hard Exercises
 
-These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of **REST API** development, but also help you achieve high marks in the **Project** assessment.
+These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of REST API development, but also help you achieve high marks in the Project assessment.
 
 ---
 
 ### Task 1
 
-Extend your **seeding scripts** to generate a detailed report after seeding completes. The report should include:
+Extend your seeding scripts to generate a detailed report after seeding completes. The report should include:
 
 - Total number of records created for each resource
 - Time taken to seed each resource
@@ -843,41 +843,41 @@ Errors encountered: None
 
 Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
 
-**Hint:** The recommended approach is to create a file, e.g., `index.js` in `prisma/seeding` that imports and runs all seeding scripts sequentially, collects their results, e.g., resource, records created, time taken, errors, and then generates the final report.
+Hint: The recommended approach is to create a file, e.g., `index.js` in `prisma/seeding` that imports and runs all seeding scripts sequentially, collects their results, e.g., resource, records created, time taken, errors, and then generates the final report.
 
 ---
 
 ### Task 2
 
-Extend the **query parameters** functionality to support advanced filtering options:
+Extend the query parameters functionality to support advanced filtering options:
 
-- **Range:** createdAt[lte]=2023-12-31 or `?createdAt[gte]=2023-01-01&`
-- **Array:** `?country[in]=Australia,New Zealand`
-- **Exclusion:** `?region[not]=Otago`
-- **Partial match:** `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`
-- **Case sensitivity:** `?name=otago polytechnic&caseSensitive=false`
+- Range: createdAt[lte]=2023-12-31 or `?createdAt[gte]=2023-01-01&`
+- Array: `?country[in]=Australia,New Zealand`
+- Exclusion: `?region[not]=Otago`
+- Partial match: `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`
+- Case sensitivity: `?name=otago polytechnic&caseSensitive=false`
 
 Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
 
-Here is are example requests in **Postman**:
+Here is are example requests in Postman:
 
-**Range:**
-
-<ADD IMAGE HERE>
-
-**Array:**
+Range:
 
 <ADD IMAGE HERE>
 
-**Exclusion:**
+Array:
 
 <ADD IMAGE HERE>
 
-**Partial match:**
+Exclusion:
 
 <ADD IMAGE HERE>
 
-**Case sensitivity:**
+Partial match:
+
+<ADD IMAGE HERE>
+
+Case sensitivity:
 
 <ADD IMAGE HERE>
 
@@ -885,9 +885,9 @@ Here is are example requests in **Postman**:
 
 ### Task 3
 
-Implement an endpoint, e.g., `/api/health`, that provides a health check for your **REST API**. The health check should verify that application's status, database connectivity and uptime.
+Implement an endpoint, e.g., `/api/health`, that provides a health check for your REST API. The health check should verify that application's status, database connectivity and uptime.
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 <ADD IMAGE HERE>
 

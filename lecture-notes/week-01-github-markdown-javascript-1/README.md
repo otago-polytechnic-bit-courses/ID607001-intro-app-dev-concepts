@@ -699,7 +699,7 @@ Learning to use AI tools is an important skill. While AI tools are powerful, you
 Here is an example JSDoc comment:
 
 ```js
-/
+/*
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -717,7 +717,7 @@ Here is an example JSDoc comment:
 
 Write a function to check whether a given number is prime.
 
-Test cases
+Test cases:
 
 - `isPrime(1)` should return `false`
 - `isPrime(2)` should return `true`
@@ -738,8 +738,9 @@ const isPrime = (num) => {
 
 Write a function to reverse a string.
 
-Test cases
+Test cases:
 
+- `reverseString("")` should return `""`
 - `reverseString("Hello")` should return `"olleH"`
 - `reverseString("World")` should return `"dlroW"`
 - `reverseString("JavaScript")` should return `"tpircSavaJ"`
@@ -758,7 +759,7 @@ const reverseString = (str) => {
 
 Write a function to find the maximum element in an array.
 
-Test cases
+Test cases:
 
 - `findMax([1, 2, 3, 4, 5])` should return `5`
 - `findMax([5, 4, 3, 2, 1])` should return `5`
@@ -779,7 +780,7 @@ const findMax = (arr) => {
 
 Write a function to check whether a given string is a palindrome.
 
-Test cases
+Test cases:
 
 - `isPalindrome("racecar")` should return `true`
 - `isPalindrome("rAcEcAr")` should return `true`
@@ -800,7 +801,7 @@ const isPalindrome = (str) => {
 
 Write a function to calculate the factorial of a number.
 
-Test cases
+Test cases:
 
 - `factorial(0)` should return `1`
 - `factorial(1)` should return `1`
@@ -821,7 +822,7 @@ const factorial = (n) => {
 
 Write a function to sort an array of numbers in ascending order.
 
-Test cases
+Test cases:
 
 - `sortArray([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
 - `sortArray([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
@@ -842,7 +843,7 @@ const sortArray = (arr) => {
 
 Write a function to count the number of occurrences of a specific element in an array.
 
-Test cases
+Test cases:
 
 - `countOccurrences([1, 2, 3, 4, 5], 1)` should return `1`
 - `countOccurrences([1, 2, 3, 4, 5], 6)` should return `0`
@@ -863,7 +864,7 @@ const countOccurrences = (arr, element) => {
 
 Write a function to check whether two strings are anagrams of each other.
 
-Test cases
+Test cases:
 
 - `isAnagram("listen", "silent")` should return `true`
 - `isAnagram("hello", "bello")` should return `false`
@@ -884,7 +885,7 @@ const isAnagram = (str1, str2) => {
 
 Write a function to find the longest word in a string.
 
-Test cases
+Test cases:
 
 - `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - `findLongestWord("May the force be with you")` should return `"force"`
@@ -904,7 +905,7 @@ const findLongestWord = (sentence) => {
 
 Write a function to merge two sorted arrays into a single sorted array.
 
-Test cases
+Test cases:
 
 - `mergeSortedArrays([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - `mergeSortedArrays([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
@@ -1169,7 +1170,7 @@ const countAvailableSeats = (seatingLayout) => {
 
 Write a function that checks the winner of a Tic-Tac-Toe game represented by a 2D array. The board uses "X" for Player X, "O" for Player O, and "-" for empty spaces.
 
-Test cases
+Test cases:
 
 ```javascript
 const board1 = [

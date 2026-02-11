@@ -15,35 +15,35 @@
 
 ## Before We Start
 
-Open your repository in **Visual Studio Code**. Switch to the **Week 03** branch using the following command:
+Open your repository in Visual Studio Code. Switch to the Week 03 branch using the following command:
 
 ```bash
 git switch week-03-postgresql-docker-jsdoc-postman
 ```
 
-> **Note:** There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
 
 ---
 
 ## PostgreSQL
 
-**PostgreSQL** is a free relational database management system. It is a powerful, highly-extensible and feature-rich database system. It is also known as **Postgres**.
+PostgreSQL is a free relational database management system. It is a powerful, highly-extensible and feature-rich database system. It is also known as Postgres.
 
-> **Note:** There are different types of databases. For example, **relational databases**, **NoSQL databases**, **graph databases**, etc. **PostgreSQL** is a **relational database**. **Relational databases** store data in tables. Each table has rows and columns. **SQL** (Structured Query Language) is used to interact with **relational databases**.
+> Note: There are different types of databases. For example, relational databases, NoSQL databases, graph databases, etc. PostgreSQL is a relational database. Relational databases store data in tables. Each table has rows and columns. SQL (Structured Query Language) is used to interact with relational databases.
 
 ---
 
 ## Docker
 
-**Docker** is a platform for developing, shipping and running applications. It allows you to package your application and its dependencies into a container. A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. We are going to use **Docker** to run a **PostgreSQL** container.
+Docker is a platform for developing, shipping and running applications. It allows you to package your application and its dependencies into a container. A container is a standard unit of software that packages up code and all its dependencies so the application runs quickly and reliably from one computing environment to another. We are going to use Docker to run a PostgreSQL container.
 
-> **Resource:** <https://www.docker.com>
+> Resource: <https://www.docker.com>
 
 ---
 
 ### Getting Started
 
-To get started, open **Docker Desktop** and a terminal and run the following.
+To get started, open Docker Desktop and a terminal and run the following.
 
 ```bash
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
@@ -52,10 +52,10 @@ docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:543
 What does each do?
 
 - `docker run`: This command creates a new container.
-- `--name id607001-db-dev`: This command names the container **id607001-db-dev**.
-- `-e POSTGRES_PASSWORD=HelloWorld123`: This command sets the **PostgreSQL** password to **HelloWorld123**.
-- `-p 5432:5432`: This command maps the container's port **5432** to the host's port **5432**.
-- `-d postgres`: This command uses the **PostgreSQL** image to create the container.
+- `--name id607001-db-dev`: This command names the container id607001-db-dev.
+- `-e POSTGRES_PASSWORD=HelloWorld123`: This command sets the PostgreSQL password to HelloWorld123.
+- `-p 5432:5432`: This command maps the container's port 5432 to the host's port 5432.
+- `-d postgres`: This command uses the PostgreSQL image to create the container.
 
 To check if the container is running, run the following command.
 
@@ -63,7 +63,7 @@ To check if the container is running, run the following command.
 docker ps
 ```
 
-> **Note:** `ps` stands for "process status". It lists all the running containers.
+> Note: `ps` stands for "process status". It lists all the running containers.
 
 To stop the container, run the following command.
 
@@ -87,17 +87,17 @@ In the `package.json` file, add the following line to the `scripts` block.
 
 ## Object-Relational Mapper (ORM)
 
-An **Object-Relational Mapper (ORM)** is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and **SQL**.
+An Object-Relational Mapper (ORM) is a layer that sits between the database and the application. It maps the relational database to objects in the application. It allows developers to work with objects instead of tables and SQL.
 
-> **Note:** There are many **ORMs** available for **Node.js**. For example, **Sequelize**, **TypeORM**, **Objection.js**, etc.
+> Note: There are many ORMs available for Node.js. For example, Sequelize, TypeORM, Objection.js, etc.
 
 ---
 
 ### Setup
 
-The **ORM** we are going to use is **Prisma** which is an open-source **ORM** for **Node.js** and **TypeScript**. It supports **PostgreSQL**, **MySQL**, **SQLite** and **SQL Server**.
+The ORM we are going to use is Prisma which is an open-source ORM for Node.js and TypeScript. It supports PostgreSQL, MySQL, SQLite and SQL Server.
 
-> **Note:** **Prisma** 7.0 was recently released. However, we will use **Prisma** 6.12.0 for this course as it is more stable and works better with **JavaScript** projects.
+> Note: Prisma 7.0 was recently released. However, we will use Prisma 6.12.0 for this course as it is more stable and works better with JavaScript projects.
 
 To get started, open a terminal and run the following.
 
@@ -107,21 +107,21 @@ npm install prisma@^6.12.0 --save-dev
 npx prisma init
 ```
 
-> **Note:** You only need to run these once.
+> Note: You only need to run these once.
 
 What does each do?
 
-- `npm install @prisma/client@^6.12.0`: Installs the **Prisma Client** package. The **Prisma Client** is used to interact with the database.
-- `npm install prisma@^6.12.0 --save-dev`: Installs the **Prisma** package. The **Prisma** package is used to create and apply migrations.
-- `npx prisma init`: Initialises **Prisma** in your project. It creates the `.env` file and the `prisma` directory.
+- `npm install @prisma/client@^6.12.0`: Installs the Prisma Client package. The Prisma Client is used to interact with the database.
+- `npm install prisma@^6.12.0 --save-dev`: Installs the Prisma package. The Prisma package is used to create and apply migrations.
+- `npx prisma init`: Initialises Prisma in your project. It creates the `.env` file and the `prisma` directory.
 
-The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store **Prisma** configuration files. For example, `schema.prisma`.
+The `.env` file is used to store environment variables. For example, database connection string. The `prisma` directory is used to store Prisma configuration files. For example, `schema.prisma`.
 
 ---
 
 ### .env File
 
-A **.env** file is used to store environment variables. It is used to store sensitive information. For example, database connection string.
+A .env file is used to store environment variables. It is used to store sensitive information. For example, database connection string.
 
 In the `.env` file, you will see the following code.
 
@@ -135,13 +135,13 @@ Update the `DATABASE_URL` environment variable's value with the following code.
 DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
-> **Note:** The `.env` file is not committed to **Git**. The **Node** `.gitignore` file ignores the `.env` file.
+> Note: The `.env` file is not committed to Git. The Node `.gitignore` file ignores the `.env` file.
 
 ---
 
 ### .env.example File
 
-The `.env.example` file is used to provide an example of the `.env` file. It is committed to **Git**. It is used to show other developers what environment variables are required. It is also used to provide default values. Here is an example of the `.env.example` file.
+The `.env.example` file is used to provide an example of the `.env` file. It is committed to Git. It is used to show other developers what environment variables are required. It is also used to provide default values. Here is an example of the `.env.example` file.
 
 ```bash
 NODE_ENV=development
@@ -150,7 +150,7 @@ API_BASE_URL=http://localhost
 DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
-> **Note:** The `.env.example` file is committed to **Git**. The **Node** `.gitignore` file does not ignore the `.env.example` file.
+> Note: The `.env.example` file is committed to Git. The Node `.gitignore` file does not ignore the `.env.example` file.
 
 In the `package.json` file, add the following line to the `scripts` block.
 
@@ -158,7 +158,7 @@ In the `package.json` file, add the following line to the `scripts` block.
 "env:copy": "cp .env.example .env || copy .env.example .env"
 ```
 
-> **Note:** `cp .env.example .env` is the **Linux** or **macOS** command and `copy .env.example .env` is the **Windows** command. If the first command fails, it will try the second command.
+> Note: `cp .env.example .env` is the Linux or macOS command and `copy .env.example .env` is the Windows command. If the first command fails, it will try the second command.
 
 ---
 
@@ -178,13 +178,13 @@ datasource db {
 }
 ```
 
-The `generator` block is used to specify the **Prisma Client** provider. The **Prisma Client** is used to interact with the database.
+The `generator` block is used to specify the Prisma Client provider. The Prisma Client is used to interact with the database.
 
-> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/generators>
+> Resource: <https://www.prisma.io/docs/orm/prisma-schema/overview/generators>
 
 The `datasource` block is used to specify the database provider and URL. The `url` value is retrieved from the `DATABASE_URL` environment variable.
 
-> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
+> Resource: <https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources>
 
 Remove the following line:
 
@@ -209,7 +209,7 @@ datasource db {
 
 ### Model
 
-A **model** is a representation of a database table. It defines the structure of the table, including the fields and their data types.
+A model is a representation of a database table. It defines the structure of the table, including the fields and their data types.
 
 Under `datasource db` block, add the following code.
 
@@ -227,24 +227,24 @@ model Institution {
 - A `model` is used to define a database table. In this case, we are defining an `Institution` table.
 - The `@id` directive is used to specify the primary key.
 - The `@default` directive is used to specify the default value.
-- `uuid()` is a function that generates a **UUID** (Universally Unique Identifier). It is best practice to use UUIDs as primary keys because they are unique across all tables and databases.
+- `uuid()` is a function that generates a UUID (Universally Unique Identifier). It is best practice to use UUIDs as primary keys because they are unique across all tables and databases.
 - The `@unique` directive is used to specify that the value should be unique.
 - The `@default(now())` directive is used to specify that the value should be the current date and time.
 - The `@updatedAt` directive is used to specify that the value should be updated when the row in the table is updated.
 
-> **Resource:** <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
+> Resource: <https://www.prisma.io/docs/orm/prisma-schema/data-model/models>
 
 ---
 
 ### UUIDs vs. Auto-Increment IDs
 
-**UUIDs** provide better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID in the sequence and access data they should not have access to. For example, if an attacker knows that the last user ID is `10`, they can easily guess that the next user ID is `11` and try to access that user's data. With 128 bits of entropy, there are 2^128 (approximately 3.4 x 10^38) possible UUIDs. This makes it virtually impossible for an attacker to guess a valid UUID. However, **UUIDs** should be viewed as an obscurity measure, not a security measure. Proper authentication and authorization mechanisms should still be implemented to protect sensitive data.
+UUIDs provide better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID in the sequence and access data they should not have access to. For example, if an attacker knows that the last user ID is `10`, they can easily guess that the next user ID is `11` and try to access that user's data. With 128 bits of entropy, there are 2^128 (approximately 3.4 x 10^38) possible UUIDs. This makes it virtually impossible for an attacker to guess a valid UUID. However, UUIDs should be viewed as an obscurity measure, not a security measure. Proper authentication and authorization mechanisms should still be implemented to protect sensitive data.
 
 ---
 
 ### Create and Apply a Migration
 
-A **migration** is a file that contains the **SQL** statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
+A migration is a file that contains the SQL statements to create, update, or delete database tables. It is used to keep the database schema in sync with the application.
 
 To create and apply a migration, run the following command.
 
@@ -252,9 +252,9 @@ To create and apply a migration, run the following command.
 npx prisma migrate dev
 ```
 
-You will be prompted to enter a name for the migration. Name the migration `00_create_institution_table`. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some **SQL** statements.
+You will be prompted to enter a name for the migration. Name the migration `00_create_institution_table`. The new migration is in the `prisma/migrations` directory. You are encouraged to read the migration file. You should see some SQL statements.
 
-> **Note:** When you make a change to the `schema.prisma` file, you need to create a new migration and apply it.
+> Note: When you make a change to the `schema.prisma` file, you need to create a new migration and apply it.
 
 ---
 
@@ -276,7 +276,7 @@ To reset the database, run the following command.
 npx prisma migrate reset --force
 ```
 
-> **Note:** This command will delete all the data in the database. Use it with caution.
+> Note: This command will delete all the data in the database. Use it with caution.
 
 ---
 
@@ -318,7 +318,7 @@ const prisma = new PrismaClient();
 export default prisma;
 ```
 
-The `PrismaClient` class is used to create a new instance of the **Prisma Client**. The instance is then exported for use in other files. This is a design pattern called the **Singleton Pattern**. It ensures that there is only one instance of the **Prisma Client** throughout the application.
+The `PrismaClient` class is used to create a new instance of the Prisma Client. The instance is then exported for use in other files. This is a design pattern called the Singleton Pattern. It ensures that there is only one instance of the Prisma Client throughout the application.
 
 ---
 
@@ -508,9 +508,9 @@ export {
 
 ### Default and Named Exports
 
-In **JavaScript**, there are two types of exports:
+In JavaScript, there are two types of exports:
 
-- **Default Export:** A module can only have one default export. It is imported without curly braces. Here is an example:
+- Default Export: A module can only have one default export. It is imported without curly braces. Here is an example:
 
 ```js
 // controllers/institution.js
@@ -540,12 +540,12 @@ router.delete("/:id", institutionController.deleteInstitution);
 export default router;
 ```
 
-- **Named Export:** A module can have multiple named exports. They are imported with curly braces. Refer to the example in the **Institution Router** section.
+- Named Export: A module can have multiple named exports. They are imported with curly braces. Refer to the example in the Institution Router section.
 
-When should I use **default exports** vs. **named exports**?
+When should I use default exports vs. named exports?
 
-- Use **default exports** when you want to export a single value from a module. It makes the import statement cleaner and more concise.
-- Use **named exports** when you want to export multiple values from a module. It allows for more flexibility and clarity in the import statements.
+- Use default exports when you want to export a single value from a module. It makes the import statement cleaner and more concise.
+- Use named exports when you want to export multiple values from a module. It allows for more flexibility and clarity in the import statements.
 
 ---
 
@@ -598,7 +598,7 @@ app.use("/api/institutions", institutionRoutes);
 
 We are using `/api/institutions` as the base URL for all the institution routes. For example, `/api/institutions`, `/api/institutions/uuid`, etc. Also, your resources should be pluralised. For example, `/api/institutions` instead of `/api/institution`.
 
-> **Note:** If you get stuck, here is the complete `app.js` file.
+> Note: If you get stuck, here is the complete `app.js` file.
 
 ```javascript
 import express from "express";
@@ -634,51 +634,51 @@ export default app;
 
 ## Postman
 
-**Postman** is a tool for testing APIs. It allows you to send requests to your API and view the responses. It is a powerful tool for testing and debugging APIs.
+Postman is a tool for testing APIs. It allows you to send requests to your API and view the responses. It is a powerful tool for testing and debugging APIs.
 
 ---
 
 ### Getting Started
 
-To get started, navigate to <https://identity.getpostman.com/login> and sign in with your **GitHub** account. You will need to authorise **Postman** to access your **GitHub** account. Once you are signed in, you will see the **Postman** dashboard.
+To get started, navigate to <https://identity.getpostman.com/login> and sign in with your GitHub account. You will need to authorise Postman to access your GitHub account. Once you are signed in, you will see the Postman dashboard.
 
 ---
 
 ### Postman Example
 
-Once you have setup your workspace, you can create a new collection. A collection is a group of requests. You can create a new collection by clicking on the **Create Collection** button in the left sidebar. Name the collection appropriately.
+Once you have setup your workspace, you can create a new collection. A collection is a group of requests. You can create a new collection by clicking on the Create Collection button in the left sidebar. Name the collection appropriately.
 
 ![](<../../resources (ignore)/img/week-3/00-week-3.png>)
 
-Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the **Add a request** button in the collection.
+Once you have created the collection, you can create a new request. A request is an HTTP request that you can send to your API. You can create a new request by clicking on the Add a request button in the collection.
 
-We will create sub-folders to organise our requests better. To create a sub-folder, hover over the collection name, click on the horizontal ellipsis (three dots) next to the collection name and select **Add folder**.
+We will create sub-folders to organise our requests better. To create a sub-folder, hover over the collection name, click on the horizontal ellipsis (three dots) next to the collection name and select Add folder.
 
 ![](<../../resources (ignore)/img/week-3/01-week-3.png>)
 
-In the screenshot below, we have created sub-folders for the **lecture-notes** and **exercises**.
+In the screenshot below, we have created sub-folders for the lecture-notes and exercises.
 
 ![](<../../resources (ignore)/img/week-3/02-week-3.png>)
 
-In the **lecture-notes/week-03** folder, click on **Add a request** button to create a new request.
+In the lecture-notes/week-03 folder, click on Add a request button to create a new request.
 
 ![](<../../resources (ignore)/img/week-3/03-week-3.png>)
 
-Rename the request to **Get all institutions**. Select the **GET** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Send** button to send the request.
+Rename the request to Get all institutions. Select the GET method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the Send button to send the request.
 
-You should see a **Postman Agent** error.
+You should see a Postman Agent error.
 
 ![](<../../resources (ignore)/img/week-3/04-week-3.png>)
 
-Change the **Postman Agent** from **Cloud Agent** to **Browser Agent**.
+Change the Postman Agent from Cloud Agent to Browser Agent.
 
 ![](<../../resources (ignore)/img/week-3/05-week-3.png>)
 
-Click on the **Send** button again to send the request. You should see a response. The `data` field should be an empty array since there are no institutions in the database.
+Click on the Send button again to send the request. You should see a response. The `data` field should be an empty array since there are no institutions in the database.
 
 ![](<../../resources (ignore)/img/week-3/06-week-3.png>)
 
-Create a new request called **Create an institution**. Select the **POST** method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the **Body** tab. Select the **raw** radio button. Select **JSON** from the dropdown. Enter the following code in the text area. Click on the **Send** button to send the request. You should see a response with the newly created institution.
+Create a new request called Create an institution. Select the POST method from the dropdown. Enter the request URL as `http://localhost:3000/api/institutions`. Click on the Body tab. Select the raw radio button. Select JSON from the dropdown. Enter the following code in the text area. Click on the Send button to send the request. You should see a response with the newly created institution.
 
 ```json
 {
@@ -708,7 +708,7 @@ What happens if you try to get an institution that does not exist? Give it a try
 
 ## JSDoc
 
-**JSDoc** is an API documentation generator for **JavaScript**. **JSDoc** comments are written in a specific syntax to document the code. The **JSDoc** comments are then parsed and converted into HTML documentation. We will not convert the **JSDoc** comments into HTML documentation. However, it is good information to know.
+JSDoc is an API documentation generator for JavaScript. JSDoc comments are written in a specific syntax to document the code. The JSDoc comments are then parsed and converted into HTML documentation. We will not convert the JSDoc comments into HTML documentation. However, it is good information to know.
 
 ---
 
@@ -717,7 +717,7 @@ What happens if you try to get an institution that does not exist? Give it a try
 At the top of each file, add the following code.
 
 ```javascript
-/**
+/
  * @file <the purpose of the file>
  * @author <the name of the author>
  */
@@ -726,18 +726,18 @@ At the top of each file, add the following code.
 For example, in the `controllers/institution.js` file.
 
 ```javascript
-/**
+/
  * @file Manages all operations related to institutions
  * @author John Doe
  */
 ```
 
-> **Note:** `@fileoverview` or `@overview` can also be used instead of `@file`.
+> Note: `@fileoverview` or `@overview` can also be used instead of `@file`.
 
-How do you comment a **function**?
+How do you comment a function?
 
 ```javascript
-/**
+/
  * @description This function creates a new institution
  * @param {object} req - The request object
  * @param {object} res - The response object
@@ -770,24 +770,24 @@ const createInstitution = async (req, res) => {
 };
 ```
 
-> **Note:** Do not use **JSDoc** for in-line comments. Use normal JavaScript comments.
+> Note: Do not use JSDoc for in-line comments. Use normal JavaScript comments.
 
 ---
 
 ## Exercises
 
-> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
 
-Here is an example **JSDoc** comment:
+Here is an example JSDoc comment:
 
 ```js
-/**
+/*
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -807,11 +807,11 @@ Implement the code examples above.
 
 ### Task 2 (Easy)
 
-**Prisma Studio** is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open **Prisma Studio** in the browser.
+Prisma Studio is a visual editor for your database. It allows you to view and edit your data. Create a new script in the `package.json` file called `prisma:studio`. This script should open Prisma Studio in the browser.
 
-Here are examples of **Prisma Studio** in action:
+Here are examples of Prisma Studio in action:
 
-You can see that the `Institution` model is available in **Prisma Studio**.
+You can see that the `Institution` model is available in Prisma Studio.
 
 ![](<../../resources (ignore)/img/week-3/exercises-00-week-3.png>)
 
@@ -819,21 +819,21 @@ You can create a new record for the `Institution` model.
 
 ![](<../../resources (ignore)/img/week-3/exercises-01-week-3.png>)
 
-> **Resource:** <https://www.prisma.io/docs/concepts/components/prisma-studio>
+> Resource: <https://www.prisma.io/docs/concepts/components/prisma-studio>
 
 ---
 
 ### Task 3 (Easy)
 
-In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in **Prisma** can be defined by adding a `?` after the field name. For example, `website String?`.
+In the `schema.prisma` file, update the `Institution` model to include two new fields - `website` and `emailAddress`. Both fields should be optional. Optional fields in Prisma can be defined by adding a `?` after the field name. For example, `website String?`.
 
 After updating the schema:
 
 - Create and apply a new migration with an appropriate name
 - Update `controller/institution.js` to handle `website` and `emailAddress`
-- Test the updates in **Postman** to ensure `website` and `emailAddress` work correctly
+- Test the updates in Postman to ensure `website` and `emailAddress` work correctly
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 ![](<../../resources (ignore)/img/week-3/exercises-02-week-3.png>)
 
@@ -841,7 +841,7 @@ Here is an example request in **Postman**:
 
 ### Task 4 (Easy)
 
-In **Primsa**, there is a `select` option that allows you to select specific fields to be returned from a query.
+In Primsa, there is a `select` option that allows you to select specific fields to be returned from a query.
 
 Update the `createInstitution`, `getInstitutions`, `getInstitution` and `updateInstitution` functions in the `controllers/institution.js` file to return all fields except for the `updatedAt` and `createdAt` fields.
 
@@ -855,7 +855,7 @@ const institutions = await prisma.institution.findMany({
 });
 ```
 
-Here is an example request in **Postman**:
+Here is an example request in Postman:
 
 ![](<../../resources (ignore)/img/week-3/exercises-03-week-3.png>)
 
@@ -865,7 +865,7 @@ As you can see, only the `id`, `name`, and `country` fields are returned for eac
 
 ### Task 5 (Easy)
 
-What happens if you try to update or delete an institution without providing an `id` in the URL parameter? Try it in **Postman** by sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an `id`. You should see a response like this:
+What happens if you try to update or delete an institution without providing an `id` in the URL parameter? Try it in Postman by sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an `id`. You should see a response like this:
 
 ```html
 <!DOCTYPE html>
@@ -941,7 +941,7 @@ npm install
 npm run env:copy
 ```
 
-5. Start the **PostgreSQL** **Docker** container:
+5. Start the PostgreSQL Docker container:
 
 ```bash
 npm run docker:run:dev
