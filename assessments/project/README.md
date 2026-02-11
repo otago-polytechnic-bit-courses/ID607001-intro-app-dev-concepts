@@ -110,6 +110,11 @@ Here is an example of how to document an endpoint:
 | HTTP Method | Endpoint URL        | Description              | Authentication Required | Role-Based Access Control Required and Roles | Path Parameters | Query Parameters | Body Parameters                                                                |
 | ----------- | ------------------- | ------------------------ | ----------------------- | -------------------------------------------- | --------------- | ---------------- | ------------------------------------------------------------------------------ |
 | POST        | `/api/institutions` | Create a new institution | Yes                     | Yes. Admin                                   | None            | None             | name (string, required), region (string, required), country (string, required) |
+
+---
+
+#### Marking Rubric:
+
 ---
 
 ### Development Phase - Learning Outcome 1 (25%)
@@ -123,17 +128,14 @@ Once the course lecturer has approved your design document, you can start develo
 In this phase, you will use the Agile software development methodology.
 
 - Each sprint is two weeks long. You will have four sprints in total.
-- Create a GitHub Project to manage your work. The project should include columns for Backlog, To Do, In Progress and Done.
+- Create a GitHub Project to manage your work. The project must include columns for Backlog, To Do, In Progress and Done.
 - Create issues for each task and move them across the columns as you work on them.
 
-Here is an example of a sprint plan:
+Here is an example of how to break down your work into sprints and tasks:
 
 | Sprint | Tasks                                                                                                                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |
-| 2      | Implement CRUD endpoints for two more models, implement validation, implement filtering, sorting and pagination, implement role-based access control, implement content negotiation middleware   |
-| 3      | Implement CRUD endpoints for remaining models, implement cache middleware, implement rate limiting middleware, implement catch-all endpoint, implement health check endpoint, create npm scripts |
-| 4      | Write API tests, fix bugs, deploy application to Render, write documentation                                                                                                                     |
+| 1      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |                      
 
 ---
 
@@ -165,10 +167,10 @@ Here is an example of a sprint plan:
 
 - Implement validation on create and update operations.
 - Implement filtering, sorting and pagination on read all operations.
-- Implement role-based access control with at least two roles. Each role should have distinct permissions.
+- Implement role-based access control with at least two roles. Each role must have distinct permissions.
 - Implement content negotiation middleware to return responses in JSON format.
 - Implement cache middleware for read all and read by ID operations for each model.
-- Implement rate limiting middleware based on the user's role. For example, users with the admin role may have a higher rate limit than users with the user role.
+- Implement rate limiting middleware based on the user's role. For example, users with the role "X" may have a higher rate limit than users with the role "Y".
 
 ---
 
@@ -184,7 +186,7 @@ Implement API tests for the following:
 - Filtering, sorting and pagination
 - Permissions based on the user's role
 
-API tests should be able to run against both development and production environments.
+API tests must be able to run against both development and production environments.
 
 ---
 
@@ -211,17 +213,22 @@ Include scripts in the package.json file to:
 - Verify that the deployed application is working correctly by running the API tests against the production environment and testing the endpoints using Postman.
 - Provide a URL to the deployed application in `documentation.md`.
 
+----
+
+#### Marking Rubric:
+
+
 ---
 
 ### Code Quality and Best Practices - Learning Outcome 1 (15%)
 
-When developing your application, you should follow best practices for code quality. This will help ensure that your code is maintainable, scalable and secure.
+When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and secure.
 
 ---
 
 #### Code Organisation:
 
-- Use a clear and logical project structure with separate directories for controllers, routes, repositories, middleware, utilities and tests.
+- Use a clear and logical project structure that implements separation of concerns.
 - Implement separation of concerns by keeping the presentation layer and data access layer separate.
 - Write modular code by breaking down your application into smaller, reusable functions and modules.
 
@@ -229,9 +236,9 @@ When developing your application, you should follow best practices for code qual
 
 #### Code Style and Formatting:
 
-- Code must pass ESLint checks with no errors.
-- Code must be formatted consistently using Prettier.
-- Follow naming conventions. For example, camelCase for variables and functions, PascalCase for classes.
+- Code must be linted using ESLint.
+- Code must be formatted using Prettier.
+- Follow naming conventions. 
 - Use meaningful variable, function and class names that clearly describe their purpose.
 
 ---
@@ -248,9 +255,9 @@ When developing your application, you should follow best practices for code qual
 #### Security:
 
 - Store sensitive data in environment variables.
-- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub. For example, you should include `node_modules` and `.env` in your `.gitignore` file.
+- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub. 
 - Implement password hashing using a secure algorithm.
-- Use secure JWT practices. For example, use a strong secret key and set appropriate token expiration time.
+- Use secure JWT practices. 
 
 ---
 
@@ -265,6 +272,14 @@ When developing your application, you should follow best practices for code qual
 #### Dependencies:
 
 - Use only necessary dependencies.
+
+---
+
+#### Documentation:
+
+---
+
+#### Marking Rubric:
 
 ---
 
