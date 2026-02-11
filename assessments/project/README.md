@@ -81,26 +81,64 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ### Design Phase - Learning Outcome 1 (5%)
 
-To move onto the Development Phase, the course lecturer must approve your design document. In `documentation.md`, include the following:
+Before you start developing your application, you need to create a design document that outlines the structure of your application. This will help you plan your work and ensure that you are meeting the requirements of the assessment. 
 
-- An Entity Relationship Diagram (ERD) showing six models, their fields and relationships. For each field, include its name, data type and if applicable, constraints. For enum fields, include the possible values.
-- A list of endpoints you will implement. Include the HTTP method, endpoint URL, a brief description of what the endpoint does, if authentication is required, if role-based access control is required and what roles have access, path parameters, query parameters and body parameters.
+To move onto the Development Phase, the course lecturer must approve your design document.
+
+In `documentation.md`, include the following:
+
+- An Entity Relationship Diagram (ERD) showing six models, their fields and relationships. 
+  - For each field, include its name, data type and constraints. 
+  - For enum fields, include the possible values.
+- A list of endpoints you will implement. For each endpoint, include the:
+  - HTTP method
+  - Endpoint URL
+  - Brief description of what the endpoint does
+  - Authentication requirement (if applicable)
+  - Role-based access control requirement and roles
+  - Path parameters (if applicable)
+  - Query parameters (if applicable)
+  - Body parameters (if applicable)
 
 Here is an example of how to document an endpoint:
 
 | HTTP Method | Endpoint URL        | Description              | Authentication Required | Role-Based Access Control Required and Roles | Path Parameters | Query Parameters | Body Parameters                                                                |
 | ----------- | ------------------- | ------------------------ | ----------------------- | -------------------------------------------- | --------------- | ---------------- | ------------------------------------------------------------------------------ |
 | POST        | `/api/institutions` | Create a new institution | Yes                     | Yes. Admin                                   | None            | None             | name (string, required), region (string, required), country (string, required) |
+---
 
 ### Development Phase - Learning Outcome 1 (15%)
 
-Project Management:
+Once your design document has been approved, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
 
-In this phase, you will use the Agile software development methodology. Sprints will be two weeks long. You will need to create a GitHub Project to manage your work. The project should include columns for Backlog, To Do, In Progress and Done. You should create issues for each task and move them across the columns as you work on them.
+---
 
-Database - Use Prisma to interact with a PostgreSQL database in development, testing and production.
+#### Project Management:
 
-Models:
+In this phase, you will use the Agile software development methodology.
+
+- Each sprint is two weeks long. You will have four sprints in total.
+- Create a GitHub Project to manage your work. The project should include columns for Backlog, To Do, In Progress and Done.
+- Create issues for each task and move them across the columns as you work on them.
+
+Here is an example of a sprint plan:
+
+| Sprint | Tasks                                                                                                                                                                                            |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |
+| 2      | Implement CRUD endpoints for two more models, implement validation, implement filtering, sorting and pagination, implement role-based access control, implement content negotiation middleware   |
+| 3      | Implement CRUD endpoints for remaining models, implement cache middleware, implement rate limiting middleware, implement catch-all endpoint, implement health check endpoint, create npm scripts |
+| 4      | Write API tests, fix bugs, deploy application to Render, write documentation                                                                                                                     |
+
+---
+
+#### Database:
+
+Use Prisma to interact with a PostgreSQL database in development, testing and production environments.
+
+---
+
+#### Models:
 
 - Implement six models with a minimum of four fields each excluding `id`, `createdAt`, and `updatedAt`.
 - Include two enum fields across your models, each with at least two values.
@@ -110,47 +148,65 @@ Models:
   - At least one many-to-many relationship
   - One additional relationship of any type
 
-CRUD:
+---
+
+#### CRUD:
 
 - Implement the following endpoints:
-  - CRUD operations (create, read all, read by ID, update and delete) for each model.
-  - Register, login and logout using token-based authentication.
-  - Catch all .
-  - Health check that verifies the application's status, database connectivity and uptime.
+  - CRUD operations (create, read all, read by ID, update and delete) for each model
+  - Register, login and logout using token-based authentication
+  - Health check that verifies the application's status, database connectivity and uptime
+  - Catch-all endpoint
 
 - Implement validation on create and update operations.
 - Implement filtering, sorting and pagination on read all operations.
 - Implement role-based access control with at least two roles. Each role should have distinct permissions.
-- Implement content negotation middleware to return responses in JSON format.
+- Implement content negotiation middleware to return responses in JSON format.
 - Implement cache middleware for read all and read by ID operations for each model.
-- Implement rate limiting middleware based on the user's role. For example, users with the "x" role may have a higher rate limit than users with the "y" role.
+- Implement rate limiting middleware based on the user's role. For example, users with the admin role may have a higher rate limit than users with the user role.
 
-- Implement API tests for the following:
-  - CRUD operations for each model.
-  - Register, login and logout.
-  - Catch all.
-  - Validation.
-  - Filtering, sorting and pagination.
-  - Permissions based on the user's role.
+---
 
-Scripts:
+#### API Tests:
 
-- Include scripts in the package.json file to:
-  - Run the application in development
-  - Format your code
-  - Lint your code
-  - Create and run a PostgreSQL database in development
-  - Create and run a PostgreSQL database in testing
-  - Create a database migration
-  - Reset the database
-  - Seed the database with five records for each model
-  - Build the application for production
-  - Run the API tests
+Implement API tests for the following:
 
-Deployment:
+- CRUD operations for each model
+- Register, login and logout
+- Health check endpoint
+- Catch-all endpoint
+- Validation
+- Filtering, sorting and pagination
+- Permissions based on the user's role
+
+API tests should be able to run against both development and production environments.
+
+---
+
+#### Scripts:
+
+Include scripts in the package.json file to:
+
+- Run the application in development environment
+- Format your code
+- Lint your code
+- Create and run a PostgreSQL database in development environment
+- Create and run a PostgreSQL database for API tests
+- Create a database migration
+- Reset the database
+- Seed the database with five records for each model
+- Build the application for production
+- Run the API tests
+
+---
+
+#### Deployment:
 
 - Deploy the application to Render.
-- Provide a URL to the deployed application in the repository's README.md file.
+- Verify that the deployed application is working correctly by running the API tests against the production environment and testing the endpoints using Postman.
+- Provide a URL to the deployed application in `documentation.md`.
+
+---
 
 ### Code Quality and Best Practices - Learning Outcome 1 (20%)
 
