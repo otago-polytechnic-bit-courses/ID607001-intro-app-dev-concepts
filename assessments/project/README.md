@@ -79,26 +79,31 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
-### Design Phase - Learning Outcome 1 (5%)
+### Design Phase - Learning Outcome 1 (10%)
 
 Before you start developing your application, you need to create a design document that outlines the structure of your application. This will help you plan your work and ensure that you are meeting the requirements of the assessment. 
 
-To move onto the Development Phase, the course lecturer must approve your design document.
+To move onto the Development Phase, the course lecturer must approve your design document. 
 
-In `documentation.md`, include the following:
+#### Entity Relationship Diagram (ERD) 
 
-- An Entity Relationship Diagram (ERD) showing six models, their fields and relationships. 
-  - For each field, include its name, data type and constraints. 
-  - For enum fields, include the possible values.
-- A list of endpoints you will implement. For each endpoint, include the:
-  - HTTP method
+- Create an ERD using a digital tool of your choice that shows six models, their fields and relationships. 
+- For each field, include its name, data type and constraints. 
+- For enum fields, include the possible values.
+
+#### API Endpoints
+
+- In a table formt, show the endpoints you will implement for your application. 
+- For each endpoint, include:
+  - HTTP method 
   - Endpoint URL
   - Brief description of what the endpoint does
-  - Authentication requirement (if applicable)
+  - Authentication requirement (if applicable) 
   - Role-based access control requirement and roles
-  - Path parameters (if applicable)
-  - Query parameters (if applicable)
+  - Path parameters (if applicable) 
+  - Query parameters (if applicable) 
   - Body parameters (if applicable)
+
 
 Here is an example of how to document an endpoint:
 
@@ -107,9 +112,9 @@ Here is an example of how to document an endpoint:
 | POST        | `/api/institutions` | Create a new institution | Yes                     | Yes. Admin                                   | None            | None             | name (string, required), region (string, required), country (string, required) |
 ---
 
-### Development Phase - Learning Outcome 1 (15%)
+### Development Phase - Learning Outcome 1 (25%)
 
-Once your design document has been approved, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
+Once the course lecturer has approved your design document, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
 
 ---
 
@@ -134,7 +139,7 @@ Here is an example of a sprint plan:
 
 #### Database:
 
-Use Prisma to interact with a PostgreSQL database in development, testing and production environments.
+- Use Prisma to interact with a PostgreSQL database in development, testing and production environments.
 
 ---
 
@@ -208,7 +213,58 @@ Include scripts in the package.json file to:
 
 ---
 
-### Code Quality and Best Practices - Learning Outcome 1 (20%)
+### Code Quality and Best Practices - Learning Outcome 1 (15%)
+
+When developing your application, you should follow best practices for code quality. This will help ensure that your code is maintainable, scalable and secure.
+
+---
+
+#### Code Organisation:
+
+- Use a clear and logical project structure with separate directories for controllers, routes, repositories, middleware, utilities and tests.
+- Implement separation of concerns by keeping the presentation layer and data access layer separate.
+- Write modular code by breaking down your application into smaller, reusable functions and modules.
+
+---
+
+#### Code Style and Formatting:
+
+- Code must pass ESLint checks with no errors.
+- Code must be formatted consistently using Prettier.
+- Follow naming conventions. For example, camelCase for variables and functions, PascalCase for classes.
+- Use meaningful variable, function and class names that clearly describe their purpose.
+
+---
+
+#### Error Handling:
+
+- Handle errors gracefully and provide meaningful error messages.
+- Use appropriate HTTP status codes.
+- Return consistent error response format across all endpoints.
+- Handle database errors and validation errors appropriately.
+
+---
+
+#### Security:
+
+- Store sensitive data in environment variables.
+- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub. For example, you should include `node_modules` and `.env` in your `.gitignore` file.
+- Implement password hashing using a secure algorithm.
+- Use secure JWT practices. For example, use a strong secret key and set appropriate token expiration time.
+
+---
+
+#### Version Control:
+
+- Maintain a clean Git history with descriptive commit messages.
+- Use conventional commit messages. 
+- Commit regularly with small, focused changes rather than large, monolithic commits.
+
+---
+
+#### Dependencies:
+
+- Use only necessary dependencies.
 
 ---
 
