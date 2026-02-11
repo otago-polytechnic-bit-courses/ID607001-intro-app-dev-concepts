@@ -634,7 +634,7 @@ In the `package.json` file, add the following in the `scripts` block.
 "build": "npm install && npx prisma generate && npx prisma migrate deploy"
 ```
 
-What is the difference between `npx primsa migrate dev` and `npx prisma migrate deploy`? 
+What is the difference between `npx primsa migrate dev` and `npx prisma migrate deploy`?
 
 - `npx prisma migrate dev` is used for development purposes. It creates a new migration file based on the changes in your Prisma schema and applies it to your local database. It also updates the Prisma Client.
 - `npx prisma migrate deploy` is used for production deployment. It applies all pending migrations to the production database without creating new migration files. It does not update the Prisma Client, so you should ensure that your Prisma Client is up to date before running this command in production.

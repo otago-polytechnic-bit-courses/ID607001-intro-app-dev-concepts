@@ -913,10 +913,9 @@ import { cacheMiddleware } from "../middleware/cache.js";
 // Omitted for brevity
 
 const MAX_CACHE_DURATION = // TODO 9: Set the maximum cache duration to 5 minutes in milliseconds
+  // Omitted for brevity
 
-// Omitted for brevity
-
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 // Omitted for brevity
@@ -934,9 +933,7 @@ In the controllers files, import and use the `clearCache` function to clear the 
 const createInstitution = async (req, res) => {
   try {
     // Omitted for brevity
-
     // TODO 11: Clear the cache after creating a new institution
-    
     // Omitted for brevity
   } catch (err) {
     // Omitted for brevity

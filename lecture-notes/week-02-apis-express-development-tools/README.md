@@ -44,7 +44,7 @@ What is meant by rules and protocols?
 
 Representational State Transfer (REST) is an architectural style for designing networked applications. It is based on a set of principles and constraints that allow for the creation of scalable and maintainable web services.
 
-| Principle            | Description                                                                            |
+| Principle                | Description                                                                                |
 | ------------------------ | ------------------------------------------------------------------------------------------ |
 | Statelessness            | Each API request from a client contains all the information needed to process the request. |
 | Client-Server Separation | The client and server are separate entities that communicate over a network.               |
@@ -63,7 +63,6 @@ There are five different versions of HTTP:
 - HTTP/0.9 (1991). The original version of HTTP, released in 1991. It was extremely simple, supporting only GET requests for HTML documents. There were no HTTP headers, status codes or error codes. The server would simply return the HTML content and close the connection.
 
 - HTTP/1.0 (1996). The first standardised version of HTTP, formally specified in RFC 1945. It introduced several key features:
-
   - Request methods beyond GET
   - HTTP headers for both requests and responses
   - Status codes
@@ -71,7 +70,6 @@ There are five different versions of HTTP:
   - Each request required a separate TCP connection, which could be slow and inefficient
 
 - HTTP/1.1 (1997). Released in 1997 and updated in RFC 7230-7237 (2014). This became the dominant version for nearly two decades, introducing major improvements:
-
   - Multiple requests could reuse the same TCP connection
   - Allowed streaming of content without knowing the full size upfront
   - Better caching strategies
@@ -79,7 +77,6 @@ There are five different versions of HTTP:
   - Multiple requests could be sent without waiting for responses, though rarely implemented
 
 - HTTP/2 (2015). A major revision released in 2015 (RFC 7540), introducing a binary protocol with significant performance improvements:
-
   - More efficient parsing compared to text-based HTTP/1.x
   - Multiple requests and responses over a single connection without head-of-line blocking
   - Reduced overhead from repetitive headers
@@ -382,7 +379,7 @@ app.get("/progLangs", (req, res) => {
 // Start the server on port 3000
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`
+    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`,
   );
 });
 
@@ -480,10 +477,7 @@ In the root directory, create a directory named `routes`. In the `routes` direct
 import express from "express";
 
 // Import the index controllers module
-import {
-  getPersonInfo,
-  getProgLangs,
-} from "../controllers/index.js";
+import { getPersonInfo, getProgLangs } from "../controllers/index.js";
 
 // Create an Express router
 const router = express.Router();
@@ -526,7 +520,7 @@ app.use("/", indexRoutes);
 // Start the server on port 3000
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
