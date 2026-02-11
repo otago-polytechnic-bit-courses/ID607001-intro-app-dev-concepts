@@ -35,7 +35,7 @@ What is the difference between `git switch` and `git checkout`?
 
 `git switch` is a newer command introduced to simplify branch switching, while `git checkout` is an older command that can also be used for switching branches but has additional functionalities like restoring files. For branch switching, it is recommended to use `git switch` for clarity.
 
-> **Resource:** <https://guides.github.com/introduction/git-handbook/>
+> Resource: <https://guides.github.com/introduction/git-handbook/>
 
 ---
 
@@ -45,41 +45,41 @@ What is the difference between `git switch` and `git checkout`?
 
 ## JavaScript
 
-**JavaScript** is a high-level, interpreted programming language that conforms to the **ECMAScript** specification. It is a versatile language used for both **frontend/client-side** and **backend/server-side** development. **JavaScript** is primarily used for enhancing user interactions on websites, creating **web applications** and building **backend/server-side** applications.
+JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a versatile language used for both frontend/client-side and backend/server-side development. JavaScript is primarily used for enhancing user interactions on websites, creating web applications and building backend/server-side applications.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript>
 
 ---
 
 ### Node.js
 
-**Node.js** is an open-source **JavaScript** runtime environment allowing you to execute **JavaScript** code outside a web browser. It is built on **Chrome's V8 JavaScript engine** and provides a rich library of various **JavaScript** modules. **Node.js** is primarily used for **backend/server-side** development. We will use **Node.js** to run **JavaScript** code. It will allow us to test our code and see the results in the terminal without opening a web browser.
+Node.js is an open-source JavaScript runtime environment allowing you to execute JavaScript code outside a web browser. It is built on Chrome's V8 JavaScript engine and provides a rich library of various JavaScript modules. Node.js is primarily used for backend/server-side development. We will use Node.js to run JavaScript code. It will allow us to test our code and see the results in the terminal without opening a web browser.
 
-> **Resource:** <https://nodejs.org/en/>
+> Resource: <https://nodejs.org/en/>
 
 ---
 
 ### Data Types
 
-**Data types** are the different values that can be stored and manipulated in a program. **JavaScript** has seven primitive data types:
+Data types are the different values that can be stored and manipulated in a program. JavaScript has seven primitive data types:
 
-- **Boolean**: `true` or `false`
-- **Number**: `1`, `2.5`, `-3`
-- **String**: `"Hello"`, `"World"`
-- **Null**: `null`
-- **Undefined**: `undefined`
-- **BigInt**: `9007199254740991n`
-- **Symbol**: `Symbol()`
+- Boolean: `true` or `false`
+- Number: `1`, `2.5`, `-3`
+- String: `"Hello"`, `"World"`
+- Null: `null`
+- Undefined: `undefined`
+- BigInt: `9007199254740991n`
+- Symbol: `Symbol()`
 
-We will only be concerned with the first five primitive data types for now. We will not use **BigInt** and **Symbol** in this course.
+We will only be concerned with the first five primitive data types for now. We will not use BigInt and Symbol in this course.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
 
 ---
 
 ### Variables
 
-A **variable** is a named container that stores a value. It is like a box that holds a value and the variable's name is like a label on the box. You can use the variable's name to access its value.
+A variable is a named container that stores a value. It is like a box that holds a value and the variable's name is like a label on the box. You can use the variable's name to access its value.
 
 ```javascript
 // A mutable variable named "name" with value "John"
@@ -95,34 +95,34 @@ console.log(typeof age); // number
 
 A variable declared with `let` is mutable, meaning its value can be changed. A variable declared with `const` is immutable, meaning its value cannot be changed. You might see `var` being used instead of `let` or `const`. `var` is an older way of declaring variables and it has some differences in behaviour compared to `let` and `const`. For now, we will use `let` and `const`.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations>
 
 ---
 
 ### Operators
 
-**Operators** are symbols that perform operations on values. There are several types of operators in **JavaScript**:
+Operators are symbols that perform operations on values. There are several types of operators in JavaScript:
 
-- **Arithmetic operators**: `+`, `-`, `*`, `/`, `%`, `**`
-- **Assignment operators**: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=`
-- **Comparison operators**: `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=`
-- **Logical operators**: `&&`, `||`, `!`
-- **Conditional (ternary) operator**: `condition ? expressionIfTrue : expressionIfFalse`
+- Arithmetic operators: `+`, `-`, `*`, `/`, `%`, ``
+- Assignment operators: `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `=`
+- Comparison operators: `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=`
+- Logical operators: `&&`, `||`, `!`
+- Conditional (ternary) operator: `condition ? expressionIfTrue : expressionIfFalse`
 
-There are many other operators in **JavaScript**, but we will only be concerned with these for now.
+There are many other operators in JavaScript, but we will only be concerned with these for now.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators>
 
 ---
 
 ### Conditional Statements
 
-**Conditionals statements** allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in **JavaScript**:
+Conditionals statements allow you to execute different blocks of code depending on whether a condition is `true` or `false`. There are three types of conditionals in JavaScript:
 
-- **if statement**
-- **if...else statement**
-- **switch statement**
-- **ternary operator**
+- if statement
+- if...else statement
+- switch statement
+- ternary operator
 
 ```javascript
 // if statement
@@ -155,20 +155,20 @@ switch (expression) {
 }
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements>
 
 ---
 
 ### Loops
 
-**Loops** are statements that allow you to execute a block of code repeatedly. There are several types of **loops** in **JavaScript**:
+Loops are statements that allow you to execute a block of code repeatedly. There are several types of loops in JavaScript:
 
-- **for loop**
-- **while loop**
-- **do...while loop**
-- **for...in loop**
-- **for...of loop**
-- **forEach() method**
+- for loop
+- while loop
+- do...while loop
+- for...in loop
+- for...of loop
+- forEach() method
 
 ```javascript
 // for loop
@@ -202,15 +202,15 @@ array.forEach(function (element) {
 });
 ```
 
-Feel free to read up on the differences between these **loops**.
+Feel free to read up on the differences between these loops.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration>
 
 ---
 
 ### Functions
 
-A **function** is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations and returns some output. A function is a reusable piece of code you can use in your program.
+A function is a block of code that performs a specific task. It is like a machine that takes in some input, performs some operations and returns some output. A function is a reusable piece of code you can use in your program.
 
 ```javascript
 // A function named "add" that takes in two numbers and returns their sum
@@ -234,7 +234,7 @@ console.log(typeof add); // function
 console.log(typeof add(1, 2)); // number
 ```
 
-An **arrow function** is a newer way of declaring a **function**.
+An arrow function is a newer way of declaring a function.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -252,7 +252,7 @@ const greet = (name) => {
 console.log(greet("John")); // Hello, John!
 ```
 
-If a **function** only has one statement, you can omit the curly braces and the `return` keyword.
+If a function only has one statement, you can omit the curly braces and the `return` keyword.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -266,7 +266,7 @@ const greet = (name) => "Hello, " + name + "!";
 console.log(greet("John")); // Hello, John!
 ```
 
-If a **function** does not take in any parameters, you can omit the parentheses.
+If a function does not take in any parameters, you can omit the parentheses.
 
 ```javascript
 // An arrow function named "greet" that returns a greeting
@@ -311,13 +311,13 @@ person.showHobbies(); // John likes reading
 // John likes coding
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions>
 
 ---
 
 ### Template Literals
 
-**Template literals** allow you to create multi-line strings and embed expressions inside strings. **Template literals** are enclosed by backticks (`` ` ``) instead of single or double quotes.
+Template literals allow you to create multi-line strings and embed expressions inside strings. Template literals are enclosed by backticks (`` ` ``) instead of single or double quotes.
 
 ```javascript
 const name = "John";
@@ -329,13 +329,13 @@ const greeting = `Hello, my name is ${name} and I am ${age} years old`;
 console.log(greeting); // Hello, my name is John and I am 30 years old
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals>
 
 ---
 
 ### Classes
 
-A **class** is a blueprint for creating objects. It defines a set of properties and methods that the created objects will have. In JavaScript, you can define a class using the `class` keyword.
+A class is a blueprint for creating objects. It defines a set of properties and methods that the created objects will have. In JavaScript, you can define a class using the `class` keyword.
 
 ```javascript
 // Defining a class named Person
@@ -357,13 +357,13 @@ const john = new Person("John", 30);
 console.log(john.greet()); // Hello, my name is John and I am 30 years old
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes>
 
 ---
 
 ### Arrays
 
-An **array**, also known as a **one-dimensional array** is a data structure that stores a list of values. It is like a box that can hold multiple values and each value is assigned an index starting from 0. You can use a value's index to access its value.
+An array, also known as a one-dimensional array is a data structure that stores a list of values. It is like a box that can hold multiple values and each value is assigned an index starting from 0. You can use a value's index to access its value.
 
 ```javascript
 // An array of numbers
@@ -380,14 +380,14 @@ const people = [
 ];
 ```
 
-Here is an example of an **array** with values of different data types.
+Here is an example of an array with values of different data types.
 
 ```javascript
 // An array of different data types
 const mixed = [1, "Hello", true, null, undefined];
 ```
 
-A **2D array**, also known as a **two-dimensional array**, is a data structure that represents a matrix or a grid-like structure with rows and columns.
+A 2D array, also known as a two-dimensional array, is a data structure that represents a matrix or a grid-like structure with rows and columns.
 
 ```javascript
 // A 2D array of numbers
@@ -406,7 +406,7 @@ console.log(numbers[0][0]); // 1
 console.log(fruits[1][2]); // Fig
 ```
 
-Here is an example of a **2D array** with **arrays** of different lengths.
+Here is an example of a 2D array with arrays of different lengths.
 
 ```javascript
 // A 2D array of different lengths
@@ -417,13 +417,13 @@ const mixed = [
 ];
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections>
 
 ---
 
 ### Destructuring
 
-**Destructuring** is a convenient way to extract values from arrays or properties from objects into distinct variables. It can make your code cleaner and more readable. Here are some examples of using **destructuring**.
+Destructuring is a convenient way to extract values from arrays or properties from objects into distinct variables. It can make your code cleaner and more readable. Here are some examples of using destructuring.
 
 ```javascript
 // Array destructuring
@@ -442,13 +442,13 @@ console.log(name); // John
 console.log(age); // 30
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment>
 
 ---
 
 ### Spread Operator
 
-The **spread operator** (`...`) allows you to expand an iterable like an array or object into individual elements. It is useful for copying arrays or objects, merging arrays or objects, and passing multiple arguments to functions. Here are some examples of using the **spread operator**.
+The spread operator (`...`) allows you to expand an iterable like an array or object into individual elements. It is useful for copying arrays or objects, merging arrays or objects, and passing multiple arguments to functions. Here are some examples of using the spread operator.
 
 ```javascript
 // Copying an array
@@ -472,13 +472,13 @@ const mergedPerson = { ...person, ...moreDetails };
 console.log(mergedPerson); // { name: "John", age: 30, isMale: true, country: "USA" }
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax>
 
 ---
 
 ### Map
 
-**Map** is a higher-order function that transforms an **array** by applying a **function** to each element in the **array** and returning a new **array**. Here is an example of using the `map` function.
+Map is a higher-order function that transforms an array by applying a function to each element in the array and returning a new array. Here is an example of using the `map` function.
 
 ```javascript
 // An array of numbers
@@ -511,13 +511,13 @@ index 3: 4  ─────▶ num => num * num ─────▶ index 3: 16
 index 4: 5  ─────▶ num => num * num ─────▶ index 4: 25
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map>
 
 ---
 
 ### Filter
 
-**Filter** is a higher-order function that filters an **array** by removing elements not satisfying a condition and returning a new **array**. Here is an example of using the `filter` function.
+Filter is a higher-order function that filters an array by removing elements not satisfying a condition and returning a new array. Here is an example of using the `filter` function.
 
 ```javascript
 // An array of numbers
@@ -550,13 +550,13 @@ index 3: 4  ─────▶ num => num % 2 === 0 ─────▶ index 1: 
 index 4: 5  ─────▶ num => num % 2 === 0 ─────▶ removed
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
 
 ---
 
 ### Reduce
 
-**Reduce** is a higher-order function that reduces an **array** to a single value by applying a **function** to each element in the **array** and returning a single value. Here is an example of using the `reduce` function.
+Reduce is a higher-order function that reduces an array to a single value by applying a function to each element in the array and returning a single value. Here is an example of using the `reduce` function.
 
 ```javascript
 // An array of numbers
@@ -588,13 +588,13 @@ index 3: 4  ─────▶ (total, num) => total + num ─────▶ 11
 index 4: 5  ─────▶ (total, num) => total + num ─────▶ 15 + 5 = 20
 ```
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
 
 ---
 
 ### Objects
 
-An **object** is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, assigning each key a value. You can use the key of a key-value pair to access its value.
+An object is a data structure that stores a collection of key-value pairs. It is like a box that can hold multiple key-value pairs, assigning each key a value. You can use the key of a key-value pair to access its value.
 
 ```javascript
 // An object with key-value pairs
@@ -623,7 +623,7 @@ const person = {
 };
 ```
 
-Here is another example of an **object** with key-value pairs of different data types.
+Here is another example of an object with key-value pairs of different data types.
 
 ```javascript
 // An object with key-value pairs of different data types
@@ -639,7 +639,7 @@ console.log(person.favouriteFruits[0]); // Apple
 console.log(person.greet()); // Hello, John!
 ```
 
-You can have an **array** of **objects** or an **object** with **arrays**. Here is an example of an **array** of **objects**.
+You can have an array of objects or an object with arrays. Here is an example of an array of objects.
 
 ```javascript
 // An array of objects
@@ -660,7 +660,7 @@ console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
 
-There is an alternative way to create an **object** using the **Object** constructor.
+There is an alternative way to create an object using the Object constructor.
 
 ```javascript
 // An object using the Object constructor
@@ -673,33 +673,33 @@ console.log(person.name); // John
 console.log(person.age); // 25
 ```
 
-In this course, we will use the **object literal** syntax to create **objects**.
+In this course, we will use the object literal syntax to create objects.
 
-> **Resource:** <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
+> Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects>
 
 ---
 
 ## Exercises
 
-Copy the file `week-01-github-javascript.js` into your **id607001-s1-26** repository. Open your **id607001-s1-26** repository in **Visual Studio Code**. Open the terminal and run the command `node week-01-github-javascript.js` to run the file. You should see the following output.
+Copy the file `week-01-github-javascript.js` into your id607001-s1-26 repository. Open your id607001-s1-26 repository in Visual Studio Code. Open the terminal and run the command `node week-01-github-javascript.js` to run the file. You should see the following output.
 
 ```bash
 $ node week-01-github-javascript.js
 Hello, World!
 ```
 
-> **Note:** You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you **must** be aware of the following:
+Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
 - If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You **must** still use your judgement and may need to do additional research to determine if the response is correct
-- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a **JSDoc** comment at the top of the file
+- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
+- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
 
-Here is an example **JSDoc** comment:
+Here is an example JSDoc comment:
 
 ```js
-/**
+/
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -709,15 +709,15 @@ Here is an example **JSDoc** comment:
  */
 ```
 
-> **Note:** You will learn more about **JSDoc** comments in **Week 03**.
+> Note: You will learn more about JSDoc comments in Week 03.
 
 ---
 
 ### Task 1
 
-Write a **function** to check whether a given number is prime.
+Write a function to check whether a given number is prime.
 
-**Test Cases:**
+Test cases
 
 - `isPrime(1)` should return `false`
 - `isPrime(2)` should return `true`
@@ -730,15 +730,15 @@ const isPrime = (num) => {
 };
 ```
 
-> **Hint:** A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
+> Hint: A prime number is a number greater than 1 that has no positive divisors other than 1 and itself. You can check if a number is prime by iterating from 2 to the square root of the number and checking if the number is divisible by any of the numbers in that range.
 
 ---
 
 ### Task 2
 
-Write a **function** to reverse a string.
+Write a function to reverse a string.
 
-**Test Cases:**
+Test cases
 
 - `reverseString("Hello")` should return `"olleH"`
 - `reverseString("World")` should return `"dlroW"`
@@ -750,15 +750,15 @@ const reverseString = (str) => {
 };
 ```
 
-> **Hint:** You can reverse a string by converting it to an **array**, reversing the **array** and then converting the **array** back to a string. There are three methods you can use: `split()`, `reverse()` and `join()`. Alternatively, you can use a **for loop** to reverse a string.
+> Hint: You can reverse a string by converting it to an array, reversing the array and then converting the array back to a string. There are three methods you can use: `split()`, `reverse()` and `join()`. Alternatively, you can use a for loop to reverse a string.
 
 ---
 
 ### Task 3
 
-Write a **function** to find the maximum element in an **array**.
+Write a function to find the maximum element in an array.
 
-**Test Cases:**
+Test cases
 
 - `findMax([1, 2, 3, 4, 5])` should return `5`
 - `findMax([5, 4, 3, 2, 1])` should return `5`
@@ -771,15 +771,15 @@ const findMax = (arr) => {
 };
 ```
 
-> **Hint:** You can find the maximum element in an **array** by iterating through the **array** and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the **array**.
+> Hint: You can find the maximum element in an array by iterating through the array and keeping track of the maximum element found so far. You can start by assuming the first element is the maximum element and then compare it with the rest of the elements in the array.
 
 ---
 
 ### Task 4
 
-Write a **function** to check whether a given string is a palindrome.
+Write a function to check whether a given string is a palindrome.
 
-**Test Cases:**
+Test cases
 
 - `isPalindrome("racecar")` should return `true`
 - `isPalindrome("rAcEcAr")` should return `true`
@@ -792,15 +792,15 @@ const isPalindrome = (str) => {
 };
 ```
 
-> **Hint:** A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. Consider handling case sensitivity and spaces. You can use the **function** you wrote in Task 2 to reverse the string.
+> Hint: A palindrome is a word, phrase, number, or other sequence of characters that reads the same forward and backward. You can check if a string is a palindrome by comparing the string with its reverse. Consider handling case sensitivity and spaces. You can use the function you wrote in Task 2 to reverse the string.
 
 ---
 
 ### Task 5
 
-Write a **function** to calculate the factorial of a number.
+Write a function to calculate the factorial of a number.
 
-**Test Cases:**
+Test cases
 
 - `factorial(0)` should return `1`
 - `factorial(1)` should return `1`
@@ -813,15 +813,15 @@ const factorial = (n) => {
 };
 ```
 
-> **Hint:** The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial using a **for loop**. Remember that `0! = 1` by definition.
+> Hint: The factorial of a non-negative integer `n` is the product of all positive integers less than or equal to `n`. You can calculate the factorial using a for loop. Remember that `0! = 1` by definition.
 
 ---
 
 ### Task 6
 
-Write a **function** to sort an **array** of numbers in ascending order.
+Write a function to sort an array of numbers in ascending order.
 
-**Test Cases:**
+Test cases
 
 - `sortArray([5, 4, 3, 2, 1])` should return `[1, 2, 3, 4, 5]`
 - `sortArray([1, 2, 3, 4, 5])` should return `[1, 2, 3, 4, 5]`
@@ -834,15 +834,15 @@ const sortArray = (arr) => {
 };
 ```
 
-> **Hint:** You can sort an **array** of numbers in ascending order by using the `sort()` method. The `sort()` method sorts elements as strings by default, so you need to provide a **compare function** to sort numbers correctly: `arr.sort((a, b) => a - b)`.
+> Hint: You can sort an array of numbers in ascending order by using the `sort()` method. The `sort()` method sorts elements as strings by default, so you need to provide a compare function to sort numbers correctly: `arr.sort((a, b) => a - b)`.
 
 ---
 
 ### Task 7
 
-Write a **function** to count the number of occurrences of a specific element in an **array**.
+Write a function to count the number of occurrences of a specific element in an array.
 
-**Test Cases:**
+Test cases
 
 - `countOccurrences([1, 2, 3, 4, 5], 1)` should return `1`
 - `countOccurrences([1, 2, 3, 4, 5], 6)` should return `0`
@@ -855,15 +855,15 @@ const countOccurrences = (arr, element) => {
 };
 ```
 
-> **Hint:** You can count occurrences by iterating through the **array** and keeping track of matches. Start with a counter at 0 and increment it each time you find the target element.
+> Hint: You can count occurrences by iterating through the array and keeping track of matches. Start with a counter at 0 and increment it each time you find the target element.
 
 ---
 
 ### Task 8
 
-Write a **function** to check whether two strings are anagrams of each other.
+Write a function to check whether two strings are anagrams of each other.
 
-**Test Cases:**
+Test cases
 
 - `isAnagram("listen", "silent")` should return `true`
 - `isAnagram("hello", "bello")` should return `false`
@@ -876,15 +876,15 @@ const isAnagram = (str1, str2) => {
 };
 ```
 
-> **Hint:** An anagram is a word formed by rearranging the letters of another word, using all letters exactly once. You can check if two strings are anagrams by sorting both strings and comparing them. Consider handling case sensitivity.
+> Hint: An anagram is a word formed by rearranging the letters of another word, using all letters exactly once. You can check if two strings are anagrams by sorting both strings and comparing them. Consider handling case sensitivity.
 
 ---
 
 ### Task 9
 
-Write a **function** to find the longest word in a string.
+Write a function to find the longest word in a string.
 
-**Test Cases:**
+Test cases
 
 - `findLongestWord("The quick brown fox jumped over the lazy dog")` should return `"jumped"`
 - `findLongestWord("May the force be with you")` should return `"force"`
@@ -896,15 +896,15 @@ const findLongestWord = (sentence) => {
 };
 ```
 
-> **Hint:** Split the string into an **array** of words using `split(' ')`, then iterate through the **array** to find the word with the maximum length.
+> Hint: Split the string into an array of words using `split(' ')`, then iterate through the array to find the word with the maximum length.
 
 ---
 
 ### Task 10
 
-Write a **function** to merge two sorted **arrays** into a single sorted **array**.
+Write a function to merge two sorted arrays into a single sorted array.
 
-**Test Cases:**
+Test cases
 
 - `mergeSortedArrays([1, 2, 3], [4, 5, 6])` should return `[1, 2, 3, 4, 5, 6]`
 - `mergeSortedArrays([4, 5, 6], [1, 2, 3])` should return `[1, 2, 3, 4, 5, 6]`
@@ -916,15 +916,15 @@ const mergeSortedArrays = (arr1, arr2) => {
 };
 ```
 
-> **Hint:** You can concatenate the **arrays** using the spread operator `[...arr1, ...arr2]` and then sort the result. Alternatively, implement a two-pointer approach to merge efficiently.
+> Hint: You can concatenate the arrays using the spread operator `[...arr1, ...arr2]` and then sort the result. Alternatively, implement a two-pointer approach to merge efficiently.
 
 ---
 
 ### Task 11
 
-Given an **array** of **objects** representing students with properties `name` and `age`, use the `map()` method to create a new **array** of **strings** that contains a message for each student.
+Given an array of objects representing students with properties `name` and `age`, use the `map()` method to create a new array of strings that contains a message for each student.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const students = [
@@ -944,15 +944,15 @@ const createStudentMessages = (students) => {
 };
 ```
 
-> **Hint:** Use the `map()` method to transform each student object into a formatted string message.
+> Hint: Use the `map()` method to transform each student object into a formatted string message.
 
 ---
 
 ### Task 12
 
-Given an **array** of **objects** representing students, use `filter()` to create a new **array** containing only students older than 20.
+Given an array of objects representing students, use `filter()` to create a new array containing only students older than 20.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const students = [
@@ -974,15 +974,15 @@ const filterAdultStudents = (students) => {
 };
 ```
 
-> **Hint:** Use the `filter()` method to return only students whose age is greater than 20.
+> Hint: Use the `filter()` method to return only students whose age is greater than 20.
 
 ---
 
 ### Task 13
 
-Given an **array** of **objects** representing students, use `filter()` to find students aged between 20 and 24 (inclusive).
+Given an array of objects representing students, use `filter()` to find students aged between 20 and 24 (inclusive).
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const students = [
@@ -1004,15 +1004,15 @@ const filterStudentsByAgeRange = (students, minAge, maxAge) => {
 };
 ```
 
-> **Hint:** Use the `filter()` method with a condition that checks if the age is between the minimum and maximum values (inclusive).
+> Hint: Use the `filter()` method with a condition that checks if the age is between the minimum and maximum values (inclusive).
 
 ---
 
 ### Task 14
 
-Given an **array** of **strings**, use `filter()` and `map()` to create a new **array** containing the lengths of strings that don't start with the letter "A".
+Given an array of strings, use `filter()` and `map()` to create a new array containing the lengths of strings that don't start with the letter "A".
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
@@ -1028,15 +1028,15 @@ const getFilteredStringLengths = (words) => {
 };
 ```
 
-> **Hint:** First use `filter()` to exclude strings starting with "A", then use `map()` to convert the remaining strings to their lengths.
+> Hint: First use `filter()` to exclude strings starting with "A", then use `map()` to convert the remaining strings to their lengths.
 
 ---
 
 ### Task 15
 
-Given an **array** of **numbers** representing grades, use the `reduce()` method to calculate the average grade.
+Given an array of numbers representing grades, use the `reduce()` method to calculate the average grade.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const grades = [85, 90, 78, 92, 88];
@@ -1052,15 +1052,15 @@ const calculateAverageGrade = (grades) => {
 };
 ```
 
-> **Hint:** Use `reduce()` to sum all grades, then divide by the length of the **array** to get the average.
+> Hint: Use `reduce()` to sum all grades, then divide by the length of the array to get the average.
 
 ---
 
 ### Task 16
 
-Given an **array** of **strings**, use the `reduce()` method to count the occurrences of each item and return an **object**.
+Given an array of strings, use the `reduce()` method to count the occurrences of each item and return an object.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
@@ -1076,15 +1076,15 @@ const countOccurrencesWithReduce = (items) => {
 };
 ```
 
-> **Hint:** Use `reduce()` with an empty **object** as the initial value. For each item, either increment its count or set it to 1 if it doesn't exist.
+> Hint: Use `reduce()` with an empty object as the initial value. For each item, either increment its count or set it to 1 if it doesn't exist.
 
 ---
 
 ### Task 17
 
-Given a **2D array** of **numbers**, write a **function** that finds the maximum value in the entire matrix.
+Given a 2D array of numbers, write a function that finds the maximum value in the entire matrix.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const matrix = [
@@ -1104,15 +1104,15 @@ const findMaxValueInMatrix = (matrix) => {
 };
 ```
 
-> **Hint:** You can use nested **for loops** to iterate through the **2D array**, or flatten the matrix first using `flat()` method and then find the maximum.
+> Hint: You can use nested for loops to iterate through the 2D array, or flatten the matrix first using `flat()` method and then find the maximum.
 
 ---
 
 ### Task 18
 
-Write a **function** that generates a multiplication table from 1 to a given number `n`, represented as a **2D array**.
+Write a function that generates a multiplication table from 1 to a given number `n`, represented as a 2D array.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const table = generateMultiplicationTable(4);
@@ -1132,15 +1132,15 @@ const generateMultiplicationTable = (n) => {
 };
 ```
 
-> **Hint:** Create a **2D array** using nested **for loops**. For each position `[i][j]`, the value should be `(i + 1) * (j + 1)`.
+> Hint: Create a 2D array using nested for loops. For each position `[i][j]`, the value should be `(i + 1) * (j + 1)`.
 
 ---
 
 ### Task 19
 
-A cinema has rows and seats represented by a **2D array**, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a **function** to count available seats.
+A cinema has rows and seats represented by a 2D array, where `0` indicates an empty seat and `1` indicates an occupied seat. Write a function to count available seats.
 
-**Test Case:**
+Test Case:
 
 ```javascript
 const seatingLayout = [
@@ -1161,15 +1161,15 @@ const countAvailableSeats = (seatingLayout) => {
 };
 ```
 
-> **Hint:** Iterate through the **2D array** and count the number of `0` values (empty seats).
+> Hint: Iterate through the 2D array and count the number of `0` values (empty seats).
 
 ---
 
 ### Task 20
 
-Write a **function** that checks the winner of a **Tic-Tac-Toe** game represented by a **2D array**. The board uses "X" for Player X, "O" for Player O, and "-" for empty spaces.
+Write a function that checks the winner of a Tic-Tac-Toe game represented by a 2D array. The board uses "X" for Player X, "O" for Player O, and "-" for empty spaces.
 
-**Test Cases:**
+Test cases
 
 ```javascript
 const board1 = [
@@ -1201,4 +1201,4 @@ const checkTicTacToeWinner = (board) => {
 };
 ```
 
-> **Hint:** Check all rows, columns, and diagonals for three matching symbols. You can check rows with nested loops, columns by swapping indices, and diagonals with specific index patterns.
+> Hint: Check all rows, columns, and diagonals for three matching symbols. You can check rows with nested loops, columns by swapping indices, and diagonals with specific index patterns.
