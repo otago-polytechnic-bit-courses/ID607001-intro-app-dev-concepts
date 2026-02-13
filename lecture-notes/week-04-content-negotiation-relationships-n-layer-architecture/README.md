@@ -4,12 +4,13 @@
 
 ## Important Links
 
-| Section        | Link                                                                 |
-| -------------- | -------------------------------------------------------------------- |
-| Previous Class | [Week 02](../week-02-apis-express-development-tools)                 |
-| Lecture Video  | [Week 04 Lecture Video]()                                            |
-| Code Example   | [Code Example](code-example)                                         |
-| Next Class     | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
+| Section               | Link                                                                 |
+| --------------------- | -------------------------------------------------------------------- |
+| Previous Class        | [Week 02](../week-02-apis-express-development-tools)                 |
+| Lecture Video         | [Week 04 Lecture Video]()                                            |
+| Code Example          | [Code Example](code-example)                                         |
+| Advanced Code Example | [Advanced Code Example](advanced-code-example)                       |
+| Next Class            | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
 
 ---
 
@@ -339,13 +340,13 @@ N-Layer Architecture is a software architecture pattern that separates an applic
 
 3. Data Layer (Repositories): This layer is responsible for managing the application's data. It interacts with the database or other data sources to retrieve, store and update data.
 
-For simplicity, we will use only the presentation and data layers in this course.
+The code example demonstrates the use of the repository pattern in the data layer. However, the service layer is not implemented in the code example. In a more complex application, you would typically have a service layer that contains the business logic and interacts with the repository layer. If you are interested in learning more about the service layer and how to implement it, refer to the advanced code example in the lecture-notes/week-04 folder.
 
 > Resource: <https://martinfowler.com/bliki/PresentationDomainDataLayering.html>
 
 ---
 
-### Repository Pattern
+### Data Layer - Repository Pattern
 
 The repository pattern is a design pattern that separates the data access logic from the business logic. It is a common pattern used in modern web applications. The repository pattern has the following benefits:
 

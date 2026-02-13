@@ -39,10 +39,6 @@ What is the difference between `git switch` and `git checkout`?
 
 ---
 
-## Markdown
-
----
-
 ## JavaScript
 
 JavaScript is a high-level, interpreted programming language that conforms to the ECMAScript specification. It is a versatile language used for both frontend/client-side and backend/server-side development. JavaScript is primarily used for enhancing user interactions on websites, creating web applications and building backend/server-side applications.
