@@ -22,14 +22,14 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date | Learning Outcome |
-| ---------- | --------- | -------- | ---------------- |
-| Practical  | 20%       |          | 1                |
-| Project    | 80%       |          | 1                |
+| Assessment | Weighting | Due Date           | Learning Outcome |
+| ---------- | --------- | ------------------ | ---------------- |
+| Practical  | 20%       | 22 May at 4.59 PM  | 1                |
+| Project    | 80%       | 26 June at 4.59 PM | 1                |
 
 ## Conditions of Assessment
 
-You will complete this assessment mostly during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by Sunday at 11.59 PM.
+You will complete this assessment mostly during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by 26 June at 4.59 PM.
 
 ## Pass Criteria
 
@@ -95,23 +95,23 @@ To move onto the Development Phase, the course lecturer must approve your design
 
 #### Entity Relationship Diagram (ERD) [5 marks]
 
-- Create an ERD using a digital tool of your choice that shows six models, their fields and relationships. 
-- For each field, include its name, data type and constraints. 
+- Create an ERD using a digital tool of your choice that shows six models, their fields and relationships.
+- For each field, include its name, data type and constraints.
 - For enum fields, include the possible values.
 
 ---
 
 #### API Endpoints [5 marks]
 
-- In a table format, show the endpoints you will implement for your application. 
+- In a table format, show the endpoints you will implement for your application.
 - For each endpoint, include:
-  - HTTP method 
+  - HTTP method
   - Endpoint URL
   - Brief description of what the endpoint does
-  - Authentication requirement (if applicable) 
+  - Authentication requirement (if applicable)
   - Role-based access control requirement and roles
-  - Path parameters (if applicable) 
-  - Query parameters (if applicable) 
+  - Path parameters (if applicable)
+  - Query parameters (if applicable)
   - Body parameters (if applicable)
 
 Here is an example of how to document an endpoint:
@@ -138,9 +138,9 @@ In this phase, you will use the Agile software development methodology.
 
 Here is an example of how to break down your work into sprints and tasks:
 
-| Sprint | Tasks                                                                                                                                                                                            |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| X      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |                      
+| Sprint | Tasks                                                                                                                                                           |
+| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| X      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model |
 
 ---
 
@@ -237,7 +237,7 @@ When developing your application, you must follow best practices for code qualit
 
 - Code must be linted using ESLint.
 - Code must be formatted using Prettier.
-- Follow naming conventions. 
+- Follow naming conventions.
 - Use meaningful variable, function and class names that clearly describe their purpose.
 
 ---
@@ -254,16 +254,16 @@ When developing your application, you must follow best practices for code qualit
 #### Security [3 marks]
 
 - Store sensitive data in environment variables.
-- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub. 
+- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub.
 - Implement password hashing using a secure algorithm.
-- Use secure JWT practices. 
+- Use secure JWT practices.
 
 ---
 
 #### Version Control [2 marks]
 
 - Maintain a clean Git history with descriptive commit messages.
-- Use conventional commit messages. 
+- Use conventional commit messages.
 - Commit regularly with small, focused changes rather than large, monolithic commits.
 
 ---
@@ -271,12 +271,13 @@ When developing your application, you must follow best practices for code qualit
 #### Documentation [2 marks]
 
 In `backend-documentation.md`, include the following:
-  - Project description and purpose
-  - Installation and setup instructions
-  - Environment variable configuration
-  - How to run the application in development environment
-  - How to run the API tests in testing environment
-  - Deployment URL
+
+- Project description and purpose
+- Installation and setup instructions
+- Environment variable configuration
+- How to run the application in development environment
+- How to run the API tests in testing environment
+- Deployment URL
 
 ---
 
@@ -330,9 +331,9 @@ In this phase, you will continue using the Agile software development methodolog
 
 Here is an example of how to break down your work into sprints and tasks:
 
-| Sprint | Tasks                                                                                                                                                                                            |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| X      | Set up SvelteKit application, implement layout and navigation, implement authentication pages, create reusable form components                                                                   |
+| Sprint | Tasks                                                                                                                          |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| X      | Set up SvelteKit application, implement layout and navigation, implement authentication pages, create reusable form components |
 
 ---
 
@@ -440,11 +441,12 @@ When developing your application, you must follow best practices for code qualit
 #### Documentation [1 mark]
 
 In `frontend-documentation.md`, include the following:
-  - Project description and purpose
-  - Installation and setup instructions
-  - Environment variable configuration
-  - How to run the application in development environment
-  - Deployment URL
+
+- Project description and purpose
+- Installation and setup instructions
+- Environment variable configuration
+- How to run the application in development environment
+- Deployment URL
 
 ---
 

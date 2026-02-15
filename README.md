@@ -34,10 +34,10 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date | Learning Outcome |
-| ---------- | --------- | -------- | ---------------- |
-| Practical  | 20%       | TBC      | 1                |
-| Project    | 80%       | TBC      | 1                |
+| Assessment | Weighting | Due Date           | Learning Outcome |
+| ---------- | --------- | ------------------ | ---------------- |
+| Practical  | 20%       | 22 May at 4.59 PM  | 1                |
+| Project    | 80%       | 26 June at 4.59 PM | 1                |
 
 ## Grade Table - Criterion Referenced
 
