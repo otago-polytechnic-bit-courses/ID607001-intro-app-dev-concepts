@@ -175,17 +175,17 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 2.7-3 | Excellent project structure following SvelteKit conventions perfectly. Components, pages and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
-| B | 2.1-2.6 | Good project structure mostly following SvelteKit conventions. Clear organisation with minor issues. Components generally focused and appropriately placed. Easy to navigate with some areas that could be improved. |
-| C | 1.5-2 | Basic SvelteKit structure present but inconsistent organisation. Some components or pages misplaced. Mixed purposes in some components. Organisation could be significantly improved. |
-| D/E | 0-1.4 | Poor project structure not following SvelteKit conventions. Disorganised files and components. Components not properly separated by purpose. Difficult to navigate or maintain. |
+| A | 2.7-3 | Excellent project structure following Svelte/SvelteKit conventions perfectly. Components, pages and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
+| B | 2.1-2.6 | Good project structure mostly following Svelte/SvelteKit conventions. Clear organisation with minor issues. Components generally focused and appropriately placed. Easy to navigate with some areas that could be improved. |
+| C | 1.5-2 | Basic Svelte/SvelteKit structure present but inconsistent organisation. Some components or pages misplaced. Mixed purposes in some components. Organisation could be significantly improved. |
+| D/E | 0-1.4 | Poor project structure not following Svelte/SvelteKit conventions. Disorganised files and components. Components not properly separated by purpose. Difficult to navigate or maintain. |
 
 ### Code Style and Formatting (2 marks)
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows SvelteKit and Svelte naming conventions. All variables, functions and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
-| B | 1.4-1.7 | Code linted and formatted with minor inconsistencies. Generally follows Svelte naming conventions. Most names are meaningful and descriptive. Few linting errors. Code is readable with some minor style issues. |
+| A | 1.8-2 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows Svelte/SvelteKit naming conventions. All variables, functions and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
+| B | 1.4-1.7 | Code linted and formatted with minor inconsistencies. Generally follows Svelte/SvelteKit naming conventions. Most names are meaningful and descriptive. Few linting errors. Code is readable with some minor style issues. |
 | C | 1-1.3 | Basic linting and formatting present but inconsistent. Naming conventions partially followed. Some names unclear or non-descriptive. Multiple linting errors. Readability could be improved. |
 | D/E | 0-0.9 | Little or no linting/formatting. Poor adherence to Svelte/SvelteKit conventions. Components and variables have unclear names. Many linting errors. Code is difficult to read or maintain. |
 
