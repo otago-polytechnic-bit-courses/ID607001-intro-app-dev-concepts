@@ -30,77 +30,12 @@
 
 ### Pages and Routing (4 marks)
 
-#### Home Page (0.5 marks)
-
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.45-0.5 | Well-designed, functional home page with clear navigation and purpose. Follows design principles and provides excellent user experience. |
-| B | 0.35-0.44 | Good home page that is functional with minor design or usability issues. Generally follows design principles. |
-| C | 0.25-0.34 | Basic home page present but lacks polish or has usability issues. Limited design consideration. |
-| D/E | 0-0.24 | Poor or missing home page. Major functionality or design issues. |
-
-#### Login Page (0.5 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.45-0.5 | Fully functional login page with proper form fields, validation feedback and error handling. Good UX and follows best practices. |
-| B | 0.35-0.44 | Functional login page with minor issues in validation or UX. Generally works well. |
-| C | 0.25-0.34 | Basic login page that works but has usability or design issues. Limited validation feedback. |
-| D/E | 0-0.24 | Poor or non-functional login page. Missing key features or has major issues. |
-
-#### Register Page (0.5 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.45-0.5 | Fully functional register page with proper form fields, validation feedback and error handling. Good UX and follows best practices. |
-| B | 0.35-0.44 | Functional register page with minor issues in validation or UX. Generally works well. |
-| C | 0.25-0.34 | Basic register page that works but has usability or design issues. Limited validation feedback. |
-| D/E | 0-0.24 | Poor or non-functional register page. Missing key features or has major issues. |
-
-#### Dashboard Page (0.5 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.45-0.5 | Well-designed dashboard providing clear overview of application data/functionality. Intuitive navigation and excellent information architecture. |
-| B | 0.35-0.44 | Good dashboard that provides overview with minor design or organisational issues. Generally intuitive. |
-| C | 0.25-0.34 | Basic dashboard present but lacks clarity or good organisation. Limited usefulness. |
-| D/E | 0-0.24 | Poor or missing dashboard. Does not provide meaningful overview or has major issues. |
-
-#### List Pages for Two Models (1 mark)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.9-1 | Fully functional list pages for at least two different models. Data displayed clearly in appropriate format (table/cards). Good UX with proper loading states and error handling. Responsive design. |
-| B | 0.7-0.89 | Good list pages for two models that display data effectively with minor issues. Generally responsive with basic state handling. |
-| C | 0.5-0.69 | Basic list pages present for two models but may have display or usability issues. Limited responsiveness or state handling. |
-| D/E | 0-0.49 | List pages missing, incomplete, or poorly implemented. Does not effectively display data for two models. |
-
-#### Detail Pages for Two Models (0.5 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.45-0.5 | Excellent detail pages for at least two models showing complete record information clearly. Good layout and UX. Proper error and loading state handling. |
-| B | 0.35-0.44 | Good detail pages displaying data effectively with minor issues. Basic state handling present. |
-| C | 0.25-0.34 | Basic detail pages present but may have display or usability issues. Limited state handling. |
-| D/E | 0-0.24 | Detail pages missing, incomplete, or poorly implemented for two models. |
-
-#### Create/Edit Form Pages for Two Models (1 mark)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.9-1 | Fully functional create and edit forms for at least two models. All fields properly handled with validation. Clear feedback for success/errors. Good UX with appropriate field types and layouts. Forms can both create new records and edit existing ones. |
-| B | 0.7-0.89 | Good forms for two models that handle CRUD operations with minor issues. Basic validation and feedback present. Generally good UX. |
-| C | 0.5-0.69 | Basic forms present for two models but may have issues with validation or feedback. Limited UX consideration. May not fully support both create and edit. |
-| D/E | 0-0.49 | Forms missing, incomplete, or poorly implemented. Do not properly handle create/edit operations for two models. |
-
-#### 404 Error Page (0.5 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 0.45-0.5 | Professional 404 error page with clear messaging and navigation options. Good design consistent with application. |
-| B | 0.35-0.44 | Functional 404 page with basic messaging and navigation. Adequate design. |
-| C | 0.25-0.34 | Basic 404 page present but minimal design or functionality. |
-| D/E | 0-0.24 | Missing or very poor 404 page. Does not effectively handle undefined routes. |
+| A | 3.6-4 | All eight required pages implemented and fully functional: Home page is well-designed with clear purpose and navigation. Login and register pages have proper form fields, validation feedback and error handling following best practices. Dashboard provides clear overview with intuitive navigation and excellent information architecture. List pages for at least two models display data clearly in appropriate format (table/cards) with proper loading and error states. Detail pages for at least two models show complete record information with good layout and UX. Create/edit form pages for at least two models handle all fields with validation, providing clear success/error feedback and supporting both create and edit operations. 404 error page is professional with clear messaging and navigation options. All pages follow design principles, are responsive and provide excellent user experience. |
+| B | 2.8-3.5 | Eight pages implemented with most functional. Home, login, register and dashboard pages work well with minor design or usability issues. List pages for two models display data effectively with basic state handling and general responsiveness. Detail pages show data with minor display issues. Create/edit forms handle operations with basic validation and feedback. 404 page is functional with adequate design. Generally good implementation with some areas needing improvement. |
+| C | 2-2.7 | Eight pages present but several lack polish or have usability issues. Authentication pages work but have limited validation feedback. Dashboard lacks clarity or good organisation. List pages may have display or responsiveness issues. Detail pages have limited state handling. Forms may not fully support both create and edit operations or have validation issues. 404 page has minimal functionality. Adequate implementation but significant room for improvement. |
+| D/E | 0-1.9 | Fewer than eight pages implemented or pages have major functionality issues. Missing key pages or pages are non-functional. Authentication pages broken or missing key features. Dashboard does not provide meaningful overview. List or detail pages missing for required models or poorly implemented. Forms do not properly handle create/edit operations. 404 page missing or ineffective. Poor overall implementation. |
 
 ### Components (4 marks)
 
@@ -169,25 +104,25 @@
 
 ---
 
-## Code Quality and Best Practices (12 marks)
+## Code Quality and Best Practices (7 marks)
 
-### Code Organisation (3 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 2.7-3 | Excellent project structure following Svelte/SvelteKit conventions perfectly. Components, pages and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
-| B | 2.1-2.6 | Good project structure mostly following Svelte/SvelteKit conventions. Clear organisation with minor issues. Components generally focused and appropriately placed. Easy to navigate with some areas that could be improved. |
-| C | 1.5-2 | Basic Svelte/SvelteKit structure present but inconsistent organisation. Some components or pages misplaced. Mixed purposes in some components. Organisation could be significantly improved. |
-| D/E | 0-1.4 | Poor project structure not following Svelte/SvelteKit conventions. Disorganised files and components. Components not properly separated by purpose. Difficult to navigate or maintain. |
-
-### Code Style and Formatting (2 marks)
+### Code Organisation (2 marks)
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows Svelte/SvelteKit naming conventions. All variables, functions and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
-| B | 1.4-1.7 | Code linted and formatted with minor inconsistencies. Generally follows Svelte/SvelteKit naming conventions. Most names are meaningful and descriptive. Few linting errors. Code is readable with some minor style issues. |
-| C | 1-1.3 | Basic linting and formatting present but inconsistent. Naming conventions partially followed. Some names unclear or non-descriptive. Multiple linting errors. Readability could be improved. |
-| D/E | 0-0.9 | Little or no linting/formatting. Poor adherence to Svelte/SvelteKit conventions. Components and variables have unclear names. Many linting errors. Code is difficult to read or maintain. |
+| A | 1.8-2 | Excellent project structure following Svelte/SvelteKit conventions perfectly. Components, pages and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
+| B | 1.4-1.7 | Good project structure mostly following Svelte/SvelteKit conventions. Clear organisation with minor issues. Components generally focused and appropriately placed. Easy to navigate with some areas that could be improved. |
+| C | 1-1.3 | Basic Svelte/SvelteKit structure present but inconsistent organisation. Some components or pages misplaced. Mixed purposes in some components. Organisation could be significantly improved. |
+| D/E | 0-0.9 | Poor project structure not following Svelte/SvelteKit conventions. Disorganised files and components. Components not properly separated by purpose. Difficult to navigate or maintain. |
+
+### Code Style and Formatting (1 mark)
+
+| Band | Marks | Criteria |
+|------|-------|----------|
+| A | 0.9-1 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows Svelte/SvelteKit naming conventions. All variables, functions and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
+| B | 0.7-0.89 | Code linted and formatted with minor inconsistencies. Generally follows Svelte/SvelteKit naming conventions. Most names are meaningful and descriptive. Few linting errors. Code is readable with some minor style issues. |
+| C | 0.5-0.69 | Basic linting and formatting present but inconsistent. Naming conventions partially followed. Some names unclear or non-descriptive. Multiple linting errors. Readability could be improved. |
+| D/E | 0-0.49 | Little or no linting/formatting. Poor adherence to Svelte/SvelteKit conventions. Components and variables have unclear names. Many linting errors. Code is difficult to read or maintain. |
 
 ### Component Design (2 marks)
 
@@ -198,23 +133,14 @@
 | C | 1-1.3 | Basic component design with limited reusability. Props used but not always effectively. Some code duplication present. Could better extract common functionality. Shows understanding but needs improvement. |
 | D/E | 0-0.9 | Poor component design with little reusability. Props poorly used or not used. Significant code duplication. Common functionality not extracted. Does not follow best practices. |
 
-### Error Handling and User Feedback (2 marks)
+### Error Handling and User Feedback (1 mark)
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Excellent error handling throughout application. All API errors caught and displayed with meaningful, user-friendly messages. Clear feedback for all user actions (success messages, error messages, loading states). Error boundaries implemented to prevent crashes. Users always know what's happening and what went wrong. Professional user experience. |
-| B | 1.4-1.7 | Good error handling covering most scenarios. Meaningful error messages displayed. Clear feedback for most user actions. Basic error prevention. Generally good user experience with minor gaps. |
-| C | 1-1.3 | Basic error handling present but incomplete. Some errors not caught or displayed generically. Limited feedback for user actions. Some error states not handled. User experience could be significantly improved. |
-| D/E | 0-0.9 | Poor or missing error handling. Errors cause crashes or display technical messages. Little to no user feedback. Poor user experience when things go wrong. |
-
-### Version Control (2 marks)
-
-| Band | Marks | Criteria |
-|------|-------|----------|
-| A | 1.8-2 | Excellent Git history. All commits use conventional commit format correctly and consistently. Commit messages are clear, descriptive and meaningful. Regular commits with small, focused changes. No large, monolithic commits. Clean commit history easy to understand and navigate. Shows professional version control practices. |
-| B | 1.4-1.7 | Good Git history. Most commits follow conventional format. Commit messages are generally clear and descriptive. Regular commits that are mostly focused. Few large commits. History is understandable and trackable. |
-| C | 1-1.3 | Basic Git usage. Some commits follow conventional format. Commit messages vary in quality. Some large or unfocused commits. History could be clearer and more organised. |
-| D/E | 0-0.9 | Poor Git history. Commits don't follow conventional format. Messages are unclear or non-descriptive. Few, very large commits or very inconsistent commit pattern. History is difficult to follow or understand development process. |
+| A | 0.9-1 | Excellent error handling throughout application. All API errors caught and displayed with meaningful, user-friendly messages. Clear feedback for all user actions (success messages, error messages, loading states). Error boundaries implemented to prevent crashes. Users always know what's happening and what went wrong. Professional user experience. |
+| B | 0.7-0.89 | Good error handling covering most scenarios. Meaningful error messages displayed. Clear feedback for most user actions. Basic error prevention. Generally good user experience with minor gaps. |
+| C | 0.5-0.69 | Basic error handling present but incomplete. Some errors not caught or displayed generically. Limited feedback for user actions. Some error states not handled. User experience could be significantly improved. |
+| D/E | 0-0.49 | Poor or missing error handling. Errors cause crashes or display technical messages. Little to no user feedback. Poor user experience when things go wrong. |
 
 ### Documentation (1 mark)
 
@@ -224,4 +150,3 @@
 | B | 0.7-0.89 | Good documentation covering all required areas. Instructions are clear and mostly complete. Environment variables documented. Some details may be missing but documentation is usable and helpful. |
 | C | 0.5-0.69 | Basic documentation present but incomplete or unclear in some areas. Missing some details or instructions. Environment variables listed but not well explained. Would be difficult to set up from documentation alone. |
 | D/E | 0-0.49 | Poor or missing documentation. Does not cover required areas. Instructions unclear or incomplete. Difficult or impossible to set up and run application from provided documentation. |
-

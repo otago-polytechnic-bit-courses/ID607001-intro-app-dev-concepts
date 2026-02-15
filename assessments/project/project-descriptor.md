@@ -340,28 +340,28 @@ Here is an example of how to break down your work into sprints and tasks:
 #### Pages and Routing [4 marks]
 
 - Implement at least eight pages/routes:
-  - Home page [0.5 marks]
-  - Login page [0.5 marks]
-  - Register page [0.5 marks]
-  - Dashboard page [0.5 marks]
-  - List page for at least two different models [1 mark]
-  - Detail page for at least two different models [0.5 marks]
-  - Create/edit form page for at least two different models [1 mark]
-  - 404 error page [0.5 marks]
+  - Home page
+  - Login page
+  - Register page
+  - Dashboard page
+  - List page for at least two different models
+  - Detail page for at least two different models
+  - Create/edit form page for at least two different models
+  - 404 error page
 
 ---
 
 #### Components [4 marks]
 
 - Implement at least eight reusable components:
-  - Navigation component [0.5 marks]
-  - Form input component(s) [0.5 marks]
-  - Table or list component [0.5 marks]
-  - Modal or dialog component [0.5 marks]
-  - Loading indicator component [0.5 marks]
-  - Alert component [0.5 marks]
-  - Card component [0.5 marks]
-  - At least one additional custom component relevant to your application [0.5 marks]
+  - Navigation component
+  - Form input component(s)
+  - Table or list component
+  - Modal or dialog component
+  - Loading indicator component
+  - Alert component
+  - Card component
+  - At least one additional custom component relevant to your application
 
 ---
 
@@ -371,16 +371,15 @@ Here is an example of how to break down your work into sprints and tasks:
   - Handle user authentication [1 mark]
   - Fetch and display data for all six models [1 mark]
   - Create, update and delete records for all six models [1 mark]
-  - Implement error handling for API requests [0.5 marks]
-  - Store and manage authentication tokens [0.5 marks]
+  - Implement error handling for API requests [1 mark]
 
 ---
 
 #### Form Handling and Validation [2 marks]
 
-- Implement client-side form validation that matches backend validation rules. [1 mark]
-- Display validation errors to users. [0.5 marks]
-- Provide user feedback during form submission. [0.5 marks]
+- Implement client-side form validation that matches backend validation rules.
+- Display validation errors to users.
+- Provide user feedback during form submission.
 
 ---
 
