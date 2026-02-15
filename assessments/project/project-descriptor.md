@@ -384,13 +384,13 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ### Code Quality and Best Practices - Learning Outcome 1 (12 marks)
 
-When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and follows SvelteKit conventions.
+When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and follows Svelte/SvelteKit conventions.
 
 ---
 
 #### Code Organisation [3 marks]
 
-- Use a clear and logical project structure following SvelteKit conventions.
+- Use a clear and logical project structure following Svelte/SvelteKit conventions.
 - Organise components, pages and utilities in appropriate directories.
 - Keep components focused and single-purpose.
 
@@ -400,7 +400,7 @@ When developing your application, you must follow best practices for code qualit
 
 - Code must be linted using ESLint.
 - Code must be formatted using Prettier.
-- Follow SvelteKit and Svelte naming conventions.
+- Follow Svelte/SvelteKit naming conventions.
 - Use meaningful variable, function and component names that clearly describe their purpose.
 
 ---
