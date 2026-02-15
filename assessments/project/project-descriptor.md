@@ -79,7 +79,7 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
-The backend application marking rubric is available [here](assessments/project/marking-rubrics/backend-marking-rubric.md).
+The backend application marking rubric is available [here](./marking-rubrics/backend-marking-rubric.md).
 
 ---
 
@@ -282,7 +282,7 @@ In `backend-documentation.md`, include the following:
 
 ## Assessment Requirements - Frontend Application using SvelteKit
 
-The frontend application marking rubric is available [here](assessments/project/marking-rubrics/frontend-marking-rubric.md).
+The frontend application marking rubric is available [here](./marking-rubrics/frontend-marking-rubric.md).
 
 ---
 
