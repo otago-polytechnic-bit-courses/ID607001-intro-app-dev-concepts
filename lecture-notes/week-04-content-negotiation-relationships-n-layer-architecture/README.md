@@ -570,6 +570,8 @@ const departments = await prisma.department.findMany({
 
 In the Project assessment, you will be required to design and implement a REST API that has a database and backend.
 
+> Note: The design document you will create in the Project assessment will not be as detailed as the design document you will create in this class. 
+
 Firstly, you need to decide on a topic for your REST API. The topic should be something you are interested in and passionate about. Previously, learners have either used their database design in ID502001: Studio 1 or frontend application in ID512001: Fundamentals of Web Development.
 
 The system design document should include the following, but not limited to:

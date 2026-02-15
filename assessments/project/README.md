@@ -128,15 +128,15 @@ Once the course lecturer has approved your design document, you can start develo
 
 In this phase, you will use the Agile software development methodology.
 
-- Each sprint is two weeks long. You will have four sprints in total.
-- Create a GitHub Project to manage your work. The project must include columns for Backlog, To Do, In Progress and Done.
+- You will decide the duration of your sprints and how to break down your work into sprints and tasks.
+- Create a GitHub Project to manage your work. The project must include columns for Backlog, In Progress and Done.
 - Create issues for each task and move them across the columns as you work on them.
 
 Here is an example of how to break down your work into sprints and tasks:
 
 | Sprint | Tasks                                                                                                                                                                                            |
 | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |                      
+| X      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model                                  |                      
 
 ---
 
@@ -211,12 +211,11 @@ Include scripts in the package.json file to:
 #### Deployment [3 marks]
 
 - Deploy the application to Render.
-- Verify that the deployed application is working correctly by running the API tests against the production environment and testing the endpoints using Postman.
-- Provide a URL to the deployed application in `backend-documentation.md`.
+- Verify that the deployed application is working correctly by testing the endpoints using Postman.
 
 ---
 
-### Code Quality and Best Practices - Learning Outcome 1 (15%)
+### Code Quality and Best Practices - Learning Outcome 1 (15 marks)
 
 When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and secure.
 
@@ -225,7 +224,7 @@ When developing your application, you must follow best practices for code qualit
 #### Code Organisation [3 marks]
 
 - Use a clear and logical project structure that implements separation of concerns.
-- Implement separation of concerns by keeping the presentation layer and data access layer separate.
+- Implement separation of concerns by keeping the presentation, service and data access layers seperate.
 - Write modular code by breaking down your application into smaller, reusable functions and modules.
 
 ---
@@ -267,19 +266,19 @@ When developing your application, you must follow best practices for code qualit
 
 #### Documentation [2 marks]
 
-- Include a comprehensive README.md file with:
+In `backend-documentation.md`, include the following:
   - Project description and purpose
   - Installation and setup instructions
   - Environment variable configuration
-  - How to run the application in development and production
-  - How to run tests
+  - How to run the application in development environment
+  - How to run the API tests in testing environment
   - Deployment URL
 
 ---
 
 ## Assessment Requirements - Frontend Application using SvelteKit
 
-### Design - Learning Outcome 1 (10 marks)
+### Design Phase - Learning Outcome 1 (5 marks)
 
 Before you start the Design Phase, read through the Development Phase requirements below. This will help you understand what you need to build and ensure your design document is comprehensive.
 
@@ -289,18 +288,155 @@ To move onto the Development Phase, the course lecturer must approve your design
 
 ---
 
-### Development - Learning Outcome 1 (20 marks)
+#### Wireframes [5 marks]
 
-
+- Create wireframes using a digital tool of your choice that show the layout and structure of your application.
+- Include wireframes for at least six different pages:
+  - Home page
+  - Authentication pages
+  - Dashboard page
+  - List page for at least one model
+  - Detail page for at least one model
+  - Create/edit form page for at least one model
+- For each wireframe, include:
+  - Page title and navigation elements
+  - Key components and their placement
+  - Form fields and buttons
+  - Data display areas
+  - Responsive layout considerations
 
 ---
 
+### Development Phase - Learning Outcome 1 (18 marks)
 
-
+Once the course lecturer has approved your design document, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
 
 ---
 
-### Code Quality and Best Practices - Learning Outcome 1 (10 marks)
+#### Project Management [2 marks]
+
+In this phase, you will continue using the Agile software development methodology.
+
+- Use the same GitHub Project from the backend application.
+- Create issues for each task and move them across the columns as you work on them.
+
+Here is an example of how to break down your work into sprints and tasks:
+
+| Sprint | Tasks                                                                                                                                                                                            |
+| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| X      | Set up SvelteKit application, implement layout and navigation, implement authentication pages, create reusable form components                                                                   |
+
+---
+
+#### Pages and Routing [4 marks]
+
+- Implement at least eight pages/routes:
+  - Home page [0.5 marks]
+  - Login page [0.5 marks]
+  - Register page [0.5 marks]
+  - Dashboard page [0.5 marks]
+  - List page for at least two different models [1 mark]
+  - Detail page for at least two different models [0.5 marks]
+  - Create/edit form page for at least two different models [1 mark]
+  - 404 error page [0.5 marks]
+
+---
+
+#### Components [4 marks]
+
+- Implement at least eight reusable components:
+  - Navigation component [0.5 marks]
+  - Form input component(s) [0.5 marks]
+  - Table or list component [0.5 marks]
+  - Modal or dialog component [0.5 marks]
+  - Loading indicator component [0.5 marks]
+  - Alert component [0.5 marks]
+  - Card component [0.5 marks]
+  - At least one additional custom component relevant to your application [0.5 marks]
+
+---
+
+#### API Integration [4 marks]
+
+- Integrate with your backend API to:
+  - Handle user authentication [1 mark]
+  - Fetch and display data for all six models [1 mark]
+  - Create, update and delete records for all six models [1 mark]
+  - Implement error handling for API requests [0.5 marks]
+  - Store and manage authentication tokens [0.5 marks]
+
+---
+
+#### Form Handling and Validation [2 marks]
+
+- Implement client-side form validation that matches backend validation rules. [1 mark]
+- Display validation errors to users. [0.5 marks]
+- Provide user feedback during form submission. [0.5 marks]
+
+---
+
+#### Deployment [2 marks]
+
+- Deploy the application to a hosting platform. [1 mark]
+- Verify that the deployed application is working correctly by testing core functionality. [1 mark]
+
+---
+
+### Code Quality and Best Practices - Learning Outcome 1 (12 marks)
+
+When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and follows SvelteKit conventions.
+
+---
+
+#### Code Organisation [3 marks]
+
+- Use a clear and logical project structure following SvelteKit conventions.
+- Organise components, pages and utilities in appropriate directories.
+- Keep components focused and single-purpose.
+
+---
+
+#### Code Style and Formatting [2 marks]
+
+- Code must be linted using ESLint.
+- Code must be formatted using Prettier.
+- Follow SvelteKit and Svelte naming conventions.
+- Use meaningful variable, function and component names that clearly describe their purpose.
+
+---
+
+#### Component Design [2 marks]
+
+- Create reusable components that can be used across multiple pages.
+- Use props to make components flexible and configurable.
+- Avoid code duplication by extracting common functionality into shared components.
+
+---
+
+#### Error Handling and User Feedback [2 marks]
+
+- Handle API errors gracefully and display meaningful error messages to users.
+- Provide clear feedback for user actions.
+- Implement proper error boundaries to prevent application crashes.
+
+---
+
+#### Version Control [2 marks]
+
+- Maintain a clean Git history with descriptive commit messages.
+- Use conventional commit messages.
+- Commit regularly with small, focused changes rather than large, monolithic commits.
+
+---
+
+#### Documentation [1 mark]
+
+In `frontend-documentation.md`, include the following:
+  - Project description and purpose
+  - Installation and setup instructions
+  - Environment variable configuration
+  - How to run the application in development environment
+  - Deployment URL
 
 ---
 
