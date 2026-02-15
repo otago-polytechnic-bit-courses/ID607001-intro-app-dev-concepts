@@ -10,7 +10,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 4.5-5 | Professional wireframes created using digital tool showing all six required pages. Each wireframe includes all required elements: page title, navigation, key components with clear placement, form fields and buttons, data display areas, and responsive layout considerations. Wireframes are clear, detailed, and provide excellent blueprint for implementation. Uses proper wireframing conventions. |
+| A | 4.5-5 | Professional wireframes created using digital tool showing all six required pages. Each wireframe includes all required elements: page title, navigation, key components with clear placement, form fields and buttons, data display areas and responsive layout considerations. Wireframes are clear, detailed and provide excellent blueprint for implementation. Uses proper wireframing conventions. |
 | B | 3.5-4.4 | Good wireframes covering all six pages with most required elements present. Generally clear layout and component placement. Responsive considerations included. Minor details missing but overall provides good guidance for implementation. Follows wireframing conventions with minor inconsistencies. |
 | C | 2.5-3.4 | Basic wireframes present for six pages but missing some required elements or details. Layout and components shown but may lack clarity. Responsive considerations minimal or unclear. Provides adequate but incomplete guidance for implementation. |
 | D/E | 0-2.4 | Incomplete wireframes or very poorly designed. Missing key elements, unclear layouts, or difficult to understand. Does not provide adequate guidance for implementation. Not created with digital tool or does not follow wireframing conventions. |
@@ -43,7 +43,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.45-0.5 | Fully functional login page with proper form fields, validation feedback, and error handling. Good UX and follows best practices. |
+| A | 0.45-0.5 | Fully functional login page with proper form fields, validation feedback and error handling. Good UX and follows best practices. |
 | B | 0.35-0.44 | Functional login page with minor issues in validation or UX. Generally works well. |
 | C | 0.25-0.34 | Basic login page that works but has usability or design issues. Limited validation feedback. |
 | D/E | 0-0.24 | Poor or non-functional login page. Missing key features or has major issues. |
@@ -52,7 +52,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.45-0.5 | Fully functional register page with proper form fields, validation feedback, and error handling. Good UX and follows best practices. |
+| A | 0.45-0.5 | Fully functional register page with proper form fields, validation feedback and error handling. Good UX and follows best practices. |
 | B | 0.35-0.44 | Functional register page with minor issues in validation or UX. Generally works well. |
 | C | 0.25-0.34 | Basic register page that works but has usability or design issues. Limited validation feedback. |
 | D/E | 0-0.24 | Poor or non-functional register page. Missing key features or has major issues. |
@@ -117,7 +117,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.9-1 | Excellent authentication integration. Register, login, and logout fully functional and integrated with backend API. Proper token management and storage. Good error handling. Seamless user experience. |
+| A | 0.9-1 | Excellent authentication integration. Register, login and logout fully functional and integrated with backend API. Proper token management and storage. Good error handling. Seamless user experience. |
 | B | 0.7-0.89 | Good authentication integration with all functions working. Basic token management. Minor issues with error handling or UX. |
 | C | 0.5-0.69 | Basic authentication working but with issues. Token management present but may have problems. Limited error handling. |
 | D/E | 0-0.49 | Authentication integration broken or incomplete. Token management not working properly. Poor error handling. |
@@ -135,7 +135,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.9-1 | Excellent implementation of create, update, and delete operations for all six models. All operations fully functional with proper API integration. Good feedback and error handling. UI updates appropriately after operations. |
+| A | 0.9-1 | Excellent implementation of create, update and delete operations for all six models. All operations fully functional with proper API integration. Good feedback and error handling. UI updates appropriately after operations. |
 | B | 0.7-0.89 | Good CRUD implementation for all models with minor issues. Most operations work correctly with basic feedback. |
 | C | 0.5-0.69 | Basic CRUD present for all models but some operations may be incomplete or buggy. Limited feedback or error handling. |
 | D/E | 0-0.49 | CRUD operations missing for some models or poorly implemented. Operations don't work correctly or lack proper integration. |
@@ -153,7 +153,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Excellent client-side validation matching all backend rules. Validation runs in real-time providing immediate feedback. Error messages are clear, specific, and helpful. Loading states during submission with disabled buttons. Success messages displayed appropriately. Form clears or redirects after successful submission. Professional user experience. |
+| A | 1.8-2 | Excellent client-side validation matching all backend rules. Validation runs in real-time providing immediate feedback. Error messages are clear, specific and helpful. Loading states during submission with disabled buttons. Success messages displayed appropriately. Form clears or redirects after successful submission. Professional user experience. |
 | B | 1.4-1.7 | Good validation matching most backend rules. Clear error display with basic feedback. Loading states present during submission. Generally good user experience with minor issues. |
 | C | 1-1.3 | Basic validation present but may not fully match backend rules. Some error feedback provided. Limited loading states or user feedback during submission. Adequate but could be significantly improved. |
 | D/E | 0-0.9 | Poor or missing validation. Does not match backend rules. Unclear or missing error messages. No loading states or feedback during submission. Poor user experience. |
@@ -175,7 +175,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 2.7-3 | Excellent project structure following SvelteKit conventions perfectly. Components, pages, and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
+| A | 2.7-3 | Excellent project structure following SvelteKit conventions perfectly. Components, pages and utilities organised in logical, appropriate directories. Routes structure clear and well-organised. Components are focused and single-purpose. Layouts properly utilised. Easy to navigate and maintain. Follows industry best practices. |
 | B | 2.1-2.6 | Good project structure mostly following SvelteKit conventions. Clear organisation with minor issues. Components generally focused and appropriately placed. Easy to navigate with some areas that could be improved. |
 | C | 1.5-2 | Basic SvelteKit structure present but inconsistent organisation. Some components or pages misplaced. Mixed purposes in some components. Organisation could be significantly improved. |
 | D/E | 0-1.4 | Poor project structure not following SvelteKit conventions. Disorganised files and components. Components not properly separated by purpose. Difficult to navigate or maintain. |
@@ -184,7 +184,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows SvelteKit and Svelte naming conventions. All variables, functions, and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
+| A | 1.8-2 | Code consistently linted with ESLint and formatted with Prettier. Strictly follows SvelteKit and Svelte naming conventions. All variables, functions and components have clear, descriptive, meaningful names. No linting errors. Code is highly readable and maintainable. Consistent code style throughout. |
 | B | 1.4-1.7 | Code linted and formatted with minor inconsistencies. Generally follows Svelte naming conventions. Most names are meaningful and descriptive. Few linting errors. Code is readable with some minor style issues. |
 | C | 1-1.3 | Basic linting and formatting present but inconsistent. Naming conventions partially followed. Some names unclear or non-descriptive. Multiple linting errors. Readability could be improved. |
 | D/E | 0-0.9 | Little or no linting/formatting. Poor adherence to Svelte/SvelteKit conventions. Components and variables have unclear names. Many linting errors. Code is difficult to read or maintain. |
@@ -193,7 +193,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Excellent component design with true reusability across multiple pages. Props used expertly to make components flexible and configurable. No code duplication - common functionality properly extracted into shared components. Components follow single responsibility principle. Clean, maintainable, and follows Svelte/SvelteKit best practices. |
+| A | 1.8-2 | Excellent component design with true reusability across multiple pages. Props used expertly to make components flexible and configurable. No code duplication - common functionality properly extracted into shared components. Components follow single responsibility principle. Clean, maintainable and follows Svelte/SvelteKit best practices. |
 | B | 1.4-1.7 | Good component design with reusability across pages. Props used effectively with minor issues. Minimal code duplication with most common functionality extracted. Generally follows best practices. |
 | C | 1-1.3 | Basic component design with limited reusability. Props used but not always effectively. Some code duplication present. Could better extract common functionality. Shows understanding but needs improvement. |
 | D/E | 0-0.9 | Poor component design with little reusability. Props poorly used or not used. Significant code duplication. Common functionality not extracted. Does not follow best practices. |
@@ -211,7 +211,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 1.8-2 | Excellent Git history. All commits use conventional commit format correctly and consistently. Commit messages are clear, descriptive, and meaningful. Regular commits with small, focused changes. No large, monolithic commits. Clean commit history easy to understand and navigate. Shows professional version control practices. |
+| A | 1.8-2 | Excellent Git history. All commits use conventional commit format correctly and consistently. Commit messages are clear, descriptive and meaningful. Regular commits with small, focused changes. No large, monolithic commits. Clean commit history easy to understand and navigate. Shows professional version control practices. |
 | B | 1.4-1.7 | Good Git history. Most commits follow conventional format. Commit messages are generally clear and descriptive. Regular commits that are mostly focused. Few large commits. History is understandable and trackable. |
 | C | 1-1.3 | Basic Git usage. Some commits follow conventional format. Commit messages vary in quality. Some large or unfocused commits. History could be clearer and more organised. |
 | D/E | 0-0.9 | Poor Git history. Commits don't follow conventional format. Messages are unclear or non-descriptive. Few, very large commits or very inconsistent commit pattern. History is difficult to follow or understand development process. |
@@ -220,7 +220,7 @@
 
 | Band | Marks | Criteria |
 |------|-------|----------|
-| A | 0.9-1 | Comprehensive, well-written frontend-documentation.md file. Includes clear project description and purpose, detailed installation and setup instructions, complete environment variable configuration with examples, clear instructions for running in development, and working deployment URL. Documentation is professional, well-formatted, and easy to follow. New developer could set up and run application from documentation alone. |
+| A | 0.9-1 | Comprehensive, well-written frontend-documentation.md file. Includes clear project description and purpose, detailed installation and setup instructions, complete environment variable configuration with examples, clear instructions for running in development and working deployment URL. Documentation is professional, well-formatted and easy to follow. New developer could set up and run application from documentation alone. |
 | B | 0.7-0.89 | Good documentation covering all required areas. Instructions are clear and mostly complete. Environment variables documented. Some details may be missing but documentation is usable and helpful. |
 | C | 0.5-0.69 | Basic documentation present but incomplete or unclear in some areas. Missing some details or instructions. Environment variables listed but not well explained. Would be difficult to set up from documentation alone. |
 | D/E | 0-0.49 | Poor or missing documentation. Does not cover required areas. Instructions unclear or incomplete. Difficult or impossible to set up and run application from provided documentation. |
