@@ -79,7 +79,9 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
-[Backend Marking Rubric](assessments/project/marking-rubrics/backend-marking-rubric.md)
+The backend application marking rubric is available [here](assessments/project/marking-rubrics/backend-marking-rubric.md)
+
+---
 
 ### Design Phase - Learning Outcome 1 (10 marks)
 
@@ -280,7 +282,9 @@ In `backend-documentation.md`, include the following:
 
 ## Assessment Requirements - Frontend Application using SvelteKit
 
-[Frontend Marking Rubric](assessments/project/marking-rubrics/frontend-marking-rubric.md)
+The frontend application marking rubric is available [here](assessments/project/marking-rubrics/frontend-marking-rubric.md)
+
+---
 
 ### Design Phase - Learning Outcome 1 (5 marks)
 
