@@ -1,4 +1,4 @@
-# Frontend Application Marking Rubric
+# Frontend Application using SvelteKit - Marking Rubric
 
 ## Total: 30 marks
 
