@@ -79,6 +79,8 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
+[Backend Marking Rubric](assessments/project/marking-rubrics/backend-marking-rubric.md)
+
 ### Design Phase - Learning Outcome 1 (10 marks)
 
 Before you start the Design Phase, read through the Development Phase requirements below. This will help you understand what you need to build and ensure your design document is comprehensive.
@@ -277,6 +279,8 @@ In `backend-documentation.md`, include the following:
 ---
 
 ## Assessment Requirements - Frontend Application using SvelteKit
+
+[Frontend Marking Rubric](assessments/project/marking-rubrics/frontend-marking-rubric.md)
 
 ### Design Phase - Learning Outcome 1 (5 marks)
 
