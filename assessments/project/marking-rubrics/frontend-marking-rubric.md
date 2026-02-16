@@ -1,4 +1,5 @@
-# Frontend Application using SvelteKit - Marking Rubric (30%)
+# Frontend Application using SvelteKit - Marking Rubric (30 marks)
+
 ---
 
 ## Design Phase (5 marks)
