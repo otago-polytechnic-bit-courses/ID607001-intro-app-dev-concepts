@@ -39,9 +39,9 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of 50%
 
 You must submit all application files via GitHub Classroom.
 
-- Repository URL: [https://classroom.github.com/a/8sCyquQ\_](https://classroom.github.com/a/8sCyquQ_)
+- Repository URL: (https://classroom.github.com/a/8sCyquQ\_)(https://classroom.github.com/a/8sCyquQ_)
 - Branch: Switch to the Project branch using the following command: `git switch project`
-- Git Ignore: If you do not have one, create a .gitignore using this resource - [Node.gitignore](https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore)
+- Git Ignore: If you do not have one, create a .gitignore using this resource - (Node.gitignore)(https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore)
 - Due Date: Sunday at 11.59 PM
 - Late Penalty: 10% per day, rolling over at 12.00 AM
 
@@ -65,7 +65,7 @@ Failure to do this may result in a mark of zero for this assessment.
 
 ## Policy on Submissions, Extensions, Resubmissions and Resits
 
-The school's process concerning submissions, extensions, resubmissions and resits complies with Otago Polytechnic policies. Learners can view policies on the Otago Polytechnic website located at [https://www.op.ac.nz/about-us/governance-and-management/policies](https://www.op.ac.nz/about-us/governance-and-management/policies).
+The school's process concerning submissions, extensions, resubmissions and resits complies with Otago Polytechnic policies. Learners can view policies on the Otago Polytechnic website located at (https://www.op.ac.nz/about-us/governance-and-management/policies)(https://www.op.ac.nz/about-us/governance-and-management/policies).
 
 ### Extensions
 
@@ -79,7 +79,7 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
-The backend application marking rubric is available [here](./marking-rubrics/backend-marking-rubric.md).
+The backend application marking rubric is available (here)(./marking-rubrics/backend-marking-rubric.md).
 
 ---
 
@@ -93,7 +93,7 @@ To move onto the Development Phase, the course lecturer must approve your design
 
 ---
 
-#### Entity Relationship Diagram (ERD) [5 marks]
+#### Entity Relationship Diagram (ERD) (5 marks)
 
 - Create an ERD using a digital tool of your choice that shows six models, their fields and relationships.
 - For each field, include its name, data type and constraints.
@@ -101,7 +101,7 @@ To move onto the Development Phase, the course lecturer must approve your design
 
 ---
 
-#### API Endpoints [5 marks]
+#### API Endpoints (5 marks)
 
 - In a table format, show the endpoints you will implement for your application.
 - For each endpoint, include:
@@ -128,7 +128,7 @@ Once the course lecturer has approved your design document, you can start develo
 
 ---
 
-#### Project Management [2 marks]
+#### Project Management (2 marks)
 
 In this phase, you will use the Agile software development methodology.
 
@@ -144,13 +144,13 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### Database [1 mark]
+#### Database (1 mark)
 
 - Use Prisma to interact with a PostgreSQL database in development, testing and production environments.
 
 ---
 
-#### Models [3 marks]
+#### Models (3 marks)
 
 - Implement six models with a minimum of four fields each excluding `id`, `createdAt`, and `updatedAt`.
 - Include two enum fields across your models, each with at least two values.
@@ -162,24 +162,24 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### CRUD [10 marks]
+#### CRUD (10 marks)
 
-- Implement the following endpoints: [4 marks]
+- Implement the following endpoints: (4 marks)
   - CRUD operations (create, read all, read by ID, update and delete) for each model
   - Register, login and logout using token-based authentication
   - Health check that verifies the application's status, database connectivity and uptime
   - Catch-all endpoint
 
-- Implement validation on create and update operations. [1 mark]
-- Implement filtering, sorting and pagination on read all operations. [1 mark]
-- Implement role-based access control with at least two roles. Each role must have distinct permissions. [1 mark]
-- Implement content negotiation middleware to return responses in JSON format. [1 mark]
-- Implement cache middleware for read all and read by ID operations for each model. [1 mark]
-- Implement rate limiting middleware based on the user's role. For example, users with the role "X" may have a higher rate limit than users with the role "Y". [1 mark]
+- Implement validation on create and update operations. (1 mark)
+- Implement filtering, sorting and pagination on read all operations. (1 mark)
+- Implement role-based access control with at least two roles. Each role must have distinct permissions. (1 mark)
+- Implement content negotiation middleware to return responses in JSON format. (1 mark)
+- Implement cache middleware for read all and read by ID operations for each model. (1 mark)
+- Implement rate limiting middleware based on the user's role. For example, users with the role "X" may have a higher rate limit than users with the role "Y". (1 mark)
 
 ---
 
-#### API Tests [4 marks]
+#### API Tests (4 marks)
 
 Implement API tests for the following:
 
@@ -195,7 +195,7 @@ API tests must be able to run against both development and production environmen
 
 ---
 
-#### Scripts [2 marks]
+#### Scripts (2 marks)
 
 Include scripts in the package.json file to:
 
@@ -212,7 +212,7 @@ Include scripts in the package.json file to:
 
 ---
 
-#### Deployment [3 marks]
+#### Deployment (3 marks)
 
 - Deploy the application to Render.
 - Verify that the deployed application is working correctly by testing the endpoints using Postman.
@@ -225,7 +225,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Code Organisation [3 marks]
+#### Code Organisation (3 marks)
 
 - Use a clear and logical project structure that implements separation of concerns.
 - Implement separation of concerns by keeping the presentation, service and data access layers seperate.
@@ -233,7 +233,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Code Style and Formatting [2 marks]
+#### Code Style and Formatting (2 marks)
 
 - Code must be linted using ESLint.
 - Code must be formatted using Prettier.
@@ -242,7 +242,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Error Handling [3 marks]
+#### Error Handling (3 marks)
 
 - Handle errors gracefully and provide meaningful error messages.
 - Use appropriate HTTP status codes.
@@ -251,7 +251,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Security [3 marks]
+#### Security (3 marks)
 
 - Store sensitive data in environment variables.
 - Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub.
@@ -260,7 +260,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Version Control [2 marks]
+#### Version Control (2 marks)
 
 - Maintain a clean Git history with descriptive commit messages.
 - Use conventional commit messages.
@@ -268,7 +268,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Documentation [2 marks]
+#### Documentation (2 marks)
 
 In `backend-documentation.md`, include the following:
 
@@ -283,7 +283,7 @@ In `backend-documentation.md`, include the following:
 
 ## Assessment Requirements - Frontend Application using SvelteKit
 
-The frontend application marking rubric is available [here](./marking-rubrics/frontend-marking-rubric.md).
+The frontend application marking rubric is available (here)(./marking-rubrics/frontend-marking-rubric.md).
 
 ---
 
@@ -297,7 +297,7 @@ To move onto the Development Phase, the course lecturer must approve your design
 
 ---
 
-#### Wireframes [5 marks]
+#### Wireframes (5 marks)
 
 - Create wireframes using a digital tool of your choice that show the layout and structure of your application.
 - Include wireframes for at least six different pages:
@@ -322,7 +322,7 @@ Once the course lecturer has approved your design document, you can start develo
 
 ---
 
-#### Project Management [2 marks]
+#### Project Management (2 marks)
 
 In this phase, you will continue using the Agile software development methodology.
 
@@ -337,7 +337,7 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### Pages and Routing [4 marks]
+#### Pages and Routing (4 marks)
 
 - Implement at least eight pages/routes:
   - Home page
@@ -351,7 +351,7 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### Components [4 marks]
+#### Components (4 marks)
 
 - Implement at least eight reusable components:
   - Navigation component
@@ -365,17 +365,17 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### API Integration [4 marks]
+#### API Integration (4 marks)
 
 - Integrate with your backend API to:
-  - Handle user authentication [1 mark]
-  - Fetch and display data for all six models [1 mark]
-  - Create, update and delete records for all six models [1 mark]
-  - Implement error handling for API requests [1 mark]
+  - Handle user authentication (1 mark)
+  - Fetch and display data for all six models (1 mark)
+  - Create, update and delete records for all six models (1 mark)
+  - Implement error handling for API requests (1 mark)
 
 ---
 
-#### Form Handling and Validation [2 marks]
+#### Form Handling and Validation (2 marks)
 
 - Implement client-side form validation that matches backend validation rules.
 - Display validation errors to users.
@@ -383,10 +383,10 @@ Here is an example of how to break down your work into sprints and tasks:
 
 ---
 
-#### Deployment [2 marks]
+#### Deployment (2 marks)
 
-- Deploy the application to a hosting platform. [1 mark]
-- Verify that the deployed application is working correctly by testing core functionality. [1 mark]
+- Deploy the application to a hosting platform. (1 mark)
+- Verify that the deployed application is working correctly by testing core functionality. (1 mark)
 
 ---
 
@@ -396,7 +396,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Code Organisation [3 marks]
+#### Code Organisation (3 marks)
 
 - Use a clear and logical project structure following Svelte/SvelteKit conventions.
 - Organise components, pages and utilities in appropriate directories.
@@ -404,7 +404,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Code Style and Formatting [2 marks]
+#### Code Style and Formatting (2 marks)
 
 - Code must be linted using ESLint.
 - Code must be formatted using Prettier.
@@ -413,7 +413,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Component Design [2 marks]
+#### Component Design (2 marks)
 
 - Create reusable components that can be used across multiple pages.
 - Use props to make components flexible and configurable.
@@ -421,7 +421,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Error Handling and User Feedback [2 marks]
+#### Error Handling and User Feedback (2 marks)
 
 - Handle API errors gracefully and display meaningful error messages to users.
 - Provide clear feedback for user actions.
@@ -429,7 +429,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Version Control [2 marks]
+#### Version Control (2 marks)
 
 - Maintain a clean Git history with descriptive commit messages.
 - Use conventional commit messages.
@@ -437,7 +437,7 @@ When developing your application, you must follow best practices for code qualit
 
 ---
 
-#### Documentation [1 mark]
+#### Documentation (1 mark)
 
 In `frontend-documentation.md`, include the following:
 
