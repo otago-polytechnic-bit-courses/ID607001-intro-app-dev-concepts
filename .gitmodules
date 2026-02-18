@@ -1,0 +1,3 @@
+[submodule "resources (ignore)/repo-template"]
+	path = resources (ignore)/repo-template
+	url = https://github.com/otago-polytechnic-bit-courses/id607001-repo-template
