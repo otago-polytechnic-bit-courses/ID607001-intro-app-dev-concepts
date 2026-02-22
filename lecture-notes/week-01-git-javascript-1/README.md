@@ -677,10 +677,10 @@ In this course, we will use the object literal syntax to create objects.
 
 ## Exercises
 
-Copy the file `week-01-github-javascript.js` into your id607001-s1-26 repository. Open your id607001-s1-26 repository in Visual Studio Code. Open the terminal and run the command `node week-01-github-javascript.js` to run the file. You should see the following output.
+Copy the file `week-01-git-javascript.js` into your id607001-s1-26 repository. Open your id607001-s1-26 repository in Visual Studio Code. Open the terminal and run the command `node week-01-git-javascript.js` to run the file. You should see the following output.
 
 ```bash
-$ node week-01-github-javascript.js
+$ node week-01-git-javascript.js
 Hello, World!
 ```
 

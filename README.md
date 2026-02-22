@@ -59,7 +59,7 @@ At the successful completion of this course, learners will be able to:
 
 | Week             | Topics                                                              |
 | ---------------- | ------------------------------------------------------------------- |
-| 1/Tahi           | GitHub, Markdown and JavaScript 1                                   |
+| 1/Tahi           | Git and JavaScript 1                                   |
 | 2/Rua            | APIs, Express and Development Tools                                 |
 | 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                          |
 | 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture         |

@@ -6,7 +6,7 @@
 
 | Section        | Link                                                      |
 | -------------- | --------------------------------------------------------- |
-| Previous Class | [Week 01](../week-01-github-javascript-1)                 |
+| Previous Class | [Week 01](../week-01-git-javascript-1)                 |
 | Lecture Video  | [Week 02 Lecture Video]()                                 |
 | Code Example   | [Code Example](code-example)                              |
 | Next Class     | [Week 03](../week-03-postgresql-docker-orm-jsdoc-postman) |
