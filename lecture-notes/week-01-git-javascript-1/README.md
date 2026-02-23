@@ -67,7 +67,7 @@ Data types are the different values that can be stored and manipulated in a prog
 
 We will only be concerned with the first five primitive data types for now. We will not use BigInt and Symbol in this course.
 
-There are other types such as objects, arrays and functions, but these are not primitive data types.
+There are also non-primitive data types in JavaScript, which are objects. Objects can store collections of data and more complex entities. Arrays and functions are also objects in JavaScript.
 
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
 
@@ -232,7 +232,9 @@ console.log(typeof add); // function
 console.log(typeof add(1, 2)); // number
 ```
 
-An arrow function is a newer way of declaring a function.
+> Note: Functions in JavaScript are actually objects, or more specifically, they are "callable objects". However, the `typeof` operator makes a special case for functions and returns "function" instead of "object". This is a quirk of JavaScript and it is important to be aware of it.
+
+Arrow functions were introduced in ES6 as a more concise syntax for writing functions. They are also known as "fat arrow functions" because of the `=>` syntax. Here is how you can write the same functions using arrow function syntax.
 
 ```javascript
 // An arrow function named "add" that takes in two numbers and returns their sum
@@ -402,6 +404,17 @@ const fruits = [
 
 console.log(numbers[0][0]); // 1
 console.log(fruits[1][2]); // Fig
+console.log(typeof numbers); // object
+```
+
+Why is the data type of an array "object"?
+
+In JavaScript, arrays are a special type of object. They are objects that have additional properties and methods for working with ordered collections of data. The `typeof` operator returns "object" for arrays because they are technically objects, but they have a special internal structure that allows them to behave like arrays. To check if a variable is an array, you can use the `Array.isArray()` method.
+
+```javascript
+const numbers = [1, 2, 3];
+console.log(typeof numbers); // object
+console.log(Array.isArray(numbers)); // true
 ```
 
 Here is an example of a 2D array with arrays of different lengths.
@@ -685,8 +698,6 @@ Copy the file `week-01-git-javascript.js` into your id607001-s1-26 repository. O
 $ node week-01-git-javascript.js
 Hello, World!
 ```
-
-> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
 
 Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
 
