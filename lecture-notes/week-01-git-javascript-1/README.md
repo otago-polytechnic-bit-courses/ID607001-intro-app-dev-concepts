@@ -67,6 +67,8 @@ Data types are the different values that can be stored and manipulated in a prog
 
 We will only be concerned with the first five primitive data types for now. We will not use BigInt and Symbol in this course.
 
+There are other types such as objects, arrays and functions, but these are not primitive data types. 
+
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
 
 ---
