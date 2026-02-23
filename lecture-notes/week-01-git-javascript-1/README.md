@@ -4,10 +4,10 @@
 
 ## Important Links
 
-| Section       | Link                                                                                     |
-| ------------- | ---------------------------------------------------------------------------------------- |
-| GitHub        | [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6) |
-| Next Class    | [Week 02](../week-02-apis-express-development-tools)                                     |
+| Section    | Link                                                                         |
+| ---------- | ---------------------------------------------------------------------------- |
+| GitHub     | [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6) |
+| Next Class | [Week 02](../week-02-apis-express-development-tools)                         |
 
 ---
 
@@ -67,7 +67,7 @@ Data types are the different values that can be stored and manipulated in a prog
 
 We will only be concerned with the first five primitive data types for now. We will not use BigInt and Symbol in this course.
 
-There are other types such as objects, arrays and functions, but these are not primitive data types. 
+There are other types such as objects, arrays and functions, but these are not primitive data types.
 
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures>
 
@@ -118,7 +118,6 @@ Conditionals statements allow you to execute different blocks of code depending 
 - if statement
 - if...else statement
 - switch statement
-- ternary operator
 
 ```javascript
 // if statement
@@ -132,11 +131,6 @@ if (condition) {
 } else {
   // Code to execute if condition is false
 }
-
-const x = condition ? // The question mark indicates the start of the ternary operator
-// Code to execute if condition is true
-: // The colon separates the two expressions
-// Code to execute if condition is false;
 
 // switch statement
 switch (expression) {
@@ -166,10 +160,17 @@ Loops are statements that allow you to execute a block of code repeatedly. There
 - for...of loop
 - forEach() method
 
+When should I use a for loop, for in loop, for of loop or forEach() method?
+
+- Use a for loop when you need to iterate a specific number of times or when you need to access the index of the current element.
+- Use a for...in loop when you need to iterate over the properties of an object.
+- Use a for...of loop when you need to iterate over the values of an iterable object like an array.
+- Use the forEach() method when you need to execute a function for each element in an array and you do not need to access the index of the current element.
+
 ```javascript
-// for loop
-for (let i = 0; i < 10; i++) {
-  // Code to execute repeatedly
+// Using a for loop to iterate a specific number of times
+for (let i = 0; i < 5; i++) {
+  console.log(i); // 0, 1, 2, 3, 4
 }
 
 // while loop
@@ -182,23 +183,24 @@ do {
   // Code to execute repeatedly
 } while (condition);
 
-// for...in loop
-for (let key in object) {
-  // Code to execute repeatedly
+// Using a for...in loop to iterate over the properties of an object
+const person = { name: "John", age: 30 };
+for (let key in person) {
+  console.log(key + ": " + person[key]); // name: John, age: 30
 }
 
-// for...of loop
-for (let element of array) {
-  // Code to execute repeatedly
+// Using a for...of loop to iterate over the values of an array
+const numbers = [1, 2, 3, 4, 5];
+for (let num of numbers) {
+  console.log(num); // 1, 2, 3, 4, 5
 }
 
-// forEach() method
-array.forEach(function (element) {
-  // Code to execute repeatedly
+// Using the forEach() method to execute a function for each element in an array
+const fruits = ["Apple", "Banana", "Cherry"];
+fruits.forEach(function (fruit) {
+  console.log(fruit); // Apple, Banana, Cherry
 });
 ```
-
-Feel free to read up on the differences between these loops.
 
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration>
 
