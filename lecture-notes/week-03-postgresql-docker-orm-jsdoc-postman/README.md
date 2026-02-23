@@ -6,10 +6,9 @@
 
 | Section        | Link                                                                         |
 | -------------- | ---------------------------------------------------------------------------- |
-| Previous Class | [Week 02](../week-02-apis-express-development-tools)                         |
-| Lecture Video  | [Week 03 Lecture Video]()                                                    |
+| Previous Class | [Week 02](../week-02-apis-express-development-tools/README.md)                         |
 | Code Example   | [Code Example](code-example)                                                 |
-| Next Class     | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture) |
+| Next Class     | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 

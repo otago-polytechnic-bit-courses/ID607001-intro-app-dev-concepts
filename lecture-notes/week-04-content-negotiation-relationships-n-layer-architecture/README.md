@@ -6,11 +6,10 @@
 
 | Section               | Link                                                                 |
 | --------------------- | -------------------------------------------------------------------- |
-| Previous Class        | [Week 02](../week-02-apis-express-development-tools)                 |
-| Lecture Video         | [Week 04 Lecture Video]()                                            |
+| Previous Class        | [Week 02](../week-02-apis-express-development-tools/README.md)                 |
 | Code Example          | [Code Example](code-example)                                         |
 | Advanced Code Example | [Advanced Code Example](advanced-code-example)                       |
-| Next Class            | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
+| Next Class            | [Week 05](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 

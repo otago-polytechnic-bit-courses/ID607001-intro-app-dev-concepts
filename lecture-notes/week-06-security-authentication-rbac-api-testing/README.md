@@ -4,13 +4,12 @@
 
 ## Important Links
 
-| Section                    | Link                                                                 |
-| -------------------------- | -------------------------------------------------------------------- |
-| Previous Class             | [Week 05](../week-05-validation-seeding-query-parameters-deployment) |
-| Lecture Video              | [Week 06 Lecture Video]()                                            |
-| Code Example               | [Code Example](code-example)                                         |
-| Advanced Auth Code Example | [Advanced Auth Code Example](advanced-auth-code-example)             |
-| Next Class                 | [Week 07]()                                                          |
+| Section                      | Link                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------ |
+| Previous Class               | [Week 05](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example                 | [Code Example](code-example)                                                   |
+| Auth - Advanced Code Example | [Auth - Advanced Code Example](auth-advanced-code-example)                     |
+| Next Class                   | [Week 07]()                                                                    |
 
 ---
 

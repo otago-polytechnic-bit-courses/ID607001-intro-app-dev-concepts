@@ -7,7 +7,7 @@
 | Section    | Link                                                                         |
 | ---------- | ---------------------------------------------------------------------------- |
 | GitHub     | [GitHub Classroom - ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6) |
-| Next Class | [Week 02](../week-02-apis-express-development-tools)                         |
+| Next Class | [Week 02](../week-02-apis-express-development-tools/README.md)                         |
 
 ---
 
