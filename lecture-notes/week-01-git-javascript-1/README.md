@@ -522,6 +522,19 @@ index 3: 4  ─────▶ num => num * num ─────▶ index 3: 16
 index 4: 5  ─────▶ num => num * num ─────▶ index 4: 25
 ```
 
+If I were not to use the `map` function, I would have to use a for loop to iterate through the array and apply the function to each element. Here is how you can do it without using the `map` function.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const numbersSquared = [];
+
+for (let i = 0; i < numbers.length; i++) {
+  numbersSquared.push(numbers[i] * numbers[i]);
+}
+
+console.log(numbersSquared); // [1, 4, 9, 16, 25]
+```
+
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map>
 
 ---
@@ -561,6 +574,21 @@ index 3: 4  ─────▶ num => num % 2 === 0 ─────▶ index 1: 
 index 4: 5  ─────▶ num => num % 2 === 0 ─────▶ removed
 ```
 
+If I were not to use the `filter` function, I would have to use a for loop and an if statement to filter the array. Here is how you can do it without using the `filter` function.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = [];
+
+for (let i = 0; i < numbers.length; i++) {
+  if (numbers[i] % 2 === 0) {
+    evenNumbers.push(numbers[i]);
+  }
+}
+
+console.log(evenNumbers); // [2, 4]
+```
+
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter>
 
 ---
@@ -597,6 +625,19 @@ index 1: 2  ─────▶ (total, num) => total + num ─────▶ 6 
 index 2: 3  ─────▶ (total, num) => total + num ─────▶ 8 + 3 = 11
 index 3: 4  ─────▶ (total, num) => total + num ─────▶ 11 + 4 = 15
 index 4: 5  ─────▶ (total, num) => total + num ─────▶ 15 + 5 = 20
+```
+
+If I were not to use the `reduce` function, I would have to use a for loop and a variable to keep track of the accumulated value. Here is how you can do it without using the `reduce` function.
+
+```javascript
+const numbers = [1, 2, 3, 4, 5];
+let total = 5; // The initial value is 5
+
+for (let i = 0; i < numbers.length; i++) {
+  total += numbers[i];
+}
+
+console.log(total); // 20
 ```
 
 > Resource: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce>
