@@ -18,7 +18,7 @@
 Open your repository in Visual Studio Code. Switch to the Week 06 branch using the following command:
 
 ```bash
-git switch week-06-security-authentication-rbac-api-testing
+git checkout -b week-06-security-authentication-rbac-api-testing
 ```
 
 Setup up your development environment, i.e., Docker, environment variables, etc.

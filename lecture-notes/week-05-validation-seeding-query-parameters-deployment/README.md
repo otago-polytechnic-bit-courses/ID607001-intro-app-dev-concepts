@@ -17,7 +17,7 @@
 Open your repository in Visual Studio Code. Switch to the Week 05 branch using the following command:
 
 ```bash
-git switch week-05-validation-seeding-query-parameters-deployment
+git checkout -b week-05-validation-seeding-query-parameters-deployment
 ```
 
 Setup up your development environment, i.e., Docker, environment variables, etc.

@@ -17,7 +17,7 @@
 Open your repository in Visual Studio Code. Switch to the Week 02 branch using the following command:
 
 ```bash
-git switch week-02-apis-express-development-tools
+git checkout -b week-02-apis-express-development-tools
 ```
 
 > Note: There are a lot of code examples. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
