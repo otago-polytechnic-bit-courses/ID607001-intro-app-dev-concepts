@@ -50,7 +50,7 @@ Middleware is a function that has access to the request object (`req`), the resp
 - End the request-response cycle.
 - Call the next middleware function in the stack.
 
-In the root directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `content-type.js`. Add the following code.
+In the `backend` directory, create a new directory called `middleware`. In the `middleware` directory, create a new file called `content-type.js`. Add the following code.
 
 ```javascript
 const isContentTypeApplicationJSON = (req, res, next) => {
@@ -359,7 +359,7 @@ The repository pattern is a design pattern that separates the data access logic 
 
 ### Institution Repository Class
 
-In the root directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institution.js`. Add the following code.
+In the `backend` directory, create a new directory called `repositories`. In the `repositories` directory, create a new file called `institution.js`. Add the following code.
 
 ```javascript
 import prisma from "../prisma/db.js";
@@ -720,7 +720,7 @@ Here is an example output in Postman:
 
 ### Task 5 (Easy)
 
-In the root directory, create a new directory called `utils`. In the `utils` directory, create a new file called `statusCodes.js` with the following code.
+In the `backend` directory, create a new directory called `utils`. In the `utils` directory, create a new file called `statusCodes.js` with the following code.
 
 ```javascript
 const STATUS_CODES = {

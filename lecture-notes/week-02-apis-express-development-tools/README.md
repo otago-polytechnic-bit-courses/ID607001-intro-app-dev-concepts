@@ -246,7 +246,7 @@ Express is a web application framework for Node.js. It is designed for building 
 
 ### Setup
 
-In the root directory, create a new directory called `backend`.
+In the root directory of your repository, create a new directory called `backend`.
 
 Open a terminal and run the following.
 
@@ -263,7 +263,7 @@ What does each do?
 - `npm install express cors compression`: Installs the Express, CORS, and Compression modules.
 - `npm install nodemon --save-dev`: Installs the Nodemon module. The `--save-dev` flag is used to save the module as a development dependency. A development dependency is a module that is only required during development. It is not required in production.
 
-You will notice new files and directories in the root directory. These include:
+You will notice new files and directories in the `backend` directory. These include:
 
 - `node_modules`
 - `package.json`
@@ -320,7 +320,7 @@ The `dev` script is used to start the server in development mode. The `nodemon` 
 
 ### Module
 
-In the `package.json` file, add the following under the `scripts` block.
+In the `package.json` file, update the "type" field to the following.
 
 ```json
 "type": "module",
@@ -332,7 +332,7 @@ This will allow you to use ES6 modules in your project. For example, `import` an
 
 ### Main File
 
-In the root directory, create a file named `app.js`. In the `app.js` file, add the following code.
+In the `backend` directory, create a file named `app.js`. In the `app.js` file, add the following code.
 
 ```javascript
 // Import the Express, CORS and Compression modules
@@ -434,7 +434,7 @@ Navigate to <http://localhost:3000/progLangs>. You should see the following mess
 
 ### Controller
 
-In the root directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
+In the `backend` directory, create a directory named `controllers`. In the `controllers` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 // Create a GET route
@@ -470,7 +470,7 @@ export { getPersonInfo, getProgLangs };
 
 ### Route
 
-In the root directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
+In the `backend` directory, create a directory named `routes`. In the `routes` directory, create a file named `index.js` and add the following code.
 
 ```javascript
 import express from "express";
@@ -565,7 +565,7 @@ To install Prettier, run the following command in your terminal.
 npm install prettier --save-dev
 ```
 
-In the root directory, create a file named `.prettierrc.json`. This file is used to specify the rules for formatting the code. In the `.prettierrc.json` file, add the following code.
+In the `backend` directory, create a file named `.prettierrc.json`. This file is used to specify the rules for formatting the code. In the `.prettierrc.json` file, add the following code.
 
 ```json
 {
@@ -807,7 +807,7 @@ In the `package.json` file, add the following under the `scripts` block.
 
 > Note: If you want to format other file types, you can add more entries. For example, `"*.{js,json}": "prettier --write"`.
 
-In the root directory, create a file named `.prettierignore`. This file specifies files and directories that should be ignored by Prettier:
+In the `backend` directory, create a file named `.prettierignore`. This file specifies files and directories that should be ignored by Prettier:
 
 ```bash
 node_modules

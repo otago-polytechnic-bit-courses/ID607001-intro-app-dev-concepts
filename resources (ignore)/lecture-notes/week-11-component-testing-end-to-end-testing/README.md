@@ -104,7 +104,7 @@ You will be prompted with the following questions. The recommended answers are p
 | Add a GitHub Actions workflow? (y/N)                                                   | false      |
 | Install Playwright browsers (can be done manually via 'npx playwright install')? (Y/n) | true       |
 
-This will create a `e2e` directory with an example test file and a configuration file called `playwright.config.js` in the root directory. Also, in `package.json`, you will see the following scripts added:
+This will create a `e2e` directory with an example test file and a configuration file called `playwright.config.js` in the `backend` directory. Also, in `package.json`, you will see the following scripts added:
 
 ```json
 "test:e2e": "playwright test",
