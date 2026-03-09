@@ -716,7 +716,7 @@ JSDoc is an API documentation generator for JavaScript. JSDoc comments are writt
 At the top of each file, add the following code.
 
 ```javascript
-/
+/*
  * @file <the purpose of the file>
  * @author <the name of the author>
  */
@@ -725,7 +725,7 @@ At the top of each file, add the following code.
 For example, in the `controllers/institution.js` file.
 
 ```javascript
-/
+/*
  * @file Manages all operations related to institutions
  * @author John Doe
  */
@@ -736,7 +736,7 @@ For example, in the `controllers/institution.js` file.
 How do you comment a function?
 
 ```javascript
-/
+/*
  * @description This function creates a new institution
  * @param {object} req - The request object
  * @param {object} res - The response object
