@@ -206,6 +206,16 @@ datasource db {
 
 ---
 
+### Generating the Prisma Client
+
+Delete the `prisma.config.ts` file. We will not be using it.
+
+To generate the Prisma Client, run the following command.
+
+```bash
+npx prisma generate
+```
+
 ### Model
 
 A model is a representation of a database table. It defines the structure of the table, including the fields and their data types.
