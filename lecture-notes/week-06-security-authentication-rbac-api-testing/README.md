@@ -1,99 +1,107 @@
-# Week 06
+# Week 06 — Security, Authentication, RBAC & API Testing
 
----
+## Navigation
 
-## Important Links
-
-| Section                      | Link                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------------ |
-| Previous Class               | [Week 05](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example                 | [Code Example](code-example)                                                   |
-| Auth - Advanced Code Example | [Auth - Advanced Code Example](auth-advanced-code-example)                     |
-| Next Class                   | [Week 07]()                                                                    |
+| | Link |
+|---|---|
+| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example | [Code Example](code-example) |
+| Auth Advanced Example | [Auth - Advanced Code Example](auth-advanced-code-example) |
+| → Next | Week 07 |
 
 ---
 
 ## Before We Start
 
-Open your repository in Visual Studio Code. Switch to the Week 06 branch using the following command:
+Open your repository in Visual Studio Code and switch to the Week 06 branch:
 
 ```bash
 git checkout -b week-06-security-authentication-rbac-api-testing
 ```
 
-Setup up your development environment, i.e., Docker, environment variables, etc.
+Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
-
----
-
-## Security
-
-Security is the practice of protecting systems, networks and data from unauthorised access, use, disclosure, disruption, modification or destruction. It involves implementing measures to prevent, detect and respond to security threats and vulnerabilities.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too.
 
 ---
 
-### Common vulnerabilities
+## 1. Security
 
-Common vulnerabilities in API design include:
-
-- Broken object level authorisation: This occurs when an API does not properly enforce access controls on object-level operations, allowing attackers to access or manipulate objects they should not have access to.
-- Broken user authentication: This occurs when an API does not properly authenticate users, allowing attackers to impersonate other users or gain unauthorized access to resources.
-- Excessive data exposure: This occurs when an API exposes more data than necessary, allowing attackers to access sensitive information.
-- Lack of rate limiting: This occurs when an API does not limit the number of requests a user can make, allowing attackers to perform denial-of-service attacks or brute-force attacks.
-- Mass assignment: This occurs when an API allows users to update object properties that they should not have access to, allowing attackers to manipulate objects in unintended ways.
-- Security misconfiguration: This occurs when an API is not properly configured, allowing attackers to exploit vulnerabilities in the system.
-- Injection: This occurs when an API does not properly validate user input, allowing attackers to inject malicious code into the system.
-- Improper assets management: This occurs when an API does not properly manage its assets, such as endpoints or resources, allowing attackers to access or manipulate them in unintended ways.
-- Insufficient logging and monitoring: This occurs when an API does not properly log or monitor activity, making it difficult to detect or respond to attacks.
-- Using components with known vulnerabilities: This occurs when an API uses third-party components or libraries that have known vulnerabilities, allowing attackers to exploit those vulnerabilities.
+Security is the practice of protecting systems, networks, and data from unauthorised access, use, disclosure, disruption, modification, or destruction.
 
 ---
 
-## Authentication
+### 1.1 Common API Vulnerabilities
 
-Authentication is the process of verifying the identity of a user or system. It ensures that the user is who they claim to be. Authentication is typically done by checking the user's credentials, such as a username and password.
-
----
-
-### Token vs. Session
-
-Token-based authentication is a stateless authentication mechanism. When a user successfully logs in, the server generates a token and returns it to the client. The client stores the token commonly in memory or local storage and includes it in the `Authorization` header of each request. The server validates the token on every request without needing to remember anything about the session.
-
-Session-based authentication is a stateful mechanism. When a user logs in, the server creates a session often stored in memory or a database and returns a session ID to the client, typically via a cookie. The client sends this session ID with each request, and the server uses it to look up the session and authenticate the user.
-
----
-
-### JSON Web Tokens (JWT)
-
-JSON Web Tokens (JWT) are a compact, URL-safe format for transmitting claims between parties. A JWT consists of three parts: a header, a payload and a signature. The payload contains claims about the user, such as their ID and roles. JWTs are typically signed using a secret with HMAC or a private key with RSA or ECDSA, allowing the server to verify their integrity and authenticity.
+| Vulnerability | Description |
+|---|---|
+| **Broken object level authorisation** | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
+| **Broken user authentication** | API doesn't properly authenticate users, allowing impersonation or unauthorised access |
+| **Excessive data exposure** | API returns more data than necessary, exposing sensitive information |
+| **Lack of rate limiting** | No request throttling — enables denial-of-service or brute-force attacks |
+| **Mass assignment** | API lets users update object properties they shouldn't have access to |
+| **Security misconfiguration** | Improperly configured API exposes exploitable vulnerabilities |
+| **Injection** | Unvalidated user input allows malicious code to be injected |
+| **Improper assets management** | Poorly managed endpoints or resources can be accessed or manipulated unexpectedly |
+| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect or respond to |
+| **Vulnerable components** | Use of third-party libraries with known vulnerabilities |
 
 ---
 
-### Setup
+## 2. Authentication
 
-To get started, run the following command:
+Authentication is the process of verifying the identity of a user or system — confirming they are who they claim to be, typically by checking credentials like a username and password.
+
+---
+
+### 2.1 Token vs. Session Authentication
+
+| | Token-Based | Session-Based |
+|---|---|---|
+| **State** | Stateless | Stateful |
+| **Storage** | Client stores token in memory or local storage | Server stores session in memory or database |
+| **Transport** | Sent in `Authorization` header | Sent via cookie (session ID) |
+| **Server lookup** | Server validates token on every request — no session memory needed | Server looks up the session on every request |
+
+---
+
+### 2.2 JSON Web Tokens (JWT)
+
+A JWT is a compact, URL-safe format for transmitting claims between parties. It consists of three parts:
+
+1. **Header** — algorithm and token type
+2. **Payload** — claims about the user (e.g. ID, role)
+3. **Signature** — verifies the token hasn't been tampered with
+
+JWTs are typically signed using a secret (HMAC) or a private key (RSA/ECDSA).
+
+---
+
+### 2.3 Setup
+
+Install the required packages:
 
 ```bash
 npm install bcryptjs jsonwebtoken
 ```
 
-Check the `package.json` file to ensure you have installed `bcryptjs` and `jsonwebtoken`.
-
-> Note: The `bcryptjs` library is used to hash passwords and the `jsonwebtoken` library is used to create and verify JWTs.
+| Package | Purpose |
+|---|---|
+| `bcryptjs` | Hash and compare passwords |
+| `jsonwebtoken` | Create and verify JWTs |
 
 ---
 
-### Environment Variables
+### 2.4 Environment Variables
 
-In the `.env` file, add the following environment variables:
+Add the following to your `.env` file:
 
 ```bash
 JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-The `.env` file should look like this:
+Your complete `.env` should look like:
 
 ```bash
 NODE_ENV=development
@@ -104,62 +112,57 @@ JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-> Note: Make sure you change the `JWT_SECRET` value to a strong secret key. In production, use a secret key that is at least 256 bits long.
+> ⚠️ **Important:** Always use a strong, unique `JWT_SECRET` in production — at least 256 bits long.
 
 ---
 
-### Schema
+### 2.5 Schema — User Model
 
-In the `week-04-content-negotiation-relationships-n-layer-architecture` exercises, you were asked to create a `User` model. If you have not done this, in the `schema.prisma` file, add the following model:
+If you haven't already created the `User` model from Week 04, add it to `schema.prisma`. Note the addition of the `password` field:
 
-```js
+```javascript
 model User {
-  id               String        @id @default(uuid())
-  firstName        String
-  lastName         String
-  emailAddress     String        @unique
-  password         String
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @default(now())
+  id           String   @id @default(uuid())
+  firstName    String
+  lastName     String
+  emailAddress String   @unique
+  password     String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }
 ```
 
-> Note: There is one additional fields - `password`. Make sure you create and apply a migration after updating the `schema.prisma` file.
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 ---
 
-### Middleware
+### 2.6 JWT Auth Middleware
 
-In the `middleware` directory, create a new file called `jwtAuth.js`. In the `jwtAuth.js` file, add the following code:
+Create `middleware/jwtAuth.js`:
 
-```js
+```javascript
 import jwt from "jsonwebtoken";
 
 const jwtAuth = (req, res, next) => {
   try {
-    // Look for the Authorization header which should start with 'Bearer '
+    // Authorization header should be: "Bearer <token>"
     const authHeader = req.headers.authorization;
 
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ message: "No token provided" });
     }
 
-    // Split the header and grab the token part after 'Bearer '
     const token = authHeader.split(" ")[1];
 
-    // Verify the token using the secret key from environment variables
+    // Verify token against the secret key
     const payload = jwt.verify(token, process.env.JWT_SECRET);
 
-    // Add the decoded payload to the request so other routes can use it
+    // Attach decoded payload to request for use in downstream handlers
     req.user = payload;
 
-    // Continue to the next middleware or route
     next();
   } catch (err) {
-    // The token is missing, invalid or expired
-    return res
-      .status(401)
-      .json({ message: "Not authorized to access this route" });
+    return res.status(401).json({ message: "Not authorized to access this route" });
   }
 };
 
@@ -168,11 +171,11 @@ export default jwtAuth;
 
 ---
 
-### Auth Controller
+### 2.7 Auth Controller
 
-In the `controllers` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+Create `controllers/auth.js`:
 
-```js
+```javascript
 import bcryptjs from "bcryptjs";
 import jwt from "jsonwebtoken";
 
@@ -182,20 +185,17 @@ const register = async (req, res) => {
   try {
     const { firstName, lastName, emailAddress, password, role } = req.body;
 
-    // Check if user already exists by email address
+    // Check if user already exists
     let user = await prisma.user.findUnique({ where: { emailAddress } });
 
     if (user) {
       return res.status(409).json({ message: "User already exists" });
     }
 
-    // Generate a random salt to make the password hash unique
+    // Hash the password with a unique salt
     const salt = await bcryptjs.genSalt();
-
-    // Hash the password with the generated salt
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    // Create a new user with the hashed password
     user = await prisma.user.create({
       data: {
         firstName,
@@ -220,9 +220,7 @@ const register = async (req, res) => {
       data: user,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -230,14 +228,13 @@ const login = async (req, res) => {
   try {
     const { emailAddress, password } = req.body;
 
-    // Find user by email address
     const user = await prisma.user.findUnique({ where: { emailAddress } });
 
     if (!user) {
       return res.status(401).json({ message: "Invalid email address" });
     }
 
-    // Compare the provided password with the hashed password in the database
+    // Compare provided password against the stored hash
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
@@ -246,12 +243,9 @@ const login = async (req, res) => {
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
-    // Create a JWT token with the user's ID and role
+    // Sign a token containing the user's ID and role
     const token = jwt.sign(
-      {
-        id: user.id,
-        role: user.role,
-      },
+      { id: user.id, role: user.role },
       JWT_SECRET,
       { expiresIn: JWT_LIFETIME },
     );
@@ -261,9 +255,7 @@ const login = async (req, res) => {
       token: token,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 
@@ -272,13 +264,12 @@ export { register, login };
 
 ---
 
-### Auth Router
+### 2.8 Auth Router
 
-In the `routes` directory, create a new file called `auth.js`. In the `auth.js` file, add the following code:
+Create `routes/auth.js`:
 
-```js
+```javascript
 import express from "express";
-
 import { register, login } from "../controllers/auth.js";
 
 const router = express.Router();
@@ -291,17 +282,16 @@ export default router;
 
 ---
 
-### Main File
+### 2.9 Register Auth Routes in `app.js`
 
-In the `app.js` file, add the following code.
-
-```js
+```javascript
 import authRoutes from "./routes/auth.js";
 
 app.use("/api/auth", authRoutes);
 ```
 
-> Note: If you get stuck, here is the complete `app.js` file.
+<details>
+<summary>View complete <code>app.js</code></summary>
 
 ```javascript
 import express from "express";
@@ -340,81 +330,70 @@ app.listen(PORT, () => {
 export default app;
 ```
 
+</details>
+
 ---
 
-### Institution Router
+### 2.10 Protecting Routes with `jwtAuth`
 
-In the `routes/institution.js` file, add the following code to protect the routes with the `jwtAuth` middleware.
+In `routes/institution.js`, add `jwtAuth` to any route that requires authentication:
 
 ```javascript
-// Omitted for brevity
-
 import jwtAuth from "../middleware/jwtAuth.js";
 
-// Omitted for brevity
-
 router.post("/", validatePostInstitution, jwtAuth, createInstitution);
-
-// Omitted for brevity
 ```
 
-> Note: The `jwtAuth` middleware is used to protect the `createInstitution` route. It means that only authenticated users can access these routes.
+> Only authenticated users (those supplying a valid Bearer token) can access protected routes.
 
 ---
 
-## Role-Based Access Control (RBAC)
+## 3. Role-Based Access Control (RBAC)
 
-Role-Based Access Control (RBAC) is a security mechanism that restricts access to resources based on the roles assigned to users. In RBAC, permissions are assigned to roles, and users are assigned to roles. It allows for a more manageable and scalable way to control access to resources. For example, you can have roles like `ADMIN`, `STAFF` and `STUDENT` each with different permissions.
+RBAC restricts access to resources based on the roles assigned to users. Roles have defined permissions, and users are assigned to roles. Common roles might be `ADMIN`, `STAFF`, and `STUDENT`.
 
 ---
 
-### Schema Prisma File
+### 3.1 Schema — Role Enum & User Update
 
-In the `schema.prisma` file, add the following enum:
+Add the `Role` enum and update the `User` model in `schema.prisma`:
 
-```js
+```javascript
 enum Role {
-  ADMIN // Administrator with full access
-  STAFF // Staff member with limited access
-  STUDENT // Student with restricted access
+  ADMIN   // Full access
+  STAFF   // Limited access
+  STUDENT // Restricted access
 }
-```
 
-Then, update the `User` model to include a `role` field:
-
-```js
 model User {
-  id               String        @id @default(uuid())
-  firstName        String
-  lastName         String
-  emailAddress     String        @unique
-  password         String
-  role             Role          @default(STUDENT)
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @default(now())
+  id           String   @id @default(uuid())
+  firstName    String
+  lastName     String
+  emailAddress String   @unique
+  password     String
+  role         Role     @default(STUDENT)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }
 ```
 
-> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 ---
 
-### Middleware
+### 3.2 RBAC Middleware
 
-In the `middleware` directory, create a new file called `rbac.js`. In the `rbac.js` file, add the following code:
+Create `middleware/rbac.js`:
 
-```js
+```javascript
 const rbac = (requiredRole) => {
   return (req, res, next) => {
     const { user } = req;
-    // Check if the user is authenticated and has a role
+
     if (!user || !user.role) {
-      return res
-        .status(403)
-        .json({ message: "Forbidden. User is not authenticated" });
+      return res.status(403).json({ message: "Forbidden. User is not authenticated" });
     }
 
-    // Check if the user's role matches the required role
     if (user.role !== requiredRole) {
       return res.status(403).json({
         message: `Forbidden. Insufficient privileges for role: ${user.role}`,
@@ -430,16 +409,13 @@ export default rbac;
 
 ---
 
-### Institution Router
+### 3.3 Using RBAC on Routes
 
-In the `routes/institution.js` file, update the routes to use the `rbac` middleware. For example, if you want to restrict the `createInstitution` route to only users with the `ADMIN` role, you can do the following:
+In `routes/institution.js`, chain `jwtAuth` and `rbac` together. The order is: validate → authenticate → authorise → handle.
 
 ```javascript
-// Omitted for brevity
-
+import jwtAuth from "../middleware/jwtAuth.js";
 import rbac from "../middleware/rbac.js";
-
-// Omitted for brevity
 
 router.post(
   "/",
@@ -448,89 +424,51 @@ router.post(
   rbac("ADMIN"),
   createInstitution,
 );
-
-// Omitted for brevity
 ```
 
-> Note: The `rbac` middleware checks if the user has the required role before allowing access to the route. If the user does not have the required role, a `403 Forbidden` status code is returned.
+> A `403 Forbidden` response is returned if the authenticated user's role does not match the required role.
 
 ---
 
-### Postman Example
+### 3.4 RBAC Limitations
 
-Here is an example of creating an `Institution` with no token.
+The current single-role enum approach works for basic scenarios but has drawbacks:
 
-<ADD IMAGE HERE>
+- **Tightly coupled types and roles** — Hard to model nuanced cases (e.g. a student who is also a teaching assistant)
+- **No type-specific data** — Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
+- **Poor scalability** — Challenging to extend when different roles need different fields and relationships
+- **Mixed concerns** — Auth logic is entangled with user identity
 
-Here is an example of registering an `ADMIN` user.
-
-<ADD IMAGE HERE>
-
-Here is an example of registering a `STUDENT` user.
-
-<ADD IMAGE HERE>
-
-Here is an example of logging in as an `ADMIN` user. Make sure you copy the token from the response.
-
-<ADD IMAGE HERE>
-
-Here is an example of creating an `Institution` as an `ADMIN` user.
-
-<ADD IMAGE HERE>
-
-Here is an example of logging in as a `STUDENT` user. Make sure you copy the token from the response.
-
-<ADD IMAGE HERE>
-  
-Here is an example of creating an `Institution` as a `STUDENT` user. You should get a `403 Forbidden` status code because the `STUDENT` user does not have the required role to create an `Institution`.
-
-<ADD IMAGE HERE>
+See the [Auth - Advanced Code Example](auth-advanced-code-example) for a more flexible approach.
 
 ---
 
-### Limitations
+## 4. Rate Limiting
 
-The current approach uses a `Role` enum on the `User` model. This works for basic scenarios but has limitations:
-
-- Tightly coupled user types and roles - User types are directly tied to roles, making it difficult to manage complex or nuanced permissions (e.g., a student who is also a teaching assistant).
-- No support for type-specific data - Difficult to add user-type specific attributes such as department information for lecturers or enrollment data for students.
-- Poor scalability - Hard to extend when different user types require different fields and relationships.
-- Mixed concerns - Authentication/authorization logic is mixed with user identity, leading to maintenance challenges as the system grows.
-
-See the advanced auth code example for a more flexible approach.
+Rate limiting controls how many requests a client can make in a given time window, protecting against abuse, denial-of-service attacks, and brute-force attempts. We use the `express-rate-limit` package, which implements a basic **fixed window** algorithm.
 
 ---
 
-## Rate Limiting
-
-Rate limiting is a technique used to control the rate of incoming requests to an API. It helps to prevent abuse and ensure fair usage of resources. Rate limiting can be implemented using various algorithms, such as fixed window, sliding window and token bucket. However, for simplicity, we will use the `express-rate-limit` dependency which implements a basic fixed window algorithm.
-
----
-
-### Setup
-
-To get started, install the `express-rate-limit` dependency by running the following command:
+### 4.1 Setup
 
 ```bash
 npm install express-rate-limit
 ```
 
-Check the `package.json` file to ensure you have installed `express-rate-limit`.
-
 ---
 
-### Middleware
+### 4.2 Rate Limiter Middleware
 
-In the `middleware` directory, create a new file called `rateLimiter.js`. In the `rateLimiter.js` file, add the following code:
+Create `middleware/rateLimiter.js`:
 
-```js
+```javascript
 import rateLimit from "express-rate-limit";
 
 const rateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5,
-  standardHeaders: true,
-  legacyHeaders: false,
+  windowMs: 15 * 60 * 1000, // 15-minute window
+  max: 5,                    // Max 5 requests per window per IP
+  standardHeaders: true,     // Add rate limit info to RateLimit-* headers
+  legacyHeaders: false,      // Disable X-RateLimit-* headers
   message: {
     message: "Too many requests, please try again later",
   },
@@ -539,56 +477,48 @@ const rateLimiter = rateLimit({
 export default rateLimiter;
 ```
 
-What does each property mean?
+| Option | Purpose |
+|---|---|
+| `windowMs` | Length of the rate limit window in milliseconds |
+| `max` | Maximum requests allowed per window per IP |
+| `standardHeaders` | Adds `RateLimit-*` headers to responses |
+| `legacyHeaders` | Disables older `X-RateLimit-*` headers |
+| `message` | Error payload returned when the limit is exceeded |
 
-- `windowMs`: The time frame for which requests are counted. In this case, it is set to 15 minutes.
-- `max`: The maximum number of requests allowed from a single IP address within the `windowMs` time frame. In this case, it is set to 100 requests.
-- `standardHeaders`: If set to `true`, it adds rate limit information to the `RateLimit-*` headers in the response.
-- `legacyHeaders`: If set to `false`, it disables the `X-RateLimit-*` headers in the response.
-- `message`: The error message returned when the rate limit is exceeded.
-
-> Resource: <https://express-rate-limit.mintlify.app/overview>
+📖 Reference: [express-rate-limit docs](https://express-rate-limit.mintlify.app/overview)
 
 ---
 
-### Institution Router
+### 4.3 Apply Rate Limiting to Routes
 
-In the `routes/institution.js` file, import the `rateLimiter` middleware and use it to protect the routes. For example, you can do the following:
+In `routes/institution.js`:
 
-```js
-// Omitted for brevity
-
+```javascript
 import rateLimiter from "../middleware/rateLimiter.js";
-
-// Omitted for brevity
 
 router.get("/", rateLimiter, getInstitutions);
 router.get("/:id", rateLimiter, getInstitution);
-
-// Omitted for brevity
 ```
 
----
-
-### Postman Example
-
-Here is an example of exceeding the rate limit when trying to get all institutions. After 5 requests in 15 minutes, you should get a `429 Too Many Requests` status code.
-
-![](<../../resources (ignore)/img/week-6/07-week-6.png>)
+After 5 requests within 15 minutes from the same IP, the client will receive a `429 Too Many Requests` response.
 
 ---
 
-## API Testing
+## 5. API Testing
 
-API testing is the process of testing the functionality, reliability, performance and security of an application programming interface (API). It involves sending requests to the API and verifying that the responses are as expected. API testing can be done manually or automated using various tools and libraries.
+API testing verifies the functionality, reliability, performance, and security of your API by sending requests and asserting the responses are correct.
+
+We use three libraries together:
+
+| Library | Role |
+|---|---|
+| **Mocha** | Test framework — organises and runs tests |
+| **Chai** | Assertion library — verifies expected outcomes |
+| **Supertest** | HTTP client — makes requests to the Express app |
 
 ---
 
-### Dependencies
-
-There are several libraries available for API testing in Node.js. In this example, we will use Mocha as the test framework, Chai as the assertion library and Supertest to make HTTP requests to the API.
-
-Install the libraries by running the following command.
+### 5.1 Setup
 
 ```bash
 npm install chai mocha supertest --save-dev
@@ -596,27 +526,21 @@ npm install chai mocha supertest --save-dev
 
 ---
 
-### Directory and File Structure
+### 5.2 Directory Structure
 
-Setup the the following directory and file structure.
-
-```bash
+```
 root/
 └── tests/
     ├── helpers/
-    │   └── auth.js
+    │   ├── auth.js
     │   └── db.js
     ├── 00-institution.test.js
     └── 01-department.test.js
 ```
 
-> Note: The `tests` directory will contain all the test files. The `helpers` directory will contain helper functions that can be used in the test files.
-
 ---
 
-### Helper - DB
-
-In `db.js`, add the following code.
+### 5.3 Helper — Database (`helpers/db.js`)
 
 ```javascript
 import prisma from "../../prisma/db.js";
@@ -634,15 +558,11 @@ const disconnectPrisma = async () => {
 export { cleanupDatabase, disconnectPrisma };
 ```
 
-The `cleanupDatabase` function deletes all data from the `department`, `institution` and `user` tables, and the `disconnectPrisma` function disconnects the Prisma client from the database.
-
 ---
 
-### Helper - Auth
+### 5.4 Helper — Auth (`helpers/auth.js`)
 
-In `auth.js`, add the following code.
-
-```js
+```javascript
 import request from "supertest";
 
 import app from "../../app.js";
@@ -674,13 +594,9 @@ const setupTestAuth = async () => {
 export default setupTestAuth;
 ```
 
-The `setupTestAuth` function creates a test user and logs in to get a token.
-
 ---
 
-### Institution CRUD Tests
-
-In `00-institution.test.js`, add the following code.
+### 5.5 Institution CRUD Tests (`00-institution.test.js`)
 
 ```javascript
 import { expect } from "chai";
@@ -697,24 +613,11 @@ describe("Institution CRUD", () => {
   let institutionTwoId;
 
   const institutionData = [
-    {
-      name: "Ara Institute of Canterbury",
-      region: "Canterbury",
-      country: "New Zealand",
-    },
-    {
-      name: "Otago Polytechnic",
-      region: "Otago",
-      country: "New Zealand",
-    },
-    {
-      name: "Southern Institute of Technology",
-      region: "Southland",
-      country: "New Zealand",
-    },
+    { name: "Ara Institute of Canterbury", region: "Canterbury", country: "New Zealand" },
+    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
+    { name: "Southern Institute of Technology", region: "Southland", country: "New Zealand" },
   ];
 
-  // Setup the test authentication before running the tests
   before(async () => {
     token = await setupTestAuth();
   });
@@ -722,16 +625,15 @@ describe("Institution CRUD", () => {
   it("should create institution one", async () => {
     const res = await request(app)
       .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
+      .set("Authorization", `Bearer ${token}`)
       .send(institutionData[1]);
 
     expect(res.status).to.equal(201);
 
-    // Find an institution by name in the response body
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[1].name, // "Otago Polytechnic"
+      (i) => i.name === institutionData[1].name,
     );
-    institutionOneId = newInstitution.id; // Store the institution ID for later use
+    institutionOneId = newInstitution.id;
   });
 
   it("should create institution two", async () => {
@@ -742,7 +644,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
     const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[2].name, // "Southern Institute of Technology"
+      (i) => i.name === institutionData[2].name,
     );
     institutionTwoId = newInstitution.id;
   });
@@ -751,21 +653,20 @@ describe("Institution CRUD", () => {
     const res = await request(app).get(BASE_URL);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
+    expect(res.body.data.length).to.be.at.least(2);
   });
 
   it("should get institution one by ID", async () => {
     const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name); // "Otago Polytechnic"
+    expect(res.body.data.name).to.equal(institutionData[1].name);
   });
 
   it("should update institution two", async () => {
-    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-      name: institutionData[0].name,
-      region: institutionData[0].region,
-    });
+    const res = await request(app)
+      .put(`${BASE_URL}/${institutionTwoId}`)
+      .send({ name: institutionData[0].name, region: institutionData[0].region });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -784,18 +685,16 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId; // Store the institution ID for later use in 01-department.test.js
+    global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
   });
 });
 ```
 
 ---
 
-### Department CRUD Tests
+### 5.6 Department CRUD Tests (`01-department.test.js`)
 
-In `01-department.test.js`, add the following code.
-
-```js
+```javascript
 import { expect } from "chai";
 import request from "supertest";
 
@@ -809,37 +708,28 @@ describe("Department CRUD", () => {
   let departmentOneId;
 
   const departmentData = [
-    {
-      name: "Information Technology",
-    },
-    {
-      name: "Nursing",
-    },
-    {
-      name: "Business",
-    },
+    { name: "Information Technology" },
+    { name: "Nursing" },
+    { name: "Business" },
   ];
 
-  // Set up the institution ID before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
   });
 
-  // Clean up the database and disconnect Prisma after running the tests
   after(async () => {
     await cleanupDatabase();
     await disconnectPrisma();
   });
 
   it("should create department one", async () => {
-    const res = await request(app).post(BASE_URL).send({
-      name: departmentData[0].name,
-      institutionId: institutionId,
-    });
+    const res = await request(app)
+      .post(BASE_URL)
+      .send({ name: departmentData[0].name, institutionId });
 
     expect(res.status).to.equal(201);
     const newDepartment = res.body.data.find(
-      (department) => department.name === departmentData[0].name, // "Information Technology"
+      (d) => d.name === departmentData[0].name,
     );
     departmentOneId = newDepartment.id;
   });
@@ -859,10 +749,9 @@ describe("Department CRUD", () => {
   });
 
   it("should update department one", async () => {
-    const res = await request(app).put(`${BASE_URL}/${departmentOneId}`).send({
-      name: departmentData[1].name,
-      institutionId: institutionId,
-    });
+    const res = await request(app)
+      .put(`${BASE_URL}/${departmentOneId}`)
+      .send({ name: departmentData[1].name, institutionId });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -884,25 +773,29 @@ describe("Department CRUD", () => {
 
 ---
 
-### Package JSON File
+### 5.7 Test Script
 
-In the `package.json` file, update the `test` script in the `scripts` block to the following.
+Update the `test` script in `package.json`:
 
 ```json
-"test": "mocha tests --recursive --timeout 10000 --exit",
+"test": "mocha tests --recursive --timeout 10000 --exit"
 ```
 
-> Note: The `--recursive` flag allows Mocha to run tests in subdirectories, and the `--timeout` flag sets the maximum time for each test to complete. The `--exit` flag ensures that Mocha exits after all tests are done.
+| Flag | Purpose |
+|---|---|
+| `--recursive` | Runs tests in subdirectories |
+| `--timeout 10000` | Sets a 10-second timeout per test |
+| `--exit` | Forces Mocha to exit after all tests complete |
 
-To run the tests, run the following command.
+Run the tests:
 
 ```bash
 npm run test
 ```
 
-When you run the tests, you should see the following output in the terminal:
+Expected output:
 
-```bash
+```
 Institution CRUD
   ✔ should create institution one
   ✔ should create institution two
@@ -918,28 +811,25 @@ Department CRUD
   ✔ should update department one
   ✔ should delete department one
 
-
-11 passing (number of ms)
+11 passing (Xms)
 ```
-
-> Note: The number of milliseconds will vary depending on your computer's performance.
 
 ---
 
 ## Exercises
 
-> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
+### AI Usage Guidelines
 
-- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
+AI tools are encouraged but use them critically:
 
-Here is an example JSDoc comment:
+- Refine your prompts — vague prompts yield vague responses
+- Validate AI output — don't trust it blindly
+- Acknowledge AI usage at the top of any AI-assisted file:
 
-```js
-/*
+```javascript
+/**
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -951,125 +841,116 @@ Here is an example JSDoc comment:
 
 ---
 
-### Task 1 (Easy)
+### Task 1 — Implement the Code Examples *(Easy)*
 
-Implement the code examples above.
-
----
-
-### Task 2 (Easy)
-
-Create five tests for the `Course` resource. The tests should cover the following scenarios:
-
-- Create a course
-- Get all courses
-- Get a course by ID
-- Update a course
-- Delete a course
+Implement all of the code examples covered above.
 
 ---
 
-### Task 3 (Easy)
+### Task 2 — Course CRUD Tests *(Easy)*
 
-In the `week-06-security-considerations.md` file, analyse the security implications of displaying a list of all available endpoints in your REST API.
+Create a test file for the `Course` resource covering these five scenarios:
 
----
-
-### Task 4 (Easy)
-
-Refactor `/api/endpoints` route to be only accessible by users with the `ADMIN` role and if `NODE_ENV` is set to `development`.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+1. Create a course
+2. Get all courses
+3. Get a course by ID
+4. Update a course
+5. Delete a course
 
 ---
 
-### Task 5 (Easy)
+### Task 3 — Security Analysis *(Easy)*
 
-Refactor the `controllers/auth.js` file prevent users from registering with the `ADMIN` role. Only allow users to register with the `STUDENT` role.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 6 (Medium)
+### Task 4 — Restrict the Endpoints Route *(Easy)*
 
-Refactor the `rbac` middleware to accept either a single role or an array of roles, allowing users with any of the specified roles to access the route.
+Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
-In `routes/institution.js`, update the `rbac` middleware usage to allow both `ADMIN` and `STUDENT` roles to access the GET routes:
+- The user has the `ADMIN` role
+- `NODE_ENV` is set to `development`
 
-```js
+---
+
+### Task 5 — Restrict Registration Role *(Easy)*
+
+Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role — admins must be created through another mechanism.
+
+---
+
+### Task 6 — Multi-Role RBAC *(Medium)*
+
+Refactor the `rbac` middleware to accept either a single role string or an array of roles, allowing access if the user has **any** of the specified roles.
+
+Update `routes/institution.js` to allow both `ADMIN` and `STUDENT` to access GET routes:
+
+```javascript
 router.get("/", rbac(["ADMIN", "STUDENT"]), getInstitutions);
 router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 ```
 
-Here is an example request in Postman:
+---
 
-<ADD IMAGE HERE>
+### Task 7 — Implement Full RBAC Permissions *(Easy)*
+
+Apply the following permission matrix across all resources:
+
+| Resource | Operation | ADMIN | STAFF | STUDENT |
+|---|---|:---:|:---:|:---:|
+| Institution | Read (all & by ID) | ✅ | ✅ | ✅ |
+| Institution | Create | ✅ | ✅ | ❌ |
+| Institution | Update | ✅ | ✅ | ❌ |
+| Institution | Delete | ✅ | ❌ | ❌ |
+| Department | Read (all & by ID) | ✅ | ✅ | ✅ |
+| Department | Create | ✅ | ✅ | ❌ |
+| Department | Update | ✅ | ✅ | ❌ |
+| Department | Delete | ✅ | ❌ | ❌ |
+| Course | Read (all & by ID) | ✅ | ✅ | ✅ |
+| Course | Create | ✅ | ✅ | ❌ |
+| Course | Update | ✅ | ✅ | ❌ |
+| Course | Delete | ✅ | ❌ | ❌ |
+| User | View All | ✅ | ✅ | ❌ |
+| User | View Own | ✅ | ✅ | ✅ |
+| User | Update All | ✅ | ✅ | ❌ |
+| User | Update Own | ✅ | ✅ | ✅ |
+| User | Delete | ✅ | ❌ | ❌ |
 
 ---
 
-### Task 7 (Easy)
-
-Implement the following permissions for each resource:
-
-| Resource    | Operation       | Admin | Staff | Student |
-| ----------- | --------------- | ----- | ----- | ------- |
-| Institution | Read All and ID | Yes   | Yes   | Yes     |
-| Institution | Create          | Yes   | Yes   | No      |
-| Institution | Update          | Yes   | Yes   | No      |
-| Institution | Delete          | Yes   | No    | No      |
-| Department  | Read All and ID | Yes   | Yes   | Yes     |
-| Department  | Create          | Yes   | Yes   | No      |
-| Department  | Update          | Yes   | Yes   | No      |
-| Department  | Delete          | Yes   | No    | No      |
-| Course      | Read All and ID | Yes   | Yes   | Yes     |
-| Course      | Create          | Yes   | Yes   | No      |
-| Course      | Update          | Yes   | Yes   | No      |
-| Course      | Delete          | Yes   | No    | No      |
-| User        | View All        | Yes   | Yes   | No      |
-| User        | View Own        | Yes   | Yes   | Yes     |
-| User        | Update All      | Yes   | Yes   | No      |
-| User        | Update Own      | Yes   | Yes   | Yes     |
-| User        | Delete          | Yes   | No    | No      |
-
----
-
-### Task 8 (Medium)
+### Task 8 — User Profile *(Medium)*
 
 Create a `Profile` model with the following fields:
 
-- `id` - String, primary key, default UUID
-- `bio` - String
-- `avatarUrl` - String
-- `userId` - String, foreign key
-- `createdAt` - DateTime, default now
-- `updatedAt` - DateTime, default now
+| Field | Type | Constraints |
+|---|---|---|
+| `id` | String | Primary key, default UUID |
+| `bio` | String | |
+| `avatarUrl` | String | |
+| `userId` | String | Foreign key |
+| `createdAt` | DateTime | Default now |
+| `updatedAt` | DateTime | Default now |
 
-Update the `User` model to include a one-to-one relationship with the `Profile` model:
+Update the `User` model to include a one-to-one relationship:
 
-```js
+```javascript
 model User {
-  id               String        @id @default(uuid())
-  firstName        String
-  lastName         String
-  emailAddress     String        @unique
-  password         String
-  role             Role          @default(STUDENT)
-  profile          Profile?
-  createdAt        DateTime      @default(now())
-  updatedAt        DateTime      @default(now())
+  id           String   @id @default(uuid())
+  firstName    String
+  lastName     String
+  emailAddress String   @unique
+  password     String
+  role         Role     @default(STUDENT)
+  profile      Profile?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @default(now())
 }
 ```
 
-> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
+Update the `register` function in `controllers/auth.js` to auto-create a profile on registration:
 
-In `controllers/auth.js`, update the `register` function to create a profile for the user when they register:
-
-```js
+```javascript
 user = await prisma.user.create({
   data: {
     firstName,
@@ -1097,39 +978,33 @@ user = await prisma.user.create({
 });
 ```
 
-Here is the expected output:
-
-<ADD IMAGE HERE>
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 ---
 
-### Task 9 (Easy)
+### Task 9 — Confirm Password *(Easy)*
 
-Implement confirm password functionality in the `register` function in `controllers/auth.js`.
+Add confirm password validation to the `register` function in `controllers/auth.js`.
 
-Check if `req.body.password` and `req.body.confirmPassword` match. If they do not match, return a `400` status code with the message "Passwords do not match".
+Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with the message `"Passwords do not match"`.
 
-> Note: You do not need to store `req.body.confirmPassword` in the database.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+> `confirmPassword` should not be stored in the database.
 
 ---
 
 ## Hard Exercises
 
-These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of REST API development, but also help you achieve high marks in the Project assessment.
+These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
 
 ---
 
-### Task 1
+### Hard Task 1 — Account Lockout
 
-Implement account lockout functionality. After five failed login attempts, the account should be locked for 15 minutes.
+Implement account lockout after 5 failed login attempts. The account should be locked for 15 minutes.
 
-Add two new fields to the `User` model in the `schema.prisma` file:
+Add two fields to the `User` model:
 
-```js
+```javascript
 model User {
   id                  String    @id @default(uuid())
   firstName           String
@@ -1145,11 +1020,9 @@ model User {
 }
 ```
 
-> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
+Replace the `login` function in `controllers/auth.js` with the following and complete all TODO sections:
 
-Replace the existing `login` function in `controllers/auth.js` with the following code and complete the TODO sections:
-
-```js
+```javascript
 const login = async (req, res) => {
   try {
     const { emailAddress, password } = req.body;
@@ -1165,51 +1038,46 @@ const login = async (req, res) => {
 
     if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
       const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60));
-
-      // TODO 2: Return 423 status code with "Account locked. Try again in X minutes" message
+      // TODO 2: Return 423 with "Account locked. Try again in X minutes"
     }
 
     const isPasswordCorrect = await bcryptjs.compare(password, user.password);
 
     if (!isPasswordCorrect) {
-      const newFailedAttempts = /* TODO 3: Increment failed attempts count */;
-      const shouldLockAccount = /* TODO 4: Check if should lock account (>= 5 attempts) */;
+      const newFailedAttempts = /* TODO 3: Increment failed attempts */;
+      const shouldLockAccount = /* TODO 4: Check if >= 5 failed attempts */;
 
       await prisma.user.update({
         where: { id: user.id },
         data: {
           failedLoginAttempts: newFailedAttempts,
-          lockoutUntil: shouldLockAccount ? new Date(now + 15 * 60 * 1000) : user.lockoutUntil,
-          updatedAt: new Date()
-        }
+          lockoutUntil: shouldLockAccount
+            ? new Date(now + 15 * 60 * 1000)
+            : user.lockoutUntil,
+          updatedAt: new Date(),
+        },
       });
 
       if (shouldLockAccount) {
-        // TODO 5: Return 423 status code with "Account locked due to 5 failed attempts" message
+        // TODO 5: Return 423 with "Account locked due to 5 failed attempts"
       } else {
-        const attemptsRemaining = /* TODO 6: Calculate attempts remaining (5 - newFailedAttempts) */;
-        // TODO 7: Return 401 status code with "Invalid password. X attempts remaining" message
+        const attemptsRemaining = /* TODO 6: 5 - newFailedAttempts */;
+        // TODO 7: Return 401 with "Invalid password. X attempts remaining"
       }
     }
 
+    // Reset lockout on successful login
     await prisma.user.update({
       where: { id: user.id },
-      data: {
-        failedLoginAttempts: 0,
-        lockoutUntil: null,
-        updatedAt: new Date()
-      }
+      data: { failedLoginAttempts: 0, lockoutUntil: null, updatedAt: new Date() },
     });
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
     const token = jwt.sign(
-      {
-        id: user.id,
-        role: user.role,
-      },
+      { id: user.id, role: user.role },
       JWT_SECRET,
-      { expiresIn: JWT_LIFETIME }
+      { expiresIn: JWT_LIFETIME },
     );
 
     return res.status(200).json({
@@ -1217,28 +1085,22 @@ const login = async (req, res) => {
       token: token,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 ```
 
-Complete all TODO sections with the appropriate code.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 ---
 
-### Task 2
+### Hard Task 2 — Token Blacklist
 
-Implement token blacklist functionality. When a user logs out, the token should be added to a blacklist to prevent its further use.
+Implement a logout endpoint that invalidates the JWT by adding it to a blacklist in the database.
 
-Add a `TokenBlacklist` model to the `schema.prisma` file:
+Add a `TokenBlacklist` model to `schema.prisma`:
 
-```js
+```javascript
 model TokenBlacklist {
   id        String   @id @default(uuid())
   token     String   @unique
@@ -1247,11 +1109,9 @@ model TokenBlacklist {
 }
 ```
 
-> Note: Make sure you create and apply a migration after updating the `schema.prisma` file.
+Add a `logout` function to `controllers/auth.js` and complete the TODO:
 
-In `controllers/auth.js`, add the following `logout` function and complete the TODO sections:
-
-```js
+```javascript
 const logout = async (req, res) => {
   try {
     const authHeader = req.headers.authorization;
@@ -1266,43 +1126,31 @@ const logout = async (req, res) => {
     await prisma.tokenBlacklist.create({
       data: {
         token,
-        expiresAt: /* TODO 1: Convert payload.exp (in seconds) to a Date object (in milliseconds) */
-      }
+        expiresAt: /* TODO 1: Convert payload.exp (seconds) to a Date (milliseconds) */,
+      },
     });
 
-    return res.status(200).json({
-      message: "User successfully logged out"
-    });
+    return res.status(200).json({ message: "User successfully logged out" });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 ```
 
-Update the `routes/auth.js` file to include the logout route:
+Update `routes/auth.js`:
 
-```js
-import express from "express";
-
+```javascript
 import { register, login, logout } from "../controllers/auth.js";
-
-const router = express.Router();
 
 router.route("/register").post(register);
 router.route("/login").post(login);
-
-// TODO 2: Add a POST /logout route that uses the logout controller function
-
-export default router;
+// TODO 2: Add POST /logout route
 ```
 
-Update the `middleware/jwtAuth.js` file to check if the token is blacklisted and complete the TODO sections:
+Update `middleware/jwtAuth.js` to reject blacklisted tokens:
 
-```js
+```javascript
 import jwt from "jsonwebtoken";
-
 import prisma from "../prisma/db.js";
 
 const jwtAuth = async (req, res, next) => {
@@ -1315,10 +1163,10 @@ const jwtAuth = async (req, res, next) => {
 
     const token = authHeader.split(" ")[1];
 
-    const blacklistedToken = /* TODO 3: Check if token is blacklisted */;
+    const blacklistedToken = /* TODO 3: Look up token in TokenBlacklist */;
 
     if (blacklistedToken) {
-      // TODO 4: Return 403 status code with "Token has been invalidated" message
+      // TODO 4: Return 403 with "Token has been invalidated"
     }
 
     const payload = jwt.verify(token, process.env.JWT_SECRET);
@@ -1326,23 +1174,17 @@ const jwtAuth = async (req, res, next) => {
 
     next();
   } catch (err) {
-    return res
-      .status(401)
-      .json({ message: "Not authorized to access this route" });
+    return res.status(401).json({ message: "Not authorized to access this route" });
   }
 };
 
 export default jwtAuth;
 ```
 
-Complete all TODO sections with the appropriate code.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 ---
 
-## README File
+## README
 
-Update the `README.md` file in your repository to any new endpoints you have created. Include instructions on how to set up and run the project, as well as any other relevant information for users or developers.
+Update the `README.md` in your repository to document any new endpoints added this week. Include setup instructions and any other relevant information for users or developers.

@@ -1,40 +1,38 @@
-# Week 05
+# Week 05 — Validation, Seeding, Query Parameters & Deployment
 
----
+## Navigation
 
-## Important Links
-
-| Section        | Link                                                                         |
-| -------------- | ---------------------------------------------------------------------------- |
-| Previous Class | [Week 04](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
-| Code Example   | [Code Example](code-example)                                                 |
-| Next Class     | [Week 06](../week-06-security-authentication-rbac-api-testing/README.md)               |
+| | Link |
+|---|---|
+| ← Previous | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Code Example | [Code Example](code-example) |
+| → Next | [Week 06 — Security, Authentication, RBAC & API Testing](../week-06-security-authentication-rbac-api-testing/README.md) |
 
 ---
 
 ## Before We Start
 
-Open your repository in Visual Studio Code. Switch to the Week 05 branch using the following command:
+Open your repository in Visual Studio Code and switch to the Week 05 branch:
 
 ```bash
 git checkout -b week-05-validation-seeding-query-parameters-deployment
 ```
 
-Setup up your development environment, i.e., Docker, environment variables, etc.
+Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> Note: There are a lot of code examples. These code examples do not include code from the previous exercises. Typing the code examples rather than copying and pasting is strongly recommended. It will help you remember the code better. Also, read the comments in the code examples. It will help you understand where to type the code.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too — they help explain where and why things go.
 
 ---
 
-## Setup Script
+## 1. Setup Script
 
-Setting up your development environment can be time-consuming. To make it easier, a script called `application-setup.sh` has been provided to automate the setup process.
+Setting up your development environment manually can be time-consuming. A script called `application-setup.sh` is provided to automate this.
 
 The script will:
 
-1. Check for required dependencies: `docker`, `node` and `npm`
+1. Check for required dependencies: `docker`, `node`, and `npm`
 2. Select a project from the current directory
-3. Check if the Docker daemon is running and attempt to start it if not
+3. Check if the Docker daemon is running, and attempt to start it if not
 4. Check for an existing PostgreSQL Docker container and handle it appropriately
 5. Start a new PostgreSQL Docker container if needed
 6. Wait for PostgreSQL to be ready
@@ -42,41 +40,42 @@ The script will:
 8. Install Node.js dependencies
 9. Run Prisma migrations
 
-Copy the `application-setup.sh` script to your repository's root directory. Open a terminal in Visual Studio Code, read the script to understand what it does and run the following command to give execute permissions to the script.
+Copy `application-setup.sh` to your repository's root directory, then grant it execute permissions and run it:
 
 ```bash
 chmod +x application-setup.sh
-```
-
-Run the script by executing the following command.
-
-```bash
 ./application-setup.sh
 ```
 
----
-
-## Validation
-
-Validation is the process of ensuring that data is correct and meets certain criteria before it is used or stored. In the context of web development, validation is often used to ensure that user input is correct and meets the requirements of the application.
+> **Tip:** Read through the script before running it to understand what it does.
 
 ---
 
-### Setup
+## 2. Validation
 
-To get started, open a terminal and run the following.
+Validation ensures that data is correct and meets certain criteria before it is used or stored. In web development, this typically means verifying that incoming request data matches what your application expects.
+
+---
+
+### 2.1 Setup
+
+Install the Joi validation library:
 
 ```bash
 npm install joi
 ```
 
-> Note: There are several ways to validate data in a Node.js application. You could write your own validation logic, use a library like Joi, or use a validation framework like Express Validator.
+> **Alternatives:** You could write custom validation logic, or use libraries like Express Validator. We use Joi here.
 
 ---
 
-### Validation Middleware
+### 2.2 Validation Middleware
 
-In the `middleware` directory, create a new directory called `validation`. In the `validation` directory, create a new file called `institution.js`. In the `institution.js` file, add the following code.
+Create `middleware/validation/institution.js`.
+
+#### POST Validation
+
+The `validatePostInstitution` function validates data when **creating** a new institution. All fields are **required**.
 
 ```javascript
 import Joi from "joi";
@@ -110,8 +109,8 @@ const validatePostInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(
     { name, region, country },
     {
-      abortEarly: false,
-      convert: false, // Disable type conversion, e.g., "123" to 123
+      abortEarly: false,  // Collect all errors, not just the first
+      convert: false,     // Disable type coercion, e.g. "123" → 123
     },
   );
 
@@ -127,15 +126,11 @@ const validatePostInstitution = (req, res, next) => {
 };
 ```
 
-What is this code doing?
+#### PUT Validation
 
-- Defining a validation schema using Joi. The schema defines the expected structure and constraints for the `name`, `region` and `country` fields.
-- Validating the incoming request data against the schema. If there are validation errors, it formats the errors and returns a `409` status code with the error details in the response.
-- If the validation is successful, it calls `next()` to pass control to the next middleware or route handler.
+The `validatePutInstitution` function validates data when **updating** an institution. All fields are **optional**, but at least one must be provided.
 
-Below the `validatePostInstitution` function, add the following code to define the `validatePutInstitution` function.
-
-```js
+```javascript
 const validatePutInstitution = (req, res, next) => {
   const institutionSchema = Joi.object({
     name: Joi.string().min(3).max(100).optional().messages({
@@ -156,15 +151,12 @@ const validatePutInstitution = (req, res, next) => {
       "string.min": "country should have a minimum length of {#limit}",
       "string.max": "country should have a maximum length of {#limit}",
     }),
-  }).min(1); // Ensure at least one field is being updated
+  }).min(1); // At least one field must be provided
 
   const { name, region, country } = req.body;
   const { error } = institutionSchema.validate(
     { name, region, country },
-    {
-      abortEarly: false,
-      convert: false,
-    },
+    { abortEarly: false, convert: false },
   );
 
   if (error) {
@@ -181,17 +173,21 @@ const validatePutInstitution = (req, res, next) => {
 export { validatePostInstitution, validatePutInstitution };
 ```
 
-What is the difference between the `validatePostInstitution` and `validatePutInstitution` functions?
+**Summary of differences:**
 
-- The `validatePostInstitution` function is used for validating data when creating a new institution. It requires all fields to be present and valid.
+| | `validatePostInstitution` | `validatePutInstitution` |
+|---|---|---|
+| Use case | Creating a new institution | Updating an existing institution |
+| Fields | All required | All optional |
+| Minimum fields | All three | At least one |
 
-- The `validatePutInstitution` function is used for validating data when updating an existing institution. It allows partial updates, so all fields are optional, but at least one field must be provided.
+> **Why return all errors at once?** Using `abortEarly: false` collects all validation issues in a single response, so the client can fix everything in one go rather than resubmitting repeatedly.
 
 ---
 
-### Validating Other Types
+### 2.3 Validating Other Types
 
-You can validate other types such as `number`, `boolean`, `date`, `array`, `object` and `uuid`. Here are some examples.
+Joi supports many data types beyond strings. Here are examples:
 
 ```javascript
 const someSchema = Joi.object({
@@ -234,12 +230,10 @@ const someSchema = Joi.object({
       "number.max": "key2 should be at most {#limit}",
       "any.required": "key2 is required",
     }),
-  })
-    .required()
-    .messages({
-      "object.base": "objectField should be an object",
-      "any.required": "objectField is required",
-    }),
+  }).required().messages({
+    "object.base": "objectField should be an object",
+    "any.required": "objectField is required",
+  }),
   uuidField: Joi.string().uuid().required().messages({
     "string.base": "uuidField should be a string",
     "string.guid": "uuidField should be a valid UUID",
@@ -248,13 +242,13 @@ const someSchema = Joi.object({
 });
 ```
 
-> Resource: <https://joi.dev/api/?v=18.0.1>
+📖 Reference: [Joi API documentation](https://joi.dev/api/?v=18.0.1)
 
 ---
 
-### Institution Router
+### 2.4 Update the Institution Router
 
-In the `routes` directory, open the `institution.js` file. Update the file as follows.
+Update `routes/institution.js` to use the validation middleware. The validation middleware must come **before** the controller function.
 
 ```javascript
 import express from "express";
@@ -283,48 +277,25 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-> Note: The order of the middleware is important. The validation middleware must be placed before the controller function to ensure that the data is validated before it is processed.
+> **Order matters:** Middleware runs in the order it is defined. Always place validation middleware before the controller so data is validated before it is processed.
 
 ---
 
-### Postman Example
+## 3. Seeding
 
-Copy and paste the Create an institution request from the lecture-notes/week-03 folder to the lecture-notes/week-05 folder. Enter the following code in the text area.
-
-```json
-{
-  "name": "Otago Polytechnic"
-}
-```
-
-Click on the Send button to send the request. You should see the following response.
-
-![](<../../resources (ignore)/img/week-5/00-week-5.png>)
-
-Here is an example for the PUT method.
-
-![](<../../resources (ignore)/img/week-5/01-week-5.png>)
-
-> Note: You will notice that the an array of validation errors is returned in the response. This is a common practice as it allows the client to see all validation issues at once and address them in a single request, rather than having to fix one issue at a time and resubmit the request multiple times.
+Seeding populates a database with initial or sample data. It is particularly useful during development and testing. We use the Prisma Client to seed data here.
 
 ---
 
-## Seeding
+### 3.1 Seed Script
 
-Seeding is the process of populating a database with data. It is useful for development purposes. There are several ways to seed a database. Here, we will focus on using the Prisma Client to seed the database with data.
-
----
-
-### Script to Seed Data
-
-Before we create our tests, let us create a script to seed our database with data. In the `prisma` directory, create a new directory called `seeding`. In the `seeding` directory, create a new file named `institution.js` and add the following code.
+Create `prisma/seeding/institution.js`:
 
 ```javascript
 import prisma from "../db.js";
-
 import { validatePostInstitution } from "../../middleware/validation/institution.js";
 
-// Simulate an Express-like request and response for validation
+// Simulate an Express-like request/response to reuse existing validation middleware
 const validateInstitution = (institution) => {
   const req = { body: institution };
   let validationError = null;
@@ -341,7 +312,7 @@ const validateInstitution = (institution) => {
 
   if (validationError) {
     const errorMessage =
-      typeof validationError === "object" // Check if validationError is an object (e.g., { errors: [...] })
+      typeof validationError === "object"
         ? JSON.stringify(validationError)
         : validationError;
     throw new Error(errorMessage);
@@ -353,12 +324,11 @@ export const seedInstitutions = async () => {
   const errors = [];
 
   try {
-    // Delete all existing institutions
-    await prisma.institution.deleteMany();
+    await prisma.institution.deleteMany(); // Clear existing data
 
     const institutionData = [
       {
-        country: "New Zealand",
+        country: "New Zealand", // Intentionally invalid — missing name and region
       },
       {
         name: "Southern Institute of Technology",
@@ -391,11 +361,7 @@ export const seedInstitutions = async () => {
 
   const time = ((Date.now() - startTime) / 1000).toFixed(1);
 
-  return {
-    resource: "Institutions",
-    time,
-    errors,
-  };
+  return { resource: "Institutions", time, errors };
 };
 
 seedInstitutions().then((report) => {
@@ -415,23 +381,21 @@ seedInstitutions().then((report) => {
 
 ---
 
-### Package JSON File
-
-In the `package.json` file, add the following in the `scripts` block.
+### 3.2 Add a Seed Script to `package.json`
 
 ```json
 "prisma:seed-institutions": "node ./prisma/seeding/institution.js"
 ```
 
-To run the seed script, open a terminal and run the following command.
+Run the seed script:
 
 ```bash
 npm run prisma:seed-institutions
 ```
 
-Here is an example output:
+Example output (with error reporting implemented):
 
-```bash
+```
 ==========================================
 Seeding report
 ==========================================
@@ -442,21 +406,23 @@ Resource: Institutions
 ==========================================
 ```
 
-> Note: The output assumes you have replaced the comments "Display error message" and "Display no error message" with code to display the appropriate messages based on whether there are errors or not.
+---
+
+## 4. Query Parameters
+
+Query parameters pass additional information to a server in the URL — commonly used for filtering, sorting, and pagination. They appear after a `?` and are separated by `&`:
+
+```
+/api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5
+```
+
+You have likely used these without realising — every time you filter search results or navigate between pages of an online shop.
 
 ---
 
-## Query Parameters
+### 4.1 Update the Institution Repository
 
-Have you ever shopped online and used the filters to narrow down your search results, or sorted products by price, or navigated through multiple pages of search results? These features are made possible by query parameters in the URL.
-
-Query parameters are a way to pass additional information to a web server when making a request. They are often used to filter, sort, or paginate data. Query parameters are added to the end of a URL after a question mark (`?`) and are separated by an ampersand (`&`).
-
----
-
-### Institution Repository
-
-In the `repositories` directory, open the `institution.js` file. Update the `findAll()` function as follows.
+Update the `findAll()` method in `repositories/institution.js` to support filters, sorting, and pagination:
 
 ```javascript
 async findAll(
@@ -466,16 +432,11 @@ async findAll(
   page = 1,
   pageSize = 10
 ) {
-  // Ensure the page and page size are positive integers
+  // Ensure page and pageSize are positive integers
   page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
   pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-  // Get total number of institutions that match the filters
-  const totalCount = prisma.institution.count({
-    where: filters,
-  });
-
-  // Calculate total number of pages
+  const totalCount = prisma.institution.count({ where: filters });
   const totalPages = Math.ceil(totalCount / pageSize);
 
   const query = {
@@ -484,7 +445,7 @@ async findAll(
     take: pageSize,
   };
 
-  // Add dynamic filtering conditions if filters are provided
+  // Build dynamic WHERE clause from filters
   if (Object.keys(filters).length > 0) {
     query.where = {};
 
@@ -503,7 +464,6 @@ async findAll(
 
   const institutions = prisma.institution.findMany(query);
 
-  // Return the data along with pagination information
   return {
     data: institutions,
     pagination: {
@@ -520,9 +480,9 @@ async findAll(
 
 ---
 
-### Institution Controller
+### 4.2 Update the Institution Controller
 
-In the `controllers` directory, open the `institution.js` file. Update the `createInstitution()` and `getInstitutions()` functions as follows.
+Update `createInstitution` and `getInstitutions` in `controllers/institution.js`:
 
 ```javascript
 const createInstitution = async (req, res) => {
@@ -535,15 +495,12 @@ const createInstitution = async (req, res) => {
       data: institutions.data,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 
 const getInstitutions = async (req, res) => {
   try {
-    // Deconstruct query parameters with default values for sorting and pagination
     const {
       name,
       region,
@@ -554,19 +511,19 @@ const getInstitutions = async (req, res) => {
       pageSize = 10,
     } = req.query;
 
-    // Build a filters object based on query parameters
+    // Build filters from provided query params
     const filters = {};
     if (name) filters.name = name;
     if (region) filters.region = region;
     if (country) filters.country = country;
 
-    // Validate and normalise sort order. Default to asc if invalid
+    // Validate sortOrder — default to "asc" if invalid
     const validSortOrders = ["asc", "desc"];
     const order = validSortOrders.includes(sortOrder.toLowerCase())
       ? sortOrder.toLowerCase()
       : "asc";
 
-    // Validate and normalise sort field. Default to id if invalid
+    // Validate sortBy field — default to "id" if invalid
     const validSortFields = ["id", "name", "region", "country"];
     const fields = validSortFields.includes(sortBy.toLowerCase())
       ? sortBy.toLowerCase()
@@ -584,139 +541,108 @@ const getInstitutions = async (req, res) => {
       return res.status(404).json({ message: "No institutions found" });
     }
 
-    // Return the data along with pagination information
     return res.status(200).json({
       data: institutions.data,
       pagination: institutions.pagination,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
+    return res.status(500).json({ message: err.message });
   }
 };
 ```
 
----
+**Supported query parameters:**
 
-### Postman Example
-
-Here is an example of filtering an `institution` by `name`.
-
-![](<../../resources (ignore)/img/week-5/02-week-5.png>)
-
-Here is an example of sorting by `country` in `desc` order.
-
-![](<../../resources (ignore)/img/week-5/03-week-5.png>)
-
-Here is an example of sorting by `country` in `asc` order.
-
-![](<../../resources (ignore)/img/week-5/04-week-5.png>)
-
-Here is an example of paging by `pageSize`.
-
-![](<../../resources (ignore)/img/week-5/05-week-5.png>)
+| Parameter | Description | Default | Example |
+|---|---|---|---|
+| `name` | Filter by name (case-insensitive, partial match) | — | `?name=otago` |
+| `region` | Filter by region | — | `?region=Otago` |
+| `country` | Filter by country | — | `?country=New Zealand` |
+| `sortBy` | Field to sort by | `id` | `?sortBy=country` |
+| `sortOrder` | Sort direction | `asc` | `?sortOrder=desc` |
+| `page` | Page number | `1` | `?page=2` |
+| `pageSize` | Results per page | `10` | `?pageSize=5` |
 
 ---
 
-## Deployment
+## 5. Deployment
 
-Deployment is the process of making your application available to users. There are several platforms that you can use to deploy your application such as Render, Heroku, Vercel and Netlify.
+Deployment makes your application available to users. Common platforms include Render, Heroku, Vercel, and Netlify. We will use **Render**.
 
 ---
 
-### Package JSON File
+### 5.1 Build Script
 
-In the `package.json` file, add the following in the `scripts` block.
+Add the following to your `scripts` block in `package.json`:
 
 ```json
 "build": "npm install && npx prisma generate && npx prisma migrate deploy"
 ```
 
-What is the difference between `npx primsa migrate dev` and `npx prisma migrate deploy`?
+**`migrate dev` vs `migrate deploy`:**
 
-- `npx prisma migrate dev` is used for development purposes. It creates a new migration file based on the changes in your Prisma schema and applies it to your local database. It also updates the Prisma Client.
-- `npx prisma migrate deploy` is used for production deployment. It applies all pending migrations to the production database without creating new migration files. It does not update the Prisma Client, so you should ensure that your Prisma Client is up to date before running this command in production.
-
----
-
-### Render
-
-[Render](https://render.com/) is a cloud platform that makes it easy for developers and teams to deploy and host web applications and static websites.
-
-Sign up for a Render account at [https://dashboard.render.com/register](https://dashboard.render.com/register). Use your GitHub account to sign up.
+| Command | Purpose |
+|---|---|
+| `npx prisma migrate dev` | Development only — creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production — applies pending migrations without creating new files |
 
 ---
 
-### PostgreSQL Setup
+### 5.2 Create a Render Account
 
-1. Click the New + button, then click the Postgres link.
-
-![](<../../resources (ignore)/img/week-5/06-week-5.png>)
-
-2. Name your New PostgreSQL. Leave the Instance Type as Free. Click on the Create Database button.
-
-![](<../../resources (ignore)/img/week-5/07-week-5.jpeg>)
-
-4. Copy the External Database URL.
-
-![](<../../resources (ignore)/img/week-5/08-week-5.jpeg>)
+Sign up at [dashboard.render.com/register](https://dashboard.render.com/register) using your GitHub account.
 
 ---
 
-### Web Service Setup
+### 5.3 PostgreSQL Setup on Render
 
-1. Click the New + button, then click the Web Service link.
+1. Click **New +**, then select **Postgres**
+2. Give your database a name; leave Instance Type as **Free**
+3. Click **Create Database**
+4. Copy the **External Database URL** — you will need this shortly
 
-2. Click the Git Provider option. Connect to your repository. You may need to authorise Render access to your GitHub repositories.
+---
 
-<ADD IMAGE HERE>
+### 5.4 Web Service Setup on Render
 
-4. Name your web service. For example, id607001-rest-api. Change the Language to Node and Branch to week-05-validation-seeding-query-parameters-deployment.
+1. Click **New +**, then select **Web Service**
+2. Choose **Git Provider** and connect your repository (you may need to authorise Render access to GitHub)
+3. Configure the service:
+   - **Name:** e.g. `id607001-rest-api`
+   - **Language:** Node
+   - **Branch:** `week-05-validation-seeding-query-parameters-deployment`
+   - **Build Command:** `npm run build`
+   - **Start Command:** `node app.js`
+   - **Instance Type:** Free
+4. Add an environment variable: `DATABASE_URL` = the External Database URL copied above
+5. Click **Deploy Web Service**
+6. Monitor the logs — your service is ready when you see:
 
-> Note: As you progress through the next few weeks, you will manually change the Branch.
-
-<ADD IMAGE HERE>
-
-5. Change the Build Command to `npm run build` and Start Command to `node app.js`. Leave the Instance Type as Free.
-
-<ADD IMAGE HERE>
-
-6. Add the environment variable called `DATABASE_URL`. The value should be the External Database URL you copied above.
-
-<ADD IMAGE HERE>
-
-7. Click on the Deploy Web Service button.
-
-<ADD IMAGE HERE>
-
-8. Keep an eye on the logs. Your web service is ready when you see the following message.
-
-```bash
+```
 Server is listening on port 10000. Visit http://localhost:10000
 Your service is live 🎉
 ```
 
-9. Scroll to the top of the page and click on your web service's URL.
+> **Note:** As you progress through future weeks, update the Branch field to match the current week's branch.
 
-> Resource: <https://render.com/docs>
+📖 Reference: [Render docs](https://render.com/docs)
 
 ---
 
 ## Exercises
 
-> Note: You are encouraged to complete all of the tasks. However, if you are short on time, focus on completing as many tasks as you can.
+> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
 
-Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
+### AI Usage Guidelines
 
-- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- - Acknowledge what AI tool you have used. If you use AI to help you with a file, include a JSDoc comment at the top of the file
+AI tools are encouraged but use them critically:
 
-Here is an example JSDoc comment:
+- Refine your prompts — vague prompts yield vague responses
+- Validate AI output — don't trust it blindly
+- Acknowledge AI usage at the top of any AI-assisted file:
 
-```js
-/*
+```javascript
+/**
  * @fileoverview Brief description of what this file does
  * @ai-assisted This file was developed with assistance from [AI Tool Name]
  * @prompts
@@ -728,92 +654,73 @@ Here is an example JSDoc comment:
 
 ---
 
-### Task 1 (Easy)
+### Task 1 — Implement the Code Examples *(Easy)*
 
-Implement the code examples above.
+Implement all of the code examples covered above.
 
 ---
 
-### Task 2 (Medium)
+### Task 2 — Catch-All Route *(Medium)*
 
-A catch-all route is a route that matches any request that does not match any of the other routes.
+A catch-all route matches any request that doesn't match a defined route, and returns a helpful 404 response.
 
-In `app.js`, implement a catch-all route that returns a `404` status code with "Endpoint X Y not found" message, where `X` is the HTTP method and `Y` is the requested URL. Use `req.method` for the HTTP method and `req.originalUrl` for the requested URL.
+In `app.js`, add the following **after all other routes**:
 
 ```javascript
-// Omitted for brevity
-
 app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
 
+// Must be last — catches any unmatched routes
 app.use((req, res) => {
-  // Return a 404 status code with a JSON message
+  // Return a 404 with: "Endpoint {req.method} {req.originalUrl} not found"
 });
-
-// Omitted for brevity
 ```
 
-> Note: The catch-all route should be the last route defined in the file.
-
-Here is an example request in Postman:
-
-![](<../../resources (ignore)/img/week-5/exercises-00-week-5.png>)
+> Use `req.method` for the HTTP method and `req.originalUrl` for the URL.
 
 ---
 
-### Task 3 (Medium)
+### Task 3 — Endpoints List *(Medium)*
 
-Implement an endpoint, e.g., `/api/endpoints`, that displays a list of available endpoints in your REST API.
-
-Here is an example request in Postman:
-
-![](<../../resources (ignore)/img/week-5/exercises-01-week-5.png>)
+Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
 ---
 
-### Task 4 (Medium)
+### Task 4 — Validation for Other Resources *(Medium)*
 
-Implement POST and PUT validation for the `Department`, `Course` and `User` resources.
+Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources. Create the following files in `middleware/validation/`:
 
-Create validation middleware in the `middleware/validation` directory for each resource:
+| File | Fields to validate |
+|---|---|
+| `department.js` | `name`, `institutionId` |
+| `course.js` | `name`, `code`, `description`, `departmentId` |
+| `user.js` | `firstName`, `lastName`, `emailAddress` |
 
-- `department.js` - validate `name` and `institutionId`
-- `course.js` - validate `name`, `code`, `description` and `departmentId`
-- `user.js` - validate `firstName`, `lastName` and `emailAddress`
-
-Use the validation middleware in the appropriate routes to validate incoming request data before processing.
+Register the middleware in the appropriate route files.
 
 ---
 
-### Task 5 (Medium)
+### Task 5 — Seeding Other Resources *(Medium)*
 
-Implement scripts to seed the `Department`, `Course` and `User` resources. Create seed scripts that populate your database with sample data for testing and development purposes. The scripts should:
+Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
 - Clear existing data before seeding
-- Create realistic sample records for each resource
-- Maintain proper relationships between resources, i.e., departments belong to institutions, courses belong to departments, etc.
+- Create realistic sample records
+- Maintain proper relationships (departments → institutions, courses → departments)
 - Be repeatable without causing duplicate data errors
 
 ---
 
 ## Hard Exercises
 
-These following exercises will require you to do some research and problem-solving independently. Completing these exercises will help you deepen you understanding of REST API development, but also help you achieve high marks in the Project assessment.
+These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
 
 ---
 
-### Task 1
+### Hard Task 1 — Detailed Seeding Report
 
-Extend your seeding scripts to generate a detailed report after seeding completes. The report should include:
-
-- Total number of records created for each resource
-- Time taken to seed each resource
-- Any validation or database errors encountered
-
-Update all your seeding scripts to implement this reporting feature.
-
-Here is an example of what the report should look like:
+Extend your seeding scripts to generate a comprehensive report. The report should include, for each resource: records created, time taken, and any errors encountered. Here is the expected format:
 
 ```
 ==========================================
@@ -840,69 +747,41 @@ Errors encountered: None
 ==========================================
 ```
 
-Display the report using `console.log()` after the seeding process is complete in each of your seeding scripts.
-
-Hint: The recommended approach is to create a file, e.g., `index.js` in `prisma/seeding` that imports and runs all seeding scripts sequentially, collects their results, e.g., resource, records created, time taken, errors, and then generates the final report.
+> **Hint:** Create a `prisma/seeding/index.js` that imports and runs all seed scripts sequentially, collects their results, and generates the final report.
 
 ---
 
-### Task 2
+### Hard Task 2 — Advanced Query Parameters
 
-Extend the query parameters functionality to support advanced filtering options:
+Extend the query parameter system to support advanced filtering operators. Maintain backward compatibility with existing filters.
 
-- Range: createdAt[lte]=2023-12-31 or `?createdAt[gte]=2023-01-01&`
-- Array: `?country[in]=Australia,New Zealand`
-- Exclusion: `?region[not]=Otago`
-- Partial match: `?name[startsWith]=Otago` or `?name[endsWith]=Polytechnic`
-- Case sensitivity: `?name=otago polytechnic&caseSensitive=false`
-
-Update the existing query parameter logic to handle these new operators while maintaining backward compatibility with the existing filters.
-
-Here is are example requests in Postman:
-
-Range:
-
-<ADD IMAGE HERE>
-
-Array:
-
-<ADD IMAGE HERE>
-
-Exclusion:
-
-<ADD IMAGE HERE>
-
-Partial match:
-
-<ADD IMAGE HERE>
-
-Case sensitivity:
-
-<ADD IMAGE HERE>
+| Operator | Example |
+|---|---|
+| Range (less than or equal) | `?createdAt[lte]=2023-12-31` |
+| Range (greater than or equal) | `?createdAt[gte]=2023-01-01` |
+| Array (match any) | `?country[in]=Australia,New Zealand` |
+| Exclusion | `?region[not]=Otago` |
+| Starts with | `?name[startsWith]=Otago` |
+| Ends with | `?name[endsWith]=Polytechnic` |
+| Case sensitivity | `?name=otago polytechnic&caseSensitive=false` |
 
 ---
 
-### Task 3
+### Hard Task 3 — Health Check Endpoint
 
-Implement an endpoint, e.g., `/api/health`, that provides a health check for your REST API. The health check should verify that application's status, database connectivity and uptime.
-
-Here is an example request in Postman:
-
-<ADD IMAGE HERE>
+Implement `GET /api/health` that returns the current status of your application. The response should include at minimum: application status, database connectivity, and server uptime.
 
 ---
 
-### Task 4
+### Hard Task 4 — Reduce Code Duplication
 
-You notice there is a lot of code duplication. Refactor the code to reduce the duplication.
+Refactor validation and seeding code to reduce repetition:
 
-Here are some suggestions:
-
-- Create a base validation middleware module called `BaseValidationMiddleware` that contains common validation logic that can be extended by other validation middleware modules
-- Create a base seeding script module called `BaseSeedingScript` that contains common seeding logic that can be extended by other seeding script modules
+- **`BaseValidationMiddleware`** — a base module with shared validation logic that resource-specific middleware can extend
+- **`BaseSeedingScript`** — a base module with shared seeding logic that individual seed scripts can extend
 
 ---
 
-## README File
+## README
 
-Update the `README.md` file in your repository to any new endpoints you have created. Include instructions on how to set up and run the project, as well as any other relevant information for users or developers.
+Update the `README.md` in your repository to document any new endpoints added this week. Include setup instructions and any other relevant information for users or developers.
