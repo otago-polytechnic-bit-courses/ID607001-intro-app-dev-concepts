@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-|---|---|
-| ← Previous | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
-| Code Example | [Code Example](code-example) |
-| → Next | [Week 06 — Security, Authentication, RBAC & API Testing](../week-06-security-authentication-rbac-api-testing/README.md) |
+|              | Link                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                                       |
+| → Next       | [Week 06 — Security, Authentication, RBAC & API Testing](../week-06-security-authentication-rbac-api-testing/README.md)                            |
 
 ---
 
@@ -109,8 +109,8 @@ const validatePostInstitution = (req, res, next) => {
   const { error } = institutionSchema.validate(
     { name, region, country },
     {
-      abortEarly: false,  // Collect all errors, not just the first
-      convert: false,     // Disable type coercion, e.g. "123" → 123
+      abortEarly: false, // Collect all errors, not just the first
+      convert: false, // Disable type coercion, e.g. "123" → 123
     },
   );
 
@@ -175,11 +175,11 @@ export { validatePostInstitution, validatePutInstitution };
 
 **Summary of differences:**
 
-| | `validatePostInstitution` | `validatePutInstitution` |
-|---|---|---|
-| Use case | Creating a new institution | Updating an existing institution |
-| Fields | All required | All optional |
-| Minimum fields | All three | At least one |
+|                | `validatePostInstitution`  | `validatePutInstitution`         |
+| -------------- | -------------------------- | -------------------------------- |
+| Use case       | Creating a new institution | Updating an existing institution |
+| Fields         | All required               | All optional                     |
+| Minimum fields | All three                  | At least one                     |
 
 > **Why return all errors at once?** Using `abortEarly: false` collects all validation issues in a single response, so the client can fix everything in one go rather than resubmitting repeatedly.
 
@@ -230,10 +230,12 @@ const someSchema = Joi.object({
       "number.max": "key2 should be at most {#limit}",
       "any.required": "key2 is required",
     }),
-  }).required().messages({
-    "object.base": "objectField should be an object",
-    "any.required": "objectField is required",
-  }),
+  })
+    .required()
+    .messages({
+      "object.base": "objectField should be an object",
+      "any.required": "objectField is required",
+    }),
   uuidField: Joi.string().uuid().required().messages({
     "string.base": "uuidField should be a string",
     "string.guid": "uuidField should be a valid UUID",
@@ -553,15 +555,15 @@ const getInstitutions = async (req, res) => {
 
 **Supported query parameters:**
 
-| Parameter | Description | Default | Example |
-|---|---|---|---|
-| `name` | Filter by name (case-insensitive, partial match) | — | `?name=otago` |
-| `region` | Filter by region | — | `?region=Otago` |
-| `country` | Filter by country | — | `?country=New Zealand` |
-| `sortBy` | Field to sort by | `id` | `?sortBy=country` |
-| `sortOrder` | Sort direction | `asc` | `?sortOrder=desc` |
-| `page` | Page number | `1` | `?page=2` |
-| `pageSize` | Results per page | `10` | `?pageSize=5` |
+| Parameter   | Description                                      | Default | Example                |
+| ----------- | ------------------------------------------------ | ------- | ---------------------- |
+| `name`      | Filter by name (case-insensitive, partial match) | —       | `?name=otago`          |
+| `region`    | Filter by region                                 | —       | `?region=Otago`        |
+| `country`   | Filter by country                                | —       | `?country=New Zealand` |
+| `sortBy`    | Field to sort by                                 | `id`    | `?sortBy=country`      |
+| `sortOrder` | Sort direction                                   | `asc`   | `?sortOrder=desc`      |
+| `page`      | Page number                                      | `1`     | `?page=2`              |
+| `pageSize`  | Results per page                                 | `10`    | `?pageSize=5`          |
 
 ---
 
@@ -581,10 +583,10 @@ Add the following to your `scripts` block in `package.json`:
 
 **`migrate dev` vs `migrate deploy`:**
 
-| Command | Purpose |
-|---|---|
-| `npx prisma migrate dev` | Development only — creates new migration files and applies them locally |
-| `npx prisma migrate deploy` | Production — applies pending migrations without creating new files |
+| Command                     | Purpose                                                                 |
+| --------------------------- | ----------------------------------------------------------------------- |
+| `npx prisma migrate dev`    | Development only — creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production — applies pending migrations without creating new files      |
 
 ---
 
@@ -654,13 +656,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples *(Easy)*
+### Task 1 — Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Catch-All Route *(Medium)*
+### Task 2 — Catch-All Route _(Medium)_
 
 A catch-all route matches any request that doesn't match a defined route, and returns a helpful 404 response.
 
@@ -681,27 +683,27 @@ app.use((req, res) => {
 
 ---
 
-### Task 3 — Endpoints List *(Medium)*
+### Task 3 — Endpoints List _(Medium)_
 
 Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
 ---
 
-### Task 4 — Validation for Other Resources *(Medium)*
+### Task 4 — Validation for Other Resources _(Medium)_
 
 Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources. Create the following files in `middleware/validation/`:
 
-| File | Fields to validate |
-|---|---|
-| `department.js` | `name`, `institutionId` |
-| `course.js` | `name`, `code`, `description`, `departmentId` |
-| `user.js` | `firstName`, `lastName`, `emailAddress` |
+| File            | Fields to validate                            |
+| --------------- | --------------------------------------------- |
+| `department.js` | `name`, `institutionId`                       |
+| `course.js`     | `name`, `code`, `description`, `departmentId` |
+| `user.js`       | `firstName`, `lastName`, `emailAddress`       |
 
 Register the middleware in the appropriate route files.
 
 ---
 
-### Task 5 — Seeding Other Resources *(Medium)*
+### Task 5 — Seeding Other Resources _(Medium)_
 
 Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
@@ -755,15 +757,15 @@ Errors encountered: None
 
 Extend the query parameter system to support advanced filtering operators. Maintain backward compatibility with existing filters.
 
-| Operator | Example |
-|---|---|
-| Range (less than or equal) | `?createdAt[lte]=2023-12-31` |
-| Range (greater than or equal) | `?createdAt[gte]=2023-01-01` |
-| Array (match any) | `?country[in]=Australia,New Zealand` |
-| Exclusion | `?region[not]=Otago` |
-| Starts with | `?name[startsWith]=Otago` |
-| Ends with | `?name[endsWith]=Polytechnic` |
-| Case sensitivity | `?name=otago polytechnic&caseSensitive=false` |
+| Operator                      | Example                                       |
+| ----------------------------- | --------------------------------------------- |
+| Range (less than or equal)    | `?createdAt[lte]=2023-12-31`                  |
+| Range (greater than or equal) | `?createdAt[gte]=2023-01-01`                  |
+| Array (match any)             | `?country[in]=Australia,New Zealand`          |
+| Exclusion                     | `?region[not]=Otago`                          |
+| Starts with                   | `?name[startsWith]=Otago`                     |
+| Ends with                     | `?name[endsWith]=Polytechnic`                 |
+| Case sensitivity              | `?name=otago polytechnic&caseSensitive=false` |
 
 ---
 

@@ -2,12 +2,12 @@
 
 ## Navigation
 
-| | Link |
-|---|---|
-| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example | [Code Example](code-example) |
-| Auth Advanced Example | [Auth - Advanced Code Example](auth-advanced-code-example) |
-| → Next | Week 07 |
+|                       | Link                                                                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous            | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example          | [Code Example](code-example)                                                                                                        |
+| Auth Advanced Example | [Auth - Advanced Code Example](auth-advanced-code-example)                                                                          |
+| → Next                | Week 07                                                                                                                             |
 
 ---
 
@@ -33,18 +33,18 @@ Security is the practice of protecting systems, networks, and data from unauthor
 
 ### 1.1 Common API Vulnerabilities
 
-| Vulnerability | Description |
-|---|---|
-| **Broken object level authorisation** | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
-| **Broken user authentication** | API doesn't properly authenticate users, allowing impersonation or unauthorised access |
-| **Excessive data exposure** | API returns more data than necessary, exposing sensitive information |
-| **Lack of rate limiting** | No request throttling — enables denial-of-service or brute-force attacks |
-| **Mass assignment** | API lets users update object properties they shouldn't have access to |
-| **Security misconfiguration** | Improperly configured API exposes exploitable vulnerabilities |
-| **Injection** | Unvalidated user input allows malicious code to be injected |
-| **Improper assets management** | Poorly managed endpoints or resources can be accessed or manipulated unexpectedly |
-| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect or respond to |
-| **Vulnerable components** | Use of third-party libraries with known vulnerabilities |
+| Vulnerability                           | Description                                                                                                         |
+| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| **Broken object level authorisation**   | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
+| **Broken user authentication**          | API doesn't properly authenticate users, allowing impersonation or unauthorised access                              |
+| **Excessive data exposure**             | API returns more data than necessary, exposing sensitive information                                                |
+| **Lack of rate limiting**               | No request throttling — enables denial-of-service or brute-force attacks                                            |
+| **Mass assignment**                     | API lets users update object properties they shouldn't have access to                                               |
+| **Security misconfiguration**           | Improperly configured API exposes exploitable vulnerabilities                                                       |
+| **Injection**                           | Unvalidated user input allows malicious code to be injected                                                         |
+| **Improper assets management**          | Poorly managed endpoints or resources can be accessed or manipulated unexpectedly                                   |
+| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect or respond to                                                |
+| **Vulnerable components**               | Use of third-party libraries with known vulnerabilities                                                             |
 
 ---
 
@@ -56,11 +56,11 @@ Authentication is the process of verifying the identity of a user or system — 
 
 ### 2.1 Token vs. Session Authentication
 
-| | Token-Based | Session-Based |
-|---|---|---|
-| **State** | Stateless | Stateful |
-| **Storage** | Client stores token in memory or local storage | Server stores session in memory or database |
-| **Transport** | Sent in `Authorization` header | Sent via cookie (session ID) |
+|                   | Token-Based                                                        | Session-Based                                |
+| ----------------- | ------------------------------------------------------------------ | -------------------------------------------- |
+| **State**         | Stateless                                                          | Stateful                                     |
+| **Storage**       | Client stores token in memory or local storage                     | Server stores session in memory or database  |
+| **Transport**     | Sent in `Authorization` header                                     | Sent via cookie (session ID)                 |
 | **Server lookup** | Server validates token on every request — no session memory needed | Server looks up the session on every request |
 
 ---
@@ -85,10 +85,10 @@ Install the required packages:
 npm install bcryptjs jsonwebtoken
 ```
 
-| Package | Purpose |
-|---|---|
-| `bcryptjs` | Hash and compare passwords |
-| `jsonwebtoken` | Create and verify JWTs |
+| Package        | Purpose                    |
+| -------------- | -------------------------- |
+| `bcryptjs`     | Hash and compare passwords |
+| `jsonwebtoken` | Create and verify JWTs     |
 
 ---
 
@@ -162,7 +162,9 @@ const jwtAuth = (req, res, next) => {
 
     next();
   } catch (err) {
-    return res.status(401).json({ message: "Not authorized to access this route" });
+    return res
+      .status(401)
+      .json({ message: "Not authorized to access this route" });
   }
 };
 
@@ -244,11 +246,9 @@ const login = async (req, res) => {
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
 
     // Sign a token containing the user's ID and role
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: JWT_LIFETIME },
-    );
+    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
+      expiresIn: JWT_LIFETIME,
+    });
 
     return res.status(200).json({
       message: "User successfully logged in",
@@ -391,7 +391,9 @@ const rbac = (requiredRole) => {
     const { user } = req;
 
     if (!user || !user.role) {
-      return res.status(403).json({ message: "Forbidden. User is not authenticated" });
+      return res
+        .status(403)
+        .json({ message: "Forbidden. User is not authenticated" });
     }
 
     if (user.role !== requiredRole) {
@@ -466,9 +468,9 @@ import rateLimit from "express-rate-limit";
 
 const rateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15-minute window
-  max: 5,                    // Max 5 requests per window per IP
-  standardHeaders: true,     // Add rate limit info to RateLimit-* headers
-  legacyHeaders: false,      // Disable X-RateLimit-* headers
+  max: 5, // Max 5 requests per window per IP
+  standardHeaders: true, // Add rate limit info to RateLimit-* headers
+  legacyHeaders: false, // Disable X-RateLimit-* headers
   message: {
     message: "Too many requests, please try again later",
   },
@@ -477,13 +479,13 @@ const rateLimiter = rateLimit({
 export default rateLimiter;
 ```
 
-| Option | Purpose |
-|---|---|
-| `windowMs` | Length of the rate limit window in milliseconds |
-| `max` | Maximum requests allowed per window per IP |
-| `standardHeaders` | Adds `RateLimit-*` headers to responses |
-| `legacyHeaders` | Disables older `X-RateLimit-*` headers |
-| `message` | Error payload returned when the limit is exceeded |
+| Option            | Purpose                                           |
+| ----------------- | ------------------------------------------------- |
+| `windowMs`        | Length of the rate limit window in milliseconds   |
+| `max`             | Maximum requests allowed per window per IP        |
+| `standardHeaders` | Adds `RateLimit-*` headers to responses           |
+| `legacyHeaders`   | Disables older `X-RateLimit-*` headers            |
+| `message`         | Error payload returned when the limit is exceeded |
 
 📖 Reference: [express-rate-limit docs](https://express-rate-limit.mintlify.app/overview)
 
@@ -510,10 +512,10 @@ API testing verifies the functionality, reliability, performance, and security o
 
 We use three libraries together:
 
-| Library | Role |
-|---|---|
-| **Mocha** | Test framework — organises and runs tests |
-| **Chai** | Assertion library — verifies expected outcomes |
+| Library       | Role                                            |
+| ------------- | ----------------------------------------------- |
+| **Mocha**     | Test framework — organises and runs tests       |
+| **Chai**      | Assertion library — verifies expected outcomes  |
 | **Supertest** | HTTP client — makes requests to the Express app |
 
 ---
@@ -613,9 +615,17 @@ describe("Institution CRUD", () => {
   let institutionTwoId;
 
   const institutionData = [
-    { name: "Ara Institute of Canterbury", region: "Canterbury", country: "New Zealand" },
+    {
+      name: "Ara Institute of Canterbury",
+      region: "Canterbury",
+      country: "New Zealand",
+    },
     { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
-    { name: "Southern Institute of Technology", region: "Southland", country: "New Zealand" },
+    {
+      name: "Southern Institute of Technology",
+      region: "Southland",
+      country: "New Zealand",
+    },
   ];
 
   before(async () => {
@@ -666,7 +676,10 @@ describe("Institution CRUD", () => {
   it("should update institution two", async () => {
     const res = await request(app)
       .put(`${BASE_URL}/${institutionTwoId}`)
-      .send({ name: institutionData[0].name, region: institutionData[0].region });
+      .send({
+        name: institutionData[0].name,
+        region: institutionData[0].region,
+      });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -781,11 +794,11 @@ Update the `test` script in `package.json`:
 "test": "mocha tests --recursive --timeout 10000 --exit"
 ```
 
-| Flag | Purpose |
-|---|---|
-| `--recursive` | Runs tests in subdirectories |
-| `--timeout 10000` | Sets a 10-second timeout per test |
-| `--exit` | Forces Mocha to exit after all tests complete |
+| Flag              | Purpose                                       |
+| ----------------- | --------------------------------------------- |
+| `--recursive`     | Runs tests in subdirectories                  |
+| `--timeout 10000` | Sets a 10-second timeout per test             |
+| `--exit`          | Forces Mocha to exit after all tests complete |
 
 Run the tests:
 
@@ -841,13 +854,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples *(Easy)*
+### Task 1 — Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Course CRUD Tests *(Easy)*
+### Task 2 — Course CRUD Tests _(Easy)_
 
 Create a test file for the `Course` resource covering these five scenarios:
 
@@ -859,13 +872,13 @@ Create a test file for the `Course` resource covering these five scenarios:
 
 ---
 
-### Task 3 — Security Analysis *(Easy)*
+### Task 3 — Security Analysis _(Easy)_
 
 In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 4 — Restrict the Endpoints Route *(Easy)*
+### Task 4 — Restrict the Endpoints Route _(Easy)_
 
 Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
@@ -874,13 +887,13 @@ Refactor `/api/endpoints` so it is only accessible when **both** of the followin
 
 ---
 
-### Task 5 — Restrict Registration Role *(Easy)*
+### Task 5 — Restrict Registration Role _(Easy)_
 
 Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role — admins must be created through another mechanism.
 
 ---
 
-### Task 6 — Multi-Role RBAC *(Medium)*
+### Task 6 — Multi-Role RBAC _(Medium)_
 
 Refactor the `rbac` middleware to accept either a single role string or an array of roles, allowing access if the user has **any** of the specified roles.
 
@@ -893,44 +906,44 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 ---
 
-### Task 7 — Implement Full RBAC Permissions *(Easy)*
+### Task 7 — Implement Full RBAC Permissions _(Easy)_
 
 Apply the following permission matrix across all resources:
 
-| Resource | Operation | ADMIN | STAFF | STUDENT |
-|---|---|:---:|:---:|:---:|
-| Institution | Read (all & by ID) | ✅ | ✅ | ✅ |
-| Institution | Create | ✅ | ✅ | ❌ |
-| Institution | Update | ✅ | ✅ | ❌ |
-| Institution | Delete | ✅ | ❌ | ❌ |
-| Department | Read (all & by ID) | ✅ | ✅ | ✅ |
-| Department | Create | ✅ | ✅ | ❌ |
-| Department | Update | ✅ | ✅ | ❌ |
-| Department | Delete | ✅ | ❌ | ❌ |
-| Course | Read (all & by ID) | ✅ | ✅ | ✅ |
-| Course | Create | ✅ | ✅ | ❌ |
-| Course | Update | ✅ | ✅ | ❌ |
-| Course | Delete | ✅ | ❌ | ❌ |
-| User | View All | ✅ | ✅ | ❌ |
-| User | View Own | ✅ | ✅ | ✅ |
-| User | Update All | ✅ | ✅ | ❌ |
-| User | Update Own | ✅ | ✅ | ✅ |
-| User | Delete | ✅ | ❌ | ❌ |
+| Resource    | Operation          | ADMIN | STAFF | STUDENT |
+| ----------- | ------------------ | :---: | :---: | :-----: |
+| Institution | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
+| Institution | Create             |  ✅   |  ✅   |   ❌    |
+| Institution | Update             |  ✅   |  ✅   |   ❌    |
+| Institution | Delete             |  ✅   |  ❌   |   ❌    |
+| Department  | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
+| Department  | Create             |  ✅   |  ✅   |   ❌    |
+| Department  | Update             |  ✅   |  ✅   |   ❌    |
+| Department  | Delete             |  ✅   |  ❌   |   ❌    |
+| Course      | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
+| Course      | Create             |  ✅   |  ✅   |   ❌    |
+| Course      | Update             |  ✅   |  ✅   |   ❌    |
+| Course      | Delete             |  ✅   |  ❌   |   ❌    |
+| User        | View All           |  ✅   |  ✅   |   ❌    |
+| User        | View Own           |  ✅   |  ✅   |   ✅    |
+| User        | Update All         |  ✅   |  ✅   |   ❌    |
+| User        | Update Own         |  ✅   |  ✅   |   ✅    |
+| User        | Delete             |  ✅   |  ❌   |   ❌    |
 
 ---
 
-### Task 8 — User Profile *(Medium)*
+### Task 8 — User Profile _(Medium)_
 
 Create a `Profile` model with the following fields:
 
-| Field | Type | Constraints |
-|---|---|---|
-| `id` | String | Primary key, default UUID |
-| `bio` | String | |
-| `avatarUrl` | String | |
-| `userId` | String | Foreign key |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field       | Type     | Constraints               |
+| ----------- | -------- | ------------------------- |
+| `id`        | String   | Primary key, default UUID |
+| `bio`       | String   |                           |
+| `avatarUrl` | String   |                           |
+| `userId`    | String   | Foreign key               |
+| `createdAt` | DateTime | Default now               |
+| `updatedAt` | DateTime | Default now               |
 
 Update the `User` model to include a one-to-one relationship:
 
@@ -982,7 +995,7 @@ user = await prisma.user.create({
 
 ---
 
-### Task 9 — Confirm Password *(Easy)*
+### Task 9 — Confirm Password _(Easy)_
 
 Add confirm password validation to the `register` function in `controllers/auth.js`.
 

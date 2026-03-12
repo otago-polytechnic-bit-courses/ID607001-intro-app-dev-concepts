@@ -2,12 +2,12 @@
 
 ## Navigation
 
-| | Link |
-|---|---|
-| ← Previous | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md) |
-| Code Example | [Code Example](code-example) |
-| Advanced Code Example | [Advanced Code Example](advanced-code-example) |
-| → Next | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+|                       | Link                                                                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous            | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                  |
+| Code Example          | [Code Example](code-example)                                                                                                        |
+| Advanced Code Example | [Advanced Code Example](advanced-code-example)                                                                                      |
+| → Next                | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 
@@ -128,10 +128,10 @@ To test content negotiation in Postman, copy the "Create an institution" request
 
 Prisma supports three common relationship types between models:
 
-| Type | Description |
-|---|---|
-| **One-to-one** | A single model instance is associated with a single instance of another model |
-| **One-to-many** | A single model instance is associated with multiple instances of another model |
+| Type             | Description                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| **One-to-one**   | A single model instance is associated with a single instance of another model         |
+| **One-to-many**  | A single model instance is associated with multiple instances of another model        |
 | **Many-to-many** | Multiple instances of a model are associated with multiple instances of another model |
 
 📖 Reference: [Prisma — Relations](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations)
@@ -316,11 +316,11 @@ Send a `POST` request to `http://localhost:3000/api/departments` with the follow
 
 N-Layer Architecture separates an application into distinct layers, each with its own responsibilities, making the app easier to manage, test, and scale.
 
-| Layer | Components | Responsibility |
-|---|---|---|
+| Layer            | Components          | Responsibility                                 |
+| ---------------- | ------------------- | ---------------------------------------------- |
 | **Presentation** | Controllers, Routes | Handle HTTP requests/responses; validate input |
-| **Application** | Services | Business logic; interact with the data layer |
-| **Data** | Repositories | Manage data access; interact with the database |
+| **Application**  | Services            | Business logic; interact with the data layer   |
+| **Data**         | Repositories        | Manage data access; interact with the database |
 
 > The code example demonstrates the **repository pattern** in the data layer. The service layer is not covered here, but see the advanced code example for a full implementation.
 
@@ -432,7 +432,11 @@ const updateInstitution = async (req, res) => {
         message: `No institution with the id: ${id} found`,
       });
     }
-    institution = await institutionRepository.update(id, { name, region, country });
+    institution = await institutionRepository.update(id, {
+      name,
+      region,
+      country,
+    });
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
       data: institution,
@@ -526,23 +530,27 @@ const departments = await prisma.department.findMany({
 For the Project assessment, you will design and implement a REST API with a database and backend. Your system design document should cover:
 
 ### Architecture
+
 - What architecture pattern will you use?
 - What technology stack will you use?
 - How will the database and backend communicate?
 - How will you structure the code?
 
 ### Database
+
 - What tables will you have?
 - What fields, data types, and constraints?
 - What relationships between tables?
 - How will you manage migrations?
 
 ### Security
+
 - How will sensitive data be managed?
 - What input validation will you implement?
 - What headers will you implement?
 
 ### REST API
+
 - What endpoints will you expose?
 - What HTTP methods for each endpoint?
 - What request parameters are needed?
@@ -551,17 +559,20 @@ For the Project assessment, you will design and implement a REST API with a data
 - How will you document your API?
 
 ### Authentication & Authorisation
+
 - What auth method will you use?
 - How will you manage auth?
 - What roles and permissions will you define?
 
 ### Testing
+
 - What testing library/framework?
 - What types of tests will you write?
 - How will you structure tests?
 - How will you manage test data?
 
 ### Infrastructure & Deployment
+
 - What services will you use for deployment?
 - How will you manage environment variables?
 
@@ -592,30 +603,30 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples *(Easy)*
+### Task 1 — Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Draft System Design Document *(Easy)*
+### Task 2 — Draft System Design Document _(Easy)_
 
 Create a draft system design document for your REST API based on the [System Design](#5-system-design) section above. Email it to your course lecturer by the **end of Week 5**. Feedback will be provided in Week 6.
 
 ---
 
-### Task 3 — User Model *(Easy)*
+### Task 3 — User Model _(Easy)_
 
 Create a `User` model with the following fields:
 
-| Field | Type | Constraints |
-|---|---|---|
-| `id` | String | Primary key, default UUID |
-| `firstName` | String | |
-| `lastName` | String | |
-| `emailAddress` | String | Unique |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `firstName`    | String   |                           |
+| `lastName`     | String   |                           |
+| `emailAddress` | String   | Unique                    |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | Default now               |
 
 > **Remember:** Create and apply a migration after updating `schema.prisma`.
 
@@ -623,19 +634,19 @@ Create the necessary controller, route, and repository files for the `User` mode
 
 ---
 
-### Task 4 — Course Model *(Easy)*
+### Task 4 — Course Model _(Easy)_
 
 Create a `Course` model and update `Department` to include a one-to-many relationship:
 
-| Field | Type | Constraints |
-|---|---|---|
-| `id` | String | Primary key, default UUID |
-| `code` | String | |
-| `name` | String | |
-| `description` | String | |
-| `departmentId` | String | Foreign key |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `code`         | String   |                           |
+| `name`         | String   |                           |
+| `description`  | String   |                           |
+| `departmentId` | String   | Foreign key               |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | Default now               |
 
 Update `schema.prisma`:
 
@@ -663,7 +674,7 @@ Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 5 — Status Codes Utility *(Easy)*
+### Task 5 — Status Codes Utility _(Easy)_
 
 In the `backend` directory, create `utils/statusCodes.js`:
 
@@ -681,7 +692,7 @@ Update your controller files to use these constants instead of hard-coded number
 
 ---
 
-### Task 6 — Relationship Queries *(Medium)*
+### Task 6 — Relationship Queries _(Medium)_
 
 Refactor your controller and repository files to include relationship queries for `Institution`, `Department`, and `Course`.
 
@@ -744,6 +755,7 @@ const getInstitution = async (req, res) => {
 Apply similar changes to the `Department` controller/repository to include `Course` data.
 
 **To test in Postman:**
+
 1. `POST /api/institutions` — create an institution
 2. `POST /api/departments` — create a department
 3. `GET /api/institutions` — retrieve institutions with their departments
@@ -823,8 +835,7 @@ const clearCache = () => {
 import { cacheMiddleware } from "../middleware/cache.js";
 
 const MAX_CACHE_DURATION = // TODO 8: 5 minutes in milliseconds
-
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 
 // POST, PUT, DELETE routes do NOT use cacheMiddleware
@@ -854,6 +865,7 @@ Cache hit for key: /api/institutions
 ```
 
 **To replicate:**
+
 1. `GET /api/institutions` → cache miss
 2. `POST /api/institutions` → creates institution, clears cache
 3. `GET /api/institutions` → cache miss again

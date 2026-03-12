@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-|---|---|
-| ← Previous | [Week 01 — Git & JavaScript](../week-01-git-javascript-1/README.md) |
-| Code Example | [Code Example](code-example) |
-| → Next | [Week 03 — PostgreSQL, Docker, ORM, JSDoc & Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
+|              | Link                                                                                                           |
+| ------------ | -------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 01 — Git & JavaScript](../week-01-git-javascript-1/README.md)                                            |
+| Code Example | [Code Example](code-example)                                                                                   |
+| → Next       | [Week 03 — PostgreSQL, Docker, ORM, JSDoc & Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
 
 ---
 
@@ -41,13 +41,13 @@ The rules and protocols of an API cover:
 
 Representational State Transfer (REST) is an architectural style for designing networked applications, based on a set of principles that allow for scalable and maintainable web services.
 
-| Principle | Description |
-|---|---|
-| **Statelessness** | Each request contains all the information needed to process it |
-| **Client-Server Separation** | The client and server are separate entities communicating over a network |
-| **Cacheability** | Responses can be cached by the client to improve performance |
-| **Layered System** | The API can be composed of multiple layers, each with its own responsibilities |
-| **Uniform Interface** | The API has a consistent and standardised way of interacting with resources |
+| Principle                    | Description                                                                    |
+| ---------------------------- | ------------------------------------------------------------------------------ |
+| **Statelessness**            | Each request contains all the information needed to process it                 |
+| **Client-Server Separation** | The client and server are separate entities communicating over a network       |
+| **Cacheability**             | Responses can be cached by the client to improve performance                   |
+| **Layered System**           | The API can be composed of multiple layers, each with its own responsibilities |
+| **Uniform Interface**        | The API has a consistent and standardised way of interacting with resources    |
 
 ---
 
@@ -55,13 +55,13 @@ Representational State Transfer (REST) is an architectural style for designing n
 
 HTTP (Hypertext Transfer Protocol) is the foundation of data communication for the World Wide Web.
 
-| Version | Year | Key Features |
-|---|---|---|
-| **HTTP/0.9** | 1991 | Only supported GET requests; no headers, status codes, or error codes |
+| Version      | Year | Key Features                                                                                                                                      |
+| ------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **HTTP/0.9** | 1991 | Only supported GET requests; no headers, status codes, or error codes                                                                             |
 | **HTTP/1.0** | 1996 | Added request methods beyond GET, headers, status codes, and support for different content types. Each request required a separate TCP connection |
-| **HTTP/1.1** | 1997 | Reusable TCP connections, content streaming, better caching, virtual hosting support |
-| **HTTP/2** | 2015 | Binary protocol, multiplexed requests over a single connection, compressed headers, request prioritisation, server push |
-| **HTTP/3** | 2022 | Runs over UDP (not TCP), built-in encryption via QUIC, faster connections, connection migration support |
+| **HTTP/1.1** | 1997 | Reusable TCP connections, content streaming, better caching, virtual hosting support                                                              |
+| **HTTP/2**   | 2015 | Binary protocol, multiplexed requests over a single connection, compressed headers, request prioritisation, server push                           |
+| **HTTP/3**   | 2022 | Runs over UDP (not TCP), built-in encryption via QUIC, faster connections, connection migration support                                           |
 
 📖 Reference: [MDN — Evolution of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP)
 
@@ -71,17 +71,17 @@ HTTP (Hypertext Transfer Protocol) is the foundation of data communication for t
 
 An HTTP request method indicates the desired action to perform on a resource. There are nine methods in total; this course uses **GET, POST, PUT, and DELETE**.
 
-| Method | Purpose |
-|---|---|
-| `GET` | Retrieve data — should never modify state |
-| `HEAD` | Like GET but returns only headers, no body |
-| `POST` | Submit data to create or update a resource |
-| `PUT` | Replace all current representations of a resource |
-| `DELETE` | Delete the specified resource |
-| `CONNECT` | Establish a tunnel to the server |
-| `OPTIONS` | Describe available communication options |
-| `TRACE` | Perform a loop-back test along the path to the server |
-| `PATCH` | Apply partial modifications to a resource |
+| Method    | Purpose                                               |
+| --------- | ----------------------------------------------------- |
+| `GET`     | Retrieve data — should never modify state             |
+| `HEAD`    | Like GET but returns only headers, no body            |
+| `POST`    | Submit data to create or update a resource            |
+| `PUT`     | Replace all current representations of a resource     |
+| `DELETE`  | Delete the specified resource                         |
+| `CONNECT` | Establish a tunnel to the server                      |
+| `OPTIONS` | Describe available communication options              |
+| `TRACE`   | Perform a loop-back test along the path to the server |
+| `PATCH`   | Apply partial modifications to a resource             |
 
 📖 Reference: [MDN — HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
@@ -91,12 +91,12 @@ An HTTP request method indicates the desired action to perform on a resource. Th
 
 An operation is **idempotent** if performing it multiple times has the same effect as performing it once.
 
-| Method | Idempotent? | Reason |
-|---|---|---|
-| `GET` | ✅ Yes | Does not change state |
-| `PUT` | ✅ Yes | Replaces the resource with the same result each time |
-| `DELETE` | ✅ Yes | Deleting an already-deleted resource has no additional effect |
-| `POST` | ❌ No | May create multiple resources if called multiple times |
+| Method   | Idempotent? | Reason                                                        |
+| -------- | ----------- | ------------------------------------------------------------- |
+| `GET`    | ✅ Yes      | Does not change state                                         |
+| `PUT`    | ✅ Yes      | Replaces the resource with the same result each time          |
+| `DELETE` | ✅ Yes      | Deleting an already-deleted resource has no additional effect |
+| `POST`   | ❌ No       | May create multiple resources if called multiple times        |
 
 📖 Reference: [restfulapi.net — Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis)
 
@@ -116,13 +116,13 @@ For example, a `GET /api/users` response might include links to view, update, or
 
 Status codes indicate whether a request was successfully completed. They are grouped into five classes:
 
-| Range | Category |
-|---|---|
+| Range   | Category                |
+| ------- | ----------------------- |
 | 100–199 | Informational responses |
-| 200–299 | Successful responses |
-| 300–399 | Redirection messages |
-| 400–499 | Client error responses |
-| 500–599 | Server error responses |
+| 200–299 | Successful responses    |
+| 300–399 | Redirection messages    |
+| 400–499 | Client error responses  |
+| 500–599 | Server error responses  |
 
 📖 Reference: [MDN — HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
@@ -169,10 +169,10 @@ This allows a frontend at `https://example.com` to call an API at `https://api.e
 
 HTTP compression reduces the size of responses, improving performance by reducing data transferred over the network.
 
-| Type | Description | Examples |
-|---|---|---|
+| Type         | Description                          | Examples      |
+| ------------ | ------------------------------------ | ------------- |
 | **Lossless** | Reduces size without losing any data | gzip, deflate |
-| **Lossy** | Reduces size by discarding some data | JPEG, MP3 |
+| **Lossy**    | Reduces size by discarding some data | JPEG, MP3     |
 
 📖 Reference: [MDN — HTTP Compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
 
@@ -182,9 +182,9 @@ HTTP compression reduces the size of responses, improving performance by reducin
 
 HTTP caching lets browsers store copies of resources (HTML, images, stylesheets) locally, avoiding unnecessary repeat requests to the server.
 
-| Type | Description |
-|---|---|
-| **Client-side** | The browser stores and reuses cached resources |
+| Type            | Description                                          |
+| --------------- | ---------------------------------------------------- |
+| **Client-side** | The browser stores and reuses cached resources       |
 | **Server-side** | The server caches resources and serves them directly |
 
 📖 Reference: [MDN — HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
@@ -234,11 +234,11 @@ npm install express cors compression
 npm install nodemon --save-dev
 ```
 
-| Command | Purpose |
-|---|---|
-| `npm init -y` | Initialises a Node.js project with default values |
-| `npm install express cors compression` | Installs Express, CORS, and Compression modules |
-| `npm install nodemon --save-dev` | Installs Nodemon as a dev dependency (auto-restarts server on file changes) |
+| Command                                | Purpose                                                                     |
+| -------------------------------------- | --------------------------------------------------------------------------- |
+| `npm init -y`                          | Initialises a Node.js project with default values                           |
+| `npm install express cors compression` | Installs Express, CORS, and Compression modules                             |
+| `npm install nodemon --save-dev`       | Installs Nodemon as a dev dependency (auto-restarts server on file changes) |
 
 After running these, you will see three new items in `backend/`:
 
@@ -465,12 +465,12 @@ npm install prettier --save-dev
 }
 ```
 
-| Option | Purpose |
-|---|---|
-| `printWidth` | Line length before Prettier wraps |
-| `tabWidth` | Spaces per indentation level |
-| `semi` | Print semicolons at statement ends |
-| `singleQuote` | Use single quotes instead of double quotes |
+| Option          | Purpose                                      |
+| --------------- | -------------------------------------------- |
+| `printWidth`    | Line length before Prettier wraps            |
+| `tabWidth`      | Spaces per indentation level                 |
+| `semi`          | Print semicolons at statement ends           |
+| `singleQuote`   | Use single quotes instead of double quotes   |
 | `trailingComma` | Add trailing commas in multi-line structures |
 
 **Add to `package.json` scripts:**
@@ -501,16 +501,16 @@ npm init @eslint/config@latest
 
 Answer the prompts as follows:
 
-| Question | Answer |
-|---|---|
-| What do you want to lint? | JavaScript |
-| How would you like to use ESLint? | Problems |
-| What type of modules does your project use? | ESM |
-| Which framework does your project use? | None |
-| Does your project use TypeScript? | No |
-| Where does your code run? | Node |
-| Would you like to install required dependencies now? | Yes |
-| Which package manager do you want to use? | npm |
+| Question                                             | Answer     |
+| ---------------------------------------------------- | ---------- |
+| What do you want to lint?                            | JavaScript |
+| How would you like to use ESLint?                    | Problems   |
+| What type of modules does your project use?          | ESM        |
+| Which framework does your project use?               | None       |
+| Does your project use TypeScript?                    | No         |
+| Where does your code run?                            | Node       |
+| Would you like to install required dependencies now? | Yes        |
+| Which package manager do you want to use?            | npm        |
 
 **Install Prettier integration:**
 
@@ -619,13 +619,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples *(Easy)*
+### Task 1 — Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — New Routes *(Easy)*
+### Task 2 — New Routes _(Easy)_
 
 Create two new GET routes with their own controllers and route files:
 
@@ -652,7 +652,7 @@ backend/
 
 ---
 
-### Task 3 — Smarter Formatting with `lint-staged` *(Medium)*
+### Task 3 — Smarter Formatting with `lint-staged` _(Medium)_
 
 Running `prettier --write .` formats every file in the project — including `node_modules` — which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
 

@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-|---|---|
-| ← Previous | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md) |
-| Code Example | [Code Example](code-example) |
-| → Next | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+|              | Link                                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
+| Code Example | [Code Example](code-example)                                                                                                                       |
+| → Next       | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 
@@ -48,13 +48,13 @@ Open Docker Desktop and a terminal, then run:
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
 ```
 
-| Flag | Purpose |
-|---|---|
-| `docker run` | Creates a new container |
-| `--name id607001-db-dev` | Names the container |
-| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the PostgreSQL password |
-| `-p 5432:5432` | Maps container port 5432 to host port 5432 |
-| `-d postgres` | Uses the official PostgreSQL image |
+| Flag                                 | Purpose                                    |
+| ------------------------------------ | ------------------------------------------ |
+| `docker run`                         | Creates a new container                    |
+| `--name id607001-db-dev`             | Names the container                        |
+| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the PostgreSQL password               |
+| `-p 5432:5432`                       | Maps container port 5432 to host port 5432 |
+| `-d postgres`                        | Uses the official PostgreSQL image         |
 
 **Useful Docker commands:**
 
@@ -94,11 +94,11 @@ npm install prisma@^6.12.0 --save-dev
 npx prisma init
 ```
 
-| Command | Purpose |
-|---|---|
-| `npm install @prisma/client` | Installs the Prisma Client (used to query the database) |
-| `npm install prisma --save-dev` | Installs the Prisma CLI (used for migrations) |
-| `npx prisma init` | Creates the `.env` file and `prisma/` directory |
+| Command                         | Purpose                                                 |
+| ------------------------------- | ------------------------------------------------------- |
+| `npm install @prisma/client`    | Installs the Prisma Client (used to query the database) |
+| `npm install prisma --save-dev` | Installs the Prisma CLI (used for migrations)           |
+| `npx prisma init`               | Creates the `.env` file and `prisma/` directory         |
 
 ---
 
@@ -202,13 +202,13 @@ model Institution {
 }
 ```
 
-| Directive | Purpose |
-|---|---|
-| `@id` | Marks the field as the primary key |
-| `@default(uuid())` | Generates a UUID as the default value |
-| `@unique` | Enforces uniqueness on this field |
-| `@default(now())` | Defaults to the current date/time |
-| `@updatedAt` | Automatically updates on every row change |
+| Directive          | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| `@id`              | Marks the field as the primary key        |
+| `@default(uuid())` | Generates a UUID as the default value     |
+| `@unique`          | Enforces uniqueness on this field         |
+| `@default(now())`  | Defaults to the current date/time         |
+| `@updatedAt`       | Automatically updates on every row change |
 
 📖 Reference: [Prisma — Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
 
@@ -470,10 +470,10 @@ router.get("/", institutionController.getInstitutions);
 
 **Named export** — multiple exports per module, imported with curly braces (used in this project — see the router below).
 
-| Use case | Export type |
-|---|---|
-| Exporting a single value | Default export |
-| Exporting multiple values | Named exports |
+| Use case                  | Export type    |
+| ------------------------- | -------------- |
+| Exporting a single value  | Default export |
+| Exporting multiple values | Named exports  |
 
 ---
 
@@ -519,7 +519,7 @@ import institutionRoutes from "./routes/institution.js";
 
 // These must be declared before the routes
 app.use(express.urlencoded({ extended: false })); // Parses URL-encoded (form) data
-app.use(express.json());                          // Parses JSON request bodies
+app.use(express.json()); // Parses JSON request bodies
 
 app.use("/api/institutions", institutionRoutes);
 ```
@@ -600,6 +600,7 @@ In the **Body** tab, select **raw → JSON**, then send:
 You should receive a `201` response with the newly created institution.
 
 **Other operations** to test:
+
 - `GET /api/institutions/:id` — get by ID
 - `PUT /api/institutions/:id` — update by ID
 - `DELETE /api/institutions/:id` — delete by ID
@@ -672,13 +673,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples *(Easy)*
+### Task 1 — Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Prisma Studio *(Easy)*
+### Task 2 — Prisma Studio _(Easy)_
 
 Prisma Studio is a visual editor for your database — you can view and edit records directly in the browser.
 
@@ -692,20 +693,21 @@ Add a new script to `package.json`:
 
 ---
 
-### Task 3 — Optional Fields *(Easy)*
+### Task 3 — Optional Fields _(Easy)_
 
 Update the `Institution` model in `schema.prisma` to add two optional fields — `website` and `emailAddress`.
 
 > Optional fields in Prisma are defined by appending `?` to the type. E.g. `website String?`
 
 After updating the schema:
+
 1. Create and apply a new migration with an appropriate name
 2. Update `controllers/institution.js` to handle `website` and `emailAddress`
 3. Test the updates in Postman
 
 ---
 
-### Task 4 — Selective Field Returns *(Easy)*
+### Task 4 — Selective Field Returns _(Easy)_
 
 Prisma's `select` option lets you choose which fields are returned from a query.
 
@@ -725,7 +727,7 @@ Test in Postman — only your selected fields should appear in the response.
 
 ---
 
-### Task 5 — Missing ID Handling *(Easy)*
+### Task 5 — Missing ID Handling _(Easy)_
 
 Try sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an ID. You'll see an unhelpful HTML error response.
 
@@ -749,7 +751,7 @@ router.delete("/", (req, res) => {
 
 ---
 
-### Task 6 — README Documentation *(Easy)*
+### Task 6 — README Documentation _(Easy)_
 
 Update the `README.md` in your repository to document how to set up and run the project. Here's a suggested structure:
 
@@ -769,26 +771,31 @@ A brief description of the project.
 ## Setup Instructions
 
 1. Clone the repository:
+
    ```bash
    git clone <repository-url>
    ```
 
 2. Navigate to the project directory:
+
    ```bash
    cd <project-directory>
    ```
 
 3. Install the dependencies:
+
    ```bash
    npm install
    ```
 
 4. Copy the example environment variables file:
+
    ```bash
    npm run env:copy
    ```
 
 5. Start the PostgreSQL Docker container:
+
    ```bash
    npm run docker:run:dev
    ```
@@ -808,10 +815,10 @@ Navigate to `http://localhost:3000` in your browser.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/institutions` | Create a new institution |
-| GET | `/api/institutions` | Get all institutions |
-| GET | `/api/institutions/:id` | Get an institution by ID |
-| PUT | `/api/institutions/:id` | Update an institution by ID |
+| Method | Endpoint                | Description                 |
+| ------ | ----------------------- | --------------------------- |
+| POST   | `/api/institutions`     | Create a new institution    |
+| GET    | `/api/institutions`     | Get all institutions        |
+| GET    | `/api/institutions/:id` | Get an institution by ID    |
+| PUT    | `/api/institutions/:id` | Update an institution by ID |
 | DELETE | `/api/institutions/:id` | Delete an institution by ID |
