@@ -525,7 +525,55 @@ const departments = await prisma.department.findMany({
 
 ---
 
-## 5. System Design
+## 5. Enums
+
+An enum (enumeration) is a special type that restricts a field to a fixed set of allowed values. Use enums when a field should only ever be one of a known list of options — for example, a status, a role, or a gender.
+
+### 5.1 Defining an Enum in Prisma
+
+Enums are defined at the top level of `schema.prisma` and referenced in models:
+
+```js
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+
+model Player {
+  id        String   @id @default(uuid())
+  firstName String
+  gender    Gender
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+```
+
+> **Note:** Enum values in Prisma are conventionally written in `UPPER_SNAKE_CASE`.
+
+---
+
+### 5.2 Using an Enum in a Controller
+
+When creating or updating a record, pass the enum value as a string matching one of the defined options:
+
+```javascript
+const { firstName, gender } = req.body;
+// gender must be one of: "MALE", "FEMALE", "NON_BINARY", "PREFER_NOT_TO_SAY"
+
+await prisma.player.create({
+  data: { firstName, gender },
+});
+```
+
+> If the value sent by the client does not match a valid enum option, Prisma will throw an error. You should validate the value before passing it to Prisma — this is covered in Week 05.
+
+📖 Reference: [Prisma — Enum](https://www.prisma.io/docs/orm/prisma-schema/data-model/models#defining-enums)
+
+---
+
+## 6. System Design
 
 For the Project assessment, you will design and implement a REST API with a database and backend. Your system design document should cover:
 
@@ -611,7 +659,7 @@ Implement all of the code examples covered above.
 
 ### Task 2 — Draft System Design Document _(Easy)_
 
-Create a draft system design document for your REST API based on the [System Design](#5-system-design) section above. Email it to your course lecturer by the **end of Week 5**. Feedback will be provided in Week 6.
+Create a draft system design document for your REST API based on the [System Design](#6-system-design) section above. Email it to your course lecturer by the **end of Week 5**. Feedback will be provided in Week 6.
 
 ---
 
@@ -634,7 +682,82 @@ Create the necessary controller, route, and repository files for the `User` mode
 
 ---
 
-### Task 4 — Course Model _(Easy)_
+### Task 4 — Player Model _(Easy)_
+
+Given the following JSON object:
+
+```json
+{
+  "id": 1,
+  "first_name": "Jane",
+  "last_name": "Doe",
+  "email": "jane.doe@example.com",
+  "gender": "Female",
+  "is_injured": false,
+  "date_of_birth": "1990-01-01T00:00:00.000Z"
+}
+```
+
+Analyse each field and create a `Player` model in `schema.prisma` that represents this object. Use Prisma conventions — camelCase field names and UUIDs instead of integer IDs. Use an enum for the `gender` field:
+
+```js
+enum Gender {
+  MALE
+  FEMALE
+  NON_BINARY
+  PREFER_NOT_TO_SAY
+}
+```
+
+| JSON Field      | Prisma Field   | Type     | Constraints               |
+| --------------- | -------------- | -------- | ------------------------- |
+| `id`            | `id`           | String   | Primary key, default UUID |
+| `first_name`    | `firstName`    | String   |                           |
+| `last_name`     | `lastName`     | String   |                           |
+| `email`         | `emailAddress` | String   | Unique                    |
+| `gender`        | `gender`       | Gender   | Enum                      |
+| `is_injured`    | `isInjured`    | Boolean  | Default `false`           |
+| `date_of_birth` | `dateOfBirth`  | DateTime | Required                  |
+|                 | `createdAt`    | DateTime | Default now               |
+|                 | `updatedAt`    | DateTime | `@updatedAt`              |
+
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
+
+Create the necessary controller, route, and repository files for the `Player` model. Test your implementation in Postman.
+
+> **Think about it:** The source JSON uses `snake_case` and an integer `id`. Why does Prisma prefer `camelCase` and UUID strings? The `date_of_birth` field is required — how should your controller respond if a client sends a request without it?
+
+---
+
+### Task 5 — Normalise the Player Model _(Medium)_
+
+The `Player` model from Task 4 stores everything in a single table. Consider how you might split this into three separate models — `Person`, `Player`, and `Injury` — and what fields each one should own.
+
+Use the following field inventory as a starting point. Decide which model each field belongs to, what type it should be, and what constraints apply:
+
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `firstName`    | String   |                           |
+| `lastName`     | String   |                           |
+| `emailAddress` | String   | Unique                    |
+| `gender`       | Gender   | Enum                      |
+| `dateOfBirth`  | DateTime |                           |
+| `description`  | String   |                           |
+| `occurredAt`   | DateTime |                           |
+| `resolvedAt`   | DateTime | Optional                  |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | `@updatedAt`              |
+
+> **Remember:** Create and apply a migration after updating `schema.prisma`.
+
+Create the necessary controller, route, and repository files for each model. Test your implementation in Postman.
+
+> **Think about it:** What is the relationship type between `Person` and `Player`? What about `Player` and `Injury`? The original model used a single `isInjured` boolean — what can the `Injury` table tell you that a boolean cannot?
+
+---
+
+### Task 6 — Course Model _(Easy)_
 
 Create a `Course` model and update `Department` to include a one-to-many relationship:
 
@@ -674,7 +797,7 @@ Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 5 — Status Codes Utility _(Easy)_
+### Task 7 — Status Codes Utility _(Easy)_
 
 In the `backend` directory, create `utils/statusCodes.js`:
 
@@ -692,7 +815,7 @@ Update your controller files to use these constants instead of hard-coded number
 
 ---
 
-### Task 6 — Relationship Queries _(Medium)_
+### Task 8 — Relationship Queries _(Medium)_
 
 Refactor your controller and repository files to include relationship queries for `Institution`, `Department`, and `Course`.
 
