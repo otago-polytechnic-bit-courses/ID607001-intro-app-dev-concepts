@@ -573,7 +573,7 @@ Postman is a tool for testing APIs — it lets you send HTTP requests and inspec
 
 Sign in at [identity.getpostman.com/login](https://identity.getpostman.com/login) using your GitHub account.
 
-Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests — e.g. `lecture-notes/week-03` and `exercises`.
+Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests — e.g. `./lecture-notes/week-03` and `exercises`.
 
 > **Tip:** If you see a Postman Agent error on your first request, switch from **Cloud Agent** to **Browser Agent** in the agent selector.
 

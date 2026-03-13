@@ -120,7 +120,7 @@ export default app;
 
 </details>
 
-To test content negotiation in Postman, copy the "Create an institution" request from `lecture-notes/week-03` into `lecture-notes/week-04`. Select **Text** from the dropdown and click **Send**. You should see the middleware in action.
+To test content negotiation in Postman, copy the "Create an institution" request from `./lecture-notes/week-03` into `./lecture-notes/week-04`. Select **Text** from the dropdown and click **Send**. You should see the middleware in action.
 
 ---
 
