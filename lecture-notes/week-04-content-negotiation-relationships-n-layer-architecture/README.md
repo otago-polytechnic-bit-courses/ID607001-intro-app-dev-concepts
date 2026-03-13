@@ -6,7 +6,7 @@
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous            | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                  |
 | Code Example          | [Code Example](code-example)                                                                                                        |
-| Advanced Code Example | [Advanced Code Example](advanced-code-example)                                                                                      |
+| Service Layer — Advanced Code Example | [Service Layer - Advanced Code Example](lecture-notes/week-04-content-negotiation-relationships-n-layer-architecture/service-layer-advanced-code-example)                                                                                      |
 | → Next                | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
