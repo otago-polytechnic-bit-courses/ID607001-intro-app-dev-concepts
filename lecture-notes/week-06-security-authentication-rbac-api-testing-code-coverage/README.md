@@ -2,12 +2,12 @@
 
 ## Navigation
 
-|                       | Link                                                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous            | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example          | [Code Example](code-example)                                                                                                        |
-| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                                        |
-| → Next                | Week 07                                                                                                                             |
+|            | Link                                                                                                                                |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                      |
+| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                             |
+| → Next     | Week 07                                                                                                                             |
 
 ---
 
@@ -835,12 +835,12 @@ Code coverage measures how much of your source code is actually executed during 
 
 We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
 
-| Metric         | What it measures                                       |
-| -------------- | ------------------------------------------------------ |
-| **Statements** | Individual executable statements executed              |
+| Metric         | What it measures                                        |
+| -------------- | ------------------------------------------------------- |
+| **Statements** | Individual executable statements executed               |
 | **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once               |
-| **Lines**      | Physical lines of code executed                        |
+| **Functions**  | Functions that were called at least once                |
+| **Lines**      | Physical lines of code executed                         |
 
 ---
 
@@ -869,16 +869,16 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option       | Purpose                                                                |
-| ------------ | ---------------------------------------------------------------------- |
+| Option       | Purpose                                                                 |
+| ------------ | ----------------------------------------------------------------------- |
 | `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                       |
-| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
-| `lines`      | Minimum % of lines that must be covered                                |
-| `functions`  | Minimum % of functions that must be covered                            |
-| `statements` | Minimum % of statements that must be covered                           |
-| `all`        | Report on all matched files, even those not imported by any test       |
+| `include`    | Globs of source files to measure                                        |
+| `exclude`    | Globs to ignore — tests, migrations, generated files                    |
+| `branches`   | Minimum % of branches that must be covered (fails build if not met)     |
+| `lines`      | Minimum % of lines that must be covered                                 |
+| `functions`  | Minimum % of functions that must be covered                             |
+| `statements` | Minimum % of statements that must be covered                            |
+| `all`        | Report on all matched files, even those not imported by any test        |
 
 > **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
 
@@ -886,20 +886,27 @@ Create `.c8rc` in the project root:
 
 ### 6.3 Scripts — `package.json`
 
+Add the following coverage scripts to your existing `scripts` block in `package.json`:
+
+```json
+"coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+"coverage:report": "c8 report --reporter=html && open coverage/index.html"
+```
+
+Your `scripts` block should now look like this:
+
 ```json
 {
   "scripts": {
     "test": "mocha tests --recursive --timeout 10000 --exit",
     "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-    "coverage:report": "c8 report --reporter=html && open coverage/index.html",
-    // other scripts...
+    "coverage:report": "c8 report --reporter=html && open coverage/index.html"
   }
 }
 ```
 
 | Script                    | Purpose                                                |
 | ------------------------- | ------------------------------------------------------ |
-| `npm test`                | Run tests only, no coverage                            |
 | `npm run coverage`        | Run tests and print a coverage summary to the terminal |
 | `npm run coverage:report` | Re-generate the full HTML report and open it           |
 
@@ -912,15 +919,28 @@ Create `.c8rc` in the project root:
 Running `npm run coverage` produces a table like this:
 
 ```
-------------------------|---------|----------|---------|---------|
-File                    | % Stmts | % Branch | % Funcs | % Lines |
-------------------------|---------|----------|---------|---------|
-All files               |   87.50 |    75.00 |   90.00 |   87.50 |
- controllers/auth.js    |   95.00 |    83.33 |  100.00 |   95.00 |
- controllers/institution|   85.71 |    66.67 |  100.00 |   85.71 |
- middleware/jwtAuth.js  |   80.00 |    75.00 |  100.00 |   80.00 |
- middleware/rbac.js     |   75.00 |    66.67 |   75.00 |   75.00 |
-------------------------|---------|----------|---------|---------|
+-----------------------|---------|----------|---------|---------|------------------------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-----------------------|---------|----------|---------|---------|------------------------------------
+All files              |   77.72 |    54.09 |   94.44 |   77.72 |
+ controllers           |   71.09 |    43.24 |    92.3 |   71.09 |
+  auth.js              |   85.26 |     37.5 |     100 |   85.26 | 14-15,48-51,62-63,69-70,89-92
+  department.js        |   62.74 |       50 |     100 |   62.74 | 7-11,23-24,29-32,44-51,64-73,85-93
+  index.js             |   46.15 |      100 |       0 |   46.15 | 3-9
+  institution.js       |   69.85 |     37.5 |     100 |   69.85 | 13-16,57-66,78-85,98-107,119-127
+ middleware            |   76.54 |    66.66 |     100 |   76.54 |
+  contentType.js       |   73.33 |       80 |     100 |   73.33 | 7-10
+  jwtAuth.js           |   77.41 |       50 |     100 |   77.41 | 9-10,24-28
+  rateLimiter.js       |     100 |      100 |     100 |     100 |
+  rbac.js              |   63.63 |       60 |     100 |   63.63 | 6-9,13-16
+ middleware/validation |   85.54 |       60 |     100 |   85.54 |
+  institution.js       |   85.54 |       60 |     100 |   85.54 | 35-40,74-79
+ routes                |     100 |      100 |     100 |     100 |
+  auth.js              |     100 |      100 |     100 |     100 |
+  department.js        |     100 |      100 |     100 |     100 |
+  index.js             |     100 |      100 |     100 |     100 |
+  institution.js       |     100 |      100 |     100 |     100 |
+-----------------------|---------|----------|---------|---------|------------------------------------
 ```
 
 Lines highlighted in the HTML report indicate:
@@ -933,20 +953,38 @@ Lines highlighted in the HTML report indicate:
 
 ### 6.5 What Low Coverage Reveals
 
-Low branch coverage is often more telling than low line coverage. A line like:
+Low branch coverage is often more telling than low line coverage. Consider this controller function:
 
 ```javascript
-return user
-  ? res.status(200).json({ data: user })
-  : res.status(404).json({ message: "User not found" });
+const getInstitutions = async (req, res) => {
+  try {
+    const institutions = await institutionRepository.findAll();
+    if (!institutions) {
+      return res.status(404).json({ message: "No institutions found" });
+    }
+    return res.status(200).json({
+      data: institutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
 ```
 
-counts as one line, but has **two branches**. If your tests never hit the `404` path, branch coverage will flag it even though the line appears covered.
+This function has **three branches**:
+
+1. `if (!institutions)` is `true` → returns `404`
+2. `if (!institutions)` is `false` → returns `200`
+3. An error is thrown → the `catch` block returns `500`
+
+If your tests only call `GET /api/institutions` and get back a `200`, branches 1 and 3 are never executed. The line count looks fine — but branch coverage will flag both missed paths.
 
 Common gaps to look for:
 
 - Error handler `catch` blocks — test by passing invalid data or mocking database failures
-- `if (!user)` / not-found guards — test with a non-existent ID
+- `if (!institutions)` / not-found guards — test with an empty database or a non-existent ID
 - RBAC forbidden paths — test with a user who lacks the required role
 - Rate limiter `429` responses — test by exceeding the request limit
 
