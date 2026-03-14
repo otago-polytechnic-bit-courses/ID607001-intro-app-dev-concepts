@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 03 branch:
 
 ```bash
-git checkout -b week-03-postgresql-docker-jsdoc-postman
+git checkout -b w03-pg-docker-jsdoc-postman
 ```
 
 > **Tip:** There are many code examples this week. They do not include code from previous exercises. Typing them out rather than copy-pasting is strongly recommended — it helps with retention. Read the comments in the code too.

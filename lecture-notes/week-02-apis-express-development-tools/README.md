@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 02 branch:
 
 ```bash
-git checkout -b week-02-apis-express-development-tools
+git checkout -b w02-apis-express-dev-tools
 ```
 
 > **Tip:** Typing the code examples rather than copy-pasting is strongly recommended — it helps with retention. Read the comments in the code too.
@@ -476,13 +476,20 @@ npm install prettier --save-dev
 **Add to `package.json` scripts:**
 
 ```json
-"format": "prettier --write ."
+"prettier:check": "prettier --check .",
+"prettier:format": "prettier --write ."
 ```
 
 **Run:**
 
 ```bash
-npm run format
+npm run prettier:check
+```
+
+If there are formatting issues, run:
+
+```bash
+npm run prettier:format
 ```
 
 📖 Reference: [Prettier docs](https://prettier.io/docs/en/index.html)
@@ -540,13 +547,20 @@ export default defineConfig([
 **Add to `package.json` scripts:**
 
 ```json
-"lint": "eslint ."
+"lint:check": "eslint .",
+"lint:fix": "eslint --fix ."
 ```
 
 **Run:**
 
 ```bash
-npm run lint
+npm run lint:check
+```
+
+If there are linting issues, run:
+
+```bash
+npm run lint:fix
 ```
 
 📖 Reference: [ESLint docs](https://eslint.org/docs/user-guide/getting-started)
@@ -587,8 +601,10 @@ After all tools are set up, your `scripts` block should look like:
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
-  "format": "prettier --write .",
-  "lint": "eslint ."
+  "prettier:check": "prettier --check .",
+  "prettier:format": "prettier --write .",
+  "lint:check": "eslint .",
+  "lint:fix": "eslint --fix ."
 }
 ```
 
@@ -654,7 +670,7 @@ backend/
 
 ### Task 3 — Smarter Formatting with `lint-staged` _(Medium)_
 
-Running `prettier --write .` formats every file in the project — including `node_modules` — which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
+Running `npm run prettier:format` formats every file in the project — including `node_modules` — which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
 
 **Install:**
 
@@ -665,7 +681,7 @@ npm install lint-staged --save-dev
 **Update the `format` script in `package.json`:**
 
 ```json
-"format": "lint-staged"
+"prettier:format:staged": "lint-staged"
 ```
 
 **Add a `lint-staged` config to `package.json`** (below `scripts`):
@@ -687,7 +703,7 @@ node_modules
 **Run:**
 
 ```bash
-npm run format
+npm run prettier:format:staged
 ```
 
 Only staged `.js` files will now be formatted.

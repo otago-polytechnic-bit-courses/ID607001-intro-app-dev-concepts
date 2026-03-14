@@ -7,8 +7,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "format": "prettier --write .",
-    "lint": "eslint ."
+    "prettier:check": "prettier --check .",
+    "prettier:format": "prettier --write .",
+    "lint:check": "eslint .",
+    "lint:fix": "eslint --fix ."
   },
   "config": {
     "commitizen": {

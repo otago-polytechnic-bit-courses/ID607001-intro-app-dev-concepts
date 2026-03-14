@@ -6,9 +6,9 @@
 
 ## Course Information
 
-| Level | Credits | Prerequisite            | Timetable |
-| ----- | ------- | ----------------------- | --------- |
-| 6     | 15      | ID511001: Programming 2 | Monday 1:00 PM - 2:45 PM in D202 and Thursday 1:00 PM - 2:45 PM in D202       |
+| Level | Credits | Prerequisite            | Timetable                                                               |
+| ----- | ------- | ----------------------- | ----------------------------------------------------------------------- |
+| 6     | 15      | ID511001: Programming 2 | Monday 1:00 PM - 2:45 PM in D202 and Thursday 1:00 PM - 2:45 PM in D202 |
 
 ## Teaching Staff
 
@@ -57,25 +57,25 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Week             | Topics                                                              |
-| ---------------- | ------------------------------------------------------------------- |
-| 1/Tahi           | Git and JavaScript 1                                   |
-| 2/Rua            | APIs, Express and Development Tools                                 |
-| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                          |
-| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture         |
-| 5/Rima           | Validation, Seeding, Query Parameters and Deployment                |
-| 6/Ono            | Security, Authentication, Role-Based Access Control and API Testing |
-| 7/Whitu          | JavaScript 2                                                        |
-| 8/Waru           | Vite, SvelteKit.js and Deployment                                   |
-|                  | Mid Semester Break                                                  |
-| 9/Whitu          | API Integration and Content Delivery Networks                       |
-| 10/Tekau         | GitHub Actions, Performance and UI/UX Design                        |
-| 11/Tekau mā tahi | Component Testing and End-To-End Testing                            |
-| 12/Tekau mā rua  | Assessment Work                                                     |
-| 13/Tekau mā toru | Assessment Work                                                     |
-| 14/Tekau mā whā  | Assessment Work                                                     |
-| 15/Tekau mā rima | Assessment Work                                                     |
-| 16/Tekau mā ono  | Assessment Marking                                                  |
+| Week             | Topics                                                                             |
+| ---------------- | ---------------------------------------------------------------------------------- |
+| 1/Tahi           | Git and JavaScript 1                                                               |
+| 2/Rua            | APIs, Express and Development Tools                                                |
+| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                                         |
+| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture                        |
+| 5/Rima           | Validation, Seeding, Query Parameters and Deployment                               |
+| 6/Ono            | Security, Authentication, Role-Based Access Control, API Testing and Code Coverage |
+| 7/Whitu          | CI/CD, GitHub Actions and JavaScript 2                                             |
+| 8/Waru           | Vite, SvelteKit.js and Deployment                                                  |
+|                  | Mid Semester Break                                                                 |
+| 9/Whitu          | API Integration and Content Delivery Networks                                      |
+| 10/Tekau         | Performance, UI/UX Design and AI-Assisted Coding                                   |
+| 11/Tekau mā tahi | Component Testing and End-To-End Testing                                           |
+| 12/Tekau mā rua  | Assessment Work                                                                    |
+| 13/Tekau mā toru | Assessment Work                                                                    |
+| 14/Tekau mā whā  | Assessment Work                                                                    |
+| 15/Tekau mā rima | Assessment Work                                                                    |
+| 16/Tekau mā ono  | Assessment Marking                                                                 |
 
 ## Resources
 

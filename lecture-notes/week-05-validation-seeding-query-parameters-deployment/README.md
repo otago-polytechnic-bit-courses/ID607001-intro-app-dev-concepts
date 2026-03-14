@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 05 branch:
 
 ```bash
-git checkout -b week-05-validation-seeding-query-parameters-deployment
+git checkout -b week-05-validation-seeding-query-params-deployment
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
@@ -775,9 +775,9 @@ Implement `GET /api/health` that returns the current status of your application.
 
 ---
 
-### Hard Task 4 — Reduce Code Duplication
+### Hard Task 4 — Sustainable Codebase
 
-Refactor validation and seeding code to reduce repetition:
+As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
 
 - **`BaseValidationMiddleware`** — a base module with shared validation logic that resource-specific middleware can extend
 - **`BaseSeedingScript`** — a base module with shared seeding logic that individual seed scripts can extend

@@ -16,7 +16,7 @@
 Open your repository in Visual Studio Code and switch to the Week 04 branch:
 
 ```bash
-git checkout -b week-04-content-negotiation-relationships-n-layer-architecture
+git checkout -b w04-content-neg-relationships-n-layer-arch
 ```
 
 > **Tip:** There are many code examples in this week's content. They do not include code from previous exercises. Typing the examples rather than copying and pasting is strongly recommended — it helps with retention. Be sure to read the comments in the code too.
@@ -996,9 +996,9 @@ Cache hit for key: /api/institutions
 
 ---
 
-### Hard Task 2 — Reduce Code Duplication
+### Hard Task 2 — Sustainable Codebase
 
-Refactor the codebase to reduce duplication. Suggestions:
+As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
 
 - **`server.js`** — Extract `app.listen(...)` from `app.js` into its own module
 - **`BaseRepository`** — Create a base class with common CRUD methods that other repositories can extend
