@@ -2,12 +2,12 @@
 
 ## Navigation
 
-|            | Link                                                                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example | [Code Example](code-example)                                                                                                      |
-| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                             |
-| → Next     | Week 07                                                                                                                             |
+|                       | Link                                                                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous            | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example          | [Code Example](code-example)                                                                                                        |
+| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                                        |
+| → Next                | Week 07                                                                                                                             |
 
 ---
 
@@ -835,12 +835,12 @@ Code coverage measures how much of your source code is actually executed during 
 
 We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
 
-| Metric         | What it measures                                        |
-| -------------- | ------------------------------------------------------- |
-| **Statements** | Individual executable statements executed               |
+| Metric         | What it measures                                       |
+| -------------- | ------------------------------------------------------ |
+| **Statements** | Individual executable statements executed              |
 | **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once                |
-| **Lines**      | Physical lines of code executed                         |
+| **Functions**  | Functions that were called at least once               |
+| **Lines**      | Physical lines of code executed                        |
 
 ---
 
@@ -869,16 +869,16 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option       | Purpose                                                                 |
-| ------------ | ----------------------------------------------------------------------- |
+| Option       | Purpose                                                                |
+| ------------ | ---------------------------------------------------------------------- |
 | `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                        |
-| `exclude`    | Globs to ignore — tests, migrations, generated files                    |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)     |
-| `lines`      | Minimum % of lines that must be covered                                 |
-| `functions`  | Minimum % of functions that must be covered                             |
-| `statements` | Minimum % of statements that must be covered                            |
-| `all`        | Report on all matched files, even those not imported by any test        |
+| `include`    | Globs of source files to measure                                       |
+| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
+| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
+| `lines`      | Minimum % of lines that must be covered                                |
+| `functions`  | Minimum % of functions that must be covered                            |
+| `statements` | Minimum % of statements that must be covered                           |
+| `all`        | Report on all matched files, even those not imported by any test       |
 
 > **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
 
@@ -893,7 +893,7 @@ Add the following coverage scripts to your existing `scripts` block in `package.
 "coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
-Your `scripts` block should now look like this:
+Your `scripts` block should now look like this (other scripts such as `prisma:migrate` and `prisma:seed-institutions` have been omitted for brevity):
 
 ```json
 {
