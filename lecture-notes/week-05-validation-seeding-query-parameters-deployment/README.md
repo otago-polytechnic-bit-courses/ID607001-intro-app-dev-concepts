@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 05 branch:
 
 ```bash
-git checkout -b week-05-validation-seeding-query-params-deployment
+git checkout -b w05-validation-seeding-query-params-deployment
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
@@ -635,7 +635,7 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
 3. Configure the service:
    - **Name:** e.g. `id607001-rest-api`
    - **Language:** Node
-   - **Branch:** `week-05-validation-seeding-query-parameters-deployment`
+   - **Branch:** `w05-validation-seeding-query-params-deployment`
    - **Build Command:** `npm run build`
    - **Start Command:** `node app.js`
    - **Instance Type:** Free

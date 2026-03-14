@@ -16,7 +16,7 @@
 Open your repository in Visual Studio Code and switch to the Week 06 branch:
 
 ```bash
-git checkout -b week-06-sec-auth-rbac-api-testing-code-cov
+git checkout -b w06-sec-auth-rbac-api-testing-code-cov
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
