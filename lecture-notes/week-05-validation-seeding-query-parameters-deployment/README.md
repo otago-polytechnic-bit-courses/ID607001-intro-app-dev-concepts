@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                                                               |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
-| Code Example | [Code Example](code-example)                                                                                                                       |
-| → Next       | [Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md)                            |
+|              | Link                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
+| Code Example | [Code Example](code-example)                                                                                                                         |
+| → Next       | [Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
 
 ---
 
@@ -385,8 +385,20 @@ seedInstitutions().then((report) => {
 
 ### 3.2 Add a Seed Script to `package.json`
 
+Add the following to your existing `scripts` block in `package.json`:
+
 ```json
 "prisma:seed-institutions": "node ./prisma/seeding/institution.js"
+```
+
+Your `scripts` block should now look like this (other scripts have been omitted for brevity):
+
+```json
+{
+  "scripts": {
+    "prisma:seed-institutions": "node ./prisma/seeding/institution.js"
+  }
+}
 ```
 
 Run the seed script:
@@ -575,10 +587,21 @@ Deployment makes your application available to users. Common platforms include R
 
 ### 5.1 Build Script
 
-Add the following to your `scripts` block in `package.json`:
+Add the following to your existing `scripts` block in `package.json`:
 
 ```json
 "build": "npm install && npx prisma generate && npx prisma migrate deploy"
+```
+
+Your `scripts` block should now look like this (other scripts have been omitted for brevity):
+
+```json
+{
+  "scripts": {
+    "prisma:seed-institutions": "node ./prisma/seeding/institution.js",
+    "build": "npm install && npx prisma generate && npx prisma migrate deploy"
+  }
+}
 ```
 
 **`migrate dev` vs `migrate deploy`:**
