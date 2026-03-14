@@ -2,12 +2,12 @@
 
 ## Navigation
 
-|                       | Link                                                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous            | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example          | [Code Example](code-example)                                                                                                        |
-| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                                        |
-| → Next                | Week 07                                                                                                                             |
+|            | Link                                                                                                                                |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                      |
+| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                             |
+| → Next     | Week 07                                                                                                                             |
 
 ---
 
@@ -602,6 +602,8 @@ export default setupTestAuth;
 
 ### 5.5 Institution CRUD Tests (`00-institution.test.js`)
 
+#### Imports & Setup
+
 ```javascript
 import { expect } from "chai";
 import request from "supertest";
@@ -633,7 +635,13 @@ describe("Institution CRUD", () => {
   before(async () => {
     token = await setupTestAuth();
   });
+```
 
+> `before()` runs once before all tests in the block — here it registers and logs in a user, storing the token for authenticated requests.
+
+#### Create
+
+```javascript
   it("should create institution one", async () => {
     const res = await request(app)
       .post(BASE_URL)
@@ -660,7 +668,11 @@ describe("Institution CRUD", () => {
     );
     institutionTwoId = newInstitution.id;
   });
+```
 
+#### Read
+
+```javascript
   it("should get all institutions", async () => {
     const res = await request(app).get(BASE_URL);
 
@@ -674,7 +686,11 @@ describe("Institution CRUD", () => {
     expect(res.status).to.equal(200);
     expect(res.body.data.name).to.equal(institutionData[1].name);
   });
+```
 
+#### Update & Delete
+
+```javascript
   it("should update institution two", async () => {
     const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
       name: institutionData[0].name,
@@ -696,16 +712,24 @@ describe("Institution CRUD", () => {
       `Institution with the id: ${institutionOneId} successfully deleted`,
     );
   });
+```
 
+#### Teardown
+
+```javascript
   after(() => {
     global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
   });
 });
 ```
 
+> `after()` runs once after all tests complete — here it stores `institutionTwoId` in a global variable so the department tests in the next file can reference it.
+
 ---
 
 ### 5.6 Department CRUD Tests (`01-department.test.js`)
+
+#### Imports & Setup
 
 ```javascript
 import { expect } from "chai";
@@ -729,12 +753,13 @@ describe("Department CRUD", () => {
   before(async () => {
     institutionId = global.testInstitutionId;
   });
+```
 
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
-  });
+> `before()` picks up the institution ID passed from the institution test suite via `global.testInstitutionId`, so departments can be created under an existing institution.
 
+#### Create
+
+```javascript
   it("should create department one", async () => {
     const res = await request(app)
       .post(BASE_URL)
@@ -746,7 +771,11 @@ describe("Department CRUD", () => {
     );
     departmentOneId = newDepartment.id;
   });
+```
 
+#### Read
+
+```javascript
   it("should get all departments", async () => {
     const res = await request(app).get(BASE_URL);
 
@@ -760,7 +789,11 @@ describe("Department CRUD", () => {
     expect(res.status).to.equal(200);
     expect(res.body.data.name).to.equal(departmentData[0].name);
   });
+```
 
+#### Update & Delete
+
+```javascript
   it("should update department one", async () => {
     const res = await request(app)
       .put(`${BASE_URL}/${departmentOneId}`)
@@ -781,8 +814,19 @@ describe("Department CRUD", () => {
       `Department with the id: ${departmentOneId} successfully deleted`,
     );
   });
+```
+
+#### Teardown
+
+```javascript
+  after(async () => {
+    await cleanupDatabase();
+    await disconnectPrisma();
+  });
 });
 ```
+
+> `after()` runs once all department tests are done — it clears all database records and closes the Prisma connection cleanly. This should only appear in the **last** test file to avoid wiping data that subsequent test files still need.
 
 ---
 
@@ -835,12 +879,12 @@ Code coverage measures how much of your source code is actually executed during 
 
 We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
 
-| Metric         | What it measures                                       |
-| -------------- | ------------------------------------------------------ |
-| **Statements** | Individual executable statements executed              |
+| Metric         | What it measures                                        |
+| -------------- | ------------------------------------------------------- |
+| **Statements** | Individual executable statements executed               |
 | **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once               |
-| **Lines**      | Physical lines of code executed                        |
+| **Functions**  | Functions that were called at least once                |
+| **Lines**      | Physical lines of code executed                         |
 
 ---
 
@@ -869,16 +913,16 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option       | Purpose                                                                |
-| ------------ | ---------------------------------------------------------------------- |
+| Option       | Purpose                                                                 |
+| ------------ | ----------------------------------------------------------------------- |
 | `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                       |
-| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
-| `lines`      | Minimum % of lines that must be covered                                |
-| `functions`  | Minimum % of functions that must be covered                            |
-| `statements` | Minimum % of statements that must be covered                           |
-| `all`        | Report on all matched files, even those not imported by any test       |
+| `include`    | Globs of source files to measure                                        |
+| `exclude`    | Globs to ignore — tests, migrations, generated files                    |
+| `branches`   | Minimum % of branches that must be covered (fails build if not met)     |
+| `lines`      | Minimum % of lines that must be covered                                 |
+| `functions`  | Minimum % of functions that must be covered                             |
+| `statements` | Minimum % of statements that must be covered                            |
+| `all`        | Report on all matched files, even those not imported by any test        |
 
 > **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
 
