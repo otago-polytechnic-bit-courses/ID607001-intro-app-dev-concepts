@@ -29,6 +29,7 @@
     "node-fetch": "^3.3.2"
   },
   "devDependencies": {
+    "c8": "^11.0.0",
     "chai": "^5.2.1",
     "mocha": "^11.7.1",
     "nodemon": "^3.1.10",

@@ -6,7 +6,7 @@
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous            | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example          | [Code Example](code-example)                                                                                                        |
-| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                                          |
+| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                                        |
 | → Next                | Week 07                                                                                                                             |
 
 ---
@@ -21,7 +21,7 @@ git checkout -b week-06-sec-auth-rbac-api-testing-code-cov
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too — they help explain where and why things go.
 
 ---
 
@@ -453,6 +453,8 @@ Rate limiting controls how many requests a client can make in a given time windo
 
 ### 4.1 Setup
 
+Install the required package:
+
 ```bash
 npm install express-rate-limit
 ```
@@ -674,12 +676,10 @@ describe("Institution CRUD", () => {
   });
 
   it("should update institution two", async () => {
-    const res = await request(app)
-      .put(`${BASE_URL}/${institutionTwoId}`)
-      .send({
-        name: institutionData[0].name,
-        region: institutionData[0].region,
-      });
+    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
+      name: institutionData[0].name,
+      region: institutionData[0].region,
+    });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
@@ -788,7 +788,7 @@ describe("Department CRUD", () => {
 
 ### 5.7 Test Script
 
-Update the `test` script in `package.json`:
+Add the following to your `scripts` block in `package.json`:
 
 ```json
 "test": "mocha tests --recursive --timeout 10000 --exit"
@@ -826,6 +826,146 @@ Department CRUD
 
 11 passing (Xms)
 ```
+
+---
+
+## 6. Code Coverage with c8
+
+Code coverage measures how much of your source code is actually executed during testing. It helps identify untested paths — branches, functions, and lines that your test suite never reaches.
+
+We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
+
+| Metric         | What it measures                                       |
+| -------------- | ------------------------------------------------------ |
+| **Statements** | Individual executable statements executed              |
+| **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
+| **Functions**  | Functions that were called at least once               |
+| **Lines**      | Physical lines of code executed                        |
+
+---
+
+### 6.1 Setup
+
+```bash
+npm install c8 --save-dev
+```
+
+---
+
+### 6.2 Configuration — `.c8rc`
+
+Create `.c8rc` in the project root:
+
+```json
+{
+  "reporter": ["text", "html", "lcov"],
+  "include": ["controllers/**/*.js", "middleware/**/*.js", "routes/**/*.js"],
+  "exclude": ["tests/**", "prisma/**", "node_modules/**"],
+  "branches": 80,
+  "lines": 80,
+  "functions": 80,
+  "statements": 80,
+  "all": true
+}
+```
+
+| Option       | Purpose                                                                |
+| ------------ | ---------------------------------------------------------------------- |
+| `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
+| `include`    | Globs of source files to measure                                       |
+| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
+| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
+| `lines`      | Minimum % of lines that must be covered                                |
+| `functions`  | Minimum % of functions that must be covered                            |
+| `statements` | Minimum % of statements that must be covered                           |
+| `all`        | Report on all matched files, even those not imported by any test       |
+
+> **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
+
+---
+
+### 6.3 Scripts — `package.json`
+
+```json
+{
+  "scripts": {
+    "test": "mocha tests --recursive --timeout 10000 --exit",
+    "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+    "coverage:report": "c8 report --reporter=html && open coverage/index.html"
+  }
+}
+```
+
+| Script                    | Purpose                                                |
+| ------------------------- | ------------------------------------------------------ |
+| `npm test`                | Run tests only, no coverage                            |
+| `npm run coverage`        | Run tests and print a coverage summary to the terminal |
+| `npm run coverage:report` | Re-generate the full HTML report and open it           |
+
+> `c8` wraps your test command — it doesn't change how tests run, it just instruments coverage collection around them.
+
+---
+
+### 6.4 Reading the Terminal Report
+
+Running `npm run coverage` produces a table like this:
+
+```
+------------------------|---------|----------|---------|---------|
+File                    | % Stmts | % Branch | % Funcs | % Lines |
+------------------------|---------|----------|---------|---------|
+All files               |   87.50 |    75.00 |   90.00 |   87.50 |
+ controllers/auth.js    |   95.00 |    83.33 |  100.00 |   95.00 |
+ controllers/institution|   85.71 |    66.67 |  100.00 |   85.71 |
+ middleware/jwtAuth.js  |   80.00 |    75.00 |  100.00 |   80.00 |
+ middleware/rbac.js     |   75.00 |    66.67 |   75.00 |   75.00 |
+------------------------|---------|----------|---------|---------|
+```
+
+Lines highlighted in the HTML report indicate:
+
+- 🟢 **Green** — covered by at least one test
+- 🔴 **Red** — never executed during the test run
+- 🟡 **Yellow** — branch partially covered (e.g. only the `true` path of an `if` was tested)
+
+---
+
+### 6.5 What Low Coverage Reveals
+
+Low branch coverage is often more telling than low line coverage. A line like:
+
+```javascript
+return user
+  ? res.status(200).json({ data: user })
+  : res.status(404).json({ message: "User not found" });
+```
+
+counts as one line, but has **two branches**. If your tests never hit the `404` path, branch coverage will flag it even though the line appears covered.
+
+Common gaps to look for:
+
+- Error handler `catch` blocks — test by passing invalid data or mocking database failures
+- `if (!user)` / not-found guards — test with a non-existent ID
+- RBAC forbidden paths — test with a user who lacks the required role
+- Rate limiter `429` responses — test by exceeding the request limit
+
+---
+
+### 6.6 Ignoring Code from Coverage
+
+Sometimes generated, third-party, or intentionally untestable code should be excluded. Use inline comments:
+
+```javascript
+/* c8 ignore next */
+if (process.env.NODE_ENV === "test") { ... }
+
+/* c8 ignore next 3 */
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+```
+
+> Use sparingly — ignoring coverage is a last resort, not a way to hit thresholds artificially.
 
 ---
 
@@ -1002,6 +1142,29 @@ Add confirm password validation to the `register` function in `controllers/auth.
 Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with the message `"Passwords do not match"`.
 
 > `confirmPassword` should not be stored in the database.
+
+---
+
+### Task 10 — Enable Coverage _(Easy)_
+
+1. Install `c8` and create a `.c8rc` configuration file
+2. Add a `coverage` script to `package.json`
+3. Run `npm run coverage` and take note of your starting percentages
+4. Identify the two lowest-covered files in the report
+5. Write at least one additional test for each to improve their coverage
+
+---
+
+### Task 11 — Reach 80% Branch Coverage _(Medium)_
+
+Using the HTML report (`npm run coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
+
+- The `401` path in `jwtAuth.js` when no token is provided
+- The `403` path in `rbac.js` when the user has an insufficient role
+- The `409` path in `controllers/auth.js` when a duplicate email is registered
+- The `404` path in any resource controller when an ID does not exist
+
+Aim for at least **80% branch coverage** across `controllers/` and `middleware/`.
 
 ---
 
