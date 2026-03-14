@@ -6,6 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "mocha tests --recursive --timeout 10000 --exit",
+    "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+    "coverage:report": "c8 report --reporter=html && open coverage/index.html",
     "dev": "nodemon app.js",
     "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
     "docker:run:test": "docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5432 -d postgres",

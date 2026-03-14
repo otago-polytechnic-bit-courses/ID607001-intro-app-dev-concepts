@@ -891,7 +891,8 @@ Create `.c8rc` in the project root:
   "scripts": {
     "test": "mocha tests --recursive --timeout 10000 --exit",
     "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-    "coverage:report": "c8 report --reporter=html && open coverage/index.html"
+    "coverage:report": "c8 report --reporter=html && open coverage/index.html",
+    // other scripts...
   }
 }
 ```
