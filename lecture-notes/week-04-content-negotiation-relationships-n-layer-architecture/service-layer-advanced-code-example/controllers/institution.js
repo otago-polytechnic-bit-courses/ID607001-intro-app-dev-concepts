@@ -1,10 +1,8 @@
-import institutionRepository from "../repositories/institution.js";
+import institutionService from "../services/institution.js";
 
 const createInstitution = async (req, res) => {
   try {
-    const { name, region, country } = req.body;
-    await institutionRepository.create({ name, region, country });
-    const institutions = await institutionRepository.findAll();
+    const institutions = await institutionService.createInstitution(req.body);
     return res.status(201).json({
       message: "Institution successfully created",
       data: institutions,
@@ -18,15 +16,12 @@ const createInstitution = async (req, res) => {
 
 const getInstitutions = async (req, res) => {
   try {
-    const institutions = await institutionRepository.findAll();
-    if (!institutions) {
-      return res.status(404).json({ message: "No institutions found" });
-    }
+    const institutions = await institutionService.getInstitutions();
     return res.status(200).json({
       data: institutions,
     });
   } catch (err) {
-    return res.status(500).json({
+    return res.status(404).json({
       message: err.message,
     });
   }
@@ -34,18 +29,12 @@ const getInstitutions = async (req, res) => {
 
 const getInstitution = async (req, res) => {
   try {
-    const { id } = req.params;
-    const institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
+    const institution = await institutionService.getInstitution(req.params.id);
     return res.status(200).json({
       data: institution,
     });
   } catch (err) {
-    return res.status(500).json({
+    return res.status(404).json({
       message: err.message,
     });
   }
@@ -53,25 +42,16 @@ const getInstitution = async (req, res) => {
 
 const updateInstitution = async (req, res) => {
   try {
-    const { id } = req.params;
-    const { name, region, country } = req.body;
-    let institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    institution = await institutionRepository.update(id, {
-      name,
-      region,
-      country,
-    });
+    const institution = await institutionService.updateInstitution(
+      req.params.id,
+      req.body,
+    );
     return res.status(200).json({
-      message: `Institution with the id: ${id} successfully updated`,
+      message: `Institution with the id: ${req.params.id} successfully updated`,
       data: institution,
     });
   } catch (err) {
-    return res.status(500).json({
+    return res.status(404).json({
       message: err.message,
     });
   }
@@ -79,19 +59,12 @@ const updateInstitution = async (req, res) => {
 
 const deleteInstitution = async (req, res) => {
   try {
-    const { id } = req.params;
-    const institution = await institutionRepository.findById(id);
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    await institutionRepository.delete(id);
+    await institutionService.deleteInstitution(req.params.id);
     return res.status(200).json({
-      message: `Institution with the id: ${id} successfully deleted`,
+      message: `Institution with the id: ${req.params.id} successfully deleted`,
     });
   } catch (err) {
-    return res.status(500).json({
+    return res.status(404).json({
       message: err.message,
     });
   }
