@@ -275,8 +275,10 @@ Your complete `scripts` block should look like:
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
-  "format": "prettier --write .",
-  "lint": "eslint .",
+  "prettier:check": "prettier --check .",
+  "prettier:format": "prettier --write .",
+  "lint:check": "eslint .",
+  "lint:fix": "eslint --fix .",
   "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
   "env:copy": "cp .env.example .env || copy .env.example .env",
   "prisma:migrate": "npx prisma migrate dev",
