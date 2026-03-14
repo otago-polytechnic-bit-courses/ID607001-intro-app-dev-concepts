@@ -1,4 +1,4 @@
-# Week 06 — Security, Authentication, RBAC & API Testing
+# Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage
 
 ## Navigation
 
