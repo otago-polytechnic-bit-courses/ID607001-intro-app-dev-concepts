@@ -1,11 +1,11 @@
-# Week 01 - Git & JavaScript
+# Week 01 - Git and JavaScript
 
 ## Navigation
 
-|                  | Link                                                                                               |
-| ---------------- | -------------------------------------------------------------------------------------------------- |
-| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6)                                          |
-| → Next           | [Week 02 - APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md) |
+|                  | Link                                                                                                 |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6)                                            |
+| → Next           | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
 
 ---
 

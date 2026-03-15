@@ -1,12 +1,12 @@
-# Week 02 - APIs, Express & Development Tools
+# Week 02 - APIs, Express and Development Tools
 
 ## Navigation
 
-|              | Link                                                                                                           |
-| ------------ | -------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 01 - Git & JavaScript](../week-01-git-javascript-1/README.md)                                            |
-| Code Example | [Code Example](code-example)                                                                                   |
-| → Next       | [Week 03 - PostgreSQL, Docker, ORM, JSDoc & Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
+|              | Link                                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 01 - Git and JavaScript](../week-01-git-javascript-1/README.md)                                            |
+| Code Example | [Code Example](code-example)                                                                                     |
+| → Next       | [Week 03 - PostgreSQL, Docker, ORM, JSDoc and Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
 
 ---
 
@@ -32,7 +32,7 @@ The rules and protocols of an API cover:
 - **Request methods** - GET (retrieve), POST (create), PUT (update), DELETE (delete)
 - **Data formats** - JSON (JavaScript Object Notation) and XML (eXtensible Markup Language)
 - **Endpoint URLs** - Used to access resources, e.g. `/api/users`
-- **Authentication & authorisation** - Restricts access to certain resources
+- **Authentication and authorisation** - Restricts access to certain resources
 - **Error handling** - Returns meaningful error messages when something goes wrong
 
 ---

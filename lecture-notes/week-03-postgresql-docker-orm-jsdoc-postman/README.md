@@ -1,12 +1,12 @@
-# Week 03 - PostgreSQL, Docker, JSDoc & Postman
+# Week 03 - PostgreSQL, Docker, JSDoc and Postman
 
 ## Navigation
 
-|              | Link                                                                                                                                               |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 02 - APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
-| Code Example | [Code Example](code-example)                                                                                                                       |
-| → Next       | [Week 04 - Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+|              | Link                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
+| Code Example | [Code Example](code-example)                                                                                                                         |
+| → Next       | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 

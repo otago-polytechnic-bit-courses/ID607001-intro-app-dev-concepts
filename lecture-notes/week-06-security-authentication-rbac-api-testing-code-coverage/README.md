@@ -1,13 +1,13 @@
-# Week 06 - Security, Authentication, RBAC, API Testing & Code Coverage
+# Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage
 
 ## Navigation
 
-|                         | Link                                                                                                                                |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous              | [Week 05 - Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example            | [Code Example](code-example)                                                                                                        |
-| RBAC - Advanced Example | [RBAC - Advanced Code Example](./rbac-advanced-code-example)                                                                        |
-| → Next                  | [Week 07 - CI/CD, GitHub Actions & JavaScript 2](../week-07-ci-cd-github-actions-javascript-2/README.md)                                                              |
+|                         | Link                                                                                                                                  |
+| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example            | [Code Example](code-example)                                                                                                          |
+| RBAC - Advanced Example | [RBAC - Advanced Code Example](./rbac-advanced-code-example)                                                                          |
+| → Next                  | [Week 07 - CI/CD, GitHub Actions and JavaScript 2](../week-07-ci-cd-github-actions-javascript-2/README.md)                            |
 
 ---
 
@@ -354,7 +354,7 @@ RBAC restricts access to resources based on the roles assigned to users. Roles h
 
 ---
 
-### 3.1 Schema - Role Enum & User Update
+### 3.1 Schema - Role Enum and User Update
 
 Add the `Role` enum and update the `User` model in `schema.prisma`:
 
@@ -602,7 +602,7 @@ export default setupTestAuth;
 
 ### 5.5 Institution CRUD Tests (`00-institution.test.js`)
 
-#### Imports & Setup
+#### Imports and Setup
 
 ```javascript
 import { expect } from "chai";
@@ -688,7 +688,7 @@ it("should get institution one by ID", async () => {
 });
 ```
 
-#### Update & Delete
+#### Update and Delete
 
 ```javascript
 it("should update institution two", async () => {
@@ -729,7 +729,7 @@ it("should delete institution one", async () => {
 
 ### 5.6 Department CRUD Tests (`01-department.test.js`)
 
-#### Imports & Setup
+#### Imports and Setup
 
 ```javascript
 import { expect } from "chai";
@@ -791,7 +791,7 @@ it("should get department one by ID", async () => {
 });
 ```
 
-#### Update & Delete
+#### Update and Delete
 
 ```javascript
 it("should update department one", async () => {
@@ -1133,25 +1133,25 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 Apply the following permission matrix across all resources:
 
-| Resource    | Operation          | ADMIN | STAFF | STUDENT |
-| ----------- | ------------------ | :---: | :---: | :-----: |
-| Institution | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
-| Institution | Create             |  ✅   |  ✅   |   ❌    |
-| Institution | Update             |  ✅   |  ✅   |   ❌    |
-| Institution | Delete             |  ✅   |  ❌   |   ❌    |
-| Department  | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
-| Department  | Create             |  ✅   |  ✅   |   ❌    |
-| Department  | Update             |  ✅   |  ✅   |   ❌    |
-| Department  | Delete             |  ✅   |  ❌   |   ❌    |
-| Course      | Read (all & by ID) |  ✅   |  ✅   |   ✅    |
-| Course      | Create             |  ✅   |  ✅   |   ❌    |
-| Course      | Update             |  ✅   |  ✅   |   ❌    |
-| Course      | Delete             |  ✅   |  ❌   |   ❌    |
-| User        | View All           |  ✅   |  ✅   |   ❌    |
-| User        | View Own           |  ✅   |  ✅   |   ✅    |
-| User        | Update All         |  ✅   |  ✅   |   ❌    |
-| User        | Update Own         |  ✅   |  ✅   |   ✅    |
-| User        | Delete             |  ✅   |  ❌   |   ❌    |
+| Resource    | Operation            | ADMIN | STAFF | STUDENT |
+| ----------- | -------------------- | :---: | :---: | :-----: |
+| Institution | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
+| Institution | Create               |  ✅   |  ✅   |   ❌    |
+| Institution | Update               |  ✅   |  ✅   |   ❌    |
+| Institution | Delete               |  ✅   |  ❌   |   ❌    |
+| Department  | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
+| Department  | Create               |  ✅   |  ✅   |   ❌    |
+| Department  | Update               |  ✅   |  ✅   |   ❌    |
+| Department  | Delete               |  ✅   |  ❌   |   ❌    |
+| Course      | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
+| Course      | Create               |  ✅   |  ✅   |   ❌    |
+| Course      | Update               |  ✅   |  ✅   |   ❌    |
+| Course      | Delete               |  ✅   |  ❌   |   ❌    |
+| User        | View All             |  ✅   |  ✅   |   ❌    |
+| User        | View Own             |  ✅   |  ✅   |   ✅    |
+| User        | Update All           |  ✅   |  ✅   |   ❌    |
+| User        | Update Own           |  ✅   |  ✅   |   ✅    |
+| User        | Delete               |  ✅   |  ❌   |   ❌    |
 
 ---
 

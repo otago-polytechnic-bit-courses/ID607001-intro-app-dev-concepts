@@ -1,13 +1,13 @@
-# Week 04 - Content Negotiation, Relationships & N-Layer Architecture
+# Week 04 - Content Negotiation, Relationships and N-Layer Architecture
 
 ## Navigation
 
-|                       | Link                                                                                                                                |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous            | [Week 02 - APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                  |
-| Code Example          | [Code Example](code-example)                                                                                                        |
-| Service Layer - Advanced Code Example | [Service Layer - Advanced Code Example](./service-layer-advanced-code-example)                                                                                      |
-| → Next                | [Week 05 - Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+|                                       | Link                                                                                                                                  |
+| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous                            | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md)                                  |
+| Code Example                          | [Code Example](code-example)                                                                                                          |
+| Service Layer - Advanced Code Example | [Service Layer - Advanced Code Example](./service-layer-advanced-code-example)                                                        |
+| → Next                                | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 
@@ -167,7 +167,7 @@ model Department {
 
 ---
 
-### 2.2 Department Controller & Router
+### 2.2 Department Controller and Router
 
 Create `controllers/department.js` and `routes/department.js`, modelled after the institution equivalents.
 
@@ -606,7 +606,7 @@ For the Project assessment, you will design and implement a REST API with a data
 - What error handling will you implement?
 - How will you document your API?
 
-### Authentication & Authorisation
+### Authentication and Authorisation
 
 - What auth method will you use?
 - How will you manage auth?
@@ -619,7 +619,7 @@ For the Project assessment, you will design and implement a REST API with a data
 - How will you structure tests?
 - How will you manage test data?
 
-### Infrastructure & Deployment
+### Infrastructure and Deployment
 
 - What services will you use for deployment?
 - How will you manage environment variables?

@@ -1,11 +1,11 @@
-# Week 07 - CI/CD, GitHub Actions & JavaScript 2
+# Week 07 - CI/CD, GitHub Actions and JavaScript 2
 
 ## Navigation
 
-|            | Link                                                                                                                                                 |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous | [Week 06 - Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
-| → Next     | [Week 08 - Vite, SvelteKit & Deployment](../week-08-vite-sveltekit-deployment/README.md)                                                              |
+|            | Link                                                                                                                                                   |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ← Previous | [Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
+| → Next     | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)                                                             |
 
 ---
 
@@ -127,14 +127,14 @@ jobs:
 
 ---
 
-### 2.2 Format & Lint on Pull Request
+### 2.2 Format and Lint on Pull Request
 
 Enforce code formatting (Prettier) and code style (ESLint) checks before any pull request is merged. Running both together ensures consistent formatting and catches potential bugs in one step.
 
 Create `.github/workflows/lint.yml`:
 
 ```yaml
-name: Format & Lint
+name: Format and Lint
 
 on:
   pull_request:
@@ -166,7 +166,7 @@ jobs:
 
 ---
 
-## 3. Using Secrets & Environment Variables
+## 3. Using Secrets and Environment Variables
 
 Never hardcode sensitive values in workflow files. Store them as **GitHub Secrets** (Settings → Secrets and variables → Actions) and reference them in workflows.
 
@@ -292,7 +292,7 @@ on:
 
 jobs:
   format-and-lint:
-    name: Format & Lint
+    name: Format and Lint
     runs-on: ubuntu-latest
 
     steps:
@@ -350,7 +350,7 @@ jobs:
       - run: npm run test
 ```
 
-The pipeline runs sequentially: **format & lint → test**. If formatting or linting fails, tests never run - fast feedback with minimal wasted time.
+The pipeline runs sequentially: **format and lint → test**. If formatting or linting fails, tests never run - fast feedback with minimal wasted time.
 
 ---
 
@@ -543,7 +543,7 @@ Extend your CI workflow to spin up a PostgreSQL service container and run your i
 
 ---
 
-### Task 3 - Format & Lint Workflow _(Easy)_
+### Task 3 - Format and Lint Workflow _(Easy)_
 
 Create `.github/workflows/lint.yml` that runs on every pull request targeting `main` with two steps:
 

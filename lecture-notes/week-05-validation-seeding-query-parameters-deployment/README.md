@@ -1,12 +1,12 @@
-# Week 05 - Validation, Seeding, Query Parameters & Deployment
+# Week 05 - Validation, Seeding, Query Parameters and Deployment
 
 ## Navigation
 
-|              | Link                                                                                                                                                 |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 04 - Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
-| Code Example | [Code Example](code-example)                                                                                                                         |
-| → Next       | [Week 06 - Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
+|              | Link                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ← Previous   | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
+| Code Example | [Code Example](code-example)                                                                                                                           |
+| → Next       | [Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
 
 ---
 
