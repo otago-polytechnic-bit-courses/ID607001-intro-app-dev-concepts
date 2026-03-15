@@ -6,7 +6,7 @@
 | ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example | [Code Example](code-example)                                                                                                      |
-| Auth Advanced Example | [Auth - Advanced Code Example](./auth-advanced-code-example)                                                             |
+| RBAC — Advanced Example | [RBAC — Advanced Code Example](./rbac-advanced-code-example)                                                             |
 | → Next     | Week 07                                                                                                                             |
 
 ---
