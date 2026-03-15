@@ -1,13 +1,13 @@
-# Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage
+# Week 06 - Security, Authentication, RBAC, API Testing & Code Coverage
 
 ## Navigation
 
 |                         | Link                                                                                                                                |
 | ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous              | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| ← Previous              | [Week 05 - Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example            | [Code Example](code-example)                                                                                                        |
-| RBAC — Advanced Example | [RBAC — Advanced Code Example](./rbac-advanced-code-example)                                                                        |
-| → Next                  | [Week 07 — CI/CD, GitHub Actions & JavaScript 2](../week-07-ci-cd-github-actions-javascript-2/README.md)                                                              |
+| RBAC - Advanced Example | [RBAC - Advanced Code Example](./rbac-advanced-code-example)                                                                        |
+| → Next                  | [Week 07 - CI/CD, GitHub Actions & JavaScript 2](../week-07-ci-cd-github-actions-javascript-2/README.md)                                                              |
 
 ---
 
@@ -21,7 +21,7 @@ git checkout -b w06-sec-auth-rbac-api-testing-code-cov
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too — they help explain where and why things go.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
 
 ---
 
@@ -38,7 +38,7 @@ Security is the practice of protecting systems, networks, and data from unauthor
 | **Broken object level authorisation**   | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
 | **Broken user authentication**          | API doesn't properly authenticate users, allowing impersonation or unauthorised access                              |
 | **Excessive data exposure**             | API returns more data than necessary, exposing sensitive information                                                |
-| **Lack of rate limiting**               | No request throttling — enables denial-of-service or brute-force attacks                                            |
+| **Lack of rate limiting**               | No request throttling - enables denial-of-service or brute-force attacks                                            |
 | **Mass assignment**                     | API lets users update object properties they shouldn't have access to                                               |
 | **Security misconfiguration**           | Improperly configured API exposes exploitable vulnerabilities                                                       |
 | **Injection**                           | Unvalidated user input allows malicious code to be injected                                                         |
@@ -50,7 +50,7 @@ Security is the practice of protecting systems, networks, and data from unauthor
 
 ## 2. Authentication
 
-Authentication is the process of verifying the identity of a user or system — confirming they are who they claim to be, typically by checking credentials like a username and password.
+Authentication is the process of verifying the identity of a user or system - confirming they are who they claim to be, typically by checking credentials like a username and password.
 
 ---
 
@@ -61,7 +61,7 @@ Authentication is the process of verifying the identity of a user or system — 
 | **State**         | Stateless                                                          | Stateful                                     |
 | **Storage**       | Client stores token in memory or local storage                     | Server stores session in memory or database  |
 | **Transport**     | Sent in `Authorization` header                                     | Sent via cookie (session ID)                 |
-| **Server lookup** | Server validates token on every request — no session memory needed | Server looks up the session on every request |
+| **Server lookup** | Server validates token on every request - no session memory needed | Server looks up the session on every request |
 
 ---
 
@@ -69,9 +69,9 @@ Authentication is the process of verifying the identity of a user or system — 
 
 A JWT is a compact, URL-safe format for transmitting claims between parties. It consists of three parts:
 
-1. **Header** — algorithm and token type
-2. **Payload** — claims about the user (e.g. ID, role)
-3. **Signature** — verifies the token hasn't been tampered with
+1. **Header** - algorithm and token type
+2. **Payload** - claims about the user (e.g. ID, role)
+3. **Signature** - verifies the token hasn't been tampered with
 
 JWTs are typically signed using a secret (HMAC) or a private key (RSA/ECDSA).
 
@@ -112,11 +112,11 @@ JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-> ⚠️ **Important:** Always use a strong, unique `JWT_SECRET` in production — at least 256 bits long.
+> ⚠️ **Important:** Always use a strong, unique `JWT_SECRET` in production - at least 256 bits long.
 
 ---
 
-### 2.5 Schema — User Model
+### 2.5 Schema - User Model
 
 If you haven't already created the `User` model from Week 04, add it to `schema.prisma`. Note the addition of the `password` field:
 
@@ -354,7 +354,7 @@ RBAC restricts access to resources based on the roles assigned to users. Roles h
 
 ---
 
-### 3.1 Schema — Role Enum & User Update
+### 3.1 Schema - Role Enum & User Update
 
 Add the `Role` enum and update the `User` model in `schema.prisma`:
 
@@ -436,10 +436,10 @@ router.post(
 
 The current single-role enum approach works for basic scenarios but has drawbacks:
 
-- **Tightly coupled types and roles** — Hard to model nuanced cases (e.g. a student who is also a teaching assistant)
-- **No type-specific data** — Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
-- **Poor scalability** — Challenging to extend when different roles need different fields and relationships
-- **Mixed concerns** — Auth logic is entangled with user identity
+- **Tightly coupled types and roles** - Hard to model nuanced cases (e.g. a student who is also a teaching assistant)
+- **No type-specific data** - Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
+- **Poor scalability** - Challenging to extend when different roles need different fields and relationships
+- **Mixed concerns** - Auth logic is entangled with user identity
 
 See the [Auth - Advanced Code Example](auth-advanced-code-example) for a more flexible approach.
 
@@ -516,9 +516,9 @@ We use three libraries together:
 
 | Library       | Role                                            |
 | ------------- | ----------------------------------------------- |
-| **Mocha**     | Test framework — organises and runs tests       |
-| **Chai**      | Assertion library — verifies expected outcomes  |
-| **Supertest** | HTTP client — makes requests to the Express app |
+| **Mocha**     | Test framework - organises and runs tests       |
+| **Chai**      | Assertion library - verifies expected outcomes  |
+| **Supertest** | HTTP client - makes requests to the Express app |
 
 ---
 
@@ -544,7 +544,7 @@ root/
 
 ---
 
-### 5.3 Helper — Database (`helpers/db.js`)
+### 5.3 Helper - Database (`helpers/db.js`)
 
 ```javascript
 import prisma from "../../prisma/db.js";
@@ -564,7 +564,7 @@ export { cleanupDatabase, disconnectPrisma };
 
 ---
 
-### 5.4 Helper — Auth (`helpers/auth.js`)
+### 5.4 Helper - Auth (`helpers/auth.js`)
 
 ```javascript
 import request from "supertest";
@@ -637,7 +637,7 @@ describe("Institution CRUD", () => {
   });
 ```
 
-> `before()` runs once before all tests in the block — here it registers and logs in a user, storing the token for authenticated requests.
+> `before()` runs once before all tests in the block - here it registers and logs in a user, storing the token for authenticated requests.
 
 #### Create
 
@@ -723,7 +723,7 @@ it("should delete institution one", async () => {
 });
 ```
 
-> `after()` runs once after all tests complete — here it stores `institutionTwoId` in a global variable so the department tests in the next file can reference it.
+> `after()` runs once after all tests complete - here it stores `institutionTwoId` in a global variable so the department tests in the next file can reference it.
 
 ---
 
@@ -826,7 +826,7 @@ it("should delete department one", async () => {
 });
 ```
 
-> `after()` runs once all department tests are done — it clears all database records and closes the Prisma connection cleanly. This should only appear in the **last** test file to avoid wiping data that subsequent test files still need.
+> `after()` runs once all department tests are done - it clears all database records and closes the Prisma connection cleanly. This should only appear in the **last** test file to avoid wiping data that subsequent test files still need.
 
 ---
 
@@ -875,9 +875,9 @@ Department CRUD
 
 ## 6. Code Coverage with c8
 
-Code coverage measures how much of your source code is actually executed during testing. It helps identify untested paths — branches, functions, and lines that your test suite never reaches.
+Code coverage measures how much of your source code is actually executed during testing. It helps identify untested paths - branches, functions, and lines that your test suite never reaches.
 
-We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
+We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation - it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
 
 | Metric         | What it measures                                       |
 | -------------- | ------------------------------------------------------ |
@@ -896,7 +896,7 @@ npm install c8 --save-dev
 
 ---
 
-### 6.2 Configuration — `.c8rc`
+### 6.2 Configuration - `.c8rc`
 
 Create `.c8rc` in the project root:
 
@@ -917,7 +917,7 @@ Create `.c8rc` in the project root:
 | ------------ | ---------------------------------------------------------------------- |
 | `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
 | `include`    | Globs of source files to measure                                       |
-| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
+| `exclude`    | Globs to ignore - tests, migrations, generated files                   |
 | `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
 | `lines`      | Minimum % of lines that must be covered                                |
 | `functions`  | Minimum % of functions that must be covered                            |
@@ -928,7 +928,7 @@ Create `.c8rc` in the project root:
 
 ---
 
-### 6.3 Scripts — `package.json`
+### 6.3 Scripts - `package.json`
 
 Add the following coverage scripts to your existing `scripts` block in `package.json`:
 
@@ -954,7 +954,7 @@ Your `scripts` block should now look like this (other scripts such as `prisma:mi
 | `npm run test:coverage`        | Run tests and print a coverage summary to the terminal |
 | `npm run test:coverage:report` | Re-generate the full HTML report and open it           |
 
-> `c8` wraps your test command — it doesn't change how tests run, it just instruments coverage collection around them.
+> `c8` wraps your test command - it doesn't change how tests run, it just instruments coverage collection around them.
 
 ---
 
@@ -989,9 +989,9 @@ All files              |   77.72 |    54.09 |   94.44 |   77.72 |
 
 Lines highlighted in the HTML report indicate:
 
-- 🟢 **Green** — covered by at least one test
-- 🔴 **Red** — never executed during the test run
-- 🟡 **Yellow** — branch partially covered (e.g. only the `true` path of an `if` was tested)
+- 🟢 **Green** - covered by at least one test
+- 🔴 **Red** - never executed during the test run
+- 🟡 **Yellow** - branch partially covered (e.g. only the `true` path of an `if` was tested)
 
 ---
 
@@ -1023,14 +1023,14 @@ This function has **three branches**:
 2. `if (!institutions)` is `false` → returns `200`
 3. An error is thrown → the `catch` block returns `500`
 
-If your tests only call `GET /api/institutions` and get back a `200`, branches 1 and 3 are never executed. The line count looks fine — but branch coverage will flag both missed paths.
+If your tests only call `GET /api/institutions` and get back a `200`, branches 1 and 3 are never executed. The line count looks fine - but branch coverage will flag both missed paths.
 
 Common gaps to look for:
 
-- Error handler `catch` blocks — test by passing invalid data or mocking database failures
-- `if (!institutions)` / not-found guards — test with an empty database or a non-existent ID
-- RBAC forbidden paths — test with a user who lacks the required role
-- Rate limiter `429` responses — test by exceeding the request limit
+- Error handler `catch` blocks - test by passing invalid data or mocking database failures
+- `if (!institutions)` / not-found guards - test with an empty database or a non-existent ID
+- RBAC forbidden paths - test with a user who lacks the required role
+- Rate limiter `429` responses - test by exceeding the request limit
 
 ---
 
@@ -1048,7 +1048,7 @@ app.listen(PORT, () => {
 });
 ```
 
-> Use sparingly — ignoring coverage is a last resort, not a way to hit thresholds artificially.
+> Use sparingly - ignoring coverage is a last resort, not a way to hit thresholds artificially.
 
 ---
 
@@ -1060,8 +1060,8 @@ app.listen(PORT, () => {
 
 AI tools are encouraged but use them critically:
 
-- Refine your prompts — vague prompts yield vague responses
-- Validate AI output — don't trust it blindly
+- Refine your prompts - vague prompts yield vague responses
+- Validate AI output - don't trust it blindly
 - Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
@@ -1077,13 +1077,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Course CRUD Tests _(Easy)_
+### Task 2 - Course CRUD Tests _(Easy)_
 
 Create a test file for the `Course` resource covering these five scenarios:
 
@@ -1095,13 +1095,13 @@ Create a test file for the `Course` resource covering these five scenarios:
 
 ---
 
-### Task 3 — Security Analysis _(Easy)_
+### Task 3 - Security Analysis _(Easy)_
 
 In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 4 — Restrict the Endpoints Route _(Easy)_
+### Task 4 - Restrict the Endpoints Route _(Easy)_
 
 Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
@@ -1110,13 +1110,13 @@ Refactor `/api/endpoints` so it is only accessible when **both** of the followin
 
 ---
 
-### Task 5 — Restrict Registration Role _(Easy)_
+### Task 5 - Restrict Registration Role _(Easy)_
 
-Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role — admins must be created through another mechanism.
+Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role - admins must be created through another mechanism.
 
 ---
 
-### Task 6 — Multi-Role RBAC _(Medium)_
+### Task 6 - Multi-Role RBAC _(Medium)_
 
 Refactor the `rbac` middleware to accept either a single role string or an array of roles, allowing access if the user has **any** of the specified roles.
 
@@ -1129,7 +1129,7 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 ---
 
-### Task 7 — Implement Full RBAC Permissions _(Easy)_
+### Task 7 - Implement Full RBAC Permissions _(Easy)_
 
 Apply the following permission matrix across all resources:
 
@@ -1155,7 +1155,7 @@ Apply the following permission matrix across all resources:
 
 ---
 
-### Task 8 — User Profile _(Medium)_
+### Task 8 - User Profile _(Medium)_
 
 Create a `Profile` model with the following fields:
 
@@ -1218,7 +1218,7 @@ user = await prisma.user.create({
 
 ---
 
-### Task 9 — Confirm Password _(Easy)_
+### Task 9 - Confirm Password _(Easy)_
 
 Add confirm password validation to the `register` function in `controllers/auth.js`.
 
@@ -1228,7 +1228,7 @@ Check that `req.body.password` and `req.body.confirmPassword` match. If they don
 
 ---
 
-### Task 10 — Enable Coverage _(Easy)_
+### Task 10 - Enable Coverage _(Easy)_
 
 1. Install `c8` and create a `.c8rc` configuration file
 2. Add a `test:coverage` script to `package.json`
@@ -1238,7 +1238,7 @@ Check that `req.body.password` and `req.body.confirmPassword` match. If they don
 
 ---
 
-### Task 11 — Reach 80% Branch Coverage _(Medium)_
+### Task 11 - Reach 80% Branch Coverage _(Medium)_
 
 Using the HTML report (`npm run test:coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
 
@@ -1257,7 +1257,7 @@ These exercises require independent research and problem-solving. Completing the
 
 ---
 
-### Hard Task 1 — Account Lockout
+### Hard Task 1 - Account Lockout
 
 Implement account lockout after 5 failed login attempts. The account should be locked for 15 minutes.
 
@@ -1353,7 +1353,7 @@ const login = async (req, res) => {
 
 ---
 
-### Hard Task 2 — Token Blacklist
+### Hard Task 2 - Token Blacklist
 
 Implement a logout endpoint that invalidates the JWT by adding it to a blacklist in the database.
 

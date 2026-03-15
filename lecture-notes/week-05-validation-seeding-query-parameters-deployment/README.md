@@ -1,12 +1,12 @@
-# Week 05 — Validation, Seeding, Query Parameters & Deployment
+# Week 05 - Validation, Seeding, Query Parameters & Deployment
 
 ## Navigation
 
 |              | Link                                                                                                                                                 |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
+| ← Previous   | [Week 04 - Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
 | Code Example | [Code Example](code-example)                                                                                                                         |
-| → Next       | [Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
+| → Next       | [Week 06 - Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
 
 ---
 
@@ -20,7 +20,7 @@ git checkout -b w05-validation-seeding-query-params-deployment
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too — they help explain where and why things go.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
 
 ---
 
@@ -330,7 +330,7 @@ export const seedInstitutions = async () => {
 
     const institutionData = [
       {
-        country: "New Zealand", // Intentionally invalid — missing name and region
+        country: "New Zealand", // Intentionally invalid - missing name and region
       },
       {
         name: "Southern Institute of Technology",
@@ -424,13 +424,13 @@ Resource: Institutions
 
 ## 4. Query Parameters
 
-Query parameters pass additional information to a server in the URL — commonly used for filtering, sorting, and pagination. They appear after a `?` and are separated by `&`:
+Query parameters pass additional information to a server in the URL - commonly used for filtering, sorting, and pagination. They appear after a `?` and are separated by `&`:
 
 ```
 /api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5
 ```
 
-You have likely used these without realising — every time you filter search results or navigate between pages of an online shop.
+You have likely used these without realising - every time you filter search results or navigate between pages of an online shop.
 
 ---
 
@@ -531,13 +531,13 @@ const getInstitutions = async (req, res) => {
     if (region) filters.region = region;
     if (country) filters.country = country;
 
-    // Validate sortOrder — default to "asc" if invalid
+    // Validate sortOrder - default to "asc" if invalid
     const validSortOrders = ["asc", "desc"];
     const order = validSortOrders.includes(sortOrder.toLowerCase())
       ? sortOrder.toLowerCase()
       : "asc";
 
-    // Validate sortBy field — default to "id" if invalid
+    // Validate sortBy field - default to "id" if invalid
     const validSortFields = ["id", "name", "region", "country"];
     const fields = validSortFields.includes(sortBy.toLowerCase())
       ? sortBy.toLowerCase()
@@ -569,9 +569,9 @@ const getInstitutions = async (req, res) => {
 
 | Parameter   | Description                                      | Default | Example                |
 | ----------- | ------------------------------------------------ | ------- | ---------------------- |
-| `name`      | Filter by name (case-insensitive, partial match) | —       | `?name=otago`          |
-| `region`    | Filter by region                                 | —       | `?region=Otago`        |
-| `country`   | Filter by country                                | —       | `?country=New Zealand` |
+| `name`      | Filter by name (case-insensitive, partial match) | -       | `?name=otago`          |
+| `region`    | Filter by region                                 | -       | `?region=Otago`        |
+| `country`   | Filter by country                                | -       | `?country=New Zealand` |
 | `sortBy`    | Field to sort by                                 | `id`    | `?sortBy=country`      |
 | `sortOrder` | Sort direction                                   | `asc`   | `?sortOrder=desc`      |
 | `page`      | Page number                                      | `1`     | `?page=2`              |
@@ -608,8 +608,8 @@ Your `scripts` block should now look like this (other scripts have been omitted 
 
 | Command                     | Purpose                                                                 |
 | --------------------------- | ----------------------------------------------------------------------- |
-| `npx prisma migrate dev`    | Development only — creates new migration files and applies them locally |
-| `npx prisma migrate deploy` | Production — applies pending migrations without creating new files      |
+| `npx prisma migrate dev`    | Development only - creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files      |
 
 ---
 
@@ -624,7 +624,7 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
 1. Click **New +**, then select **Postgres**
 2. Give your database a name; leave Instance Type as **Free**
 3. Click **Create Database**
-4. Copy the **External Database URL** — you will need this shortly
+4. Copy the **External Database URL** - you will need this shortly
 
 ---
 
@@ -641,7 +641,7 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
    - **Instance Type:** Free
 4. Add an environment variable: `DATABASE_URL` = the External Database URL copied above
 5. Click **Deploy Web Service**
-6. Monitor the logs — your service is ready when you see:
+6. Monitor the logs - your service is ready when you see:
 
 ```
 Server is listening on port 10000. Visit http://localhost:10000
@@ -662,8 +662,8 @@ Your service is live 🎉
 
 AI tools are encouraged but use them critically:
 
-- Refine your prompts — vague prompts yield vague responses
-- Validate AI output — don't trust it blindly
+- Refine your prompts - vague prompts yield vague responses
+- Validate AI output - don't trust it blindly
 - Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
@@ -679,13 +679,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Catch-All Route _(Medium)_
+### Task 2 - Catch-All Route _(Medium)_
 
 A catch-all route matches any request that doesn't match a defined route, and returns a helpful 404 response.
 
@@ -696,7 +696,7 @@ app.use("/", indexRoutes);
 app.use("/api/institutions", institutionRoutes);
 app.use("/api/departments", departmentRoutes);
 
-// Must be last — catches any unmatched routes
+// Must be last - catches any unmatched routes
 app.use((req, res) => {
   // Return a 404 with: "Endpoint {req.method} {req.originalUrl} not found"
 });
@@ -706,13 +706,13 @@ app.use((req, res) => {
 
 ---
 
-### Task 3 — Endpoints List _(Medium)_
+### Task 3 - Endpoints List _(Medium)_
 
 Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
 ---
 
-### Task 4 — Validation for Other Resources _(Medium)_
+### Task 4 - Validation for Other Resources _(Medium)_
 
 Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources. Create the following files in `middleware/validation/`:
 
@@ -726,7 +726,7 @@ Register the middleware in the appropriate route files.
 
 ---
 
-### Task 5 — Seeding Other Resources _(Medium)_
+### Task 5 - Seeding Other Resources _(Medium)_
 
 Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
@@ -743,7 +743,7 @@ These exercises require independent research and problem-solving. Completing the
 
 ---
 
-### Hard Task 1 — Detailed Seeding Report
+### Hard Task 1 - Detailed Seeding Report
 
 Extend your seeding scripts to generate a comprehensive report. The report should include, for each resource: records created, time taken, and any errors encountered. Here is the expected format:
 
@@ -776,7 +776,7 @@ Errors encountered: None
 
 ---
 
-### Hard Task 2 — Advanced Query Parameters
+### Hard Task 2 - Advanced Query Parameters
 
 Extend the query parameter system to support advanced filtering operators. Maintain backward compatibility with existing filters.
 
@@ -792,18 +792,18 @@ Extend the query parameter system to support advanced filtering operators. Maint
 
 ---
 
-### Hard Task 3 — Health Check Endpoint
+### Hard Task 3 - Health Check Endpoint
 
 Implement `GET /api/health` that returns the current status of your application. The response should include at minimum: application status, database connectivity, and server uptime.
 
 ---
 
-### Hard Task 4 — Sustainable Codebase
+### Hard Task 4 - Sustainable Codebase
 
 As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
 
-- **`BaseValidationMiddleware`** — a base module with shared validation logic that resource-specific middleware can extend
-- **`BaseSeedingScript`** — a base module with shared seeding logic that individual seed scripts can extend
+- **`BaseValidationMiddleware`** - a base module with shared validation logic that resource-specific middleware can extend
+- **`BaseSeedingScript`** - a base module with shared seeding logic that individual seed scripts can extend
 
 ---
 

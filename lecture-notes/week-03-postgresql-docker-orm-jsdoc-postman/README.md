@@ -1,12 +1,12 @@
-# Week 03 — PostgreSQL, Docker, JSDoc & Postman
+# Week 03 - PostgreSQL, Docker, JSDoc & Postman
 
 ## Navigation
 
 |              | Link                                                                                                                                               |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
+| ← Previous   | [Week 02 - APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
 | Code Example | [Code Example](code-example)                                                                                                                       |
-| → Next       | [Week 04 — Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| → Next       | [Week 04 - Content Negotiation, Relationships & N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 
@@ -18,7 +18,7 @@ Open your repository in Visual Studio Code and switch to the Week 03 branch:
 git checkout -b w03-pg-docker-jsdoc-postman
 ```
 
-> **Tip:** There are many code examples this week. They do not include code from previous exercises. Typing them out rather than copy-pasting is strongly recommended — it helps with retention. Read the comments in the code too.
+> **Tip:** There are many code examples this week. They do not include code from previous exercises. Typing them out rather than copy-pasting is strongly recommended - it helps with retention. Read the comments in the code too.
 
 ---
 
@@ -32,7 +32,7 @@ PostgreSQL (also known as Postgres) is a free, open-source relational database m
 
 ## 2. Docker
 
-Docker is a platform for developing, shipping, and running applications inside **containers** — standardised units of software that package code and all its dependencies, ensuring the application runs reliably across different environments.
+Docker is a platform for developing, shipping, and running applications inside **containers** - standardised units of software that package code and all its dependencies, ensuring the application runs reliably across different environments.
 
 We will use Docker to run a PostgreSQL container.
 
@@ -80,7 +80,7 @@ An ORM is a layer between the database and the application that maps database ta
 
 ---
 
-### 3.1 Setup — Prisma
+### 3.1 Setup - Prisma
 
 We will use **Prisma**, an open-source ORM for Node.js and TypeScript that supports PostgreSQL, MySQL, SQLite, and SQL Server.
 
@@ -187,7 +187,7 @@ npx prisma generate
 
 ### 3.6 Defining a Model
 
-A **model** represents a database table — it defines the table's structure, fields, and data types.
+A **model** represents a database table - it defines the table's structure, fields, and data types.
 
 Add the following model below the `datasource db` block in `schema.prisma`:
 
@@ -210,13 +210,13 @@ model Institution {
 | `@default(now())`  | Defaults to the current date/time         |
 | `@updatedAt`       | Automatically updates on every row change |
 
-📖 Reference: [Prisma — Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
+📖 Reference: [Prisma - Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
 
 ---
 
 ### 3.7 UUIDs vs. Auto-Increment IDs
 
-UUIDs offer better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID (e.g. if the last is `10`, the next is likely `11`). UUIDs have 128 bits of entropy — approximately 3.4 × 10³⁸ possible values — making them practically impossible to guess.
+UUIDs offer better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID (e.g. if the last is `10`, the next is likely `11`). UUIDs have 128 bits of entropy - approximately 3.4 × 10³⁸ possible values - making them practically impossible to guess.
 
 > **Important:** UUIDs are an obscurity measure, not a security measure on their own. Always implement proper authentication and authorisation.
 
@@ -300,7 +300,7 @@ const prisma = new PrismaClient();
 export default prisma;
 ```
 
-This uses the **Singleton Pattern** — a design pattern that ensures only one instance of the Prisma Client is created and reused throughout the application.
+This uses the **Singleton Pattern** - a design pattern that ensures only one instance of the Prisma Client is created and reused throughout the application.
 
 ---
 
@@ -448,7 +448,7 @@ export {
 
 JavaScript has two export styles:
 
-**Default export** — one export per module, imported without curly braces:
+**Default export** - one export per module, imported without curly braces:
 
 ```javascript
 // controllers/institution.js
@@ -470,7 +470,7 @@ router.get("/", institutionController.getInstitutions);
 // ...
 ```
 
-**Named export** — multiple exports per module, imported with curly braces (used in this project — see the router below).
+**Named export** - multiple exports per module, imported with curly braces (used in this project - see the router below).
 
 | Use case                  | Export type    |
 | ------------------------- | -------------- |
@@ -567,7 +567,7 @@ export default app;
 
 ## 7. Postman
 
-Postman is a tool for testing APIs — it lets you send HTTP requests and inspect responses, making it ideal for testing and debugging.
+Postman is a tool for testing APIs - it lets you send HTTP requests and inspect responses, making it ideal for testing and debugging.
 
 ---
 
@@ -575,7 +575,7 @@ Postman is a tool for testing APIs — it lets you send HTTP requests and inspec
 
 Sign in at [identity.getpostman.com/login](https://identity.getpostman.com/login) using your GitHub account.
 
-Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests — e.g. `./lecture-notes/week-03` and `exercises`.
+Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests - e.g. `./lecture-notes/week-03` and `exercises`.
 
 > **Tip:** If you see a Postman Agent error on your first request, switch from **Cloud Agent** to **Browser Agent** in the agent selector.
 
@@ -583,11 +583,11 @@ Once signed in, create a new **Collection** (a group of requests). Use sub-folde
 
 ### 7.2 Example Requests
 
-**GET all institutions** — `GET http://localhost:3000/api/institutions`
+**GET all institutions** - `GET http://localhost:3000/api/institutions`
 
 The `data` field will be an empty array if no institutions exist yet.
 
-**Create an institution** — `POST http://localhost:3000/api/institutions`
+**Create an institution** - `POST http://localhost:3000/api/institutions`
 
 In the **Body** tab, select **raw → JSON**, then send:
 
@@ -603,9 +603,9 @@ You should receive a `201` response with the newly created institution.
 
 **Other operations** to test:
 
-- `GET /api/institutions/:id` — get by ID
-- `PUT /api/institutions/:id` — update by ID
-- `DELETE /api/institutions/:id` — delete by ID
+- `GET /api/institutions/:id` - get by ID
+- `PUT /api/institutions/:id` - update by ID
+- `DELETE /api/institutions/:id` - delete by ID
 
 > **Try it:** What happens if you request an institution ID that doesn't exist? Try it for GET, PUT, and DELETE.
 
@@ -658,8 +658,8 @@ const createInstitution = async (req, res) => {
 
 AI tools are encouraged but use them critically:
 
-- Refine your prompts — vague prompts yield vague responses
-- Validate AI output — don't trust it blindly
+- Refine your prompts - vague prompts yield vague responses
+- Validate AI output - don't trust it blindly
 - Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
@@ -675,15 +675,15 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — Prisma Studio _(Easy)_
+### Task 2 - Prisma Studio _(Easy)_
 
-Prisma Studio is a visual editor for your database — you can view and edit records directly in the browser.
+Prisma Studio is a visual editor for your database - you can view and edit records directly in the browser.
 
 Add a new script to `package.json`:
 
@@ -695,9 +695,9 @@ Add a new script to `package.json`:
 
 ---
 
-### Task 3 — Optional Fields _(Easy)_
+### Task 3 - Optional Fields _(Easy)_
 
-Update the `Institution` model in `schema.prisma` to add two optional fields — `website` and `emailAddress`.
+Update the `Institution` model in `schema.prisma` to add two optional fields - `website` and `emailAddress`.
 
 > Optional fields in Prisma are defined by appending `?` to the type. E.g. `website String?`
 
@@ -709,7 +709,7 @@ After updating the schema:
 
 ---
 
-### Task 4 — Selective Field Returns _(Easy)_
+### Task 4 - Selective Field Returns _(Easy)_
 
 Prisma's `select` option lets you choose which fields are returned from a query.
 
@@ -725,11 +725,11 @@ const institutions = await prisma.institution.findMany({
 });
 ```
 
-Test in Postman — only your selected fields should appear in the response.
+Test in Postman - only your selected fields should appear in the response.
 
 ---
 
-### Task 5 — Missing ID Handling _(Easy)_
+### Task 5 - Missing ID Handling _(Easy)_
 
 Try sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an ID. You'll see an unhelpful HTML error response.
 
@@ -753,7 +753,7 @@ router.delete("/", (req, res) => {
 
 ---
 
-### Task 6 — README Documentation _(Easy)_
+### Task 6 - README Documentation _(Easy)_
 
 Update the `README.md` in your repository to document how to set up and run the project. Here's a suggested structure:
 

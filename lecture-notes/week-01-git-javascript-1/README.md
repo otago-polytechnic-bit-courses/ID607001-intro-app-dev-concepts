@@ -1,11 +1,11 @@
-# Week 01 — Git & JavaScript
+# Week 01 - Git & JavaScript
 
 ## Navigation
 
 |                  | Link                                                                                               |
 | ---------------- | -------------------------------------------------------------------------------------------------- |
 | GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6)                                          |
-| → Next           | [Week 02 — APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md) |
+| → Next           | [Week 02 - APIs, Express & Development Tools](../week-02-apis-express-development-tools/README.md) |
 
 ---
 
@@ -39,7 +39,7 @@
 
 JavaScript is a high-level, interpreted programming language conforming to the ECMAScript specification. It is used for both frontend (client-side) and backend (server-side) development.
 
-📖 Reference: [MDN — JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+📖 Reference: [MDN - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
 ---
 
@@ -67,9 +67,9 @@ JavaScript has **seven primitive data types**:
 
 > We will use the first five in this course. BigInt and Symbol are not covered.
 
-JavaScript also has **non-primitive types** — objects. Arrays and functions are both objects in JavaScript.
+JavaScript also has **non-primitive types** - objects. Arrays and functions are both objects in JavaScript.
 
-📖 Reference: [MDN — Data Structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
+📖 Reference: [MDN - Data Structures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures)
 
 ---
 
@@ -78,8 +78,8 @@ JavaScript also has **non-primitive types** — objects. Arrays and functions ar
 A variable is a named container that stores a value.
 
 ```javascript
-let name = "John"; // Mutable — value can be changed
-const age = 25; // Immutable — value cannot be changed
+let name = "John"; // Mutable - value can be changed
+const age = 25; // Immutable - value cannot be changed
 
 console.log(typeof name); // string
 console.log(typeof age); // number
@@ -87,7 +87,7 @@ console.log(typeof age); // number
 
 > You may see `var` in older code. It behaves differently from `let` and `const`. Stick to `let` and `const`.
 
-📖 Reference: [MDN — Declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations)
+📖 Reference: [MDN - Declarations](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Grammar_and_types#declarations)
 
 ---
 
@@ -101,7 +101,7 @@ console.log(typeof age); // number
 | Logical    | `&&`, `\|\|`, `!`                                  |
 | Ternary    | `condition ? expressionIfTrue : expressionIfFalse` |
 
-📖 Reference: [MDN — Expressions and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)
+📖 Reference: [MDN - Expressions and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)
 
 ---
 
@@ -133,7 +133,7 @@ switch (expression) {
 }
 ```
 
-📖 Reference: [MDN — Conditional Statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements)
+📖 Reference: [MDN - Conditional Statements](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Control_flow_and_error_handling#conditional_statements)
 
 ---
 
@@ -164,26 +164,26 @@ do {
   // runs at least once, then checks condition
 } while (condition);
 
-// for...in — iterate over object properties
+// for...in - iterate over object properties
 const person = { name: "John", age: 30 };
 for (let key in person) {
   console.log(key + ": " + person[key]); // name: John, age: 30
 }
 
-// for...of — iterate over array values
+// for...of - iterate over array values
 const numbers = [1, 2, 3, 4, 5];
 for (let num of numbers) {
   console.log(num); // 1, 2, 3, 4, 5
 }
 
-// forEach() — run a function for each element
+// forEach() - run a function for each element
 const fruits = ["Apple", "Banana", "Cherry"];
 fruits.forEach((fruit) => {
   console.log(fruit); // Apple, Banana, Cherry
 });
 ```
 
-📖 Reference: [MDN — Loops and Iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
+📖 Reference: [MDN - Loops and Iteration](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Loops_and_iteration)
 
 ---
 
@@ -212,19 +212,19 @@ const add = (num1, num2) => {
   return num1 + num2;
 };
 
-// Single-expression shorthand — omit braces and return keyword
+// Single-expression shorthand - omit braces and return keyword
 const add = (num1, num2) => num1 + num2;
 
-// No parameters — use underscore or empty parens
+// No parameters - use underscore or empty parens
 const greet = (_) => "Hello, World!";
 ```
 
 **When to use arrow functions vs regular functions:**
 
-Arrow functions don't have their own `this` — they inherit it from the surrounding context. This matters when using callbacks inside object methods:
+Arrow functions don't have their own `this` - they inherit it from the surrounding context. This matters when using callbacks inside object methods:
 
 ```javascript
-// ❌ Regular function — this.name is undefined inside forEach
+// ❌ Regular function - this.name is undefined inside forEach
 const person = {
   name: "John",
   hobbies: ["reading", "coding"],
@@ -235,7 +235,7 @@ const person = {
   },
 };
 
-// ✅ Arrow function — inherits this from showHobbies
+// ✅ Arrow function - inherits this from showHobbies
 const person = {
   name: "John",
   hobbies: ["reading", "coding"],
@@ -247,7 +247,7 @@ const person = {
 };
 ```
 
-📖 Reference: [MDN — Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
+📖 Reference: [MDN - Functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Functions)
 
 ---
 
@@ -263,7 +263,7 @@ const greeting = `Hello, my name is ${name} and I am ${age} years old`;
 console.log(greeting); // Hello, my name is John and I am 30 years old
 ```
 
-📖 Reference: [MDN — Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
+📖 Reference: [MDN - Template Literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals)
 
 ---
 
@@ -287,7 +287,7 @@ const john = new Person("John", 30);
 console.log(john.greet()); // Hello, my name is John and I am 30 years old
 ```
 
-📖 Reference: [MDN — Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+📖 Reference: [MDN - Classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 ---
 
@@ -324,7 +324,7 @@ console.log(typeof numbers); // object
 console.log(Array.isArray(numbers)); // true
 ```
 
-📖 Reference: [MDN — Indexed Collections](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections)
+📖 Reference: [MDN - Indexed Collections](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Indexed_collections)
 
 ---
 
@@ -344,13 +344,13 @@ const { name, age } = person;
 console.log(name, age); // John 30
 ```
 
-📖 Reference: [MDN — Destructuring Assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
+📖 Reference: [MDN - Destructuring Assignment](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment)
 
 ---
 
 ### 2.12 Spread Operator
 
-The spread operator (`...`) expands an iterable into individual elements — useful for copying, merging, and passing arguments.
+The spread operator (`...`) expands an iterable into individual elements - useful for copying, merging, and passing arguments.
 
 ```javascript
 // Copy an array
@@ -369,7 +369,7 @@ const details = { isMale: true, country: "USA" };
 const full = { ...person, ...details }; // { name: "John", age: 30, isMale: true, country: "USA" }
 ```
 
-📖 Reference: [MDN — Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
+📖 Reference: [MDN - Spread Syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
 
 ---
 
@@ -394,7 +394,7 @@ Input        Callback              Output
 5  ────────▶ num => num * num ────▶ 25
 ```
 
-📖 Reference: [MDN — Array.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
+📖 Reference: [MDN - Array.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ---
 
@@ -419,7 +419,7 @@ Input        Callback                   Output
 5  ────────▶ num => num % 2 === 0 ────▶ removed
 ```
 
-📖 Reference: [MDN — Array.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
+📖 Reference: [MDN - Array.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
 
 ---
 
@@ -450,7 +450,7 @@ Input        Callback                        Accumulator
 5  ────────▶ (total, num) => total + num ──▶ 15 + 5 = 20
 ```
 
-📖 Reference: [MDN — Array.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
+📖 Reference: [MDN - Array.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
 
 ---
 
@@ -499,7 +499,7 @@ console.log(people[1].age); // 20
 
 > We use object literal syntax `{}` in this course rather than the `new Object()` constructor.
 
-📖 Reference: [MDN — Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
+📖 Reference: [MDN - Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
 
 ---
 
@@ -521,8 +521,8 @@ Hello, World!
 
 AI tools are encouraged but use them critically:
 
-- Refine your prompts — vague prompts yield vague responses
-- Validate AI output — don't trust it blindly
+- Refine your prompts - vague prompts yield vague responses
+- Validate AI output - don't trust it blindly
 - Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
@@ -540,7 +540,7 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Prime Number Check
+### Task 1 - Prime Number Check
 
 Write a function that checks whether a given number is prime.
 
@@ -561,7 +561,7 @@ const isPrime = (num) => {
 
 ---
 
-### Task 2 — Reverse a String
+### Task 2 - Reverse a String
 
 Write a function that reverses a string.
 
@@ -582,7 +582,7 @@ const reverseString = (str) => {
 
 ---
 
-### Task 3 — Find Maximum Element
+### Task 3 - Find Maximum Element
 
 Write a function that finds the maximum element in an array.
 
@@ -603,7 +603,7 @@ const findMax = (arr) => {
 
 ---
 
-### Task 4 — Palindrome Check
+### Task 4 - Palindrome Check
 
 Write a function that checks whether a string is a palindrome.
 
@@ -624,7 +624,7 @@ const isPalindrome = (str) => {
 
 ---
 
-### Task 5 — Factorial
+### Task 5 - Factorial
 
 Write a function that calculates the factorial of a number.
 
@@ -645,7 +645,7 @@ const factorial = (n) => {
 
 ---
 
-### Task 6 — Sort Array
+### Task 6 - Sort Array
 
 Write a function that sorts an array of numbers in ascending order.
 
@@ -666,7 +666,7 @@ const sortArray = (arr) => {
 
 ---
 
-### Task 7 — Count Occurrences
+### Task 7 - Count Occurrences
 
 Write a function that counts how many times a specific element appears in an array.
 
@@ -687,7 +687,7 @@ const countOccurrences = (arr, element) => {
 
 ---
 
-### Task 8 — Anagram Check
+### Task 8 - Anagram Check
 
 Write a function that checks whether two strings are anagrams of each other.
 
@@ -708,7 +708,7 @@ const isAnagram = (str1, str2) => {
 
 ---
 
-### Task 9 — Find Longest Word
+### Task 9 - Find Longest Word
 
 Write a function that finds the longest word in a sentence.
 
@@ -728,7 +728,7 @@ const findLongestWord = (sentence) => {
 
 ---
 
-### Task 10 — Merge Sorted Arrays
+### Task 10 - Merge Sorted Arrays
 
 Write a function that merges two sorted arrays into a single sorted array.
 
@@ -748,7 +748,7 @@ const mergeSortedArrays = (arr1, arr2) => {
 
 ---
 
-### Task 11 — Student Messages with `map()`
+### Task 11 - Student Messages with `map()`
 
 Use `map()` to create a message string for each student.
 
@@ -771,7 +771,7 @@ console.log(createStudentMessages(students));
 
 ---
 
-### Task 12 — Filter Students Over 20
+### Task 12 - Filter Students Over 20
 
 Use `filter()` to return only students older than 20.
 
@@ -796,7 +796,7 @@ console.log(filterAdultStudents(students));
 
 ---
 
-### Task 13 — Filter Students by Age Range
+### Task 13 - Filter Students by Age Range
 
 Use `filter()` to find students aged between 20 and 24 (inclusive).
 
@@ -821,7 +821,7 @@ console.log(filterStudentsByAgeRange(students, 20, 24));
 
 ---
 
-### Task 14 — Filter and Map String Lengths
+### Task 14 - Filter and Map String Lengths
 
 Use `filter()` and `map()` together to return the lengths of strings that do **not** start with `"A"`.
 
@@ -840,7 +840,7 @@ console.log(getFilteredStringLengths(words));
 
 ---
 
-### Task 15 — Average Grade with `reduce()`
+### Task 15 - Average Grade with `reduce()`
 
 Use `reduce()` to calculate the average of an array of grades.
 
@@ -859,7 +859,7 @@ console.log(calculateAverageGrade(grades));
 
 ---
 
-### Task 16 — Count Occurrences with `reduce()`
+### Task 16 - Count Occurrences with `reduce()`
 
 Use `reduce()` to count how many times each item appears in an array, returning an object.
 
@@ -878,7 +878,7 @@ console.log(countOccurrencesWithReduce(fruits));
 
 ---
 
-### Task 17 — Max Value in a Matrix
+### Task 17 - Max Value in a Matrix
 
 Write a function that finds the maximum value in a 2D array.
 
@@ -901,7 +901,7 @@ console.log(findMaxValueInMatrix(matrix));
 
 ---
 
-### Task 18 — Multiplication Table
+### Task 18 - Multiplication Table
 
 Write a function that generates an `n × n` multiplication table as a 2D array.
 
@@ -924,7 +924,7 @@ console.log(generateMultiplicationTable(4));
 
 ---
 
-### Task 19 — Count Available Cinema Seats
+### Task 19 - Count Available Cinema Seats
 
 A cinema seating layout is represented as a 2D array where `0` = empty and `1` = occupied. Write a function to count empty seats.
 
@@ -948,7 +948,7 @@ console.log(countAvailableSeats(seatingLayout));
 
 ---
 
-### Task 20 — Tic-Tac-Toe Winner
+### Task 20 - Tic-Tac-Toe Winner
 
 Write a function that determines the winner of a Tic-Tac-Toe game. The board uses `"X"`, `"O"`, and `"-"` for empty spaces.
 

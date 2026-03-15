@@ -1,12 +1,12 @@
-# Week 02 — APIs, Express & Development Tools
+# Week 02 - APIs, Express & Development Tools
 
 ## Navigation
 
 |              | Link                                                                                                           |
 | ------------ | -------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 01 — Git & JavaScript](../week-01-git-javascript-1/README.md)                                            |
+| ← Previous   | [Week 01 - Git & JavaScript](../week-01-git-javascript-1/README.md)                                            |
 | Code Example | [Code Example](code-example)                                                                                   |
-| → Next       | [Week 03 — PostgreSQL, Docker, ORM, JSDoc & Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
+| → Next       | [Week 03 - PostgreSQL, Docker, ORM, JSDoc & Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
 
 ---
 
@@ -18,22 +18,22 @@ Open your repository in Visual Studio Code and switch to the Week 02 branch:
 git checkout -b w02-apis-express-dev-tools
 ```
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended — it helps with retention. Read the comments in the code too.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended - it helps with retention. Read the comments in the code too.
 
 ---
 
 ## 1. Application Programming Interfaces (APIs)
 
-You have encountered different interfaces before — Graphical User Interfaces (GUIs) and Command Line Interfaces (CLIs). An **API** is a set of rules and protocols that allows different software applications to communicate with each other.
+You have encountered different interfaces before - Graphical User Interfaces (GUIs) and Command Line Interfaces (CLIs). An **API** is a set of rules and protocols that allows different software applications to communicate with each other.
 
 The rules and protocols of an API cover:
 
-- **Communication protocols** — The most common are HTTP and HTTPS, used to send and receive data between applications
-- **Request methods** — GET (retrieve), POST (create), PUT (update), DELETE (delete)
-- **Data formats** — JSON (JavaScript Object Notation) and XML (eXtensible Markup Language)
-- **Endpoint URLs** — Used to access resources, e.g. `/api/users`
-- **Authentication & authorisation** — Restricts access to certain resources
-- **Error handling** — Returns meaningful error messages when something goes wrong
+- **Communication protocols** - The most common are HTTP and HTTPS, used to send and receive data between applications
+- **Request methods** - GET (retrieve), POST (create), PUT (update), DELETE (delete)
+- **Data formats** - JSON (JavaScript Object Notation) and XML (eXtensible Markup Language)
+- **Endpoint URLs** - Used to access resources, e.g. `/api/users`
+- **Authentication & authorisation** - Restricts access to certain resources
+- **Error handling** - Returns meaningful error messages when something goes wrong
 
 ---
 
@@ -63,7 +63,7 @@ HTTP (Hypertext Transfer Protocol) is the foundation of data communication for t
 | **HTTP/2**   | 2015 | Binary protocol, multiplexed requests over a single connection, compressed headers, request prioritisation, server push                           |
 | **HTTP/3**   | 2022 | Runs over UDP (not TCP), built-in encryption via QUIC, faster connections, connection migration support                                           |
 
-📖 Reference: [MDN — Evolution of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP)
+📖 Reference: [MDN - Evolution of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP)
 
 ---
 
@@ -73,7 +73,7 @@ An HTTP request method indicates the desired action to perform on a resource. Th
 
 | Method    | Purpose                                               |
 | --------- | ----------------------------------------------------- |
-| `GET`     | Retrieve data — should never modify state             |
+| `GET`     | Retrieve data - should never modify state             |
 | `HEAD`    | Like GET but returns only headers, no body            |
 | `POST`    | Submit data to create or update a resource            |
 | `PUT`     | Replace all current representations of a resource     |
@@ -83,7 +83,7 @@ An HTTP request method indicates the desired action to perform on a resource. Th
 | `TRACE`   | Perform a loop-back test along the path to the server |
 | `PATCH`   | Apply partial modifications to a resource             |
 
-📖 Reference: [MDN — HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
+📖 Reference: [MDN - HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 ---
 
@@ -98,17 +98,17 @@ An operation is **idempotent** if performing it multiple times has the same effe
 | `DELETE` | ✅ Yes      | Deleting an already-deleted resource has no additional effect |
 | `POST`   | ❌ No       | May create multiple resources if called multiple times        |
 
-📖 Reference: [restfulapi.net — Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis)
+📖 Reference: [restfulapi.net - Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis)
 
 ---
 
 ### 1.5 HATEOAS
 
-**Hypermedia As The Engine Of Application State (HATEOAS)** is a REST constraint where the server provides hypermedia links in its responses, allowing clients to discover available resources and actions dynamically — without needing prior knowledge of the API structure.
+**Hypermedia As The Engine Of Application State (HATEOAS)** is a REST constraint where the server provides hypermedia links in its responses, allowing clients to discover available resources and actions dynamically - without needing prior knowledge of the API structure.
 
 For example, a `GET /api/users` response might include links to view, update, or delete each user.
 
-📖 Reference: [restfulapi.net — HATEOAS](https://restfulapi.net/hateoas)
+📖 Reference: [restfulapi.net - HATEOAS](https://restfulapi.net/hateoas)
 
 ---
 
@@ -124,7 +124,7 @@ Status codes indicate whether a request was successfully completed. They are gro
 | 400–499 | Client error responses  |
 | 500–599 | Server error responses  |
 
-📖 Reference: [MDN — HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
+📖 Reference: [MDN - HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ---
 
@@ -132,12 +132,12 @@ Status codes indicate whether a request was successfully completed. They are gro
 
 HTTP headers carry additional information about a request or response. There are four header groups:
 
-1. **Request headers** — sent by the client
-2. **Response headers** — sent by the server
-3. **Representation headers** — describe the body's format
-4. **Payload headers** — describe the payload data
+1. **Request headers** - sent by the client
+2. **Response headers** - sent by the server
+3. **Representation headers** - describe the body's format
+4. **Payload headers** - describe the payload data
 
-📖 Reference: [MDN — HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
+📖 Reference: [MDN - HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 
 ---
 
@@ -145,7 +145,7 @@ HTTP headers carry additional information about a request or response. There are
 
 Cookies are small pieces of data sent from a server and stored on the client's computer. They are used to remember information (e.g. login state, preferences) and are sent with every subsequent HTTP request to the same domain.
 
-📖 Reference: [MDN — Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
+📖 Reference: [MDN - Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
 
 ---
 
@@ -161,7 +161,7 @@ Access-Control-Allow-Origin: https://example.com
 
 This allows a frontend at `https://example.com` to call an API at `https://api.example.com` without being blocked by the browser's same-origin policy.
 
-📖 Reference: [MDN — CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
+📖 Reference: [MDN - CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
 
@@ -174,7 +174,7 @@ HTTP compression reduces the size of responses, improving performance by reducin
 | **Lossless** | Reduces size without losing any data | gzip, deflate |
 | **Lossy**    | Reduces size by discarding some data | JPEG, MP3     |
 
-📖 Reference: [MDN — HTTP Compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
+📖 Reference: [MDN - HTTP Compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
 
 ---
 
@@ -187,7 +187,7 @@ HTTP caching lets browsers store copies of resources (HTML, images, stylesheets)
 | **Client-side** | The browser stores and reuses cached resources       |
 | **Server-side** | The server caches resources and serves them directly |
 
-📖 Reference: [MDN — HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
+📖 Reference: [MDN - HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
 
 ---
 
@@ -195,7 +195,7 @@ HTTP caching lets browsers store copies of resources (HTML, images, stylesheets)
 
 TCP/IP (Transmission Control Protocol/Internet Protocol) is the foundational set of protocols governing how data is transmitted over the internet.
 
-📖 Reference: [MDN — TCP/IP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#underlying_protocols_tcpip)
+📖 Reference: [MDN - TCP/IP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#underlying_protocols_tcpip)
 
 ---
 
@@ -203,7 +203,7 @@ TCP/IP (Transmission Control Protocol/Internet Protocol) is the foundational set
 
 The **Domain Name System (DNS)** translates human-readable domain names (e.g. `www.example.com`) into IP addresses (e.g. `192.0.2.1`), enabling browsers to locate resources on the internet.
 
-📖 Reference: [MDN — DNS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#domain_name_system_dns)
+📖 Reference: [MDN - DNS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#domain_name_system_dns)
 
 ---
 
@@ -217,7 +217,7 @@ NPM is the package manager for Node.js, used to install, share, and distribute c
 
 ## 3. Express
 
-Express is a web application framework for Node.js — the de facto standard for building Node.js web applications and APIs.
+Express is a web application framework for Node.js - the de facto standard for building Node.js web applications and APIs.
 
 📖 Reference: [expressjs.com](https://expressjs.com/)
 
@@ -242,9 +242,9 @@ npm install nodemon --save-dev
 
 After running these, you will see three new items in `backend/`:
 
-- `node_modules/` — installed packages (add to `.gitignore`)
-- `package.json` — project metadata and dependencies
-- `package-lock.json` — locked dependency versions for reproducible installs
+- `node_modules/` - installed packages (add to `.gitignore`)
+- `package.json` - project metadata and dependencies
+- `package-lock.json` - locked dependency versions for reproducible installs
 
 ---
 
@@ -323,7 +323,7 @@ app.listen(PORT, () => {
 export default app;
 ```
 
-> **What is `process.env`?** It's a Node.js global object that provides access to environment variables — key-value pairs set outside the application (in the OS, shell, or deployment environment). Used to avoid hardcoding sensitive values like API keys, database URLs, or environment names. Access them via `process.env.VARIABLE_NAME`.
+> **What is `process.env`?** It's a Node.js global object that provides access to environment variables - key-value pairs set outside the application (in the OS, shell, or deployment environment). Used to avoid hardcoding sensitive values like API keys, database URLs, or environment names. Access them via `process.env.VARIABLE_NAME`.
 
 ---
 
@@ -335,8 +335,8 @@ npm run dev
 
 Visit the following URLs in your browser to verify:
 
-- `http://localhost:3000/` — returns the person info JSON
-- `http://localhost:3000/progLangs` — returns the programming languages array
+- `http://localhost:3000/` - returns the person info JSON
+- `http://localhost:3000/progLangs` - returns the programming languages array
 
 ---
 
@@ -370,7 +370,7 @@ const getProgLangs = (req, res) => {
 export { getPersonInfo, getProgLangs };
 ```
 
-📖 Reference: [Express — Routing](https://expressjs.com/en/guide/routing.html)
+📖 Reference: [Express - Routing](https://expressjs.com/en/guide/routing.html)
 
 ---
 
@@ -540,7 +540,7 @@ export default defineConfig([
     extends: ["js/recommended"],
     languageOptions: { globals: globals.browser },
   },
-  eslintPluginPrettierRecommended, // Must be last — Prettier rules take precedence
+  eslintPluginPrettierRecommended, // Must be last - Prettier rules take precedence
 ]);
 ```
 
@@ -587,7 +587,7 @@ npm install commitizen cz-conventional-changelog --save-dev
 }
 ```
 
-Use `npx cz` instead of `git commit` — it walks you through a series of prompts to build a standardised commit message.
+Use `npx cz` instead of `git commit` - it walks you through a series of prompts to build a standardised commit message.
 
 📖 Reference: [Commitizen on GitHub](https://github.com/commitizen/cz-cli)
 
@@ -618,8 +618,8 @@ After all tools are set up, your `scripts` block should look like:
 
 AI tools are encouraged but use them critically:
 
-- Refine your prompts — vague prompts yield vague responses
-- Validate AI output — don't trust it blindly
+- Refine your prompts - vague prompts yield vague responses
+- Validate AI output - don't trust it blindly
 - Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
@@ -635,18 +635,18 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 — Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples _(Easy)_
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 — New Routes _(Easy)_
+### Task 2 - New Routes _(Easy)_
 
 Create two new GET routes with their own controllers and route files:
 
-- `GET http://localhost:3000/about` — return your learner ID, first name, last name, email address, and one thing you enjoy about IT
-- `GET http://localhost:3000/courses` — return an array of courses you are enrolled in this semester
+- `GET http://localhost:3000/about` - return your learner ID, first name, last name, email address, and one thing you enjoy about IT
+- `GET http://localhost:3000/courses` - return an array of courses you are enrolled in this semester
 
 Your file structure should look like:
 
@@ -668,9 +668,9 @@ backend/
 
 ---
 
-### Task 3 — Smarter Formatting with `lint-staged` _(Medium)_
+### Task 3 - Smarter Formatting with `lint-staged` _(Medium)_
 
-Running `npm run prettier:format` formats every file in the project — including `node_modules` — which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
+Running `npm run prettier:format` formats every file in the project - including `node_modules` - which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
 
 **Install:**
 
