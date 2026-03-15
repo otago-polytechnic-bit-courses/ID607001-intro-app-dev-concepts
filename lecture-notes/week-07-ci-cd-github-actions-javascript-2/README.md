@@ -5,7 +5,7 @@
 |            | Link                                                                                                                                                 |
 | ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous | [Week 06 — Security, Authentication, RBAC, API Testing & Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
-| → Next     | Week 08                                                                                                                                              |
+| → Next     | [Week 08 — Vite, SvelteKit & Deployment](../week-08-vite-sveltekit-deployment/README.md)                                                              |
 
 ---
 
@@ -369,7 +369,8 @@ Add a coverage script to `package.json`:
 ```json
 "scripts": {
   "test": "mocha tests --recursive --timeout 10000 --exit",
-  "test:coverage": "c8 npm run test"
+  "coverage": "c8 npm run test",
+  "coverage:report": "c8 report --reporter=html"
 }
 ```
 
@@ -419,7 +420,10 @@ jobs:
       - run: npx prisma migrate deploy
 
       - name: Run tests with coverage
-        run: npm run test:coverage
+        run: npm run coverage
+
+      - name: Generate coverage report
+        run: npm run coverage:report
 
       - name: Upload coverage report
         uses: actions/upload-artifact@v4
@@ -544,9 +548,9 @@ Extend your CI workflow to spin up a PostgreSQL service container and run your i
 Create `.github/workflows/lint.yml` that runs on every pull request targeting `main` with two steps:
 
 1. `npm run format:check` — fails if any file is not Prettier-formatted
-2. `npm run lint` — fails if any ESLint errors are found
+2. `npm run lint:check` — fails if any ESLint errors are found
 
-> **Reminder:** Your `format:check` and `lint` scripts were configured in Weeks 04–05. If either command doesn't exist in your `package.json`, set it up now before creating the workflow.
+> **Reminder:** Your `format:check` and `lint:check` scripts were configured in Weeks 04–05. If either command doesn't exist in your `package.json`, set it up now before creating the workflow.
 
 Verify it works by temporarily introducing a formatting error (e.g. remove a semicolon or add extra whitespace) and confirming the workflow fails.
 
@@ -583,7 +587,7 @@ Test it by opening a pull request with a formatting error and confirming the mer
 Add code coverage to your CI pipeline:
 
 1. Install `c8` (if not already installed from Week 06 — check your `package.json` devDependencies first)
-2. Add a `test:coverage` script to `package.json`
+2. Add `coverage` and `coverage:report` scripts to `package.json`
 3. Upload the coverage report as a workflow artifact with a 7-day retention period
 
 ---
