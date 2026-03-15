@@ -2,12 +2,12 @@
 
 ## Navigation
 
-|            | Link                                                                                                                                |
-| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example | [Code Example](code-example)                                                                                                      |
-| RBAC — Advanced Example | [RBAC — Advanced Code Example](./rbac-advanced-code-example)                                                             |
-| → Next     | Week 07                                                                                                                             |
+|                         | Link                                                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous              | [Week 05 — Validation, Seeding, Query Parameters & Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example            | [Code Example](code-example)                                                                                                        |
+| RBAC — Advanced Example | [RBAC — Advanced Code Example](./rbac-advanced-code-example)                                                                        |
+| → Next                  | Week 07                                                                                                                             |
 
 ---
 
@@ -642,76 +642,76 @@ describe("Institution CRUD", () => {
 #### Create
 
 ```javascript
-  it("should create institution one", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[1]);
+it("should create institution one", async () => {
+  const res = await request(app)
+    .post(BASE_URL)
+    .set("Authorization", `Bearer ${token}`)
+    .send(institutionData[1]);
 
-    expect(res.status).to.equal(201);
+  expect(res.status).to.equal(201);
 
-    const newInstitution = res.body.data.find(
-      (i) => i.name === institutionData[1].name,
-    );
-    institutionOneId = newInstitution.id;
-  });
+  const newInstitution = res.body.data.find(
+    (i) => i.name === institutionData[1].name,
+  );
+  institutionOneId = newInstitution.id;
+});
 
-  it("should create institution two", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[2]);
+it("should create institution two", async () => {
+  const res = await request(app)
+    .post(BASE_URL)
+    .set("Authorization", `Bearer ${token}`)
+    .send(institutionData[2]);
 
-    expect(res.status).to.equal(201);
-    const newInstitution = res.body.data.find(
-      (i) => i.name === institutionData[2].name,
-    );
-    institutionTwoId = newInstitution.id;
-  });
+  expect(res.status).to.equal(201);
+  const newInstitution = res.body.data.find(
+    (i) => i.name === institutionData[2].name,
+  );
+  institutionTwoId = newInstitution.id;
+});
 ```
 
 #### Read
 
 ```javascript
-  it("should get all institutions", async () => {
-    const res = await request(app).get(BASE_URL);
+it("should get all institutions", async () => {
+  const res = await request(app).get(BASE_URL);
 
-    expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2);
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.data.length).to.be.at.least(2);
+});
 
-  it("should get institution one by ID", async () => {
-    const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
+it("should get institution one by ID", async () => {
+  const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
 
-    expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name);
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.data.name).to.equal(institutionData[1].name);
+});
 ```
 
 #### Update & Delete
 
 ```javascript
-  it("should update institution two", async () => {
-    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-      name: institutionData[0].name,
-      region: institutionData[0].region,
-    });
-
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionTwoId} successfully updated`,
-    );
-    expect(res.body.data.name).to.equal(institutionData[0].name);
+it("should update institution two", async () => {
+  const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
+    name: institutionData[0].name,
+    region: institutionData[0].region,
   });
 
-  it("should delete institution one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+  expect(res.status).to.equal(200);
+  expect(res.body.message).to.equal(
+    `Institution with the id: ${institutionTwoId} successfully updated`,
+  );
+  expect(res.body.data.name).to.equal(institutionData[0].name);
+});
 
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionOneId} successfully deleted`,
-    );
-  });
+it("should delete institution one", async () => {
+  const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+
+  expect(res.status).to.equal(200);
+  expect(res.body.message).to.equal(
+    `Institution with the id: ${institutionOneId} successfully deleted`,
+  );
+});
 ```
 
 #### Teardown
@@ -760,60 +760,60 @@ describe("Department CRUD", () => {
 #### Create
 
 ```javascript
-  it("should create department one", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .send({ name: departmentData[0].name, institutionId });
+it("should create department one", async () => {
+  const res = await request(app)
+    .post(BASE_URL)
+    .send({ name: departmentData[0].name, institutionId });
 
-    expect(res.status).to.equal(201);
-    const newDepartment = res.body.data.find(
-      (d) => d.name === departmentData[0].name,
-    );
-    departmentOneId = newDepartment.id;
-  });
+  expect(res.status).to.equal(201);
+  const newDepartment = res.body.data.find(
+    (d) => d.name === departmentData[0].name,
+  );
+  departmentOneId = newDepartment.id;
+});
 ```
 
 #### Read
 
 ```javascript
-  it("should get all departments", async () => {
-    const res = await request(app).get(BASE_URL);
+it("should get all departments", async () => {
+  const res = await request(app).get(BASE_URL);
 
-    expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(1);
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.data.length).to.be.at.least(1);
+});
 
-  it("should get department one by ID", async () => {
-    const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
+it("should get department one by ID", async () => {
+  const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
 
-    expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(departmentData[0].name);
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.data.name).to.equal(departmentData[0].name);
+});
 ```
 
 #### Update & Delete
 
 ```javascript
-  it("should update department one", async () => {
-    const res = await request(app)
-      .put(`${BASE_URL}/${departmentOneId}`)
-      .send({ name: departmentData[1].name, institutionId });
+it("should update department one", async () => {
+  const res = await request(app)
+    .put(`${BASE_URL}/${departmentOneId}`)
+    .send({ name: departmentData[1].name, institutionId });
 
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`,
-    );
-    expect(res.body.data.name).to.equal(departmentData[1].name);
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.message).to.equal(
+    `Department with the id: ${departmentOneId} successfully updated`,
+  );
+  expect(res.body.data.name).to.equal(departmentData[1].name);
+});
 
-  it("should delete department one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
+it("should delete department one", async () => {
+  const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
 
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`,
-    );
-  });
+  expect(res.status).to.equal(200);
+  expect(res.body.message).to.equal(
+    `Department with the id: ${departmentOneId} successfully deleted`,
+  );
+});
 ```
 
 #### Teardown
@@ -879,12 +879,12 @@ Code coverage measures how much of your source code is actually executed during 
 
 We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation — it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
 
-| Metric         | What it measures                                        |
-| -------------- | ------------------------------------------------------- |
-| **Statements** | Individual executable statements executed               |
+| Metric         | What it measures                                       |
+| -------------- | ------------------------------------------------------ |
+| **Statements** | Individual executable statements executed              |
 | **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once                |
-| **Lines**      | Physical lines of code executed                         |
+| **Functions**  | Functions that were called at least once               |
+| **Lines**      | Physical lines of code executed                        |
 
 ---
 
@@ -913,16 +913,16 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option       | Purpose                                                                 |
-| ------------ | ----------------------------------------------------------------------- |
+| Option       | Purpose                                                                |
+| ------------ | ---------------------------------------------------------------------- |
 | `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                        |
-| `exclude`    | Globs to ignore — tests, migrations, generated files                    |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)     |
-| `lines`      | Minimum % of lines that must be covered                                 |
-| `functions`  | Minimum % of functions that must be covered                             |
-| `statements` | Minimum % of statements that must be covered                            |
-| `all`        | Report on all matched files, even those not imported by any test        |
+| `include`    | Globs of source files to measure                                       |
+| `exclude`    | Globs to ignore — tests, migrations, generated files                   |
+| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
+| `lines`      | Minimum % of lines that must be covered                                |
+| `functions`  | Minimum % of functions that must be covered                            |
+| `statements` | Minimum % of statements that must be covered                           |
+| `all`        | Report on all matched files, even those not imported by any test       |
 
 > **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
 
@@ -943,16 +943,16 @@ Your `scripts` block should now look like this (other scripts such as `prisma:mi
 {
   "scripts": {
     "test": "mocha tests --recursive --timeout 10000 --exit",
-    "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-    "coverage:report": "c8 report --reporter=html && open coverage/index.html"
+    "test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+    "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
   }
 }
 ```
 
-| Script                    | Purpose                                                |
-| ------------------------- | ------------------------------------------------------ |
-| `npm run coverage`        | Run tests and print a coverage summary to the terminal |
-| `npm run coverage:report` | Re-generate the full HTML report and open it           |
+| Script                         | Purpose                                                |
+| ------------------------------ | ------------------------------------------------------ |
+| `npm run test:coverage`        | Run tests and print a coverage summary to the terminal |
+| `npm run test:coverage:report` | Re-generate the full HTML report and open it           |
 
 > `c8` wraps your test command — it doesn't change how tests run, it just instruments coverage collection around them.
 
@@ -960,7 +960,7 @@ Your `scripts` block should now look like this (other scripts such as `prisma:mi
 
 ### 6.4 Reading the Terminal Report
 
-Running `npm run coverage` produces a table like this:
+Running `npm run test:coverage` produces a table like this:
 
 ```
 -----------------------|---------|----------|---------|---------|------------------------------------
@@ -1231,8 +1231,8 @@ Check that `req.body.password` and `req.body.confirmPassword` match. If they don
 ### Task 10 — Enable Coverage _(Easy)_
 
 1. Install `c8` and create a `.c8rc` configuration file
-2. Add a `coverage` script to `package.json`
-3. Run `npm run coverage` and take note of your starting percentages
+2. Add a `test:coverage` script to `package.json`
+3. Run `npm run test:coverage` and take note of your starting percentages
 4. Identify the two lowest-covered files in the report
 5. Write at least one additional test for each to improve their coverage
 
@@ -1240,7 +1240,7 @@ Check that `req.body.password` and `req.body.confirmPassword` match. If they don
 
 ### Task 11 — Reach 80% Branch Coverage _(Medium)_
 
-Using the HTML report (`npm run coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
+Using the HTML report (`npm run test:coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
 
 - The `401` path in `jwtAuth.js` when no token is provided
 - The `403` path in `rbac.js` when the user has an insufficient role

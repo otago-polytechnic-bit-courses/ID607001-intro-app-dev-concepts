@@ -23,6 +23,8 @@ Set up your development environment (Docker, environment variables, etc.) before
 
 > **Note:** The workflows you create this week will also be used in the **Project** branch for your assessment. Get them working here first, then you can apply the same approach there.
 
+> **Prerequisites:** Before starting the exercises below, confirm your practice project has `npm run test`, `npm run lint:check`, and `npm run format:check` scripts working locally. These scripts were set up in Weeks 04–06. If any are missing, revisit the relevant week's README before continuing.
+
 ---
 
 ## 1. GitHub Actions
@@ -159,7 +161,7 @@ jobs:
         run: npm run format:check # Fails if any file doesn't match Prettier's rules
 
       - name: Run ESLint
-        run: npm run lint # Fails if any lint errors are found
+        run: npm run lint:check # Fails if any lint errors are found
 ```
 
 ---
@@ -307,7 +309,7 @@ jobs:
         run: npm run format:check
 
       - name: Run ESLint
-        run: npm run lint
+        run: npm run lint:check
 
   test:
     name: Run Tests
@@ -533,6 +535,8 @@ On your **Practice Project** branch, create `.github/workflows/ci.yml` that:
 
 Extend your CI workflow to spin up a PostgreSQL service container and run your integration tests against a real database. Apply Prisma migrations before running tests.
 
+> **Reminder:** Your integration tests were written in Week 06 and test the same endpoints you verified manually in Postman. The workflow here automates that process — the same requests, the same assertions, but now running automatically on every push.
+
 ---
 
 ### Task 3 — Format & Lint Workflow _(Easy)_
@@ -541,6 +545,8 @@ Create `.github/workflows/lint.yml` that runs on every pull request targeting `m
 
 1. `npm run format:check` — fails if any file is not Prettier-formatted
 2. `npm run lint` — fails if any ESLint errors are found
+
+> **Reminder:** Your `format:check` and `lint` scripts were configured in Weeks 04–05. If either command doesn't exist in your `package.json`, set it up now before creating the workflow.
 
 Verify it works by temporarily introducing a formatting error (e.g. remove a semicolon or add extra whitespace) and confirming the workflow fails.
 
@@ -576,7 +582,7 @@ Test it by opening a pull request with a formatting error and confirming the mer
 
 Add code coverage to your CI pipeline:
 
-1. Install `c8`
+1. Install `c8` (if not already installed from Week 06 — check your `package.json` devDependencies first)
 2. Add a `test:coverage` script to `package.json`
 3. Upload the coverage report as a workflow artifact with a 7-day retention period
 
@@ -638,9 +644,3 @@ Extend your security audit workflow to also run on a weekly schedule using cron 
 Research the cron schedule syntax and use [crontab.guru](https://crontab.guru) to construct an expression that runs every Monday at 9am UTC.
 
 📖 Reference: [GitHub Docs — Scheduled events](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule)
-
----
-
-## README
-
-Update the `README.md` in your **Practice Project** repository to document your GitHub Actions workflows — what each one does, when it triggers, and any required secrets. You will need to do the same for your **Project** branch as part of your assessment.
