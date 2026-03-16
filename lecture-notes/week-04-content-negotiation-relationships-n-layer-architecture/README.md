@@ -4,7 +4,7 @@
 
 |                                       | Link                                                                                                                                  |
 | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous                            | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md)                                  |
+| ← Previous                            | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman)                                  |
 | Code Example                          | [Code Example](code-example)                                                                                                          |
 | Service Layer - Advanced Code Example | [Service Layer - Advanced Code Example](./service-layer-advanced-code-example)                                                        |
 | → Next                                | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
