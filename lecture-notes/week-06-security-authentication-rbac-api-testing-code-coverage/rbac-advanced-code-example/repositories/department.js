@@ -2,28 +2,28 @@ import prisma from "../prisma/db.js";
 
 class DepartmentRepository {
   async create(data) {
-    return prisma.department.create({ data });
+    return await prisma.department.create({ data });
   }
 
   async findAll() {
-    return prisma.department.findMany();
+    return await prisma.department.findMany();
   }
 
   async findById(id) {
-    return prisma.department.findUnique({
+    return await prisma.department.findUnique({
       where: { id },
     });
   }
 
   async update(id, data) {
-    return prisma.department.update({
+    return await prisma.department.update({
       where: { id },
       data,
     });
   }
 
   async delete(id) {
-    return prisma.department.delete({
+    return await prisma.department.delete({
       where: { id },
     });
   }

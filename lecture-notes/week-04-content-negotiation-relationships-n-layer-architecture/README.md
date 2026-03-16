@@ -349,23 +349,23 @@ import prisma from "../prisma/db.js";
 
 class InstitutionRepository {
   async create(data) {
-    return prisma.institution.create({ data });
+    return await prisma.institution.create({ data });
   }
 
   async findAll() {
-    return prisma.institution.findMany();
+    return await prisma.institution.findMany();
   }
 
   async findById(id) {
-    return prisma.institution.findUnique({ where: { id } });
+    return await prisma.institution.findUnique({ where: { id } });
   }
 
   async update(id, data) {
-    return prisma.institution.update({ where: { id }, data });
+    return await prisma.institution.update({ where: { id }, data });
   }
 
   async delete(id) {
-    return prisma.institution.delete({ where: { id } });
+    return await prisma.institution.delete({ where: { id } });
   }
 }
 
@@ -824,13 +824,13 @@ Refactor your controller and repository files to include relationship queries fo
 ```javascript
 class InstitutionRepository {
   async findAll(includeOptions = {}) {
-    return prisma.institution.findMany({
+    return await prisma.institution.findMany({
       include: includeOptions,
     });
   }
 
   async findById(id, includeOptions = {}) {
-    return prisma.institution.findUnique({
+    return await prisma.institution.findUnique({
       where: { id },
       include: includeOptions,
     });

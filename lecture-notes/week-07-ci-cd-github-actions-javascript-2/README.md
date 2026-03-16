@@ -83,51 +83,11 @@ jobs:
 
 ---
 
-## 2. Simple Examples
+## 2. Simple Example
 
 ---
 
-### 2.1 Run Tests on Push
-
-The most common use case - automatically run your test suite whenever code is pushed.
-
-Create `.github/workflows/ci.yml`:
-
-```yaml
-name: CI - Run Tests
-
-on:
-  push:
-    branches: [main, dev]
-  pull_request:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm" # Cache node_modules between runs for speed
-
-      - name: Install dependencies
-        run: npm ci # Use ci instead of install for reproducible builds
-
-      - name: Run tests
-        run: npm run test
-```
-
-> **`npm ci` vs `npm install`:** `npm ci` installs from `package-lock.json` exactly, never updating it - preferred for CI environments.
-
----
-
-### 2.2 Format and Lint on Pull Request
+### 2.1 Format and Lint on Pull Request
 
 Enforce code formatting (Prettier) and code style (ESLint) checks before any pull request is merged. Running both together ensures consistent formatting and catches potential bugs in one step.
 
@@ -163,6 +123,8 @@ jobs:
       - name: Run ESLint
         run: npm run lint:check # Fails if any lint errors are found
 ```
+
+> **`npm ci` vs `npm install`:** `npm ci` installs from `package-lock.json` exactly, never updating it - preferred for CI environments.
 
 ---
 
@@ -237,7 +199,7 @@ jobs:
           POSTGRES_DB: postgres
         ports:
           - 5432:5432
-        options: >- # Wait until Postgres is ready before starting tests
+        options: >-
           --health-cmd pg_isready
           --health-interval 10s
           --health-timeout 5s
@@ -246,7 +208,7 @@ jobs:
     env:
       NODE_ENV: test
       DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
-      JWT_SECRET: test-secret-key
+      JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
     steps:
@@ -334,7 +296,7 @@ jobs:
     env:
       NODE_ENV: test
       DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
-      JWT_SECRET: test-secret-key
+      JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
     steps:
@@ -405,7 +367,7 @@ jobs:
     env:
       NODE_ENV: test
       DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
-      JWT_SECRET: test-secret-key
+      JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits 
       JWT_LIFETIME: 1h
 
     steps:
@@ -429,8 +391,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: coverage-report
-          path: coverage/ # c8 outputs here by default
-          retention-days: 7 # Keep for 7 days, then auto-delete
+          path: coverage/ 
+          retention-days: 7 
 ```
 
 After the workflow runs, the coverage report is available under the **Artifacts** section on the workflow summary page in GitHub.

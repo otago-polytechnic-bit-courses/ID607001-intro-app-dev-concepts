@@ -450,7 +450,7 @@ async findAll(
   page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
   pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-  const totalCount = prisma.institution.count({ where: filters });
+  const totalCount = await prisma.institution.count({ where: filters });
   const totalPages = Math.ceil(totalCount / pageSize);
 
   const query = {
@@ -476,7 +476,7 @@ async findAll(
     }
   }
 
-  const institutions = prisma.institution.findMany(query);
+  const institutions = await prisma.institution.findMany(query);
 
   return {
     data: institutions,

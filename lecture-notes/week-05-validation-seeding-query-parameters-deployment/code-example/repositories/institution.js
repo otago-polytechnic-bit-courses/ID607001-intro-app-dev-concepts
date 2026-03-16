@@ -2,7 +2,7 @@ import prisma from "../prisma/db.js";
 
 class InstitutionRepository {
   async create(data) {
-    return prisma.institution.create({ data });
+    return await prisma.institution.create({ data });
   }
 
   async findAll(
@@ -15,7 +15,7 @@ class InstitutionRepository {
     page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
     pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-    const totalCount = prisma.institution.count({
+    const totalCount = await prisma.institution.count({
       where: filters,
     });
 
@@ -43,7 +43,7 @@ class InstitutionRepository {
       }
     }
 
-    const institutions = prisma.institution.findMany(query);
+    const institutions = await prisma.institution.findMany(query);
 
     return {
       data: institutions,
@@ -59,20 +59,20 @@ class InstitutionRepository {
   }
 
   async findById(id) {
-    return prisma.institution.findUnique({
+    return await prisma.institution.findUnique({
       where: { id },
     });
   }
 
   async update(id, data) {
-    return prisma.institution.update({
+    return await prisma.institution.update({
       where: { id },
       data,
     });
   }
 
   async delete(id) {
-    return prisma.institution.delete({
+    return await prisma.institution.delete({
       where: { id },
     });
   }

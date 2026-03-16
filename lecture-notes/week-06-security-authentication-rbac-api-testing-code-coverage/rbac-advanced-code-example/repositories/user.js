@@ -24,7 +24,7 @@ const defaultSelect = {
 
 class UserRepository {
   async createLecturer(data) {
-    return prisma.user.create({
+    return await prisma.user.create({
       data: {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -44,7 +44,7 @@ class UserRepository {
   }
 
   async createStudent(data) {
-    return prisma.user.create({
+    return await prisma.user.create({
       data: {
         firstName: data.firstName,
         lastName: data.lastName,
@@ -62,7 +62,7 @@ class UserRepository {
   }
 
   async findByEmail(emailAddress) {
-    return prisma.user.findUnique({
+    return await prisma.user.findUnique({
       where: { emailAddress },
       include: {
         lecturer: {

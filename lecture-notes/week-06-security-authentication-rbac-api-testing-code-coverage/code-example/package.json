@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "mocha tests --recursive --timeout 10000 --exit",
-    "coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-    "coverage:report": "c8 report --reporter=html && open coverage/index.html",
+    "test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+    "test:coverage:report": "c8 report --reporter=html && open coverage/index.html",
     "dev": "nodemon app.js",
     "prettier:check": "prettier --check .",
     "prettier:format": "prettier --write .",
