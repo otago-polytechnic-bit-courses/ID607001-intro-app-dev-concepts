@@ -482,17 +482,7 @@ Test it by opening a pull request with a formatting error and confirming the mer
 
 ---
 
-### Task 6 - Coverage Report _(Medium)_
-
-Add code coverage to your CI pipeline:
-
-1. Install `c8` (check your `package.json` devDependencies first - it may already be installed from Week 06)
-2. Add `test:coverage` and `test:coverage:report` scripts to `package.json`
-3. Create a coverage workflow that uploads the HTML report as a workflow artifact with a 7-day retention period
-
----
-
-### Task 7 - Workflow Status Badge _(Easy)_
+### Task 6 - Workflow Status Badge _(Easy)_
 
 Add a workflow status badge to your repository's `README.md` reflecting the current status of your CI workflow on `main`.
 
