@@ -7,7 +7,7 @@
 | ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example            | [Code Example](code-example)                                                                                                          |
 | RBAC - Advanced Example | [RBAC - Advanced Code Example](./rbac-advanced-code-example)                                                                          |
-| → Next                  | [Week 07 - CI/CD, GitHub Actions and JavaScript 2](../week-07-ci-cd-github-actions-javascript-2/README.md)                            |
+| → Next                  | [Week 07 - CI/CD and GitHub Actions](../week-07-ci-cd-github-actions/README.md)                            |
 
 ---
 
