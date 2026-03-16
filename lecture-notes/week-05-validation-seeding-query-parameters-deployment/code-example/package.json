@@ -7,8 +7,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon app.js",
-    "prettier:check": "prettier --check .",
-    "prettier:format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "format:fix": "prettier --write .",
     "lint:check": "eslint .",
     "lint:fix": "eslint --fix .",
     "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",

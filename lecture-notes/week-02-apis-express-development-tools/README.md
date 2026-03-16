@@ -476,8 +476,8 @@ npm install prettier --save-dev
 **Add to `package.json` scripts:**
 
 ```json
-"prettier:check": "prettier --check .",
-"prettier:format": "prettier --write ."
+"format:check": "prettier --check .",
+"format:fix": "prettier --write ."
 ```
 
 **Run:**
@@ -489,7 +489,7 @@ npm run prettier:check
 If there are formatting issues, run:
 
 ```bash
-npm run prettier:format
+npm run format:fix
 ```
 
 📖 Reference: [Prettier docs](https://prettier.io/docs/en/index.html)
@@ -601,8 +601,8 @@ After all tools are set up, your `scripts` block should look like:
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "nodemon app.js",
-  "prettier:check": "prettier --check .",
-  "prettier:format": "prettier --write .",
+  "format:check": "prettier --check .",
+  "format:fix": "prettier --write .",
   "lint:check": "eslint .",
   "lint:fix": "eslint --fix ."
 }
@@ -670,7 +670,7 @@ backend/
 
 ### Task 3 - Smarter Formatting with `lint-staged` _(Medium)_
 
-Running `npm run prettier:format` formats every file in the project - including `node_modules` - which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
+Running `npm run format:fix` formats every file in the project - including `node_modules` - which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
 
 **Install:**
 
@@ -681,7 +681,7 @@ npm install lint-staged --save-dev
 **Update the `format` script in `package.json`:**
 
 ```json
-"prettier:format:staged": "lint-staged"
+"format:fix:staged": "lint-staged"
 ```
 
 **Add a `lint-staged` config to `package.json`** (below `scripts`):
@@ -703,7 +703,7 @@ node_modules
 **Run:**
 
 ```bash
-npm run prettier:format:staged
+npm run format:fix:staged
 ```
 
 Only staged `.js` files will now be formatted.
