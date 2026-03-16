@@ -483,7 +483,7 @@ npm install prettier --save-dev
 **Run:**
 
 ```bash
-npm run prettier:check
+npm run format:check
 ```
 
 If there are formatting issues, run:
