@@ -1,4 +1,4 @@
-# Week 07 - CI/CD, GitHub Actions and JavaScript 2
+# Week 07 - CI/CD and GitHub Actions
 
 ## Navigation
 
@@ -11,43 +11,44 @@
 
 ## Before We Start
 
-Open your repository in Visual Studio Code and switch to the Practice Project branch:
+Open your repository in Visual Studio Code and switch to the Week 07 branch:
 
 ```bash
-git checkout practice-project
+git checkout -b w07-ci-cd-gh-actions
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too.
-
-> **Note:** The workflows you create this week will also be used in the **Project** branch for your assessment. Get them working here first, then you can apply the same approach there.
-
-> **Prerequisites:** Before starting the exercises below, confirm your practice project has `npm run test`, `npm run lint:check`, and `npm run format:check` scripts working locally. These scripts were set up in Weeks 04–06. If any are missing, revisit the relevant week's README before continuing.
+> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
 
 ---
 
-## 1. GitHub Actions
+## 1. What is GitHub Actions?
 
-GitHub Actions is a CI/CD (Continuous Integration / Continuous Delivery) platform built directly into GitHub. It allows you to automate workflows - such as running tests, linting code, and deploying applications - triggered by events in your repository (e.g. a push, pull request, or release).
+GitHub Actions is a CI/CD platform built into GitHub. It lets you automate tasks - running tests, checking code style, deploying apps - triggered by events in your repository such as a push or pull request.
 
----
+**CI/CD stands for:**
 
-### 1.1 Key Concepts
-
-| Concept      | Description                                                                     |
-| ------------ | ------------------------------------------------------------------------------- |
-| **Workflow** | A YAML file that defines an automated process. Stored in `.github/workflows/`   |
-| **Event**    | A trigger that starts a workflow (e.g. `push`, `pull_request`, `schedule`)      |
-| **Job**      | A set of steps that run on the same runner. Jobs run in parallel by default     |
-| **Step**     | An individual task within a job - either a shell command or a pre-built action  |
-| **Action**   | A reusable unit of work - can be from the GitHub Marketplace or defined locally |
-| **Artifact** | Files produced during a workflow that can be saved or shared between jobs       |
-| **Secret**   | Encrypted environment variables stored in GitHub - never visible in logs        |
+- **Continuous Integration (CI)** - automatically build and test code on every change
+- **Continuous Delivery (CD)** - automatically prepare and deploy code after tests pass
 
 ---
 
-### 1.2 Workflow File Structure
+## 2. Core Concepts
+
+| Concept      | Description                                                                   |
+| ------------ | ----------------------------------------------------------------------------- |
+| **Workflow** | A YAML file defining an automated process, stored in `.github/workflows/`     |
+| **Event**    | A trigger that starts a workflow - e.g. `push`, `pull_request`, `schedule`    |
+| **Job**      | A set of steps running on the same machine. Jobs run in parallel by default   |
+| **Step**     | A single task within a job - either a shell command or a pre-built action     |
+| **Action**   | A reusable unit of work - from the GitHub Marketplace or defined locally      |
+| **Artifact** | Files produced during a workflow run that can be saved or shared between jobs |
+| **Secret**   | Encrypted environment variables stored in GitHub - never visible in logs      |
+
+---
+
+## 3. Workflow File Structure
 
 All workflow files are YAML and live in `.github/workflows/`:
 
@@ -56,26 +57,26 @@ root/
 └── .github/
     └── workflows/
         ├── ci.yml
-        ├── deploy.yml
-        └── codeql.yml
+        ├── lint.yml
+        └── pipeline.yml
 ```
 
 A minimal workflow looks like this:
 
 ```yaml
-name: My Workflow # Display name in the GitHub Actions UI
+name: My Workflow
 
-on: # Events that trigger this workflow
+on:
   push:
     branches: [main]
 
 jobs:
-  my-job: # Job ID (can be anything)
+  my-job:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Say hello
         run: echo "Hello, World!"
@@ -83,13 +84,32 @@ jobs:
 
 ---
 
-## 2. Simple Example
+## 4. Secrets and Environment Variables
+
+Never hardcode sensitive values in workflow files. Store them as **GitHub Secrets** under **Settings → Secrets and variables → Actions**, then reference them in your workflow.
+
+```yaml
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    env:
+      NODE_ENV: test
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+```
+
+> ⚠️ **Important:** Secrets are masked in logs as `***`. Never echo a secret directly into a log message.
 
 ---
 
-### 2.1 Format and Lint on Pull Request
+## 5. Workflow Examples
 
-Enforce code formatting (Prettier) and code style (ESLint) checks before any pull request is merged. Running both together ensures consistent formatting and catches potential bugs in one step.
+---
+
+### 5.1 Format and Lint on Pull Request
+
+Enforce code formatting (Prettier) and linting (ESLint) before any pull request is merged.
 
 Create `.github/workflows/lint.yml`:
 
@@ -105,80 +125,34 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
-      - name: Check formatting with Prettier
-        run: npm run format:check # Fails if any file doesn't match Prettier's rules
+      - name: Check formatting
+        run: npm run format:check
 
       - name: Run ESLint
-        run: npm run lint:check # Fails if any lint errors are found
+        run: npm run lint:check
 ```
 
-> **`npm ci` vs `npm install`:** `npm ci` installs from `package-lock.json` exactly, never updating it - preferred for CI environments.
+> **`npm ci` vs `npm install`:** `npm ci` installs exactly from `package-lock.json` and never modifies it - always use `npm ci` in CI environments.
 
 ---
 
-## 3. Using Secrets and Environment Variables
+### 5.2 Integration Tests with a Real Database
 
-Never hardcode sensitive values in workflow files. Store them as **GitHub Secrets** (Settings → Secrets and variables → Actions) and reference them in workflows.
+Your test suite from Week 06 requires a running PostgreSQL instance. Use a **service container** - a Docker container that runs alongside your job - to provide one.
 
-### 3.1 Defining Secrets in a Workflow
-
-```yaml
-name: CI with Secrets
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  test:
-    runs-on: ubuntu-latest
-
-    env:
-      NODE_ENV: test
-      DATABASE_URL: ${{ secrets.DATABASE_URL }} # From GitHub Secrets
-      JWT_SECRET: ${{ secrets.JWT_SECRET }}
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "20"
-          cache: "npm"
-
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Run tests
-        run: npm run test
-```
-
-> ⚠️ **Important:** Secrets are masked in logs - they appear as `***`. Never echo a secret directly into a log message.
-
----
-
-## 4. Running Tests Against a Real Database
-
-For integration tests that require a running database, use **service containers** - Docker containers that run alongside your job.
-
-Create `.github/workflows/integration-tests.yml`:
+Create `.github/workflows/ci.yml`:
 
 ```yaml
-name: Integration Tests
+name: CI
 
 on:
   push:
@@ -212,34 +186,27 @@ jobs:
       JWT_LIFETIME: 1h
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Apply database migrations
-        run: npx prisma migrate deploy
-
-      - name: Run tests
-        run: npm run test
+      - run: npm ci
+      - run: npx prisma migrate deploy
+      - run: npm run test
 ```
 
+> **Why `prisma migrate deploy`?** The service container starts with an empty database. This command applies your existing migrations so the schema exists before tests run.
+
+> **Why health checks?** The `options` block tells GitHub Actions to wait until Postgres is ready before starting your job steps. Without this, tests may fail because the database isn't accepting connections yet.
+
 ---
 
-## 5. Advanced Examples
+### 5.3 Full CI Pipeline - Lint then Test
 
----
-
-### 5.1 Full CI/CD Pipeline - Format, Lint, then Test
-
-Chain multiple jobs together using `needs`. Each job only runs if the previous one passes.
+Chain jobs together using `needs`. Each job only runs if the previous one passes, giving fast feedback with minimal wasted time.
 
 Create `.github/workflows/pipeline.yml`:
 
@@ -258,20 +225,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       - run: npm ci
-
-      - name: Check formatting
-        run: npm run format:check
-
-      - name: Run ESLint
-        run: npm run lint:check
+      - run: npm run format:check
+      - run: npm run lint:check
 
   test:
     name: Run Tests
@@ -300,11 +263,11 @@ jobs:
       JWT_LIFETIME: 1h
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       - run: npm ci
@@ -312,29 +275,13 @@ jobs:
       - run: npm run test
 ```
 
-The pipeline runs sequentially: **format and lint → test**. If formatting or linting fails, tests never run - fast feedback with minimal wasted time.
+The pipeline runs sequentially: **format and lint → test**. If formatting or linting fails, tests never run.
 
 ---
 
-### 5.2 Code Coverage Reporting
+### 5.4 Code Coverage Report
 
-Generate a code coverage report and upload it as a workflow artifact so it can be downloaded and reviewed after each run.
-
-Install `c8`:
-
-```bash
-npm install c8 --save-dev
-```
-
-Add a coverage script to `package.json`:
-
-```json
-"scripts": {
-  "test": "mocha tests --recursive --timeout 10000 --exit",
-  "coverage": "c8 npm run test",
-  "coverage:report": "c8 report --reporter=html"
-}
-```
+Generate a coverage report and upload it as a workflow artifact that can be downloaded and reviewed after each run.
 
 Create `.github/workflows/coverage.yml`:
 
@@ -367,39 +314,39 @@ jobs:
     env:
       NODE_ENV: test
       DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
-      JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits 
+      JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
       - run: npm ci
       - run: npx prisma migrate deploy
 
       - name: Run tests with coverage
-        run: npm run coverage
+        run: npm run test:coverage
 
-      - name: Generate coverage report
-        run: npm run coverage:report
+      - name: Generate HTML report
+        run: npm run test:coverage:report
 
       - name: Upload coverage report
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: coverage-report
-          path: coverage/ 
-          retention-days: 7 
+          path: coverage/
+          retention-days: 7
 ```
 
-After the workflow runs, the coverage report is available under the **Artifacts** section on the workflow summary page in GitHub.
+After the workflow runs, the HTML report is available under the **Artifacts** section on the workflow summary page in GitHub.
 
 ---
 
-### 5.3 Dependency Security Audit
+### 5.5 Dependency Security Audit
 
 Automatically audit npm dependencies for known vulnerabilities on every push to `main`.
 
@@ -417,15 +364,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v6
         with:
-          node-version: "20"
+          node-version: "24"
           cache: "npm"
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
       - name: Run security audit
         run: npm audit --audit-level=high
@@ -435,32 +381,31 @@ jobs:
 
 ---
 
-### 5.4 Branch Protection with Required Status Checks
+## 6. Branch Protection Rules
 
-Workflows become especially powerful when combined with **branch protection rules**. You can require specific jobs to pass before a pull request can be merged into `main`.
+Workflows become powerful when combined with **branch protection**. You can require specific jobs to pass before a pull request can be merged into `main`.
 
-To configure this:
+To configure:
 
 1. Go to your repository → **Settings** → **Branches**
-2. Click **Add branch ruleset** (or edit an existing rule for `main`)
+2. Click **Add branch ruleset** for `main`
 3. Enable **Require status checks to pass before merging**
-4. Search for and add the job names from your workflows (e.g. `format-and-lint`, `test`)
+4. Search for and add your job names - e.g. `format-and-lint`, `test`
 
 This prevents anyone - including repository owners - from merging code that breaks the test suite or fails formatting checks.
 
 ---
 
-## 6. Workflow Best Practices
+## 7. Best Practices
 
-| Practice                                | Why it matters                                                    |
-| --------------------------------------- | ----------------------------------------------------------------- |
-| Pin action versions with `@v4`          | Prevents breaking changes from upstream actions affecting your CI |
-| Use `npm ci` instead of `npm install`   | Reproducible installs - never modifies `package-lock.json`        |
-| Cache `node_modules`                    | Significantly reduces workflow run time                           |
-| Store all secrets in GitHub Secrets     | Secrets are masked in logs and encrypted at rest                  |
-| Use `needs` to chain dependent jobs     | Prevents tests running if formatting or linting fails             |
-| Add health checks to service containers | Ensures the database is ready before tests try to connect         |
-| Use `if:` conditions on jobs            | Avoids running expensive jobs on every branch                     |
+| Practice                                | Why it matters                                             |
+| --------------------------------------- | ---------------------------------------------------------- |
+| Pin action versions with `@v6`          | Prevents breaking changes from upstream actions            |
+| Use `npm ci` not `npm install`          | Reproducible installs - never modifies `package-lock.json` |
+| Cache `node_modules`                    | Significantly reduces workflow run time                    |
+| Store secrets in GitHub Secrets         | Masked in logs and encrypted at rest                       |
+| Use `needs` to chain jobs               | Prevents tests running if linting fails                    |
+| Add health checks to service containers | Ensures the database is ready before tests connect         |
 
 ---
 
@@ -486,39 +431,32 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Basic CI _(Easy)_
+### Task 1 - Integration Test Workflow _(Easy)_
 
-On your **Practice Project** branch, create `.github/workflows/ci.yml` that:
+Create `.github/workflows/ci.yml` that:
 
 1. Triggers on push to `main` and on pull requests targeting `main`
-2. Sets up Node.js 20
-3. Installs dependencies with `npm ci`
-4. Runs your test suite with `npm run test`
+2. Spins up a PostgreSQL service container
+3. Sets up Node.js 24 and installs dependencies with `npm ci`
+4. Applies Prisma migrations with `npx prisma migrate deploy`
+5. Runs your test suite with `npm run test`
+
+> **Note:** A database service container is required because your tests from Week 06 make real database calls. A workflow without one will always fail.
 
 ---
 
-### Task 2 - Integration Test Workflow _(Easy)_
-
-Extend your CI workflow to spin up a PostgreSQL service container and run your integration tests against a real database. Apply Prisma migrations before running tests.
-
-> **Reminder:** Your integration tests were written in Week 06 and test the same endpoints you verified manually in Postman. The workflow here automates that process - the same requests, the same assertions, but now running automatically on every push.
-
----
-
-### Task 3 - Format and Lint Workflow _(Easy)_
+### Task 2 - Format and Lint Workflow _(Easy)_
 
 Create `.github/workflows/lint.yml` that runs on every pull request targeting `main` with two steps:
 
 1. `npm run format:check` - fails if any file is not Prettier-formatted
 2. `npm run lint:check` - fails if any ESLint errors are found
 
-> **Reminder:** Your `format:check` and `lint:check` scripts were configured in Weeks 04–05. If either command doesn't exist in your `package.json`, set it up now before creating the workflow.
-
-Verify it works by temporarily introducing a formatting error (e.g. remove a semicolon or add extra whitespace) and confirming the workflow fails.
+Verify it works by temporarily introducing a formatting error (e.g. remove a semicolon or add extra whitespace) and confirming the workflow fails as expected.
 
 ---
 
-### Task 4 - Environment Variable Audit _(Easy)_
+### Task 3 - Environment Variable Audit _(Easy)_
 
 In `week-07-github-actions-considerations.md`, explain:
 
@@ -527,7 +465,7 @@ In `week-07-github-actions-considerations.md`, explain:
 
 ---
 
-### Task 5 - Full Pipeline _(Medium)_
+### Task 4 - Full Pipeline _(Medium)_
 
 Create `.github/workflows/pipeline.yml` with two chained jobs:
 
@@ -536,7 +474,7 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 6 - Branch Protection _(Easy)_
+### Task 5 - Branch Protection _(Easy)_
 
 Configure branch protection on `main` so that the `format-and-lint` and `test` jobs from your pipeline must pass before any pull request can be merged.
 
@@ -544,19 +482,19 @@ Test it by opening a pull request with a formatting error and confirming the mer
 
 ---
 
-### Task 7 - Coverage Report _(Medium)_
+### Task 6 - Coverage Report _(Medium)_
 
 Add code coverage to your CI pipeline:
 
-1. Install `c8` (if not already installed from Week 06 - check your `package.json` devDependencies first)
-2. Add `coverage` and `coverage:report` scripts to `package.json`
-3. Upload the coverage report as a workflow artifact with a 7-day retention period
+1. Install `c8` (check your `package.json` devDependencies first - it may already be installed from Week 06)
+2. Add `test:coverage` and `test:coverage:report` scripts to `package.json`
+3. Create a coverage workflow that uploads the HTML report as a workflow artifact with a 7-day retention period
 
 ---
 
-### Task 8 - Workflow Status Badge _(Easy)_
+### Task 7 - Workflow Status Badge _(Easy)_
 
-Add a workflow status badge to your repository's `README.md`. The badge should reflect the current status of your CI workflow on `main`.
+Add a workflow status badge to your repository's `README.md` reflecting the current status of your CI workflow on `main`.
 
 GitHub generates badge URLs in this format:
 
@@ -603,10 +541,16 @@ Create `.github/workflows/release.yml` that runs `semantic-release` on every pus
 
 ---
 
-### Hard Task 2 - Security Audit on a Schedule
+### Hard Task 2 - Scheduled Security Audit
 
-Extend your security audit workflow to also run on a weekly schedule using cron syntax, in addition to running on push to `main`.
+Extend your security audit workflow to also run on a **weekly schedule** using cron syntax, in addition to running on push to `main`.
 
-Research the cron schedule syntax and use [crontab.guru](https://crontab.guru) to construct an expression that runs every Monday at 9am UTC.
+Use [crontab.guru](https://crontab.guru) to construct an expression that runs every Monday at 9am UTC.
 
 📖 Reference: [GitHub Docs - Scheduled events](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule)
+
+---
+
+## README
+
+Update the `README.md` in your repository to document any workflows added this week. Include the workflow status badge and any other relevant information for developers contributing to the project.
