@@ -57,7 +57,7 @@ You will be prompted with the following questions:
 | -------------------------------------------------------------------------- | --------------------------------------------- |
 | Which template would you like?                                             | SvelteKit minimal                             |
 | Add type checking with TypeScript?                                         | Yes, using JavaScript with **JSDoc** comments |
-| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier                                      |
+| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier, eslint                                      |
 | Which package manager do you want to install dependencies with?            | npm                                           |
 
 > **Note:** The CLI tool is now `npx sv create` (the Svelte CLI). The older `npm create svelte@latest` command is deprecated - always use `npx sv create` for new projects.
