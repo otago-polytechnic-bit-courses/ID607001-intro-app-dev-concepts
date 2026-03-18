@@ -347,6 +347,89 @@ router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 
 ---
 
+### 2.11 Postman - Testing Authentication
+
+**Register a user**
+
+| Field  | Value                                   |
+| ------ | --------------------------------------- |
+| Method | `POST`                                  |
+| URL    | `http://localhost:3000/api/auth/register` |
+
+Body (raw → JSON):
+```json
+{
+  "firstName": "Jane",
+  "lastName": "Doe",
+  "emailAddress": "jane.doe@example.com",
+  "password": "janedoe123",
+  "role": "ADMIN"
+}
+```
+
+Expected response (`201 Created`) — note the password is **not** returned:
+```json
+{
+  "message": "User successfully registered",
+  "data": {
+    "id": "...",
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "emailAddress": "jane.doe@example.com",
+    "role": "ADMIN",
+    "createdAt": "...",
+    "updatedAt": "..."
+  }
+}
+```
+
+---
+
+**Log in**
+
+| Field  | Value                                   |
+| ------ | --------------------------------------- |
+| Method | `POST`                                  |
+| URL    | `http://localhost:3000/api/auth/login`  |
+
+Body (raw → JSON):
+```json
+{
+  "emailAddress": "jane.doe@example.com",
+  "password": "janedoe123"
+}
+```
+
+Expected response (`200 OK`):
+```json
+{
+  "message": "User successfully logged in",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}
+```
+
+Copy the `token` value — you need it for all protected requests.
+
+---
+
+**Access a protected route**
+
+To call a route protected by `jwtAuth`, add the token to the **Authorization** header in Postman:
+
+1. Open your request (e.g. `POST /api/institutions`)
+2. Click the **Authorization** tab
+3. Set **Type** to `Bearer Token`
+4. Paste your token into the **Token** field
+
+Postman will automatically send `Authorization: Bearer <token>` with the request.
+
+**Testing the rejection path** — send the same request with no token (remove it from the Authorization tab). Expected response (`401 Unauthorized`):
+```json
+{ "message": "No token provided" }
+```
+
+---
+
 ## 3. Role-Based Access Control (RBAC)
 
 RBAC restricts access to resources based on the roles assigned to users. Roles have defined permissions, and users are assigned to roles. Common roles might be `ADMIN`, `STAFF`, and `STUDENT`.
@@ -431,7 +514,34 @@ router.post(
 
 ---
 
-### 3.4 RBAC Limitations
+### 3.4 Postman - Testing RBAC
+
+To test that role enforcement works correctly, you need two users with different roles.
+
+**Register a STUDENT user**
+
+Use `POST /api/auth/register` with `"role": "STUDENT"`, then log in and copy that token.
+
+**Attempt a protected action as STUDENT**
+
+Send `POST /api/institutions` with the STUDENT token in the Authorization header.
+
+Expected response (`403 Forbidden`):
+```json
+{
+  "message": "Forbidden. Insufficient privileges for role: STUDENT"
+}
+```
+
+**Confirm the ADMIN token still works**
+
+Send the same `POST /api/institutions` request using the ADMIN token. You should receive `201 Created` as normal.
+
+> This confirms that `jwtAuth` and `rbac` are correctly chained — authentication passes for both users, but authorisation only permits the ADMIN.
+
+---
+
+### 3.5 RBAC Limitations
 
 The current single-role enum approach works for basic scenarios but has drawbacks:
 
@@ -502,6 +612,21 @@ router.get("/:id", rateLimiter, getInstitution);
 ```
 
 After 5 requests within 15 minutes from the same IP, the client will receive a `429 Too Many Requests` response.
+
+---
+
+### 4.4 Postman - Testing Rate Limiting
+
+The limiter is set to 5 requests per 15-minute window. To trigger it quickly, send `GET /api/institutions` six times in a row.
+
+On the **sixth request**, expected response (`429 Too Many Requests`):
+```json
+{ "message": "Too many requests, please try again later" }
+```
+
+You can also check the **Headers** tab of any response to see the `RateLimit-*` headers — these tell you how many requests remain in the current window and when it resets.
+
+> **Note:** Because `max` is set to `5` in the example, keep it low while testing. Raise it to a more realistic value (e.g. `100`) before deploying.
 
 ---
 
@@ -930,20 +1055,8 @@ Create `.c8rc` in the project root:
 Add the following coverage scripts to your existing `scripts` block in `package.json`:
 
 ```json
-"coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-"coverage:report": "c8 report --reporter=html && open coverage/index.html"
-```
-
-Your `scripts` block should now look like this (other scripts such as `prisma:migrate` and `prisma:seed-institutions` have been omitted for brevity):
-
-```json
-{
-  "scripts": {
-    "test": "mocha tests --recursive --timeout 10000 --exit",
-    "test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-    "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
-  }
-}
+"test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
 | Script                         | Purpose                                                |

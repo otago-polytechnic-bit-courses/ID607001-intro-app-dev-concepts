@@ -1,21 +1,21 @@
-# Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage
+# Week 05 - Validation, Seeding, Query Parameters and Deployment
 
 ## Navigation
 
-|                         | Link                                                                                                                                  |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example            | [Code Example](code-example)                                                                                                          |
-| → Next                  | [Week 07 - CI/CD and GitHub Actions](../week-07-ci-cd-github-actions/README.md)                            |
+|              | Link                                                                                                                                                   |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ← Previous   | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
+| Code Example | [Code Example](code-example)                                                                                                                           |
+| → Next       | [Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
 
 ---
 
 ## Before We Start
 
-Open your repository in Visual Studio Code and switch to the Week 06 branch:
+Open your repository in Visual Studio Code and switch to the Week 05 branch:
 
 ```bash
-git checkout -b w06-sec-auth-rbac-api-testing-code-cov
+git checkout -b w05-validation-seeding-query-params-deployment
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.
@@ -24,1141 +24,775 @@ Set up your development environment (Docker, environment variables, etc.) before
 
 ---
 
-## 1. Security
+## 1. Setup Script
 
-Security is the practice of protecting systems, networks, and data from unauthorised access, use, disclosure, disruption, modification, or destruction.
+Setting up your development environment manually can be time-consuming. A script called `application-setup.sh` is provided to automate this.
 
----
+The script will:
 
-### 1.1 Common API Vulnerabilities
+1. Check for required dependencies: `docker`, `node`, and `npm`
+2. Select a project from the current directory
+3. Check if the Docker daemon is running, and attempt to start it if not
+4. Check for an existing PostgreSQL Docker container and handle it appropriately
+5. Start a new PostgreSQL Docker container if needed
+6. Wait for PostgreSQL to be ready
+7. Copy environment variables from a template file
+8. Install Node.js dependencies
+9. Run Prisma migrations
 
-| Vulnerability                           | Description                                                                                                         |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Broken object level authorisation**   | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
-| **Broken user authentication**          | API doesn't properly authenticate users, allowing impersonation or unauthorised access                              |
-| **Excessive data exposure**             | API returns more data than necessary, exposing sensitive information                                                |
-| **Lack of rate limiting**               | No request throttling - enables denial-of-service or brute-force attacks                                            |
-| **Mass assignment**                     | API lets users update object properties they shouldn't have access to                                               |
-| **Security misconfiguration**           | Improperly configured API exposes exploitable vulnerabilities                                                       |
-| **Injection**                           | Unvalidated user input allows malicious code to be injected                                                         |
-| **Improper assets management**          | Poorly managed endpoints or resources can be accessed or manipulated unexpectedly                                   |
-| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect or respond to                                                |
-| **Vulnerable components**               | Use of third-party libraries with known vulnerabilities                                                             |
-
----
-
-## 2. Authentication
-
-Authentication is the process of verifying the identity of a user or system - confirming they are who they claim to be, typically by checking credentials like a username and password.
-
----
-
-### 2.1 Token vs. Session Authentication
-
-|                   | Token-Based                                                        | Session-Based                                |
-| ----------------- | ------------------------------------------------------------------ | -------------------------------------------- |
-| **State**         | Stateless                                                          | Stateful                                     |
-| **Storage**       | Client stores token in memory or local storage                     | Server stores session in memory or database  |
-| **Transport**     | Sent in `Authorization` header                                     | Sent via cookie (session ID)                 |
-| **Server lookup** | Server validates token on every request - no session memory needed | Server looks up the session on every request |
-
----
-
-### 2.2 JSON Web Tokens (JWT)
-
-A JWT is a compact, URL-safe format for transmitting claims between parties. It consists of three parts:
-
-1. **Header** - algorithm and token type
-2. **Payload** - claims about the user (e.g. ID, role)
-3. **Signature** - verifies the token hasn't been tampered with
-
-JWTs are typically signed using a secret (HMAC) or a private key (RSA/ECDSA).
-
----
-
-### 2.3 Setup
-
-Install the required packages:
+Copy `application-setup.sh` to your repository's root directory, then grant it execute permissions and run it:
 
 ```bash
-npm install bcryptjs jsonwebtoken
+chmod +x application-setup.sh
+./application-setup.sh
 ```
 
-| Package        | Purpose                    |
-| -------------- | -------------------------- |
-| `bcryptjs`     | Hash and compare passwords |
-| `jsonwebtoken` | Create and verify JWTs     |
+> **Tip:** Read through the script before running it to understand what it does.
 
 ---
 
-### 2.4 Environment Variables
+## 2. Validation
 
-Add the following to your `.env` file:
+Validation ensures that data is correct and meets certain criteria before it is used or stored. In web development, this typically means verifying that incoming request data matches what your application expects.
+
+---
+
+### 2.1 Setup
+
+Install the Joi validation library:
 
 ```bash
-JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
-JWT_LIFETIME=1h
+npm install joi
 ```
 
-Your complete `.env` should look like:
-
-```bash
-NODE_ENV=development
-PORT=3000
-API_BASE_URL=http://localhost
-DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
-JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
-JWT_LIFETIME=1h
-```
-
-> ⚠️ **Important:** Always use a strong, unique `JWT_SECRET` in production - at least 256 bits long.
+> **Alternatives:** You could write custom validation logic, or use libraries like Express Validator. We use Joi here.
 
 ---
 
-### 2.5 Schema - User Model
+### 2.2 Validation Middleware
 
-If you haven't already created the `User` model from Week 04, add it to `schema.prisma`. Note the addition of the `password` field:
+Create `middleware/validation/institution.js`.
+
+#### POST Validation
+
+The `validatePostInstitution` function validates data when **creating** a new institution. All fields are **required**.
 
 ```javascript
-model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
-}
+import Joi from "joi";
+
+const validatePostInstitution = (req, res, next) => {
+  const institutionSchema = Joi.object({
+    name: Joi.string().min(3).max(100).required().messages({
+      "string.base": "name should be a string",
+      "string.empty": "name cannot be empty",
+      "string.min": "name should have a minimum length of {#limit}",
+      "string.max": "name should have a maximum length of {#limit}",
+      "any.required": "name is required",
+    }),
+    region: Joi.string().min(3).max(100).required().messages({
+      "string.base": "region should be a string",
+      "string.empty": "region cannot be empty",
+      "string.min": "region should have a minimum length of {#limit}",
+      "string.max": "region should have a maximum length of {#limit}",
+      "any.required": "region is required",
+    }),
+    country: Joi.string().min(3).max(100).required().messages({
+      "string.base": "country should be a string",
+      "string.empty": "country cannot be empty",
+      "string.min": "country should have a minimum length of {#limit}",
+      "string.max": "country should have a maximum length of {#limit}",
+      "any.required": "country is required",
+    }),
+  });
+
+  const { name, region, country } = req.body;
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    {
+      abortEarly: false, // Collect all errors, not just the first
+      convert: false, // Disable type coercion, e.g. "123" → 123
+    },
+  );
+
+  if (error) {
+    const formattedErrors = error.details.map(({ message, type }) => ({
+      message,
+      type,
+    }));
+    return res.status(409).json({ errors: formattedErrors });
+  }
+
+  next();
+};
 ```
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
+#### PUT Validation
 
----
-
-### 2.6 JWT Auth Middleware
-
-Create `middleware/jwtAuth.js`:
+The `validatePutInstitution` function validates data when **updating** an institution. All fields are **optional**, but at least one must be provided.
 
 ```javascript
-import jwt from "jsonwebtoken";
+const validatePutInstitution = (req, res, next) => {
+  const institutionSchema = Joi.object({
+    name: Joi.string().min(3).max(100).optional().messages({
+      "string.base": "name should be a string",
+      "string.empty": "name cannot be empty",
+      "string.min": "name should have a minimum length of {#limit}",
+      "string.max": "name should have a maximum length of {#limit}",
+    }),
+    region: Joi.string().min(3).max(100).optional().messages({
+      "string.base": "region should be a string",
+      "string.empty": "region cannot be empty",
+      "string.min": "region should have a minimum length of {#limit}",
+      "string.max": "region should have a maximum length of {#limit}",
+    }),
+    country: Joi.string().min(3).max(100).optional().messages({
+      "string.base": "country should be a string",
+      "string.empty": "country cannot be empty",
+      "string.min": "country should have a minimum length of {#limit}",
+      "string.max": "country should have a maximum length of {#limit}",
+    }),
+  }).min(1); // At least one field must be provided
 
-const jwtAuth = (req, res, next) => {
-  try {
-    // Authorization header should be: "Bearer <token>"
-    const authHeader = req.headers.authorization;
+  const { name, region, country } = req.body;
+  const { error } = institutionSchema.validate(
+    { name, region, country },
+    { abortEarly: false, convert: false },
+  );
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
-    }
-
-    const token = authHeader.split(" ")[1];
-
-    // Verify token against the secret key
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-
-    // Attach decoded payload to request for use in downstream handlers
-    req.user = payload;
-
-    next();
-  } catch (err) {
-    return res
-      .status(401)
-      .json({ message: "Not authorized to access this route" });
+  if (error) {
+    const formattedErrors = error.details.map(({ message, type }) => ({
+      message,
+      type,
+    }));
+    return res.status(409).json({ errors: formattedErrors });
   }
+
+  next();
 };
 
-export default jwtAuth;
+export { validatePostInstitution, validatePutInstitution };
 ```
+
+**Summary of differences:**
+
+|                | `validatePostInstitution`  | `validatePutInstitution`         |
+| -------------- | -------------------------- | -------------------------------- |
+| Use case       | Creating a new institution | Updating an existing institution |
+| Fields         | All required               | All optional                     |
+| Minimum fields | All three                  | At least one                     |
+
+> **Why return all errors at once?** Using `abortEarly: false` collects all validation issues in a single response, so the client can fix everything in one go rather than resubmitting repeatedly.
 
 ---
 
-### 2.7 Auth Controller
+### 2.3 Validating Other Types
 
-Create `controllers/auth.js`:
+Joi supports many data types beyond strings. Here are examples:
 
 ```javascript
-import bcryptjs from "bcryptjs";
-import jwt from "jsonwebtoken";
-
-import prisma from "../prisma/db.js";
-
-const register = async (req, res) => {
-  try {
-    const { firstName, lastName, emailAddress, password, role } = req.body;
-
-    // Check if user already exists
-    let user = await prisma.user.findUnique({ where: { emailAddress } });
-
-    if (user) {
-      return res.status(409).json({ message: "User already exists" });
-    }
-
-    // Hash the password with a unique salt
-    const salt = await bcryptjs.genSalt();
-    const hashedPassword = await bcryptjs.hash(password, salt);
-
-    user = await prisma.user.create({
-      data: {
-        firstName,
-        lastName,
-        emailAddress,
-        password: hashedPassword,
-        role,
-      },
-      select: {
-        id: true,
-        firstName: true,
-        lastName: true,
-        emailAddress: true,
-        role: true,
-        createdAt: true,
-        updatedAt: true,
-      },
-    });
-
-    return res.status(201).json({
-      message: "User successfully registered",
-      data: user,
-    });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-
-const login = async (req, res) => {
-  try {
-    const { emailAddress, password } = req.body;
-
-    const user = await prisma.user.findUnique({ where: { emailAddress } });
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email address" });
-    }
-
-    // Compare provided password against the stored hash
-    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
-
-    if (!isPasswordCorrect) {
-      return res.status(401).json({ message: "Invalid password" });
-    }
-
-    const { JWT_SECRET, JWT_LIFETIME } = process.env;
-
-    // Sign a token containing the user's ID and role
-    const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
-      expiresIn: JWT_LIFETIME,
-    });
-
-    return res.status(200).json({
-      message: "User successfully logged in",
-      token: token,
-    });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-
-export { register, login };
+const someSchema = Joi.object({
+  numberField: Joi.number().integer().min(1).max(100).required().messages({
+    "number.base": "numberField should be a number",
+    "number.integer": "numberField should be an integer",
+    "number.min": "numberField should be at least {#limit}",
+    "number.max": "numberField should be at most {#limit}",
+    "any.required": "numberField is required",
+  }),
+  booleanField: Joi.boolean().required().messages({
+    "boolean.base": "booleanField should be a boolean",
+    "any.required": "booleanField is required",
+  }),
+  dateField: Joi.date().iso().required().messages({
+    "date.base": "dateField should be a valid date",
+    "date.format": "dateField should be in ISO 8601 format",
+    "any.required": "dateField is required",
+  }),
+  arrayField: Joi.array()
+    .items(Joi.string().min(3).max(100))
+    .required()
+    .messages({
+      "array.base": "arrayField should be an array",
+      "array.includes": "arrayField should only contain strings",
+      "any.required": "arrayField is required",
+    }),
+  objectField: Joi.object({
+    key1: Joi.string().min(3).max(100).required().messages({
+      "string.base": "key1 should be a string",
+      "string.empty": "key1 cannot be empty",
+      "string.min": "key1 should have a minimum length of {#limit}",
+      "string.max": "key1 should have a maximum length of {#limit}",
+      "any.required": "key1 is required",
+    }),
+    key2: Joi.number().integer().min(1).max(100).required().messages({
+      "number.base": "key2 should be a number",
+      "number.integer": "key2 should be an integer",
+      "number.min": "key2 should be at least {#limit}",
+      "number.max": "key2 should be at most {#limit}",
+      "any.required": "key2 is required",
+    }),
+  })
+    .required()
+    .messages({
+      "object.base": "objectField should be an object",
+      "any.required": "objectField is required",
+    }),
+  uuidField: Joi.string().uuid().required().messages({
+    "string.base": "uuidField should be a string",
+    "string.guid": "uuidField should be a valid UUID",
+    "any.required": "uuidField is required",
+  }),
+});
 ```
+
+📖 Reference: [Joi API documentation](https://joi.dev/api/?v=18.0.1)
 
 ---
 
-### 2.8 Auth Router
+### 2.4 Update the Institution Router
 
-Create `routes/auth.js`:
+Update `routes/institution.js` to use the validation middleware. The validation middleware must come **before** the controller function.
 
 ```javascript
 import express from "express";
-import { register, login } from "../controllers/auth.js";
+
+import {
+  createInstitution,
+  getInstitutions,
+  getInstitution,
+  updateInstitution,
+  deleteInstitution,
+} from "../controllers/institution.js";
+
+import {
+  validatePostInstitution,
+  validatePutInstitution,
+} from "../middleware/validation/institution.js";
 
 const router = express.Router();
 
-router.route("/register").post(register);
-router.route("/login").post(login);
+router.post("/", validatePostInstitution, createInstitution);
+router.get("/", getInstitutions);
+router.get("/:id", getInstitution);
+router.put("/:id", validatePutInstitution, updateInstitution);
+router.delete("/:id", deleteInstitution);
 
 export default router;
 ```
 
----
-
-### 2.9 Register Auth Routes in `app.js`
-
-```javascript
-import authRoutes from "./routes/auth.js";
-
-app.use("/api/auth", authRoutes);
-```
-
-<details>
-<summary>View complete <code>app.js</code></summary>
-
-```javascript
-import express from "express";
-import cors from "cors";
-import compression from "compression";
-
-import authRoutes from "./routes/auth.js";
-import indexRoutes from "./routes/index.js";
-import institutionRoutes from "./routes/institution.js";
-import departmentRoutes from "./routes/department.js";
-
-import isContentTypeApplicationJSON from "./middleware/content-type.js";
-
-const app = express();
-
-const PORT = process.env.PORT || 3000;
-const API_BASE_URL = process.env.API_BASE_URL || "http://localhost";
-
-app.use(cors());
-app.use(compression());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(isContentTypeApplicationJSON);
-
-app.use("/api/auth", authRoutes);
-app.use("/", indexRoutes);
-app.use("/api/institutions", institutionRoutes);
-app.use("/api/departments", departmentRoutes);
-
-app.listen(PORT, () => {
-  console.log(
-    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
-  );
-});
-
-export default app;
-```
-
-</details>
+> **Order matters:** Middleware runs in the order it is defined. Always place validation middleware before the controller so data is validated before it is processed.
 
 ---
 
-### 2.10 Protecting Routes with `jwtAuth`
+### 2.5 Postman - Testing Validation
 
-In `routes/institution.js`, add `jwtAuth` to any route that requires authentication:
+**Testing POST validation**
 
-```javascript
-import jwtAuth from "../middleware/jwtAuth.js";
+Send a `POST` to `http://localhost:3000/api/institutions` with an intentionally bad body — for example, omit `name` and make `region` too short:
 
-router.post("/", validatePostInstitution, jwtAuth, createInstitution);
-```
-
-> Only authenticated users (those supplying a valid Bearer token) can access protected routes.
-
----
-
-### 2.11 Postman - Testing Authentication
-
-**① Register a user**
-
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `POST`                                  |
-| URL    | `http://localhost:3000/api/auth/register` |
-
-Body (raw → JSON):
 ```json
 {
-  "firstName": "Jane",
-  "lastName": "Doe",
-  "emailAddress": "jane.doe@example.com",
-  "password": "janedoe123",
-  "role": "ADMIN"
+  "region": "NZ",
+  "country": "New Zealand"
 }
 ```
 
-Expected response (`201 Created`) — note the password is **not** returned:
+Expected response (`409 Conflict`):
+
 ```json
 {
-  "message": "User successfully registered",
-  "data": {
-    "id": "...",
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "emailAddress": "jane.doe@example.com",
-    "role": "ADMIN",
-    "createdAt": "...",
-    "updatedAt": "..."
+  "errors": [
+    { "message": "name is required", "type": "any.required" },
+    {
+      "message": "region should have a minimum length of 3",
+      "type": "string.min"
+    }
+  ]
+}
+```
+
+Note that **both** errors are returned at once — this is the effect of `abortEarly: false`.
+
+**Testing PUT validation**
+
+Send a `PUT` to `http://localhost:3000/api/institutions/<id>` with an empty body `{}`.
+
+Expected response (`409 Conflict`):
+
+```json
+{
+  "errors": [
+    { "message": "object must have at least 1 key", "type": "object.min" }
+  ]
+}
+```
+
+> The `.min(1)` on the PUT schema enforces that at least one field must be provided — a completely empty update is rejected.
+
+**Confirming a valid request still works**
+
+Send a well-formed `POST` with all three valid fields — you should get back a `201 Created` as before. Validation middleware only blocks bad data; it passes good data through unchanged.
+
+---
+
+## 3. Seeding
+
+Seeding populates a database with initial or sample data. It is particularly useful during development and testing. We use the Prisma Client to seed data here.
+
+---
+
+### 3.1 Seed Script
+
+Create `prisma/seeding/institution.js`:
+
+```javascript
+import prisma from "../db.js";
+import { validatePostInstitution } from "../../middleware/validation/institution.js";
+
+// Simulate an Express-like request/response to reuse existing validation middleware
+const validateInstitution = (institution) => {
+  const req = { body: institution };
+  let validationError = null;
+
+  const res = {
+    status: (code) => ({
+      json: (message) => {
+        validationError = message;
+      },
+    }),
+  };
+
+  validatePostInstitution(req, res, () => {});
+
+  if (validationError) {
+    const errorMessage =
+      typeof validationError === "object"
+        ? JSON.stringify(validationError)
+        : validationError;
+    throw new Error(errorMessage);
   }
-}
-```
+};
 
----
+export const seedInstitutions = async () => {
+  const startTime = Date.now();
+  const errors = [];
 
-**② Log in**
+  try {
+    await prisma.institution.deleteMany(); // Clear existing data
 
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `POST`                                  |
-| URL    | `http://localhost:3000/api/auth/login`  |
+    const institutionData = [
+      {
+        country: "New Zealand", // Intentionally invalid - missing name and region
+      },
+      {
+        name: "Southern Institute of Technology",
+        region: "Southland",
+        country: "New Zealand",
+      },
+    ];
 
-Body (raw → JSON):
-```json
-{
-  "emailAddress": "jane.doe@example.com",
-  "password": "janedoe123"
-}
-```
-
-Expected response (`200 OK`):
-```json
-{
-  "message": "User successfully logged in",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
-Copy the `token` value — you need it for all protected requests.
-
----
-
-**③ Access a protected route**
-
-To call a route protected by `jwtAuth`, add the token to the **Authorization** header in Postman:
-
-1. Open your request (e.g. `POST /api/institutions`)
-2. Click the **Authorization** tab
-3. Set **Type** to `Bearer Token`
-4. Paste your token into the **Token** field
-
-Postman will automatically send `Authorization: Bearer <token>` with the request.
-
-**Testing the rejection path** — send the same request with no token (remove it from the Authorization tab). Expected response (`401 Unauthorized`):
-```json
-{ "message": "No token provided" }
-```
-
----
-
-## 3. Role-Based Access Control (RBAC)
-
-RBAC restricts access to resources based on the roles assigned to users. Roles have defined permissions, and users are assigned to roles. Common roles might be `ADMIN`, `STAFF`, and `STUDENT`.
-
----
-
-### 3.1 Schema - Role Enum and User Update
-
-Add the `Role` enum and update the `User` model in `schema.prisma`:
-
-```javascript
-enum Role {
-  ADMIN   // Full access
-  STAFF   // Limited access
-  STUDENT // Restricted access
-}
-
-model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  role         Role     @default(STUDENT)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
-}
-```
-
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
----
-
-### 3.2 RBAC Middleware
-
-Create `middleware/rbac.js`:
-
-```javascript
-const rbac = (requiredRole) => {
-  return (req, res, next) => {
-    const { user } = req;
-
-    if (!user || !user.role) {
-      return res
-        .status(403)
-        .json({ message: "Forbidden. User is not authenticated" });
+    const validatedData = [];
+    for (const institution of institutionData) {
+      try {
+        validateInstitution(institution);
+        validatedData.push(institution);
+      } catch (err) {
+        errors.push(err.message);
+      }
     }
 
-    if (user.role !== requiredRole) {
-      return res.status(403).json({
-        message: `Forbidden. Insufficient privileges for role: ${user.role}`,
+    if (validatedData.length > 0) {
+      await prisma.institution.createMany({
+        data: validatedData,
+        skipDuplicates: true,
       });
     }
+  } catch (err) {
+    errors.push(err.message);
+  } finally {
+    await prisma.$disconnect();
+  }
 
-    next();
-  };
+  const time = ((Date.now() - startTime) / 1000).toFixed(1);
+
+  return { resource: "Institutions", time, errors };
 };
 
-export default rbac;
-```
-
----
-
-### 3.3 Using RBAC on Routes
-
-In `routes/institution.js`, chain `jwtAuth` and `rbac` together. The order is: validate → authenticate → authorise → handle.
-
-```javascript
-import jwtAuth from "../middleware/jwtAuth.js";
-import rbac from "../middleware/rbac.js";
-
-router.post(
-  "/",
-  validatePostInstitution,
-  jwtAuth,
-  rbac("ADMIN"),
-  createInstitution,
-);
-```
-
-> A `403 Forbidden` response is returned if the authenticated user's role does not match the required role.
-
----
-
-### 3.4 Postman - Testing RBAC
-
-To test that role enforcement works correctly, you need two users with different roles.
-
-**① Register a STUDENT user**
-
-Use `POST /api/auth/register` with `"role": "STUDENT"`, then log in and copy that token.
-
-**② Attempt a protected action as STUDENT**
-
-Send `POST /api/institutions` with the STUDENT token in the Authorization header.
-
-Expected response (`403 Forbidden`):
-```json
-{
-  "message": "Forbidden. Insufficient privileges for role: STUDENT"
-}
-```
-
-**③ Confirm the ADMIN token still works**
-
-Send the same `POST /api/institutions` request using the ADMIN token. You should receive `201 Created` as normal.
-
-> This confirms that `jwtAuth` and `rbac` are correctly chained — authentication passes for both users, but authorisation only permits the ADMIN.
-
----
-
-### 3.5 RBAC Limitations
-
-The current single-role enum approach works for basic scenarios but has drawbacks:
-
-- **Tightly coupled types and roles** - Hard to model nuanced cases (e.g. a student who is also a teaching assistant)
-- **No type-specific data** - Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
-- **Poor scalability** - Challenging to extend when different roles need different fields and relationships
-- **Mixed concerns** - Auth logic is entangled with user identity
-
----
-
-## 4. Rate Limiting
-
-Rate limiting controls how many requests a client can make in a given time window, protecting against abuse, denial-of-service attacks, and brute-force attempts. We use the `express-rate-limit` package, which implements a basic **fixed window** algorithm.
-
----
-
-### 4.1 Setup
-
-Install the required package:
-
-```bash
-npm install express-rate-limit
-```
-
----
-
-### 4.2 Rate Limiter Middleware
-
-Create `middleware/rateLimiter.js`:
-
-```javascript
-import rateLimit from "express-rate-limit";
-
-const rateLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15-minute window
-  max: 5, // Max 5 requests per window per IP
-  standardHeaders: true, // Add rate limit info to RateLimit-* headers
-  legacyHeaders: false, // Disable X-RateLimit-* headers
-  message: {
-    message: "Too many requests, please try again later",
-  },
-});
-
-export default rateLimiter;
-```
-
-| Option            | Purpose                                           |
-| ----------------- | ------------------------------------------------- |
-| `windowMs`        | Length of the rate limit window in milliseconds   |
-| `max`             | Maximum requests allowed per window per IP        |
-| `standardHeaders` | Adds `RateLimit-*` headers to responses           |
-| `legacyHeaders`   | Disables older `X-RateLimit-*` headers            |
-| `message`         | Error payload returned when the limit is exceeded |
-
-📖 Reference: [express-rate-limit docs](https://express-rate-limit.mintlify.app/overview)
-
----
-
-### 4.3 Apply Rate Limiting to Routes
-
-In `routes/institution.js`:
-
-```javascript
-import rateLimiter from "../middleware/rateLimiter.js";
-
-router.get("/", rateLimiter, getInstitutions);
-router.get("/:id", rateLimiter, getInstitution);
-```
-
-After 5 requests within 15 minutes from the same IP, the client will receive a `429 Too Many Requests` response.
-
----
-
-### 4.4 Postman - Testing Rate Limiting
-
-The limiter is set to 5 requests per 15-minute window. To trigger it quickly, send `GET /api/institutions` six times in a row.
-
-On the **sixth request**, expected response (`429 Too Many Requests`):
-```json
-{ "message": "Too many requests, please try again later" }
-```
-
-You can also check the **Headers** tab of any response to see the `RateLimit-*` headers — these tell you how many requests remain in the current window and when it resets.
-
-> **Note:** Because `max` is set to `5` in the example, keep it low while testing. Raise it to a more realistic value (e.g. `100`) before deploying.
-
----
-
-## 5. API Testing
-
-API testing verifies the functionality, reliability, performance, and security of your API by sending requests and asserting the responses are correct.
-
-We use three libraries together:
-
-| Library       | Role                                            |
-| ------------- | ----------------------------------------------- |
-| **Mocha**     | Test framework - organises and runs tests       |
-| **Chai**      | Assertion library - verifies expected outcomes  |
-| **Supertest** | HTTP client - makes requests to the Express app |
-
----
-
-### 5.1 Setup
-
-```bash
-npm install chai mocha supertest --save-dev
-```
-
----
-
-### 5.2 Directory Structure
-
-```
-root/
-└── tests/
-    ├── helpers/
-    │   ├── auth.js
-    │   └── db.js
-    ├── 00-institution.test.js
-    └── 01-department.test.js
-```
-
----
-
-### 5.3 Helper - Database (`helpers/db.js`)
-
-```javascript
-import prisma from "../../prisma/db.js";
-
-const cleanupDatabase = async () => {
-  await prisma.department.deleteMany();
-  await prisma.institution.deleteMany();
-  await prisma.user.deleteMany();
-};
-
-const disconnectPrisma = async () => {
-  await prisma.$disconnect();
-};
-
-export { cleanupDatabase, disconnectPrisma };
-```
-
----
-
-### 5.4 Helper - Auth (`helpers/auth.js`)
-
-```javascript
-import request from "supertest";
-
-import app from "../../app.js";
-import { cleanupDatabase } from "./db.js";
-
-const setupTestAuth = async () => {
-  const BASE_URL = "/api/auth";
-
-  const user = {
-    firstName: "Jane",
-    lastName: "Doe",
-    emailAddress: "jane.doe@example.com",
-    password: "janedoe123",
-    role: "ADMIN",
-  };
-
-  await cleanupDatabase();
-
-  await request(app).post(`${BASE_URL}/register`).send(user);
-
-  const res = await request(app).post(`${BASE_URL}/login`).send({
-    emailAddress: user.emailAddress,
-    password: user.password,
-  });
-
-  return res.body.token;
-};
-
-export default setupTestAuth;
-```
-
----
-
-### 5.5 Institution CRUD Tests (`00-institution.test.js`)
-
-#### Imports and Setup
-
-```javascript
-import { expect } from "chai";
-import request from "supertest";
-
-import app from "../app.js";
-import setupTestAuth from "./helpers/auth.js";
-
-describe("Institution CRUD", () => {
-  const BASE_URL = "/api/institutions";
-
-  let token;
-  let institutionOneId;
-  let institutionTwoId;
-
-  const institutionData = [
-    {
-      name: "Ara Institute of Canterbury",
-      region: "Canterbury",
-      country: "New Zealand",
-    },
-    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
-    {
-      name: "Southern Institute of Technology",
-      region: "Southland",
-      country: "New Zealand",
-    },
-  ];
-
-  before(async () => {
-    token = await setupTestAuth();
-  });
-```
-
-> `before()` runs once before all tests in the block - here it registers and logs in a user, storing the token for authenticated requests.
-
-#### Create
-
-```javascript
-it("should create institution one", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .set("Authorization", `Bearer ${token}`)
-    .send(institutionData[1]);
-
-  expect(res.status).to.equal(201);
-
-  const newInstitution = res.body.data.find(
-    (i) => i.name === institutionData[1].name,
-  );
-  institutionOneId = newInstitution.id;
-});
-
-it("should create institution two", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .set("Authorization", `Bearer ${token}`)
-    .send(institutionData[2]);
-
-  expect(res.status).to.equal(201);
-  const newInstitution = res.body.data.find(
-    (i) => i.name === institutionData[2].name,
-  );
-  institutionTwoId = newInstitution.id;
+seedInstitutions().then((report) => {
+  console.log("==========================================");
+  console.log("Seeding report");
+  console.log("==========================================");
+  console.log(`Resource: ${report.resource}`);
+  console.log(`  Time taken: ${report.time}s`);
+  if (report.errors.length > 0) {
+    // Display error message
+  } else {
+    // Display no error message
+  }
+  console.log("==========================================");
 });
 ```
 
-#### Read
-
-```javascript
-it("should get all institutions", async () => {
-  const res = await request(app).get(BASE_URL);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.length).to.be.at.least(2);
-});
-
-it("should get institution one by ID", async () => {
-  const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.name).to.equal(institutionData[1].name);
-});
-```
-
-#### Update and Delete
-
-```javascript
-it("should update institution two", async () => {
-  const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-    name: institutionData[0].name,
-    region: institutionData[0].region,
-  });
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Institution with the id: ${institutionTwoId} successfully updated`,
-  );
-  expect(res.body.data.name).to.equal(institutionData[0].name);
-});
-
-it("should delete institution one", async () => {
-  const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Institution with the id: ${institutionOneId} successfully deleted`,
-  );
-});
-```
-
-#### Teardown
-
-```javascript
-  after(() => {
-    global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
-  });
-});
-```
-
-> `after()` runs once after all tests complete - here it stores `institutionTwoId` in a global variable so the department tests in the next file can reference it.
-
 ---
 
-### 5.6 Department CRUD Tests (`01-department.test.js`)
+### 3.2 Add a Seed Script to `package.json`
 
-#### Imports and Setup
-
-```javascript
-import { expect } from "chai";
-import request from "supertest";
-
-import app from "../app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
-
-describe("Department CRUD", () => {
-  const BASE_URL = "/api/departments";
-
-  let institutionId;
-  let departmentOneId;
-
-  const departmentData = [
-    { name: "Information Technology" },
-    { name: "Nursing" },
-    { name: "Business" },
-  ];
-
-  before(async () => {
-    institutionId = global.testInstitutionId;
-  });
-```
-
-> `before()` picks up the institution ID passed from the institution test suite via `global.testInstitutionId`, so departments can be created under an existing institution.
-
-#### Create
-
-```javascript
-it("should create department one", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .send({ name: departmentData[0].name, institutionId });
-
-  expect(res.status).to.equal(201);
-  const newDepartment = res.body.data.find(
-    (d) => d.name === departmentData[0].name,
-  );
-  departmentOneId = newDepartment.id;
-});
-```
-
-#### Read
-
-```javascript
-it("should get all departments", async () => {
-  const res = await request(app).get(BASE_URL);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.length).to.be.at.least(1);
-});
-
-it("should get department one by ID", async () => {
-  const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.name).to.equal(departmentData[0].name);
-});
-```
-
-#### Update and Delete
-
-```javascript
-it("should update department one", async () => {
-  const res = await request(app)
-    .put(`${BASE_URL}/${departmentOneId}`)
-    .send({ name: departmentData[1].name, institutionId });
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Department with the id: ${departmentOneId} successfully updated`,
-  );
-  expect(res.body.data.name).to.equal(departmentData[1].name);
-});
-
-it("should delete department one", async () => {
-  const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Department with the id: ${departmentOneId} successfully deleted`,
-  );
-});
-```
-
-#### Teardown
-
-```javascript
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
-  });
-});
-```
-
-> `after()` runs once all department tests are done - it clears all database records and closes the Prisma connection cleanly. This should only appear in the **last** test file to avoid wiping data that subsequent test files still need.
-
----
-
-### 5.7 Test Script
-
-Add the following to your `scripts` block in `package.json`:
+Add the following to your existing `scripts` block in `package.json`:
 
 ```json
-"test": "mocha tests --recursive --timeout 10000 --exit"
+"prisma:seed-institutions": "node ./prisma/seeding/institution.js"
 ```
 
-| Flag              | Purpose                                       |
-| ----------------- | --------------------------------------------- |
-| `--recursive`     | Runs tests in subdirectories                  |
-| `--timeout 10000` | Sets a 10-second timeout per test             |
-| `--exit`          | Forces Mocha to exit after all tests complete |
-
-Run the tests:
+Run the seed script:
 
 ```bash
-npm run test
+npm run prisma:seed-institutions
 ```
 
-Expected output:
+Example output (with error reporting implemented):
 
 ```
-Institution CRUD
-  ✔ should create institution one
-  ✔ should create institution two
-  ✔ should get all institutions
-  ✔ should get institution one by ID
-  ✔ should update institution two
-  ✔ should delete institution one
-
-Department CRUD
-  ✔ should create department one
-  ✔ should get all departments
-  ✔ should get department one by ID
-  ✔ should update department one
-  ✔ should delete department one
-
-11 passing (Xms)
+==========================================
+Seeding report
+==========================================
+Resource: Institutions
+  Time taken: 0.5s
+  Errors encountered:
+    {"errors":[{"message":"name is required","type":"any.required"},{"message":"region is required","type":"any.required"}]}
+==========================================
 ```
 
 ---
 
-## 6. Code Coverage with c8
+### 3.3 Postman - Verifying Seeded Data
 
-Code coverage measures how much of your source code is actually executed during testing. It helps identify untested paths - branches, functions, and lines that your test suite never reaches.
+After running the seed script, confirm the data was inserted correctly:
 
-We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation - it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
+Send a `GET` to `http://localhost:3000/api/institutions`.
 
-| Metric         | What it measures                                       |
-| -------------- | ------------------------------------------------------ |
-| **Statements** | Individual executable statements executed              |
-| **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once               |
-| **Lines**      | Physical lines of code executed                        |
-
----
-
-### 6.1 Setup
-
-```bash
-npm install c8 --save-dev
-```
-
----
-
-### 6.2 Configuration - `.c8rc`
-
-Create `.c8rc` in the project root:
+Expected response (`200 OK`):
 
 ```json
 {
-  "reporter": ["text", "html", "lcov"],
-  "include": ["controllers/**/*.js", "middleware/**/*.js", "routes/**/*.js"],
-  "exclude": ["tests/**", "prisma/**", "node_modules/**"],
-  "branches": 80,
-  "lines": 80,
-  "functions": 80,
-  "statements": 80,
-  "all": true
-}
-```
-
-| Option       | Purpose                                                                |
-| ------------ | ---------------------------------------------------------------------- |
-| `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                       |
-| `exclude`    | Globs to ignore - tests, migrations, generated files                   |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
-| `lines`      | Minimum % of lines that must be covered                                |
-| `functions`  | Minimum % of functions that must be covered                            |
-| `statements` | Minimum % of statements that must be covered                           |
-| `all`        | Report on all matched files, even those not imported by any test       |
-
-> **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
-
----
-
-### 6.3 Scripts - `package.json`
-
-Add the following coverage scripts to your existing `scripts` block in `package.json`:
-
-```json
-"test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
-```
-
-| Script                         | Purpose                                                |
-| ------------------------------ | ------------------------------------------------------ |
-| `npm run test:coverage`        | Run tests and print a coverage summary to the terminal |
-| `npm run test:coverage:report` | Re-generate the full HTML report and open it           |
-
-> `c8` wraps your test command - it doesn't change how tests run, it just instruments coverage collection around them.
-
----
-
-### 6.4 Reading the Terminal Report
-
-Running `npm run test:coverage` produces a table like this:
-
-```
------------------------|---------|----------|---------|---------|------------------------------------
-File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
------------------------|---------|----------|---------|---------|------------------------------------
-All files              |   77.72 |    54.09 |   94.44 |   77.72 |
- controllers           |   71.09 |    43.24 |    92.3 |   71.09 |
-  auth.js              |   85.26 |     37.5 |     100 |   85.26 | 14-15,48-51,62-63,69-70,89-92
-  department.js        |   62.74 |       50 |     100 |   62.74 | 7-11,23-24,29-32,44-51,64-73,85-93
-  index.js             |   46.15 |      100 |       0 |   46.15 | 3-9
-  institution.js       |   69.85 |     37.5 |     100 |   69.85 | 13-16,57-66,78-85,98-107,119-127
- middleware            |   76.54 |    66.66 |     100 |   76.54 |
-  contentType.js       |   73.33 |       80 |     100 |   73.33 | 7-10
-  jwtAuth.js           |   77.41 |       50 |     100 |   77.41 | 9-10,24-28
-  rateLimiter.js       |     100 |      100 |     100 |     100 |
-  rbac.js              |   63.63 |       60 |     100 |   63.63 | 6-9,13-16
- middleware/validation |   85.54 |       60 |     100 |   85.54 |
-  institution.js       |   85.54 |       60 |     100 |   85.54 | 35-40,74-79
- routes                |     100 |      100 |     100 |     100 |
-  auth.js              |     100 |      100 |     100 |     100 |
-  department.js        |     100 |      100 |     100 |     100 |
-  index.js             |     100 |      100 |     100 |     100 |
-  institution.js       |     100 |      100 |     100 |     100 |
------------------------|---------|----------|---------|---------|------------------------------------
-```
-
-Lines highlighted in the HTML report indicate:
-
-- 🟢 **Green** - covered by at least one test
-- 🔴 **Red** - never executed during the test run
-- 🟡 **Yellow** - branch partially covered (e.g. only the `true` path of an `if` was tested)
-
----
-
-### 6.5 What Low Coverage Reveals
-
-Low branch coverage is often more telling than low line coverage. Consider this controller function:
-
-```javascript
-const getInstitutions = async (req, res) => {
-  try {
-    const institutions = await institutionRepository.findAll();
-    if (!institutions) {
-      return res.status(404).json({ message: "No institutions found" });
+  "data": [
+    {
+      "id": "...",
+      "name": "Southern Institute of Technology",
+      "region": "Southland",
+      "country": "New Zealand",
+      "createdAt": "...",
+      "updatedAt": "..."
     }
-    return res.status(200).json({
-      data: institutions,
+  ]
+}
+```
+
+Only one record should appear — the intentionally invalid entry (missing `name` and `region`) should have been caught by validation and excluded from the insert.
+
+> **If you see zero records**, check the seeding report output in your terminal for errors.
+
+---
+
+## 4. Query Parameters
+
+Query parameters pass additional information to a server in the URL - commonly used for filtering, sorting, and pagination. They appear after a `?` and are separated by `&`:
+
+```
+/api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5
+```
+
+You have likely used these without realising - every time you filter search results or navigate between pages of an online shop.
+
+---
+
+### 4.1 Update the Institution Repository
+
+Update the `findAll()` method in `repositories/institution.js` to support filters, sorting, and pagination:
+
+```javascript
+async findAll(
+  filters = {},
+  sortBy = "id",
+  sortOrder = "asc",
+  page = 1,
+  pageSize = 10
+) {
+  // Ensure page and pageSize are positive integers
+  page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
+  pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
+
+  const totalCount = await prisma.institution.count({ where: filters });
+  const totalPages = Math.ceil(totalCount / pageSize);
+
+  const query = {
+    orderBy: { [sortBy]: sortOrder },
+    skip: (page - 1) * pageSize,
+    take: pageSize,
+  };
+
+  // Build dynamic WHERE clause from filters
+  if (Object.keys(filters).length > 0) {
+    query.where = {};
+
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "string") {
+          query.where[key] = { contains: value, mode: "insensitive" };
+        } else if (typeof value === "boolean") {
+          query.where[key] = { equals: value };
+        } else if (typeof value === "number") {
+          query.where[key] = { equals: value };
+        }
+      }
+    }
+  }
+
+  const institutions = await prisma.institution.findMany(query);
+
+  return {
+    data: institutions,
+    pagination: {
+      currentPage: page,
+      pageSize,
+      totalCount,
+      totalPages,
+      nextPage: page < totalPages ? page + 1 : null,
+      prevPage: page > 1 ? page - 1 : null,
+    },
+  };
+}
+```
+
+---
+
+### 4.2 Update the Institution Controller
+
+Update `createInstitution` and `getInstitutions` in `controllers/institution.js`:
+
+```javascript
+const createInstitution = async (req, res) => {
+  try {
+    const { name, region, country } = req.body;
+    await institutionRepository.create({ name, region, country });
+    const institutions = await institutionRepository.findAll();
+    return res.status(201).json({
+      message: "Institution successfully created",
+      data: institutions.data,
     });
   } catch (err) {
-    return res.status(500).json({
-      message: err.message,
+    return res.status(500).json({ message: err.message });
+  }
+};
+
+const getInstitutions = async (req, res) => {
+  try {
+    const {
+      name,
+      region,
+      country,
+      sortBy = "id",
+      sortOrder = "asc",
+      page = 1,
+      pageSize = 10,
+    } = req.query;
+
+    // Build filters from provided query params
+    const filters = {};
+    if (name) filters.name = name;
+    if (region) filters.region = region;
+    if (country) filters.country = country;
+
+    // Validate sortOrder - default to "asc" if invalid
+    const validSortOrders = ["asc", "desc"];
+    const order = validSortOrders.includes(sortOrder.toLowerCase())
+      ? sortOrder.toLowerCase()
+      : "asc";
+
+    // Validate sortBy field - default to "id" if invalid
+    const validSortFields = ["id", "name", "region", "country"];
+    const fields = validSortFields.includes(sortBy.toLowerCase())
+      ? sortBy.toLowerCase()
+      : "id";
+
+    const institutions = institutionRepository.findAll(
+      filters,
+      fields,
+      order,
+      page,
+      pageSize,
+    );
+
+    if (institutions.data.length === 0) {
+      return res.status(404).json({ message: "No institutions found" });
+    }
+
+    return res.status(200).json({
+      data: institutions.data,
+      pagination: institutions.pagination,
     });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
   }
 };
 ```
 
-This function has **three branches**:
+**Supported query parameters:**
 
-1. `if (!institutions)` is `true` → returns `404`
-2. `if (!institutions)` is `false` → returns `200`
-3. An error is thrown → the `catch` block returns `500`
-
-If your tests only call `GET /api/institutions` and get back a `200`, branches 1 and 3 are never executed. The line count looks fine - but branch coverage will flag both missed paths.
-
-Common gaps to look for:
-
-- Error handler `catch` blocks - test by passing invalid data or mocking database failures
-- `if (!institutions)` / not-found guards - test with an empty database or a non-existent ID
-- RBAC forbidden paths - test with a user who lacks the required role
-- Rate limiter `429` responses - test by exceeding the request limit
+| Parameter   | Description                                      | Default | Example                |
+| ----------- | ------------------------------------------------ | ------- | ---------------------- |
+| `name`      | Filter by name (case-insensitive, partial match) | -       | `?name=otago`          |
+| `region`    | Filter by region                                 | -       | `?region=Otago`        |
+| `country`   | Filter by country                                | -       | `?country=New Zealand` |
+| `sortBy`    | Field to sort by                                 | `id`    | `?sortBy=country`      |
+| `sortOrder` | Sort direction                                   | `asc`   | `?sortOrder=desc`      |
+| `page`      | Page number                                      | `1`     | `?page=2`              |
+| `pageSize`  | Results per page                                 | `10`    | `?pageSize=5`          |
 
 ---
 
-### 6.6 Ignoring Code from Coverage
+### 4.3 Postman - Testing Query Parameters
 
-Sometimes generated, third-party, or intentionally untestable code should be excluded. Use inline comments:
+In Postman, query parameters can be added two ways:
 
-```javascript
-/* c8 ignore next */
-if (process.env.NODE_ENV === "test") { ... }
+- **Type them directly in the URL:** `http://localhost:3000/api/institutions?country=New Zealand`
+- **Use the Params tab:** Click **Params** below the URL bar, then add key/value pairs. Postman encodes them into the URL automatically.
 
-/* c8 ignore next 3 */
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
+The Params tab is easier to manage when combining multiple parameters.
+
+---
+
+**Filter by country**
+
+| Key     | Value       |
+| ------- | ----------- |
+| country | New Zealand |
+
+URL: `GET http://localhost:3000/api/institutions?country=New Zealand`
+
+Expected: only institutions where `country` contains "New Zealand" (case-insensitive).
+
+---
+
+**Sort by name descending**
+
+| Key       | Value |
+| --------- | ----- |
+| sortBy    | name  |
+| sortOrder | desc  |
+
+URL: `GET http://localhost:3000/api/institutions?sortBy=name&sortOrder=desc`
+
+---
+
+**Paginate results**
+
+| Key      | Value |
+| -------- | ----- |
+| page     | 1     |
+| pageSize | 2     |
+
+URL: `GET http://localhost:3000/api/institutions?page=1&pageSize=2`
+
+Expected response includes a `pagination` object:
+
+```json
+{
+  "data": [...],
+  "pagination": {
+    "currentPage": 1,
+    "pageSize": 2,
+    "totalCount": 5,
+    "totalPages": 3,
+    "nextPage": 2,
+    "prevPage": null
+  }
+}
 ```
 
-> Use sparingly - ignoring coverage is a last resort, not a way to hit thresholds artificially.
+---
+
+**Combine filters, sorting, and pagination**
+
+| Key       | Value       |
+| --------- | ----------- |
+| country   | New Zealand |
+| sortBy    | name        |
+| sortOrder | asc         |
+| page      | 1           |
+| pageSize  | 5           |
+
+URL: `GET http://localhost:3000/api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5`
+
+> Seed a few institutions first (`npm run prisma:seed-institutions`) to have enough data to meaningfully test pagination.
+
+---
+
+## 5. Deployment
+
+Deployment makes your application available to users. Common platforms include Render, Heroku, Vercel, and Netlify. We will use **Render**.
+
+---
+
+### 5.1 Build Script
+
+Add the following to your existing `scripts` block in `package.json`:
+
+```json
+"build": "npm install && npx prisma generate && npx prisma migrate deploy"
+```
+
+**`migrate dev` vs `migrate deploy`:**
+
+| Command                     | Purpose                                                                 |
+| --------------------------- | ----------------------------------------------------------------------- |
+| `npx prisma migrate dev`    | Development only - creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files      |
+
+---
+
+### 5.2 Create a Render Account
+
+Sign up at [dashboard.render.com/register](https://dashboard.render.com/register) using your GitHub account.
+
+---
+
+### 5.3 PostgreSQL Setup on Render
+
+1. Click **New +**, then select **Postgres**
+2. Give your database a name; leave Instance Type as **Free**
+3. Click **Create Database**
+4. Copy the **External Database URL** - you will need this shortly
+
+---
+
+### 5.4 Web Service Setup on Render
+
+1. Click **New +**, then select **Web Service**
+2. Choose **Git Provider** and connect your repository (you may need to authorise Render access to GitHub)
+3. Configure the service:
+   - **Name:** e.g. `id607001-rest-api`
+   - **Language:** Node
+   - **Branch:** `w05-validation-seeding-query-params-deployment`
+   - **Build Command:** `npm run build`
+   - **Start Command:** `node app.js`
+   - **Instance Type:** Free
+4. Add an environment variable: `DATABASE_URL` = the External Database URL copied above
+5. Click **Deploy Web Service**
+6. Monitor the logs - your service is ready when you see:
+
+```
+Server is listening on port 10000. Visit http://localhost:10000
+Your service is live 🎉
+```
+
+> **Note:** As you progress through future weeks, update the Branch field to match the current week's branch.
+
+### 5.5 Postman - Testing the Deployed API
+
+Once deployed, test your live API exactly as you would locally — just swap `http://localhost:3000` for your Render service URL (e.g. `https://id607001-rest-api.onrender.com`).
+
+> **First-request delay:** The free Render tier spins down after inactivity. The first request after a period of inactivity may take 30–60 seconds to respond — this is normal.
+
+📖 Reference: [Render docs](https://render.com/docs)
 
 ---
 
@@ -1193,171 +827,55 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Course CRUD Tests _(Easy)_
+### Task 2 - Catch-All Route _(Medium)_
 
-Create a test file for the `Course` resource covering these five scenarios:
+A catch-all route matches any request that doesn't match a defined route, and returns a helpful 404 response.
 
-1. Create a course
-2. Get all courses
-3. Get a course by ID
-4. Update a course
-5. Delete a course
-
----
-
-### Task 3 - Security Analysis _(Easy)_
-
-In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
-
----
-
-### Task 4 - Restrict the Endpoints Route _(Easy)_
-
-Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
-
-- The user has the `ADMIN` role
-- `NODE_ENV` is set to `development`
-
----
-
-### Task 5 - Restrict Registration Role _(Easy)_
-
-Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role - admins must be created through another mechanism.
-
----
-
-### Task 6 - Multi-Role RBAC _(Medium)_
-
-Refactor the `rbac` middleware to accept either a single role string or an array of roles, allowing access if the user has **any** of the specified roles.
-
-Update `routes/institution.js` to allow both `ADMIN` and `STUDENT` to access GET routes:
+In `app.js`, add the following **after all other routes**:
 
 ```javascript
-router.get("/", rbac(["ADMIN", "STUDENT"]), getInstitutions);
-router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
-```
+app.use("/", indexRoutes);
+app.use("/api/institutions", institutionRoutes);
+app.use("/api/departments", departmentRoutes);
 
----
-
-### Task 7 - Implement Full RBAC Permissions _(Easy)_
-
-Apply the following permission matrix across all resources:
-
-| Resource    | Operation            | ADMIN | STAFF | STUDENT |
-| ----------- | -------------------- | :---: | :---: | :-----: |
-| Institution | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Institution | Create               |  ✅   |  ✅   |   ❌    |
-| Institution | Update               |  ✅   |  ✅   |   ❌    |
-| Institution | Delete               |  ✅   |  ❌   |   ❌    |
-| Department  | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Department  | Create               |  ✅   |  ✅   |   ❌    |
-| Department  | Update               |  ✅   |  ✅   |   ❌    |
-| Department  | Delete               |  ✅   |  ❌   |   ❌    |
-| Course      | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Course      | Create               |  ✅   |  ✅   |   ❌    |
-| Course      | Update               |  ✅   |  ✅   |   ❌    |
-| Course      | Delete               |  ✅   |  ❌   |   ❌    |
-| User        | View All             |  ✅   |  ✅   |   ❌    |
-| User        | View Own             |  ✅   |  ✅   |   ✅    |
-| User        | Update All           |  ✅   |  ✅   |   ❌    |
-| User        | Update Own           |  ✅   |  ✅   |   ✅    |
-| User        | Delete               |  ✅   |  ❌   |   ❌    |
-
----
-
-### Task 8 - User Profile _(Medium)_
-
-Create a `Profile` model with the following fields:
-
-| Field       | Type     | Constraints               |
-| ----------- | -------- | ------------------------- |
-| `id`        | String   | Primary key, default UUID |
-| `bio`       | String   |                           |
-| `avatarUrl` | String   |                           |
-| `userId`    | String   | Foreign key               |
-| `createdAt` | DateTime | Default now               |
-| `updatedAt` | DateTime | Default now               |
-
-Update the `User` model to include a one-to-one relationship:
-
-```javascript
-model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  role         Role     @default(STUDENT)
-  profile      Profile?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
-}
-```
-
-Update the `register` function in `controllers/auth.js` to auto-create a profile on registration:
-
-```javascript
-user = await prisma.user.create({
-  data: {
-    firstName,
-    lastName,
-    emailAddress,
-    password: hashedPassword,
-    role: "STUDENT",
-    profile: {
-      create: {
-        bio,
-        avatarUrl: `https://api.dicebear.com/6.x/initials/svg?seed=${firstName}+${lastName}`,
-      },
-    },
-  },
-  select: {
-    id: true,
-    firstName: true,
-    lastName: true,
-    emailAddress: true,
-    role: true,
-    profile: true,
-    createdAt: true,
-    updatedAt: true,
-  },
+// Must be last - catches any unmatched routes
+app.use((req, res) => {
+  // Return a 404 with: "Endpoint {req.method} {req.originalUrl} not found"
 });
 ```
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
+> Use `req.method` for the HTTP method and `req.originalUrl` for the URL.
 
 ---
 
-### Task 9 - Confirm Password _(Easy)_
+### Task 3 - Endpoints List _(Medium)_
 
-Add confirm password validation to the `register` function in `controllers/auth.js`.
-
-Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with the message `"Passwords do not match"`.
-
-> `confirmPassword` should not be stored in the database.
+Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
 ---
 
-### Task 10 - Enable Coverage _(Easy)_
+### Task 4 - Validation for Other Resources _(Medium)_
 
-1. Install `c8` and create a `.c8rc` configuration file
-2. Add a `test:coverage` script to `package.json`
-3. Run `npm run test:coverage` and take note of your starting percentages
-4. Identify the two lowest-covered files in the report
-5. Write at least one additional test for each to improve their coverage
+Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources. Create the following files in `middleware/validation/`:
+
+| File            | Fields to validate                            |
+| --------------- | --------------------------------------------- |
+| `department.js` | `name`, `institutionId`                       |
+| `course.js`     | `name`, `code`, `description`, `departmentId` |
+| `user.js`       | `firstName`, `lastName`, `emailAddress`       |
+
+Register the middleware in the appropriate route files.
 
 ---
 
-### Task 11 - Reach 80% Branch Coverage _(Medium)_
+### Task 5 - Seeding Other Resources _(Medium)_
 
-Using the HTML report (`npm run test:coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
+Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
-- The `401` path in `jwtAuth.js` when no token is provided
-- The `403` path in `rbac.js` when the user has an insufficient role
-- The `409` path in `controllers/auth.js` when a duplicate email is registered
-- The `404` path in any resource controller when an ID does not exist
-
-Aim for at least **80% branch coverage** across `controllers/` and `middleware/`.
+- Clear existing data before seeding
+- Create realistic sample records
+- Maintain proper relationships (departments → institutions, courses → departments)
+- Be repeatable without causing duplicate data errors
 
 ---
 
@@ -1367,190 +885,67 @@ These exercises require independent research and problem-solving. Completing the
 
 ---
 
-### Hard Task 1 - Account Lockout
+### Hard Task 1 - Detailed Seeding Report
 
-Implement account lockout after 5 failed login attempts. The account should be locked for 15 minutes.
+Extend your seeding scripts to generate a comprehensive report. The report should include, for each resource: records created, time taken, and any errors encountered. Here is the expected format:
 
-Add two fields to the `User` model:
-
-```javascript
-model User {
-  id                  String    @id @default(uuid())
-  firstName           String
-  lastName            String
-  emailAddress        String    @unique
-  password            String
-  role                Role      @default(STUDENT)
-  profile             Profile?
-  failedLoginAttempts Int       @default(0)
-  lockoutUntil        DateTime?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @default(now())
-}
+```
+==========================================
+Seeding report
+==========================================
+Resource: Institutions
+  Records created: 10
+  Time taken: 2.5s
+------------------------------------------
+Resource: Departments
+  Records created: 50
+  Time taken: 5.0s
+------------------------------------------
+Resource: Courses
+  Records created: 200
+  Time taken: 10.0s
+------------------------------------------
+Resource: Users
+  Records created: 100
+  Time taken: 5.0s
+------------------------------------------
+Total time: 22.5s
+Errors encountered: None
+==========================================
 ```
 
-Replace the `login` function in `controllers/auth.js` with the following and complete all TODO sections:
-
-```javascript
-const login = async (req, res) => {
-  try {
-    const { emailAddress, password } = req.body;
-
-    const user = await prisma.user.findUnique({ where: { emailAddress } });
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email address" });
-    }
-
-    const now = Date.now();
-    const lockoutUntil = user.lockoutUntil ? user.lockoutUntil.getTime() : null;
-
-    if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
-      const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60));
-      // TODO 2: Return 423 with "Account locked. Try again in X minutes"
-    }
-
-    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
-
-    if (!isPasswordCorrect) {
-      const newFailedAttempts = /* TODO 3: Increment failed attempts */;
-      const shouldLockAccount = /* TODO 4: Check if >= 5 failed attempts */;
-
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          failedLoginAttempts: newFailedAttempts,
-          lockoutUntil: shouldLockAccount
-            ? new Date(now + 15 * 60 * 1000)
-            : user.lockoutUntil,
-          updatedAt: new Date(),
-        },
-      });
-
-      if (shouldLockAccount) {
-        // TODO 5: Return 423 with "Account locked due to 5 failed attempts"
-      } else {
-        const attemptsRemaining = /* TODO 6: 5 - newFailedAttempts */;
-        // TODO 7: Return 401 with "Invalid password. X attempts remaining"
-      }
-    }
-
-    // Reset lockout on successful login
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { failedLoginAttempts: 0, lockoutUntil: null, updatedAt: new Date() },
-    });
-
-    const { JWT_SECRET, JWT_LIFETIME } = process.env;
-
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: JWT_LIFETIME },
-    );
-
-    return res.status(200).json({
-      message: "User successfully logged in",
-      token: token,
-    });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-```
-
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
+> **Hint:** Create a `prisma/seeding/index.js` that imports and runs all seed scripts sequentially, collects their results, and generates the final report.
 
 ---
 
-### Hard Task 2 - Token Blacklist
+### Hard Task 2 - Advanced Query Parameters
 
-Implement a logout endpoint that invalidates the JWT by adding it to a blacklist in the database.
+Extend the query parameter system to support advanced filtering operators. Maintain backward compatibility with existing filters.
 
-Add a `TokenBlacklist` model to `schema.prisma`:
+| Operator                      | Example                                       |
+| ----------------------------- | --------------------------------------------- |
+| Range (less than or equal)    | `?createdAt[lte]=2023-12-31`                  |
+| Range (greater than or equal) | `?createdAt[gte]=2023-01-01`                  |
+| Array (match any)             | `?country[in]=Australia,New Zealand`          |
+| Exclusion                     | `?region[not]=Otago`                          |
+| Starts with                   | `?name[startsWith]=Otago`                     |
+| Ends with                     | `?name[endsWith]=Polytechnic`                 |
+| Case sensitivity              | `?name=otago polytechnic&caseSensitive=false` |
 
-```javascript
-model TokenBlacklist {
-  id        String   @id @default(uuid())
-  token     String   @unique
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-}
-```
+---
 
-Add a `logout` function to `controllers/auth.js` and complete the TODO:
+### Hard Task 3 - Health Check Endpoint
 
-```javascript
-const logout = async (req, res) => {
-  try {
-    const authHeader = req.headers.authorization;
+Implement `GET /api/health` that returns the current status of your application. The response should include at minimum: application status, database connectivity, and server uptime.
 
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
-    }
+---
 
-    const token = authHeader.split(" ")[1];
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
+### Hard Task 4 - Sustainable Codebase
 
-    await prisma.tokenBlacklist.create({
-      data: {
-        token,
-        expiresAt: /* TODO 1: Convert payload.exp (seconds) to a Date (milliseconds) */,
-      },
-    });
+As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
 
-    return res.status(200).json({ message: "User successfully logged out" });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-```
-
-Update `routes/auth.js`:
-
-```javascript
-import { register, login, logout } from "../controllers/auth.js";
-
-router.route("/register").post(register);
-router.route("/login").post(login);
-// TODO 2: Add POST /logout route
-```
-
-Update `middleware/jwtAuth.js` to reject blacklisted tokens:
-
-```javascript
-import jwt from "jsonwebtoken";
-import prisma from "../prisma/db.js";
-
-const jwtAuth = async (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
-    }
-
-    const token = authHeader.split(" ")[1];
-
-    const blacklistedToken = /* TODO 3: Look up token in TokenBlacklist */;
-
-    if (blacklistedToken) {
-      // TODO 4: Return 403 with "Token has been invalidated"
-    }
-
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = payload;
-
-    next();
-  } catch (err) {
-    return res.status(401).json({ message: "Not authorized to access this route" });
-  }
-};
-
-export default jwtAuth;
-```
-
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
+- **`BaseValidationMiddleware`** - a base module with shared validation logic that resource-specific middleware can extend
+- **`BaseSeedingScript`** - a base module with shared seeding logic that individual seed scripts can extend
 
 ---
 
