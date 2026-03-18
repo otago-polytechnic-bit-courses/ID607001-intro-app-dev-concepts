@@ -2,12 +2,11 @@
 
 ## Navigation
 
-|                                       | Link                                                                                                                                  |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous                            | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman)                                  |
-| Code Example                          | [Code Example](code-example)                                                                                                          |
-| Service Layer - Advanced Code Example | [Service Layer - Advanced Code Example](./service-layer-advanced-code-example)                                                        |
-| → Next                                | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+|              | Link                                                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman)                                         |
+| Code Example | [Code Example](code-example)                                                                                                          |
+| → Next       | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 
@@ -120,7 +119,40 @@ export default app;
 
 </details>
 
-To test content negotiation in Postman, copy the "Create an institution" request from `./lecture-notes/week-03` into `./lecture-notes/week-04`. Select **Text** from the dropdown and click **Send**. You should see the middleware in action.
+---
+
+### 1.3 Postman - Testing Content Negotiation
+
+**Step-by-step setup:**
+
+1. In Postman, duplicate your "Create Institution" request from `lecture-notes/week-03` and move the copy into a new folder `lecture-notes/week-04`.
+2. Make sure your server is running (`npm run dev`) and Docker container is up.
+
+**Test 1: Trigger the middleware error**
+
+Change the Body type to **Text** (instead of raw → JSON) and click **Send**.
+
+Expected response (`409 Conflict`):
+
+```json
+{
+  "message": "Content-Type must be application/json"
+}
+```
+
+This confirms the middleware is correctly rejecting requests without `Content-Type: application/json`.
+
+**Test 2: Confirm normal operation still works**
+
+Switch the Body type back to **raw → JSON** and click **Send**.
+
+Expected response (`201 Created`) — the institution is created as normal.
+
+> **What's happening under the hood?** When you select "raw → JSON" in Postman, it automatically sets the `Content-Type: application/json` header. Switching to "Text" removes that header, triggering your middleware.
+
+**Viewing headers in Postman:**
+
+You can inspect what headers Postman is sending by clicking the **Headers** tab in your request. This is useful for debugging content negotiation issues.
 
 ---
 
@@ -297,18 +329,69 @@ export default app;
 
 ---
 
-### 2.4 Postman - Create a Department
+### 2.4 Postman - Testing Departments
 
-Send a `POST` request to `http://localhost:3000/api/departments` with the following JSON body:
+**Prerequisites:** You must have at least one institution created before creating a department. If you haven't yet, send a `POST /api/institutions` request first and copy the returned `id`.
+
+---
+
+**POST — Create a department**
+
+| Field  | Value                                   |
+| ------ | --------------------------------------- |
+| Method | `POST`                                  |
+| URL    | `http://localhost:3000/api/departments` |
+
+Body (raw → JSON):
 
 ```json
 {
   "name": "Information Technology",
-  "institutionId": "Replace with an institution's id"
+  "institutionId": "<paste-institution-id-here>"
 }
 ```
 
-> **Note:** Make sure you have at least one institution before creating a department.
+Expected response (`201 Created`):
+
+```json
+{
+  "message": "Department successfully created",
+  "data": [
+    {
+      "id": "b2c3d4e5-...",
+      "name": "Information Technology",
+      "institutionId": "a1b2c3d4-...",
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  ]
+}
+```
+
+---
+
+**GET — All departments**
+
+| Field  | Value                                   |
+| ------ | --------------------------------------- |
+| Method | `GET`                                   |
+| URL    | `http://localhost:3000/api/departments` |
+
+No body needed.
+
+---
+
+**GET / PUT / DELETE by ID**
+
+Use the `id` from the create response and follow the same pattern as Week 03 institutions:
+
+| Operation | Method   | URL                                          |
+| --------- | -------- | -------------------------------------------- |
+| Read one  | `GET`    | `http://localhost:3000/api/departments/<id>` |
+| Update    | `PUT`    | `http://localhost:3000/api/departments/<id>` |
+| Delete    | `DELETE` | `http://localhost:3000/api/departments/<id>` |
+
+> **Department-specific error:** A `500` on `POST /api/departments` usually means the `institutionId` doesn't exist in the database. Confirm it with a `GET /api/institutions` first.
 
 ---
 
@@ -321,8 +404,6 @@ N-Layer Architecture separates an application into distinct layers, each with it
 | **Presentation** | Controllers, Routes | Handle HTTP requests/responses; validate input |
 | **Application**  | Services            | Business logic; interact with the data layer   |
 | **Data**         | Repositories        | Manage data access; interact with the database |
-
-> The code example demonstrates the **repository pattern** in the data layer. The service layer is not covered here, but see the advanced code example for a full implementation.
 
 📖 Reference: [Martin Fowler - Presentation Domain Data Layering](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
 
@@ -485,7 +566,7 @@ const institutions = await prisma.institution.findMany(); // 1 query
 for (const institution of institutions) {
   const departments = await prisma.department.findMany({
     where: { institutionId: institution.id },
-  }); // N queries - one per institution!
+  }); // N queries - one per institution
   institution.departments = departments;
 }
 ```
@@ -544,6 +625,7 @@ enum Gender {
 model Player {
   id        String   @id @default(uuid())
   firstName String
+  lastName  String
   gender    Gender
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -559,11 +641,11 @@ model Player {
 When creating or updating a record, pass the enum value as a string matching one of the defined options:
 
 ```javascript
-const { firstName, gender } = req.body;
+const { firstName, lastName, gender } = req.body;
 // gender must be one of: "MALE", "FEMALE", "NON_BINARY", "PREFER_NOT_TO_SAY"
 
 await prisma.player.create({
-  data: { firstName, gender },
+  data: { firstName, lastName, gender },
 });
 ```
 
@@ -879,9 +961,31 @@ Apply similar changes to the `Department` controller/repository to include `Cour
 
 **To test in Postman:**
 
-1. `POST /api/institutions` - create an institution
-2. `POST /api/departments` - create a department
-3. `GET /api/institutions` - retrieve institutions with their departments
+1. `POST /api/institutions` — create an institution, copy its `id`
+2. `POST /api/departments` — create a department using the institution `id`
+3. `GET /api/institutions` — the response should now include a `departments` array nested inside each institution
+
+Expected response shape:
+
+```json
+{
+  "data": [
+    {
+      "id": "a1b2c3...",
+      "name": "Otago Polytechnic",
+      "region": "Otago",
+      "country": "New Zealand",
+      "departments": [
+        {
+          "id": "b2c3d4...",
+          "name": "Information Technology",
+          "institutionId": "a1b2c3..."
+        }
+      ]
+    }
+  ]
+}
+```
 
 > **Think about it:** Are there any performance issues with this approach? How would you resolve them?
 
@@ -894,6 +998,75 @@ These exercises require independent research and problem-solving. Completing the
 ---
 
 ### Hard Task 1 - Caching Middleware
+
+#### What is Caching?
+
+Caching stores the result of an expensive operation (such as a database query) in memory so that subsequent requests for the same data can be served instantly — without hitting the database again.
+
+**Without caching:**
+
+```
+Client → Express → Database → Express → Client
+         (every request hits the DB)
+```
+
+**With caching:**
+
+```
+1st request: Client → Express → Database → Cache → Client
+2nd request: Client → Express → Cache → Client  (DB skipped entirely)
+```
+
+This matters because database queries are the slowest part of most API responses. Caching a `GET /api/institutions` response that rarely changes means most requests never touch the database at all.
+
+#### How the Cache in This Task Works
+
+The cache is a plain JavaScript object stored in memory:
+
+```javascript
+const cache = {};
+
+// A cached entry looks like this:
+cache["/api/institutions"] = {
+  data: {
+    /* the JSON response body */
+  },
+  timestamp: 1720000000000, // Date.now() when it was stored
+};
+```
+
+Each entry has a **key** (the URL), the **data** to return, and a **timestamp** used to calculate whether the entry has expired.
+
+The **duration** parameter controls how long a cached entry is considered fresh. After that time passes, the cache entry is deleted and the next request goes to the database again.
+
+#### Cache Lifecycle
+
+```
+Request arrives
+      ↓
+Is there a cache entry for this URL?
+      ├── No  → "Cache MISS" → hit the database → store result in cache → respond
+      └── Yes → Is it expired?
+                    ├── Yes → delete it → "Cache MISS" → hit DB → store → respond
+                    └── No  → "Cache HIT" → respond immediately from cache
+```
+
+#### The `X-Cache` Header
+
+The `X-Cache` response header is a widely used convention that tells the client (and debugging tools like Postman) whether the response came from cache or the database:
+
+- `X-Cache: HIT` — response served from cache
+- `X-Cache: MISS` — response fetched from the database
+
+You can see these headers in Postman under the **Headers** tab of the response panel.
+
+#### Why Clear Cache on Mutations?
+
+If a `POST`, `PUT`, or `DELETE` modifies the data but the cache still holds the old response, subsequent `GET` requests will return stale data. Calling `clearCache()` after any mutation ensures the next `GET` fetches fresh data from the database and repopulates the cache.
+
+---
+
+#### Implementation
 
 Create `backend/middleware/cache.js` and complete all the `TODO` sections:
 
@@ -979,6 +1152,17 @@ const createInstitution = async (req, res) => {
 };
 ```
 
+#### Testing in Postman
+
+Follow these steps exactly to observe all three cache states:
+
+1. `GET /api/institutions` → terminal logs **Cache miss**, response header `X-Cache: MISS`
+2. `POST /api/institutions` → creates institution, cache is cleared
+3. `GET /api/institutions` → terminal logs **Cache miss** again (cache was cleared), `X-Cache: MISS`
+4. `GET /api/institutions` → terminal logs **Cache hit**, `X-Cache: HIT` — served from memory, no DB query
+
+To verify the `X-Cache` header in Postman, click the **Headers** tab in the response panel after each request.
+
 **Expected terminal output:**
 
 ```
@@ -987,12 +1171,7 @@ Cache miss for key: /api/institutions
 Cache hit for key: /api/institutions
 ```
 
-**To replicate:**
-
-1. `GET /api/institutions` → cache miss
-2. `POST /api/institutions` → creates institution, clears cache
-3. `GET /api/institutions` → cache miss again
-4. `GET /api/institutions` → cache hit
+> **Think about it:** This implementation uses in-process memory, so the cache is wiped every time the server restarts. How would you implement a cache that survives restarts? (Hint: look up Redis.)
 
 ---
 

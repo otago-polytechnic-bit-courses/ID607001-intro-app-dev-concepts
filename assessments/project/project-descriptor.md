@@ -228,7 +228,7 @@ When developing your application, you must follow best practices for code qualit
 #### Code Organisation (3 marks)
 
 - Use a clear and logical project structure that implements separation of concerns.
-- Implement separation of concerns by keeping the presentation, service and data access layers seperate.
+- Implement separation of concerns by keeping the presentation and data access layers seperate.
 - Write modular code by breaking down your application into smaller, reusable functions and modules.
 
 ---

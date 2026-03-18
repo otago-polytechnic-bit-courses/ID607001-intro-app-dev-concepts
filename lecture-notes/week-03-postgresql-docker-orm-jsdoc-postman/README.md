@@ -567,29 +567,77 @@ export default app;
 
 ## 7. Postman
 
-Postman is a tool for testing APIs - it lets you send HTTP requests and inspect responses, making it ideal for testing and debugging.
+Postman is a tool for testing APIs. It lets you send HTTP requests and inspect responses without needing a frontend, making it essential for developing and debugging your API.
 
 ---
 
-### 7.1 Getting Started
+### 7.1 Step-by-Step Setup
 
-Sign in at [identity.getpostman.com/login](https://identity.getpostman.com/login) using your GitHub account.
+1. Go to [identity.getpostman.com/login](https://identity.getpostman.com/login) and sign in with your GitHub account.
+2. Once logged in, click **New** → **Collection** and name it something like `id607001`.
+3. Inside the collection, create two sub-folders: `lecture-notes/week-03` and `exercises` to keep requests organised.
+4. Before making any requests, check the **agent selector** (bottom-right of the screen). If you see a warning about the Postman Agent, switch from **Cloud Agent** to **Desktop Agent** or **Browser Agent**.
 
-Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests - e.g. `./lecture-notes/week-03` and `exercises`.
-
-> **Tip:** If you see a Postman Agent error on your first request, switch from **Cloud Agent** to **Browser Agent** in the agent selector.
+> **Tip:** The Desktop Agent is the most reliable option. It allows Postman to communicate with your locally running server.
 
 ---
 
-### 7.2 Example Requests
+### 7.2 How to Structure and Organise Requests
 
-**GET all institutions** - `GET http://localhost:3000/api/institutions`
+Use **folders** inside your collection to mirror your routes. For example:
 
-The `data` field will be an empty array if no institutions exist yet.
+```
+id607001/
+├── lecture-notes/
+│   └── week-03/
+│       ├── POST Create Institution
+│       ├── GET All Institutions
+│       ├── GET Institution by ID
+│       ├── PUT Update Institution
+│       └── DELETE Institution
+└── exercises/
+```
 
-**Create an institution** - `POST http://localhost:3000/api/institutions`
+Name each request clearly using the pattern: `[METHOD] [Description]` — e.g. `POST Create Institution`, `GET All Institutions`. This makes it easy to find and rerun specific requests later.
 
-In the **Body** tab, select **raw → JSON**, then send:
+---
+
+### 7.3 Example Request Walkthroughs
+
+Make sure your server is running (`npm run dev`) and your Docker container is up before testing.
+
+---
+
+**GET all institutions**
+
+| Field  | Value                                    |
+| ------ | ---------------------------------------- |
+| Method | `GET`                                    |
+| URL    | `http://localhost:3000/api/institutions` |
+
+No body needed. Click **Send**.
+
+Expected response (`200 OK`):
+```json
+{
+  "data": []
+}
+```
+> An empty array is expected if no institutions have been created yet — this is correct behaviour.
+
+---
+
+**POST — Create an institution**
+
+| Field  | Value                                    |
+| ------ | ---------------------------------------- |
+| Method | `POST`                                   |
+| URL    | `http://localhost:3000/api/institutions` |
+
+In the **Body** tab:
+1. Select **raw**
+2. Change the dropdown from `Text` to **JSON**
+3. Paste the following:
 
 ```json
 {
@@ -599,15 +647,91 @@ In the **Body** tab, select **raw → JSON**, then send:
 }
 ```
 
-You should receive a `201` response with the newly created institution.
+Expected response (`201 Created`):
+```json
+{
+  "message": "Institution successfully created",
+  "data": [
+    {
+      "id": "a1b2c3d4-...",
+      "name": "Otago Polytechnic",
+      "region": "Otago",
+      "country": "New Zealand",
+      "createdAt": "...",
+      "updatedAt": "..."
+    }
+  ]
+}
+```
 
-**Other operations** to test:
+> Copy the `id` value from the response — you'll need it for the next three requests.
 
-- `GET /api/institutions/:id` - get by ID
-- `PUT /api/institutions/:id` - update by ID
-- `DELETE /api/institutions/:id` - delete by ID
+---
 
-> **Try it:** What happens if you request an institution ID that doesn't exist? Try it for GET, PUT, and DELETE.
+**GET — Institution by ID**
+
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `GET`                                                    |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
+
+No body needed. Expected response (`200 OK`) returns the matching institution object.
+
+---
+
+**PUT — Update an institution**
+
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `PUT`                                                    |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
+
+Body (raw → JSON):
+```json
+{
+  "name": "Otago Polytechnic Te Kura Matatini ki Otago",
+  "region": "Otago",
+  "country": "New Zealand"
+}
+```
+
+Expected response (`200 OK`):
+```json
+{
+  "message": "Institution with the id: a1b2c3... successfully updated",
+  "data": { "..." : "..." }
+}
+```
+
+---
+
+**DELETE — Delete an institution**
+
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `DELETE`                                                 |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
+
+No body needed. Expected response (`200 OK`):
+```json
+{
+  "message": "Institution with the id: a1b2c3... successfully deleted"
+}
+```
+
+---
+
+### 7.4 Troubleshooting Common Errors
+
+| Symptom | Likely Cause | Fix |
+| --- | --- | --- |
+| `Could not send request` | Server isn't running | Run `npm run dev` and check the terminal for errors |
+| `ECONNREFUSED` | Docker container not running | Run `npm run docker:run:dev` |
+| `500 Internal Server Error` | Database issue or missing `.env` | Check your `DATABASE_URL` in `.env` matches the Docker setup |
+| `404 Not Found` on a valid ID | ID doesn't exist in the database | Use `GET /api/institutions` to find a real ID |
+| Response is HTML, not JSON | Express route not matched | Check you're using the correct method (GET/POST/etc.) and the URL has no typos |
+| Body not being received | Missing `Content-Type` header | Make sure Body is set to **raw → JSON** in Postman, not plain text |
+| Agent error on first request | Wrong Postman agent selected | Switch to **Desktop Agent** in the bottom-right agent selector |
 
 ---
 
@@ -720,7 +844,7 @@ const institutions = await prisma.institution.findMany({
   select: {
     id: true,
     name: true,
-    // add the fields you want here
+    // Add the fields you want here
   },
 });
 ```

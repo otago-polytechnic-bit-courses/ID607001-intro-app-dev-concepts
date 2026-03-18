@@ -6,7 +6,6 @@
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example            | [Code Example](code-example)                                                                                                          |
-| RBAC - Advanced Example | [RBAC - Advanced Code Example](./rbac-advanced-code-example)                                                                          |
 | → Next                  | [Week 07 - CI/CD and GitHub Actions](../week-07-ci-cd-github-actions/README.md)                            |
 
 ---
@@ -440,8 +439,6 @@ The current single-role enum approach works for basic scenarios but has drawback
 - **No type-specific data** - Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
 - **Poor scalability** - Challenging to extend when different roles need different fields and relationships
 - **Mixed concerns** - Auth logic is entangled with user identity
-
-See the [Auth - Advanced Code Example](auth-advanced-code-example) for a more flexible approach.
 
 ---
 
