@@ -156,8 +156,7 @@ Here is an example of how to break down your work into sprints and tasks:
 - Include two enum fields across your models, each with at least two values.
 - Implement four relationships between models:
   - At least one one-to-one relationship
-  - At least one one-to-many relationship
-  - At least one many-to-many relationship
+  - At least two one-to-many relationship
   - One additional relationship of any type
 
 ---

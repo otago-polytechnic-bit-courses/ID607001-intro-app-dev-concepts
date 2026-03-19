@@ -1,11 +1,12 @@
-# Week 07 - CI/CD and GitHub Actions
+# Week 07 - Backend Testing, Code Coverage, CI/CD and GitHub Actions
 
 ## Navigation
 
-|            | Link                                                                                                                                                   |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ← Previous | [Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage](../week-06-security-authentication-rbac-api-testing-code-coverage/README.md) |
-| → Next     | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)                                                             |
+|              | Link                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| ← Previous   | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac-api/README.md) |
+| Code Example | [Code Example](code-example)                                                                         |
+| → Next       | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)           |
 
 ---
 
@@ -14,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 07 branch:
 
 ```bash
-git checkout -b w07-ci-cd-gh-actions
+git checkout -b w07-be-testing-code-cov-ci-cd-gh-actions
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.

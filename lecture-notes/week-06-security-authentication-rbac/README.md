@@ -1,4 +1,4 @@
-# Week 06 - Security, Authentication, RBAC, API Testing and Code Coverage
+# Week 06 - Security, Authentication and RBAC
 
 ## Navigation
 
@@ -6,7 +6,7 @@
 | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
 | ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 | Code Example            | [Code Example](code-example)                                                                                                          |
-| → Next                  | [Week 07 - CI/CD and GitHub Actions](../week-07-ci-cd-github-actions/README.md)                            |
+| → Next                  | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md)                            |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 06 branch:
 
 ```bash
-git checkout -b w06-sec-auth-rbac-api-testing-code-cov
+git checkout -b w06-sec-auth-rbac
 ```
 
 Set up your development environment (Docker, environment variables, etc.) before continuing.

@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|            | Link                                                                                                                   |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------- |
-| ← Previous | [Week 07 - CI/CD and GitHub Actions](../week-07-ci-cd-github-actions/README.md)                                        |
-| → Next     | [Week 09 - API Integration and Content Delivery Networks](../week-09-api-integration-content-delivery-networks/README.md) |
+|            | Link                                                                                                                                             |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ← Previous | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
+| → Next     | [Week 09 - API Integration and Content Delivery Networks](../week-09-api-integration-content-delivery-networks/README.md)                        |
 
 ---
 
@@ -57,7 +57,7 @@ You will be prompted with the following questions:
 | -------------------------------------------------------------------------- | --------------------------------------------- |
 | Which template would you like?                                             | SvelteKit minimal                             |
 | Add type checking with TypeScript?                                         | Yes, using JavaScript with **JSDoc** comments |
-| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier, eslint                                      |
+| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier, eslint                              |
 | Which package manager do you want to install dependencies with?            | npm                                           |
 
 > **Note:** The CLI tool is now `npx sv create` (the Svelte CLI). The older `npm create svelte@latest` command is deprecated - always use `npx sv create` for new projects.
@@ -87,16 +87,16 @@ Update `svelte.config.js` to use the static adapter:
 
 ```javascript
 // svelte.config.js
-import adapter from '@sveltejs/adapter-static';
-import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import adapter from "@sveltejs/adapter-static";
+import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
 const config = {
   preprocess: vitePreprocess(),
   kit: {
     adapter: adapter({
-      fallback: '200.html' // Enables SPA-style routing
-    })
-  }
+      fallback: "200.html", // Enables SPA-style routing
+    }),
+  },
 };
 
 export default config;
@@ -138,17 +138,17 @@ week-08-vite-sveltekit-deployment
 └── vite.config.js
 ```
 
-| File / Directory  | Purpose                                                        |
-| ----------------- | -------------------------------------------------------------- |
-| `app.html`        | The main HTML shell of the application                         |
-| `app.d.ts`        | TypeScript definitions for the application                     |
-| `lib/`            | Reusable components, assets and utilities                      |
-| `routes/`         | All pages and layouts - each file maps to a URL               |
-| `+layout.js`      | Shared data loading and options (e.g. `ssr`, `prerender`)      |
-| `static/`         | Static assets served directly (images, fonts, etc.)            |
-| `jsconfig.json`   | JavaScript project configuration                               |
-| `svelte.config.js`| Svelte compiler and adapter configuration                      |
-| `vite.config.js`  | Vite build tool configuration                                  |
+| File / Directory   | Purpose                                                   |
+| ------------------ | --------------------------------------------------------- |
+| `app.html`         | The main HTML shell of the application                    |
+| `app.d.ts`         | TypeScript definitions for the application                |
+| `lib/`             | Reusable components, assets and utilities                 |
+| `routes/`          | All pages and layouts - each file maps to a URL           |
+| `+layout.js`       | Shared data loading and options (e.g. `ssr`, `prerender`) |
+| `static/`          | Static assets served directly (images, fonts, etc.)       |
+| `jsconfig.json`    | JavaScript project configuration                          |
+| `svelte.config.js` | Svelte compiler and adapter configuration                 |
+| `vite.config.js`   | Vite build tool configuration                             |
 
 ---
 
