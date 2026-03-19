@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|            | Link                                                                                                                                             |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ← Previous | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
-| → Next     | [Week 09 - API Integration and Content Delivery Networks](../week-09-api-integration-content-delivery-networks/README.md)                        |
+| | Link |
+| --- | --- |
+| Previous | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
+| Next | [Week 09 - API Integration and Styling](../week-09-api-integration-styling/README.md) |
 
 ---
 
@@ -17,50 +17,44 @@ Open your repository in Visual Studio Code and switch to the Week 08 branch:
 git checkout -b w08-vite-sveltekit-deployment
 ```
 
-Set up your development environment (Docker, environment variables, etc.) before continuing.
-
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
-
-> **Note:** This week we build a purely frontend application using SvelteKit with `adapter-static`. There is no server-side rendering and no backend required for the exercises.
+> **Note:** This week builds a purely frontend application using SvelteKit with `adapter-static`. There is no server-side rendering and no backend required for the exercises.
 
 ---
 
 ## 1. Vite
 
-**Vite** is a fast frontend build tool that powers SvelteKit's development server and production builds. It provides near-instant hot module replacement (HMR) during development and optimised bundles for production.
+Vite is a fast frontend build tool that powers SvelteKit's development server and production builds. It provides near-instant hot module replacement during development and optimised bundles for production.
 
-📖 Reference: <https://vitejs.dev>
+📖 Reference: [vitejs.dev](https://vitejs.dev)
 
 ---
 
 ## 2. SvelteKit
 
-**SvelteKit** is the official application framework for building web applications with **Svelte 5**. It provides routing, layouts, server-side rendering, static site generation, and more.
+SvelteKit is the official application framework for building web applications with Svelte 5. It provides routing, layouts, server-side rendering, static site generation, and more. The current stable versions are **Svelte 5** and **SvelteKit 2**.
 
-The current stable versions are **Svelte 5** and **SvelteKit 2**.
-
-📖 Reference: <https://svelte.dev/docs/kit/introduction>
+📖 Reference: [SvelteKit Introduction](https://svelte.dev/docs/kit/introduction)
 
 ---
 
 ### 2.1 Getting Started
 
-To create a new SvelteKit application, run the following command:
+To create a new SvelteKit application:
 
 ```bash
 npx sv create week-08-vite-sveltekit-deployment
 ```
 
-You will be prompted with the following questions:
+Answer the prompts as follows:
 
-| Question                                                                   | Answer                                        |
-| -------------------------------------------------------------------------- | --------------------------------------------- |
-| Which template would you like?                                             | SvelteKit minimal                             |
-| Add type checking with TypeScript?                                         | Yes, using JavaScript with **JSDoc** comments |
-| What would you like to add to your project? _(use arrow keys / space bar)_ | prettier, eslint                              |
-| Which package manager do you want to install dependencies with?            | npm                                           |
+| Question | Answer |
+| --- | --- |
+| Which template would you like? | SvelteKit minimal |
+| Add type checking with TypeScript? | Yes, using JavaScript with JSDoc comments |
+| What would you like to add to your project? | prettier, eslint |
+| Which package manager do you want to install dependencies with? | npm |
 
-> **Note:** The CLI tool is now `npx sv create` (the Svelte CLI). The older `npm create svelte@latest` command is deprecated - always use `npx sv create` for new projects.
+> **Note:** The CLI tool is now `npx sv create`. The older `npm create svelte@latest` command is deprecated.
 
 To run the application:
 
@@ -69,7 +63,7 @@ cd week-08-vite-sveltekit-deployment
 npm run dev
 ```
 
-Open your browser and navigate to <http://localhost:5173>.
+Open your browser and navigate to `http://localhost:5173`.
 
 ---
 
@@ -83,10 +77,9 @@ Install `adapter-static`:
 npm install -D @sveltejs/adapter-static
 ```
 
-Update `svelte.config.js` to use the static adapter:
+Update `svelte.config.js`:
 
 ```javascript
-// svelte.config.js
 import adapter from "@sveltejs/adapter-static";
 import { vitePreprocess } from "@sveltejs/vite-plugin-svelte";
 
@@ -105,12 +98,11 @@ export default config;
 Create `src/routes/+layout.js` to disable SSR globally:
 
 ```javascript
-// src/routes/+layout.js
 export const prerender = false;
 export const ssr = false;
 ```
 
-> **Why `ssr = false`?** Without a server, SvelteKit cannot server-render pages. Setting `ssr = false` tells it to skip that step and render everything in the browser instead.
+> **Why `ssr = false`?** Without a server, SvelteKit cannot server-render pages. Setting `ssr = false` tells it to render everything in the browser instead.
 
 > **Why `fallback: '200.html'`?** This generates a fallback HTML shell that handles any route the static server doesn't recognise - required for client-side routing to work correctly.
 
@@ -118,16 +110,14 @@ export const ssr = false;
 
 ### 2.3 Directory and File Structure
 
-The directory and file structure of a SvelteKit application is as follows:
-
 ```
-week-08-vite-sveltekit-deployment
-├── src
+week-08-vite-sveltekit-deployment/
+├── src/
 │   ├── app.d.ts
 │   ├── app.html
-│   ├── lib
-│   │   ├── assets/
-│   └── routes
+│   ├── lib/
+│   │   └── assets/
+│   └── routes/
 │       ├── +layout.js
 │       ├── +layout.svelte
 │       └── +page.svelte
@@ -138,59 +128,59 @@ week-08-vite-sveltekit-deployment
 └── vite.config.js
 ```
 
-| File / Directory   | Purpose                                                   |
-| ------------------ | --------------------------------------------------------- |
-| `app.html`         | The main HTML shell of the application                    |
-| `app.d.ts`         | TypeScript definitions for the application                |
-| `lib/`             | Reusable components, assets and utilities                 |
-| `routes/`          | All pages and layouts - each file maps to a URL           |
-| `+layout.js`       | Shared data loading and options (e.g. `ssr`, `prerender`) |
-| `static/`          | Static assets served directly (images, fonts, etc.)       |
-| `jsconfig.json`    | JavaScript project configuration                          |
-| `svelte.config.js` | Svelte compiler and adapter configuration                 |
-| `vite.config.js`   | Vite build tool configuration                             |
+| File / Directory | Purpose |
+| --- | --- |
+| `app.html` | The main HTML shell of the application |
+| `app.d.ts` | TypeScript definitions for the application |
+| `lib/` | Reusable components, assets and utilities |
+| `routes/` | All pages and layouts - each file maps to a URL |
+| `+layout.js` | Shared data loading and options |
+| `static/` | Static assets served directly |
+| `jsconfig.json` | JavaScript project configuration |
+| `svelte.config.js` | Svelte compiler and adapter configuration |
+| `vite.config.js` | Vite build tool configuration |
 
 ---
 
 ### 2.4 Creating Components and Routes
 
-Create the following directory and file structure for this week's components and routes:
+Create the following directory and file structure:
 
 ```
-week-08-vite-sveltekit-deployment
-├── src
+week-08-vite-sveltekit-deployment/
+├── src/
 │   ├── app.d.ts
 │   ├── app.html
-│   ├── lib
+│   ├── lib/
 │   │   ├── assets/
-│   │   ├── components/
-│   │   │   ├── communication/
-│   │   │   │   ├── ButtonChild.svelte
-│   │   │   │   └── ButtonParent.svelte
-│   │   │   ├── events/
-│   │   │   │   ├── ClickEvents.svelte
-│   │   │   │   └── FormEvents.svelte
-│   │   │   ├── runes/
-│   │   │   │   ├── DerivedCounter.svelte
-│   │   │   │   ├── EffectCounter.svelte
-│   │   │   │   ├── PropsCounter.svelte
-│   │   │   │   └── StateCounter.svelte
-│   │   │   ├── GradeTable.svelte
-│   │   │   └── MarkConverter.svelte
-│   ├── routes
-│   │   ├── +layout.js
-│   │   ├── +layout.svelte
-│   │   ├── +page.svelte
-│   │   ├── about/
-│   │   │   └── +page.svelte
-│   │   ├── contact/
-│   │   │   └── +page.svelte
-│   │   └── user/
-│   │       ├── [id]/
-│   │       │   └── +page.svelte
-│   │       └── [role]/
-│   │           └── [slug]/
-│   │               └── +page.svelte
+│   │   └── components/
+│   │       ├── communication/
+│   │       │   ├── ButtonChild.svelte
+│   │       │   └── ButtonParent.svelte
+│   │       ├── events/
+│   │       │   ├── ClickEvents.svelte
+│   │       │   └── FormEvents.svelte
+│   │       ├── runes/
+│   │       │   ├── DerivedCounter.svelte
+│   │       │   ├── EffectCounter.svelte
+│   │       │   ├── PropsCounter.svelte
+│   │       │   └── StateCounter.svelte
+│   │       ├── GradeTable.svelte
+│   │       └── MarkConverter.svelte
+│   └── routes/
+│       ├── +layout.js
+│       ├── +layout.svelte
+│       ├── +page.svelte
+│       ├── about/
+│       │   └── +page.svelte
+│       ├── contact/
+│       │   └── +page.svelte
+│       └── user/
+│           ├── [id]/
+│           │   └── +page.svelte
+│           └── [role]/
+│               └── [slug]/
+│                   └── +page.svelte
 ├── static/
 ├── jsconfig.json
 ├── package.json
@@ -202,7 +192,7 @@ week-08-vite-sveltekit-deployment
 
 ## 3. Runes
 
-**Runes** are the reactive primitives introduced in Svelte 5. They replace the older `$:` reactive declarations and `writable` stores with a cleaner, explicit syntax.
+Runes are the reactive primitives introduced in Svelte 5. They replace the older `$:` reactive declarations and `writable` stores with a cleaner, explicit syntax.
 
 ---
 
@@ -210,11 +200,9 @@ week-08-vite-sveltekit-deployment
 
 The `$state` rune declares a reactive variable. When its value changes, any part of the UI that depends on it automatically updates.
 
-In `StateCounter.svelte`, add the following code:
+Create `src/lib/components/runes/StateCounter.svelte`:
 
-```js
-<!-- /src/lib/components/runes/StateCounter.svelte -->
-
+```svelte
 <script>
   let count = $state(0);
 
@@ -227,11 +215,9 @@ In `StateCounter.svelte`, add the following code:
 <p>Count: {count}</p>
 ```
 
-In `+page.svelte`, import and use the component:
+In `src/routes/+page.svelte`, import and use the component:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   import StateCounter from '$lib/components/runes/StateCounter.svelte';
 </script>
@@ -245,11 +231,9 @@ In `+page.svelte`, import and use the component:
 
 The `$effect` rune runs a function whenever its reactive dependencies change. It replaces `$: { ... }` reactive blocks from Svelte 4.
 
-In `EffectCounter.svelte`, add the following code:
+Create `src/lib/components/runes/EffectCounter.svelte`:
 
-```js
-<!-- /src/lib/components/runes/EffectCounter.svelte -->
-
+```svelte
 <script>
   let count = $state(0);
   let message = $state('');
@@ -272,11 +256,9 @@ In `EffectCounter.svelte`, add the following code:
 <p>{message}</p>
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   import StateCounter from '$lib/components/runes/StateCounter.svelte';
   import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
@@ -292,11 +274,9 @@ In `+page.svelte`, add the import:
 
 The `$props` rune declares the properties a component accepts from its parent. `$bindable()` marks a prop as two-way bindable.
 
-In `PropsCounter.svelte`, add the following code:
+Create `src/lib/components/runes/PropsCounter.svelte`:
 
-```js
-<!-- /src/lib/components/runes/PropsCounter.svelte -->
-
+```svelte
 <script>
   let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
@@ -320,11 +300,9 @@ In `PropsCounter.svelte`, add the following code:
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   import StateCounter from '$lib/components/runes/StateCounter.svelte';
   import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
@@ -344,11 +322,9 @@ In `+page.svelte`, add the import:
 
 The `$derived` rune creates a value that is automatically recalculated whenever its dependencies change. Use `$derived.by()` for more complex derivations that require a function body.
 
-In `DerivedCounter.svelte`, add the following code:
+Create `src/lib/components/runes/DerivedCounter.svelte`:
 
-```js
-<!-- /src/lib/components/runes/DerivedCounter.svelte -->
-
+```svelte
 <script>
   let { count = $bindable(0), targetCount = 10, step = 1, message = '' } = $props();
 
@@ -372,11 +348,9 @@ In `DerivedCounter.svelte`, add the following code:
 <p>{displayMessage}</p>
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   import StateCounter from '$lib/components/runes/StateCounter.svelte';
   import EffectCounter from '$lib/components/runes/EffectCounter.svelte';
@@ -405,11 +379,9 @@ SvelteKit uses Svelte's template syntax to create dynamic HTML. The most common 
 
 Use `{#if}`, `{:else if}`, and `{:else}` to render content conditionally.
 
-In `MarkConverter.svelte`, add the following code:
+Create `src/lib/components/MarkConverter.svelte`:
 
-```js
-<!-- /src/lib/components/MarkConverter.svelte -->
-
+```svelte
 <script>
   let mark = $state(75);
 </script>
@@ -441,11 +413,9 @@ In `MarkConverter.svelte`, add the following code:
 {/if}
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   // Previous imports omitted for brevity
   import MarkConverter from '$lib/components/MarkConverter.svelte';
@@ -459,11 +429,11 @@ In `+page.svelte`, add the import:
 
 ### 4.2 Binding
 
-**Binding** creates a two-way connection between a variable and an input element using the `bind:` directive. When the input changes, the variable updates - and vice versa.
+Binding creates a two-way connection between a variable and an input element using the `bind:` directive. When the input changes, the variable updates and vice versa.
 
 The `MarkConverter.svelte` example above already demonstrates this with `bind:value={mark}` on the number input.
 
-> **bind: directive:** Use `bind:value` for text, number and select inputs. Use `bind:checked` for checkboxes and `bind:group` for radio buttons.
+> Use `bind:value` for text, number and select inputs. Use `bind:checked` for checkboxes and `bind:group` for radio buttons.
 
 ---
 
@@ -471,11 +441,9 @@ The `MarkConverter.svelte` example above already demonstrates this with `bind:va
 
 The `{#each}` block iterates over an array and renders a block of HTML for each item.
 
-In `GradeTable.svelte`, add the following code:
+Create `src/lib/components/GradeTable.svelte`:
 
-```js
-<!-- /src/lib/components/GradeTable.svelte -->
-
+```svelte
 <script>
   let learners = $state([
     { firstName: 'Alice', lastName: 'Smith', mark: 95 },
@@ -524,11 +492,9 @@ In `GradeTable.svelte`, add the following code:
 </style>
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   // Previous imports omitted for brevity
   import GradeTable from '$lib/components/GradeTable.svelte';
@@ -542,17 +508,15 @@ In `+page.svelte`, add the import:
 
 ## 5. Styling
 
-SvelteKit supports several approaches to styling components.
-
 ---
 
 ### 5.1 Scoped Styles
 
-**Scoped styles** are defined in a `<style>` block at the bottom of a `.svelte` file. They apply only to that component - class names are automatically hashed to prevent leaking into other components.
+Scoped styles are defined in a `<style>` block at the bottom of a `.svelte` file. They apply only to that component — class names are automatically hashed to prevent leaking into other components.
 
 The `GradeTable.svelte` example above already demonstrates scoped styles.
 
-> **Global styles:** To apply styles globally across the entire application, add them to `app.html` or create a `src/app.css` file and import it in `+layout.svelte`.
+> To apply styles globally across the entire application, add them to `app.html` or create a `src/app.css` file and import it in `+layout.svelte`.
 
 ---
 
@@ -564,11 +528,9 @@ Svelte 5 uses standard DOM event attributes for event handling (`onclick`, `onin
 
 ### 6.1 Click Events
 
-In `ClickEvents.svelte`, add the following code:
+Create `src/lib/components/events/ClickEvents.svelte`:
 
-```js
-<!-- /src/lib/components/events/ClickEvents.svelte -->
-
+```svelte
 <script>
   let count = $state(0);
 
@@ -585,11 +547,9 @@ In `ClickEvents.svelte`, add the following code:
 
 ### 6.2 Form Events
 
-In `FormEvents.svelte`, add the following code:
+Create `src/lib/components/events/FormEvents.svelte`:
 
-```js
-<!-- /src/lib/components/events/FormEvents.svelte -->
-
+```svelte
 <script>
   let username = $state('');
   let firstName = $state('');
@@ -631,11 +591,9 @@ In `FormEvents.svelte`, add the following code:
 <p>{message}</p>
 ```
 
-In `+page.svelte`, add the imports:
+In `src/routes/+page.svelte`, add the imports:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   // Previous imports omitted for brevity
   import ClickEvents from '$lib/components/events/ClickEvents.svelte';
@@ -647,13 +605,13 @@ In `+page.svelte`, add the imports:
 <FormEvents />
 ```
 
-> **Svelte 5 event syntax:** Use `onclick`, `oninput`, `onsubmit` etc. (lowercase DOM attributes) rather than the Svelte 4 `on:click`, `on:input` directive syntax. Both still work in Svelte 5 but the new syntax is preferred.
+> Use `onclick`, `oninput`, `onsubmit` etc. rather than the Svelte 4 `on:click`, `on:input` directive syntax. Both still work in Svelte 5 but the new syntax is preferred.
 
 ---
 
 ## 7. Component Communication
 
-Components communicate by passing **props** down from parent to child, and passing **callback functions** back up from child to parent.
+Components communicate by passing props down from parent to child, and passing callback functions back up from child to parent.
 
 ---
 
@@ -661,11 +619,9 @@ Components communicate by passing **props** down from parent to child, and passi
 
 The parent passes data and functions as props. The child declares them with `$props()` and calls them as needed.
 
-In `ButtonChild.svelte`, add the following code:
+Create `src/lib/components/communication/ButtonChild.svelte`:
 
-```js
-<!-- /src/lib/components/communication/ButtonChild.svelte -->
-
+```svelte
 <script>
   let { text, onclick } = $props();
 </script>
@@ -675,11 +631,9 @@ In `ButtonChild.svelte`, add the following code:
 </button>
 ```
 
-In `ButtonParent.svelte`, add the following code:
+Create `src/lib/components/communication/ButtonParent.svelte`:
 
-```js
-<!-- /src/lib/components/communication/ButtonParent.svelte -->
-
+```svelte
 <script>
   import ButtonChild from './ButtonChild.svelte';
 
@@ -694,11 +648,9 @@ In `ButtonParent.svelte`, add the following code:
 <p>{message}</p>
 ```
 
-In `+page.svelte`, add the import:
+In `src/routes/+page.svelte`, add the import:
 
-```js
-<!-- /src/routes/+page.svelte -->
-
+```svelte
 <script>
   // Previous imports omitted for brevity
   import ButtonParent from '$lib/components/communication/ButtonParent.svelte';
@@ -720,25 +672,21 @@ SvelteKit maps the file system to URL routes. Every `+page.svelte` file in `src/
 
 Static routes are created by placing `+page.svelte` files in named directories.
 
-In `src/routes/about/+page.svelte`:
+Create `src/routes/about/+page.svelte`:
 
-```js
-<!-- /src/routes/about/+page.svelte -->
-
+```svelte
 <p>This is the About Page</p>
 <a href="/">Go to Home Page</a>
 ```
 
-In `src/routes/contact/+page.svelte`:
+Create `src/routes/contact/+page.svelte`:
 
-```js
-<!-- /src/routes/contact/+page.svelte -->
-
+```svelte
 <p>This is the Contact Page</p>
 <a href="/">Go to Home Page</a>
 ```
 
-Navigate to <http://localhost:5173/about> and <http://localhost:5173/contact> to verify.
+Navigate to `http://localhost:5173/about` and `http://localhost:5173/contact` to verify.
 
 ---
 
@@ -746,11 +694,9 @@ Navigate to <http://localhost:5173/about> and <http://localhost:5173/contact> to
 
 Dynamic routes use square brackets in the directory name to capture URL segments as parameters. Access them via `page.params` from `$app/state`.
 
-In `src/routes/user/[id]/+page.svelte`:
+Create `src/routes/user/[id]/+page.svelte`:
 
-```js
-<!-- /src/routes/user/[id]/+page.svelte -->
-
+```svelte
 <script>
   import { page } from '$app/state';
 
@@ -777,13 +723,11 @@ In `src/routes/user/[id]/+page.svelte`:
 {/if}
 ```
 
-Navigate to <http://localhost:5173/user/1>, <http://localhost:5173/user/2>, etc. to verify.
+Navigate to `http://localhost:5173/user/1`, `http://localhost:5173/user/2`, etc. to verify.
 
-Multiple dynamic segments work the same way. In `src/routes/user/[role]/[slug]/+page.svelte`:
+Multiple dynamic segments work the same way. Create `src/routes/user/[role]/[slug]/+page.svelte`:
 
-```js
-<!-- /src/routes/user/[role]/[slug]/+page.svelte -->
-
+```svelte
 <script>
   import { page } from '$app/state';
 
@@ -876,15 +820,15 @@ Multiple dynamic segments work the same way. In `src/routes/user/[role]/[slug]/+
 {/if}
 ```
 
-Navigate to <http://localhost:5173/user/admin/frank-miller>, <http://localhost:5173/user/moderator/bob-johnson>, etc. to verify.
+Navigate to `http://localhost:5173/user/admin/frank-miller`, `http://localhost:5173/user/moderator/bob-johnson`, etc. to verify.
 
-> **`$app/state` vs `$app/stores`:** The `page` store from `$app/stores` is deprecated in SvelteKit 2. Always import `page` from `$app/state` instead.
+> The `page` store from `$app/stores` is deprecated in SvelteKit 2. Always import `page` from `$app/state` instead.
 
 ---
 
 ## 9. Deployment
 
-Static SvelteKit applications (using `adapter-static`) can be deployed to any static host.
+Static SvelteKit applications can be deployed to any static host.
 
 ---
 
@@ -917,21 +861,15 @@ This outputs a `build/` directory containing all static HTML, CSS and JavaScript
    - **Publish Directory:** `build`
 4. Click **Create Static Site**
 
-📖 Reference: <https://render.com/docs/deploy-sveltekit>
+📖 Reference: [Render - Deploy SvelteKit](https://render.com/docs/deploy-sveltekit)
 
 ---
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
 /**
@@ -946,25 +884,23 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples
 
 Implement all of the code examples covered above, including the `adapter-static` configuration.
 
 ---
 
-### Task 2 - Shopping Cart _(Medium)_
+### Task 2 - Shopping Cart ⚠️ Self-Directed
 
-In `src/lib/components/`, create a new component called `ShoppingCart.svelte`.
+In `src/lib/components/`, create a new component called `ShoppingCart.svelte` with the following functionality:
 
-Implement the following functionality:
-
-- Use the `$state` rune to manage an array of objects called `cartItems`. Each object should have `id`, `name`, `price` and `quantity` properties
-- Use the `$state` rune to manage form input data with properties: `itemName`, `itemPrice` and `itemQuantity`
-- Use the `$derived` rune to calculate `totalPrice` - the sum of price × quantity for all items
-- Use the `$effect` rune to display a warning message when `totalPrice` exceeds $100. The warning should auto-hide after 3 seconds
-- Use the `{#each}` block to display a table of all items with columns for name, price, quantity, item total and a remove button
+- Use `$state` to manage an array of objects called `cartItems`, each with `id`, `name`, `price` and `quantity` properties
+- Use `$state` to manage form input data with properties `itemName`, `itemPrice` and `itemQuantity`
+- Use `$derived` to calculate `totalPrice` - the sum of price × quantity for all items
+- Use `$effect` to display a warning message when `totalPrice` exceeds $100, auto-hiding after 3 seconds
+- Use `{#each}` to display a table of all items with columns for name, price, quantity, item total and a remove button
 - Use `{#if}` and `{:else}` to display "Your cart is empty" when `cartItems` is empty
-- Add a form with input fields for item name, price and quantity, using `bind:value` for two-way binding
+- Add a form with input fields for item name, price and quantity using `bind:value` for two-way binding
 - Validate that the item name is not empty, price is a positive number and quantity is a positive integer
 - Use `{#if}` blocks to display validation error messages for invalid inputs
 - Clear the form after successful submission and prevent the default form submission behaviour
@@ -973,23 +909,23 @@ Implement the following functionality:
 
 ---
 
-### Task 3 - Grade Calculator _(Medium)_
+### Task 3 - Grade Calculator ⚠️ Self-Directed
 
-In `src/lib/components/`, create two new components: `GradeCalculator.svelte` (parent) and `CourseInput.svelte` (child).
+In `src/lib/components/`, create two new components: `GradeCalculator.svelte` and `CourseInput.svelte`.
 
-In `GradeCalculator.svelte`, implement the following functionality:
+In `GradeCalculator.svelte`:
 
-- Use the `$state` rune to manage an array of objects called `courses`. Each object should have `id`, `name` and `grade` properties
-- Use the `$derived` rune to calculate `averageGrade` - the sum of all grades divided by the number of courses
+- Use `$state` to manage an array of objects called `courses`, each with `id`, `name` and `grade` properties
+- Use `$derived` to calculate `averageGrade` - the sum of all grades divided by the number of courses
 - Use `{#each}` to display a table of all courses with name, grade and a remove button per row
 - Use `{#if}` and `{:else}` to display "No courses added yet" when the array is empty
 - Pass a callback function to `CourseInput.svelte` for receiving new course data
 - Display the calculated average grade rounded to 1 decimal place
 
-In `CourseInput.svelte`, implement the following functionality:
+In `CourseInput.svelte`:
 
-- Use the `$props` rune to accept a callback function from the parent
-- Use the `$state` rune to manage form data and error messages
+- Use `$props` to accept a callback function from the parent
+- Use `$state` to manage form data and error messages
 - Validate that the course name is not empty and the grade is a valid number between 0 and 100
 - Use `{#if}` blocks to display validation error messages
 - On successful submission, call the parent callback and clear the form
@@ -999,25 +935,19 @@ In `CourseInput.svelte`, implement the following functionality:
 
 ## Hard Exercises
 
-These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
-
 ---
 
-### Hard Task 1 - Layout and Navigation
+### Hard Task 1 - Layout and Navigation ⚠️ Self-Directed
 
 Create a persistent navigation bar across all pages using `+layout.svelte`. The nav bar should include links to all static routes and highlight the currently active route.
-
-Research the `page` store from `$app/state` to determine the current URL path.
 
 📖 Reference: [SvelteKit Layouts](https://svelte.dev/docs/kit/routing#layout)
 
 ---
 
-### Hard Task 2 - Transitions and Animations
+### Hard Task 2 - Transitions and Animations ⚠️ Self-Directed
 
-Add page transitions and element animations using Svelte's built-in `transition:` and `animate:` directives.
-
-Research `fly`, `fade`, and `slide` from `svelte/transition` and apply them to at least two components from the exercises above.
+Add page transitions and element animations using Svelte's built-in `transition:` and `animate:` directives. Apply `fly`, `fade`, and `slide` from `svelte/transition` to at least two components from the exercises above.
 
 📖 Reference: [Svelte Transitions](https://svelte.dev/docs/svelte/transition)
 
