@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|                         | Link                                                                                                                                  |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous              | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example            | [Code Example](code-example)                                                                                                          |
-| → Next                  | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md)                            |
+| | Link |
+| --- | --- |
+| Previous | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| Code Example | [Code Example](code-example) |
+| Next | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
 
 ---
 
@@ -18,10 +18,6 @@ Open your repository in Visual Studio Code and switch to the Week 06 branch:
 git checkout -b w06-sec-auth-rbac
 ```
 
-Set up your development environment (Docker, environment variables, etc.) before continuing.
-
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
-
 ---
 
 ## 1. Security
@@ -32,35 +28,35 @@ Security is the practice of protecting systems, networks, and data from unauthor
 
 ### 1.1 Common API Vulnerabilities
 
-| Vulnerability                           | Description                                                                                                         |
-| --------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| **Broken object level authorisation**   | API doesn't enforce access controls at the object level, letting attackers access or manipulate data they shouldn't |
-| **Broken user authentication**          | API doesn't properly authenticate users, allowing impersonation or unauthorised access                              |
-| **Excessive data exposure**             | API returns more data than necessary, exposing sensitive information                                                |
-| **Lack of rate limiting**               | No request throttling - enables denial-of-service or brute-force attacks                                            |
-| **Mass assignment**                     | API lets users update object properties they shouldn't have access to                                               |
-| **Security misconfiguration**           | Improperly configured API exposes exploitable vulnerabilities                                                       |
-| **Injection**                           | Unvalidated user input allows malicious code to be injected                                                         |
-| **Improper assets management**          | Poorly managed endpoints or resources can be accessed or manipulated unexpectedly                                   |
-| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect or respond to                                                |
-| **Vulnerable components**               | Use of third-party libraries with known vulnerabilities                                                             |
+| Vulnerability | Description |
+| --- | --- |
+| **Broken object level authorisation** | API doesn't enforce access controls at the object level |
+| **Broken user authentication** | API doesn't properly authenticate users |
+| **Excessive data exposure** | API returns more data than necessary |
+| **Lack of rate limiting** | No request throttling - enables denial-of-service or brute-force attacks |
+| **Mass assignment** | API lets users update object properties they shouldn't have access to |
+| **Security misconfiguration** | Improperly configured API exposes exploitable vulnerabilities |
+| **Injection** | Unvalidated user input allows malicious code to be injected |
+| **Improper assets management** | Poorly managed endpoints can be accessed or manipulated unexpectedly |
+| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect |
+| **Vulnerable components** | Use of third-party libraries with known vulnerabilities |
 
 ---
 
 ## 2. Authentication
 
-Authentication is the process of verifying the identity of a user or system - confirming they are who they claim to be, typically by checking credentials like a username and password.
+Authentication is the process of verifying the identity of a user or system.
 
 ---
 
 ### 2.1 Token vs. Session Authentication
 
-|                   | Token-Based                                                        | Session-Based                                |
-| ----------------- | ------------------------------------------------------------------ | -------------------------------------------- |
-| **State**         | Stateless                                                          | Stateful                                     |
-| **Storage**       | Client stores token in memory or local storage                     | Server stores session in memory or database  |
-| **Transport**     | Sent in `Authorization` header                                     | Sent via cookie (session ID)                 |
-| **Server lookup** | Server validates token on every request - no session memory needed | Server looks up the session on every request |
+| | Token-Based | Session-Based |
+| --- | --- | --- |
+| **State** | Stateless | Stateful |
+| **Storage** | Client stores token in memory or local storage | Server stores session in memory or database |
+| **Transport** | Sent in `Authorization` header | Sent via cookie |
+| **Server lookup** | Server validates token on every request | Server looks up the session on every request |
 
 ---
 
@@ -69,25 +65,21 @@ Authentication is the process of verifying the identity of a user or system - co
 A JWT is a compact, URL-safe format for transmitting claims between parties. It consists of three parts:
 
 1. **Header** - algorithm and token type
-2. **Payload** - claims about the user (e.g. ID, role)
+2. **Payload** - claims about the user
 3. **Signature** - verifies the token hasn't been tampered with
-
-JWTs are typically signed using a secret (HMAC) or a private key (RSA/ECDSA).
 
 ---
 
 ### 2.3 Setup
 
-Install the required packages:
-
 ```bash
 npm install bcryptjs jsonwebtoken
 ```
 
-| Package        | Purpose                    |
-| -------------- | -------------------------- |
-| `bcryptjs`     | Hash and compare passwords |
-| `jsonwebtoken` | Create and verify JWTs     |
+| Package | Purpose |
+| --- | --- |
+| `bcryptjs` | Hash and compare passwords |
+| `jsonwebtoken` | Create and verify JWTs |
 
 ---
 
@@ -100,34 +92,23 @@ JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
 JWT_LIFETIME=1h
 ```
 
-Your complete `.env` should look like:
-
-```bash
-NODE_ENV=development
-PORT=3000
-API_BASE_URL=http://localhost
-DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
-JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
-JWT_LIFETIME=1h
-```
-
 > ⚠️ **Important:** Always use a strong, unique `JWT_SECRET` in production - at least 256 bits long.
 
 ---
 
 ### 2.5 Schema - User Model
 
-If you haven't already created the `User` model from Week 04, add it to `schema.prisma`. Note the addition of the `password` field:
+Add it to `schema.prisma`:
 
 ```javascript
 model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  emailAddress String @unique
+  password String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 ```
 
@@ -335,7 +316,7 @@ export default app;
 
 ### 2.10 Protecting Routes with `jwtAuth`
 
-In `routes/institution.js`, add `jwtAuth` to any route that requires authentication:
+In `routes/institution.js`:
 
 ```javascript
 import jwtAuth from "../middleware/jwtAuth.js";
@@ -343,20 +324,18 @@ import jwtAuth from "../middleware/jwtAuth.js";
 router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 ```
 
-> Only authenticated users (those supplying a valid Bearer token) can access protected routes.
-
 ---
 
 ### 2.11 Postman - Testing Authentication
 
 **Register a user**
 
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `POST`                                  |
-| URL    | `http://localhost:3000/api/auth/register` |
+| Field | Value |
+| --- | --- |
+| Method | `POST` |
+| URL | `http://localhost:3000/api/auth/register` |
 
-Body (raw → JSON):
+Body:
 ```json
 {
   "firstName": "Jane",
@@ -367,32 +346,16 @@ Body (raw → JSON):
 }
 ```
 
-Expected response (`201 Created`) - note the password is **not** returned:
-```json
-{
-  "message": "User successfully registered",
-  "data": {
-    "id": "...",
-    "firstName": "Jane",
-    "lastName": "Doe",
-    "emailAddress": "jane.doe@example.com",
-    "role": "ADMIN",
-    "createdAt": "...",
-    "updatedAt": "..."
-  }
-}
-```
-
----
+Expected response (`201 Created`) - note the password is **not** returned.
 
 **Log in**
 
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `POST`                                  |
-| URL    | `http://localhost:3000/api/auth/login`  |
+| Field | Value |
+| --- | --- |
+| Method | `POST` |
+| URL | `http://localhost:3000/api/auth/login` |
 
-Body (raw → JSON):
+Body:
 ```json
 {
   "emailAddress": "jane.doe@example.com",
@@ -400,62 +363,41 @@ Body (raw → JSON):
 }
 ```
 
-Expected response (`200 OK`):
-```json
-{
-  "message": "User successfully logged in",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-}
-```
-
-Copy the `token` value - you need it for all protected requests.
-
----
+Copy the `token` value from the response.
 
 **Access a protected route**
 
-To call a route protected by `jwtAuth`, add the token to the **Authorization** header in Postman:
-
-1. Open your request (e.g. `POST /api/institutions`)
+1. Open your request
 2. Click the **Authorization** tab
 3. Set **Type** to `Bearer Token`
 4. Paste your token into the **Token** field
-
-Postman will automatically send `Authorization: Bearer <token>` with the request.
-
-**Testing the rejection path** - send the same request with no token (remove it from the Authorization tab). Expected response (`401 Unauthorized`):
-```json
-{ "message": "No token provided" }
-```
 
 ---
 
 ## 3. Role-Based Access Control (RBAC)
 
-RBAC restricts access to resources based on the roles assigned to users. Roles have defined permissions, and users are assigned to roles. Common roles might be `ADMIN`, `STAFF`, and `STUDENT`.
+RBAC restricts access to resources based on the roles assigned to users.
 
 ---
 
 ### 3.1 Schema - Role Enum and User Update
 
-Add the `Role` enum and update the `User` model in `schema.prisma`:
-
 ```javascript
 enum Role {
-  ADMIN   // Full access
-  STAFF   // Limited access
-  STUDENT // Restricted access
+  ADMIN
+  STAFF
+  STUDENT
 }
 
 model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  role         Role     @default(STUDENT)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  emailAddress String @unique
+  password String
+  role Role @default(STUDENT)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 ```
 
@@ -495,7 +437,7 @@ export default rbac;
 
 ### 3.3 Using RBAC on Routes
 
-In `routes/institution.js`, chain `jwtAuth` and `rbac` together. The order is: validate → authenticate → authorise → handle.
+In `routes/institution.js`:
 
 ```javascript
 import jwtAuth from "../middleware/jwtAuth.js";
@@ -510,21 +452,11 @@ router.post(
 );
 ```
 
-> A `403 Forbidden` response is returned if the authenticated user's role does not match the required role.
-
 ---
 
 ### 3.4 Postman - Testing RBAC
 
-To test that role enforcement works correctly, you need two users with different roles.
-
-**Register a STUDENT user**
-
-Use `POST /api/auth/register` with `"role": "STUDENT"`, then log in and copy that token.
-
-**Attempt a protected action as STUDENT**
-
-Send `POST /api/institutions` with the STUDENT token in the Authorization header.
+Register a STUDENT user, log in, and attempt `POST /api/institutions`.
 
 Expected response (`403 Forbidden`):
 ```json
@@ -533,34 +465,26 @@ Expected response (`403 Forbidden`):
 }
 ```
 
-**Confirm the ADMIN token still works**
-
-Send the same `POST /api/institutions` request using the ADMIN token. You should receive `201 Created` as normal.
-
-> This confirms that `jwtAuth` and `rbac` are correctly chained - authentication passes for both users, but authorisation only permits the ADMIN.
-
 ---
 
 ### 3.5 RBAC Limitations
 
-The current single-role enum approach works for basic scenarios but has drawbacks:
+The current single-role enum approach has drawbacks:
 
-- **Tightly coupled types and roles** - Hard to model nuanced cases (e.g. a student who is also a teaching assistant)
-- **No type-specific data** - Difficult to attach role-specific attributes (e.g. lecturer's department, student's enrolment data)
-- **Poor scalability** - Challenging to extend when different roles need different fields and relationships
+- **Tightly coupled types and roles** - Hard to model nuanced cases
+- **No type-specific data** - Difficult to attach role-specific attributes
+- **Poor scalability** - Challenging to extend when different roles need different fields
 - **Mixed concerns** - Auth logic is entangled with user identity
 
 ---
 
 ## 4. Rate Limiting
 
-Rate limiting controls how many requests a client can make in a given time window, protecting against abuse, denial-of-service attacks, and brute-force attempts. We use the `express-rate-limit` package, which implements a basic **fixed window** algorithm.
+Rate limiting controls how many requests a client can make in a given time window.
 
 ---
 
 ### 4.1 Setup
-
-Install the required package:
 
 ```bash
 npm install express-rate-limit
@@ -588,21 +512,19 @@ const rateLimiter = rateLimit({
 export default rateLimiter;
 ```
 
-| Option            | Purpose                                           |
-| ----------------- | ------------------------------------------------- |
-| `windowMs`        | Length of the rate limit window in milliseconds   |
-| `max`             | Maximum requests allowed per window per IP        |
-| `standardHeaders` | Adds `RateLimit-*` headers to responses           |
-| `legacyHeaders`   | Disables older `X-RateLimit-*` headers            |
-| `message`         | Error payload returned when the limit is exceeded |
+| Option | Purpose |
+| --- | --- |
+| `windowMs` | Length of the rate limit window in milliseconds |
+| `max` | Maximum requests allowed per window per IP |
+| `standardHeaders` | Adds `RateLimit-*` headers to responses |
+| `legacyHeaders` | Disables older `X-RateLimit-*` headers |
+| `message` | Error payload returned when the limit is exceeded |
 
 📖 Reference: [express-rate-limit docs](https://express-rate-limit.mintlify.app/overview)
 
 ---
 
 ### 4.3 Apply Rate Limiting to Routes
-
-In `routes/institution.js`:
 
 ```javascript
 import rateLimiter from "../middleware/rateLimiter.js";
@@ -611,35 +533,16 @@ router.get("/", rateLimiter, getInstitutions);
 router.get("/:id", rateLimiter, getInstitution);
 ```
 
-After 5 requests within 15 minutes from the same IP, the client will receive a `429 Too Many Requests` response.
-
----
-
-### 4.4 Postman - Testing Rate Limiting
-
-The limiter is set to 5 requests per 15-minute window. To trigger it quickly, send `GET /api/institutions` six times in a row.
-
-On the **sixth request**, expected response (`429 Too Many Requests`):
-```json
-{ "message": "Too many requests, please try again later" }
-```
-
-You can also check the **Headers** tab of any response to see the `RateLimit-*` headers - these tell you how many requests remain in the current window and when it resets.
-
-> **Note:** Because `max` is set to `5` in the example, keep it low while testing. Raise it to a more realistic value (e.g. `100`) before deploying.
-
 ---
 
 ## 5. API Testing
 
-API testing verifies the functionality, reliability, performance, and security of your API by sending requests and asserting the responses are correct.
-
 We use three libraries together:
 
-| Library       | Role                                            |
-| ------------- | ----------------------------------------------- |
-| **Mocha**     | Test framework - organises and runs tests       |
-| **Chai**      | Assertion library - verifies expected outcomes  |
+| Library | Role |
+| --- | --- |
+| **Mocha** | Test framework - organises and runs tests |
+| **Chai** | Assertion library - verifies expected outcomes |
 | **Supertest** | HTTP client - makes requests to the Express app |
 
 ---
@@ -724,8 +627,6 @@ export default setupTestAuth;
 
 ### 5.5 Institution CRUD Tests (`00-institution.test.js`)
 
-#### Imports and Setup
-
 ```javascript
 import { expect } from "chai";
 import request from "supertest";
@@ -757,101 +658,79 @@ describe("Institution CRUD", () => {
   before(async () => {
     token = await setupTestAuth();
   });
-```
 
-> `before()` runs once before all tests in the block - here it registers and logs in a user, storing the token for authenticated requests.
+  it("should create institution one", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send(institutionData[1]);
 
-#### Create
+    expect(res.status).to.equal(201);
 
-```javascript
-it("should create institution one", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .set("Authorization", `Bearer ${token}`)
-    .send(institutionData[1]);
-
-  expect(res.status).to.equal(201);
-
-  const newInstitution = res.body.data.find(
-    (i) => i.name === institutionData[1].name,
-  );
-  institutionOneId = newInstitution.id;
-});
-
-it("should create institution two", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .set("Authorization", `Bearer ${token}`)
-    .send(institutionData[2]);
-
-  expect(res.status).to.equal(201);
-  const newInstitution = res.body.data.find(
-    (i) => i.name === institutionData[2].name,
-  );
-  institutionTwoId = newInstitution.id;
-});
-```
-
-#### Read
-
-```javascript
-it("should get all institutions", async () => {
-  const res = await request(app).get(BASE_URL);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.length).to.be.at.least(2);
-});
-
-it("should get institution one by ID", async () => {
-  const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.data.name).to.equal(institutionData[1].name);
-});
-```
-
-#### Update and Delete
-
-```javascript
-it("should update institution two", async () => {
-  const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-    name: institutionData[0].name,
-    region: institutionData[0].region,
+    const newInstitution = res.body.data.find(
+      (i) => i.name === institutionData[1].name,
+    );
+    institutionOneId = newInstitution.id;
   });
 
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Institution with the id: ${institutionTwoId} successfully updated`,
-  );
-  expect(res.body.data.name).to.equal(institutionData[0].name);
-});
+  it("should create institution two", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send(institutionData[2]);
 
-it("should delete institution one", async () => {
-  const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+    expect(res.status).to.equal(201);
+    const newInstitution = res.body.data.find(
+      (i) => i.name === institutionData[2].name,
+    );
+    institutionTwoId = newInstitution.id;
+  });
 
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Institution with the id: ${institutionOneId} successfully deleted`,
-  );
-});
-```
+  it("should get all institutions", async () => {
+    const res = await request(app).get(BASE_URL);
 
-#### Teardown
+    expect(res.status).to.equal(200);
+    expect(res.body.data.length).to.be.at.least(2);
+  });
 
-```javascript
+  it("should get institution one by ID", async () => {
+    const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.name).to.equal(institutionData[1].name);
+  });
+
+  it("should update institution two", async () => {
+    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
+      name: institutionData[0].name,
+      region: institutionData[0].region,
+    });
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Institution with the id: ${institutionTwoId} successfully updated`,
+    );
+    expect(res.body.data.name).to.equal(institutionData[0].name);
+  });
+
+  it("should delete institution one", async () => {
+    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Institution with the id: ${institutionOneId} successfully deleted`,
+    );
+  });
+
   after(() => {
     global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
   });
 });
 ```
 
-> `after()` runs once after all tests complete - here it stores `institutionTwoId` in a global variable so the department tests in the next file can reference it.
-
 ---
 
 ### 5.6 Department CRUD Tests (`01-department.test.js`)
-
-#### Imports and Setup
 
 ```javascript
 import { expect } from "chai";
@@ -875,80 +754,60 @@ describe("Department CRUD", () => {
   before(async () => {
     institutionId = global.testInstitutionId;
   });
-```
 
-> `before()` picks up the institution ID passed from the institution test suite via `global.testInstitutionId`, so departments can be created under an existing institution.
+  it("should create department one", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .send({ name: departmentData[0].name, institutionId });
 
-#### Create
+    expect(res.status).to.equal(201);
+    const newDepartment = res.body.data.find(
+      (d) => d.name === departmentData[0].name,
+    );
+    departmentOneId = newDepartment.id;
+  });
 
-```javascript
-it("should create department one", async () => {
-  const res = await request(app)
-    .post(BASE_URL)
-    .send({ name: departmentData[0].name, institutionId });
+  it("should get all departments", async () => {
+    const res = await request(app).get(BASE_URL);
 
-  expect(res.status).to.equal(201);
-  const newDepartment = res.body.data.find(
-    (d) => d.name === departmentData[0].name,
-  );
-  departmentOneId = newDepartment.id;
-});
-```
+    expect(res.status).to.equal(200);
+    expect(res.body.data.length).to.be.at.least(1);
+  });
 
-#### Read
+  it("should get department one by ID", async () => {
+    const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
 
-```javascript
-it("should get all departments", async () => {
-  const res = await request(app).get(BASE_URL);
+    expect(res.status).to.equal(200);
+    expect(res.body.data.name).to.equal(departmentData[0].name);
+  });
 
-  expect(res.status).to.equal(200);
-  expect(res.body.data.length).to.be.at.least(1);
-});
+  it("should update department one", async () => {
+    const res = await request(app)
+      .put(`${BASE_URL}/${departmentOneId}`)
+      .send({ name: departmentData[1].name, institutionId });
 
-it("should get department one by ID", async () => {
-  const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully updated`,
+    );
+    expect(res.body.data.name).to.equal(departmentData[1].name);
+  });
 
-  expect(res.status).to.equal(200);
-  expect(res.body.data.name).to.equal(departmentData[0].name);
-});
-```
+  it("should delete department one", async () => {
+    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
 
-#### Update and Delete
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully deleted`,
+    );
+  });
 
-```javascript
-it("should update department one", async () => {
-  const res = await request(app)
-    .put(`${BASE_URL}/${departmentOneId}`)
-    .send({ name: departmentData[1].name, institutionId });
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Department with the id: ${departmentOneId} successfully updated`,
-  );
-  expect(res.body.data.name).to.equal(departmentData[1].name);
-});
-
-it("should delete department one", async () => {
-  const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
-
-  expect(res.status).to.equal(200);
-  expect(res.body.message).to.equal(
-    `Department with the id: ${departmentOneId} successfully deleted`,
-  );
-});
-```
-
-#### Teardown
-
-```javascript
   after(async () => {
     await cleanupDatabase();
     await disconnectPrisma();
   });
 });
 ```
-
-> `after()` runs once all department tests are done - it clears all database records and closes the Prisma connection cleanly. This should only appear in the **last** test file to avoid wiping data that subsequent test files still need.
 
 ---
 
@@ -960,53 +819,24 @@ Add the following to your `scripts` block in `package.json`:
 "test": "mocha tests --recursive --timeout 10000 --exit"
 ```
 
-| Flag              | Purpose                                       |
-| ----------------- | --------------------------------------------- |
-| `--recursive`     | Runs tests in subdirectories                  |
-| `--timeout 10000` | Sets a 10-second timeout per test             |
-| `--exit`          | Forces Mocha to exit after all tests complete |
-
-Run the tests:
-
-```bash
-npm run test
-```
-
-Expected output:
-
-```
-Institution CRUD
-  ✔ should create institution one
-  ✔ should create institution two
-  ✔ should get all institutions
-  ✔ should get institution one by ID
-  ✔ should update institution two
-  ✔ should delete institution one
-
-Department CRUD
-  ✔ should create department one
-  ✔ should get all departments
-  ✔ should get department one by ID
-  ✔ should update department one
-  ✔ should delete department one
-
-11 passing (Xms)
-```
+| Flag | Purpose |
+| --- | --- |
+| `--recursive` | Runs tests in subdirectories |
+| `--timeout 10000` | Sets a 10-second timeout per test |
+| `--exit` | Forces Mocha to exit after all tests complete |
 
 ---
 
 ## 6. Code Coverage with c8
 
-Code coverage measures how much of your source code is actually executed during testing. It helps identify untested paths - branches, functions, and lines that your test suite never reaches.
+c8 leverages Node.js's built-in V8 coverage engine, requiring no code instrumentation.
 
-We use **c8**, which leverages Node.js's built-in V8 coverage engine. Unlike older tools such as `nyc`, c8 requires no code instrumentation - it hooks directly into the runtime, making it faster and more accurate, with native ESM support.
-
-| Metric         | What it measures                                       |
-| -------------- | ------------------------------------------------------ |
-| **Statements** | Individual executable statements executed              |
-| **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions**  | Functions that were called at least once               |
-| **Lines**      | Physical lines of code executed                        |
+| Metric | What it measures |
+| --- | --- |
+| **Statements** | Individual executable statements executed |
+| **Branches** | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
+| **Functions** | Functions that were called at least once |
+| **Lines** | Physical lines of code executed |
 
 ---
 
@@ -1035,79 +865,41 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option       | Purpose                                                                |
-| ------------ | ---------------------------------------------------------------------- |
-| `reporter`   | Output formats: `text` (terminal), `html` (browser), `lcov` (CI tools) |
-| `include`    | Globs of source files to measure                                       |
-| `exclude`    | Globs to ignore - tests, migrations, generated files                   |
-| `branches`   | Minimum % of branches that must be covered (fails build if not met)    |
-| `lines`      | Minimum % of lines that must be covered                                |
-| `functions`  | Minimum % of functions that must be covered                            |
-| `statements` | Minimum % of statements that must be covered                           |
-| `all`        | Report on all matched files, even those not imported by any test       |
-
-> **Tip:** Start with thresholds at 70–80% and raise them as your test suite matures.
+| Option | Purpose |
+| --- | --- |
+| `reporter` | Output formats: `text`, `html`, `lcov` |
+| `include` | Globs of source files to measure |
+| `exclude` | Globs to ignore |
+| `branches` | Minimum % of branches that must be covered |
+| `lines` | Minimum % of lines that must be covered |
+| `functions` | Minimum % of functions that must be covered |
+| `statements` | Minimum % of statements that must be covered |
+| `all` | Report on all matched files, even those not imported by any test |
 
 ---
 
 ### 6.3 Scripts - `package.json`
-
-Add the following coverage scripts to your existing `scripts` block in `package.json`:
 
 ```json
 "test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
 "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
-| Script                         | Purpose                                                |
-| ------------------------------ | ------------------------------------------------------ |
-| `npm run test:coverage`        | Run tests and print a coverage summary to the terminal |
-| `npm run test:coverage:report` | Re-generate the full HTML report and open it           |
-
-> `c8` wraps your test command - it doesn't change how tests run, it just instruments coverage collection around them.
-
 ---
 
 ### 6.4 Reading the Terminal Report
-
-Running `npm run test:coverage` produces a table like this:
-
-```
------------------------|---------|----------|---------|---------|------------------------------------
-File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
------------------------|---------|----------|---------|---------|------------------------------------
-All files              |   77.72 |    54.09 |   94.44 |   77.72 |
- controllers           |   71.09 |    43.24 |    92.3 |   71.09 |
-  auth.js              |   85.26 |     37.5 |     100 |   85.26 | 14-15,48-51,62-63,69-70,89-92
-  department.js        |   62.74 |       50 |     100 |   62.74 | 7-11,23-24,29-32,44-51,64-73,85-93
-  index.js             |   46.15 |      100 |       0 |   46.15 | 3-9
-  institution.js       |   69.85 |     37.5 |     100 |   69.85 | 13-16,57-66,78-85,98-107,119-127
- middleware            |   76.54 |    66.66 |     100 |   76.54 |
-  contentType.js       |   73.33 |       80 |     100 |   73.33 | 7-10
-  jwtAuth.js           |   77.41 |       50 |     100 |   77.41 | 9-10,24-28
-  rateLimiter.js       |     100 |      100 |     100 |     100 |
-  rbac.js              |   63.63 |       60 |     100 |   63.63 | 6-9,13-16
- middleware/validation |   85.54 |       60 |     100 |   85.54 |
-  institution.js       |   85.54 |       60 |     100 |   85.54 | 35-40,74-79
- routes                |     100 |      100 |     100 |     100 |
-  auth.js              |     100 |      100 |     100 |     100 |
-  department.js        |     100 |      100 |     100 |     100 |
-  index.js             |     100 |      100 |     100 |     100 |
-  institution.js       |     100 |      100 |     100 |     100 |
------------------------|---------|----------|---------|---------|------------------------------------
-```
 
 Lines highlighted in the HTML report indicate:
 
 - 🟢 **Green** - covered by at least one test
 - 🔴 **Red** - never executed during the test run
-- 🟡 **Yellow** - branch partially covered (e.g. only the `true` path of an `if` was tested)
+- 🟡 **Yellow** - branch partially covered
 
 ---
 
 ### 6.5 What Low Coverage Reveals
 
-Low branch coverage is often more telling than low line coverage. Consider this controller function:
+Low branch coverage is often more telling than low line coverage. Consider this controller:
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -1127,26 +919,11 @@ const getInstitutions = async (req, res) => {
 };
 ```
 
-This function has **three branches**:
-
-1. `if (!institutions)` is `true` → returns `404`
-2. `if (!institutions)` is `false` → returns `200`
-3. An error is thrown → the `catch` block returns `500`
-
-If your tests only call `GET /api/institutions` and get back a `200`, branches 1 and 3 are never executed. The line count looks fine - but branch coverage will flag both missed paths.
-
-Common gaps to look for:
-
-- Error handler `catch` blocks - test by passing invalid data or mocking database failures
-- `if (!institutions)` / not-found guards - test with an empty database or a non-existent ID
-- RBAC forbidden paths - test with a user who lacks the required role
-- Rate limiter `429` responses - test by exceeding the request limit
+This function has **three branches** - the `404` path, the `200` path, and the `catch` block. If your tests only get a `200`, branches 1 and 3 are never executed.
 
 ---
 
 ### 6.6 Ignoring Code from Coverage
-
-Sometimes generated, third-party, or intentionally untestable code should be excluded. Use inline comments:
 
 ```javascript
 /* c8 ignore next */
@@ -1158,21 +935,15 @@ app.listen(PORT, () => {
 });
 ```
 
-> Use sparingly - ignoring coverage is a last resort, not a way to hit thresholds artificially.
+> Use sparingly - ignoring coverage is a last resort.
 
 ---
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
 /**
@@ -1187,13 +958,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Course CRUD Tests _(Easy)_
+### Task 2 - Course CRUD Tests
 
 Create a test file for the `Course` resource covering these five scenarios:
 
@@ -1205,13 +976,13 @@ Create a test file for the `Course` resource covering these five scenarios:
 
 ---
 
-### Task 3 - Security Analysis _(Easy)_
+### Task 3 - Security Analysis ⚠️ Self-Directed
 
 In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 4 - Restrict the Endpoints Route _(Easy)_
+### Task 4 - Restrict the Endpoints Route ⚠️ Self-Directed
 
 Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
@@ -1220,17 +991,15 @@ Refactor `/api/endpoints` so it is only accessible when **both** of the followin
 
 ---
 
-### Task 5 - Restrict Registration Role _(Easy)_
+### Task 5 - Restrict Registration Role
 
-Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role - admins must be created through another mechanism.
+Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role.
 
 ---
 
-### Task 6 - Multi-Role RBAC _(Medium)_
+### Task 6 - Multi-Role RBAC ⚠️ Self-Directed
 
-Refactor the `rbac` middleware to accept either a single role string or an array of roles, allowing access if the user has **any** of the specified roles.
-
-Update `routes/institution.js` to allow both `ADMIN` and `STUDENT` to access GET routes:
+Refactor the `rbac` middleware to accept either a single role string or an array of roles:
 
 ```javascript
 router.get("/", rbac(["ADMIN", "STUDENT"]), getInstitutions);
@@ -1239,62 +1008,46 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 ---
 
-### Task 7 - Implement Full RBAC Permissions _(Easy)_
+### Task 7 - Implement Full RBAC Permissions
 
 Apply the following permission matrix across all resources:
 
-| Resource    | Operation            | ADMIN | STAFF | STUDENT |
-| ----------- | -------------------- | :---: | :---: | :-----: |
-| Institution | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Institution | Create               |  ✅   |  ✅   |   ❌    |
-| Institution | Update               |  ✅   |  ✅   |   ❌    |
-| Institution | Delete               |  ✅   |  ❌   |   ❌    |
-| Department  | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Department  | Create               |  ✅   |  ✅   |   ❌    |
-| Department  | Update               |  ✅   |  ✅   |   ❌    |
-| Department  | Delete               |  ✅   |  ❌   |   ❌    |
-| Course      | Read (all and by ID) |  ✅   |  ✅   |   ✅    |
-| Course      | Create               |  ✅   |  ✅   |   ❌    |
-| Course      | Update               |  ✅   |  ✅   |   ❌    |
-| Course      | Delete               |  ✅   |  ❌   |   ❌    |
-| User        | View All             |  ✅   |  ✅   |   ❌    |
-| User        | View Own             |  ✅   |  ✅   |   ✅    |
-| User        | Update All           |  ✅   |  ✅   |   ❌    |
-| User        | Update Own           |  ✅   |  ✅   |   ✅    |
-| User        | Delete               |  ✅   |  ❌   |   ❌    |
+| Resource | Operation | ADMIN | STAFF | STUDENT |
+| --- | --- | :---: | :---: | :---: |
+| Institution | Read | ✅ | ✅ | ✅ |
+| Institution | Create | ✅ | ✅ | ❌ |
+| Institution | Update | ✅ | ✅ | ❌ |
+| Institution | Delete | ✅ | ❌ | ❌ |
+| Department | Read | ✅ | ✅ | ✅ |
+| Department | Create | ✅ | ✅ | ❌ |
+| Department | Update | ✅ | ✅ | ❌ |
+| Department | Delete | ✅ | ❌ | ❌ |
+| Course | Read | ✅ | ✅ | ✅ |
+| Course | Create | ✅ | ✅ | ❌ |
+| Course | Update | ✅ | ✅ | ❌ |
+| Course | Delete | ✅ | ❌ | ❌ |
+| User | View All | ✅ | ✅ | ❌ |
+| User | View Own | ✅ | ✅ | ✅ |
+| User | Update All | ✅ | ✅ | ❌ |
+| User | Update Own | ✅ | ✅ | ✅ |
+| User | Delete | ✅ | ❌ | ❌ |
 
 ---
 
-### Task 8 - User Profile _(Medium)_
+### Task 8 - User Profile ⚠️ Self-Directed
 
-Create a `Profile` model with the following fields:
+Create a `Profile` model:
 
-| Field       | Type     | Constraints               |
-| ----------- | -------- | ------------------------- |
-| `id`        | String   | Primary key, default UUID |
-| `bio`       | String   |                           |
-| `avatarUrl` | String   |                           |
-| `userId`    | String   | Foreign key               |
-| `createdAt` | DateTime | Default now               |
-| `updatedAt` | DateTime | Default now               |
+| Field | Type | Constraints |
+| --- | --- | --- |
+| `id` | String | Primary key, default UUID |
+| `bio` | String | |
+| `avatarUrl` | String | |
+| `userId` | String | Foreign key |
+| `createdAt` | DateTime | Default now |
+| `updatedAt` | DateTime | Default now |
 
-Update the `User` model to include a one-to-one relationship:
-
-```javascript
-model User {
-  id           String   @id @default(uuid())
-  firstName    String
-  lastName     String
-  emailAddress String   @unique
-  password     String
-  role         Role     @default(STUDENT)
-  profile      Profile?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @default(now())
-}
-```
-
-Update the `register` function in `controllers/auth.js` to auto-create a profile on registration:
+Update the `User` model to include a one-to-one relationship and update `register` to auto-create a profile:
 
 ```javascript
 user = await prisma.user.create({
@@ -1324,72 +1077,66 @@ user = await prisma.user.create({
 });
 ```
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
 ---
 
-### Task 9 - Confirm Password _(Easy)_
+### Task 9 - Confirm Password
 
-Add confirm password validation to the `register` function in `controllers/auth.js`.
+Add confirm password validation to `register` in `controllers/auth.js`.
 
-Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with the message `"Passwords do not match"`.
+Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with `"Passwords do not match"`.
 
 > `confirmPassword` should not be stored in the database.
 
 ---
 
-### Task 10 - Enable Coverage _(Easy)_
+### Task 10 - Enable Coverage
 
 1. Install `c8` and create a `.c8rc` configuration file
 2. Add a `test:coverage` script to `package.json`
-3. Run `npm run test:coverage` and take note of your starting percentages
-4. Identify the two lowest-covered files in the report
-5. Write at least one additional test for each to improve their coverage
+3. Run `npm run test:coverage` and note your starting percentages
+4. Identify the two lowest-covered files
+5. Write at least one additional test for each
 
 ---
 
-### Task 11 - Reach 80% Branch Coverage _(Medium)_
+### Task 11 - Reach 80% Branch Coverage ⚠️ Self-Directed
 
-Using the HTML report (`npm run test:coverage:report`), find all uncovered branches (shown in yellow). Add tests targeting:
+Using the HTML report, find all uncovered branches and add tests targeting:
 
 - The `401` path in `jwtAuth.js` when no token is provided
 - The `403` path in `rbac.js` when the user has an insufficient role
 - The `409` path in `controllers/auth.js` when a duplicate email is registered
 - The `404` path in any resource controller when an ID does not exist
 
-Aim for at least **80% branch coverage** across `controllers/` and `middleware/`.
-
 ---
 
 ## Hard Exercises
 
-These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
-
 ---
 
-### Hard Task 1 - Account Lockout
+### Hard Task 1 - Account Lockout ⚠️ Self-Directed
 
-Implement account lockout after 5 failed login attempts. The account should be locked for 15 minutes.
+Implement account lockout after 5 failed login attempts for 15 minutes.
 
 Add two fields to the `User` model:
 
 ```javascript
 model User {
-  id                  String    @id @default(uuid())
-  firstName           String
-  lastName            String
-  emailAddress        String    @unique
-  password            String
-  role                Role      @default(STUDENT)
-  profile             Profile?
-  failedLoginAttempts Int       @default(0)
-  lockoutUntil        DateTime?
-  createdAt           DateTime  @default(now())
-  updatedAt           DateTime  @default(now())
+  id String @id @default(uuid())
+  firstName String
+  lastName String
+  emailAddress String @unique
+  password String
+  role Role @default(STUDENT)
+  profile Profile?
+  failedLoginAttempts Int @default(0)
+  lockoutUntil DateTime?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 ```
 
-Replace the `login` function in `controllers/auth.js` with the following and complete all TODO sections:
+Replace the `login` function in `controllers/auth.js`:
 
 ```javascript
 const login = async (req, res) => {
@@ -1459,26 +1206,24 @@ const login = async (req, res) => {
 };
 ```
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
 ---
 
-### Hard Task 2 - Token Blacklist
+### Hard Task 2 - Token Blacklist ⚠️ Self-Directed
 
-Implement a logout endpoint that invalidates the JWT by adding it to a blacklist in the database.
+Implement a logout endpoint that invalidates the JWT by adding it to a blacklist.
 
 Add a `TokenBlacklist` model to `schema.prisma`:
 
 ```javascript
 model TokenBlacklist {
-  id        String   @id @default(uuid())
-  token     String   @unique
+  id String @id @default(uuid())
+  token String @unique
   expiresAt DateTime
   createdAt DateTime @default(now())
 }
 ```
 
-Add a `logout` function to `controllers/auth.js` and complete the TODO:
+Add a `logout` function to `controllers/auth.js`:
 
 ```javascript
 const logout = async (req, res) => {
@@ -1550,10 +1295,8 @@ const jwtAuth = async (req, res, next) => {
 export default jwtAuth;
 ```
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
 ---
 
 ## README
 
-Update the `README.md` in your repository to document any new endpoints added this week. Include setup instructions and any other relevant information for users or developers.
+Update the `README.md` in your repository to document any new endpoints added this week.

@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                                                                   |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| ← Previous   | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md)   |
-| Code Example | [Code Example](code-example)                                                                                                                           |
-| → Next       | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md) |
+| | Link |
+| --- | --- |
+| Previous | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Code Example | [Code Example](code-example) |
+| Next | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md) |
 
 ---
 
@@ -18,17 +18,11 @@ Open your repository in Visual Studio Code and switch to the Week 05 branch:
 git checkout -b w05-validation-seeding-query-params-deployment
 ```
 
-Set up your development environment (Docker, environment variables, etc.) before continuing.
-
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
-
 ---
 
 ## 1. Setup Script
 
-Setting up your development environment manually can be time-consuming. A script called `application-setup.sh` is provided to automate this.
-
-The script will:
+A script called `application-setup.sh` automates environment setup. It will:
 
 1. Check for required dependencies: `docker`, `node`, and `npm`
 2. Select a project from the current directory
@@ -47,13 +41,11 @@ chmod +x application-setup.sh
 ./application-setup.sh
 ```
 
-> **Tip:** Read through the script before running it to understand what it does.
-
 ---
 
 ## 2. Validation
 
-Validation ensures that data is correct and meets certain criteria before it is used or stored. In web development, this typically means verifying that incoming request data matches what your application expects.
+Validation ensures that data is correct and meets certain criteria before it is used or stored.
 
 ---
 
@@ -65,8 +57,6 @@ Install the Joi validation library:
 npm install joi
 ```
 
-> **Alternatives:** You could write custom validation logic, or use libraries like Express Validator. We use Joi here.
-
 ---
 
 ### 2.2 Validation Middleware
@@ -74,8 +64,6 @@ npm install joi
 Create `middleware/validation/institution.js`.
 
 #### POST Validation
-
-The `validatePostInstitution` function validates data when **creating** a new institution. All fields are **required**.
 
 ```javascript
 import Joi from "joi";
@@ -110,7 +98,7 @@ const validatePostInstitution = (req, res, next) => {
     { name, region, country },
     {
       abortEarly: false, // Collect all errors, not just the first
-      convert: false, // Disable type coercion, e.g. "123" → 123
+      convert: false, // Disable type coercion
     },
   );
 
@@ -127,8 +115,6 @@ const validatePostInstitution = (req, res, next) => {
 ```
 
 #### PUT Validation
-
-The `validatePutInstitution` function validates data when **updating** an institution. All fields are **optional**, but at least one must be provided.
 
 ```javascript
 const validatePutInstitution = (req, res, next) => {
@@ -173,21 +159,15 @@ const validatePutInstitution = (req, res, next) => {
 export { validatePostInstitution, validatePutInstitution };
 ```
 
-**Summary of differences:**
-
-|                | `validatePostInstitution`  | `validatePutInstitution`         |
-| -------------- | -------------------------- | -------------------------------- |
-| Use case       | Creating a new institution | Updating an existing institution |
-| Fields         | All required               | All optional                     |
-| Minimum fields | All three                  | At least one                     |
-
-> **Why return all errors at once?** Using `abortEarly: false` collects all validation issues in a single response, so the client can fix everything in one go rather than resubmitting repeatedly.
+|  | `validatePostInstitution` | `validatePutInstitution` |
+| --- | --- | --- |
+| Use case | Creating a new institution | Updating an existing institution |
+| Fields | All required | All optional |
+| Minimum fields | All three | At least one |
 
 ---
 
 ### 2.3 Validating Other Types
-
-Joi supports many data types beyond strings. Here are examples:
 
 ```javascript
 const someSchema = Joi.object({
@@ -250,7 +230,7 @@ const someSchema = Joi.object({
 
 ### 2.4 Update the Institution Router
 
-Update `routes/institution.js` to use the validation middleware. The validation middleware must come **before** the controller function.
+Update `routes/institution.js` to use the validation middleware. Validation middleware must come **before** the controller function:
 
 ```javascript
 import express from "express";
@@ -279,15 +259,13 @@ router.delete("/:id", deleteInstitution);
 export default router;
 ```
 
-> **Order matters:** Middleware runs in the order it is defined. Always place validation middleware before the controller so data is validated before it is processed.
-
 ---
 
 ### 2.5 Postman - Testing Validation
 
 **Testing POST validation**
 
-Send a `POST` to `http://localhost:3000/api/institutions` with an intentionally bad body - for example, omit `name` and make `region` too short:
+Send a `POST` with an intentionally bad body:
 
 ```json
 {
@@ -302,19 +280,14 @@ Expected response (`409 Conflict`):
 {
   "errors": [
     { "message": "name is required", "type": "any.required" },
-    {
-      "message": "region should have a minimum length of 3",
-      "type": "string.min"
-    }
+    { "message": "region should have a minimum length of 3", "type": "string.min" }
   ]
 }
 ```
 
-Note that **both** errors are returned at once - this is the effect of `abortEarly: false`.
-
 **Testing PUT validation**
 
-Send a `PUT` to `http://localhost:3000/api/institutions/<id>` with an empty body `{}`.
+Send a `PUT` with an empty body `{}`.
 
 Expected response (`409 Conflict`):
 
@@ -326,17 +299,11 @@ Expected response (`409 Conflict`):
 }
 ```
 
-> The `.min(1)` on the PUT schema enforces that at least one field must be provided - a completely empty update is rejected.
-
-**Confirming a valid request still works**
-
-Send a well-formed `POST` with all three valid fields - you should get back a `201 Created` as before. Validation middleware only blocks bad data; it passes good data through unchanged.
-
 ---
 
 ## 3. Seeding
 
-Seeding populates a database with initial or sample data. It is particularly useful during development and testing. We use the Prisma Client to seed data here.
+Seeding populates a database with initial or sample data.
 
 ---
 
@@ -436,8 +403,6 @@ seedInstitutions().then((report) => {
 
 ### 3.2 Add a Seed Script to `package.json`
 
-Add the following to your existing `scripts` block in `package.json`:
-
 ```json
 "prisma:seed-institutions": "node ./prisma/seeding/institution.js"
 ```
@@ -448,65 +413,21 @@ Run the seed script:
 npm run prisma:seed-institutions
 ```
 
-Example output (with error reporting implemented):
-
-```
-==========================================
-Seeding report
-==========================================
-Resource: Institutions
-  Time taken: 0.5s
-  Errors encountered:
-    {"errors":[{"message":"name is required","type":"any.required"},{"message":"region is required","type":"any.required"}]}
-==========================================
-```
-
----
-
-### 3.3 Postman - Verifying Seeded Data
-
-After running the seed script, confirm the data was inserted correctly:
-
-Send a `GET` to `http://localhost:3000/api/institutions`.
-
-Expected response (`200 OK`):
-
-```json
-{
-  "data": [
-    {
-      "id": "...",
-      "name": "Southern Institute of Technology",
-      "region": "Southland",
-      "country": "New Zealand",
-      "createdAt": "...",
-      "updatedAt": "..."
-    }
-  ]
-}
-```
-
-Only one record should appear - the intentionally invalid entry (missing `name` and `region`) should have been caught by validation and excluded from the insert.
-
-> **If you see zero records**, check the seeding report output in your terminal for errors.
-
 ---
 
 ## 4. Query Parameters
 
-Query parameters pass additional information to a server in the URL - commonly used for filtering, sorting, and pagination. They appear after a `?` and are separated by `&`:
+Query parameters pass additional information to a server in the URL:
 
 ```
 /api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5
 ```
 
-You have likely used these without realising - every time you filter search results or navigate between pages of an online shop.
-
 ---
 
 ### 4.1 Update the Institution Repository
 
-Update the `findAll()` method in `repositories/institution.js` to support filters, sorting, and pagination:
+Update the `findAll()` method in `repositories/institution.js`:
 
 ```javascript
 async findAll(
@@ -565,8 +486,6 @@ async findAll(
 ---
 
 ### 4.2 Update the Institution Controller
-
-Update `createInstitution` and `getInstitutions` in `controllers/institution.js`:
 
 ```javascript
 const createInstitution = async (req, res) => {
@@ -637,60 +556,31 @@ const getInstitutions = async (req, res) => {
 
 **Supported query parameters:**
 
-| Parameter   | Description                                      | Default | Example                |
-| ----------- | ------------------------------------------------ | ------- | ---------------------- |
-| `name`      | Filter by name (case-insensitive, partial match) | -       | `?name=otago`          |
-| `region`    | Filter by region                                 | -       | `?region=Otago`        |
-| `country`   | Filter by country                                | -       | `?country=New Zealand` |
-| `sortBy`    | Field to sort by                                 | `id`    | `?sortBy=country`      |
-| `sortOrder` | Sort direction                                   | `asc`   | `?sortOrder=desc`      |
-| `page`      | Page number                                      | `1`     | `?page=2`              |
-| `pageSize`  | Results per page                                 | `10`    | `?pageSize=5`          |
+| Parameter | Description | Default | Example |
+| --- | --- | --- | --- |
+| `name` | Filter by name (case-insensitive, partial match) | - | `?name=otago` |
+| `region` | Filter by region | - | `?region=Otago` |
+| `country` | Filter by country | - | `?country=New Zealand` |
+| `sortBy` | Field to sort by | `id` | `?sortBy=country` |
+| `sortOrder` | Sort direction | `asc` | `?sortOrder=desc` |
+| `page` | Page number | `1` | `?page=2` |
+| `pageSize` | Results per page | `10` | `?pageSize=5` |
 
 ---
 
 ### 4.3 Postman - Testing Query Parameters
 
-In Postman, query parameters can be added two ways:
+Query parameters can be added two ways:
 
 - **Type them directly in the URL:** `http://localhost:3000/api/institutions?country=New Zealand`
-- **Use the Params tab:** Click **Params** below the URL bar, then add key/value pairs. Postman encodes them into the URL automatically.
-
-The Params tab is easier to manage when combining multiple parameters.
-
----
-
-**Filter by country**
-
-| Key     | Value       |
-| ------- | ----------- |
-| country | New Zealand |
-
-URL: `GET http://localhost:3000/api/institutions?country=New Zealand`
-
-Expected: only institutions where `country` contains "New Zealand" (case-insensitive).
-
----
-
-**Sort by name descending**
-
-| Key       | Value |
-| --------- | ----- |
-| sortBy    | name  |
-| sortOrder | desc  |
-
-URL: `GET http://localhost:3000/api/institutions?sortBy=name&sortOrder=desc`
-
----
+- **Use the Params tab:** Add key/value pairs. Postman encodes them into the URL automatically.
 
 **Paginate results**
 
-| Key      | Value |
-| -------- | ----- |
-| page     | 1     |
-| pageSize | 2     |
-
-URL: `GET http://localhost:3000/api/institutions?page=1&pageSize=2`
+| Key | Value |
+| --- | --- |
+| page | 1 |
+| pageSize | 2 |
 
 Expected response includes a `pagination` object:
 
@@ -710,42 +600,24 @@ Expected response includes a `pagination` object:
 
 ---
 
-**Combine filters, sorting, and pagination**
-
-| Key       | Value       |
-| --------- | ----------- |
-| country   | New Zealand |
-| sortBy    | name        |
-| sortOrder | asc         |
-| page      | 1           |
-| pageSize  | 5           |
-
-URL: `GET http://localhost:3000/api/institutions?country=New Zealand&sortBy=name&sortOrder=asc&page=1&pageSize=5`
-
-> Seed a few institutions first (`npm run prisma:seed-institutions`) to have enough data to meaningfully test pagination.
-
----
-
 ## 5. Deployment
 
-Deployment makes your application available to users. Common platforms include Render, Heroku, Vercel, and Netlify. We will use **Render**.
+We will use **Render** for deployment.
 
 ---
 
 ### 5.1 Build Script
 
-Add the following to your existing `scripts` block in `package.json`:
+Add the following to your `scripts` block in `package.json`:
 
 ```json
 "build": "npm install && npx prisma generate && npx prisma migrate deploy"
 ```
 
-**`migrate dev` vs `migrate deploy`:**
-
-| Command                     | Purpose                                                                 |
-| --------------------------- | ----------------------------------------------------------------------- |
-| `npx prisma migrate dev`    | Development only - creates new migration files and applies them locally |
-| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files      |
+| Command | Purpose |
+| --- | --- |
+| `npx prisma migrate dev` | Development only - creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files |
 
 ---
 
@@ -760,14 +632,14 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
 1. Click **New +**, then select **Postgres**
 2. Give your database a name; leave Instance Type as **Free**
 3. Click **Create Database**
-4. Copy the **External Database URL** - you will need this shortly
+4. Copy the **External Database URL**
 
 ---
 
 ### 5.4 Web Service Setup on Render
 
 1. Click **New +**, then select **Web Service**
-2. Choose **Git Provider** and connect your repository (you may need to authorise Render access to GitHub)
+2. Choose **Git Provider** and connect your repository
 3. Configure the service:
    - **Name:** e.g. `id607001-rest-api`
    - **Language:** Node
@@ -775,22 +647,16 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
    - **Build Command:** `npm run build`
    - **Start Command:** `node app.js`
    - **Instance Type:** Free
-4. Add an environment variable: `DATABASE_URL` = the External Database URL copied above
+4. Add an environment variable: `DATABASE_URL` = the External Database URL
 5. Click **Deploy Web Service**
-6. Monitor the logs - your service is ready when you see:
 
-```
-Server is listening on port 10000. Visit http://localhost:10000
-Your service is live 🎉
-```
-
-> **Note:** As you progress through future weeks, update the Branch field to match the current week's branch.
+> **Note:** Update the Branch field to match the current week's branch as you progress.
 
 ### 5.5 Postman - Testing the Deployed API
 
-Once deployed, test your live API exactly as you would locally - just swap `http://localhost:3000` for your Render service URL (e.g. `https://id607001-rest-api.onrender.com`).
+Swap `http://localhost:3000` for your Render service URL.
 
-> **First-request delay:** The free Render tier spins down after inactivity. The first request after a period of inactivity may take 30–60 seconds to respond - this is normal.
+> **First-request delay:** The free Render tier spins down after inactivity. The first request may take 30–60 seconds to respond.
 
 📖 Reference: [Render docs](https://render.com/docs)
 
@@ -798,15 +664,9 @@ Once deployed, test your live API exactly as you would locally - just swap `http
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
 /**
@@ -821,15 +681,13 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Catch-All Route _(Medium)_
-
-A catch-all route matches any request that doesn't match a defined route, and returns a helpful 404 response.
+### Task 2 - Catch-All Route
 
 In `app.js`, add the following **after all other routes**:
 
@@ -844,50 +702,44 @@ app.use((req, res) => {
 });
 ```
 
-> Use `req.method` for the HTTP method and `req.originalUrl` for the URL.
-
 ---
 
-### Task 3 - Endpoints List _(Medium)_
+### Task 3 - Endpoints List ⚠️ Self-Directed
 
 Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
 ---
 
-### Task 4 - Validation for Other Resources _(Medium)_
+### Task 4 - Validation for Other Resources
 
-Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources. Create the following files in `middleware/validation/`:
+Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources:
 
-| File            | Fields to validate                            |
-| --------------- | --------------------------------------------- |
-| `department.js` | `name`, `institutionId`                       |
-| `course.js`     | `name`, `code`, `description`, `departmentId` |
-| `user.js`       | `firstName`, `lastName`, `emailAddress`       |
-
-Register the middleware in the appropriate route files.
+| File | Fields to validate |
+| --- | --- |
+| `department.js` | `name`, `institutionId` |
+| `course.js` | `name`, `code`, `description`, `departmentId` |
+| `user.js` | `firstName`, `lastName`, `emailAddress` |
 
 ---
 
-### Task 5 - Seeding Other Resources _(Medium)_
+### Task 5 - Seeding Other Resources ⚠️ Self-Directed
 
 Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
 - Clear existing data before seeding
 - Create realistic sample records
-- Maintain proper relationships (departments → institutions, courses → departments)
+- Maintain proper relationships
 - Be repeatable without causing duplicate data errors
 
 ---
 
 ## Hard Exercises
 
-These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
-
 ---
 
-### Hard Task 1 - Detailed Seeding Report
+### Hard Task 1 - Detailed Seeding Report ⚠️ Self-Directed
 
-Extend your seeding scripts to generate a comprehensive report. The report should include, for each resource: records created, time taken, and any errors encountered. Here is the expected format:
+Extend your seeding scripts to generate a comprehensive report:
 
 ```
 ==========================================
@@ -901,48 +753,38 @@ Resource: Departments
   Records created: 50
   Time taken: 5.0s
 ------------------------------------------
-Resource: Courses
-  Records created: 200
-  Time taken: 10.0s
-------------------------------------------
-Resource: Users
-  Records created: 100
-  Time taken: 5.0s
-------------------------------------------
 Total time: 22.5s
 Errors encountered: None
 ==========================================
 ```
 
-> **Hint:** Create a `prisma/seeding/index.js` that imports and runs all seed scripts sequentially, collects their results, and generates the final report.
+---
+
+### Hard Task 2 - Advanced Query Parameters ⚠️ Self-Directed
+
+Extend the query parameter system to support advanced filtering operators:
+
+| Operator | Example |
+| --- | --- |
+| Range (less than or equal) | `?createdAt[lte]=2023-12-31` |
+| Range (greater than or equal) | `?createdAt[gte]=2023-01-01` |
+| Array (match any) | `?country[in]=Australia,New Zealand` |
+| Exclusion | `?region[not]=Otago` |
+| Starts with | `?name[startsWith]=Otago` |
+| Ends with | `?name[endsWith]=Polytechnic` |
+| Case sensitivity | `?name=otago polytechnic&caseSensitive=false` |
 
 ---
 
-### Hard Task 2 - Advanced Query Parameters
+### Hard Task 3 - Health Check Endpoint ⚠️ Self-Directed
 
-Extend the query parameter system to support advanced filtering operators. Maintain backward compatibility with existing filters.
-
-| Operator                      | Example                                       |
-| ----------------------------- | --------------------------------------------- |
-| Range (less than or equal)    | `?createdAt[lte]=2023-12-31`                  |
-| Range (greater than or equal) | `?createdAt[gte]=2023-01-01`                  |
-| Array (match any)             | `?country[in]=Australia,New Zealand`          |
-| Exclusion                     | `?region[not]=Otago`                          |
-| Starts with                   | `?name[startsWith]=Otago`                     |
-| Ends with                     | `?name[endsWith]=Polytechnic`                 |
-| Case sensitivity              | `?name=otago polytechnic&caseSensitive=false` |
+Implement `GET /api/health` that returns the current status of your application, including at minimum: application status, database connectivity, and server uptime.
 
 ---
 
-### Hard Task 3 - Health Check Endpoint
+### Hard Task 4 - Sustainable Codebase ⚠️ Self-Directed
 
-Implement `GET /api/health` that returns the current status of your application. The response should include at minimum: application status, database connectivity, and server uptime.
-
----
-
-### Hard Task 4 - Sustainable Codebase
-
-As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
+Refactor your code to implement the following improvements:
 
 - **`BaseValidationMiddleware`** - a base module with shared validation logic that resource-specific middleware can extend
 - **`BaseSeedingScript`** - a base module with shared seeding logic that individual seed scripts can extend
@@ -951,4 +793,4 @@ As your codebase grows, it's important to maintain a clean and sustainable struc
 
 ## README
 
-Update the `README.md` in your repository to document any new endpoints added this week. Include setup instructions and any other relevant information for users or developers.
+Update the `README.md` in your repository to document any new endpoints added this week.

@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|                  | Link                                                                                                 |
-| ---------------- | ---------------------------------------------------------------------------------------------------- |
-| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6)                                            |
-| → Next           | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
+| | Link |
+| --- | --- |
+| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6) |
+| Next | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
 
 ---
 
@@ -13,23 +13,23 @@
 
 ### 1.1 Useful Git Commands
 
-| Command                      | Description                                        |
-| ---------------------------- | -------------------------------------------------- |
-| `git clone <repository-url>` | Clone a repository to your local machine           |
-| `git status`                 | Check the status of your local repository          |
-| `git add <file>`             | Stage changes for the next commit                  |
-| `git commit -m "message"`    | Commit staged changes with a descriptive message   |
-| `git push`                   | Push committed changes to the remote repository    |
-| `git pull`                   | Pull the latest changes from the remote repository |
-| `git branch`                 | List all branches in the repository                |
-| `git switch <branch>`        | Switch to a different branch                       |
-| `git restore <file>`         | Discard working directory changes for a file       |
-| `git checkout <branch>`      | Switch to a different branch (older command)       |
-| `git fetch`                  | Fetch changes from the remote repository           |
-| `git merge <branch>`         | Merge a branch into the current branch             |
-| `git log`                    | View the commit history                            |
+| Command | Description |
+| --- | --- |
+| `git clone <repository-url>` | Clone a repository to your local machine |
+| `git status` | Check the status of your local repository |
+| `git add <file>` | Stage changes for the next commit |
+| `git commit -m "message"` | Commit staged changes with a descriptive message |
+| `git push` | Push committed changes to the remote repository |
+| `git pull` | Pull the latest changes from the remote repository |
+| `git branch` | List all branches in the repository |
+| `git switch <branch>` | Switch to a different branch |
+| `git restore <file>` | Discard working directory changes for a file |
+| `git checkout <branch>` | Switch to a different branch |
+| `git fetch` | Fetch changes from the remote repository |
+| `git merge <branch>` | Merge a branch into the current branch |
+| `git log` | View the commit history |
 
-**`git switch` vs `git checkout`:** `git switch` is a newer command introduced specifically for branch switching. `git checkout` is older and has additional uses (e.g. restoring files). For branch switching, prefer `git switch` for clarity.
+`git switch` is a newer command introduced specifically for branch switching. `git checkout` is older and has additional uses. For branch switching, prefer `git switch` for clarity.
 
 📖 Reference: [GitHub Git Handbook](https://guides.github.com/introduction/git-handbook/)
 
@@ -37,7 +37,7 @@
 
 ## 2. JavaScript
 
-JavaScript is a high-level, interpreted programming language conforming to the ECMAScript specification. It is used for both frontend (client-side) and backend (server-side) development.
+JavaScript is a high-level, interpreted programming language conforming to the ECMAScript specification. It is used for both frontend and backend development.
 
 📖 Reference: [MDN - JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
@@ -45,7 +45,7 @@ JavaScript is a high-level, interpreted programming language conforming to the E
 
 ### 2.1 Node.js
 
-Node.js is an open-source JavaScript runtime environment that lets you execute JavaScript outside a web browser. It is built on Chrome's V8 engine and is primarily used for backend development. We will use Node.js to run and test code directly in the terminal.
+Node.js is an open-source JavaScript runtime environment that lets you execute JavaScript outside a web browser. It is built on Chrome's V8 engine and is primarily used for backend development.
 
 📖 Reference: [nodejs.org](https://nodejs.org/en/)
 
@@ -55,17 +55,17 @@ Node.js is an open-source JavaScript runtime environment that lets you execute J
 
 JavaScript has **seven primitive data types**:
 
-| Type      | Example              |
-| --------- | -------------------- |
-| Boolean   | `true`, `false`      |
-| Number    | `1`, `2.5`, `-3`     |
-| String    | `"Hello"`, `"World"` |
-| Null      | `null`               |
-| Undefined | `undefined`          |
-| BigInt    | `9007199254740991n`  |
-| Symbol    | `Symbol()`           |
+| Type | Example |
+| --- | --- |
+| Boolean | `true`, `false` |
+| Number | `1`, `2.5`, `-3` |
+| String | `"Hello"`, `"World"` |
+| Null | `null` |
+| Undefined | `undefined` |
+| BigInt | `9007199254740991n` |
+| Symbol | `Symbol()` |
 
-> We will use the first five in this course. BigInt and Symbol are not covered.
+> The first five will be used in this course. BigInt and Symbol are not covered.
 
 JavaScript also has **non-primitive types** - objects. Arrays and functions are both objects in JavaScript.
 
@@ -93,13 +93,13 @@ console.log(typeof age); // number
 
 ### 2.4 Operators
 
-| Category   | Operators                                          |
-| ---------- | -------------------------------------------------- |
-| Arithmetic | `+`, `-`, `*`, `/`, `%`, `**`                      |
-| Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=`           |
-| Comparison | `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=`     |
-| Logical    | `&&`, `\|\|`, `!`                                  |
-| Ternary    | `condition ? expressionIfTrue : expressionIfFalse` |
+| Category | Operators |
+| --- | --- |
+| Arithmetic | `+`, `-`, `*`, `/`, `%`, `**` |
+| Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=` |
+| Comparison | `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=` |
+| Logical | `&&`, `\|\|`, `!` |
+| Ternary | `condition ? expressionIfTrue : expressionIfFalse` |
 
 📖 Reference: [MDN - Expressions and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)
 
@@ -108,28 +108,28 @@ console.log(typeof age); // number
 ### 2.5 Conditional Statements
 
 ```javascript
-// if statement
+// If statement
 if (condition) {
-  // runs if condition is true
+  // Runs if condition is true
 }
 
-// if...else statement
+// If...else statement
 if (condition) {
-  // runs if true
+  // Runs if true
 } else {
-  // runs if false
+  // Runs if false
 }
 
-// switch statement
+// Switch statement
 switch (expression) {
   case value1:
-    // runs if expression === value1
+    // Runs if expression === value1
     break;
   case value2:
-    // runs if expression === value2
+    // Runs if expression === value2
     break;
   default:
-  // runs if no case matches
+  // Runs if no case matches
 }
 ```
 
@@ -139,38 +139,36 @@ switch (expression) {
 
 ### 2.6 Loops
 
-**When to use each loop type:**
-
-| Loop        | Best used when...                                                     |
-| ----------- | --------------------------------------------------------------------- |
-| `for`       | You need a specific number of iterations or need the index            |
-| `for...in`  | You need to iterate over the properties of an object                  |
-| `for...of`  | You need to iterate over the values of an iterable (e.g. array)       |
+| Loop | Best used when... |
+| --- | --- |
+| `for` | You need a specific number of iterations or need the index |
+| `for...in` | You need to iterate over the properties of an object |
+| `for...of` | You need to iterate over the values of an iterable |
 | `forEach()` | You need to run a function per array element and don't need the index |
 
 ```javascript
-// for loop
+// For loop
 for (let i = 0; i < 5; i++) {
   console.log(i); // 0, 1, 2, 3, 4
 }
 
-// while loop
+// While loop
 while (condition) {
-  // runs repeatedly while condition is true
+  // Runs repeatedly while condition is true
 }
 
-// do...while loop
+// Do...while loop
 do {
-  // runs at least once, then checks condition
+  // Runs at least once, then checks condition
 } while (condition);
 
-// for...in - iterate over object properties
+// For...in - iterate over object properties
 const person = { name: "John", age: 30 };
 for (let key in person) {
   console.log(key + ": " + person[key]); // name: John, age: 30
 }
 
-// for...of - iterate over array values
+// For...of - iterate over array values
 const numbers = [1, 2, 3, 4, 5];
 for (let num of numbers) {
   console.log(num); // 1, 2, 3, 4, 5
@@ -205,7 +203,7 @@ console.log(typeof add(1, 2)); // number
 
 > Functions in JavaScript are technically "callable objects", but `typeof` returns `"function"` as a special case.
 
-**Arrow function syntax (ES6+):**
+**Arrow function syntax:**
 
 ```javascript
 const add = (num1, num2) => {
@@ -219,12 +217,10 @@ const add = (num1, num2) => num1 + num2;
 const greet = (_) => "Hello, World!";
 ```
 
-**When to use arrow functions vs regular functions:**
-
-Arrow functions don't have their own `this` - they inherit it from the surrounding context. This matters when using callbacks inside object methods:
+Arrow functions don't have their own `this` - they inherit it from the surrounding context:
 
 ```javascript
-// ❌ Regular function - this.name is undefined inside forEach
+// Regular function - this.name is undefined inside forEach
 const person = {
   name: "John",
   hobbies: ["reading", "coding"],
@@ -235,7 +231,7 @@ const person = {
   },
 };
 
-// ✅ Arrow function - inherits this from showHobbies
+// Arrow function - inherits this from showHobbies
 const person = {
   name: "John",
   hobbies: ["reading", "coding"],
@@ -253,7 +249,7 @@ const person = {
 
 ### 2.8 Template Literals
 
-Template literals use backticks (`` ` ``) and allow multi-line strings and embedded expressions via `${}`.
+Template literals use backticks and allow multi-line strings and embedded expressions via `${}`.
 
 ```javascript
 const name = "John";
@@ -313,8 +309,6 @@ const grid = [
 console.log(grid[0][0]); // 1
 console.log(grid[1][2]); // 6
 ```
-
-**Why does `typeof array` return `"object"`?**
 
 Arrays are a special kind of object in JavaScript. Use `Array.isArray()` to reliably check for arrays:
 
@@ -383,17 +377,6 @@ const squared = numbers.map((num) => num * num);
 console.log(squared); // [1, 4, 9, 16, 25]
 ```
 
-Execution model:
-
-```
-Input        Callback              Output
-1  ────────▶ num => num * num ────▶ 1
-2  ────────▶ num => num * num ────▶ 4
-3  ────────▶ num => num * num ────▶ 9
-4  ────────▶ num => num * num ────▶ 16
-5  ────────▶ num => num * num ────▶ 25
-```
-
 📖 Reference: [MDN - Array.map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ---
@@ -406,17 +389,6 @@ Input        Callback              Output
 const numbers = [1, 2, 3, 4, 5];
 const evens = numbers.filter((num) => num % 2 === 0);
 console.log(evens); // [2, 4]
-```
-
-Execution model:
-
-```
-Input        Callback                   Output
-1  ────────▶ num => num % 2 === 0 ────▶ removed
-2  ────────▶ num => num % 2 === 0 ────▶ 2
-3  ────────▶ num => num % 2 === 0 ────▶ removed
-4  ────────▶ num => num % 2 === 0 ────▶ 4
-5  ────────▶ num => num % 2 === 0 ────▶ removed
 ```
 
 📖 Reference: [MDN - Array.filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter)
@@ -437,17 +409,6 @@ console.log(sum); // 15
 // Sum with initial value 5
 const sum2 = numbers.reduce((total, num) => total + num, 5);
 console.log(sum2); // 20
-```
-
-Execution model (initial value = 5):
-
-```
-Input        Callback                        Accumulator
-1  ────────▶ (total, num) => total + num ──▶ 5 + 1  = 6
-2  ────────▶ (total, num) => total + num ──▶ 6 + 2  = 8
-3  ────────▶ (total, num) => total + num ──▶ 8 + 3  = 11
-4  ────────▶ (total, num) => total + num ──▶ 11 + 4 = 15
-5  ────────▶ (total, num) => total + num ──▶ 15 + 5 = 20
 ```
 
 📖 Reference: [MDN - Array.reduce()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reduce)
@@ -497,8 +458,6 @@ console.log(people[0].name); // John
 console.log(people[1].age); // 20
 ```
 
-> We use object literal syntax `{}` in this course rather than the `new Object()` constructor.
-
 📖 Reference: [MDN - Working with Objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_Objects)
 
 ---
@@ -519,11 +478,7 @@ Hello, World!
 
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
 /**
@@ -535,8 +490,6 @@ AI tools are encouraged but use them critically:
  * @usage Describe how you used the AI responses to help you with your work
  */
 ```
-
-> You will learn more about JSDoc comments in Week 03.
 
 ---
 
@@ -550,12 +503,12 @@ const isPrime = (num) => {
 };
 ```
 
-| Input         | Expected Output |
-| ------------- | --------------- |
-| `isPrime(1)`  | `false`         |
-| `isPrime(2)`  | `true`          |
-| `isPrime(17)` | `true`          |
-| `isPrime(25)` | `false`         |
+| Input | Expected Output |
+| --- | --- |
+| `isPrime(1)` | `false` |
+| `isPrime(2)` | `true` |
+| `isPrime(17)` | `true` |
+| `isPrime(25)` | `false` |
 
 > **Hint:** A prime number is greater than 1 and has no divisors other than 1 and itself. Iterate from 2 to the square root of the number and check for divisibility.
 
@@ -571,12 +524,12 @@ const reverseString = (str) => {
 };
 ```
 
-| Input                         | Expected Output |
-| ----------------------------- | --------------- |
-| `reverseString("")`           | `""`            |
-| `reverseString("Hello")`      | `"olleH"`       |
-| `reverseString("World")`      | `"dlroW"`       |
-| `reverseString("JavaScript")` | `"tpircSavaJ"`  |
+| Input | Expected Output |
+| --- | --- |
+| `reverseString("")` | `""` |
+| `reverseString("Hello")` | `"olleH"` |
+| `reverseString("World")` | `"dlroW"` |
+| `reverseString("JavaScript")` | `"tpircSavaJ"` |
 
 > **Hint:** Convert to an array with `split()`, reverse with `reverse()`, and rejoin with `join()`. Or use a for loop.
 
@@ -592,12 +545,12 @@ const findMax = (arr) => {
 };
 ```
 
-| Input                         | Expected Output |
-| ----------------------------- | --------------- |
-| `findMax([1, 2, 3, 4, 5])`    | `5`             |
-| `findMax([5, 4, 3, 2, 1])`    | `5`             |
-| `findMax([1, 3, 5, 2, 4])`    | `5`             |
-| `findMax([-10, -5, -1, -20])` | `-1`            |
+| Input | Expected Output |
+| --- | --- |
+| `findMax([1, 2, 3, 4, 5])` | `5` |
+| `findMax([5, 4, 3, 2, 1])` | `5` |
+| `findMax([1, 3, 5, 2, 4])` | `5` |
+| `findMax([-10, -5, -1, -20])` | `-1` |
 
 > **Hint:** Assume the first element is the max, then compare against the rest.
 
@@ -613,12 +566,12 @@ const isPalindrome = (str) => {
 };
 ```
 
-| Input                                         | Expected Output |
-| --------------------------------------------- | --------------- |
-| `isPalindrome("racecar")`                     | `true`          |
-| `isPalindrome("rAcEcAr")`                     | `true`          |
-| `isPalindrome("hello")`                       | `false`         |
-| `isPalindrome("A man a plan a canal Panama")` | `true`          |
+| Input | Expected Output |
+| --- | --- |
+| `isPalindrome("racecar")` | `true` |
+| `isPalindrome("rAcEcAr")` | `true` |
+| `isPalindrome("hello")` | `false` |
+| `isPalindrome("A man a plan a canal Panama")` | `true` |
 
 > **Hint:** Compare the string with its reverse. Handle case and spaces. You can reuse your `reverseString` function from Task 2.
 
@@ -634,12 +587,12 @@ const factorial = (n) => {
 };
 ```
 
-| Input          | Expected Output |
-| -------------- | --------------- |
-| `factorial(0)` | `1`             |
-| `factorial(1)` | `1`             |
-| `factorial(5)` | `120`           |
-| `factorial(7)` | `5040`          |
+| Input | Expected Output |
+| --- | --- |
+| `factorial(0)` | `1` |
+| `factorial(1)` | `1` |
+| `factorial(5)` | `120` |
+| `factorial(7)` | `5040` |
 
 > **Hint:** Multiply all integers from 1 to n using a for loop. Remember: `0! = 1` by definition.
 
@@ -655,8 +608,8 @@ const sortArray = (arr) => {
 };
 ```
 
-| Input                        | Expected Output   |
-| ---------------------------- | ----------------- |
+| Input | Expected Output |
+| --- | --- |
 | `sortArray([5, 4, 3, 2, 1])` | `[1, 2, 3, 4, 5]` |
 | `sortArray([1, 2, 3, 4, 5])` | `[1, 2, 3, 4, 5]` |
 | `sortArray([1, 3, 5, 2, 4])` | `[1, 2, 3, 4, 5]` |
@@ -676,12 +629,12 @@ const countOccurrences = (arr, element) => {
 };
 ```
 
-| Input                                                               | Expected Output |
-| ------------------------------------------------------------------- | --------------- |
-| `countOccurrences([1, 2, 3, 4, 5], 1)`                              | `1`             |
-| `countOccurrences([1, 2, 3, 4, 5], 6)`                              | `0`             |
-| `countOccurrences([1, 2, 3, 4, 5, 1], 1)`                           | `2`             |
-| `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` | `2`             |
+| Input | Expected Output |
+| --- | --- |
+| `countOccurrences([1, 2, 3, 4, 5], 1)` | `1` |
+| `countOccurrences([1, 2, 3, 4, 5], 6)` | `0` |
+| `countOccurrences([1, 2, 3, 4, 5, 1], 1)` | `2` |
+| `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` | `2` |
 
 > **Hint:** Start a counter at 0 and increment it each time you find the target element.
 
@@ -697,12 +650,12 @@ const isAnagram = (str1, str2) => {
 };
 ```
 
-| Input                           | Expected Output |
-| ------------------------------- | --------------- |
-| `isAnagram("listen", "silent")` | `true`          |
-| `isAnagram("hello", "bello")`   | `false`         |
-| `isAnagram("elbow", "below")`   | `true`          |
-| `isAnagram("Study", "dusty")`   | `true`          |
+| Input | Expected Output |
+| --- | --- |
+| `isAnagram("listen", "silent")` | `true` |
+| `isAnagram("hello", "bello")` | `false` |
+| `isAnagram("elbow", "below")` | `true` |
+| `isAnagram("Study", "dusty")` | `true` |
 
 > **Hint:** Sort both strings and compare them. Handle case sensitivity.
 
@@ -718,11 +671,11 @@ const findLongestWord = (sentence) => {
 };
 ```
 
-| Input                                                             | Expected Output        |
-| ----------------------------------------------------------------- | ---------------------- |
-| `findLongestWord("The quick brown fox jumped over the lazy dog")` | `"jumped"`             |
-| `findLongestWord("May the force be with you")`                    | `"force"`              |
-| `findLongestWord("Hello world")`                                  | `"Hello"` or `"world"` |
+| Input | Expected Output |
+| --- | --- |
+| `findLongestWord("The quick brown fox jumped over the lazy dog")` | `"jumped"` |
+| `findLongestWord("May the force be with you")` | `"force"` |
+| `findLongestWord("Hello world")` | `"Hello"` or `"world"` |
 
 > **Hint:** Use `split(' ')` to get words, then iterate to find the longest one.
 
@@ -738,8 +691,8 @@ const mergeSortedArrays = (arr1, arr2) => {
 };
 ```
 
-| Input                                     | Expected Output      |
-| ----------------------------------------- | -------------------- |
+| Input | Expected Output |
+| --- | --- |
 | `mergeSortedArrays([1, 2, 3], [4, 5, 6])` | `[1, 2, 3, 4, 5, 6]` |
 | `mergeSortedArrays([4, 5, 6], [1, 2, 3])` | `[1, 2, 3, 4, 5, 6]` |
 | `mergeSortedArrays([1, 3, 5], [2, 4, 6])` | `[1, 2, 3, 4, 5, 6]` |
@@ -833,7 +786,7 @@ const getFilteredStringLengths = (words) => {
 const words = ["Apple", "Banana", "Avocado", "Strawberry", "Mango"];
 
 console.log(getFilteredStringLengths(words));
-// Expected: [6, 10, 5]  (lengths of "Banana", "Strawberry", "Mango")
+// Expected: [6, 10, 5] (lengths of "Banana", "Strawberry", "Mango")
 ```
 
 > **Hint:** `filter()` to exclude words starting with `"A"`, then `map()` to get their lengths.

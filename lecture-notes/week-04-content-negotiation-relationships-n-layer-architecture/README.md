@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                                                  |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman)                                         |
-| Code Example | [Code Example](code-example)                                                                                                          |
-| → Next       | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+| | Link |
+| --- | --- |
+| Previous | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman) |
+| Code Example | [Code Example](code-example) |
+| Next | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 
@@ -17,8 +17,6 @@ Open your repository in Visual Studio Code and switch to the Week 04 branch:
 ```bash
 git checkout -b w04-content-neg-relationships-n-layer-arch
 ```
-
-> **Tip:** There are many code examples in this week's content. They do not include code from previous exercises. Typing the examples rather than copying and pasting is strongly recommended - it helps with retention. Be sure to read the comments in the code too.
 
 ---
 
@@ -38,7 +36,7 @@ In this class, we use the **Accept Header** approach.
 
 ### 1.1 Middleware
 
-Middleware is a function with access to the request object (`req`), response object (`res`), and the `next` function in the application's request-response cycle. Middleware can:
+Middleware is a function with access to the request object, response object, and the `next` function in the application's request-response cycle. Middleware can:
 
 - Execute any code
 - Modify the request and response objects
@@ -123,14 +121,9 @@ export default app;
 
 ### 1.3 Postman - Testing Content Negotiation
 
-**Step-by-step setup:**
-
-1. In Postman, duplicate your "Create Institution" request from `lecture-notes/week-03` and move the copy into a new folder `lecture-notes/week-04`.
-2. Make sure your server is running (`npm run dev`) and Docker container is up.
-
 **Test 1: Trigger the middleware error**
 
-Change the Body type to **Text** (instead of raw → JSON) and click **Send**.
+Change the Body type to **Text** and click **Send**.
 
 Expected response (`409 Conflict`):
 
@@ -140,19 +133,11 @@ Expected response (`409 Conflict`):
 }
 ```
 
-This confirms the middleware is correctly rejecting requests without `Content-Type: application/json`.
-
 **Test 2: Confirm normal operation still works**
 
 Switch the Body type back to **raw → JSON** and click **Send**.
 
-Expected response (`201 Created`) - the institution is created as normal.
-
-> **What's happening under the hood?** When you select "raw → JSON" in Postman, it automatically sets the `Content-Type: application/json` header. Switching to "Text" removes that header, triggering your middleware.
-
-**Viewing headers in Postman:**
-
-You can inspect what headers Postman is sending by clicking the **Headers** tab in your request. This is useful for debugging content negotiation issues.
+Expected response (`201 Created`).
 
 ---
 
@@ -160,10 +145,10 @@ You can inspect what headers Postman is sending by clicking the **Headers** tab 
 
 Prisma supports three common relationship types between models:
 
-| Type             | Description                                                                           |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| **One-to-one**   | A single model instance is associated with a single instance of another model         |
-| **One-to-many**  | A single model instance is associated with multiple instances of another model        |
+| Type | Description |
+| --- | --- |
+| **One-to-one** | A single model instance is associated with a single instance of another model |
+| **One-to-many** | A single model instance is associated with multiple instances of another model |
 | **Many-to-many** | Multiple instances of a model are associated with multiple instances of another model |
 
 📖 Reference: [Prisma - Relations](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations)
@@ -176,22 +161,22 @@ Add the `Department` model and update `Institution` in `schema.prisma`:
 
 ```js
 model Institution {
-  id          String       @id @default(uuid())
-  name        String
-  region      String
-  country     String
+  id String @id @default(uuid())
+  name String
+  region String
+  country String
   departments Department[]
-  createdAt   DateTime     @default(now())
-  updatedAt   DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Department {
-  id            String      @id @default(uuid())
-  name          String
+  id String @id @default(uuid())
+  name String
   institutionId String
-  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  institution Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 ```
 
@@ -331,18 +316,16 @@ export default app;
 
 ### 2.4 Postman - Testing Departments
 
-**Prerequisites:** You must have at least one institution created before creating a department. If you haven't yet, send a `POST /api/institutions` request first and copy the returned `id`.
-
----
+**Prerequisites:** You must have at least one institution created before creating a department.
 
 **POST - Create a department**
 
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `POST`                                  |
-| URL    | `http://localhost:3000/api/departments` |
+| Field | Value |
+| --- | --- |
+| Method | `POST` |
+| URL | `http://localhost:3000/api/departments` |
 
-Body (raw → JSON):
+Body:
 
 ```json
 {
@@ -351,59 +334,27 @@ Body (raw → JSON):
 }
 ```
 
-Expected response (`201 Created`):
-
-```json
-{
-  "message": "Department successfully created",
-  "data": [
-    {
-      "id": "b2c3d4e5-...",
-      "name": "Information Technology",
-      "institutionId": "a1b2c3d4-...",
-      "createdAt": "...",
-      "updatedAt": "..."
-    }
-  ]
-}
-```
-
----
-
-**GET - All departments**
-
-| Field  | Value                                   |
-| ------ | --------------------------------------- |
-| Method | `GET`                                   |
-| URL    | `http://localhost:3000/api/departments` |
-
-No body needed.
-
----
-
 **GET / PUT / DELETE by ID**
 
-Use the `id` from the create response and follow the same pattern as Week 03 institutions:
+| Operation | Method | URL |
+| --- | --- | --- |
+| Read one | `GET` | `http://localhost:3000/api/departments/<id>` |
+| Update | `PUT` | `http://localhost:3000/api/departments/<id>` |
+| Delete | `DELETE` | `http://localhost:3000/api/departments/<id>` |
 
-| Operation | Method   | URL                                          |
-| --------- | -------- | -------------------------------------------- |
-| Read one  | `GET`    | `http://localhost:3000/api/departments/<id>` |
-| Update    | `PUT`    | `http://localhost:3000/api/departments/<id>` |
-| Delete    | `DELETE` | `http://localhost:3000/api/departments/<id>` |
-
-> **Department-specific error:** A `500` on `POST /api/departments` usually means the `institutionId` doesn't exist in the database. Confirm it with a `GET /api/institutions` first.
+> A `500` on `POST /api/departments` usually means the `institutionId` doesn't exist. Confirm with `GET /api/institutions` first.
 
 ---
 
 ## 3. N-Layer Architecture
 
-N-Layer Architecture separates an application into distinct layers, each with its own responsibilities, making the app easier to manage, test, and scale.
+N-Layer Architecture separates an application into distinct layers, each with its own responsibilities.
 
-| Layer            | Components          | Responsibility                                 |
-| ---------------- | ------------------- | ---------------------------------------------- |
+| Layer | Components | Responsibility |
+| --- | --- | --- |
 | **Presentation** | Controllers, Routes | Handle HTTP requests/responses; validate input |
-| **Application**  | Services            | Business logic; interact with the data layer   |
-| **Data**         | Repositories        | Manage data access; interact with the database |
+| **Application** | Services | Business logic; interact with the data layer |
+| **Data** | Repositories | Manage data access; interact with the database |
 
 📖 Reference: [Martin Fowler - Presentation Domain Data Layering](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
 
@@ -415,7 +366,7 @@ The repository pattern separates data access logic from business logic. Key bene
 
 - **Separation of Concerns** - Data access and business logic are cleanly isolated
 - **Testability** - Each layer can be unit tested independently
-- **Flexibility** - Swap data sources (e.g. SQL → NoSQL) without touching business logic
+- **Flexibility** - Swap data sources without touching business logic
 
 📖 Reference: [Martin Fowler - Repository Pattern](https://martinfowler.com/eaaCatalog/repository.html)
 
@@ -558,7 +509,7 @@ export {
 
 ## 4. The N+1 Problem
 
-The N+1 problem occurs when an application makes N+1 database queries to retrieve related data - 1 query for the main list, and N additional queries for each related record. Example:
+The N+1 problem occurs when an application makes N+1 database queries to retrieve related data - 1 query for the main list, and N additional queries for each related record:
 
 ```js
 const institutions = await prisma.institution.findMany(); // 1 query
@@ -608,11 +559,9 @@ const departments = await prisma.department.findMany({
 
 ## 5. Enums
 
-An enum (enumeration) is a special type that restricts a field to a fixed set of allowed values. Use enums when a field should only ever be one of a known list of options - for example, a status, a role, or a gender.
+An enum is a special type that restricts a field to a fixed set of allowed values.
 
 ### 5.1 Defining an Enum in Prisma
-
-Enums are defined at the top level of `schema.prisma` and referenced in models:
 
 ```js
 enum Gender {
@@ -623,22 +572,20 @@ enum Gender {
 }
 
 model Player {
-  id        String   @id @default(uuid())
+  id String @id @default(uuid())
   firstName String
-  lastName  String
-  gender    Gender
+  lastName String
+  gender Gender
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 ```
 
-> **Note:** Enum values in Prisma are conventionally written in `UPPER_SNAKE_CASE`.
+> Enum values in Prisma are conventionally written in `UPPER_SNAKE_CASE`.
 
 ---
 
 ### 5.2 Using an Enum in a Controller
-
-When creating or updating a record, pass the enum value as a string matching one of the defined options:
 
 ```javascript
 const { firstName, lastName, gender } = req.body;
@@ -648,8 +595,6 @@ await prisma.player.create({
   data: { firstName, lastName, gender },
 });
 ```
-
-> If the value sent by the client does not match a valid enum option, Prisma will throw an error. You should validate the value before passing it to Prisma - this is covered in Week 05.
 
 📖 Reference: [Prisma - Enum](https://www.prisma.io/docs/orm/prisma-schema/data-model/models#defining-enums)
 
@@ -710,15 +655,9 @@ For the Project assessment, you will design and implement a REST API with a data
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Don't blindly trust AI output - validate and do additional research
-- Acknowledge AI usage at the top of any AI-assisted file using this JSDoc comment:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```js
 /**
@@ -733,38 +672,38 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Implement the Code Examples
 
 Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Draft System Design Document _(Easy)_
+### Task 2 - Draft System Design Document ⚠️ Self-Directed
 
-Create a draft system design document for your REST API based on the [System Design](#6-system-design) section above. Email it to your course lecturer by the **end of Week 5**. Feedback will be provided in Week 6.
+Create a draft system design document for your REST API based on the [System Design](#6-system-design) section above. Email it to your course lecturer by the **end of Week 5**.
 
 ---
 
-### Task 3 - User Model _(Easy)_
+### Task 3 - User Model
 
 Create a `User` model with the following fields:
 
-| Field          | Type     | Constraints               |
-| -------------- | -------- | ------------------------- |
-| `id`           | String   | Primary key, default UUID |
-| `firstName`    | String   |                           |
-| `lastName`     | String   |                           |
-| `emailAddress` | String   | Unique                    |
-| `createdAt`    | DateTime | Default now               |
-| `updatedAt`    | DateTime | Default now               |
+| Field | Type | Constraints |
+| --- | --- | --- |
+| `id` | String | Primary key, default UUID |
+| `firstName` | String | |
+| `lastName` | String | |
+| `emailAddress` | String | Unique |
+| `createdAt` | DateTime | Default now |
+| `updatedAt` | DateTime | Default now |
 
 > **Remember:** Create and apply a migration after updating `schema.prisma`.
 
-Create the necessary controller, route, and repository files for the `User` model. Test your implementation in Postman.
+Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 4 - Player Model _(Easy)_
+### Task 4 - Player Model
 
 Given the following JSON object:
 
@@ -780,7 +719,7 @@ Given the following JSON object:
 }
 ```
 
-Analyse each field and create a `Player` model in `schema.prisma` that represents this object. Use Prisma conventions - camelCase field names and UUIDs instead of integer IDs. Use an enum for the `gender` field:
+Create a `Player` model in `schema.prisma` using Prisma conventions - camelCase field names and UUIDs. Use an enum for the `gender` field:
 
 ```js
 enum Gender {
@@ -791,67 +730,57 @@ enum Gender {
 }
 ```
 
-| JSON Field      | Prisma Field   | Type     | Constraints               |
-| --------------- | -------------- | -------- | ------------------------- |
-| `id`            | `id`           | String   | Primary key, default UUID |
-| `first_name`    | `firstName`    | String   |                           |
-| `last_name`     | `lastName`     | String   |                           |
-| `email`         | `emailAddress` | String   | Unique                    |
-| `gender`        | `gender`       | Gender   | Enum                      |
-| `is_injured`    | `isInjured`    | Boolean  | Default `false`           |
-| `date_of_birth` | `dateOfBirth`  | DateTime | Required                  |
-|                 | `createdAt`    | DateTime | Default now               |
-|                 | `updatedAt`    | DateTime | `@updatedAt`              |
+| JSON Field | Prisma Field | Type | Constraints |
+| --- | --- | --- | --- |
+| `id` | `id` | String | Primary key, default UUID |
+| `first_name` | `firstName` | String | |
+| `last_name` | `lastName` | String | |
+| `email` | `emailAddress` | String | Unique |
+| `gender` | `gender` | Gender | Enum |
+| `is_injured` | `isInjured` | Boolean | Default `false` |
+| `date_of_birth` | `dateOfBirth` | DateTime | Required |
+| | `createdAt` | DateTime | Default now |
+| | `updatedAt` | DateTime | `@updatedAt` |
 
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
-Create the necessary controller, route, and repository files for the `Player` model. Test your implementation in Postman.
-
-> **Think about it:** The source JSON uses `snake_case` and an integer `id`. Why does Prisma prefer `camelCase` and UUID strings? The `date_of_birth` field is required - how should your controller respond if a client sends a request without it?
+Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 5 - Normalise the Player Model _(Medium)_
+### Task 5 - Normalise the Player Model ⚠️ Self-Directed
 
-The `Player` model from Task 4 stores everything in a single table. Consider how you might split this into three separate models - `Person`, `Player`, and `Injury` - and what fields each one should own.
+The `Player` model from Task 4 stores everything in a single table. Split it into three separate models - `Person`, `Player`, and `Injury`.
 
-Use the following field inventory as a starting point. Decide which model each field belongs to, what type it should be, and what constraints apply:
+| Field | Type | Constraints |
+| --- | --- | --- |
+| `id` | String | Primary key, default UUID |
+| `firstName` | String | |
+| `lastName` | String | |
+| `emailAddress` | String | Unique |
+| `gender` | Gender | Enum |
+| `dateOfBirth` | DateTime | |
+| `description` | String | |
+| `occurredAt` | DateTime | |
+| `resolvedAt` | DateTime | Optional |
+| `createdAt` | DateTime | Default now |
+| `updatedAt` | DateTime | `@updatedAt` |
 
-| Field          | Type     | Constraints               |
-| -------------- | -------- | ------------------------- |
-| `id`           | String   | Primary key, default UUID |
-| `firstName`    | String   |                           |
-| `lastName`     | String   |                           |
-| `emailAddress` | String   | Unique                    |
-| `gender`       | Gender   | Enum                      |
-| `dateOfBirth`  | DateTime |                           |
-| `description`  | String   |                           |
-| `occurredAt`   | DateTime |                           |
-| `resolvedAt`   | DateTime | Optional                  |
-| `createdAt`    | DateTime | Default now               |
-| `updatedAt`    | DateTime | `@updatedAt`              |
-
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
-
-Create the necessary controller, route, and repository files for each model. Test your implementation in Postman.
-
-> **Think about it:** What is the relationship type between `Person` and `Player`? What about `Player` and `Injury`? The original model used a single `isInjured` boolean - what can the `Injury` table tell you that a boolean cannot?
+Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 6 - Course Model _(Easy)_
+### Task 6 - Course Model
 
 Create a `Course` model and update `Department` to include a one-to-many relationship:
 
-| Field          | Type     | Constraints               |
-| -------------- | -------- | ------------------------- |
-| `id`           | String   | Primary key, default UUID |
-| `code`         | String   |                           |
-| `name`         | String   |                           |
-| `description`  | String   |                           |
-| `departmentId` | String   | Foreign key               |
-| `createdAt`    | DateTime | Default now               |
-| `updatedAt`    | DateTime | Default now               |
+| Field | Type | Constraints |
+| --- | --- | --- |
+| `id` | String | Primary key, default UUID |
+| `code` | String | |
+| `name` | String | |
+| `description` | String | |
+| `departmentId` | String | Foreign key |
+| `createdAt` | DateTime | Default now |
+| `updatedAt` | DateTime | Default now |
 
 Update `schema.prisma`:
 
@@ -862,26 +791,24 @@ model Department {
 }
 
 model Course {
-  id           String     @id @default(uuid())
-  code         String
-  name         String
-  description  String
+  id String @id @default(uuid())
+  code String
+  name String
+  description String
   departmentId String
-  department   Department @relation(fields: [departmentId], references: [id])
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @default(now())
+  department Department @relation(fields: [departmentId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now())
 }
 ```
-
-> **Remember:** Create and apply a migration after updating `schema.prisma`.
 
 Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 7 - Status Codes Utility _(Easy)_
+### Task 7 - Status Codes Utility
 
-In the `backend` directory, create `utils/statusCodes.js`:
+Create `utils/statusCodes.js`:
 
 ```javascript
 const STATUS_CODES = {
@@ -897,7 +824,7 @@ Update your controller files to use these constants instead of hard-coded number
 
 ---
 
-### Task 8 - Relationship Queries _(Medium)_
+### Task 8 - Relationship Queries ⚠️ Self-Directed
 
 Refactor your controller and repository files to include relationship queries for `Institution`, `Department`, and `Course`.
 
@@ -917,8 +844,6 @@ class InstitutionRepository {
       include: includeOptions,
     });
   }
-
-  // Other methods unchanged...
 }
 ```
 
@@ -938,32 +863,7 @@ const getInstitutions = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
-
-const getInstitution = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const institution = await institutionRepository.findById(id, {
-      departments: true,
-    });
-    if (!institution) {
-      return res.status(404).json({
-        message: `No institution with the id: ${id} found`,
-      });
-    }
-    return res.status(200).json({ data: institution });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
 ```
-
-Apply similar changes to the `Department` controller/repository to include `Course` data.
-
-**To test in Postman:**
-
-1. `POST /api/institutions` - create an institution, copy its `id`
-2. `POST /api/departments` - create a department using the institution `id`
-3. `GET /api/institutions` - the response should now include a `departments` array nested inside each institution
 
 Expected response shape:
 
@@ -987,21 +887,17 @@ Expected response shape:
 }
 ```
 
-> **Think about it:** Are there any performance issues with this approach? How would you resolve them?
-
 ---
 
 ## Hard Exercises
 
-These exercises require independent research and problem-solving. Completing them will deepen your understanding and support higher marks in the Project assessment.
-
 ---
 
-### Hard Task 1 - Caching Middleware
+### Hard Task 1 - Caching Middleware ⚠️ Self-Directed
 
 #### What is Caching?
 
-Caching stores the result of an expensive operation (such as a database query) in memory so that subsequent requests for the same data can be served instantly - without hitting the database again.
+Caching stores the result of an expensive operation in memory so subsequent requests can be served instantly.
 
 **Without caching:**
 
@@ -1015,28 +911,6 @@ Client → Express → Database → Express → Client
 1st request: Client → Express → Database → Cache → Client
 2nd request: Client → Express → Cache → Client
 ```
-
-This matters because database queries are the slowest part of most API responses. Caching a `GET /api/institutions` response that rarely changes means most requests never touch the database at all.
-
-#### How the Cache in This Task Works
-
-The cache is a plain JavaScript object stored in memory:
-
-```javascript
-const cache = {};
-
-// A cached entry looks like this:
-cache["/api/institutions"] = {
-  data: {
-    /* the JSON response body */
-  },
-  timestamp: 1720000000000, // Date.now() when it was stored
-};
-```
-
-Each entry has a **key** (the URL), the **data** to return, and a **timestamp** used to calculate whether the entry has expired.
-
-The **duration** parameter controls how long a cached entry is considered fresh. After that time passes, the cache entry is deleted and the next request goes to the database again.
 
 #### Cache Lifecycle
 
@@ -1052,18 +926,8 @@ Is there a cache entry for this URL?
 
 #### The `X-Cache` Header
 
-The `X-Cache` response header is a widely used convention that tells the client (and debugging tools like Postman) whether the response came from cache or the database:
-
 - `X-Cache: HIT` - response served from cache
 - `X-Cache: MISS` - response fetched from the database
-
-You can see these headers in Postman under the **Headers** tab of the response panel.
-
-#### Why Clear Cache on Mutations?
-
-If a `POST`, `PUT`, or `DELETE` modifies the data but the cache still holds the old response, subsequent `GET` requests will return stale data. Calling `clearCache()` after any mutation ensures the next `GET` fetches fresh data from the database and repopulates the cache.
-
----
 
 #### Implementation
 
@@ -1086,7 +950,6 @@ const cacheMiddleware = (duration) => {
       if (!isExpired) {
         // TODO 3: Set the 'X-Cache' header to 'HIT'
 
-        // Debug only - remove before committing
         console.log(`Cache hit for key: ${key}`);
 
         return res.status(200).json(cachedResponse.data);
@@ -1105,7 +968,6 @@ const cacheMiddleware = (duration) => {
 
       // TODO 5: Set the 'X-Cache' header to 'MISS'
 
-      // Debug only - remove before committing
       console.log(`Cache miss for key: ${key}`);
 
       return originalJson(body);
@@ -1130,10 +992,8 @@ const clearCache = () => {
 import { cacheMiddleware } from "../middleware/cache.js";
 
 const MAX_CACHE_DURATION = // TODO 8: 5 minutes in milliseconds
-  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
-
-// POST, PUT, DELETE routes do NOT use cacheMiddleware
 ```
 
 **Clear cache in controllers after mutations:**
@@ -1151,32 +1011,11 @@ const createInstitution = async (req, res) => {
 };
 ```
 
-#### Testing in Postman
-
-Follow these steps exactly to observe all three cache states:
-
-1. `GET /api/institutions` → terminal logs **Cache miss**, response header `X-Cache: MISS`
-2. `POST /api/institutions` → creates institution, cache is cleared
-3. `GET /api/institutions` → terminal logs **Cache miss** again (cache was cleared), `X-Cache: MISS`
-4. `GET /api/institutions` → terminal logs **Cache hit**, `X-Cache: HIT` - served from memory, no DB query
-
-To verify the `X-Cache` header in Postman, click the **Headers** tab in the response panel after each request.
-
-**Expected terminal output:**
-
-```
-Cache miss for key: /api/institutions
-Cache miss for key: /api/institutions
-Cache hit for key: /api/institutions
-```
-
-> **Think about it:** This implementation uses in-process memory, so the cache is wiped every time the server restarts. How would you implement a cache that survives restarts? (Hint: look up Redis.)
-
 ---
 
-### Hard Task 2 - Sustainable Codebase
+### Hard Task 2 - Sustainable Codebase ⚠️ Self-Directed
 
-As your codebase grows, it's important to maintain a clean and sustainable structure. Refactor your code to implement the following improvements:
+Refactor your code to implement the following improvements:
 
 - **`server.js`** - Extract `app.listen(...)` from `app.js` into its own module
 - **`BaseRepository`** - Create a base class with common CRUD methods that other repositories can extend
@@ -1186,4 +1025,4 @@ As your codebase grows, it's important to maintain a clean and sustainable struc
 
 ## README
 
-Update the `README.md` in your repository to document any new endpoints added this week. Include setup instructions and any other relevant information for users or developers.
+Update the `README.md` in your repository to document any new endpoints added this week.

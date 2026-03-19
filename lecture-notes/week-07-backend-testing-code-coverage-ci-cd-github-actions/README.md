@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                 |
-| ------------ | ---------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac-api/README.md) |
-| Code Example | [Code Example](code-example)                                                                         |
-| → Next       | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)           |
+| | Link |
+| --- | --- |
+| Previous | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac-api/README.md) |
+| Code Example | [Code Example](code-example) |
+| Next | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md) |
 
 ---
 
@@ -18,15 +18,11 @@ Open your repository in Visual Studio Code and switch to the Week 07 branch:
 git checkout -b w07-be-testing-code-cov-ci-cd-gh-actions
 ```
 
-Set up your development environment (Docker, environment variables, etc.) before continuing.
-
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended. Read the comments in the code too - they help explain where and why things go.
-
 ---
 
 ## 1. What is GitHub Actions?
 
-GitHub Actions is a CI/CD platform built into GitHub. It lets you automate tasks - running tests, checking code style, deploying apps - triggered by events in your repository such as a push or pull request.
+GitHub Actions is a CI/CD platform built into GitHub that lets you automate tasks triggered by events in your repository.
 
 **CI/CD stands for:**
 
@@ -37,15 +33,15 @@ GitHub Actions is a CI/CD platform built into GitHub. It lets you automate tasks
 
 ## 2. Core Concepts
 
-| Concept      | Description                                                                   |
-| ------------ | ----------------------------------------------------------------------------- |
-| **Workflow** | A YAML file defining an automated process, stored in `.github/workflows/`     |
-| **Event**    | A trigger that starts a workflow - e.g. `push`, `pull_request`, `schedule`    |
-| **Job**      | A set of steps running on the same machine. Jobs run in parallel by default   |
-| **Step**     | A single task within a job - either a shell command or a pre-built action     |
-| **Action**   | A reusable unit of work - from the GitHub Marketplace or defined locally      |
+| Concept | Description |
+| --- | --- |
+| **Workflow** | A YAML file defining an automated process, stored in `.github/workflows/` |
+| **Event** | A trigger that starts a workflow - e.g. `push`, `pull_request`, `schedule` |
+| **Job** | A set of steps running on the same machine. Jobs run in parallel by default |
+| **Step** | A single task within a job - either a shell command or a pre-built action |
+| **Action** | A reusable unit of work - from the GitHub Marketplace or defined locally |
 | **Artifact** | Files produced during a workflow run that can be saved or shared between jobs |
-| **Secret**   | Encrypted environment variables stored in GitHub - never visible in logs      |
+| **Secret** | Encrypted environment variables stored in GitHub - never visible in logs |
 
 ---
 
@@ -62,7 +58,7 @@ root/
         └── pipeline.yml
 ```
 
-A minimal workflow looks like this:
+A minimal workflow:
 
 ```yaml
 name: My Workflow
@@ -87,7 +83,7 @@ jobs:
 
 ## 4. Secrets and Environment Variables
 
-Never hardcode sensitive values in workflow files. Store them as **GitHub Secrets** under **Settings → Secrets and variables → Actions**, then reference them in your workflow.
+Store sensitive values as **GitHub Secrets** under **Settings → Secrets and variables → Actions**, then reference them in your workflow:
 
 ```yaml
 jobs:
@@ -100,7 +96,7 @@ jobs:
       JWT_SECRET: ${{ secrets.JWT_SECRET }}
 ```
 
-> ⚠️ **Important:** Secrets are masked in logs as `***`. Never echo a secret directly into a log message.
+> ⚠️ **Important:** Secrets are masked in logs as `***`.
 
 ---
 
@@ -109,8 +105,6 @@ jobs:
 ---
 
 ### 5.1 Format and Lint on Pull Request
-
-Enforce code formatting (Prettier) and linting (ESLint) before any pull request is merged.
 
 Create `.github/workflows/lint.yml`:
 
@@ -142,13 +136,11 @@ jobs:
         run: npm run lint:check
 ```
 
-> **`npm ci` vs `npm install`:** `npm ci` installs exactly from `package-lock.json` and never modifies it - always use `npm ci` in CI environments.
+> `npm ci` installs exactly from `package-lock.json` and never modifies it - always use `npm ci` in CI environments.
 
 ---
 
 ### 5.2 Integration Tests with a Real Database
-
-Your test suite from Week 06 requires a running PostgreSQL instance. Use a **service container** - a Docker container that runs alongside your job - to provide one.
 
 Create `.github/workflows/ci.yml`:
 
@@ -199,15 +191,11 @@ jobs:
       - run: npm run test
 ```
 
-> **Why `prisma migrate deploy`?** The service container starts with an empty database. This command applies your existing migrations so the schema exists before tests run.
-
-> **Why health checks?** The `options` block tells GitHub Actions to wait until Postgres is ready before starting your job steps. Without this, tests may fail because the database isn't accepting connections yet.
+> The `options` block tells GitHub Actions to wait until Postgres is ready before starting your job steps.
 
 ---
 
 ### 5.3 Full CI Pipeline - Lint then Test
-
-Chain jobs together using `needs`. Each job only runs if the previous one passes, giving fast feedback with minimal wasted time.
 
 Create `.github/workflows/pipeline.yml`:
 
@@ -276,13 +264,9 @@ jobs:
       - run: npm run test
 ```
 
-The pipeline runs sequentially: **format and lint → test**. If formatting or linting fails, tests never run.
-
 ---
 
 ### 5.4 Code Coverage Report
-
-Generate a coverage report and upload it as a workflow artifact that can be downloaded and reviewed after each run.
 
 Create `.github/workflows/coverage.yml`:
 
@@ -343,13 +327,9 @@ jobs:
           retention-days: 7
 ```
 
-After the workflow runs, the HTML report is available under the **Artifacts** section on the workflow summary page in GitHub.
-
 ---
 
 ### 5.5 Dependency Security Audit
-
-Automatically audit npm dependencies for known vulnerabilities on every push to `main`.
 
 Create `.github/workflows/audit.yml`:
 
@@ -378,13 +358,11 @@ jobs:
         run: npm audit --audit-level=high
 ```
 
-> **Audit levels:** `low`, `moderate`, `high`, `critical`. Setting `--audit-level=high` only fails the build for serious vulnerabilities - low/moderate findings are reported but don't block the workflow.
+> Setting `--audit-level=high` only fails the build for serious vulnerabilities.
 
 ---
 
 ## 6. Branch Protection Rules
-
-Workflows become powerful when combined with **branch protection**. You can require specific jobs to pass before a pull request can be merged into `main`.
 
 To configure:
 
@@ -393,34 +371,26 @@ To configure:
 3. Enable **Require status checks to pass before merging**
 4. Search for and add your job names - e.g. `format-and-lint`, `test`
 
-This prevents anyone - including repository owners - from merging code that breaks the test suite or fails formatting checks.
-
 ---
 
 ## 7. Best Practices
 
-| Practice                                | Why it matters                                             |
-| --------------------------------------- | ---------------------------------------------------------- |
-| Pin action versions with `@v6`          | Prevents breaking changes from upstream actions            |
-| Use `npm ci` not `npm install`          | Reproducible installs - never modifies `package-lock.json` |
-| Cache `node_modules`                    | Significantly reduces workflow run time                    |
-| Store secrets in GitHub Secrets         | Masked in logs and encrypted at rest                       |
-| Use `needs` to chain jobs               | Prevents tests running if linting fails                    |
-| Add health checks to service containers | Ensures the database is ready before tests connect         |
+| Practice | Why it matters |
+| --- | --- |
+| Pin action versions with `@v6` | Prevents breaking changes from upstream actions |
+| Use `npm ci` not `npm install` | Reproducible installs |
+| Cache `node_modules` | Reduces workflow run time |
+| Store secrets in GitHub Secrets | Masked in logs and encrypted at rest |
+| Use `needs` to chain jobs | Prevents tests running if linting fails |
+| Add health checks to service containers | Ensures the database is ready before tests connect |
 
 ---
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+Acknowledge AI usage at the top of any AI-assisted file:
 
 ```yaml
 # @ai-assisted This file was developed with assistance from [AI Tool Name]
@@ -432,7 +402,7 @@ AI tools are encouraged but use them critically:
 
 ---
 
-### Task 1 - Integration Test Workflow _(Easy)_
+### Task 1 - Integration Test Workflow
 
 Create `.github/workflows/ci.yml` that:
 
@@ -442,31 +412,27 @@ Create `.github/workflows/ci.yml` that:
 4. Applies Prisma migrations with `npx prisma migrate deploy`
 5. Runs your test suite with `npm run test`
 
-> **Note:** A database service container is required because your tests from Week 06 make real database calls. A workflow without one will always fail.
+---
+
+### Task 2 - Format and Lint Workflow
+
+Create `.github/workflows/lint.yml` with two steps:
+
+1. `npm run format:check`
+2. `npm run lint:check`
 
 ---
 
-### Task 2 - Format and Lint Workflow _(Easy)_
-
-Create `.github/workflows/lint.yml` that runs on every pull request targeting `main` with two steps:
-
-1. `npm run format:check` - fails if any file is not Prettier-formatted
-2. `npm run lint:check` - fails if any ESLint errors are found
-
-Verify it works by temporarily introducing a formatting error (e.g. remove a semicolon or add extra whitespace) and confirming the workflow fails as expected.
-
----
-
-### Task 3 - Environment Variable Audit _(Easy)_
+### Task 3 - Environment Variable Audit ⚠️ Self-Directed
 
 In `week-07-github-actions-considerations.md`, explain:
 
-- The difference between GitHub **Secrets** and **Variables** (Settings → Secrets and variables → Actions)
+- The difference between GitHub **Secrets** and **Variables**
 - Which of your application's environment variables should be stored as Secrets vs Variables, and why
 
 ---
 
-### Task 4 - Full Pipeline _(Medium)_
+### Task 4 - Full Pipeline
 
 Create `.github/workflows/pipeline.yml` with two chained jobs:
 
@@ -475,19 +441,15 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 5 - Branch Protection _(Easy)_
+### Task 5 - Branch Protection ⚠️ Self-Directed
 
-Configure branch protection on `main` so that the `format-and-lint` and `test` jobs from your pipeline must pass before any pull request can be merged.
-
-Test it by opening a pull request with a formatting error and confirming the merge button is blocked.
+Configure branch protection on `main` so that the `format-and-lint` and `test` jobs must pass before any pull request can be merged.
 
 ---
 
-### Task 6 - Workflow Status Badge _(Easy)_
+### Task 6 - Workflow Status Badge ⚠️ Self-Directed
 
-Add a workflow status badge to your repository's `README.md` reflecting the current status of your CI workflow on `main`.
-
-GitHub generates badge URLs in this format:
+Add a workflow status badge to your `README.md`:
 
 ```
 ![CI](https://github.com/<owner>/<repo>/actions/workflows/<filename>.yml/badge.svg)
@@ -497,13 +459,11 @@ GitHub generates badge URLs in this format:
 
 ## Hard Exercises
 
-These exercises require independent research and problem-solving. Completing them deepens your understanding and supports higher marks in the Project assessment.
-
 ---
 
-### Hard Task 1 - Semantic Release
+### Hard Task 1 - Semantic Release ⚠️ Self-Directed
 
-Automate versioning and changelog generation using `semantic-release`. When commits follow the **Conventional Commits** format (`feat:`, `fix:`, `chore:`, etc.), `semantic-release` automatically determines the next version number, creates a GitHub Release, and updates `CHANGELOG.md`.
+Automate versioning and changelog generation using `semantic-release`.
 
 Install:
 
@@ -526,17 +486,15 @@ Create `.releaserc.json`:
 }
 ```
 
-Create `.github/workflows/release.yml` that runs `semantic-release` on every push to `main`. Use `secrets.GITHUB_TOKEN` - this is automatically provided by GitHub, no setup needed.
+Create `.github/workflows/release.yml` that runs `semantic-release` on every push to `main` using `secrets.GITHUB_TOKEN`.
 
 📖 Reference: [semantic-release docs](https://semantic-release.gitbook.io/semantic-release/)
 
 ---
 
-### Hard Task 2 - Scheduled Security Audit
+### Hard Task 2 - Scheduled Security Audit ⚠️ Self-Directed
 
-Extend your security audit workflow to also run on a **weekly schedule** using cron syntax, in addition to running on push to `main`.
-
-Use [crontab.guru](https://crontab.guru) to construct an expression that runs every Monday at 9am UTC.
+Extend your security audit workflow to also run on a **weekly schedule** using cron syntax that runs every Monday at 9am UTC.
 
 📖 Reference: [GitHub Docs - Scheduled events](https://docs.github.com/en/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows#schedule)
 
@@ -544,4 +502,4 @@ Use [crontab.guru](https://crontab.guru) to construct an expression that runs ev
 
 ## README
 
-Update the `README.md` in your repository to document any workflows added this week. Include the workflow status badge and any other relevant information for developers contributing to the project.
+Update the `README.md` in your repository to document any workflows added this week, including the workflow status badge.
