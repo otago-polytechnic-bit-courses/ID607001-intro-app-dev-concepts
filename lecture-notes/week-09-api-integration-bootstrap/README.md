@@ -660,6 +660,7 @@ Update `src/routes/dashboard/+page.svelte` to use Sveltestrap components:
 ```
 
 📖 Reference: [Sveltestrap Documentation](https://sveltestrap.js.org)
+
 ---
 
 ## Exercises
