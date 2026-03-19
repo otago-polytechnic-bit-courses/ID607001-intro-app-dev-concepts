@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "mocha tests --recursive --timeout 10000 --exit",
-    "test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+    "test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit",
+    "test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit",
     "test:coverage:report": "c8 report --reporter=html && open coverage/index.html",
     "dev": "nodemon app.js",
     "format:check": "prettier --check .",

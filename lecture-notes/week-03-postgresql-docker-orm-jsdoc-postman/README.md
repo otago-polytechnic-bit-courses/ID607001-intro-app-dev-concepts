@@ -113,6 +113,7 @@ NODE_ENV=development
 PORT=3000
 API_BASE_URL=http://localhost
 DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
+TEST_DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres
 ```
 
 Add a convenience script to `package.json`:
@@ -235,6 +236,7 @@ npx prisma migrate reset --force
   "lint:check": "eslint .",
   "lint:fix": "eslint --fix .",
   "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
+  "docker:run:test": "docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5432 -d postgres",
   "env:copy": "cp .env.example .env || copy .env.example .env",
   "prisma:migrate": "npx prisma migrate dev",
   "prisma:reset": "npx prisma migrate reset --force"

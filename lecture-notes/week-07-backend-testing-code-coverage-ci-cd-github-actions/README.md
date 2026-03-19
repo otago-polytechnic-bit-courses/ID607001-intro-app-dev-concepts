@@ -32,7 +32,42 @@ We use three libraries together:
 
 ---
 
-### 1.1 Setup
+### 1.1 Prerequisites
+
+A separate test database container is used to keep test data isolated from your development database. Make sure it is running before you run the test suite locally:
+
+```bash
+npm run docker:run:test
+npm run test
+```
+
+The test container runs on port `5433` to avoid conflicting with the development container on port `5432`.
+
+---
+
+### 1.2 Connecting to the Test Database
+
+The test suite needs to point at port `5433` rather than `5432`. This is done by overriding `DATABASE_URL` directly in the `test` and `test:coverage` scripts in `package.json`:
+
+```json
+"test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit",
+"test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit"
+```
+
+> **Windows users:** The inline environment variable syntax above works on macOS and Linux. On Windows, use `cross-env`:
+> ```bash
+> npm install cross-env --save-dev
+> ```
+> Then prefix each script with `cross-env`:
+> ```json
+> "test": "cross-env DATABASE_URL=postgresql://... mocha tests --recursive --timeout 10000 --exit"
+> ```
+
+This means no `.env.test` file is needed — the correct URL is injected at the point the script is run. The `DATABASE_URL` set here overrides whatever is in your `.env` file for the duration of the test run only, leaving your development database untouched.
+
+---
+
+### 1.3 Setup
 
 ```bash
 npm install chai mocha supertest --save-dev
@@ -40,7 +75,32 @@ npm install chai mocha supertest --save-dev
 
 ---
 
-### 1.2 Directory Structure
+### 1.4 Test File Ordering
+
+Test files are run in alphabetical order. The numeric prefixes (`00-`, `01-`) enforce a deliberate sequence — institution tests run before department tests. This matters because the department tests depend on an institution ID created during the institution tests, which is passed between files via `global.testInstitutionId`.
+
+If you add new test files, prefix them with the next number in the sequence.
+
+---
+
+### 1.5 Mocha Lifecycle Hooks
+
+Mocha provides four lifecycle hooks for setup and teardown:
+
+| Hook | When it runs |
+| --- | --- |
+| `before()` | Once before all tests in a `describe` block |
+| `after()` | Once after all tests in a `describe` block |
+| `beforeEach()` | Before every individual test |
+| `afterEach()` | After every individual test |
+
+In this project, `before()` is used to set up authentication tokens and retrieve shared IDs before tests run, and `after()` is used to clean up the database and close the Prisma connection once all tests in a block are complete.
+
+> `after()` with `cleanupDatabase()` and `disconnectPrisma()` should only appear in the **last** test file — placing it earlier would wipe data that subsequent test files still need.
+
+---
+
+### 1.6 Directory Structure
 
 ```
 root/
@@ -54,7 +114,7 @@ root/
 
 ---
 
-### 1.3 Helper - Database (`helpers/db.js`)
+### 1.7 Helper - Database (`helpers/db.js`)
 
 ```javascript
 import prisma from "../../prisma/db.js";
@@ -74,7 +134,7 @@ export { cleanupDatabase, disconnectPrisma };
 
 ---
 
-### 1.4 Helper - Auth (`helpers/auth.js`)
+### 1.8 Helper - Auth (`helpers/auth.js`)
 
 ```javascript
 import request from "supertest";
@@ -110,7 +170,7 @@ export default setupTestAuth;
 
 ---
 
-### 1.5 Institution CRUD Tests (`00-institution.test.js`)
+### 1.9 Institution CRUD Tests (`00-institution.test.js`)
 
 ```javascript
 import { expect } from "chai";
@@ -215,7 +275,7 @@ describe("Institution CRUD", () => {
 
 ---
 
-### 1.6 Department CRUD Tests (`01-department.test.js`)
+### 1.10 Department CRUD Tests (`01-department.test.js`)
 
 ```javascript
 import { expect } from "chai";
@@ -296,12 +356,12 @@ describe("Department CRUD", () => {
 
 ---
 
-### 1.7 Test Script
+### 1.11 Test Script
 
 Add the following to your `scripts` block in `package.json`:
 
 ```json
-"test": "mocha tests --recursive --timeout 10000 --exit"
+"test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit"
 ```
 
 | Flag | Purpose |
@@ -366,13 +426,33 @@ Create `.c8rc` in the project root:
 ### 2.3 Scripts - `package.json`
 
 ```json
-"test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+"test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit",
 "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
 ---
 
 ### 2.4 Reading the Terminal Report
+
+Running `npm run test:coverage` prints a table like this:
+
+```
+-----------------------|---------|----------|---------|---------|--------------------
+File                   | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s
+-----------------------|---------|----------|---------|---------|--------------------
+All files              |   77.72 |    54.09 |   94.44 |   77.72 |
+ controllers           |   71.09 |    43.24 |    92.3 |   71.09 |
+  auth.js              |   85.26 |     37.5 |     100 |   85.26 | 14-15,48-51,62-63
+  institution.js       |   69.85 |     37.5 |     100 |   69.85 | 13-16,57-66,78-85
+ middleware            |   76.54 |    66.66 |     100 |   76.54 |
+  jwtAuth.js           |   77.41 |       50 |     100 |   77.41 | 9-10,24-28
+  rbac.js              |   63.63 |       60 |     100 |   63.63 | 6-9,13-16
+ routes                |     100 |      100 |     100 |     100 |
+  institution.js       |     100 |      100 |     100 |     100 |
+-----------------------|---------|----------|---------|---------|--------------------
+```
+
+The **Uncovered Line #s** column identifies exactly which lines were never reached during the test run — these are the first places to look when writing additional tests.
 
 Lines highlighted in the HTML report indicate:
 
@@ -569,7 +649,7 @@ jobs:
           POSTGRES_PASSWORD: HelloWorld123
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -578,7 +658,7 @@ jobs:
 
     env:
       NODE_ENV: test
-      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
+      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5433/postgres
       JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
@@ -642,7 +722,7 @@ jobs:
           POSTGRES_PASSWORD: HelloWorld123
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -651,7 +731,7 @@ jobs:
 
     env:
       NODE_ENV: test
-      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
+      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5433/postgres
       JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
@@ -693,7 +773,7 @@ jobs:
           POSTGRES_PASSWORD: HelloWorld123
           POSTGRES_DB: postgres
         ports:
-          - 5432:5432
+          - 5433:5432
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -702,7 +782,7 @@ jobs:
 
     env:
       NODE_ENV: test
-      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5432/postgres
+      DATABASE_URL: postgresql://postgres:HelloWorld123@localhost:5433/postgres
       JWT_SECRET: MySuperSecretKeyChangeInProduction256Bits
       JWT_LIFETIME: 1h
 
@@ -766,7 +846,20 @@ jobs:
 
 ---
 
-## 8. Branch Protection Rules
+## 8. Viewing Workflow Results
+
+After pushing to GitHub, workflow results are visible under the **Actions** tab of your repository. Each run shows:
+
+- The overall pass/fail status of the workflow
+- Individual job statuses and how long each took
+- Expandable step logs for debugging failures
+- Any uploaded artifacts (such as coverage reports) under the **Artifacts** section at the bottom of the run summary
+
+If a workflow fails, click into the failed job, then the failed step, to read the full log output. The most useful information is usually at the bottom of the log near where the error occurred.
+
+---
+
+## 9. Branch Protection Rules
 
 To configure:
 
@@ -777,7 +870,7 @@ To configure:
 
 ---
 
-## 9. Best Practices
+## 10. Best Practices
 
 | Practice | Why it matters |
 | --- | --- |
