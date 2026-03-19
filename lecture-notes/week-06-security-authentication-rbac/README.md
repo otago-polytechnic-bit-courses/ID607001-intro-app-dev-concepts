@@ -535,407 +535,67 @@ router.get("/:id", rateLimiter, getInstitution);
 
 ---
 
-## 5. API Testing
+## 5. Testing
 
-We use three libraries together:
+### 5.1 Types of Testing
 
-| Library | Role |
-| --- | --- |
-| **Mocha** | Test framework - organises and runs tests |
-| **Chai** | Assertion library - verifies expected outcomes |
-| **Supertest** | HTTP client - makes requests to the Express app |
+There are several types of testing commonly used in backend development. They differ in scope, speed, and what they verify.
 
----
+| Type | Scope | Speed | Description |
+| --- | --- | --- | --- |
+| **Unit** | Single function or module | Fast | Tests a piece of logic in isolation, with all dependencies mocked |
+| **Integration** | Multiple components together | Moderate | Tests how components interact, typically with a real database |
+| **End-to-end** | Full application stack | Slow | Tests the entire system from the client's perspective |
 
-### 5.1 Setup
-
-```bash
-npm install chai mocha supertest --save-dev
-```
+Each type serves a different purpose and the three are often used together in a project.
 
 ---
 
-### 5.2 Directory Structure
+#### Unit Testing
 
-```
-root/
-└── tests/
-    ├── helpers/
-    │   ├── auth.js
-    │   └── db.js
-    ├── 00-institution.test.js
-    └── 01-department.test.js
-```
+A unit test isolates a single function or module and verifies it produces the correct output for a given input. External dependencies such as databases or third-party APIs are replaced with **mocks** or **stubs** - controlled substitutes that return predictable values.
 
----
+Unit tests are fast because they make no network or database calls. They are well-suited to testing pure business logic such as validation rules, data transformations, and utility functions.
 
-### 5.3 Helper - Database (`helpers/db.js`)
-
-```javascript
-import prisma from "../../prisma/db.js";
-
-const cleanupDatabase = async () => {
-  await prisma.department.deleteMany();
-  await prisma.institution.deleteMany();
-  await prisma.user.deleteMany();
-};
-
-const disconnectPrisma = async () => {
-  await prisma.$disconnect();
-};
-
-export { cleanupDatabase, disconnectPrisma };
-```
-
----
-
-### 5.4 Helper - Auth (`helpers/auth.js`)
-
-```javascript
-import request from "supertest";
-
-import app from "../../app.js";
-import { cleanupDatabase } from "./db.js";
-
-const setupTestAuth = async () => {
-  const BASE_URL = "/api/auth";
-
-  const user = {
-    firstName: "Jane",
-    lastName: "Doe",
-    emailAddress: "jane.doe@example.com",
-    password: "janedoe123",
-    role: "ADMIN",
-  };
-
-  await cleanupDatabase();
-
-  await request(app).post(`${BASE_URL}/register`).send(user);
-
-  const res = await request(app).post(`${BASE_URL}/login`).send({
-    emailAddress: user.emailAddress,
-    password: user.password,
-  });
-
-  return res.body.token;
-};
-
-export default setupTestAuth;
-```
-
----
-
-### 5.5 Institution CRUD Tests (`00-institution.test.js`)
+**Example - testing a utility function:**
 
 ```javascript
 import { expect } from "chai";
-import request from "supertest";
 
-import app from "../app.js";
-import setupTestAuth from "./helpers/auth.js";
+const formatName = (firstName, lastName) => `${firstName} ${lastName}`;
 
-describe("Institution CRUD", () => {
-  const BASE_URL = "/api/institutions";
-
-  let token;
-  let institutionOneId;
-  let institutionTwoId;
-
-  const institutionData = [
-    {
-      name: "Ara Institute of Canterbury",
-      region: "Canterbury",
-      country: "New Zealand",
-    },
-    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
-    {
-      name: "Southern Institute of Technology",
-      region: "Southland",
-      country: "New Zealand",
-    },
-  ];
-
-  before(async () => {
-    token = await setupTestAuth();
-  });
-
-  it("should create institution one", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[1]);
-
-    expect(res.status).to.equal(201);
-
-    const newInstitution = res.body.data.find(
-      (i) => i.name === institutionData[1].name,
-    );
-    institutionOneId = newInstitution.id;
-  });
-
-  it("should create institution two", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`)
-      .send(institutionData[2]);
-
-    expect(res.status).to.equal(201);
-    const newInstitution = res.body.data.find(
-      (i) => i.name === institutionData[2].name,
-    );
-    institutionTwoId = newInstitution.id;
-  });
-
-  it("should get all institutions", async () => {
-    const res = await request(app).get(BASE_URL);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2);
-  });
-
-  it("should get institution one by ID", async () => {
-    const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name);
-  });
-
-  it("should update institution two", async () => {
-    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
-      name: institutionData[0].name,
-      region: institutionData[0].region,
-    });
-
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionTwoId} successfully updated`,
-    );
-    expect(res.body.data.name).to.equal(institutionData[0].name);
-  });
-
-  it("should delete institution one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionOneId} successfully deleted`,
-    );
-  });
-
-  after(() => {
-    global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
+describe("formatName", () => {
+  it("should return a full name", () => {
+    expect(formatName("John", "Doe")).to.equal("John Doe");
   });
 });
 ```
 
 ---
 
-### 5.6 Department CRUD Tests (`01-department.test.js`)
+#### Integration Testing
 
-```javascript
-import { expect } from "chai";
-import request from "supertest";
+An integration test verifies that multiple components work correctly together. In a Node.js API, this typically means sending HTTP requests to real routes and asserting against real database responses - no mocking involved.
 
-import app from "../app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
+Integration tests are slower than unit tests because they depend on a running database, but they catch issues that unit tests cannot, such as incorrect SQL queries, broken middleware chains, or misconfigured routes.
 
-describe("Department CRUD", () => {
-  const BASE_URL = "/api/departments";
-
-  let institutionId;
-  let departmentOneId;
-
-  const departmentData = [
-    { name: "Information Technology" },
-    { name: "Nursing" },
-    { name: "Business" },
-  ];
-
-  before(async () => {
-    institutionId = global.testInstitutionId;
-  });
-
-  it("should create department one", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .send({ name: departmentData[0].name, institutionId });
-
-    expect(res.status).to.equal(201);
-    const newDepartment = res.body.data.find(
-      (d) => d.name === departmentData[0].name,
-    );
-    departmentOneId = newDepartment.id;
-  });
-
-  it("should get all departments", async () => {
-    const res = await request(app).get(BASE_URL);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(1);
-  });
-
-  it("should get department one by ID", async () => {
-    const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(departmentData[0].name);
-  });
-
-  it("should update department one", async () => {
-    const res = await request(app)
-      .put(`${BASE_URL}/${departmentOneId}`)
-      .send({ name: departmentData[1].name, institutionId });
-
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`,
-    );
-    expect(res.body.data.name).to.equal(departmentData[1].name);
-  });
-
-  it("should delete department one", async () => {
-    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
-
-    expect(res.status).to.equal(200);
-    expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`,
-    );
-  });
-
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
-  });
-});
-```
+This is the approach used in this course. The Mocha, Chai, and Supertest libraries are used to write and run integration tests against the Express application.
 
 ---
 
-### 5.7 Test Script
+#### End-to-End Testing
 
-Add the following to your `scripts` block in `package.json`:
+An end-to-end test verifies the entire system from the user's perspective - typically by automating a browser or API client to simulate real user interactions across the full stack. Tools such as Playwright and Cypress are commonly used for this.
 
-```json
-"test": "mocha tests --recursive --timeout 10000 --exit"
-```
-
-| Flag | Purpose |
-| --- | --- |
-| `--recursive` | Runs tests in subdirectories |
-| `--timeout 10000` | Sets a 10-second timeout per test |
-| `--exit` | Forces Mocha to exit after all tests complete |
+End-to-end tests are the slowest and most brittle of the three types, but provide the highest confidence that the system works as a whole. They are not covered in this course.
 
 ---
 
-## 6. Code Coverage with c8
+#### Choosing the Right Type
 
-c8 leverages Node.js's built-in V8 coverage engine, requiring no code instrumentation.
+A common approach is to use all three types together in a **testing pyramid** - many unit tests at the base, fewer integration tests in the middle, and a small number of end-to-end tests at the top. The pyramid reflects the trade-off between speed and confidence at each level.
 
-| Metric | What it measures |
-| --- | --- |
-| **Statements** | Individual executable statements executed |
-| **Branches** | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions** | Functions that were called at least once |
-| **Lines** | Physical lines of code executed |
-
----
-
-### 6.1 Setup
-
-```bash
-npm install c8 --save-dev
-```
-
----
-
-### 6.2 Configuration - `.c8rc`
-
-Create `.c8rc` in the project root:
-
-```json
-{
-  "reporter": ["text", "html", "lcov"],
-  "include": ["controllers/**/*.js", "middleware/**/*.js", "routes/**/*.js"],
-  "exclude": ["tests/**", "prisma/**", "node_modules/**"],
-  "branches": 80,
-  "lines": 80,
-  "functions": 80,
-  "statements": 80,
-  "all": true
-}
-```
-
-| Option | Purpose |
-| --- | --- |
-| `reporter` | Output formats: `text`, `html`, `lcov` |
-| `include` | Globs of source files to measure |
-| `exclude` | Globs to ignore |
-| `branches` | Minimum % of branches that must be covered |
-| `lines` | Minimum % of lines that must be covered |
-| `functions` | Minimum % of functions that must be covered |
-| `statements` | Minimum % of statements that must be covered |
-| `all` | Report on all matched files, even those not imported by any test |
-
----
-
-### 6.3 Scripts - `package.json`
-
-```json
-"test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
-"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
-```
-
----
-
-### 6.4 Reading the Terminal Report
-
-Lines highlighted in the HTML report indicate:
-
-- 🟢 **Green** - covered by at least one test
-- 🔴 **Red** - never executed during the test run
-- 🟡 **Yellow** - branch partially covered
-
----
-
-### 6.5 What Low Coverage Reveals
-
-Low branch coverage is often more telling than low line coverage. Consider this controller:
-
-```javascript
-const getInstitutions = async (req, res) => {
-  try {
-    const institutions = await institutionRepository.findAll();
-    if (!institutions) {
-      return res.status(404).json({ message: "No institutions found" });
-    }
-    return res.status(200).json({
-      data: institutions,
-    });
-  } catch (err) {
-    return res.status(500).json({
-      message: err.message,
-    });
-  }
-};
-```
-
-This function has **three branches** - the `404` path, the `200` path, and the `catch` block. If your tests only get a `200`, branches 1 and 3 are never executed.
-
----
-
-### 6.6 Ignoring Code from Coverage
-
-```javascript
-/* c8 ignore next */
-if (process.env.NODE_ENV === "test") { ... }
-
-/* c8 ignore next 3 */
-app.listen(PORT, () => {
-  console.log(`Server is listening on port ${PORT}`);
-});
-```
-
-> Use sparingly - ignoring coverage is a last resort.
+For this course, integration tests are sufficient to verify the API behaves correctly. When answering the testing section of your system design document, you should be able to justify this choice.
 
 ---
 
@@ -964,25 +624,13 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Course CRUD Tests
-
-Create a test file for the `Course` resource covering these five scenarios:
-
-1. Create a course
-2. Get all courses
-3. Get a course by ID
-4. Update a course
-5. Delete a course
-
----
-
-### Task 3 - Security Analysis ⚠️ Self-Directed
+### Task 2 - Security Analysis ⚠️ Self-Directed
 
 In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 4 - Restrict the Endpoints Route ⚠️ Self-Directed
+### Task 3 - Restrict the Endpoints Route ⚠️ Self-Directed
 
 Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
@@ -991,13 +639,13 @@ Refactor `/api/endpoints` so it is only accessible when **both** of the followin
 
 ---
 
-### Task 5 - Restrict Registration Role
+### Task 4 - Restrict Registration Role
 
 Refactor `controllers/auth.js` to prevent users from self-registering with the `ADMIN` role. Registration should only allow the `STUDENT` role.
 
 ---
 
-### Task 6 - Multi-Role RBAC ⚠️ Self-Directed
+### Task 5 - Multi-Role RBAC ⚠️ Self-Directed
 
 Refactor the `rbac` middleware to accept either a single role string or an array of roles:
 
@@ -1008,7 +656,7 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 ---
 
-### Task 7 - Implement Full RBAC Permissions
+### Task 6 - Implement Full RBAC Permissions
 
 Apply the following permission matrix across all resources:
 
@@ -1034,7 +682,7 @@ Apply the following permission matrix across all resources:
 
 ---
 
-### Task 8 - User Profile ⚠️ Self-Directed
+### Task 7 - User Profile ⚠️ Self-Directed
 
 Create a `Profile` model:
 
@@ -1079,221 +727,13 @@ user = await prisma.user.create({
 
 ---
 
-### Task 9 - Confirm Password
+### Task 8 - Confirm Password
 
 Add confirm password validation to `register` in `controllers/auth.js`.
 
 Check that `req.body.password` and `req.body.confirmPassword` match. If they don't, return a `400` response with `"Passwords do not match"`.
 
 > `confirmPassword` should not be stored in the database.
-
----
-
-### Task 10 - Enable Coverage
-
-1. Install `c8` and create a `.c8rc` configuration file
-2. Add a `test:coverage` script to `package.json`
-3. Run `npm run test:coverage` and note your starting percentages
-4. Identify the two lowest-covered files
-5. Write at least one additional test for each
-
----
-
-### Task 11 - Reach 80% Branch Coverage ⚠️ Self-Directed
-
-Using the HTML report, find all uncovered branches and add tests targeting:
-
-- The `401` path in `jwtAuth.js` when no token is provided
-- The `403` path in `rbac.js` when the user has an insufficient role
-- The `409` path in `controllers/auth.js` when a duplicate email is registered
-- The `404` path in any resource controller when an ID does not exist
-
----
-
-## Hard Exercises
-
----
-
-### Hard Task 1 - Account Lockout ⚠️ Self-Directed
-
-Implement account lockout after 5 failed login attempts for 15 minutes.
-
-Add two fields to the `User` model:
-
-```javascript
-model User {
-  id String @id @default(uuid())
-  firstName String
-  lastName String
-  emailAddress String @unique
-  password String
-  role Role @default(STUDENT)
-  profile Profile?
-  failedLoginAttempts Int @default(0)
-  lockoutUntil DateTime?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @default(now())
-}
-```
-
-Replace the `login` function in `controllers/auth.js`:
-
-```javascript
-const login = async (req, res) => {
-  try {
-    const { emailAddress, password } = req.body;
-
-    const user = await prisma.user.findUnique({ where: { emailAddress } });
-
-    if (!user) {
-      return res.status(401).json({ message: "Invalid email address" });
-    }
-
-    const now = Date.now();
-    const lockoutUntil = user.lockoutUntil ? user.lockoutUntil.getTime() : null;
-
-    if (/* TODO 1: user.lockoutUntil exists and current time < lockoutUntil */) {
-      const remainingTime = Math.ceil((lockoutUntil - now) / (1000 * 60));
-      // TODO 2: Return 423 with "Account locked. Try again in X minutes"
-    }
-
-    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
-
-    if (!isPasswordCorrect) {
-      const newFailedAttempts = /* TODO 3: Increment failed attempts */;
-      const shouldLockAccount = /* TODO 4: Check if >= 5 failed attempts */;
-
-      await prisma.user.update({
-        where: { id: user.id },
-        data: {
-          failedLoginAttempts: newFailedAttempts,
-          lockoutUntil: shouldLockAccount
-            ? new Date(now + 15 * 60 * 1000)
-            : user.lockoutUntil,
-          updatedAt: new Date(),
-        },
-      });
-
-      if (shouldLockAccount) {
-        // TODO 5: Return 423 with "Account locked due to 5 failed attempts"
-      } else {
-        const attemptsRemaining = /* TODO 6: 5 - newFailedAttempts */;
-        // TODO 7: Return 401 with "Invalid password. X attempts remaining"
-      }
-    }
-
-    // Reset lockout on successful login
-    await prisma.user.update({
-      where: { id: user.id },
-      data: { failedLoginAttempts: 0, lockoutUntil: null, updatedAt: new Date() },
-    });
-
-    const { JWT_SECRET, JWT_LIFETIME } = process.env;
-
-    const token = jwt.sign(
-      { id: user.id, role: user.role },
-      JWT_SECRET,
-      { expiresIn: JWT_LIFETIME },
-    );
-
-    return res.status(200).json({
-      message: "User successfully logged in",
-      token: token,
-    });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-```
-
----
-
-### Hard Task 2 - Token Blacklist ⚠️ Self-Directed
-
-Implement a logout endpoint that invalidates the JWT by adding it to a blacklist.
-
-Add a `TokenBlacklist` model to `schema.prisma`:
-
-```javascript
-model TokenBlacklist {
-  id String @id @default(uuid())
-  token String @unique
-  expiresAt DateTime
-  createdAt DateTime @default(now())
-}
-```
-
-Add a `logout` function to `controllers/auth.js`:
-
-```javascript
-const logout = async (req, res) => {
-  try {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
-    }
-
-    const token = authHeader.split(" ")[1];
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-
-    await prisma.tokenBlacklist.create({
-      data: {
-        token,
-        expiresAt: /* TODO 1: Convert payload.exp (seconds) to a Date (milliseconds) */,
-      },
-    });
-
-    return res.status(200).json({ message: "User successfully logged out" });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
-};
-```
-
-Update `routes/auth.js`:
-
-```javascript
-import { register, login, logout } from "../controllers/auth.js";
-
-router.route("/register").post(register);
-router.route("/login").post(login);
-// TODO 2: Add POST /logout route
-```
-
-Update `middleware/jwtAuth.js` to reject blacklisted tokens:
-
-```javascript
-import jwt from "jsonwebtoken";
-import prisma from "../prisma/db.js";
-
-const jwtAuth = async (req, res, next) => {
-  try {
-    const authHeader = req.headers.authorization;
-
-    if (!authHeader || !authHeader.startsWith("Bearer ")) {
-      return res.status(401).json({ message: "No token provided" });
-    }
-
-    const token = authHeader.split(" ")[1];
-
-    const blacklistedToken = /* TODO 3: Look up token in TokenBlacklist */;
-
-    if (blacklistedToken) {
-      // TODO 4: Return 403 with "Token has been invalidated"
-    }
-
-    const payload = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = payload;
-
-    next();
-  } catch (err) {
-    return res.status(401).json({ message: "Not authorized to access this route" });
-  }
-};
-
-export default jwtAuth;
-```
 
 ---
 

@@ -20,7 +20,411 @@ git checkout -b w07-be-testing-code-cov-ci-cd-gh-actions
 
 ---
 
-## 1. What is GitHub Actions?
+## 1. API Testing
+
+We use three libraries together:
+
+| Library | Role |
+| --- | --- |
+| **Mocha** | Test framework - organises and runs tests |
+| **Chai** | Assertion library - verifies expected outcomes |
+| **Supertest** | HTTP client - makes requests to the Express app |
+
+---
+
+### 1.1 Setup
+
+```bash
+npm install chai mocha supertest --save-dev
+```
+
+---
+
+### 1.2 Directory Structure
+
+```
+root/
+└── tests/
+    ├── helpers/
+    │   ├── auth.js
+    │   └── db.js
+    ├── 00-institution.test.js
+    └── 01-department.test.js
+```
+
+---
+
+### 1.3 Helper - Database (`helpers/db.js`)
+
+```javascript
+import prisma from "../../prisma/db.js";
+
+const cleanupDatabase = async () => {
+  await prisma.department.deleteMany();
+  await prisma.institution.deleteMany();
+  await prisma.user.deleteMany();
+};
+
+const disconnectPrisma = async () => {
+  await prisma.$disconnect();
+};
+
+export { cleanupDatabase, disconnectPrisma };
+```
+
+---
+
+### 1.4 Helper - Auth (`helpers/auth.js`)
+
+```javascript
+import request from "supertest";
+
+import app from "../../app.js";
+import { cleanupDatabase } from "./db.js";
+
+const setupTestAuth = async () => {
+  const BASE_URL = "/api/auth";
+
+  const user = {
+    firstName: "Jane",
+    lastName: "Doe",
+    emailAddress: "jane.doe@example.com",
+    password: "janedoe123",
+    role: "ADMIN",
+  };
+
+  await cleanupDatabase();
+
+  await request(app).post(`${BASE_URL}/register`).send(user);
+
+  const res = await request(app).post(`${BASE_URL}/login`).send({
+    emailAddress: user.emailAddress,
+    password: user.password,
+  });
+
+  return res.body.token;
+};
+
+export default setupTestAuth;
+```
+
+---
+
+### 1.5 Institution CRUD Tests (`00-institution.test.js`)
+
+```javascript
+import { expect } from "chai";
+import request from "supertest";
+
+import app from "../app.js";
+import setupTestAuth from "./helpers/auth.js";
+
+describe("Institution CRUD", () => {
+  const BASE_URL = "/api/institutions";
+
+  let token;
+  let institutionOneId;
+  let institutionTwoId;
+
+  const institutionData = [
+    {
+      name: "Ara Institute of Canterbury",
+      region: "Canterbury",
+      country: "New Zealand",
+    },
+    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
+    {
+      name: "Southern Institute of Technology",
+      region: "Southland",
+      country: "New Zealand",
+    },
+  ];
+
+  before(async () => {
+    token = await setupTestAuth();
+  });
+
+  it("should create institution one", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send(institutionData[1]);
+
+    expect(res.status).to.equal(201);
+
+    const newInstitution = res.body.data.find(
+      (i) => i.name === institutionData[1].name,
+    );
+    institutionOneId = newInstitution.id;
+  });
+
+  it("should create institution two", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .set("Authorization", `Bearer ${token}`)
+      .send(institutionData[2]);
+
+    expect(res.status).to.equal(201);
+    const newInstitution = res.body.data.find(
+      (i) => i.name === institutionData[2].name,
+    );
+    institutionTwoId = newInstitution.id;
+  });
+
+  it("should get all institutions", async () => {
+    const res = await request(app).get(BASE_URL);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.length).to.be.at.least(2);
+  });
+
+  it("should get institution one by ID", async () => {
+    const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.name).to.equal(institutionData[1].name);
+  });
+
+  it("should update institution two", async () => {
+    const res = await request(app).put(`${BASE_URL}/${institutionTwoId}`).send({
+      name: institutionData[0].name,
+      region: institutionData[0].region,
+    });
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Institution with the id: ${institutionTwoId} successfully updated`,
+    );
+    expect(res.body.data.name).to.equal(institutionData[0].name);
+  });
+
+  it("should delete institution one", async () => {
+    const res = await request(app).delete(`${BASE_URL}/${institutionOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Institution with the id: ${institutionOneId} successfully deleted`,
+    );
+  });
+
+  after(() => {
+    global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
+  });
+});
+```
+
+---
+
+### 1.6 Department CRUD Tests (`01-department.test.js`)
+
+```javascript
+import { expect } from "chai";
+import request from "supertest";
+
+import app from "../app.js";
+import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
+
+describe("Department CRUD", () => {
+  const BASE_URL = "/api/departments";
+
+  let institutionId;
+  let departmentOneId;
+
+  const departmentData = [
+    { name: "Information Technology" },
+    { name: "Nursing" },
+    { name: "Business" },
+  ];
+
+  before(async () => {
+    institutionId = global.testInstitutionId;
+  });
+
+  it("should create department one", async () => {
+    const res = await request(app)
+      .post(BASE_URL)
+      .send({ name: departmentData[0].name, institutionId });
+
+    expect(res.status).to.equal(201);
+    const newDepartment = res.body.data.find(
+      (d) => d.name === departmentData[0].name,
+    );
+    departmentOneId = newDepartment.id;
+  });
+
+  it("should get all departments", async () => {
+    const res = await request(app).get(BASE_URL);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.length).to.be.at.least(1);
+  });
+
+  it("should get department one by ID", async () => {
+    const res = await request(app).get(`${BASE_URL}/${departmentOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.data.name).to.equal(departmentData[0].name);
+  });
+
+  it("should update department one", async () => {
+    const res = await request(app)
+      .put(`${BASE_URL}/${departmentOneId}`)
+      .send({ name: departmentData[1].name, institutionId });
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully updated`,
+    );
+    expect(res.body.data.name).to.equal(departmentData[1].name);
+  });
+
+  it("should delete department one", async () => {
+    const res = await request(app).delete(`${BASE_URL}/${departmentOneId}`);
+
+    expect(res.status).to.equal(200);
+    expect(res.body.message).to.equal(
+      `Department with the id: ${departmentOneId} successfully deleted`,
+    );
+  });
+
+  after(async () => {
+    await cleanupDatabase();
+    await disconnectPrisma();
+  });
+});
+```
+
+---
+
+### 1.7 Test Script
+
+Add the following to your `scripts` block in `package.json`:
+
+```json
+"test": "mocha tests --recursive --timeout 10000 --exit"
+```
+
+| Flag | Purpose |
+| --- | --- |
+| `--recursive` | Runs tests in subdirectories |
+| `--timeout 10000` | Sets a 10-second timeout per test |
+| `--exit` | Forces Mocha to exit after all tests complete |
+
+---
+
+## 2. Code Coverage with c8
+
+c8 leverages Node.js's built-in V8 coverage engine, requiring no code instrumentation.
+
+| Metric | What it measures |
+| --- | --- |
+| **Statements** | Individual executable statements executed |
+| **Branches** | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
+| **Functions** | Functions that were called at least once |
+| **Lines** | Physical lines of code executed |
+
+---
+
+### 2.1 Setup
+
+```bash
+npm install c8 --save-dev
+```
+
+---
+
+### 2.2 Configuration - `.c8rc`
+
+Create `.c8rc` in the project root:
+
+```json
+{
+  "reporter": ["text", "html", "lcov"],
+  "include": ["controllers/**/*.js", "middleware/**/*.js", "routes/**/*.js"],
+  "exclude": ["tests/**", "prisma/**", "node_modules/**"],
+  "branches": 80,
+  "lines": 80,
+  "functions": 80,
+  "statements": 80,
+  "all": true
+}
+```
+
+| Option | Purpose |
+| --- | --- |
+| `reporter` | Output formats: `text`, `html`, `lcov` |
+| `include` | Globs of source files to measure |
+| `exclude` | Globs to ignore |
+| `branches` | Minimum % of branches that must be covered |
+| `lines` | Minimum % of lines that must be covered |
+| `functions` | Minimum % of functions that must be covered |
+| `statements` | Minimum % of statements that must be covered |
+| `all` | Report on all matched files, even those not imported by any test |
+
+---
+
+### 2.3 Scripts - `package.json`
+
+```json
+"test:coverage": "c8 mocha tests --recursive --timeout 10000 --exit",
+"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
+```
+
+---
+
+### 2.4 Reading the Terminal Report
+
+Lines highlighted in the HTML report indicate:
+
+- 🟢 **Green** - covered by at least one test
+- 🔴 **Red** - never executed during the test run
+- 🟡 **Yellow** - branch partially covered
+
+---
+
+### 2.5 What Low Coverage Reveals
+
+Low branch coverage is often more telling than low line coverage. Consider this controller:
+
+```javascript
+const getInstitutions = async (req, res) => {
+  try {
+    const institutions = await institutionRepository.findAll();
+    if (!institutions) {
+      return res.status(404).json({ message: "No institutions found" });
+    }
+    return res.status(200).json({
+      data: institutions,
+    });
+  } catch (err) {
+    return res.status(500).json({
+      message: err.message,
+    });
+  }
+};
+```
+
+This function has **three branches** - the `404` path, the `200` path, and the `catch` block. If your tests only get a `200`, branches 1 and 3 are never executed.
+
+---
+
+### 2.6 Ignoring Code from Coverage
+
+```javascript
+/* c8 ignore next */
+if (process.env.NODE_ENV === "test") { ... }
+
+/* c8 ignore next 3 */
+app.listen(PORT, () => {
+  console.log(`Server is listening on port ${PORT}`);
+});
+```
+
+> Use sparingly - ignoring coverage is a last resort.
+
+---
+
+## 3. What is GitHub Actions?
 
 GitHub Actions is a CI/CD platform built into GitHub that lets you automate tasks triggered by events in your repository.
 
@@ -31,7 +435,7 @@ GitHub Actions is a CI/CD platform built into GitHub that lets you automate task
 
 ---
 
-## 2. Core Concepts
+## 4. Core Concepts
 
 | Concept | Description |
 | --- | --- |
@@ -45,7 +449,7 @@ GitHub Actions is a CI/CD platform built into GitHub that lets you automate task
 
 ---
 
-## 3. Workflow File Structure
+## 5. Workflow File Structure
 
 All workflow files are YAML and live in `.github/workflows/`:
 
@@ -81,7 +485,7 @@ jobs:
 
 ---
 
-## 4. Secrets and Environment Variables
+## 6. Secrets and Environment Variables
 
 Store sensitive values as **GitHub Secrets** under **Settings → Secrets and variables → Actions**, then reference them in your workflow:
 
@@ -100,11 +504,11 @@ jobs:
 
 ---
 
-## 5. Workflow Examples
+## 7. Workflow Examples
 
 ---
 
-### 5.1 Format and Lint on Pull Request
+### 7.1 Format and Lint on Pull Request
 
 Create `.github/workflows/lint.yml`:
 
@@ -140,7 +544,7 @@ jobs:
 
 ---
 
-### 5.2 Integration Tests with a Real Database
+### 7.2 Integration Tests with a Real Database
 
 Create `.github/workflows/ci.yml`:
 
@@ -195,7 +599,7 @@ jobs:
 
 ---
 
-### 5.3 Full CI Pipeline - Lint then Test
+### 7.3 Full CI Pipeline - Lint then Test
 
 Create `.github/workflows/pipeline.yml`:
 
@@ -266,7 +670,7 @@ jobs:
 
 ---
 
-### 5.4 Code Coverage Report
+### 7.4 Code Coverage Report
 
 Create `.github/workflows/coverage.yml`:
 
@@ -329,7 +733,7 @@ jobs:
 
 ---
 
-### 5.5 Dependency Security Audit
+### 7.5 Dependency Security Audit
 
 Create `.github/workflows/audit.yml`:
 
@@ -362,7 +766,7 @@ jobs:
 
 ---
 
-## 6. Branch Protection Rules
+## 8. Branch Protection Rules
 
 To configure:
 
@@ -373,7 +777,7 @@ To configure:
 
 ---
 
-## 7. Best Practices
+## 9. Best Practices
 
 | Practice | Why it matters |
 | --- | --- |
@@ -402,7 +806,35 @@ Acknowledge AI usage at the top of any AI-assisted file:
 
 ---
 
-### Task 1 - Integration Test Workflow
+### Task 1 - Implement the Code Examples
+
+Implement all of the code examples covered above.
+
+---
+
+### Task 2 - Course CRUD Tests
+
+Create a test file for the `Course` resource covering these five scenarios:
+
+1. Create a course
+2. Get all courses
+3. Get a course by ID
+4. Update a course
+5. Delete a course
+
+---
+
+### Task 3 - Enable Coverage
+
+1. Install `c8` and create a `.c8rc` configuration file
+2. Add a `test:coverage` script to `package.json`
+3. Run `npm run test:coverage` and note your starting percentages
+4. Identify the two lowest-covered files
+5. Write at least one additional test for each
+
+---
+
+### Task 4 - Integration Test Workflow
 
 Create `.github/workflows/ci.yml` that:
 
@@ -414,7 +846,7 @@ Create `.github/workflows/ci.yml` that:
 
 ---
 
-### Task 2 - Format and Lint Workflow
+### Task 5 - Format and Lint Workflow
 
 Create `.github/workflows/lint.yml` with two steps:
 
@@ -423,7 +855,7 @@ Create `.github/workflows/lint.yml` with two steps:
 
 ---
 
-### Task 3 - Environment Variable Audit ⚠️ Self-Directed
+### Task 6 - Environment Variable Audit ⚠️ Self-Directed
 
 In `week-07-github-actions-considerations.md`, explain:
 
@@ -432,7 +864,7 @@ In `week-07-github-actions-considerations.md`, explain:
 
 ---
 
-### Task 4 - Full Pipeline
+### Task 7 - Full Pipeline
 
 Create `.github/workflows/pipeline.yml` with two chained jobs:
 
@@ -441,19 +873,30 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 5 - Branch Protection ⚠️ Self-Directed
+### Task 8 - Branch Protection ⚠️ Self-Directed
 
 Configure branch protection on `main` so that the `format-and-lint` and `test` jobs must pass before any pull request can be merged.
 
 ---
 
-### Task 6 - Workflow Status Badge ⚠️ Self-Directed
+### Task 9 - Workflow Status Badge ⚠️ Self-Directed
 
 Add a workflow status badge to your `README.md`:
 
 ```
 ![CI](https://github.com/<owner>/<repo>/actions/workflows/<filename>.yml/badge.svg)
 ```
+
+---
+
+### Task 10 - Reach 80% Branch Coverage ⚠️ Self-Directed
+
+Using the HTML report, find all uncovered branches and add tests targeting:
+
+- The `401` path in `jwtAuth.js` when no token is provided
+- The `403` path in `rbac.js` when the user has an insufficient role
+- The `409` path in `controllers/auth.js` when a duplicate email is registered
+- The `404` path in any resource controller when an ID does not exist
 
 ---
 
