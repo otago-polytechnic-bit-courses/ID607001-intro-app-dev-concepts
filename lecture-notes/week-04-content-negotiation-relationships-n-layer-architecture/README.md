@@ -1007,14 +1007,13 @@ Caching stores the result of an expensive operation (such as a database query) i
 
 ```
 Client → Express → Database → Express → Client
-         (every request hits the DB)
 ```
 
 **With caching:**
 
 ```
 1st request: Client → Express → Database → Cache → Client
-2nd request: Client → Express → Cache → Client  (DB skipped entirely)
+2nd request: Client → Express → Cache → Client
 ```
 
 This matters because database queries are the slowest part of most API responses. Caching a `GET /api/institutions` response that rarely changes means most requests never touch the database at all.
