@@ -704,7 +704,7 @@ app.use((req, res) => {
 
 ---
 
-### Task 3 - Endpoints List ⚠️ Self-Directed
+### Task 3 - Endpoints List
 
 Implement a `GET /api/endpoints` route that returns a list of all available endpoints in your REST API, including their HTTP methods and paths.
 
@@ -722,7 +722,7 @@ Implement POST and PUT validation middleware for the `Department`, `Course`, and
 
 ---
 
-### Task 5 - Seeding Other Resources ⚠️ Self-Directed
+### Task 5 - Seeding Other Resources
 
 Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
@@ -737,7 +737,7 @@ Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 
 ---
 
-### Hard Task 1 - Detailed Seeding Report ⚠️ Self-Directed
+### Hard Task 1 - Detailed Seeding Report
 
 Extend your seeding scripts to generate a comprehensive report:
 
@@ -760,7 +760,7 @@ Errors encountered: None
 
 ---
 
-### Hard Task 2 - Advanced Query Parameters ⚠️ Self-Directed
+### Hard Task 2 - Advanced Query Parameters
 
 Extend the query parameter system to support advanced filtering operators:
 
@@ -776,13 +776,13 @@ Extend the query parameter system to support advanced filtering operators:
 
 ---
 
-### Hard Task 3 - Health Check Endpoint ⚠️ Self-Directed
+### Hard Task 3 - Health Check Endpoint
 
 Implement `GET /api/health` that returns the current status of your application, including at minimum: application status, database connectivity, and server uptime.
 
 ---
 
-### Hard Task 4 - Sustainable Codebase ⚠️ Self-Directed
+### Hard Task 4 - Sustainable Codebase
 
 Refactor your code to implement the following improvements:
 

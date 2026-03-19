@@ -624,13 +624,13 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Security Analysis ⚠️ Self-Directed
+### Task 2 - Security Analysis
 
 In `week-06-security-considerations.md`, analyse the security implications of exposing a list of all available endpoints via `/api/endpoints`.
 
 ---
 
-### Task 3 - Restrict the Endpoints Route ⚠️ Self-Directed
+### Task 3 - Restrict the Endpoints Route
 
 Refactor `/api/endpoints` so it is only accessible when **both** of the following are true:
 
@@ -645,7 +645,7 @@ Refactor `controllers/auth.js` to prevent users from self-registering with the `
 
 ---
 
-### Task 5 - Multi-Role RBAC ⚠️ Self-Directed
+### Task 5 - Multi-Role RBAC
 
 Refactor the `rbac` middleware to accept either a single role string or an array of roles:
 
@@ -682,7 +682,7 @@ Apply the following permission matrix across all resources:
 
 ---
 
-### Task 7 - User Profile ⚠️ Self-Directed
+### Task 7 - User Profile
 
 Create a `Profile` model:
 

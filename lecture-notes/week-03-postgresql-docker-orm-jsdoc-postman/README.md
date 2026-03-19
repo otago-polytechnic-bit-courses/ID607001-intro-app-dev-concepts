@@ -707,7 +707,7 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Prisma Studio ⚠️ Self-Directed
+### Task 2 - Prisma Studio
 
 Prisma Studio is a visual editor for your database.
 
@@ -773,7 +773,7 @@ router.delete("/", (req, res) => {
 
 ---
 
-### Task 6 - README Documentation ⚠️ Self-Directed
+### Task 6 - README Documentation
 
 Update the `README.md` in your repository to document how to set up and run the project:
 

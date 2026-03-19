@@ -948,7 +948,7 @@ Create `.github/workflows/lint.yml` with two steps:
 
 ---
 
-### Task 6 - Environment Variable Audit ⚠️ Self-Directed
+### Task 6 - Environment Variable Audit
 
 In `week-07-github-actions-considerations.md`, explain:
 
@@ -966,13 +966,13 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 8 - Branch Protection ⚠️ Self-Directed
+### Task 8 - Branch Protection
 
 Configure branch protection on `main` so that the `format-and-lint` and `test` jobs must pass before any pull request can be merged.
 
 ---
 
-### Task 9 - Workflow Status Badge ⚠️ Self-Directed
+### Task 9 - Workflow Status Badge
 
 Add a workflow status badge to your `README.md`:
 
@@ -982,7 +982,7 @@ Add a workflow status badge to your `README.md`:
 
 ---
 
-### Task 10 - Reach 80% Branch Coverage ⚠️ Self-Directed
+### Task 10 - Reach 80% Branch Coverage
 
 Using the HTML report, find all uncovered branches and add tests targeting:
 
@@ -997,7 +997,7 @@ Using the HTML report, find all uncovered branches and add tests targeting:
 
 ---
 
-### Hard Task 1 - Semantic Release ⚠️ Self-Directed
+### Hard Task 1 - Semantic Release
 
 Automate versioning and changelog generation using `semantic-release`.
 
@@ -1028,7 +1028,7 @@ Create `.github/workflows/release.yml` that runs `semantic-release` on every pus
 
 ---
 
-### Hard Task 2 - Scheduled Security Audit ⚠️ Self-Directed
+### Hard Task 2 - Scheduled Security Audit
 
 Extend your security audit workflow to also run on a **weekly schedule** using cron syntax that runs every Monday at 9am UTC.
 

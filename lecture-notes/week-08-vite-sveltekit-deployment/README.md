@@ -890,7 +890,7 @@ Implement all of the code examples covered above, including the `adapter-static`
 
 ---
 
-### Task 2 - Shopping Cart ⚠️ Self-Directed
+### Task 2 - Shopping Cart
 
 In `src/lib/components/`, create a new component called `ShoppingCart.svelte` with the following functionality:
 
@@ -909,7 +909,7 @@ In `src/lib/components/`, create a new component called `ShoppingCart.svelte` wi
 
 ---
 
-### Task 3 - Grade Calculator ⚠️ Self-Directed
+### Task 3 - Grade Calculator
 
 In `src/lib/components/`, create two new components: `GradeCalculator.svelte` and `CourseInput.svelte`.
 
@@ -937,7 +937,7 @@ In `CourseInput.svelte`:
 
 ---
 
-### Hard Task 1 - Layout and Navigation ⚠️ Self-Directed
+### Hard Task 1 - Layout and Navigation
 
 Create a persistent navigation bar across all pages using `+layout.svelte`. The nav bar should include links to all static routes and highlight the currently active route.
 
@@ -945,7 +945,7 @@ Create a persistent navigation bar across all pages using `+layout.svelte`. The 
 
 ---
 
-### Hard Task 2 - Transitions and Animations ⚠️ Self-Directed
+### Hard Task 2 - Transitions and Animations
 
 Add page transitions and element animations using Svelte's built-in `transition:` and `animate:` directives. Apply `fly`, `fade`, and `slide` from `svelte/transition` to at least two components from the exercises above.
 

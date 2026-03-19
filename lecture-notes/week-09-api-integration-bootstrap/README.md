@@ -688,13 +688,13 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Apply Sveltestrap to Register and Login ⚠️ Self-Directed
+### Task 2 - Apply Sveltestrap to Register and Login
 
 Apply Sveltestrap components to `src/routes/auth/register/+page.svelte` and `src/routes/auth/login/+page.svelte` following the same pattern used in the dashboard example. Each page should use a centred `Container` and `Card` layout with `FormGroup`, `Input`, `Button` and `Alert` components.
 
 ---
 
-### Task 3 - Logout ⚠️ Self-Directed
+### Task 3 - Logout
 
 Implement a logout functionality that:
 
@@ -705,7 +705,7 @@ Implement a logout functionality that:
 
 ---
 
-### Task 4 - Role-Based Content ⚠️ Self-Directed
+### Task 4 - Role-Based Content
 
 Implement role-based content and permissions in the dashboard that:
 

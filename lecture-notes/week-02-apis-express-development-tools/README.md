@@ -630,7 +630,7 @@ backend/
 
 ---
 
-### Task 3 - Smarter Formatting with `lint-staged` ⚠️ Self-Directed
+### Task 3 - Smarter Formatting with `lint-staged`
 
 Running `npm run format:fix` formats every file in the project including `node_modules`, which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
 

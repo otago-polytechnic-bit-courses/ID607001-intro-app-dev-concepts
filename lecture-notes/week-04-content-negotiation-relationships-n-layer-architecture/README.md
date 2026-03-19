@@ -678,7 +678,7 @@ Implement all of the code examples covered above.
 
 ---
 
-### Task 2 - Draft System Design Document ⚠️ Self-Directed
+### Task 2 - Draft System Design Document
 
 Create a draft system design document for your REST API based on the [System Design](#6-system-design) section above. Email it to your course lecturer by the **end of Week 5**.
 
@@ -746,7 +746,7 @@ Create the necessary controller, route, and repository files. Test in Postman.
 
 ---
 
-### Task 5 - Normalise the Player Model ⚠️ Self-Directed
+### Task 5 - Normalise the Player Model
 
 The `Player` model from Task 4 stores everything in a single table. Split it into three separate models - `Person`, `Player`, and `Injury`.
 
@@ -824,7 +824,7 @@ Update your controller files to use these constants instead of hard-coded number
 
 ---
 
-### Task 8 - Relationship Queries ⚠️ Self-Directed
+### Task 8 - Relationship Queries
 
 Refactor your controller and repository files to include relationship queries for `Institution`, `Department`, and `Course`.
 
@@ -893,7 +893,7 @@ Expected response shape:
 
 ---
 
-### Hard Task 1 - Caching Middleware ⚠️ Self-Directed
+### Hard Task 1 - Caching Middleware
 
 #### What is Caching?
 
@@ -1013,7 +1013,7 @@ const createInstitution = async (req, res) => {
 
 ---
 
-### Hard Task 2 - Sustainable Codebase ⚠️ Self-Directed
+### Hard Task 2 - Sustainable Codebase
 
 Refactor your code to implement the following improvements:
 
