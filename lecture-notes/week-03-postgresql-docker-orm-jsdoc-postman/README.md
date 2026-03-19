@@ -598,7 +598,7 @@ id607001/
 └── exercises/
 ```
 
-Name each request clearly using the pattern: `[METHOD] [Description]` — e.g. `POST Create Institution`, `GET All Institutions`. This makes it easy to find and rerun specific requests later.
+Name each request clearly using the pattern: `[METHOD] [Description]` - e.g. `POST Create Institution`, `GET All Institutions`. This makes it easy to find and rerun specific requests later.
 
 ---
 
@@ -623,11 +623,11 @@ Expected response (`200 OK`):
   "data": []
 }
 ```
-> An empty array is expected if no institutions have been created yet — this is correct behaviour.
+> An empty array is expected if no institutions have been created yet - this is correct behaviour.
 
 ---
 
-**POST — Create an institution**
+**POST - Create an institution**
 
 | Field  | Value                                    |
 | ------ | ---------------------------------------- |
@@ -664,11 +664,11 @@ Expected response (`201 Created`):
 }
 ```
 
-> Copy the `id` value from the response — you'll need it for the next three requests.
+> Copy the `id` value from the response - you'll need it for the next three requests.
 
 ---
 
-**GET — Institution by ID**
+**GET - Institution by ID**
 
 | Field  | Value                                                    |
 | ------ | -------------------------------------------------------- |
@@ -679,7 +679,7 @@ No body needed. Expected response (`200 OK`) returns the matching institution ob
 
 ---
 
-**PUT — Update an institution**
+**PUT - Update an institution**
 
 | Field  | Value                                                    |
 | ------ | -------------------------------------------------------- |
@@ -705,7 +705,7 @@ Expected response (`200 OK`):
 
 ---
 
-**DELETE — Delete an institution**
+**DELETE - Delete an institution**
 
 | Field  | Value                                                    |
 | ------ | -------------------------------------------------------- |

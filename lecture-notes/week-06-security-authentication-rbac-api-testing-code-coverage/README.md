@@ -367,7 +367,7 @@ Body (raw → JSON):
 }
 ```
 
-Expected response (`201 Created`) — note the password is **not** returned:
+Expected response (`201 Created`) - note the password is **not** returned:
 ```json
 {
   "message": "User successfully registered",
@@ -408,7 +408,7 @@ Expected response (`200 OK`):
 }
 ```
 
-Copy the `token` value — you need it for all protected requests.
+Copy the `token` value - you need it for all protected requests.
 
 ---
 
@@ -423,7 +423,7 @@ To call a route protected by `jwtAuth`, add the token to the **Authorization** h
 
 Postman will automatically send `Authorization: Bearer <token>` with the request.
 
-**Testing the rejection path** — send the same request with no token (remove it from the Authorization tab). Expected response (`401 Unauthorized`):
+**Testing the rejection path** - send the same request with no token (remove it from the Authorization tab). Expected response (`401 Unauthorized`):
 ```json
 { "message": "No token provided" }
 ```
@@ -537,7 +537,7 @@ Expected response (`403 Forbidden`):
 
 Send the same `POST /api/institutions` request using the ADMIN token. You should receive `201 Created` as normal.
 
-> This confirms that `jwtAuth` and `rbac` are correctly chained — authentication passes for both users, but authorisation only permits the ADMIN.
+> This confirms that `jwtAuth` and `rbac` are correctly chained - authentication passes for both users, but authorisation only permits the ADMIN.
 
 ---
 
@@ -624,7 +624,7 @@ On the **sixth request**, expected response (`429 Too Many Requests`):
 { "message": "Too many requests, please try again later" }
 ```
 
-You can also check the **Headers** tab of any response to see the `RateLimit-*` headers — these tell you how many requests remain in the current window and when it resets.
+You can also check the **Headers** tab of any response to see the `RateLimit-*` headers - these tell you how many requests remain in the current window and when it resets.
 
 > **Note:** Because `max` is set to `5` in the example, keep it low while testing. Raise it to a more realistic value (e.g. `100`) before deploying.
 

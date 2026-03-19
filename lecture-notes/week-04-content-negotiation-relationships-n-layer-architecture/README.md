@@ -146,7 +146,7 @@ This confirms the middleware is correctly rejecting requests without `Content-Ty
 
 Switch the Body type back to **raw → JSON** and click **Send**.
 
-Expected response (`201 Created`) — the institution is created as normal.
+Expected response (`201 Created`) - the institution is created as normal.
 
 > **What's happening under the hood?** When you select "raw → JSON" in Postman, it automatically sets the `Content-Type: application/json` header. Switching to "Text" removes that header, triggering your middleware.
 
@@ -335,7 +335,7 @@ export default app;
 
 ---
 
-**POST — Create a department**
+**POST - Create a department**
 
 | Field  | Value                                   |
 | ------ | --------------------------------------- |
@@ -370,7 +370,7 @@ Expected response (`201 Created`):
 
 ---
 
-**GET — All departments**
+**GET - All departments**
 
 | Field  | Value                                   |
 | ------ | --------------------------------------- |
@@ -961,9 +961,9 @@ Apply similar changes to the `Department` controller/repository to include `Cour
 
 **To test in Postman:**
 
-1. `POST /api/institutions` — create an institution, copy its `id`
-2. `POST /api/departments` — create a department using the institution `id`
-3. `GET /api/institutions` — the response should now include a `departments` array nested inside each institution
+1. `POST /api/institutions` - create an institution, copy its `id`
+2. `POST /api/departments` - create a department using the institution `id`
+3. `GET /api/institutions` - the response should now include a `departments` array nested inside each institution
 
 Expected response shape:
 
@@ -1001,7 +1001,7 @@ These exercises require independent research and problem-solving. Completing the
 
 #### What is Caching?
 
-Caching stores the result of an expensive operation (such as a database query) in memory so that subsequent requests for the same data can be served instantly — without hitting the database again.
+Caching stores the result of an expensive operation (such as a database query) in memory so that subsequent requests for the same data can be served instantly - without hitting the database again.
 
 **Without caching:**
 
@@ -1055,8 +1055,8 @@ Is there a cache entry for this URL?
 
 The `X-Cache` response header is a widely used convention that tells the client (and debugging tools like Postman) whether the response came from cache or the database:
 
-- `X-Cache: HIT` — response served from cache
-- `X-Cache: MISS` — response fetched from the database
+- `X-Cache: HIT` - response served from cache
+- `X-Cache: MISS` - response fetched from the database
 
 You can see these headers in Postman under the **Headers** tab of the response panel.
 
@@ -1159,7 +1159,7 @@ Follow these steps exactly to observe all three cache states:
 1. `GET /api/institutions` → terminal logs **Cache miss**, response header `X-Cache: MISS`
 2. `POST /api/institutions` → creates institution, cache is cleared
 3. `GET /api/institutions` → terminal logs **Cache miss** again (cache was cleared), `X-Cache: MISS`
-4. `GET /api/institutions` → terminal logs **Cache hit**, `X-Cache: HIT` — served from memory, no DB query
+4. `GET /api/institutions` → terminal logs **Cache hit**, `X-Cache: HIT` - served from memory, no DB query
 
 To verify the `X-Cache` header in Postman, click the **Headers** tab in the response panel after each request.
 

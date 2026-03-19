@@ -287,7 +287,7 @@ export default router;
 
 **Testing POST validation**
 
-Send a `POST` to `http://localhost:3000/api/institutions` with an intentionally bad body — for example, omit `name` and make `region` too short:
+Send a `POST` to `http://localhost:3000/api/institutions` with an intentionally bad body - for example, omit `name` and make `region` too short:
 
 ```json
 {
@@ -310,7 +310,7 @@ Expected response (`409 Conflict`):
 }
 ```
 
-Note that **both** errors are returned at once — this is the effect of `abortEarly: false`.
+Note that **both** errors are returned at once - this is the effect of `abortEarly: false`.
 
 **Testing PUT validation**
 
@@ -326,11 +326,11 @@ Expected response (`409 Conflict`):
 }
 ```
 
-> The `.min(1)` on the PUT schema enforces that at least one field must be provided — a completely empty update is rejected.
+> The `.min(1)` on the PUT schema enforces that at least one field must be provided - a completely empty update is rejected.
 
 **Confirming a valid request still works**
 
-Send a well-formed `POST` with all three valid fields — you should get back a `201 Created` as before. Validation middleware only blocks bad data; it passes good data through unchanged.
+Send a well-formed `POST` with all three valid fields - you should get back a `201 Created` as before. Validation middleware only blocks bad data; it passes good data through unchanged.
 
 ---
 
@@ -486,7 +486,7 @@ Expected response (`200 OK`):
 }
 ```
 
-Only one record should appear — the intentionally invalid entry (missing `name` and `region`) should have been caught by validation and excluded from the insert.
+Only one record should appear - the intentionally invalid entry (missing `name` and `region`) should have been caught by validation and excluded from the insert.
 
 > **If you see zero records**, check the seeding report output in your terminal for errors.
 
@@ -788,9 +788,9 @@ Your service is live 🎉
 
 ### 5.5 Postman - Testing the Deployed API
 
-Once deployed, test your live API exactly as you would locally — just swap `http://localhost:3000` for your Render service URL (e.g. `https://id607001-rest-api.onrender.com`).
+Once deployed, test your live API exactly as you would locally - just swap `http://localhost:3000` for your Render service URL (e.g. `https://id607001-rest-api.onrender.com`).
 
-> **First-request delay:** The free Render tier spins down after inactivity. The first request after a period of inactivity may take 30–60 seconds to respond — this is normal.
+> **First-request delay:** The free Render tier spins down after inactivity. The first request after a period of inactivity may take 30–60 seconds to respond - this is normal.
 
 📖 Reference: [Render docs](https://render.com/docs)
 
