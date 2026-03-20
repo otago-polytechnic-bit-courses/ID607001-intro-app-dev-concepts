@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md) |
+|              | Link                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                                         |
+| Next         | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md)                                                     |
 
 ---
 
@@ -159,11 +159,11 @@ const validatePutInstitution = (req, res, next) => {
 export { validatePostInstitution, validatePutInstitution };
 ```
 
-|  | `validatePostInstitution` | `validatePutInstitution` |
-| --- | --- | --- |
-| Use case | Creating a new institution | Updating an existing institution |
-| Fields | All required | All optional |
-| Minimum fields | All three | At least one |
+|                | `validatePostInstitution`  | `validatePutInstitution`         |
+| -------------- | -------------------------- | -------------------------------- |
+| Use case       | Creating a new institution | Updating an existing institution |
+| Fields         | All required               | All optional                     |
+| Minimum fields | All three                  | At least one                     |
 
 ---
 
@@ -280,7 +280,10 @@ Expected response (`409 Conflict`):
 {
   "errors": [
     { "message": "name is required", "type": "any.required" },
-    { "message": "region should have a minimum length of 3", "type": "string.min" }
+    {
+      "message": "region should have a minimum length of 3",
+      "type": "string.min"
+    }
   ]
 }
 ```
@@ -556,15 +559,15 @@ const getInstitutions = async (req, res) => {
 
 **Supported query parameters:**
 
-| Parameter | Description | Default | Example |
-| --- | --- | --- | --- |
-| `name` | Filter by name (case-insensitive, partial match) | - | `?name=otago` |
-| `region` | Filter by region | - | `?region=Otago` |
-| `country` | Filter by country | - | `?country=New Zealand` |
-| `sortBy` | Field to sort by | `id` | `?sortBy=country` |
-| `sortOrder` | Sort direction | `asc` | `?sortOrder=desc` |
-| `page` | Page number | `1` | `?page=2` |
-| `pageSize` | Results per page | `10` | `?pageSize=5` |
+| Parameter   | Description                                      | Default | Example                |
+| ----------- | ------------------------------------------------ | ------- | ---------------------- |
+| `name`      | Filter by name (case-insensitive, partial match) | -       | `?name=otago`          |
+| `region`    | Filter by region                                 | -       | `?region=Otago`        |
+| `country`   | Filter by country                                | -       | `?country=New Zealand` |
+| `sortBy`    | Field to sort by                                 | `id`    | `?sortBy=country`      |
+| `sortOrder` | Sort direction                                   | `asc`   | `?sortOrder=desc`      |
+| `page`      | Page number                                      | `1`     | `?page=2`              |
+| `pageSize`  | Results per page                                 | `10`    | `?pageSize=5`          |
 
 ---
 
@@ -577,10 +580,10 @@ Query parameters can be added two ways:
 
 **Paginate results**
 
-| Key | Value |
-| --- | --- |
-| page | 1 |
-| pageSize | 2 |
+| Key      | Value |
+| -------- | ----- |
+| page     | 1     |
+| pageSize | 2     |
 
 Expected response includes a `pagination` object:
 
@@ -614,10 +617,10 @@ Add the following to your `scripts` block in `package.json`:
 "build": "npm install && npx prisma generate && npx prisma migrate deploy"
 ```
 
-| Command | Purpose |
-| --- | --- |
-| `npx prisma migrate dev` | Development only - creates new migration files and applies them locally |
-| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files |
+| Command                     | Purpose                                                                 |
+| --------------------------- | ----------------------------------------------------------------------- |
+| `npx prisma migrate dev`    | Development only - creates new migration files and applies them locally |
+| `npx prisma migrate deploy` | Production - applies pending migrations without creating new files      |
 
 ---
 
@@ -714,11 +717,11 @@ Implement a `GET /api/endpoints` route that returns a list of all available endp
 
 Implement POST and PUT validation middleware for the `Department`, `Course`, and `User` resources:
 
-| File | Fields to validate |
-| --- | --- |
-| `department.js` | `name`, `institutionId` |
-| `course.js` | `name`, `code`, `description`, `departmentId` |
-| `user.js` | `firstName`, `lastName`, `emailAddress` |
+| File            | Fields to validate                            |
+| --------------- | --------------------------------------------- |
+| `department.js` | `name`, `institutionId`                       |
+| `course.js`     | `name`, `code`, `description`, `departmentId` |
+| `user.js`       | `firstName`, `lastName`, `emailAddress`       |
 
 ---
 
@@ -764,15 +767,15 @@ Errors encountered: None
 
 Extend the query parameter system to support advanced filtering operators:
 
-| Operator | Example |
-| --- | --- |
-| Range (less than or equal) | `?createdAt[lte]=2023-12-31` |
-| Range (greater than or equal) | `?createdAt[gte]=2023-01-01` |
-| Array (match any) | `?country[in]=Australia,New Zealand` |
-| Exclusion | `?region[not]=Otago` |
-| Starts with | `?name[startsWith]=Otago` |
-| Ends with | `?name[endsWith]=Polytechnic` |
-| Case sensitivity | `?name=otago polytechnic&caseSensitive=false` |
+| Operator                      | Example                                       |
+| ----------------------------- | --------------------------------------------- |
+| Range (less than or equal)    | `?createdAt[lte]=2023-12-31`                  |
+| Range (greater than or equal) | `?createdAt[gte]=2023-01-01`                  |
+| Array (match any)             | `?country[in]=Australia,New Zealand`          |
+| Exclusion                     | `?region[not]=Otago`                          |
+| Starts with                   | `?name[startsWith]=Otago`                     |
+| Ends with                     | `?name[endsWith]=Polytechnic`                 |
+| Case sensitivity              | `?name=otago polytechnic&caseSensitive=false` |
 
 ---
 

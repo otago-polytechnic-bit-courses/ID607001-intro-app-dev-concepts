@@ -2,10 +2,10 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01-2-more-prisma-service-layer-dependency-injection/README.md) |
+|              | Link                                                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Code Example | [Code Example](code-example)                                                                                                             |
+| Next         | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-dependency-injection/README.md) |
 
 ---
 
@@ -17,7 +17,7 @@ Open your repository in Visual Studio Code and switch to the Week 01.1 branch:
 git checkout -b w01-1-typescript
 ```
 
-This course builds on the REST API foundations from the previous course. You should be comfortable with Express, Prisma, middleware, authentication, and integration testing before proceeding.
+This course builds on the REST API foundations from ID607001: Introductory Application Development Concepts. You should be comfortable with Express, Prisma, middleware, authentication, and integration testing before proceeding.
 
 ---
 
@@ -33,13 +33,13 @@ The key difference from JavaScript is that TypeScript requires you to declare th
 
 ### 1.1 Why TypeScript?
 
-| Benefit | Description |
-| --- | --- |
-| **Catch errors early** | Type mismatches are flagged at compile time, not at runtime |
-| **Better IDE support** | Autocompletion, inline documentation, and refactoring tools |
-| **Self-documenting code** | Types serve as always-accurate inline documentation |
-| **Safer refactoring** | The compiler tells you everywhere a change has a knock-on effect |
-| **Team scale** | Explicit contracts between modules reduce integration surprises |
+| Benefit                   | Description                                                      |
+| ------------------------- | ---------------------------------------------------------------- |
+| **Catch errors early**    | Type mismatches are flagged at compile time, not at runtime      |
+| **Better IDE support**    | Autocompletion, inline documentation, and refactoring tools      |
+| **Self-documenting code** | Types serve as always-accurate inline documentation              |
+| **Safer refactoring**     | The compiler tells you everywhere a change has a knock-on effect |
+| **Team scale**            | Explicit contracts between modules reduce integration surprises  |
 
 ---
 
@@ -53,11 +53,11 @@ The key difference from JavaScript is that TypeScript requires you to declare th
 npm install typescript tsx @types/node --save-dev
 ```
 
-| Package | Purpose |
-| --- | --- |
-| `typescript` | The TypeScript compiler (`tsc`) |
-| `tsx` | Runs TypeScript files directly in Node.js without a separate compile step |
-| `@types/node` | Type definitions for Node.js built-ins (`process`, `path`, etc.) |
+| Package       | Purpose                                                                   |
+| ------------- | ------------------------------------------------------------------------- |
+| `typescript`  | The TypeScript compiler (`tsc`)                                           |
+| `tsx`         | Runs TypeScript files directly in Node.js without a separate compile step |
+| `@types/node` | Type definitions for Node.js built-ins (`process`, `path`, etc.)          |
 
 ---
 
@@ -84,13 +84,13 @@ Create `tsconfig.json` at the project root:
 }
 ```
 
-| Option | Purpose |
-| --- | --- |
-| `target` | JavaScript version to compile to |
-| `module` | Module system for output files |
-| `strict` | Enables all strict type checks |
-| `outDir` | Where compiled `.js` files are written |
-| `rootDir` | Where TypeScript source files live |
+| Option            | Purpose                                      |
+| ----------------- | -------------------------------------------- |
+| `target`          | JavaScript version to compile to             |
+| `module`          | Module system for output files               |
+| `strict`          | Enables all strict type checks               |
+| `outDir`          | Where compiled `.js` files are written       |
+| `rootDir`         | Where TypeScript source files live           |
 | `esModuleInterop` | Allows default imports from CommonJS modules |
 
 ---
@@ -134,8 +134,8 @@ const notAssigned: undefined = undefined;
 TypeScript can usually infer the type from the initial value, so explicit annotations are often unnecessary for local variables:
 
 ```typescript
-const name = "Jane";        // inferred as string
-const age = 30;             // inferred as number
+const name = "Jane"; // Inferred as string
+const age = 30; // Inferred as number
 ```
 
 Prefer type inference for simple variables and explicit annotations for function signatures and public APIs.
@@ -188,8 +188,8 @@ interface Institution {
   name: string;
   region: string;
   country: string;
-  website?: string;        // optional
-  emailAddress?: string;   // optional
+  website?: string; // Optional
+  emailAddress?: string; // Optional
 }
 ```
 
@@ -211,12 +211,12 @@ type CreateInstitutionInput = {
 };
 ```
 
-| | Interface | Type Alias |
-| --- | --- | --- |
-| Object shapes | ✅ Preferred | ✅ Works |
-| Union types | ❌ Cannot | ✅ Required |
-| Extending | `extends` keyword | Intersection `&` |
-| Reopening | ✅ Can be merged | ❌ Cannot |
+|               | Interface         | Type Alias       |
+| ------------- | ----------------- | ---------------- |
+| Object shapes | ✅ Preferred      | ✅ Works         |
+| Union types   | ❌ Cannot         | ✅ Required      |
+| Extending     | `extends` keyword | Intersection `&` |
+| Reopening     | ✅ Can be merged  | ❌ Cannot        |
 
 ---
 
@@ -264,8 +264,8 @@ function getFirst<T>(arr: T[]): T | undefined {
   return arr[0];
 }
 
-const firstNumber = getFirst([1, 2, 3]);   // inferred as number | undefined
-const firstName = getFirst(["a", "b"]);    // inferred as string | undefined
+const firstNumber = getFirst([1, 2, 3]); // Inferred as number | undefined
+const firstName = getFirst(["a", "b"]); // Inferred as string | undefined
 
 // A generic interface
 interface ApiResponse<T> {
@@ -331,9 +331,9 @@ interface CreateInstitutionBody {
 
 const createInstitution = async (
   req: Request<{}, {}, CreateInstitutionBody>,
-  res: Response
+  res: Response,
 ): Promise<void> => {
-  const { name, region, country } = req.body; // fully typed
+  const { name, region, country } = req.body; // Fully typed
   // ...
 };
 ```
@@ -349,9 +349,9 @@ interface InstitutionParams {
 
 const getInstitution = async (
   req: Request<InstitutionParams>,
-  res: Response
+  res: Response,
 ): Promise<void> => {
-  const { id } = req.params; // typed as string
+  const { id } = req.params; // Typed as string
   // ...
 };
 ```
@@ -394,7 +394,7 @@ The recommended migration strategy is incremental:
 Rename your source files:
 
 ```
-app.js            → app.ts
+app.js                     → app.ts
 controllers/institution.js → controllers/institution.ts
 routes/institution.js      → routes/institution.ts
 middleware/jwtAuth.js      → middleware/jwtAuth.ts
@@ -412,8 +412,8 @@ const data: any = await fetchData();
 
 // Better - forces you to narrow the type before using it
 const data: unknown = await fetchData();
-if (typeof data === 'object' && data !== null) {
-  // use data
+if (typeof data === "object" && data !== null) {
+  // Use data
 }
 ```
 
@@ -460,7 +460,7 @@ class InstitutionRepository {
 
   async update(
     id: string,
-    data: Prisma.InstitutionUpdateInput
+    data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
     return prisma.institution.update({ where: { id }, data });
   }
@@ -477,14 +477,14 @@ export default new InstitutionRepository();
 
 ## 7. Useful `tsconfig.json` Options
 
-| Option | Purpose |
-| --- | --- |
-| `"strict": true` | Enables `noImplicitAny`, `strictNullChecks`, and more |
-| `"noImplicitAny"` | Disallows implicit `any` types |
-| `"strictNullChecks"` | `null` and `undefined` are not assignable to other types |
-| `"noUnusedLocals"` | Error on declared but unused local variables |
-| `"noUnusedParameters"` | Error on declared but unused function parameters |
-| `"noImplicitReturns"` | Error if not all code paths return a value |
+| Option                 | Purpose                                                  |
+| ---------------------- | -------------------------------------------------------- |
+| `"strict": true`       | Enables `noImplicitAny`, `strictNullChecks`, and more    |
+| `"noImplicitAny"`      | Disallows implicit `any` types                           |
+| `"strictNullChecks"`   | `null` and `undefined` are not assignable to other types |
+| `"noUnusedLocals"`     | Error on declared but unused local variables             |
+| `"noUnusedParameters"` | Error on declared but unused function parameters         |
+| `"noImplicitReturns"`  | Error if not all code paths return a value               |
 
 ---
 

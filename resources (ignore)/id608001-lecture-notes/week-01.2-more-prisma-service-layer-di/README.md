@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 01.1 - TypeScript](../week-01-1-typescript/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02-1-docker-compose-github-actions/README.md) |
+|              | Link                                                                                                       |
+| ------------ | ---------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 01.1 - TypeScript](../week-01.1-typescript/README.md)                                                |
+| Code Example | [Code Example](code-example)                                                                               |
+| Next         | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02.1-docker-compose-github-actions/README.md) |
 
 ---
 
@@ -70,7 +70,7 @@ Interactive transactions give you full programmatic control over when to commit 
 const transferDepartment = async (
   departmentId: string,
   fromInstitutionId: string,
-  toInstitutionId: string
+  toInstitutionId: string,
 ) => {
   return prisma.$transaction(async (tx) => {
     const department = await tx.department.findUnique({
@@ -107,7 +107,7 @@ prisma.$use(async (params, next) => {
   const after = Date.now();
 
   console.log(
-    `Query ${params.model}.${params.action} took ${after - before}ms`
+    `Query ${params.model}.${params.action} took ${after - before}ms`,
   );
 
   return result;
@@ -195,13 +195,13 @@ const byCountry = await prisma.institution.groupBy({
 
 ## 2. Service Layer
 
-In the N-Layer architecture introduced in the previous course, we had Controllers and Repositories. The **Service Layer** sits between them and owns all business logic.
+In the N-Layer architecture introduced in ID607001: Introductory Application Development Concepts, we had Controllers and Repositories. The **Service Layer** sits between them and owns all business logic.
 
-| Layer | Components | Responsibility |
-| --- | --- | --- |
+| Layer            | Components          | Responsibility                                |
+| ---------------- | ------------------- | --------------------------------------------- |
 | **Presentation** | Controllers, Routes | Handle HTTP; validate input; format responses |
-| **Application** | **Services** | Business logic; orchestrate repositories |
-| **Data** | Repositories | Database access only |
+| **Application**  | **Services**        | Business logic; orchestrate repositories      |
+| **Data**         | Repositories        | Database access only                          |
 
 ---
 
@@ -251,7 +251,7 @@ class InstitutionService {
 
   async update(
     id: string,
-    data: Prisma.InstitutionUpdateInput
+    data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
     await this.getById(id); // Throws if not found
     return institutionRepository.update(id, data);
@@ -316,10 +316,17 @@ import { Request, Response } from "express";
 import institutionService from "../services/institution.js";
 import { NotFoundError, ConflictError } from "../errors/index.js";
 
-const createInstitution = async (req: Request, res: Response): Promise<void> => {
+const createInstitution = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   try {
     const { name, region, country } = req.body;
-    const institutions = await institutionService.create({ name, region, country });
+    const institutions = await institutionService.create({
+      name,
+      region,
+      country,
+    });
     res.status(201).json({
       message: "Institution successfully created",
       data: institutions,
@@ -359,9 +366,15 @@ const getInstitution = async (req: Request, res: Response): Promise<void> => {
   }
 };
 
-const updateInstitution = async (req: Request, res: Response): Promise<void> => {
+const updateInstitution = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   try {
-    const institution = await institutionService.update(req.params.id, req.body);
+    const institution = await institutionService.update(
+      req.params.id,
+      req.body,
+    );
     res.status(200).json({
       message: `Institution with the id: ${req.params.id} successfully updated`,
       data: institution,
@@ -375,7 +388,10 @@ const updateInstitution = async (req: Request, res: Response): Promise<void> => 
   }
 };
 
-const deleteInstitution = async (req: Request, res: Response): Promise<void> => {
+const deleteInstitution = async (
+  req: Request,
+  res: Response,
+): Promise<void> => {
   try {
     await institutionService.delete(req.params.id);
     res.status(200).json({
@@ -419,7 +435,7 @@ const errorHandler = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   if (err instanceof NotFoundError) {
     res.status(404).json({ message: err.message });
@@ -456,7 +472,7 @@ With a global error handler, controllers can use `next(err)` rather than `try/ca
 const getInstitution = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const institution = await institutionService.getById(req.params.id);
@@ -538,11 +554,16 @@ import { InstitutionService } from "../services/institution.js";
 import { NotFoundError } from "../errors/index.js";
 
 const mockRepository: IInstitutionRepository = {
-  create: async (data) => ({ id: "1", ...data, createdAt: new Date(), updatedAt: new Date() }),
+  create: async (data) => ({
+    id: "1",
+    ...data,
+    createdAt: new Date(),
+    updatedAt: new Date(),
+  }),
   findAll: async () => [],
   findById: async () => null,
-  update: async (id, data) => ({ id, ...data } as Institution),
-  delete: async (id) => ({ id } as Institution),
+  update: async (id, data) => ({ id, ...data }) as Institution,
+  delete: async (id) => ({ id }) as Institution,
 };
 
 describe("InstitutionService.getAll", () => {
@@ -564,7 +585,7 @@ describe("InstitutionService.getAll", () => {
 ## 4. Updated Directory Structure
 
 ```
-src/
+backend/
 ├── controllers/
 │   └── institution.ts
 ├── errors/

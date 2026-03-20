@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01-2-more-prisma-service-layer-dependency-injection/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 02.2 - Versioning and Retries](../week-02-2-versioning-retries/README.md) |
+|              | Link                                                                                                                                     |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-dependency-injection/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                             |
+| Next         | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md)                                                          |
 
 ---
 
@@ -22,7 +22,7 @@ git checkout -b w02-1-docker-compose-github-actions
 
 ## 1. Docker Compose
 
-In the previous course, you ran individual Docker containers using `docker run`. **Docker Compose** lets you define and manage multi-container applications in a single YAML file, making it much simpler to run services with consistent configuration.
+In ID607001: Introductory Application Development Concepts, you ran individual Docker containers using `docker run`. **Docker Compose** lets you define and manage multi-container applications in a single YAML file, making it much simpler to run services with consistent configuration.
 
 📖 Reference: [Docker Compose documentation](https://docs.docker.com/compose/)
 
@@ -30,13 +30,13 @@ In the previous course, you ran individual Docker containers using `docker run`.
 
 ### 1.1 Why Docker Compose?
 
-| `docker run` | Docker Compose |
-| --- | --- |
-| One container at a time | All containers defined in one file |
-| Configuration passed as flags | Configuration in readable YAML |
-| Must remember long commands | `docker compose up` / `docker compose down` |
-| Hard to share with teammates | Committed to the repository |
-| No dependency ordering | `depends_on` controls startup order |
+| `docker run`                  | Docker Compose                              |
+| ----------------------------- | ------------------------------------------- |
+| One container at a time       | All containers defined in one file          |
+| Configuration passed as flags | Configuration in readable YAML              |
+| Must remember long commands   | `docker compose up` / `docker compose down` |
+| Hard to share with teammates  | Committed to the repository                 |
+| No dependency ordering        | `depends_on` controls startup order         |
 
 ---
 
@@ -85,15 +85,15 @@ volumes:
   db-test-data:
 ```
 
-| Section | Purpose |
-| --- | --- |
-| `services` | Defines each container |
-| `image` | The Docker image to use |
-| `container_name` | A human-readable name for the container |
-| `environment` | Environment variables injected into the container |
-| `ports` | Maps `host:container` ports |
-| `volumes` | Mounts persistent storage |
-| `healthcheck` | Defines how Docker knows the service is ready |
+| Section          | Purpose                                           |
+| ---------------- | ------------------------------------------------- |
+| `services`       | Defines each container                            |
+| `image`          | The Docker image to use                           |
+| `container_name` | A human-readable name for the container           |
+| `environment`    | Environment variables injected into the container |
+| `ports`          | Maps `host:container` ports                       |
+| `volumes`        | Mounts persistent storage                         |
+| `healthcheck`    | Defines how Docker knows the service is ready     |
 
 ---
 
@@ -103,7 +103,7 @@ Named volumes (defined under `volumes:` at the top level) persist data between c
 
 ```yaml
 volumes:
-  db-dev-data:    # Docker manages where this is stored on the host
+  db-dev-data: # Docker manages where this is stored on the host
 ```
 
 ---
@@ -138,7 +138,7 @@ services:
       NODE_ENV: development
     depends_on:
       db-dev:
-        condition: service_healthy   # Wait until db-dev passes its health check
+        condition: service_healthy # Wait until db-dev passes its health check
     volumes:
       - .:/app
       - /app/node_modules
@@ -173,16 +173,16 @@ EXPOSE 3000
 CMD ["node", "dist/app.js"]
 ```
 
-| Instruction | Purpose |
-| --- | --- |
-| `FROM` | Base image |
-| `WORKDIR` | Working directory inside the container |
+| Instruction             | Purpose                                                    |
+| ----------------------- | ---------------------------------------------------------- |
+| `FROM`                  | Base image                                                 |
+| `WORKDIR`               | Working directory inside the container                     |
 | `COPY package*.json ./` | Copy package files before source to leverage layer caching |
-| `RUN npm ci` | Install exact dependencies |
-| `COPY . .` | Copy source files |
-| `RUN npm run build` | Compile TypeScript |
-| `EXPOSE` | Documents the port (does not actually publish it) |
-| `CMD` | Default command when the container starts |
+| `RUN npm ci`            | Install exact dependencies                                 |
+| `COPY . .`              | Copy source files                                          |
+| `RUN npm run build`     | Compile TypeScript                                         |
+| `EXPOSE`                | Documents the port (does not actually publish it)          |
+| `CMD`                   | Default command when the container starts                  |
 
 ---
 
@@ -249,7 +249,7 @@ Create `.github/workflows/reusable-test.yml`:
 name: Reusable - Run Tests
 
 on:
-  workflow_call:          # Makes this workflow callable from others
+  workflow_call: # Makes this workflow callable from others
     inputs:
       node-version:
         required: false
@@ -373,12 +373,12 @@ Run steps only under certain conditions using `if`:
   run: curl -X POST ${{ secrets.SLACK_WEBHOOK }} -d '{"text":"Build failed"}'
 ```
 
-| Expression | When it runs |
-| --- | --- |
-| `success()` | All previous steps succeeded |
-| `failure()` | Any previous step failed |
-| `always()` | Always, regardless of outcome |
-| `cancelled()` | The workflow was cancelled |
+| Expression    | When it runs                  |
+| ------------- | ----------------------------- |
+| `success()`   | All previous steps succeeded  |
+| `failure()`   | Any previous step failed      |
+| `always()`    | Always, regardless of outcome |
+| `cancelled()` | The workflow was cancelled    |
 
 ---
 
@@ -424,7 +424,7 @@ Prevent multiple workflow runs from deploying simultaneously:
 ```yaml
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true  # Cancel older runs when a new one starts
+  cancel-in-progress: true # Cancel older runs when a new one starts
 ```
 
 ---

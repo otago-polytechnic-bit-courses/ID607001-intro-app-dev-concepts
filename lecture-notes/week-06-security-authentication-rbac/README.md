@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
+|              | Link                                                                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md)            |
+| Code Example | [Code Example](code-example)                                                                                                                     |
+| Next         | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
 
 ---
 
@@ -28,18 +28,18 @@ Security is the practice of protecting systems, networks, and data from unauthor
 
 ### 1.1 Common API Vulnerabilities
 
-| Vulnerability | Description |
-| --- | --- |
-| **Broken object level authorisation** | API doesn't enforce access controls at the object level |
-| **Broken user authentication** | API doesn't properly authenticate users |
-| **Excessive data exposure** | API returns more data than necessary |
-| **Lack of rate limiting** | No request throttling - enables denial-of-service or brute-force attacks |
-| **Mass assignment** | API lets users update object properties they shouldn't have access to |
-| **Security misconfiguration** | Improperly configured API exposes exploitable vulnerabilities |
-| **Injection** | Unvalidated user input allows malicious code to be injected |
-| **Improper assets management** | Poorly managed endpoints can be accessed or manipulated unexpectedly |
-| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect |
-| **Vulnerable components** | Use of third-party libraries with known vulnerabilities |
+| Vulnerability                           | Description                                                              |
+| --------------------------------------- | ------------------------------------------------------------------------ |
+| **Broken object level authorisation**   | API doesn't enforce access controls at the object level                  |
+| **Broken user authentication**          | API doesn't properly authenticate users                                  |
+| **Excessive data exposure**             | API returns more data than necessary                                     |
+| **Lack of rate limiting**               | No request throttling - enables denial-of-service or brute-force attacks |
+| **Mass assignment**                     | API lets users update object properties they shouldn't have access to    |
+| **Security misconfiguration**           | Improperly configured API exposes exploitable vulnerabilities            |
+| **Injection**                           | Unvalidated user input allows malicious code to be injected              |
+| **Improper assets management**          | Poorly managed endpoints can be accessed or manipulated unexpectedly     |
+| **Insufficient logging and monitoring** | Lack of audit trails makes attacks difficult to detect                   |
+| **Vulnerable components**               | Use of third-party libraries with known vulnerabilities                  |
 
 ---
 
@@ -51,12 +51,12 @@ Authentication is the process of verifying the identity of a user or system.
 
 ### 2.1 Token vs. Session Authentication
 
-| | Token-Based | Session-Based |
-| --- | --- | --- |
-| **State** | Stateless | Stateful |
-| **Storage** | Client stores token in memory or local storage | Server stores session in memory or database |
-| **Transport** | Sent in `Authorization` header | Sent via cookie |
-| **Server lookup** | Server validates token on every request | Server looks up the session on every request |
+|                   | Token-Based                                    | Session-Based                                |
+| ----------------- | ---------------------------------------------- | -------------------------------------------- |
+| **State**         | Stateless                                      | Stateful                                     |
+| **Storage**       | Client stores token in memory or local storage | Server stores session in memory or database  |
+| **Transport**     | Sent in `Authorization` header                 | Sent via cookie                              |
+| **Server lookup** | Server validates token on every request        | Server looks up the session on every request |
 
 ---
 
@@ -76,10 +76,10 @@ A JWT is a compact, URL-safe format for transmitting claims between parties. It 
 npm install bcryptjs jsonwebtoken
 ```
 
-| Package | Purpose |
-| --- | --- |
-| `bcryptjs` | Hash and compare passwords |
-| `jsonwebtoken` | Create and verify JWTs |
+| Package        | Purpose                    |
+| -------------- | -------------------------- |
+| `bcryptjs`     | Hash and compare passwords |
+| `jsonwebtoken` | Create and verify JWTs     |
 
 ---
 
@@ -330,12 +330,13 @@ router.post("/", validatePostInstitution, jwtAuth, createInstitution);
 
 **Register a user**
 
-| Field | Value |
-| --- | --- |
-| Method | `POST` |
-| URL | `http://localhost:3000/api/auth/register` |
+| Field  | Value                                     |
+| ------ | ----------------------------------------- |
+| Method | `POST`                                    |
+| URL    | `http://localhost:3000/api/auth/register` |
 
 Body:
+
 ```json
 {
   "firstName": "Jane",
@@ -350,12 +351,13 @@ Expected response (`201 Created`) - note the password is **not** returned.
 
 **Log in**
 
-| Field | Value |
-| --- | --- |
-| Method | `POST` |
-| URL | `http://localhost:3000/api/auth/login` |
+| Field  | Value                                  |
+| ------ | -------------------------------------- |
+| Method | `POST`                                 |
+| URL    | `http://localhost:3000/api/auth/login` |
 
 Body:
+
 ```json
 {
   "emailAddress": "jane.doe@example.com",
@@ -459,6 +461,7 @@ router.post(
 Register a STUDENT user, log in, and attempt `POST /api/institutions`.
 
 Expected response (`403 Forbidden`):
+
 ```json
 {
   "message": "Forbidden. Insufficient privileges for role: STUDENT"
@@ -512,13 +515,13 @@ const rateLimiter = rateLimit({
 export default rateLimiter;
 ```
 
-| Option | Purpose |
-| --- | --- |
-| `windowMs` | Length of the rate limit window in milliseconds |
-| `max` | Maximum requests allowed per window per IP |
-| `standardHeaders` | Adds `RateLimit-*` headers to responses |
-| `legacyHeaders` | Disables older `X-RateLimit-*` headers |
-| `message` | Error payload returned when the limit is exceeded |
+| Option            | Purpose                                           |
+| ----------------- | ------------------------------------------------- |
+| `windowMs`        | Length of the rate limit window in milliseconds   |
+| `max`             | Maximum requests allowed per window per IP        |
+| `standardHeaders` | Adds `RateLimit-*` headers to responses           |
+| `legacyHeaders`   | Disables older `X-RateLimit-*` headers            |
+| `message`         | Error payload returned when the limit is exceeded |
 
 📖 Reference: [express-rate-limit docs](https://express-rate-limit.mintlify.app/overview)
 
@@ -541,11 +544,11 @@ router.get("/:id", rateLimiter, getInstitution);
 
 There are several types of testing commonly used in backend development. They differ in scope, speed, and what they verify.
 
-| Type | Scope | Speed | Description |
-| --- | --- | --- | --- |
-| **Unit** | Single function or module | Fast | Tests a piece of logic in isolation, with all dependencies mocked |
-| **Integration** | Multiple components together | Moderate | Tests how components interact, typically with a real database |
-| **End-to-end** | Full application stack | Slow | Tests the entire system from the client's perspective |
+| Type            | Scope                        | Speed    | Description                                                       |
+| --------------- | ---------------------------- | -------- | ----------------------------------------------------------------- |
+| **Unit**        | Single function or module    | Fast     | Tests a piece of logic in isolation, with all dependencies mocked |
+| **Integration** | Multiple components together | Moderate | Tests how components interact, typically with a real database     |
+| **End-to-end**  | Full application stack       | Slow     | Tests the entire system from the client's perspective             |
 
 Each type serves a different purpose and the three are often used together in a project.
 
@@ -660,25 +663,25 @@ router.get("/:id", rbac(["ADMIN", "STUDENT"]), getInstitution);
 
 Apply the following permission matrix across all resources:
 
-| Resource | Operation | ADMIN | STAFF | STUDENT |
-| --- | --- | :---: | :---: | :---: |
-| Institution | Read | ✅ | ✅ | ✅ |
-| Institution | Create | ✅ | ✅ | ❌ |
-| Institution | Update | ✅ | ✅ | ❌ |
-| Institution | Delete | ✅ | ❌ | ❌ |
-| Department | Read | ✅ | ✅ | ✅ |
-| Department | Create | ✅ | ✅ | ❌ |
-| Department | Update | ✅ | ✅ | ❌ |
-| Department | Delete | ✅ | ❌ | ❌ |
-| Course | Read | ✅ | ✅ | ✅ |
-| Course | Create | ✅ | ✅ | ❌ |
-| Course | Update | ✅ | ✅ | ❌ |
-| Course | Delete | ✅ | ❌ | ❌ |
-| User | View All | ✅ | ✅ | ❌ |
-| User | View Own | ✅ | ✅ | ✅ |
-| User | Update All | ✅ | ✅ | ❌ |
-| User | Update Own | ✅ | ✅ | ✅ |
-| User | Delete | ✅ | ❌ | ❌ |
+| Resource    | Operation  | ADMIN | STAFF | STUDENT |
+| ----------- | ---------- | :---: | :---: | :-----: |
+| Institution | Read       |  ✅   |  ✅   |   ✅    |
+| Institution | Create     |  ✅   |  ✅   |   ❌    |
+| Institution | Update     |  ✅   |  ✅   |   ❌    |
+| Institution | Delete     |  ✅   |  ❌   |   ❌    |
+| Department  | Read       |  ✅   |  ✅   |   ✅    |
+| Department  | Create     |  ✅   |  ✅   |   ❌    |
+| Department  | Update     |  ✅   |  ✅   |   ❌    |
+| Department  | Delete     |  ✅   |  ❌   |   ❌    |
+| Course      | Read       |  ✅   |  ✅   |   ✅    |
+| Course      | Create     |  ✅   |  ✅   |   ❌    |
+| Course      | Update     |  ✅   |  ✅   |   ❌    |
+| Course      | Delete     |  ✅   |  ❌   |   ❌    |
+| User        | View All   |  ✅   |  ✅   |   ❌    |
+| User        | View Own   |  ✅   |  ✅   |   ✅    |
+| User        | Update All |  ✅   |  ✅   |   ❌    |
+| User        | Update Own |  ✅   |  ✅   |   ✅    |
+| User        | Delete     |  ✅   |  ❌   |   ❌    |
 
 ---
 
@@ -686,14 +689,14 @@ Apply the following permission matrix across all resources:
 
 Create a `Profile` model:
 
-| Field | Type | Constraints |
-| --- | --- | --- |
-| `id` | String | Primary key, default UUID |
-| `bio` | String | |
-| `avatarUrl` | String | |
-| `userId` | String | Foreign key |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field       | Type     | Constraints               |
+| ----------- | -------- | ------------------------- |
+| `id`        | String   | Primary key, default UUID |
+| `bio`       | String   |                           |
+| `avatarUrl` | String   |                           |
+| `userId`    | String   | Foreign key               |
+| `createdAt` | DateTime | Default now               |
+| `updatedAt` | DateTime | Default now               |
 
 Update the `User` model to include a one-to-one relationship and update `register` to auto-create a profile:
 

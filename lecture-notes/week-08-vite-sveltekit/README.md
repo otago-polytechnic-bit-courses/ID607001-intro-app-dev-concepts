@@ -5,7 +5,7 @@
 |          | Link                                                                                                                                             |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
 | Previous | [Week 07 - Backend Testing and Code Coverage, CI/CD and GitHub Actions](../week-07-backend-testing-code-coverage-ci-cd-github-actions/README.md) |
-| Next     | [Week 09 - API Integration, Bootstrap and Deployment](../week-09-api-integration-bootstrap-deployment/README.md)                                                        |
+| Next     | [Week 09 - API Integration, Bootstrap and Deployment](../week-09-api-integration-bootstrap-deployment/README.md)                                 |
 
 ---
 

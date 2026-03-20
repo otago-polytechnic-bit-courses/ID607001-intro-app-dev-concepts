@@ -2,10 +2,10 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6) |
-| Next | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
+|                  | Link                                                                                                 |
+| ---------------- | ---------------------------------------------------------------------------------------------------- |
+| GitHub Classroom | [ID607001-S1-26](https://classroom.github.com/a/aXgtaeo6)                                            |
+| Next             | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
 
 ---
 
@@ -13,21 +13,21 @@
 
 ### 1.1 Useful Git Commands
 
-| Command | Description |
-| --- | --- |
-| `git clone <repository-url>` | Clone a repository to your local machine |
-| `git status` | Check the status of your local repository |
-| `git add <file>` | Stage changes for the next commit |
-| `git commit -m "message"` | Commit staged changes with a descriptive message |
-| `git push` | Push committed changes to the remote repository |
-| `git pull` | Pull the latest changes from the remote repository |
-| `git branch` | List all branches in the repository |
-| `git switch <branch>` | Switch to a different branch |
-| `git restore <file>` | Discard working directory changes for a file |
-| `git checkout <branch>` | Switch to a different branch |
-| `git fetch` | Fetch changes from the remote repository |
-| `git merge <branch>` | Merge a branch into the current branch |
-| `git log` | View the commit history |
+| Command                      | Description                                        |
+| ---------------------------- | -------------------------------------------------- |
+| `git clone <repository-url>` | Clone a repository to your local machine           |
+| `git status`                 | Check the status of your local repository          |
+| `git add <file>`             | Stage changes for the next commit                  |
+| `git commit -m "message"`    | Commit staged changes with a descriptive message   |
+| `git push`                   | Push committed changes to the remote repository    |
+| `git pull`                   | Pull the latest changes from the remote repository |
+| `git branch`                 | List all branches in the repository                |
+| `git switch <branch>`        | Switch to a different branch                       |
+| `git restore <file>`         | Discard working directory changes for a file       |
+| `git checkout <branch>`      | Switch to a different branch                       |
+| `git fetch`                  | Fetch changes from the remote repository           |
+| `git merge <branch>`         | Merge a branch into the current branch             |
+| `git log`                    | View the commit history                            |
 
 `git switch` is a newer command introduced specifically for branch switching. `git checkout` is older and has additional uses. For branch switching, prefer `git switch` for clarity.
 
@@ -55,15 +55,15 @@ Node.js is an open-source JavaScript runtime environment that lets you execute J
 
 JavaScript has **seven primitive data types**:
 
-| Type | Example |
-| --- | --- |
-| Boolean | `true`, `false` |
-| Number | `1`, `2.5`, `-3` |
-| String | `"Hello"`, `"World"` |
-| Null | `null` |
-| Undefined | `undefined` |
-| BigInt | `9007199254740991n` |
-| Symbol | `Symbol()` |
+| Type      | Example              |
+| --------- | -------------------- |
+| Boolean   | `true`, `false`      |
+| Number    | `1`, `2.5`, `-3`     |
+| String    | `"Hello"`, `"World"` |
+| Null      | `null`               |
+| Undefined | `undefined`          |
+| BigInt    | `9007199254740991n`  |
+| Symbol    | `Symbol()`           |
 
 > The first five will be used in this course. BigInt and Symbol are not covered.
 
@@ -93,13 +93,13 @@ console.log(typeof age); // number
 
 ### 2.4 Operators
 
-| Category | Operators |
-| --- | --- |
-| Arithmetic | `+`, `-`, `*`, `/`, `%`, `**` |
-| Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=` |
-| Comparison | `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=` |
-| Logical | `&&`, `\|\|`, `!` |
-| Ternary | `condition ? expressionIfTrue : expressionIfFalse` |
+| Category   | Operators                                          |
+| ---------- | -------------------------------------------------- |
+| Arithmetic | `+`, `-`, `*`, `/`, `%`, `**`                      |
+| Assignment | `=`, `+=`, `-=`, `*=`, `/=`, `%=`, `**=`           |
+| Comparison | `==`, `!=`, `===`, `!==`, `>`, `<`, `>=`, `<=`     |
+| Logical    | `&&`, `\|\|`, `!`                                  |
+| Ternary    | `condition ? expressionIfTrue : expressionIfFalse` |
 
 📖 Reference: [MDN - Expressions and Operators](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators)
 
@@ -139,11 +139,11 @@ switch (expression) {
 
 ### 2.6 Loops
 
-| Loop | Best used when... |
-| --- | --- |
-| `for` | You need a specific number of iterations or need the index |
-| `for...in` | You need to iterate over the properties of an object |
-| `for...of` | You need to iterate over the values of an iterable |
+| Loop        | Best used when...                                                     |
+| ----------- | --------------------------------------------------------------------- |
+| `for`       | You need a specific number of iterations or need the index            |
+| `for...in`  | You need to iterate over the properties of an object                  |
+| `for...of`  | You need to iterate over the values of an iterable                    |
 | `forEach()` | You need to run a function per array element and don't need the index |
 
 ```javascript
@@ -503,12 +503,12 @@ const isPrime = (num) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `isPrime(1)` | `false` |
-| `isPrime(2)` | `true` |
-| `isPrime(17)` | `true` |
-| `isPrime(25)` | `false` |
+| Input         | Expected Output |
+| ------------- | --------------- |
+| `isPrime(1)`  | `false`         |
+| `isPrime(2)`  | `true`          |
+| `isPrime(17)` | `true`          |
+| `isPrime(25)` | `false`         |
 
 > **Hint:** A prime number is greater than 1 and has no divisors other than 1 and itself. Iterate from 2 to the square root of the number and check for divisibility.
 
@@ -524,12 +524,12 @@ const reverseString = (str) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `reverseString("")` | `""` |
-| `reverseString("Hello")` | `"olleH"` |
-| `reverseString("World")` | `"dlroW"` |
-| `reverseString("JavaScript")` | `"tpircSavaJ"` |
+| Input                         | Expected Output |
+| ----------------------------- | --------------- |
+| `reverseString("")`           | `""`            |
+| `reverseString("Hello")`      | `"olleH"`       |
+| `reverseString("World")`      | `"dlroW"`       |
+| `reverseString("JavaScript")` | `"tpircSavaJ"`  |
 
 > **Hint:** Convert to an array with `split()`, reverse with `reverse()`, and rejoin with `join()`. Or use a for loop.
 
@@ -545,12 +545,12 @@ const findMax = (arr) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `findMax([1, 2, 3, 4, 5])` | `5` |
-| `findMax([5, 4, 3, 2, 1])` | `5` |
-| `findMax([1, 3, 5, 2, 4])` | `5` |
-| `findMax([-10, -5, -1, -20])` | `-1` |
+| Input                         | Expected Output |
+| ----------------------------- | --------------- |
+| `findMax([1, 2, 3, 4, 5])`    | `5`             |
+| `findMax([5, 4, 3, 2, 1])`    | `5`             |
+| `findMax([1, 3, 5, 2, 4])`    | `5`             |
+| `findMax([-10, -5, -1, -20])` | `-1`            |
 
 > **Hint:** Assume the first element is the max, then compare against the rest.
 
@@ -566,12 +566,12 @@ const isPalindrome = (str) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `isPalindrome("racecar")` | `true` |
-| `isPalindrome("rAcEcAr")` | `true` |
-| `isPalindrome("hello")` | `false` |
-| `isPalindrome("A man a plan a canal Panama")` | `true` |
+| Input                                         | Expected Output |
+| --------------------------------------------- | --------------- |
+| `isPalindrome("racecar")`                     | `true`          |
+| `isPalindrome("rAcEcAr")`                     | `true`          |
+| `isPalindrome("hello")`                       | `false`         |
+| `isPalindrome("A man a plan a canal Panama")` | `true`          |
 
 > **Hint:** Compare the string with its reverse. Handle case and spaces. You can reuse your `reverseString` function from Task 2.
 
@@ -587,12 +587,12 @@ const factorial = (n) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `factorial(0)` | `1` |
-| `factorial(1)` | `1` |
-| `factorial(5)` | `120` |
-| `factorial(7)` | `5040` |
+| Input          | Expected Output |
+| -------------- | --------------- |
+| `factorial(0)` | `1`             |
+| `factorial(1)` | `1`             |
+| `factorial(5)` | `120`           |
+| `factorial(7)` | `5040`          |
 
 > **Hint:** Multiply all integers from 1 to n using a for loop. Remember: `0! = 1` by definition.
 
@@ -608,8 +608,8 @@ const sortArray = (arr) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
+| Input                        | Expected Output   |
+| ---------------------------- | ----------------- |
 | `sortArray([5, 4, 3, 2, 1])` | `[1, 2, 3, 4, 5]` |
 | `sortArray([1, 2, 3, 4, 5])` | `[1, 2, 3, 4, 5]` |
 | `sortArray([1, 3, 5, 2, 4])` | `[1, 2, 3, 4, 5]` |
@@ -629,12 +629,12 @@ const countOccurrences = (arr, element) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `countOccurrences([1, 2, 3, 4, 5], 1)` | `1` |
-| `countOccurrences([1, 2, 3, 4, 5], 6)` | `0` |
-| `countOccurrences([1, 2, 3, 4, 5, 1], 1)` | `2` |
-| `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` | `2` |
+| Input                                                               | Expected Output |
+| ------------------------------------------------------------------- | --------------- |
+| `countOccurrences([1, 2, 3, 4, 5], 1)`                              | `1`             |
+| `countOccurrences([1, 2, 3, 4, 5], 6)`                              | `0`             |
+| `countOccurrences([1, 2, 3, 4, 5, 1], 1)`                           | `2`             |
+| `countOccurrences(['apple', 'banana', 'apple', 'orange'], 'apple')` | `2`             |
 
 > **Hint:** Start a counter at 0 and increment it each time you find the target element.
 
@@ -650,12 +650,12 @@ const isAnagram = (str1, str2) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `isAnagram("listen", "silent")` | `true` |
-| `isAnagram("hello", "bello")` | `false` |
-| `isAnagram("elbow", "below")` | `true` |
-| `isAnagram("Study", "dusty")` | `true` |
+| Input                           | Expected Output |
+| ------------------------------- | --------------- |
+| `isAnagram("listen", "silent")` | `true`          |
+| `isAnagram("hello", "bello")`   | `false`         |
+| `isAnagram("elbow", "below")`   | `true`          |
+| `isAnagram("Study", "dusty")`   | `true`          |
 
 > **Hint:** Sort both strings and compare them. Handle case sensitivity.
 
@@ -671,11 +671,11 @@ const findLongestWord = (sentence) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
-| `findLongestWord("The quick brown fox jumped over the lazy dog")` | `"jumped"` |
-| `findLongestWord("May the force be with you")` | `"force"` |
-| `findLongestWord("Hello world")` | `"Hello"` or `"world"` |
+| Input                                                             | Expected Output        |
+| ----------------------------------------------------------------- | ---------------------- |
+| `findLongestWord("The quick brown fox jumped over the lazy dog")` | `"jumped"`             |
+| `findLongestWord("May the force be with you")`                    | `"force"`              |
+| `findLongestWord("Hello world")`                                  | `"Hello"` or `"world"` |
 
 > **Hint:** Use `split(' ')` to get words, then iterate to find the longest one.
 
@@ -691,8 +691,8 @@ const mergeSortedArrays = (arr1, arr2) => {
 };
 ```
 
-| Input | Expected Output |
-| --- | --- |
+| Input                                     | Expected Output      |
+| ----------------------------------------- | -------------------- |
 | `mergeSortedArrays([1, 2, 3], [4, 5, 6])` | `[1, 2, 3, 4, 5, 6]` |
 | `mergeSortedArrays([4, 5, 6], [1, 2, 3])` | `[1, 2, 3, 4, 5, 6]` |
 | `mergeSortedArrays([1, 3, 5], [2, 4, 6])` | `[1, 2, 3, 4, 5, 6]` |

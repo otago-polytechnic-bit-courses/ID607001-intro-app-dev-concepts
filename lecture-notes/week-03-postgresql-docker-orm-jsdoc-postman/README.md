@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 02 - API, Express and Development Tools](../week-02-api-express-development-tools/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+|              | Link                                                                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 02 - API, Express and Development Tools](../week-02-api-express-development-tools/README.md)                                                   |
+| Code Example | [Code Example](code-example)                                                                                                                         |
+| Next         | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 
@@ -42,13 +42,13 @@ Open Docker Desktop and a terminal, then run:
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
 ```
 
-| Flag | Purpose |
-| --- | --- |
-| `docker run` | Creates a new container |
-| `--name id607001-db-dev` | Names the container |
-| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the PostgreSQL password |
-| `-p 5432:5432` | Maps container port 5432 to host port 5432 |
-| `-d postgres` | Uses the official PostgreSQL image |
+| Flag                                 | Purpose                                    |
+| ------------------------------------ | ------------------------------------------ |
+| `docker run`                         | Creates a new container                    |
+| `--name id607001-db-dev`             | Names the container                        |
+| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the PostgreSQL password               |
+| `-p 5432:5432`                       | Maps container port 5432 to host port 5432 |
+| `-d postgres`                        | Uses the official PostgreSQL image         |
 
 **Useful Docker commands:**
 
@@ -84,11 +84,11 @@ npm install prisma@^6.12.0 --save-dev
 npx prisma init
 ```
 
-| Command | Purpose |
-| --- | --- |
-| `npm install @prisma/client` | Installs the Prisma Client |
-| `npm install prisma --save-dev` | Installs the Prisma CLI |
-| `npx prisma init` | Creates the `.env` file and `prisma/` directory |
+| Command                         | Purpose                                         |
+| ------------------------------- | ----------------------------------------------- |
+| `npm install @prisma/client`    | Installs the Prisma Client                      |
+| `npm install prisma --save-dev` | Installs the Prisma CLI                         |
+| `npx prisma init`               | Creates the `.env` file and `prisma/` directory |
 
 ---
 
@@ -171,13 +171,13 @@ model Institution {
 }
 ```
 
-| Directive | Purpose |
-| --- | --- |
-| `@id` | Marks the field as the primary key |
-| `@default(uuid())` | Generates a UUID as the default value |
-| `@unique` | Enforces uniqueness on this field |
-| `@default(now())` | Defaults to the current date/time |
-| `@updatedAt` | Automatically updates on every row change |
+| Directive          | Purpose                                   |
+| ------------------ | ----------------------------------------- |
+| `@id`              | Marks the field as the primary key        |
+| `@default(uuid())` | Generates a UUID as the default value     |
+| `@unique`          | Enforces uniqueness on this field         |
+| `@default(now())`  | Defaults to the current date/time         |
+| `@updatedAt`       | Automatically updates on every row change |
 
 📖 Reference: [Prisma - Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
 
@@ -426,10 +426,10 @@ router.get("/", institutionController.getInstitutions);
 
 **Named export** - multiple exports per module, imported with curly braces (used in this project).
 
-| Use case | Export type |
-| --- | --- |
-| Exporting a single value | Default export |
-| Exporting multiple values | Named exports |
+| Use case                  | Export type    |
+| ------------------------- | -------------- |
+| Exporting a single value  | Default export |
+| Exporting multiple values | Named exports  |
 
 ---
 
@@ -555,12 +555,13 @@ Make sure your server is running and your Docker container is up before testing.
 
 **GET all institutions**
 
-| Field | Value |
-| --- | --- |
-| Method | `GET` |
-| URL | `http://localhost:3000/api/institutions` |
+| Field  | Value                                    |
+| ------ | ---------------------------------------- |
+| Method | `GET`                                    |
+| URL    | `http://localhost:3000/api/institutions` |
 
 Expected response (`200 OK`):
+
 ```json
 {
   "data": []
@@ -569,10 +570,10 @@ Expected response (`200 OK`):
 
 **POST - Create an institution**
 
-| Field | Value |
-| --- | --- |
-| Method | `POST` |
-| URL | `http://localhost:3000/api/institutions` |
+| Field  | Value                                    |
+| ------ | ---------------------------------------- |
+| Method | `POST`                                   |
+| URL    | `http://localhost:3000/api/institutions` |
 
 In the **Body** tab, select **raw** → **JSON**:
 
@@ -585,6 +586,7 @@ In the **Body** tab, select **raw** → **JSON**:
 ```
 
 Expected response (`201 Created`):
+
 ```json
 {
   "message": "Institution successfully created",
@@ -605,19 +607,20 @@ Expected response (`201 Created`):
 
 **GET - Institution by ID**
 
-| Field | Value |
-| --- | --- |
-| Method | `GET` |
-| URL | `http://localhost:3000/api/institutions/<paste-id-here>` |
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `GET`                                                    |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
 
 **PUT - Update an institution**
 
-| Field | Value |
-| --- | --- |
-| Method | `PUT` |
-| URL | `http://localhost:3000/api/institutions/<paste-id-here>` |
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `PUT`                                                    |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
 
 Body:
+
 ```json
 {
   "name": "Otago Polytechnic Te Kura Matatini ki Otago",
@@ -628,24 +631,24 @@ Body:
 
 **DELETE - Delete an institution**
 
-| Field | Value |
-| --- | --- |
-| Method | `DELETE` |
-| URL | `http://localhost:3000/api/institutions/<paste-id-here>` |
+| Field  | Value                                                    |
+| ------ | -------------------------------------------------------- |
+| Method | `DELETE`                                                 |
+| URL    | `http://localhost:3000/api/institutions/<paste-id-here>` |
 
 ---
 
 ### 7.4 Troubleshooting Common Errors
 
-| Symptom | Likely Cause | Fix |
-| --- | --- | --- |
-| `Could not send request` | Server isn't running | Run `npm run dev` |
-| `ECONNREFUSED` | Docker container not running | Run `npm run docker:run:dev` |
-| `500 Internal Server Error` | Database issue or missing `.env` | Check `DATABASE_URL` in `.env` |
-| `404 Not Found` on a valid ID | ID doesn't exist in the database | Use `GET /api/institutions` to find a real ID |
-| Response is HTML, not JSON | Express route not matched | Check you're using the correct method and URL |
-| Body not being received | Missing `Content-Type` header | Make sure Body is set to **raw → JSON** in Postman |
-| Agent error on first request | Wrong Postman agent selected | Switch to **Desktop Agent** |
+| Symptom                       | Likely Cause                     | Fix                                                |
+| ----------------------------- | -------------------------------- | -------------------------------------------------- |
+| `Could not send request`      | Server isn't running             | Run `npm run dev`                                  |
+| `ECONNREFUSED`                | Docker container not running     | Run `npm run docker:run:dev`                       |
+| `500 Internal Server Error`   | Database issue or missing `.env` | Check `DATABASE_URL` in `.env`                     |
+| `404 Not Found` on a valid ID | ID doesn't exist in the database | Use `GET /api/institutions` to find a real ID      |
+| Response is HTML, not JSON    | Express route not matched        | Check you're using the correct method and URL      |
+| Body not being received       | Missing `Content-Type` header    | Make sure Body is set to **raw → JSON** in Postman |
+| Agent error on first request  | Wrong Postman agent selected     | Switch to **Desktop Agent**                        |
 
 ---
 
@@ -838,10 +841,10 @@ Navigate to `http://localhost:3000` in your browser.
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-| --- | --- | --- |
-| POST | `/api/institutions` | Create a new institution |
-| GET | `/api/institutions` | Get all institutions |
-| GET | `/api/institutions/:id` | Get an institution by ID |
-| PUT | `/api/institutions/:id` | Update an institution by ID |
+| Method | Endpoint                | Description                 |
+| ------ | ----------------------- | --------------------------- |
+| POST   | `/api/institutions`     | Create a new institution    |
+| GET    | `/api/institutions`     | Get all institutions        |
+| GET    | `/api/institutions/:id` | Get an institution by ID    |
+| PUT    | `/api/institutions/:id` | Update an institution by ID |
 | DELETE | `/api/institutions/:id` | Delete an institution by ID |

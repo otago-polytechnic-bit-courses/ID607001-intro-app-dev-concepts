@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 09 - API Integration, Bootstrap and Deployment](../week-09-api-integration-bootstrap-deployment/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 11 - Component Testing and End-to-End Testing](../week-11-component-testing-end-to-end-testing/README.md) |
+|              | Link                                                                                                             |
+| ------------ | ---------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 09 - API Integration, Bootstrap and Deployment](../week-09-api-integration-bootstrap-deployment/README.md) |
+| Code Example | [Code Example](code-example)                                                                                     |
+| Next         | [Week 11 - Component Testing and End-to-End Testing](../week-11-component-testing-end-to-end-testing/README.md)  |
 
 ---
 
@@ -30,12 +30,12 @@ Performance in web applications refers to how quickly and efficiently a page loa
 
 Google's Core Web Vitals are a set of real-world metrics that measure user experience:
 
-| Metric | Name | Measures | Good Threshold |
-| --- | --- | --- | --- |
-| **LCP** | Largest Contentful Paint | Loading performance | ≤ 2.5s |
-| **FID** | First Input Delay | Interactivity | ≤ 100ms |
-| **CLS** | Cumulative Layout Shift | Visual stability | ≤ 0.1 |
-| **INP** | Interaction to Next Paint | Responsiveness | ≤ 200ms |
+| Metric  | Name                      | Measures            | Good Threshold |
+| ------- | ------------------------- | ------------------- | -------------- |
+| **LCP** | Largest Contentful Paint  | Loading performance | ≤ 2.5s         |
+| **FID** | First Input Delay         | Interactivity       | ≤ 100ms        |
+| **CLS** | Cumulative Layout Shift   | Visual stability    | ≤ 0.1          |
+| **INP** | Interaction to Next Paint | Responsiveness      | ≤ 200ms        |
 
 📖 Reference: [web.dev - Core Web Vitals](https://web.dev/explore/learn-core-web-vitals)
 
@@ -61,14 +61,14 @@ The report scores your page across Performance, Accessibility, Best Practices, a
 
 ### 1.3 Common Performance Bottlenecks
 
-| Bottleneck | Description |
-| --- | --- |
-| **Large images** | Unoptimised images are the most common cause of slow LCP |
+| Bottleneck                    | Description                                                |
+| ----------------------------- | ---------------------------------------------------------- |
+| **Large images**              | Unoptimised images are the most common cause of slow LCP   |
 | **Render-blocking resources** | CSS and JS that prevent the browser from painting the page |
-| **Excessive JavaScript** | Large bundles delay time-to-interactive |
-| **Too many HTTP requests** | Each request adds latency, especially on mobile |
-| **No caching** | Returning visitors re-download unchanged assets |
-| **Unoptimised fonts** | Web fonts that block rendering |
+| **Excessive JavaScript**      | Large bundles delay time-to-interactive                    |
+| **Too many HTTP requests**    | Each request adds latency, especially on mobile            |
+| **No caching**                | Returning visitors re-download unchanged assets            |
+| **Unoptimised fonts**         | Web fonts that block rendering                             |
 
 ---
 
@@ -80,13 +80,13 @@ Images often account for the largest share of page weight. Optimising them is on
 
 ### 2.1 Modern Image Formats
 
-| Format | Best For | Notes |
-| --- | --- | --- |
-| **WebP** | Photos, illustrations | 25–34% smaller than JPEG at equivalent quality |
-| **AVIF** | Photos | Even smaller than WebP; less browser support |
-| **SVG** | Icons, logos, illustrations | Infinitely scalable; ideal for vector graphics |
-| **JPEG** | Photographs | Wide support; avoid for images with transparency |
-| **PNG** | Images requiring transparency | Larger than WebP; use only when needed |
+| Format   | Best For                      | Notes                                            |
+| -------- | ----------------------------- | ------------------------------------------------ |
+| **WebP** | Photos, illustrations         | 25–34% smaller than JPEG at equivalent quality   |
+| **AVIF** | Photos                        | Even smaller than WebP; less browser support     |
+| **SVG**  | Icons, logos, illustrations   | Infinitely scalable; ideal for vector graphics   |
+| **JPEG** | Photographs                   | Wide support; avoid for images with transparency |
+| **PNG**  | Images requiring transparency | Larger than WebP; use only when needed           |
 
 Use the `<picture>` element to serve modern formats with fallbacks:
 
@@ -144,10 +144,10 @@ Tree shaking removes unused code from the final bundle at build time. Vite perfo
 
 ```javascript
 // Good - only the used function is bundled
-import { format } from 'date-fns';
+import { format } from "date-fns";
 
 // Bad - the entire library is bundled
-import dateFns from 'date-fns';
+import dateFns from "date-fns";
 ```
 
 ---
@@ -280,25 +280,25 @@ Text must meet WCAG contrast requirements to be readable. The minimum ratio is 4
 
 Use colour consistently to communicate meaning:
 
-| Colour | Meaning |
-| --- | --- |
-| Green | Success, confirmation |
-| Red | Error, danger, destructive action |
-| Yellow / Orange | Warning, caution |
-| Blue | Information, primary action |
-| Grey | Disabled, secondary content |
+| Colour          | Meaning                           |
+| --------------- | --------------------------------- |
+| Green           | Success, confirmation             |
+| Red             | Error, danger, destructive action |
+| Yellow / Orange | Warning, caution                  |
+| Blue            | Information, primary action       |
+| Grey            | Disabled, secondary content       |
 
 ---
 
 ### 5.3 Typography
 
-| Property | Guideline |
-| --- | --- |
-| **Font size** | Body text at least 16px; never go below 12px |
-| **Line height** | 1.4–1.6 for body text |
-| **Line length** | 45–75 characters per line for readability |
-| **Contrast** | Dark text on light backgrounds or light text on dark |
-| **Hierarchy** | Use size and weight to distinguish headings from body |
+| Property        | Guideline                                             |
+| --------------- | ----------------------------------------------------- |
+| **Font size**   | Body text at least 16px; never go below 12px          |
+| **Line height** | 1.4–1.6 for body text                                 |
+| **Line length** | 45–75 characters per line for readability             |
+| **Contrast**    | Dark text on light backgrounds or light text on dark  |
+| **Hierarchy**   | Use size and weight to distinguish headings from body |
 
 ---
 
@@ -378,9 +378,7 @@ ARIA (Accessible Rich Internet Applications) attributes supplement semantic HTML
 ```html
 <button aria-label="Close dialog" aria-expanded="false">×</button>
 
-<div role="alert" aria-live="polite">
-  Form submitted successfully.
-</div>
+<div role="alert" aria-live="polite">Form submitted successfully.</div>
 ```
 
 > Use ARIA only when semantic HTML alone is insufficient. Overuse of ARIA is worse than no ARIA.
@@ -402,12 +400,12 @@ All interactive elements must be reachable and operable via keyboard. Ensure:
 
 Svelte's compiler includes built-in accessibility linting. Common warnings and their fixes:
 
-| Warning | Fix |
-| --- | --- |
-| `a11y-missing-attribute` | Add `alt` to `<img>` elements |
-| `a11y-click-events-have-key-events` | Add `onkeydown` alongside `onclick` on non-interactive elements |
-| `a11y-no-noninteractive-element-interactions` | Use a `<button>` instead of a `<div>` for clickable elements |
-| `a11y-label-has-associated-control` | Associate `<label>` with an input via `for`/`id` |
+| Warning                                       | Fix                                                             |
+| --------------------------------------------- | --------------------------------------------------------------- |
+| `a11y-missing-attribute`                      | Add `alt` to `<img>` elements                                   |
+| `a11y-click-events-have-key-events`           | Add `onkeydown` alongside `onclick` on non-interactive elements |
+| `a11y-no-noninteractive-element-interactions` | Use a `<button>` instead of a `<div>` for clickable elements    |
+| `a11y-label-has-associated-control`           | Associate `<label>` with an input via `for`/`id`                |
 
 ---
 

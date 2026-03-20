@@ -2,10 +2,10 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 10 - Performance and UI/UX Design](../week-10-performance-ui-ux-design/README.md) |
-| Code Example | [Code Example](code-example) |
+|              | Link                                                                                    |
+| ------------ | --------------------------------------------------------------------------------------- |
+| Previous     | [Week 10 - Performance and UI/UX Design](../week-10-performance-ui-ux-design/README.md) |
+| Code Example | [Code Example](code-example)                                                            |
 
 ---
 
@@ -21,11 +21,11 @@ git checkout -b w11-frontend-testing
 
 ## 1. Types of Testing (Recap)
 
-| Type | Scope | Speed | Description |
-| --- | --- | --- | --- |
-| **Unit** | Single function or module | Fast | Tests a piece of logic in isolation, with all dependencies mocked |
-| **Integration** | Multiple components together | Moderate | Tests how components interact, typically with a real database |
-| **End-to-end** | Full application stack | Slow | Tests the entire system from the client's perspective |
+| Type            | Scope                        | Speed    | Description                                                       |
+| --------------- | ---------------------------- | -------- | ----------------------------------------------------------------- |
+| **Unit**        | Single function or module    | Fast     | Tests a piece of logic in isolation, with all dependencies mocked |
+| **Integration** | Multiple components together | Moderate | Tests how components interact, typically with a real database     |
+| **End-to-end**  | Full application stack       | Slow     | Tests the entire system from the client's perspective             |
 
 This week focuses on **end-to-end testing** of a SvelteKit frontend using Playwright.
 
@@ -98,12 +98,12 @@ Run the following command and answer the prompts as shown:
 npm init playwright@latest
 ```
 
-| Question | Answer |
-| --- | --- |
+| Question                                     | Answer     |
+| -------------------------------------------- | ---------- |
 | Do you want to use TypeScript or JavaScript? | JavaScript |
-| Where to put your end-to-end tests? | e2e |
-| Add a GitHub Actions workflow? | No |
-| Install Playwright browsers? | Yes |
+| Where to put your end-to-end tests?          | e2e        |
+| Add a GitHub Actions workflow?               | No         |
+| Install Playwright browsers?                 | Yes        |
 
 This creates an `e2e/` directory with an example test file and a `playwright.config.js` configuration file at the project root. It also adds the following scripts to `package.json`:
 
@@ -119,33 +119,33 @@ This creates an `e2e/` directory with an example test file and a `playwright.con
 Each test uses `page.goto()` to navigate to a URL, then locates elements on the page and asserts against them using `expect()`.
 
 ```javascript
-import { expect, test } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test('my test', async ({ page }) => {
-  await page.goto('/');                           // Navigate to a URL
-  const el = page.locator('button');              // Find an element
-  await el.click();                               // Interact with it
-  await expect(el).toHaveText('Clicked');         // Assert the outcome
+test("my test", async ({ page }) => {
+  await page.goto("/"); // Navigate to a URL
+  const el = page.locator("button"); // Find an element
+  await el.click(); // Interact with it
+  await expect(el).toHaveText("Clicked"); // Assert the outcome
 });
 ```
 
 **Common locator methods:**
 
-| Method | Purpose |
-| --- | --- |
-| `page.locator('css')` | Select by CSS selector |
-| `page.locator('button', { hasText: 'Submit' })` | Select by text content |
-| `page.locator('#id')` | Select by ID |
-| `locator.filter({ hasText: 'x' })` | Narrow a locator by text |
+| Method                                          | Purpose                  |
+| ----------------------------------------------- | ------------------------ |
+| `page.locator('css')`                           | Select by CSS selector   |
+| `page.locator('button', { hasText: 'Submit' })` | Select by text content   |
+| `page.locator('#id')`                           | Select by ID             |
+| `locator.filter({ hasText: 'x' })`              | Narrow a locator by text |
 
 **Common assertions:**
 
-| Assertion | Purpose |
-| --- | --- |
-| `expect(el).toHaveText('x')` | Element text matches exactly |
-| `expect(el).toContainText('x')` | Element text contains value |
-| `expect(el).toBeVisible()` | Element is visible in the DOM |
-| `expect(el).toBeEnabled()` | Element is not disabled |
+| Assertion                       | Purpose                       |
+| ------------------------------- | ----------------------------- |
+| `expect(el).toHaveText('x')`    | Element text matches exactly  |
+| `expect(el).toContainText('x')` | Element text contains value   |
+| `expect(el).toBeVisible()`      | Element is visible in the DOM |
+| `expect(el).toBeEnabled()`      | Element is not disabled       |
 
 ---
 
@@ -172,33 +172,35 @@ project-root/
 Rename the example test file to `e2e/ClickEvents.test.js` and replace its content:
 
 ```javascript
-import { expect, test } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test('ClickEvents component - increment and reset', async ({ page }) => {
-  await page.goto('/');
+test("ClickEvents component - increment and reset", async ({ page }) => {
+  await page.goto("/");
 
   // Locate the count display
-  const countText = page.locator('p').filter({ hasText: 'Count:' });
-  await expect(countText).toHaveText('Count: 0');
+  const countText = page.locator("p").filter({ hasText: "Count:" });
+  await expect(countText).toHaveText("Count: 0");
 
   // Click increment and verify count updates
-  const incrementButton = page.locator('button', { hasText: 'Increment Count' });
+  const incrementButton = page.locator("button", {
+    hasText: "Increment Count",
+  });
   await incrementButton.click();
-  await expect(countText).toHaveText('Count: 1');
+  await expect(countText).toHaveText("Count: 1");
 
   // Multiple increments
   await incrementButton.click();
   await incrementButton.click();
-  await expect(countText).toHaveText('Count: 3');
+  await expect(countText).toHaveText("Count: 3");
 
   // Double-click reset button
-  const resetButton = page.locator('button', { hasText: 'Reset Count' });
+  const resetButton = page.locator("button", { hasText: "Reset Count" });
   await resetButton.dblclick();
-  await expect(countText).toHaveText('Count: 0');
+  await expect(countText).toHaveText("Count: 0");
 
   // Increment again after reset
   await incrementButton.click();
-  await expect(countText).toHaveText('Count: 1');
+  await expect(countText).toHaveText("Count: 1");
 });
 ```
 
@@ -209,40 +211,42 @@ test('ClickEvents component - increment and reset', async ({ page }) => {
 Create `e2e/FormEvents.test.js`:
 
 ```javascript
-import { expect, test } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test('FormEvents component - form interactions and submission', async ({ page }) => {
-  await page.goto('/');
+test("FormEvents component - form interactions and submission", async ({
+  page,
+}) => {
+  await page.goto("/");
 
-  const messageText = page.locator('form').locator('+ p');
-  const usernameInput = page.locator('#username');
-  const firstNameInput = page.locator('#firstName');
-  const lastNameInput = page.locator('#lastName');
+  const messageText = page.locator("form").locator("+ p");
+  const usernameInput = page.locator("#username");
+  const firstNameInput = page.locator("#firstName");
+  const lastNameInput = page.locator("#lastName");
   const submitButton = page.locator('button[type="submit"]');
 
   // Initial state - message should be empty
-  await expect(messageText).toHaveText('');
+  await expect(messageText).toHaveText("");
 
   // Test focus event
   await usernameInput.focus();
-  await expect(messageText).toHaveText('Username input field focused');
+  await expect(messageText).toHaveText("Username input field focused");
 
   // Test input event
-  await usernameInput.fill('john_doe');
-  await expect(messageText).toHaveText('You typed john_doe');
+  await usernameInput.fill("john_doe");
+  await expect(messageText).toHaveText("You typed john_doe");
 
   // Test blur event
   await usernameInput.blur();
-  await expect(messageText).toHaveText('Username input field lost focus');
+  await expect(messageText).toHaveText("Username input field lost focus");
 
   // Fill all fields and submit
-  await usernameInput.fill('testuser');
-  await firstNameInput.fill('John');
-  await lastNameInput.fill('Doe');
+  await usernameInput.fill("testuser");
+  await firstNameInput.fill("John");
+  await lastNameInput.fill("Doe");
 
   await submitButton.click();
   await expect(messageText).toHaveText(
-    'Form successfully submitted. Info: Username: testuser, First Name: John, Last Name: Doe'
+    "Form successfully submitted. Info: Username: testuser, First Name: John, Last Name: Doe",
   );
 });
 ```
@@ -254,63 +258,63 @@ test('FormEvents component - form interactions and submission', async ({ page })
 Create `e2e/MarkConverter.test.js`:
 
 ```javascript
-import { expect, test } from '@playwright/test';
+import { expect, test } from "@playwright/test";
 
-test('MarkConverter component - grade calculation', async ({ page }) => {
-  await page.goto('/');
+test("MarkConverter component - grade calculation", async ({ page }) => {
+  await page.goto("/");
 
   const markInput = page.locator('input[type="number"]');
-  const gradeText = page.locator('p').filter({ hasText: 'Grade:' });
+  const gradeText = page.locator("p").filter({ hasText: "Grade:" });
 
   // Initial state (mark = 75)
-  await expect(gradeText).toHaveText('Grade: B+');
+  await expect(gradeText).toHaveText("Grade: B+");
 
   // Test each grade boundary
-  await markInput.fill('95');
-  await expect(gradeText).toHaveText('Grade: A+');
+  await markInput.fill("95");
+  await expect(gradeText).toHaveText("Grade: A+");
 
-  await markInput.fill('88');
-  await expect(gradeText).toHaveText('Grade: A');
+  await markInput.fill("88");
+  await expect(gradeText).toHaveText("Grade: A");
 
-  await markInput.fill('82');
-  await expect(gradeText).toHaveText('Grade: A-');
+  await markInput.fill("82");
+  await expect(gradeText).toHaveText("Grade: A-");
 
-  await markInput.fill('77');
-  await expect(gradeText).toHaveText('Grade: B+');
+  await markInput.fill("77");
+  await expect(gradeText).toHaveText("Grade: B+");
 
-  await markInput.fill('72');
-  await expect(gradeText).toHaveText('Grade: B');
+  await markInput.fill("72");
+  await expect(gradeText).toHaveText("Grade: B");
 
-  await markInput.fill('67');
-  await expect(gradeText).toHaveText('Grade: B-');
+  await markInput.fill("67");
+  await expect(gradeText).toHaveText("Grade: B-");
 
-  await markInput.fill('62');
-  await expect(gradeText).toHaveText('Grade: C+');
+  await markInput.fill("62");
+  await expect(gradeText).toHaveText("Grade: C+");
 
-  await markInput.fill('57');
-  await expect(gradeText).toHaveText('Grade: C');
+  await markInput.fill("57");
+  await expect(gradeText).toHaveText("Grade: C");
 
-  await markInput.fill('52');
-  await expect(gradeText).toHaveText('Grade: C-');
+  await markInput.fill("52");
+  await expect(gradeText).toHaveText("Grade: C-");
 
-  await markInput.fill('45');
-  await expect(gradeText).toHaveText('Grade: D');
+  await markInput.fill("45");
+  await expect(gradeText).toHaveText("Grade: D");
 
-  await markInput.fill('35');
-  await expect(gradeText).toHaveText('Grade: E');
+  await markInput.fill("35");
+  await expect(gradeText).toHaveText("Grade: E");
 
   // Boundary conditions
-  await markInput.fill('90');
-  await expect(gradeText).toHaveText('Grade: A+');
+  await markInput.fill("90");
+  await expect(gradeText).toHaveText("Grade: A+");
 
-  await markInput.fill('89');
-  await expect(gradeText).toHaveText('Grade: A');
+  await markInput.fill("89");
+  await expect(gradeText).toHaveText("Grade: A");
 
-  await markInput.fill('40');
-  await expect(gradeText).toHaveText('Grade: D');
+  await markInput.fill("40");
+  await expect(gradeText).toHaveText("Grade: D");
 
-  await markInput.fill('39');
-  await expect(gradeText).toHaveText('Grade: E');
+  await markInput.fill("39");
+  await expect(gradeText).toHaveText("Grade: E");
 });
 ```
 
@@ -374,19 +378,19 @@ The generated `playwright.config.js` controls browsers, base URL, timeouts, and 
 Key options to be aware of:
 
 ```javascript
-import { defineConfig } from '@playwright/test';
+import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  testDir: './e2e',
-  timeout: 30000,          // Maximum time per test (ms)
-  retries: 1,              // Retry failing tests once
+  testDir: "./e2e",
+  timeout: 30000, // Maximum time per test (ms)
+  retries: 1, // Retry failing tests once
   use: {
-    baseURL: 'http://localhost:5173',   // Set this to your dev server URL
-    trace: 'on-first-retry',           // Record traces on failure
+    baseURL: "http://localhost:5173", // Set this to your dev server URL
+    trace: "on-first-retry", // Record traces on failure
   },
   webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:5173',
+    command: "npm run dev",
+    url: "http://localhost:5173",
     reuseExistingServer: !process.env.CI,
   },
 });
@@ -400,13 +404,13 @@ export default defineConfig({
 
 When a test fails, Playwright outputs the failing assertion and the step at which it occurred. Additional debugging options include:
 
-| Method | Purpose |
-| --- | --- |
-| `--headed` | See what the browser is doing |
-| `--ui` | Interactive test runner with time-travel debugging |
-| `page.screenshot({ path: 'debug.png' })` | Capture the page at the point of failure |
-| `await page.pause()` | Pause execution and open the Playwright Inspector |
-| `trace: 'on'` in config | Record a full trace for every test run |
+| Method                                   | Purpose                                            |
+| ---------------------------------------- | -------------------------------------------------- |
+| `--headed`                               | See what the browser is doing                      |
+| `--ui`                                   | Interactive test runner with time-travel debugging |
+| `page.screenshot({ path: 'debug.png' })` | Capture the page at the point of failure           |
+| `await page.pause()`                     | Pause execution and open the Playwright Inspector  |
+| `trace: 'on'` in config                  | Record a full trace for every test run             |
 
 ---
 

@@ -22,7 +22,7 @@ git checkout -b w03-1-permissions-refresh-tokens-abac
 
 ## 1. Limitations of Basic RBAC
 
-In the previous course, you implemented Role-Based Access Control (RBAC) where every user is assigned one role (e.g. `ADMIN`, `STAFF`, `STUDENT`) and each role grants a fixed set of permissions.
+In ID607001: Introductory Application Development Concepts, you implemented Role-Based Access Control (RBAC) where every user is assigned one role (e.g. `ADMIN`, `STAFF`, `STUDENT`) and each role grants a fixed set of permissions.
 
 Basic RBAC breaks down in several real-world scenarios:
 

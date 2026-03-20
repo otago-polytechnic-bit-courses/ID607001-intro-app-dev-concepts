@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
+|              | Link                                                                                                                                  |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 03 - PostgreSQL, Docker, ORM and JSDoc](../week-03-postgresql-docker-orm-jsdoc-postman)                                         |
+| Code Example | [Code Example](code-example)                                                                                                          |
+| Next         | [Week 05 - Validation, Seeding, Query Parameters and Deployment](../week-05-validation-seeding-query-parameters-deployment/README.md) |
 
 ---
 
@@ -145,10 +145,10 @@ Expected response (`201 Created`).
 
 Prisma supports three common relationship types between models:
 
-| Type | Description |
-| --- | --- |
-| **One-to-one** | A single model instance is associated with a single instance of another model |
-| **One-to-many** | A single model instance is associated with multiple instances of another model |
+| Type             | Description                                                                           |
+| ---------------- | ------------------------------------------------------------------------------------- |
+| **One-to-one**   | A single model instance is associated with a single instance of another model         |
+| **One-to-many**  | A single model instance is associated with multiple instances of another model        |
 | **Many-to-many** | Multiple instances of a model are associated with multiple instances of another model |
 
 📖 Reference: [Prisma - Relations](https://www.prisma.io/docs/orm/prisma-schema/data-model/relations)
@@ -320,10 +320,10 @@ export default app;
 
 **POST - Create a department**
 
-| Field | Value |
-| --- | --- |
-| Method | `POST` |
-| URL | `http://localhost:3000/api/departments` |
+| Field  | Value                                   |
+| ------ | --------------------------------------- |
+| Method | `POST`                                  |
+| URL    | `http://localhost:3000/api/departments` |
 
 Body:
 
@@ -336,11 +336,11 @@ Body:
 
 **GET / PUT / DELETE by ID**
 
-| Operation | Method | URL |
-| --- | --- | --- |
-| Read one | `GET` | `http://localhost:3000/api/departments/<id>` |
-| Update | `PUT` | `http://localhost:3000/api/departments/<id>` |
-| Delete | `DELETE` | `http://localhost:3000/api/departments/<id>` |
+| Operation | Method   | URL                                          |
+| --------- | -------- | -------------------------------------------- |
+| Read one  | `GET`    | `http://localhost:3000/api/departments/<id>` |
+| Update    | `PUT`    | `http://localhost:3000/api/departments/<id>` |
+| Delete    | `DELETE` | `http://localhost:3000/api/departments/<id>` |
 
 > A `500` on `POST /api/departments` usually means the `institutionId` doesn't exist. Confirm with `GET /api/institutions` first.
 
@@ -350,11 +350,11 @@ Body:
 
 N-Layer Architecture separates an application into distinct layers, each with its own responsibilities.
 
-| Layer | Components | Responsibility |
-| --- | --- | --- |
+| Layer            | Components          | Responsibility                                 |
+| ---------------- | ------------------- | ---------------------------------------------- |
 | **Presentation** | Controllers, Routes | Handle HTTP requests/responses; validate input |
-| **Application** | Services | Business logic; interact with the data layer |
-| **Data** | Repositories | Manage data access; interact with the database |
+| **Application**  | Services            | Business logic; interact with the data layer   |
+| **Data**         | Repositories        | Manage data access; interact with the database |
 
 📖 Reference: [Martin Fowler - Presentation Domain Data Layering](https://martinfowler.com/bliki/PresentationDomainDataLayering.html)
 
@@ -688,14 +688,14 @@ Create a draft system design document for your REST API based on the [System Des
 
 Create a `User` model with the following fields:
 
-| Field | Type | Constraints |
-| --- | --- | --- |
-| `id` | String | Primary key, default UUID |
-| `firstName` | String | |
-| `lastName` | String | |
-| `emailAddress` | String | Unique |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `firstName`    | String   |                           |
+| `lastName`     | String   |                           |
+| `emailAddress` | String   | Unique                    |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | Default now               |
 
 > **Remember:** Create and apply a migration after updating `schema.prisma`.
 
@@ -730,17 +730,17 @@ enum Gender {
 }
 ```
 
-| JSON Field | Prisma Field | Type | Constraints |
-| --- | --- | --- | --- |
-| `id` | `id` | String | Primary key, default UUID |
-| `first_name` | `firstName` | String | |
-| `last_name` | `lastName` | String | |
-| `email` | `emailAddress` | String | Unique |
-| `gender` | `gender` | Gender | Enum |
-| `is_injured` | `isInjured` | Boolean | Default `false` |
-| `date_of_birth` | `dateOfBirth` | DateTime | Required |
-| | `createdAt` | DateTime | Default now |
-| | `updatedAt` | DateTime | `@updatedAt` |
+| JSON Field      | Prisma Field   | Type     | Constraints               |
+| --------------- | -------------- | -------- | ------------------------- |
+| `id`            | `id`           | String   | Primary key, default UUID |
+| `first_name`    | `firstName`    | String   |                           |
+| `last_name`     | `lastName`     | String   |                           |
+| `email`         | `emailAddress` | String   | Unique                    |
+| `gender`        | `gender`       | Gender   | Enum                      |
+| `is_injured`    | `isInjured`    | Boolean  | Default `false`           |
+| `date_of_birth` | `dateOfBirth`  | DateTime | Required                  |
+|                 | `createdAt`    | DateTime | Default now               |
+|                 | `updatedAt`    | DateTime | `@updatedAt`              |
 
 Create the necessary controller, route, and repository files. Test in Postman.
 
@@ -750,19 +750,19 @@ Create the necessary controller, route, and repository files. Test in Postman.
 
 The `Player` model from Task 4 stores everything in a single table. Split it into three separate models - `Person`, `Player`, and `Injury`.
 
-| Field | Type | Constraints |
-| --- | --- | --- |
-| `id` | String | Primary key, default UUID |
-| `firstName` | String | |
-| `lastName` | String | |
-| `emailAddress` | String | Unique |
-| `gender` | Gender | Enum |
-| `dateOfBirth` | DateTime | |
-| `description` | String | |
-| `occurredAt` | DateTime | |
-| `resolvedAt` | DateTime | Optional |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | `@updatedAt` |
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `firstName`    | String   |                           |
+| `lastName`     | String   |                           |
+| `emailAddress` | String   | Unique                    |
+| `gender`       | Gender   | Enum                      |
+| `dateOfBirth`  | DateTime |                           |
+| `description`  | String   |                           |
+| `occurredAt`   | DateTime |                           |
+| `resolvedAt`   | DateTime | Optional                  |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | `@updatedAt`              |
 
 Create the necessary controller, route, and repository files. Test in Postman.
 
@@ -772,15 +772,15 @@ Create the necessary controller, route, and repository files. Test in Postman.
 
 Create a `Course` model and update `Department` to include a one-to-many relationship:
 
-| Field | Type | Constraints |
-| --- | --- | --- |
-| `id` | String | Primary key, default UUID |
-| `code` | String | |
-| `name` | String | |
-| `description` | String | |
-| `departmentId` | String | Foreign key |
-| `createdAt` | DateTime | Default now |
-| `updatedAt` | DateTime | Default now |
+| Field          | Type     | Constraints               |
+| -------------- | -------- | ------------------------- |
+| `id`           | String   | Primary key, default UUID |
+| `code`         | String   |                           |
+| `name`         | String   |                           |
+| `description`  | String   |                           |
+| `departmentId` | String   | Foreign key               |
+| `createdAt`    | DateTime | Default now               |
+| `updatedAt`    | DateTime | Default now               |
 
 Update `schema.prisma`:
 
@@ -992,7 +992,7 @@ const clearCache = () => {
 import { cacheMiddleware } from "../middleware/cache.js";
 
 const MAX_CACHE_DURATION = // TODO 8: 5 minutes in milliseconds
-router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
+  router.get("/", cacheMiddleware(MAX_CACHE_DURATION), getInstitutions);
 router.get("/:id", cacheMiddleware(MAX_CACHE_DURATION), getInstitution);
 ```
 

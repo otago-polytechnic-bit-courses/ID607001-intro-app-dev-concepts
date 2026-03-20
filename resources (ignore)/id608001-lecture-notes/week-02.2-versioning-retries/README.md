@@ -429,8 +429,8 @@ const isRetryableError = (err: unknown): boolean => {
 A **circuit breaker** monitors the failure rate of an operation. If failures exceed a threshold, it opens the circuit and fails fast for a period, preventing repeated calls to a failing service:
 
 ```
-CLOSED → (failures exceed threshold) → OPEN → (timeout elapses) → HALF-OPEN → (success) → CLOSED
-                                                                              → (failure) → OPEN
+CLOSED → (failures exceed threshold) → OPEN → (timeout elapses) 
+    → HALF-OPEN → (success) → CLOSED → (failure) → OPEN
 ```
 
 ```typescript
