@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|              | Link                                                                                                                                     |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Code Example | [Code Example](code-example)                                                                                                             |
-| Next         | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-dependency-injection/README.md) |
+|              | Link                                                                                                                   |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Code Example | [Code Example](code-example)                                                                                           |
+| Next         | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-di/README.md) |
 
 ---
 
