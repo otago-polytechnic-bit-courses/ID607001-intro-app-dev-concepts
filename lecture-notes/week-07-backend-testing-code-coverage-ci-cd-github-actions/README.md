@@ -1,12 +1,12 @@
-# Week 07 - Backend Testing, Code Coverage, CI/CD and GitHub Actions
+# Week 07 - Backend Testing (Integration), Code Coverage, CI/CD and GitHub Actions
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac-api/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md) |
+|              | Link                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac-api/README.md) |
+| Code Example | [Code Example](code-example)                                                                         |
+| Next         | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)           |
 
 ---
 
@@ -24,10 +24,10 @@ git checkout -b w07-be-testing-code-cov-ci-cd-gh-actions
 
 We use three libraries together:
 
-| Library | Role |
-| --- | --- |
-| **Mocha** | Test framework - organises and runs tests |
-| **Chai** | Assertion library - verifies expected outcomes |
+| Library       | Role                                            |
+| ------------- | ----------------------------------------------- |
+| **Mocha**     | Test framework - organises and runs tests       |
+| **Chai**      | Assertion library - verifies expected outcomes  |
 | **Supertest** | HTTP client - makes requests to the Express app |
 
 ---
@@ -55,10 +55,13 @@ The test suite needs to point at port `5433` rather than `5432`. This is done by
 ```
 
 > **Windows users:** The inline environment variable syntax above works on macOS and Linux. On Windows, use `cross-env`:
+>
 > ```bash
 > npm install cross-env --save-dev
 > ```
+>
 > Then prefix each script with `cross-env`:
+>
 > ```json
 > "test": "cross-env DATABASE_URL=postgresql://... mocha tests --recursive --timeout 10000 --exit"
 > ```
@@ -87,12 +90,12 @@ If you add new test files, prefix them with the next number in the sequence.
 
 Mocha provides four lifecycle hooks for setup and teardown:
 
-| Hook | When it runs |
-| --- | --- |
-| `before()` | Once before all tests in a `describe` block |
-| `after()` | Once after all tests in a `describe` block |
-| `beforeEach()` | Before every individual test |
-| `afterEach()` | After every individual test |
+| Hook           | When it runs                                |
+| -------------- | ------------------------------------------- |
+| `before()`     | Once before all tests in a `describe` block |
+| `after()`      | Once after all tests in a `describe` block  |
+| `beforeEach()` | Before every individual test                |
+| `afterEach()`  | After every individual test                 |
 
 In this project, `before()` is used to set up authentication tokens and retrieve shared IDs before tests run, and `after()` is used to clean up the database and close the Prisma connection once all tests in a block are complete.
 
@@ -364,11 +367,11 @@ Add the following to your `scripts` block in `package.json`:
 "test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit"
 ```
 
-| Flag | Purpose |
-| --- | --- |
-| `--recursive` | Runs tests in subdirectories |
-| `--timeout 10000` | Sets a 10-second timeout per test |
-| `--exit` | Forces Mocha to exit after all tests complete |
+| Flag              | Purpose                                       |
+| ----------------- | --------------------------------------------- |
+| `--recursive`     | Runs tests in subdirectories                  |
+| `--timeout 10000` | Sets a 10-second timeout per test             |
+| `--exit`          | Forces Mocha to exit after all tests complete |
 
 ---
 
@@ -376,12 +379,12 @@ Add the following to your `scripts` block in `package.json`:
 
 c8 leverages Node.js's built-in V8 coverage engine, requiring no code instrumentation.
 
-| Metric | What it measures |
-| --- | --- |
-| **Statements** | Individual executable statements executed |
-| **Branches** | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
-| **Functions** | Functions that were called at least once |
-| **Lines** | Physical lines of code executed |
+| Metric         | What it measures                                       |
+| -------------- | ------------------------------------------------------ |
+| **Statements** | Individual executable statements executed              |
+| **Branches**   | Both paths of every `if`/`else`, ternary, `&&`, `\|\|` |
+| **Functions**  | Functions that were called at least once               |
+| **Lines**      | Physical lines of code executed                        |
 
 ---
 
@@ -410,16 +413,16 @@ Create `.c8rc` in the project root:
 }
 ```
 
-| Option | Purpose |
-| --- | --- |
-| `reporter` | Output formats: `text`, `html`, `lcov` |
-| `include` | Globs of source files to measure |
-| `exclude` | Globs to ignore |
-| `branches` | Minimum % of branches that must be covered |
-| `lines` | Minimum % of lines that must be covered |
-| `functions` | Minimum % of functions that must be covered |
-| `statements` | Minimum % of statements that must be covered |
-| `all` | Report on all matched files, even those not imported by any test |
+| Option       | Purpose                                                          |
+| ------------ | ---------------------------------------------------------------- |
+| `reporter`   | Output formats: `text`, `html`, `lcov`                           |
+| `include`    | Globs of source files to measure                                 |
+| `exclude`    | Globs to ignore                                                  |
+| `branches`   | Minimum % of branches that must be covered                       |
+| `lines`      | Minimum % of lines that must be covered                          |
+| `functions`  | Minimum % of functions that must be covered                      |
+| `statements` | Minimum % of statements that must be covered                     |
+| `all`        | Report on all matched files, even those not imported by any test |
 
 ---
 
@@ -517,15 +520,15 @@ GitHub Actions is a CI/CD platform built into GitHub that lets you automate task
 
 ## 4. Core Concepts
 
-| Concept | Description |
-| --- | --- |
-| **Workflow** | A YAML file defining an automated process, stored in `.github/workflows/` |
-| **Event** | A trigger that starts a workflow - e.g. `push`, `pull_request`, `schedule` |
-| **Job** | A set of steps running on the same machine. Jobs run in parallel by default |
-| **Step** | A single task within a job - either a shell command or a pre-built action |
-| **Action** | A reusable unit of work - from the GitHub Marketplace or defined locally |
+| Concept      | Description                                                                   |
+| ------------ | ----------------------------------------------------------------------------- |
+| **Workflow** | A YAML file defining an automated process, stored in `.github/workflows/`     |
+| **Event**    | A trigger that starts a workflow - e.g. `push`, `pull_request`, `schedule`    |
+| **Job**      | A set of steps running on the same machine. Jobs run in parallel by default   |
+| **Step**     | A single task within a job - either a shell command or a pre-built action     |
+| **Action**   | A reusable unit of work - from the GitHub Marketplace or defined locally      |
 | **Artifact** | Files produced during a workflow run that can be saved or shared between jobs |
-| **Secret** | Encrypted environment variables stored in GitHub - never visible in logs |
+| **Secret**   | Encrypted environment variables stored in GitHub - never visible in logs      |
 
 ---
 
@@ -872,13 +875,13 @@ To configure:
 
 ## 10. Best Practices
 
-| Practice | Why it matters |
-| --- | --- |
-| Pin action versions with `@v6` | Prevents breaking changes from upstream actions |
-| Use `npm ci` not `npm install` | Reproducible installs |
-| Cache `node_modules` | Reduces workflow run time |
-| Store secrets in GitHub Secrets | Masked in logs and encrypted at rest |
-| Use `needs` to chain jobs | Prevents tests running if linting fails |
+| Practice                                | Why it matters                                     |
+| --------------------------------------- | -------------------------------------------------- |
+| Pin action versions with `@v6`          | Prevents breaking changes from upstream actions    |
+| Use `npm ci` not `npm install`          | Reproducible installs                              |
+| Cache `node_modules`                    | Reduces workflow run time                          |
+| Store secrets in GitHub Secrets         | Masked in logs and encrypted at rest               |
+| Use `needs` to chain jobs               | Prevents tests running if linting fails            |
 | Add health checks to service containers | Ensures the database is ready before tests connect |
 
 ---

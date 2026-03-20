@@ -4,7 +4,7 @@
 
 | | Link |
 | --- | --- |
-| Previous | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md) |
+| Previous | [Week 02 - API, Express and Development Tools](../week-02-api-express-development-tools/README.md) |
 | Code Example | [Code Example](code-example) |
 | Next | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
