@@ -1,4 +1,4 @@
-# Week 07.2 - Networking and REST API Integration
+# Week 07.2 - Networking and API Integration
 
 ## Navigation
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 07.2 branch:
 
 ```bash
-git checkout -b w07.2-networking-rest-api-integration
+git checkout -b w07.2-networking-api-integration
 ```
 
 ---

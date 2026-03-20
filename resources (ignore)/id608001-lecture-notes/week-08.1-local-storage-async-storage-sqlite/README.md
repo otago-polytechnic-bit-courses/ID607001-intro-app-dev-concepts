@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                      |
-| ------------ | --------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 07.2 - Networking and REST API Integration](../week-07.2-networking-rest-api-integration/README.md) |
-| Code Example | [Code Example](code-example)                                                                              |
-| Next         | [Week 08.2 - Authentication Flows](../week-08.2-authentication-flows/README.md)                           |
+|              | Link                                                                                            |
+| ------------ | ----------------------------------------------------------------------------------------------- |
+| Previous     | [Week 07.2 - Networking and API Integration](../week-07.2-networking-api-integration/README.md) |
+| Code Example | [Code Example](code-example)                                                                    |
+| Next         | [Week 08.2 - Authentication Flows](../week-08.2-authentication-flows/README.md)                 |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 08.1 branch:
 
 ```bash
-git checkout -b w08.1-local-storage-asyncstorage-sqlite
+git checkout -b w08.1-local-storage-async-storage-sqlite
 ```
 
 ---

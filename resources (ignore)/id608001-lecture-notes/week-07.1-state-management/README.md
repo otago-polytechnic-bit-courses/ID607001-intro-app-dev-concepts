@@ -6,7 +6,7 @@
 | ------------ | --------------------------------------------------------------------------------------------------------- |
 | Previous     | [Week 06.2 - Navigation and Routing](../week-06.2-navigation-routing/README.md)                           |
 | Code Example | [Code Example](code-example)                                                                              |
-| Next         | [Week 07.2 - Networking and REST API Integration](../week-07.2-networking-rest-api-integration/README.md) |
+| Next         | [Week 07.2 - Networking and API Integration](../week-07.2-networking-api-integration/README.md) |
 
 ---
 
