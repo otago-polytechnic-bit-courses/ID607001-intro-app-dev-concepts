@@ -4,9 +4,9 @@
 
 |              | Link                                                                                                                                 |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Previous     | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02-1-docker-compose-more-github-actions/README.md)                      |
+| Previous     | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02.1-docker-compose-more-github-actions/README.md)                      |
 | Code Example | [Code Example](code-example)                                                                                                         |
-| Next         | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03-1-permissions-refresh-tokens-abac/README.md) |
+| Next         | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03.1-permissions-refresh-tokens-abac/README.md) |
 
 ---
 
