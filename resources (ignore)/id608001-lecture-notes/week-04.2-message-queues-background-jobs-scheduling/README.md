@@ -6,7 +6,7 @@
 | ------------ | ------------------------------------------------------------------------------------------------------------ |
 | Previous     | [Week 04.1 - Observability and API Gateway](../week-04.1-observability-api-gateway/README.md)                |
 | Code Example | [Code Example](code-example)                                                                                 |
-| Next         | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-redis/README.md) |
+| Next         | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-strategies/README.md) |
 
 ---
 

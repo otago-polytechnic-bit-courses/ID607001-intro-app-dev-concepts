@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 05.1 branch:
 
 ```bash
-git checkout -b w05.1-file-uploads-caching
+git checkout -b w05.1-file-uploads-caching-strategies
 ```
 
 ---
