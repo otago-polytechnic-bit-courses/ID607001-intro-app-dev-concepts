@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 03.1 branch:
 
 ```bash
-git checkout -b w03-1-permissions-refresh-tokens-abac
+git checkout -b w03.1-permissions-refresh-tokens-abac
 ```
 
 ---
