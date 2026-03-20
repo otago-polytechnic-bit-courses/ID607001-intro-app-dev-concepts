@@ -1,12 +1,12 @@
-# Week 05.1 - File Uploads and Caching Strategies (Redis)
+# Week 05.1 - File Uploads and Caching Strategies
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 04.2 - Message Queues, Background Jobs and Scheduling](../week-04-2-message-queues-background-jobs-scheduling/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 05.2 - Microservices and Documentation as Code](../week-05-2-microservices-documentation-as-code/README.md) |
+|              | Link                                                                                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 04.2 - Message Queues, Background Jobs and Scheduling](../week-04.2-message-queues-background-jobs-scheduling/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                   |
+| Next         | [Week 05.2 - Microservices and Documentation as Code](../week-05.2-microservices-documentation-as-code/README.md)              |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 05.1 branch:
 
 ```bash
-git checkout -b w05-1-file-uploads-caching-redis
+git checkout -b w05.1-file-uploads-caching
 ```
 
 ---
@@ -28,11 +28,11 @@ File upload handling involves receiving binary data from a client, validating it
 
 ### 1.1 Storage Options
 
-| Option | Pros | Cons | Best For |
-| --- | --- | --- | --- |
-| **Local filesystem** | Simple; no external dependencies | Not shared across multiple servers; lost on redeploy | Development only |
-| **Cloud object store** (S3, R2, GCS) | Scalable; durable; CDN-friendly | External dependency; cost | Production |
-| **Database (BYTEA/BLOB)** | Atomic with other data; simple queries | Bloats the database; slow for large files | Small files only |
+| Option                               | Pros                                   | Cons                                                 | Best For         |
+| ------------------------------------ | -------------------------------------- | ---------------------------------------------------- | ---------------- |
+| **Local filesystem**                 | Simple; no external dependencies       | Not shared across multiple servers; lost on redeploy | Development only |
+| **Cloud object store** (S3, R2, GCS) | Scalable; durable; CDN-friendly        | External dependency; cost                            | Production       |
+| **Database (BYTEA/BLOB)**            | Atomic with other data; simple queries | Bloats the database; slow for large files            | Small files only |
 
 In this course we target **cloud object storage** using Cloudflare R2, which is S3-compatible and has a generous free tier.
 
@@ -67,15 +67,15 @@ const storage = multer.memoryStorage();
 const fileFilter = (
   req: Request,
   file: Express.Multer.File,
-  cb: FileFilterCallback
+  cb: FileFilterCallback,
 ): void => {
   if (ALLOWED_MIME_TYPES.includes(file.mimetype)) {
     cb(null, true);
   } else {
     cb(
       new Error(
-        `Invalid file type. Allowed types: ${ALLOWED_MIME_TYPES.join(", ")}`
-      )
+        `Invalid file type. Allowed types: ${ALLOWED_MIME_TYPES.join(", ")}`,
+      ),
     );
   }
 };
@@ -142,7 +142,7 @@ const BUCKET = process.env.R2_BUCKET_NAME!;
 
 export const uploadFile = async (
   file: Express.Multer.File,
-  folder: string = "uploads"
+  folder: string = "uploads",
 ): Promise<{ key: string; url: string }> => {
   const ext = path.extname(file.originalname);
   const key = `${folder}/${randomUUID()}${ext}`;
@@ -154,7 +154,7 @@ export const uploadFile = async (
       Body: file.buffer,
       ContentType: file.mimetype,
       ContentLength: file.size,
-    })
+    }),
   );
 
   const url = `${process.env.R2_PUBLIC_URL}/${key}`;
@@ -167,20 +167,18 @@ export const deleteFile = async (key: string): Promise<void> => {
     new DeleteObjectCommand({
       Bucket: BUCKET,
       Key: key,
-    })
+    }),
   );
 };
 
 // Generate a pre-signed URL for temporary private access (expires in 1 hour)
 export const getSignedFileUrl = async (
   key: string,
-  expiresInSeconds: number = 3600
+  expiresInSeconds: number = 3600,
 ): Promise<string> => {
-  return getSignedUrl(
-    s3,
-    new GetObjectCommand({ Bucket: BUCKET, Key: key }),
-    { expiresIn: expiresInSeconds }
-  );
+  return getSignedUrl(s3, new GetObjectCommand({ Bucket: BUCKET, Key: key }), {
+    expiresIn: expiresInSeconds,
+  });
 };
 ```
 
@@ -197,7 +195,7 @@ import prisma from "../prisma/db.js";
 const uploadAvatar = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     if (!req.file) {
@@ -264,7 +262,7 @@ export const handleUploadErrors = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   if (err instanceof MulterError) {
     if (err.code === "LIMIT_FILE_SIZE") {
@@ -339,7 +337,7 @@ const DEFAULT_TTL_SECONDS = 300; // 5 minutes
 export const getOrSet = async <T>(
   key: string,
   fetchFn: () => Promise<T>,
-  ttlSeconds: number = DEFAULT_TTL_SECONDS
+  ttlSeconds: number = DEFAULT_TTL_SECONDS,
 ): Promise<T> => {
   try {
     const cached = await redis.get(key);
@@ -397,14 +395,13 @@ users:email:{emailAddress}
 import { getOrSet, invalidate, invalidatePattern } from "../utils/cache.js";
 
 class InstitutionService {
-  private cacheKey = (tenantId: string) =>
-    `institutions:tenant:${tenantId}`;
+  private cacheKey = (tenantId: string) => `institutions:tenant:${tenantId}`;
 
   async getAll(tenantId: string): Promise<Institution[]> {
     return getOrSet(
       `${this.cacheKey(tenantId)}:all`,
       () => institutionRepository.findAll(tenantId),
-      300 // 5-minute TTL
+      300, // 5-minute TTL
     );
   }
 
@@ -413,16 +410,17 @@ class InstitutionService {
       `${this.cacheKey(tenantId)}:id:${id}`,
       async () => {
         const institution = await institutionRepository.findById(tenantId, id);
-        if (!institution) throw new NotFoundError(`No institution with id: ${id}`);
+        if (!institution)
+          throw new NotFoundError(`No institution with id: ${id}`);
         return institution;
       },
-      300
+      300,
     );
   }
 
   async create(
     tenantId: string,
-    data: Prisma.InstitutionCreateInput
+    data: Prisma.InstitutionCreateInput,
   ): Promise<Institution> {
     const institution = await institutionRepository.create(tenantId, data);
 
@@ -435,7 +433,7 @@ class InstitutionService {
   async update(
     tenantId: string,
     id: string,
-    data: Prisma.InstitutionUpdateInput
+    data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
     const institution = await institutionRepository.update(tenantId, id, data);
 
@@ -459,14 +457,14 @@ class InstitutionService {
 
 ### 2.5 Caching Strategies Summary
 
-| Strategy | How it works | Best For |
-| --- | --- | --- |
-| **Cache-aside** | App manages cache reads and writes explicitly | General-purpose; most flexible |
-| **Write-through** | Write to cache and database simultaneously | High read/write ratio; must never miss |
-| **Write-behind** | Write to cache immediately; database asynchronously | Very high write throughput |
-| **Read-through** | Cache fetches from DB automatically on miss | Simpler code; less control |
-| **Time-to-live (TTL)** | Entries expire after a set duration | Data that changes periodically |
-| **Cache invalidation** | Delete entries when data changes | Strong consistency requirements |
+| Strategy               | How it works                                        | Best For                               |
+| ---------------------- | --------------------------------------------------- | -------------------------------------- |
+| **Cache-aside**        | App manages cache reads and writes explicitly       | General-purpose; most flexible         |
+| **Write-through**      | Write to cache and database simultaneously          | High read/write ratio; must never miss |
+| **Write-behind**       | Write to cache immediately; database asynchronously | Very high write throughput             |
+| **Read-through**       | Cache fetches from DB automatically on miss         | Simpler code; less control             |
+| **Time-to-live (TTL)** | Entries expire after a set duration                 | Data that changes periodically         |
+| **Cache invalidation** | Delete entries when data changes                    | Strong consistency requirements        |
 
 ---
 
@@ -474,12 +472,12 @@ class InstitutionService {
 
 Cache invalidation is one of the hardest problems in computer science. Common pitfalls and how to address them:
 
-| Pitfall | Cause | Fix |
-| --- | --- | --- |
-| **Stale data after update** | Forgetting to invalidate after a write | Invalidate all related keys in the service layer |
-| **Cache stampede** | Many requests hit the DB simultaneously on a cold cache | Use a lock or probabilistic early expiration |
-| **Over-caching** | Caching data that changes frequently | Keep TTLs short or skip caching for volatile data |
-| **Under-caching** | Not caching frequently read, rarely changed data | Profile query frequency and add caching where it helps most |
+| Pitfall                     | Cause                                                   | Fix                                                         |
+| --------------------------- | ------------------------------------------------------- | ----------------------------------------------------------- |
+| **Stale data after update** | Forgetting to invalidate after a write                  | Invalidate all related keys in the service layer            |
+| **Cache stampede**          | Many requests hit the DB simultaneously on a cold cache | Use a lock or probabilistic early expiration                |
+| **Over-caching**            | Caching data that changes frequently                    | Keep TTLs short or skip caching for volatile data           |
+| **Under-caching**           | Not caching frequently read, rarely changed data        | Profile query frequency and add caching where it helps most |
 
 ---
 
@@ -496,7 +494,7 @@ export const setCacheHeaders = (maxAgeSeconds: number) => {
     if (req.method === "GET") {
       res.setHeader(
         "Cache-Control",
-        `public, max-age=${maxAgeSeconds}, stale-while-revalidate=60`
+        `public, max-age=${maxAgeSeconds}, stale-while-revalidate=60`,
       );
     } else {
       res.setHeader("Cache-Control", "no-store");

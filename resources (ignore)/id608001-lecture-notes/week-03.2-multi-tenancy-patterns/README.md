@@ -1,12 +1,12 @@
-# Week 03.2 - Multi-tenancy Patterns
+# Week 03.2 - Multi-Tenancy Patterns
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03-1-permissions-refresh-tokens-abac/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 04.1 - Observability and API Gateway](../week-04-1-observability-api-gateway/README.md) |
+|              | Link                                                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03.1-permissions-refresh-tokens-abac/README.md) |
+| Code Example | [Code Example](code-example)                                                                                                         |
+| Next         | [Week 04.1 - Observability and API Gateway](../week-04.1-observability-api-gateway/README.md)                                        |
 
 ---
 
@@ -15,12 +15,12 @@
 Open your repository in Visual Studio Code and switch to the Week 03.2 branch:
 
 ```bash
-git checkout -b w03-2-multi-tenancy
+git checkout -b w03.2-multi-tenancy-patterns
 ```
 
 ---
 
-## 1. What is Multi-tenancy?
+## 1. What is Multi-Tenancy?
 
 A **multi-tenant** application serves multiple independent customers (tenants) from a single deployment. Each tenant's data is isolated from every other tenant's data, even though they share the same application code and infrastructure.
 
@@ -32,27 +32,27 @@ A **multi-tenant** application serves multiple independent customers (tenants) f
 
 ---
 
-### 1.1 Single-tenant vs Multi-tenant
+### 1.1 Single-Tenant vs Multi-Tenant
 
-| | Single-tenant | Multi-tenant |
-| --- | --- | --- |
-| **Deployment** | One instance per customer | One instance for all customers |
-| **Data isolation** | Complete (separate databases) | Enforced at the application or schema level |
-| **Cost** | High — infrastructure multiplied per customer | Low — infrastructure shared |
-| **Customisation** | Easy — full control per customer | Harder — shared codebase |
-| **Scaling** | Scale each customer independently | Scale the whole system |
+|                    | Single-tenant                                 | Multi-tenant                                |
+| ------------------ | --------------------------------------------- | ------------------------------------------- |
+| **Deployment**     | One instance per customer                     | One instance for all customers              |
+| **Data isolation** | Complete (separate databases)                 | Enforced at the application or schema level |
+| **Cost**           | High — infrastructure multiplied per customer | Low — infrastructure shared                 |
+| **Customisation**  | Easy — full control per customer              | Harder — shared codebase                    |
+| **Scaling**        | Scale each customer independently             | Scale the whole system                      |
 
 ---
 
-### 1.2 Multi-tenancy Strategies
+### 1.2 Multi-Tenancy Strategies
 
 There are three primary strategies for isolating tenant data, each with different trade-offs:
 
-| Strategy | Description | Isolation | Complexity | Cost |
-| --- | --- | --- | --- | --- |
-| **Database per tenant** | Each tenant has a completely separate database | Strongest | High | High |
-| **Schema per tenant** | Each tenant has a separate schema within one database | Strong | Medium | Medium |
-| **Row-level isolation** | All tenants share tables; a `tenantId` column filters rows | Weakest | Low | Low |
+| Strategy                | Description                                                | Isolation | Complexity | Cost   |
+| ----------------------- | ---------------------------------------------------------- | --------- | ---------- | ------ |
+| **Database per tenant** | Each tenant has a completely separate database             | Strongest | High       | High   |
+| **Schema per tenant**   | Each tenant has a separate schema within one database      | Strong    | Medium     | Medium |
+| **Row-level isolation** | All tenants share tables; a `tenantId` column filters rows | Weakest   | Low        | Low    |
 
 ---
 
@@ -113,12 +113,12 @@ model User {
 
 Before processing any request, the application must determine which tenant the request belongs to. Common resolution strategies:
 
-| Strategy | Example | Notes |
-| --- | --- | --- |
-| **Subdomain** | `acme.api.example.com` | Clean; requires wildcard DNS |
-| **Custom header** | `X-Tenant-ID: acme` | Simple; good for API clients |
-| **JWT claim** | `{ tenantId: "acme-uuid" }` | Embedded in auth token |
-| **Path prefix** | `/api/tenants/acme/institutions` | Explicit; verbose URLs |
+| Strategy          | Example                          | Notes                        |
+| ----------------- | -------------------------------- | ---------------------------- |
+| **Subdomain**     | `acme.api.example.com`           | Clean; requires wildcard DNS |
+| **Custom header** | `X-Tenant-ID: acme`              | Simple; good for API clients |
+| **JWT claim**     | `{ tenantId: "acme-uuid" }`      | Embedded in auth token       |
+| **Path prefix**   | `/api/tenants/acme/institutions` | Explicit; verbose URLs       |
 
 In this course we use the **`X-Tenant-ID` header** for simplicity.
 
@@ -146,7 +146,7 @@ declare global {
 const resolveTenant = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const tenantSlug = req.headers["x-tenant-id"] as string | undefined;
@@ -207,7 +207,7 @@ const prisma = new PrismaClient();
 class InstitutionRepository {
   async create(
     tenantId: string,
-    data: Omit<Prisma.InstitutionCreateInput, "tenant">
+    data: Omit<Prisma.InstitutionCreateInput, "tenant">,
   ): Promise<Institution> {
     return prisma.institution.create({
       data: { ...data, tenant: { connect: { id: tenantId } } },
@@ -222,14 +222,14 @@ class InstitutionRepository {
 
   async findById(tenantId: string, id: string): Promise<Institution | null> {
     return prisma.institution.findFirst({
-      where: { id, tenantId },    // Both conditions required
+      where: { id, tenantId }, // Both conditions required
     });
   }
 
   async update(
     tenantId: string,
     id: string,
-    data: Prisma.InstitutionUpdateInput
+    data: Prisma.InstitutionUpdateInput,
   ): Promise<Institution> {
     return prisma.institution.update({
       where: { id },
@@ -261,7 +261,7 @@ import institutionService from "../services/institution.js";
 const createInstitution = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const tenantId = req.tenant!.id;
@@ -285,7 +285,7 @@ const createInstitution = async (
 const getInstitutions = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): Promise<void> => {
   try {
     const tenantId = req.tenant!.id;
@@ -309,7 +309,7 @@ When using JWTs, embed the tenant ID in the token payload at login time. This av
 const token = jwt.sign(
   { id: user.id, role: user.role, tenantId: user.tenantId },
   process.env.JWT_ACCESS_SECRET!,
-  { expiresIn: "15m" }
+  { expiresIn: "15m" },
 );
 ```
 
@@ -393,7 +393,7 @@ import { Request, Response, NextFunction } from "express";
 const superAdminOnly = (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ): void => {
   if (req.user?.role !== "SUPER_ADMIN") {
     res.status(403).json({ message: "Forbidden. Super admin access required" });

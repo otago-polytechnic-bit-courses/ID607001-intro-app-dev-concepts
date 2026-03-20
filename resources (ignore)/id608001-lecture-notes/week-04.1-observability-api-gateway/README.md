@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 03.2 - Multi-tenancy Patterns](../week-03-2-multi-tenancy/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 04.2 - Message Queues, Background Jobs and Scheduling](../week-04-2-message-queues-background-jobs-scheduling/README.md) |
+|              | Link                                                                                                                           |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 03.2 - Multi-tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md)                                                     |
+| Code Example | [Code Example](code-example)                                                                                                   |
+| Next         | [Week 04.2 - Message Queues, Background Jobs and Scheduling](../week-04.2-message-queues-background-jobs-scheduling/README.md) |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 04.1 branch:
 
 ```bash
-git checkout -b w04-1-observability-api-gateway
+git checkout -b w04.1-observability-api-gateway
 ```
 
 ---
@@ -26,11 +26,11 @@ git checkout -b w04-1-observability-api-gateway
 
 The three pillars of observability are **logs**, **metrics**, and **traces**.
 
-| Pillar | Answers | Example |
-| --- | --- | --- |
-| **Logs** | What happened? | `POST /api/institutions 500 - "Connection refused"` |
-| **Metrics** | How much / how often? | 99th-percentile response time = 450ms |
-| **Traces** | Where did time go? | Request spent 380ms in the database, 20ms in middleware |
+| Pillar      | Answers               | Example                                                 |
+| ----------- | --------------------- | ------------------------------------------------------- |
+| **Logs**    | What happened?        | `POST /api/institutions 500 - "Connection refused"`     |
+| **Metrics** | How much / how often? | 99th-percentile response time = 450ms                   |
+| **Traces**  | Where did time go?    | Request spent 380ms in the database, 20ms in middleware |
 
 ---
 
@@ -49,10 +49,10 @@ npm install pino pino-http
 npm install pino-pretty --save-dev
 ```
 
-| Package | Purpose |
-| --- | --- |
-| `pino` | Core logger |
-| `pino-http` | Express middleware that logs every HTTP request |
+| Package       | Purpose                                                         |
+| ------------- | --------------------------------------------------------------- |
+| `pino`        | Core logger                                                     |
+| `pino-http`   | Express middleware that logs every HTTP request                 |
 | `pino-pretty` | Formats JSON logs for human-readable terminal output (dev only) |
 
 ---
@@ -98,7 +98,7 @@ const requestLogger = pinoHttp({
   customSuccessMessage: (req, res) => {
     return `${req.method} ${req.url} ${res.statusCode}`;
   },
-  redact: ["req.headers.authorization"],   // Never log auth tokens
+  redact: ["req.headers.authorization"], // Never log auth tokens
 });
 
 export default requestLogger;
@@ -126,7 +126,10 @@ const createInstitution = async (tenantId: string, data: CreateInput) => {
 
   try {
     const institution = await institutionRepository.create(tenantId, data);
-    logger.info({ tenantId, institutionId: institution.id }, "Institution created");
+    logger.info(
+      { tenantId, institutionId: institution.id },
+      "Institution created",
+    );
     return institution;
   } catch (err) {
     logger.error({ tenantId, err }, "Failed to create institution");
@@ -137,14 +140,14 @@ const createInstitution = async (tenantId: string, data: CreateInput) => {
 
 **Log levels and when to use them:**
 
-| Level | When to use |
-| --- | --- |
-| `trace` | Very detailed debugging - usually disabled in production |
-| `debug` | Debugging information useful during development |
-| `info` | Normal application events (request received, record created) |
-| `warn` | Unexpected but recoverable situations (deprecated API used, retry attempted) |
-| `error` | Errors that affect a request but not the whole application |
-| `fatal` | Errors that require the application to shut down |
+| Level   | When to use                                                                  |
+| ------- | ---------------------------------------------------------------------------- |
+| `trace` | Very detailed debugging - usually disabled in production                     |
+| `debug` | Debugging information useful during development                              |
+| `info`  | Normal application events (request received, record created)                 |
+| `warn`  | Unexpected but recoverable situations (deprecated API used, retry attempted) |
+| `error` | Errors that affect a request but not the whole application                   |
+| `fatal` | Errors that require the application to shut down                             |
 
 ---
 
@@ -157,9 +160,12 @@ A **correlation ID** is a unique identifier attached to every request. Every log
 import { Request, Response, NextFunction } from "express";
 import { randomUUID } from "crypto";
 
-const correlationId = (req: Request, res: Response, next: NextFunction): void => {
-  const id =
-    (req.headers["x-correlation-id"] as string) ?? randomUUID();
+const correlationId = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
+  const id = (req.headers["x-correlation-id"] as string) ?? randomUUID();
 
   req.headers["x-correlation-id"] = id;
   res.setHeader("X-Correlation-ID", id);
@@ -175,7 +181,7 @@ Pass the ID into log entries:
 ```typescript
 logger.info(
   { correlationId: req.headers["x-correlation-id"], tenantId },
-  "Processing request"
+  "Processing request",
 );
 ```
 
@@ -202,7 +208,13 @@ npm install prom-client
 Create `src/utils/metrics.ts`:
 
 ```typescript
-import { Registry, Counter, Histogram, Gauge, collectDefaultMetrics } from "prom-client";
+import {
+  Registry,
+  Counter,
+  Histogram,
+  Gauge,
+  collectDefaultMetrics,
+} from "prom-client";
 
 export const register = new Registry();
 
@@ -243,7 +255,11 @@ export const activeConnections = new Gauge({
 import { Request, Response, NextFunction } from "express";
 import { httpRequestCounter, httpRequestDuration } from "../utils/metrics.js";
 
-const metricsCollector = (req: Request, res: Response, next: NextFunction): void => {
+const metricsCollector = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): void => {
   const start = process.hrtime.bigint();
 
   res.on("finish", () => {
@@ -258,7 +274,7 @@ const metricsCollector = (req: Request, res: Response, next: NextFunction): void
 
     httpRequestDuration.observe(
       { method: req.method, route, status_code: res.statusCode },
-      duration
+      duration,
     );
   });
 
@@ -307,9 +323,9 @@ A health check endpoint lets infrastructure (load balancers, container orchestra
 
 ### 4.1 Liveness vs Readiness
 
-| Check | Question | Fails when |
-| --- | --- | --- |
-| **Liveness** | Is the process alive? | Process has crashed or is deadlocked |
+| Check         | Question                        | Fails when                                        |
+| ------------- | ------------------------------- | ------------------------------------------------- |
+| **Liveness**  | Is the process alive?           | Process has crashed or is deadlocked              |
 | **Readiness** | Can the process handle traffic? | Database is unreachable, dependencies unavailable |
 
 ---
@@ -370,28 +386,28 @@ Client → API Gateway → Service A
 
 ### 5.1 What an API Gateway Provides
 
-| Concern | Description |
-| --- | --- |
-| **Routing** | Routes requests to the correct backend service |
-| **Authentication** | Verifies tokens before requests reach services |
-| **Rate limiting** | Throttles clients at the gateway before load hits services |
-| **SSL termination** | Handles HTTPS so backend services can use plain HTTP |
-| **Request/response transformation** | Modifies headers, body, or URL |
-| **Caching** | Returns cached responses for repeated requests |
-| **Load balancing** | Distributes requests across multiple service instances |
-| **Logging and tracing** | Centralised observability for all traffic |
+| Concern                             | Description                                                |
+| ----------------------------------- | ---------------------------------------------------------- |
+| **Routing**                         | Routes requests to the correct backend service             |
+| **Authentication**                  | Verifies tokens before requests reach services             |
+| **Rate limiting**                   | Throttles clients at the gateway before load hits services |
+| **SSL termination**                 | Handles HTTPS so backend services can use plain HTTP       |
+| **Request/response transformation** | Modifies headers, body, or URL                             |
+| **Caching**                         | Returns cached responses for repeated requests             |
+| **Load balancing**                  | Distributes requests across multiple service instances     |
+| **Logging and tracing**             | Centralised observability for all traffic                  |
 
 ---
 
 ### 5.2 Common API Gateways
 
-| Gateway | Notes |
-| --- | --- |
-| **Kong** | Open-source; plugin ecosystem; self-hosted or cloud |
-| **AWS API Gateway** | Managed; tight AWS integration |
-| **Nginx** | Widely used as a reverse proxy and gateway |
-| **Traefik** | Docker-native; automatic service discovery |
-| **Express Gateway** | Node.js-based; good for smaller setups |
+| Gateway             | Notes                                               |
+| ------------------- | --------------------------------------------------- |
+| **Kong**            | Open-source; plugin ecosystem; self-hosted or cloud |
+| **AWS API Gateway** | Managed; tight AWS integration                      |
+| **Nginx**           | Widely used as a reverse proxy and gateway          |
+| **Traefik**         | Docker-native; automatic service discovery          |
+| **Express Gateway** | Node.js-based; good for smaller setups              |
 
 ---
 
@@ -425,7 +441,7 @@ app.use(
   createProxyMiddleware({
     target: process.env.INSTITUTION_SERVICE_URL ?? "http://localhost:3001",
     changeOrigin: true,
-  })
+  }),
 );
 
 // Route to user service
@@ -434,7 +450,7 @@ app.use(
   createProxyMiddleware({
     target: process.env.USER_SERVICE_URL ?? "http://localhost:3002",
     changeOrigin: true,
-  })
+  }),
 );
 
 export default app;
@@ -455,7 +471,7 @@ createProxyMiddleware({
       proxyReq.setHeader("X-Forwarded-For", req.ip ?? "");
       proxyReq.setHeader(
         "X-Correlation-ID",
-        (req.headers["x-correlation-id"] as string) ?? ""
+        (req.headers["x-correlation-id"] as string) ?? "",
       );
       proxyReq.setHeader("X-User-ID", req.user?.id ?? "");
       proxyReq.setHeader("X-User-Role", req.user?.role ?? "");
@@ -477,13 +493,13 @@ import rateLimit from "express-rate-limit";
 
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 10,   // Strict limit on auth endpoints
+  max: 10, // Strict limit on auth endpoints
   message: { message: "Too many authentication attempts" },
 });
 
 const apiLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 200,  // More generous for regular API calls
+  max: 200, // More generous for regular API calls
   message: { message: "Too many requests" },
 });
 

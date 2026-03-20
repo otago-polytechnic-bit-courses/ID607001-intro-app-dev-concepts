@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 05.1 - File Uploads and Caching Strategies (Redis)](../week-05-1-file-uploads-caching-redis/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | — |
+|              | Link                                                                                                 |
+| ------------ | ---------------------------------------------------------------------------------------------------- |
+| Previous     | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-redis/README.md) |
+| Code Example | [Code Example](code-example)                                                                         |
+| Next         | [Week 06.1 - React Native and Expo](../week-06.1-react-native-expo/README.md)                        |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 05.2 branch:
 
 ```bash
-git checkout -b w05-2-microservices-documentation-as-code
+git checkout -b w05.2-microservices-documentation-as-code
 ```
 
 ---
@@ -28,15 +28,15 @@ A **microservices architecture** decomposes an application into a collection of 
 
 ### 1.1 Monolith vs Microservices
 
-| | Monolith | Microservices |
-| --- | --- | --- |
-| **Deployment** | Single unit | Many independent services |
-| **Scaling** | Scale the whole application | Scale individual services |
-| **Development** | Simpler to develop initially | More complex operational overhead |
-| **Failure** | One failure can bring down everything | Failures are isolated |
-| **Team structure** | Single team owns all code | Teams own individual services |
-| **Data** | Shared database | Each service owns its own data |
-| **Communication** | In-process function calls | HTTP, gRPC, or message queues |
+|                    | Monolith                              | Microservices                     |
+| ------------------ | ------------------------------------- | --------------------------------- |
+| **Deployment**     | Single unit                           | Many independent services         |
+| **Scaling**        | Scale the whole application           | Scale individual services         |
+| **Development**    | Simpler to develop initially          | More complex operational overhead |
+| **Failure**        | One failure can bring down everything | Failures are isolated             |
+| **Team structure** | Single team owns all code             | Teams own individual services     |
+| **Data**           | Shared database                       | Each service owns its own data    |
+| **Communication**  | In-process function calls             | HTTP, gRPC, or message queues     |
 
 ---
 
@@ -57,13 +57,13 @@ Microservices are not always the right choice. They introduce significant operat
 
 Decompose around **business domains** rather than technical layers. From the course project:
 
-| Service | Responsibility | Owns |
-| --- | --- | --- |
-| **Auth Service** | Registration, login, token management | `User`, `RefreshToken` |
-| **Institution Service** | Institutions, departments, courses | `Institution`, `Department`, `Course` |
-| **Notification Service** | Email, push notifications | Email queue, templates |
-| **File Service** | Upload, storage, signed URLs | Files, metadata |
-| **Tenant Service** | Tenant management, provisioning | `Tenant` |
+| Service                  | Responsibility                        | Owns                                  |
+| ------------------------ | ------------------------------------- | ------------------------------------- |
+| **Auth Service**         | Registration, login, token management | `User`, `RefreshToken`                |
+| **Institution Service**  | Institutions, departments, courses    | `Institution`, `Department`, `Course` |
+| **Notification Service** | Email, push notifications             | Email queue, templates                |
+| **File Service**         | Upload, storage, signed URLs          | Files, metadata                       |
+| **Tenant Service**       | Tenant management, provisioning       | `Tenant`                              |
 
 ---
 
@@ -86,7 +86,7 @@ const validateToken = async (token: string): Promise<JwtPayload> => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ token }),
-    }
+    },
   );
 
   if (!response.ok) {
@@ -113,11 +113,15 @@ await eventQueue.add("user.registered", {
 });
 
 // notification-service: consumes the event
-new Worker("events", async (job) => {
-  if (job.name === "user.registered") {
-    await sendWelcomeEmail(job.data);
-  }
-}, { connection: redisConnection });
+new Worker(
+  "events",
+  async (job) => {
+    if (job.name === "user.registered") {
+      await sendWelcomeEmail(job.data);
+    }
+  },
+  { connection: redisConnection },
+);
 ```
 
 ---
@@ -198,10 +202,10 @@ The **OpenAPI Specification (OAS)** is the standard format for describing REST A
 
 ### 3.2 Approaches to OpenAPI
 
-| Approach | Description | Pros | Cons |
-| --- | --- | --- | --- |
-| **Design-first** | Write the OpenAPI document first; implement to match it | Clients and servers aligned from the start | More upfront effort |
-| **Code-first** | Generate OpenAPI from code annotations | Documentation always matches implementation | Annotations add noise to code |
+| Approach         | Description                                             | Pros                                        | Cons                          |
+| ---------------- | ------------------------------------------------------- | ------------------------------------------- | ----------------------------- |
+| **Design-first** | Write the OpenAPI document first; implement to match it | Clients and servers aligned from the start  | More upfront effort           |
+| **Code-first**   | Generate OpenAPI from code annotations                  | Documentation always matches implementation | Annotations add noise to code |
 
 ---
 
@@ -275,7 +279,7 @@ const options: swaggerJsdoc.Options = {
     },
     security: [{ bearerAuth: [] }],
   },
-  apis: ["./src/routes/**/*.ts"],   // Paths to files with JSDoc comments
+  apis: ["./src/routes/**/*.ts"], // Paths to files with JSDoc comments
 };
 
 const openapiSpec = swaggerJsdoc(options);
@@ -298,7 +302,7 @@ app.use(
   swaggerUi.setup(openapiSpec, {
     customSiteTitle: "REST API Docs",
     swaggerOptions: { persistAuthorization: true },
-  })
+  }),
 );
 
 // Also serve the raw JSON spec
@@ -472,11 +476,7 @@ Create `src/scripts/generateDocs.ts`:
 import fs from "fs";
 import openapiSpec from "../docs/openapi.js";
 
-fs.writeFileSync(
-  "openapi.json",
-  JSON.stringify(openapiSpec, null, 2),
-  "utf-8"
-);
+fs.writeFileSync("openapi.json", JSON.stringify(openapiSpec, null, 2), "utf-8");
 
 console.log("OpenAPI spec written to openapi.json");
 ```
@@ -535,10 +535,13 @@ npm install redoc-express
 ```typescript
 import redoc from "redoc-express";
 
-app.get("/api/redoc", redoc({
-  title: "REST API Documentation",
-  specUrl: "/api/docs/spec.json",
-}));
+app.get(
+  "/api/redoc",
+  redoc({
+    title: "REST API Documentation",
+    specUrl: "/api/docs/spec.json",
+  }),
+);
 ```
 
 Navigate to `http://localhost:3000/api/redoc` for the Redoc UI.

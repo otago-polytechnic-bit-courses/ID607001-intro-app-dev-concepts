@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 04.1 - Observability and API Gateway](../week-04-1-observability-api-gateway/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 05.1 - File Uploads and Caching Strategies (Redis)](../week-05-1-file-uploads-caching-redis/README.md) |
+|              | Link                                                                                                         |
+| ------------ | ------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 04.1 - Observability and API Gateway](../week-04.1-observability-api-gateway/README.md)                |
+| Code Example | [Code Example](code-example)                                                                                 |
+| Next         | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-redis/README.md) |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 04.2 branch:
 
 ```bash
-git checkout -b w04-2-message-queues-background-jobs-scheduling
+git checkout -b w04.2-message-queues-bg-jobs-scheduling
 ```
 
 ---
@@ -36,12 +36,12 @@ Keeping these operations in the request/response cycle means slow responses, tim
 
 ### 1.1 Patterns for Async Work
 
-| Pattern | Description | Best For |
-| --- | --- | --- |
-| **Message queue** | Producer adds jobs to a queue; workers consume and process them | Decoupled, reliable work distribution |
-| **Background job** | Work is deferred and processed by a separate worker process | Retries, priority, concurrency control |
-| **Scheduled job** | Work runs on a fixed schedule (cron) | Periodic tasks, maintenance, reporting |
-| **Event emitter** | In-process pub/sub; listeners react to events | Simple in-process decoupling |
+| Pattern            | Description                                                     | Best For                               |
+| ------------------ | --------------------------------------------------------------- | -------------------------------------- |
+| **Message queue**  | Producer adds jobs to a queue; workers consume and process them | Decoupled, reliable work distribution  |
+| **Background job** | Work is deferred and processed by a separate worker process     | Retries, priority, concurrency control |
+| **Scheduled job**  | Work runs on a fixed schedule (cron)                            | Periodic tasks, maintenance, reporting |
+| **Event emitter**  | In-process pub/sub; listeners react to events                   | Simple in-process decoupling           |
 
 ---
 
@@ -137,21 +137,18 @@ export type EmailJobData = WelcomeEmailJob | PasswordResetEmailJob;
 
 export type EmailJobName = "welcome" | "password-reset";
 
-export const emailQueue = new Queue<EmailJobData, void, EmailJobName>(
-  "email",
-  {
-    connection: redisConnection,
-    defaultJobOptions: {
-      attempts: 3,                        // Retry up to 3 times
-      backoff: {
-        type: "exponential",
-        delay: 2000,                      // Start with a 2s delay, then double
-      },
-      removeOnComplete: { count: 100 },   // Keep last 100 completed jobs
-      removeOnFail: { count: 500 },       // Keep last 500 failed jobs
+export const emailQueue = new Queue<EmailJobData, void, EmailJobName>("email", {
+  connection: redisConnection,
+  defaultJobOptions: {
+    attempts: 3, // Retry up to 3 times
+    backoff: {
+      type: "exponential",
+      delay: 2000, // Start with a 2s delay, then double
     },
-  }
-);
+    removeOnComplete: { count: 100 }, // Keep last 100 completed jobs
+    removeOnFail: { count: 500 }, // Keep last 500 failed jobs
+  },
+});
 ```
 
 ---
@@ -200,7 +197,7 @@ import {
 import logger from "../utils/logger.js";
 
 const processEmailJob = async (
-  job: Job<EmailJobData, void, EmailJobName>
+  job: Job<EmailJobData, void, EmailJobName>,
 ): Promise<void> => {
   logger.info({ jobId: job.id, jobName: job.name }, "Processing email job");
 
@@ -210,7 +207,7 @@ const processEmailJob = async (
       // Replace with actual email sending (e.g. Resend, SendGrid, Nodemailer)
       logger.info(
         { to: data.emailAddress },
-        `Sending welcome email to ${data.firstName}`
+        `Sending welcome email to ${data.firstName}`,
       );
       // await emailProvider.send({ to: data.emailAddress, template: "welcome", ... });
       break;
@@ -233,8 +230,8 @@ export const emailWorker = new Worker<EmailJobData, void, EmailJobName>(
   processEmailJob,
   {
     connection: redisConnection,
-    concurrency: 5,    // Process up to 5 jobs simultaneously
-  }
+    concurrency: 5, // Process up to 5 jobs simultaneously
+  },
 );
 
 emailWorker.on("completed", (job) => {
@@ -283,21 +280,21 @@ Add to `package.json`:
 await emailQueue.add(
   "password-reset",
   { userId, emailAddress, resetToken },
-  { priority: 1 }   // Lower number = higher priority
+  { priority: 1 }, // Lower number = higher priority
 );
 
 // Delayed job - runs after a delay
 await emailQueue.add(
   "welcome",
   { userId, emailAddress, firstName },
-  { delay: 5000 }   // Wait 5 seconds before processing
+  { delay: 5000 }, // Wait 5 seconds before processing
 );
 
 // Repeating job - runs on a schedule (see Section 4)
 await emailQueue.add(
   "weekly-digest",
   { reportType: "weekly" },
-  { repeat: { pattern: "0 9 * * 1" } }   // Every Monday at 9am
+  { repeat: { pattern: "0 9 * * 1" } }, // Every Monday at 9am
 );
 ```
 
@@ -320,10 +317,13 @@ export default emitter;
 import emitter from "../emitter.js";
 import logger from "../../utils/logger.js";
 
-emitter.on("institution.created", (payload: { id: string; name: string; tenantId: string }) => {
-  logger.info(payload, "Institution created event received");
-  // Trigger any side effects: notifications, cache invalidation, audit log
-});
+emitter.on(
+  "institution.created",
+  (payload: { id: string; name: string; tenantId: string }) => {
+    logger.info(payload, "Institution created event received");
+    // Trigger any side effects: notifications, cache invalidation, audit log
+  },
+);
 ```
 
 ```typescript
@@ -366,14 +366,14 @@ npm install @types/node-cron --save-dev
 * * * * * *
 ```
 
-| Expression | Meaning |
-| --- | --- |
-| `* * * * *` | Every minute |
-| `0 * * * *` | Every hour at minute 0 |
-| `0 9 * * *` | Every day at 9am |
-| `0 9 * * 1` | Every Monday at 9am |
-| `0 0 1 * *` | First day of every month at midnight |
-| `*/5 * * * *` | Every 5 minutes |
+| Expression    | Meaning                              |
+| ------------- | ------------------------------------ |
+| `* * * * *`   | Every minute                         |
+| `0 * * * *`   | Every hour at minute 0               |
+| `0 9 * * *`   | Every day at 9am                     |
+| `0 9 * * 1`   | Every Monday at 9am                  |
+| `0 0 1 * *`   | First day of every month at midnight |
+| `*/5 * * * *` | Every 5 minutes                      |
 
 ---
 
@@ -502,8 +502,8 @@ import { emailQueue } from "./queues/email.js";
 const gracefulShutdown = async (signal: string) => {
   logger.info({ signal }, "Shutting down gracefully");
 
-  await emailWorker.close();   // Stop accepting new jobs; finish current ones
-  await emailQueue.close();    // Close the queue connection
+  await emailWorker.close(); // Stop accepting new jobs; finish current ones
+  await emailQueue.close(); // Close the queue connection
   await prisma.$disconnect();
 
   process.exit(0);
