@@ -6,7 +6,7 @@
 | ------------ | ---------------------------------------------------------------------------------------------------------- |
 | Previous     | [Week 01.1 - TypeScript](../week-01.1-typescript/README.md)                                                |
 | Code Example | [Code Example](code-example)                                                                               |
-| Next         | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02.1-docker-compose-github-actions/README.md) |
+| Next         | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02.1-docker-compose-more-github-actions/README.md) |
 
 ---
 
