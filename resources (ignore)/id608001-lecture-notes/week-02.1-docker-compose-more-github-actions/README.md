@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                                                     |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-dependency-injection/README.md) |
+| Previous     | [Week 01.2 - More Prisma, Service Layer and Dependency Injection](../week-01.2-more-prisma-service-layer-di/README.md) |
 | Code Example | [Code Example](code-example)                                                                                                             |
 | Next         | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md)                                                          |
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 02.1 branch:
 
 ```bash
-git checkout -b w02-1-docker-compose-github-actions
+git checkout -b w02.1-docker-compose-github-actions
 ```
 
 ---

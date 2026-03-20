@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 01.2 branch:
 
 ```bash
-git checkout -b w01-2-prisma-service-layer-di
+git checkout -b w01.2-prisma-service-layer-di
 ```
 
 ---

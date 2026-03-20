@@ -14,7 +14,7 @@
 Open your repository in Visual Studio Code and switch to the Week 01.1 branch:
 
 ```bash
-git checkout -b w01-1-typescript
+git checkout -b w01.1-typescript
 ```
 
 This course builds on the REST API foundations from ID607001: Introductory Application Development Concepts. You should be comfortable with Express, Prisma, middleware, authentication, and integration testing before proceeding.

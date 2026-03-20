@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 02.2 - Versioning and Retries](../week-02-2-versioning-retries/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | — |
+|              | Link                                                                            |
+| ------------ | ------------------------------------------------------------------------------- |
+| Previous     | [Week 02.2 - Versioning and Retries](../week-02.2-versioning-retries/README.md) |
+| Code Example | [Code Example](code-example)                                                    |
+| Next         | [Week 03.2 - Multi-Tenancy Patterns](../week-03.2-multi-tenancy-patterns/README.md)                                                                               |
 
 ---
 
@@ -26,12 +26,12 @@ In ID607001: Introductory Application Development Concepts, you implemented Role
 
 Basic RBAC breaks down in several real-world scenarios:
 
-| Scenario | Problem with basic RBAC |
-| --- | --- |
-| A STUDENT can edit their own profile but not others | Roles cannot express resource ownership |
-| A department head can manage their own department but not others | Roles are too coarse |
-| Permissions should be scoped to specific resources | Roles apply globally |
-| Different tenants need different permission sets | One role definition serves all tenants |
+| Scenario                                                         | Problem with basic RBAC                 |
+| ---------------------------------------------------------------- | --------------------------------------- |
+| A STUDENT can edit their own profile but not others              | Roles cannot express resource ownership |
+| A department head can manage their own department but not others | Roles are too coarse                    |
+| Permissions should be scoped to specific resources               | Roles apply globally                    |
+| Different tenants need different permission sets                 | One role definition serves all tenants  |
 
 ---
 
@@ -127,23 +127,28 @@ const roles = [
   {
     name: "ADMIN",
     permissions: [
-      "institution:create", "institution:read", "institution:update", "institution:delete",
-      "user:read:any", "user:update:own", "user:delete:any",
+      "institution:create",
+      "institution:read",
+      "institution:update",
+      "institution:delete",
+      "user:read:any",
+      "user:update:own",
+      "user:delete:any",
     ],
   },
   {
     name: "STAFF",
     permissions: [
-      "institution:create", "institution:read", "institution:update",
-      "user:read:own", "user:update:own",
+      "institution:create",
+      "institution:read",
+      "institution:update",
+      "user:read:own",
+      "user:update:own",
     ],
   },
   {
     name: "STUDENT",
-    permissions: [
-      "institution:read",
-      "user:read:own", "user:update:own",
-    ],
+    permissions: ["institution:read", "user:read:own", "user:update:own"],
   },
 ];
 
@@ -200,7 +205,11 @@ import { Request, Response, NextFunction } from "express";
 import prisma from "../prisma/db.js";
 
 const hasPermission = (requiredPermission: string) => {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
     try {
       const userId = req.user?.id;
 
@@ -252,7 +261,7 @@ router.post(
   "/",
   jwtAuth,
   hasPermission("institution:create"),
-  createInstitution
+  createInstitution,
 );
 
 router.get("/", jwtAuth, hasPermission("institution:read"), getInstitutions);
@@ -261,7 +270,7 @@ router.delete(
   "/:id",
   jwtAuth,
   hasPermission("institution:delete"),
-  deleteInstitution
+  deleteInstitution,
 );
 ```
 
@@ -348,7 +357,11 @@ const generateTokens = async (userId: string) => {
   return { accessToken, refreshToken };
 };
 
-const login = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const login = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const { emailAddress, password } = req.body;
 
@@ -378,7 +391,11 @@ const login = async (req: Request, res: Response, next: NextFunction): Promise<v
   }
 };
 
-const refresh = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const refresh = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const token = req.cookies.refreshToken as string | undefined;
 
@@ -403,7 +420,7 @@ const refresh = async (req: Request, res: Response, next: NextFunction): Promise
 
     // Issue a new token pair
     const { accessToken, refreshToken: newRefreshToken } = await generateTokens(
-      storedToken.userId
+      storedToken.userId,
     );
 
     res.cookie("refreshToken", newRefreshToken, {
@@ -419,7 +436,11 @@ const refresh = async (req: Request, res: Response, next: NextFunction): Promise
   }
 };
 
-const logout = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+const logout = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+): Promise<void> => {
   try {
     const token = req.cookies.refreshToken as string | undefined;
 
@@ -484,12 +505,12 @@ The refresh endpoint above deletes the used refresh token and issues a new one o
 
 ABAC extends RBAC by considering not just roles, but also attributes of the user, the resource, and the environment when making access decisions.
 
-| Concept | RBAC | ABAC |
-| --- | --- | --- |
-| Access based on | Role | Attributes (user, resource, environment) |
-| Flexibility | Low - coarse-grained | High - fine-grained |
-| Example rule | `role === "ADMIN"` | `user.department === resource.department && action === "read"` |
-| Complexity | Low | Higher |
+| Concept         | RBAC                 | ABAC                                                           |
+| --------------- | -------------------- | -------------------------------------------------------------- |
+| Access based on | Role                 | Attributes (user, resource, environment)                       |
+| Flexibility     | Low - coarse-grained | High - fine-grained                                            |
+| Example rule    | `role === "ADMIN"`   | `user.department === resource.department && action === "read"` |
+| Complexity      | Low                  | Higher                                                         |
 
 ---
 
@@ -505,12 +526,12 @@ interface AccessContext {
     departmentId?: string;
   };
   resource: {
-    type: string;       // e.g. "institution", "department"
+    type: string; // e.g. "institution", "department"
     id?: string;
     ownerId?: string;
     departmentId?: string;
   };
-  action: string;       // e.g. "read", "update", "delete"
+  action: string; // e.g. "read", "update", "delete"
   environment?: {
     ipAddress?: string;
     time?: Date;
@@ -566,7 +587,10 @@ import { AccessContext, Policy } from "../types/abac.js";
 class PolicyEngine {
   private policies: Map<string, Record<string, Policy>> = new Map();
 
-  register(resourceType: string, resourcePolicies: Record<string, Policy>): void {
+  register(
+    resourceType: string,
+    resourcePolicies: Record<string, Policy>,
+  ): void {
     this.policies.set(resourceType, resourcePolicies);
   }
 
@@ -574,7 +598,9 @@ class PolicyEngine {
     const resourcePolicies = this.policies.get(context.resource.type);
 
     if (!resourcePolicies) {
-      console.warn(`No policies defined for resource: ${context.resource.type}`);
+      console.warn(
+        `No policies defined for resource: ${context.resource.type}`,
+      );
       return false; // Deny by default
     }
 
@@ -582,7 +608,7 @@ class PolicyEngine {
 
     if (!policy) {
       console.warn(
-        `No policy for action: ${context.action} on resource: ${context.resource.type}`
+        `No policy for action: ${context.action} on resource: ${context.resource.type}`,
       );
       return false; // Deny by default
     }
@@ -615,7 +641,11 @@ import { policyEngine } from "../utils/policyEngine.js";
 import prisma from "../prisma/db.js";
 
 const enforce = (resourceType: string, action: string) => {
-  return async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  return async (
+    req: Request,
+    res: Response,
+    next: NextFunction,
+  ): Promise<void> => {
     try {
       const userId = req.user?.id;
 
@@ -677,8 +707,18 @@ import enforce from "../middleware/abac.js";
 
 router.post("/", jwtAuth, enforce("institution", "create"), createInstitution);
 router.get("/", jwtAuth, enforce("institution", "read"), getInstitutions);
-router.put("/:id", jwtAuth, enforce("institution", "update"), updateInstitution);
-router.delete("/:id", jwtAuth, enforce("institution", "delete"), deleteInstitution);
+router.put(
+  "/:id",
+  jwtAuth,
+  enforce("institution", "update"),
+  updateInstitution,
+);
+router.delete(
+  "/:id",
+  jwtAuth,
+  enforce("institution", "delete"),
+  deleteInstitution,
+);
 ```
 
 ---
@@ -711,13 +751,13 @@ const departmentPolicies = {
 
 ## 5. RBAC vs Permissions vs ABAC - Choosing an Approach
 
-| Criterion | Basic RBAC | Permission-Based | ABAC |
-| --- | --- | --- | --- |
-| Complexity | Low | Medium | High |
-| Flexibility | Low | Medium | High |
-| Performance | Fast | Medium | Slower (database lookups) |
-| Best for | Small teams, simple apps | Most production APIs | Complex enterprise systems |
-| Configuration | Code changes required | Database-driven | Policy engine configuration |
+| Criterion     | Basic RBAC               | Permission-Based     | ABAC                        |
+| ------------- | ------------------------ | -------------------- | --------------------------- |
+| Complexity    | Low                      | Medium               | High                        |
+| Flexibility   | Low                      | Medium               | High                        |
+| Performance   | Fast                     | Medium               | Slower (database lookups)   |
+| Best for      | Small teams, simple apps | Most production APIs | Complex enterprise systems  |
+| Configuration | Code changes required    | Database-driven      | Policy engine configuration |
 
 For most REST APIs, **permission-based access control** (Section 2) provides the right balance. Move to ABAC only when you need to express rules that depend on resource attributes or environmental context.
 

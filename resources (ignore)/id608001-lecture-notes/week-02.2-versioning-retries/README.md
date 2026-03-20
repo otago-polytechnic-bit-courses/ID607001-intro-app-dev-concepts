@@ -2,11 +2,11 @@
 
 ## Navigation
 
-| | Link |
-| --- | --- |
-| Previous | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02-1-docker-compose-github-actions/README.md) |
-| Code Example | [Code Example](code-example) |
-| Next | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03-1-permissions-refresh-tokens-abac/README.md) |
+|              | Link                                                                                                                                 |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Previous     | [Week 02.1 - Docker Compose and More GitHub Actions](../week-02-1-docker-compose-more-github-actions/README.md)                      |
+| Code Example | [Code Example](code-example)                                                                                                         |
+| Next         | [Week 03.1 - Permissions, Refresh Tokens and Attribute-Based Access Control](../week-03-1-permissions-refresh-tokens-abac/README.md) |
 
 ---
 
@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 02.2 branch:
 
 ```bash
-git checkout -b w02-2-versioning-retries
+git checkout -b w02.2-versioning-retries
 ```
 
 ---
@@ -34,12 +34,12 @@ A breaking change is any change that requires existing clients to update their c
 
 ### 1.2 Versioning Strategies
 
-| Strategy | Example | Notes |
-| --- | --- | --- |
-| **URI path** | `/api/v1/institutions` | Most common; explicit and cacheable |
-| **Query parameter** | `/api/institutions?version=1` | Easy to implement; not RESTful |
-| **Accept header** | `Accept: application/vnd.api+json;version=1` | Clean URLs; harder to test in a browser |
-| **Custom header** | `X-API-Version: 1` | Flexible; not discoverable |
+| Strategy            | Example                                      | Notes                                   |
+| ------------------- | -------------------------------------------- | --------------------------------------- |
+| **URI path**        | `/api/v1/institutions`                       | Most common; explicit and cacheable     |
+| **Query parameter** | `/api/institutions?version=1`                | Easy to implement; not RESTful          |
+| **Accept header**   | `Accept: application/vnd.api+json;version=1` | Clean URLs; harder to test in a browser |
+| **Custom header**   | `X-API-Version: 1`                           | Flexible; not discoverable              |
 
 In this course we use **URI path versioning** as it is the most widely adopted approach and the simplest to work with.
 
@@ -110,18 +110,19 @@ When deprecating a version, signal it to clients via a response header before re
 
 ```typescript
 // Middleware to add deprecation warning
-const deprecationWarning = (req: Request, res: Response, next: NextFunction) => {
-  res.setHeader(
-    "Deprecation",
-    "true"
-  );
+const deprecationWarning = (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  res.setHeader("Deprecation", "true");
   res.setHeader(
     "Sunset",
-    "Sat, 01 Jan 2026 00:00:00 GMT"  // When the version will be removed
+    "Sat, 01 Jan 2026 00:00:00 GMT", // When the version will be removed
   );
   res.setHeader(
     "Link",
-    '<https://api.example.com/api/v2/institutions>; rel="successor-version"'
+    '<https://api.example.com/api/v2/institutions>; rel="successor-version"',
   );
   next();
 };
@@ -175,11 +176,11 @@ MAJOR.MINOR.PATCH
   2  .  3  .  1
 ```
 
-| Part | When to increment | Example |
-| --- | --- | --- |
-| **MAJOR** | Breaking changes | v1 → v2: removed a field |
+| Part      | When to increment                  | Example                     |
+| --------- | ---------------------------------- | --------------------------- |
+| **MAJOR** | Breaking changes                   | v1 → v2: removed a field    |
 | **MINOR** | New features, backwards compatible | Added a new optional filter |
-| **PATCH** | Bug fixes, backwards compatible | Fixed incorrect status code |
+| **PATCH** | Bug fixes, backwards compatible    | Fixed incorrect status code |
 
 📖 Reference: [semver.org](https://semver.org)
 
@@ -197,12 +198,12 @@ docs: update README with new endpoints
 chore: upgrade Prisma to 7.0
 ```
 
-| Prefix | SemVer bump |
-| --- | --- |
-| `fix:` | PATCH |
-| `feat:` | MINOR |
-| `feat!:` or `BREAKING CHANGE:` | MAJOR |
-| `docs:`, `chore:`, `style:` | No bump |
+| Prefix                         | SemVer bump |
+| ------------------------------ | ----------- |
+| `fix:`                         | PATCH       |
+| `feat:`                        | MINOR       |
+| `feat!:` or `BREAKING CHANGE:` | MAJOR       |
+| `docs:`, `chore:`, `style:`    | No bump     |
 
 📖 Reference: [Conventional Commits](https://www.conventionalcommits.org)
 
@@ -249,7 +250,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0   # Full history required for semantic-release
+          fetch-depth: 0 # Full history required for semantic-release
 
       - uses: actions/setup-node@v4
         with:
@@ -275,12 +276,12 @@ In distributed systems, transient failures are expected. A database connection m
 
 ### 3.1 When to Retry
 
-| Should Retry | Should Not Retry |
-| --- | --- |
-| Network timeout | 4xx client errors (bad request, unauthorized) |
-| 503 Service Unavailable | Validation failures |
-| 429 Too Many Requests | Business logic errors |
-| Database connection errors | Data integrity errors |
+| Should Retry               | Should Not Retry                              |
+| -------------------------- | --------------------------------------------- |
+| Network timeout            | 4xx client errors (bad request, unauthorized) |
+| 503 Service Unavailable    | Validation failures                           |
+| 429 Too Many Requests      | Business logic errors                         |
+| Database connection errors | Data integrity errors                         |
 
 > Never retry on `400 Bad Request` or `422 Unprocessable Entity` - the request itself is the problem and retrying will not help.
 
@@ -310,7 +311,7 @@ const withRetry = async <T>(
     baseDelay?: number;
     maxDelay?: number;
     shouldRetry?: (err: unknown) => boolean;
-  } = {}
+  } = {},
 ): Promise<T> => {
   const {
     maxAttempts = 3,
@@ -334,11 +335,11 @@ const withRetry = async <T>(
       // Exponential backoff with jitter
       const delay = Math.min(
         baseDelay * Math.pow(2, attempt) + Math.random() * 1000,
-        maxDelay
+        maxDelay,
       );
 
       console.warn(
-        `Attempt ${attempt + 1} failed. Retrying in ${Math.round(delay)}ms...`
+        `Attempt ${attempt + 1} failed. Retrying in ${Math.round(delay)}ms...`,
       );
 
       await sleep(delay);
@@ -355,17 +356,14 @@ const withRetry = async <T>(
 
 ```typescript
 // Retry a database operation
-const institution = await withRetry(
-  () => institutionRepository.findById(id),
-  {
-    maxAttempts: 3,
-    baseDelay: 500,
-    shouldRetry: (err) => {
-      // Only retry on connection errors, not application errors
-      return err instanceof Error && err.message.includes("Connection");
-    },
-  }
-);
+const institution = await withRetry(() => institutionRepository.findById(id), {
+  maxAttempts: 3,
+  baseDelay: 500,
+  shouldRetry: (err) => {
+    // Only retry on connection errors, not application errors
+    return err instanceof Error && err.message.includes("Connection");
+  },
+});
 
 // Retry an external API call
 const data = await withRetry(
@@ -380,7 +378,7 @@ const data = await withRetry(
       }
       return true;
     },
-  }
+  },
 );
 ```
 
@@ -429,7 +427,7 @@ const isRetryableError = (err: unknown): boolean => {
 A **circuit breaker** monitors the failure rate of an operation. If failures exceed a threshold, it opens the circuit and fails fast for a period, preventing repeated calls to a failing service:
 
 ```
-CLOSED → (failures exceed threshold) → OPEN → (timeout elapses) 
+CLOSED → (failures exceed threshold) → OPEN → (timeout elapses)
     → HALF-OPEN → (success) → CLOSED → (failure) → OPEN
 ```
 
@@ -441,7 +439,7 @@ class CircuitBreaker {
 
   constructor(
     private readonly threshold: number = 5,
-    private readonly timeout: number = 30000
+    private readonly timeout: number = 30000,
   ) {}
 
   async execute<T>(fn: () => Promise<T>): Promise<T> {
@@ -484,7 +482,7 @@ const breaker = new CircuitBreaker(5, 30000);
 
 const getExternalData = () =>
   breaker.execute(() =>
-    fetch("https://external-api.example.com/data").then((r) => r.json())
+    fetch("https://external-api.example.com/data").then((r) => r.json()),
   );
 ```
 
@@ -497,7 +495,7 @@ When a client receives a `429 Too Many Requests`, it should wait for the duratio
 ```typescript
 const fetchWithRateLimitHandling = async (
   url: string,
-  options?: RequestInit
+  options?: RequestInit,
 ): Promise<Response> => {
   const response = await fetch(url, options);
 
