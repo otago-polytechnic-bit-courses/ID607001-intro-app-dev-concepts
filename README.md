@@ -57,25 +57,25 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Week             | Topics                                                      |
-| ---------------- | ----------------------------------------------------------- |
-| 1/Tahi           | Git and JavaScript                                          |
-| 2/Rua            | API, Express and Development Tools                         |
-| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                  |
-| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture |
-| 5/Rima           | Validation, Seeding, Query Parameters and Deployment        |
-| 6/Ono            | Security, Authentication and Role-Based Access Control      |
-| 7/Whitu          | Backend Testing (Integration), Code Coverage, CI/CD and GitHub Actions    |
-| 8/Waru           | Vite and SvelteKit.js Design                                |
-| 9/Iwa            | API Integration, Bootstrap and Deployment                           |
-|                  | Mid Semester Break                                          |
-| 10/Tekau         | Performance and UI/UX Design              |
-| 11/Tekau mā tahi | Frontend Testing (Component and End-to-End)                                           |
-| 12/Tekau mā rua  | Assessment Work                                             |
-| 13/Tekau mā toru | Assessment Work                                             |
-| 14/Tekau mā whā  | Assessment Work                                             |
-| 15/Tekau mā rima | Assessment Work                                             |
-| 16/Tekau mā ono  | Assessment Marking                                          |
+| Week             | Topics                                                                 |
+| ---------------- | ---------------------------------------------------------------------- |
+| 1/Tahi           | Git and JavaScript                                                     |
+| 2/Rua            | API, Express and Development Tools                                     |
+| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                             |
+| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture            |
+| 5/Rima           | Validation, Seeding, Query Parameters and Deployment                   |
+| 6/Ono            | Security, Authentication and Role-Based Access Control                 |
+| 7/Whitu          | Backend Testing (Integration), Code Coverage, CI/CD and GitHub Actions |
+|                  | Mid Semester Break                                                     |
+| 8/Waru           | Vite and SvelteKit.js Design                                           |
+| 9/Iwa            | API Integration, Bootstrap and Deployment                              |
+| 10/Tekau         | Performance and UI/UX Design                                           |
+| 11/Tekau mā tahi | Frontend Testing (Component and End-to-End)                            |
+| 12/Tekau mā rua  | Assessment Work                                                        |
+| 13/Tekau mā toru | Assessment Work                                                        |
+| 14/Tekau mā whā  | Assessment Work                                                        |
+| 15/Tekau mā rima | Assessment Work                                                        |
+| 16/Tekau mā ono  | Assessment Marking                                                     |
 
 ## Resources
 
