@@ -2,10 +2,10 @@
 
 ## Navigation
 
-|              | Link                                                                |
-| ------------ | ------------------------------------------------------------------- |
-| Previous     | [Week 11.1 - CI/CD for Mobile](../week-11.1-ci-cd-mobile/README.md) |
-| Code Example | [Code Example](code-example)                                        |
+|              | Link                                                                    |
+| ------------ | ----------------------------------------------------------------------- |
+| Previous     | [Week 11.1 - CI/CD for Mobile](../week-11.1-ci-cd-for-mobile/README.md) |
+| Code Example | [Code Example](code-example)                                            |
 
 ---
 
@@ -14,7 +14,7 @@
 Open your repository in Visual Studio Code and switch to the Week 11.2 branch:
 
 ```bash
-git checkout -b w11-2-app-store-deployment-release-management
+git checkout -b w11.2-app-store-deployment-release-management
 ```
 
 ---

@@ -6,7 +6,7 @@
 | ------------ | ------------------------------------------------------------------------------------------------------------------------- |
 | Previous     | [Week 10.2 - Testing for Mobile](../week-10.2-testing-for-mobile/README.md)                                               |
 | Code Example | [Code Example](code-example)                                                                                              |
-| Next         | [Week 11.2 - App Store Deployment and Release Management](../week-11-2-app-store-deployment-release-management/README.md) |
+| Next         | [Week 11.2 - App Store Deployment and Release Management](../week-11.2-app-store-deployment-release-management/README.md) |
 
 ---
 

@@ -4,9 +4,9 @@
 
 |              | Link                                                                                                                  |
 | ------------ | --------------------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 10.1 - Performance Optimisation and Lazy Loading](../week-10-1-performance-optimisation-lazy-loading/README.md) |
+| Previous     | [Week 10.1 - Performance Optimisation and Lazy Loading](../week-10.1-performance-optimisation-lazy-loading/README.md) |
 | Code Example | [Code Example](code-example)                                                                                          |
-| Next         | [Week 11.1 - CI/CD for Mobile](../week-11-1-ci-cd-for-mobile/README.md)                                               |
+| Next         | [Week 11.1 - CI/CD for Mobile](../week-11.1-ci-cd-for-mobile/README.md)                                               |
 
 ---
 
