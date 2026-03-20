@@ -1,4 +1,4 @@
-# Week 08.1 - Local Storage, AsyncStorage and SQLite
+# Week 08.1 - Local Storage, Async Storage and SQLite
 
 ## Navigation
 
