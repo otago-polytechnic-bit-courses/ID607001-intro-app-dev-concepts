@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 11.1 branch:
 
 ```bash
-git checkout -b w11-1-ci-cd-mobile
+git checkout -b w11.1-ci-cd-for-mobile
 ```
 
 ---
