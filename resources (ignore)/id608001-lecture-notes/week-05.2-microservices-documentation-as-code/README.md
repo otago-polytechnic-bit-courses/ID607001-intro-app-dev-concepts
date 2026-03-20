@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                 |
 | ------------ | ---------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-redis/README.md) |
+| Previous     | [Week 05.1 - File Uploads and Caching Strategies](../week-05.1-file-uploads-caching-strategies/README.md) |
 | Code Example | [Code Example](code-example)                                                                         |
 | Next         | [Week 06.1 - React Native and Expo](../week-06.1-react-native-expo/README.md)                        |
 
