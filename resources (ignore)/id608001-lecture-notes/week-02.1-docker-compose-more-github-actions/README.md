@@ -15,7 +15,7 @@
 Open your repository in Visual Studio Code and switch to the Week 02.1 branch:
 
 ```bash
-git checkout -b w02.1-docker-compose-github-actions
+git checkout -b w02.1-docker-compose-more-github-actions
 ```
 
 ---
