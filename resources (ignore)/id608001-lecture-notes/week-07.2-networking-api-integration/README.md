@@ -6,7 +6,7 @@
 | ------------ | -------------------------------------------------------------------------------------------------------------- |
 | Previous     | [Week 07.1 - State Management](../week-07.1-state-management/README.md)                                        |
 | Code Example | [Code Example](code-example)                                                                                   |
-| Next         | [Week 08.1 - Local Storage, AsyncStorage and SQLite](../week-08.1-local-storage-asyncstorage-sqlite/README.md) |
+| Next         | [Week 08.1 - Local Storage, Async Storage and SQLite](../week-08.1-local-storage-async-storage-sqlite/README.md) |
 
 ---
 
