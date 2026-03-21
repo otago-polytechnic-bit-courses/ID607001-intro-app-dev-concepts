@@ -614,7 +614,7 @@ We will use **Render** for deployment.
 Add the following to your `scripts` block in `package.json`:
 
 ```json
-"build": "npm install && npx prisma generate && npx prisma migrate deploy"
+"build:render": "npm install && npx prisma generate && npx prisma migrate deploy"
 ```
 
 | Command                     | Purpose                                                                 |
@@ -647,7 +647,7 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
    - **Name:** e.g. `id607001-rest-api`
    - **Language:** Node
    - **Branch:** `w05-validation-seeding-query-params-deployment`
-   - **Build Command:** `npm run build`
+   - **Build Command:** `npm run build:render`
    - **Start Command:** `node app.js`
    - **Instance Type:** Free
 4. Add an environment variable: `DATABASE_URL` = the External Database URL
