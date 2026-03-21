@@ -709,7 +709,7 @@ Given the following JSON object:
 
 ```json
 {
-  "id": 1,
+  "id": "cbc817df-8949-4813-87c7-db2e144c1070",
   "first_name": "Jane",
   "last_name": "Doe",
   "email": "jane.doe@example.com",

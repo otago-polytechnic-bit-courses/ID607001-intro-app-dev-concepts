@@ -437,50 +437,44 @@ async findAll(
   filters = {},
   sortBy = "id",
   sortOrder = "asc",
-  page = 1,
-  pageSize = 10
+  page = "1",
+  pageSize = "10"
 ) {
   // Ensure page and pageSize are positive integers
-  page = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
-  pageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
+  const parsedPage = parseInt(page, 10) > 0 ? parseInt(page, 10) : 1;
+  const parsedPageSize = parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
   const totalCount = await prisma.institution.count({ where: filters });
-  const totalPages = Math.ceil(totalCount / pageSize);
-
-  const query = {
-    orderBy: { [sortBy]: sortOrder },
-    skip: (page - 1) * pageSize,
-    take: pageSize,
-  };
+  const totalPages = Math.ceil(totalCount / parsedPageSize);
 
   // Build dynamic WHERE clause from filters
-  if (Object.keys(filters).length > 0) {
-    query.where = {};
-
-    for (const [key, value] of Object.entries(filters)) {
-      if (value !== undefined && value !== null && value !== "") {
-        if (typeof value === "string") {
-          query.where[key] = { contains: value, mode: "insensitive" };
-        } else if (typeof value === "boolean") {
-          query.where[key] = { equals: value };
-        } else if (typeof value === "number") {
-          query.where[key] = { equals: value };
-        }
+  const where = {};
+  for (const [key, value] of Object.entries(filters)) {
+    if (value !== undefined && value !== null && value !== "") {
+      if (typeof value === "string") {
+        where[key] = { contains: value };
+      } else if (typeof value === "boolean" || typeof value === "number") {
+        where[key] = { equals: value };
       }
     }
   }
 
-  const institutions = await prisma.institution.findMany(query);
+  const institutions = await prisma.institution.findMany({
+    where,
+    orderBy: { [sortBy]: sortOrder },
+    skip: (parsedPage - 1) * parsedPageSize,
+    take: parsedPageSize,
+  });
 
   return {
     data: institutions,
     pagination: {
-      currentPage: page,
-      pageSize,
+      currentPage: parsedPage,
+      pageSize: parsedPageSize,
       totalCount,
       totalPages,
-      nextPage: page < totalPages ? page + 1 : null,
-      prevPage: page > 1 ? page - 1 : null,
+      nextPage: parsedPage < totalPages ? parsedPage + 1 : null,
+      prevPage: parsedPage > 1 ? parsedPage - 1 : null,
     },
   };
 }
@@ -513,8 +507,8 @@ const getInstitutions = async (req, res) => {
       country,
       sortBy = "id",
       sortOrder = "asc",
-      page = 1,
-      pageSize = 10,
+      page = "1",
+      pageSize = "10",
     } = req.query;
 
     // Build filters from provided query params
@@ -535,7 +529,7 @@ const getInstitutions = async (req, res) => {
       ? sortBy.toLowerCase()
       : "id";
 
-    const institutions = institutionRepository.findAll(
+    const institutions = await institutionRepository.findAll(
       filters,
       fields,
       order,
@@ -552,7 +546,9 @@ const getInstitutions = async (req, res) => {
       pagination: institutions.pagination,
     });
   } catch (err) {
-    return res.status(500).json({ message: err.message });
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 };
 ```

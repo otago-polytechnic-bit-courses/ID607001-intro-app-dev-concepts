@@ -24,8 +24,8 @@ const getInstitutions = async (req, res) => {
       country,
       sortBy = "id",
       sortOrder = "asc",
-      page = 1,
-      pageSize = 10,
+      page = "1",
+      pageSize = "10",
     } = req.query;
 
     const filters = {};

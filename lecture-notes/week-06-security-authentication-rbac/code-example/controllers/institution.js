@@ -7,7 +7,7 @@ const createInstitution = async (req, res) => {
     const institutions = await institutionRepository.findAll();
     return res.status(201).json({
       message: "Institution successfully created",
-      data: institutions.data,
+      data: institutions,
     });
   } catch (err) {
     return res.status(500).json({
@@ -24,8 +24,8 @@ const getInstitutions = async (req, res) => {
       country,
       sortBy = "id",
       sortOrder = "asc",
-      page = 1,
-      pageSize = 10,
+      page = "1",
+      pageSize = "10",
     } = req.query;
 
     const filters = {};
@@ -48,7 +48,7 @@ const getInstitutions = async (req, res) => {
       fields,
       order,
       page,
-      pageSize
+      pageSize,
     );
 
     if (!institutions.data.length) {
@@ -95,7 +95,11 @@ const updateInstitution = async (req, res) => {
         message: `No institution with the id: ${id} found`,
       });
     }
-    institution = await institutionRepository.update(id, { name, region, country });
+    institution = await institutionRepository.update(id, {
+      name,
+      region,
+      country,
+    });
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
       data: institution,
