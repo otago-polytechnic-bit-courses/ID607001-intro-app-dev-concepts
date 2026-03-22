@@ -17,9 +17,6 @@ class InstitutionRepository {
     const parsedPageSize =
       parseInt(pageSize, 10) > 0 ? parseInt(pageSize, 10) : 10;
 
-    const totalCount = await prisma.institution.count({ where: filters });
-    const totalPages = Math.ceil(totalCount / parsedPageSize);
-
     // Build dynamic WHERE clause from filters
     const where = {};
     for (const [key, value] of Object.entries(filters)) {
@@ -31,6 +28,9 @@ class InstitutionRepository {
         }
       }
     }
+
+    const totalCount = await prisma.institution.count({ where: filters });
+    const totalPages = Math.ceil(totalCount / parsedPageSize);
 
     const institutions = await prisma.institution.findMany({
       where,
