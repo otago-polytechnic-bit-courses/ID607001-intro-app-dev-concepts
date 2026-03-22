@@ -25,9 +25,9 @@ class InstitutionRepository {
     for (const [key, value] of Object.entries(filters)) {
       if (value !== undefined && value !== null && value !== "") {
         if (typeof value === "string") {
-          where[key] = { contains: value };
+          Object.assign(where, { [key]: { contains: value } });
         } else if (typeof value === "boolean" || typeof value === "number") {
-          where[key] = { equals: value };
+          Object.assign(where, { [key]: { equals: value } });
         }
       }
     }
