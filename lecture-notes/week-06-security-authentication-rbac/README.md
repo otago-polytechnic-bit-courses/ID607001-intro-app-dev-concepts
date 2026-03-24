@@ -178,7 +178,7 @@ const register = async (req, res) => {
     const salt = await bcryptjs.genSalt();
     const hashedPassword = await bcryptjs.hash(password, salt);
 
-    user = await prisma.user.create({
+    const createdUser = await prisma.user.create({
       data: {
         firstName,
         lastName,
@@ -199,7 +199,7 @@ const register = async (req, res) => {
 
     return res.status(201).json({
       message: "User successfully registered",
-      data: user,
+      data: createdUser,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -224,6 +224,13 @@ const login = async (req, res) => {
     }
 
     const { JWT_SECRET, JWT_LIFETIME } = process.env;
+
+    if (!JWT_SECRET || !JWT_LIFETIME) {
+      return res.status(500).json({
+        message:
+          "JWT_SECRET and JWT_LIFETIME must be defined in environment variables",
+      });
+    }
 
     // Sign a token containing the user's ID and role
     const token = jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, {
