@@ -5,7 +5,7 @@ const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
     // Create a new department
-    await prisma.department.create({
+    const department = await prisma.department.create({
       // Data to be inserted
       data: {
         name,
@@ -13,13 +13,10 @@ const createDepartment = async (req, res) => {
       },
     });
 
-    // Get all departments from the department table
-    const departments = await prisma.department.findMany();
-
     // Send a JSON response
     return res.status(201).json({
       message: "Department successfully created",
-      data: departments,
+      data: department,
     });
   } catch (err) {
     return res.status(500).json({

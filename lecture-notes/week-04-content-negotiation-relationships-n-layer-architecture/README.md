@@ -198,15 +198,13 @@ const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
 
-    await prisma.department.create({
-      data: { name, institutionId },
+    const department = await prisma.department.create({
+      data: { name, institution: { connect: { id: institutionId } } },
     });
-
-    const departments = await prisma.department.findMany();
 
     return res.status(201).json({
       message: "Department successfully created",
-      data: departments,
+      data: department,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -233,14 +231,14 @@ const updateDepartment = async (req, res) => {
       });
     }
 
-    department = await prisma.department.update({
+    const updatedDepartment = await prisma.department.update({
       where: { id },
-      data: { name, institutionId },
+      data: { name, institution: { connect: { id: institutionId } } },
     });
 
     return res.status(200).json({
       message: `Department with the id: ${id} successfully updated`,
-      data: department,
+      data: updatedDepartment,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });
@@ -416,8 +414,11 @@ import institutionRepository from "../repositories/institution.js";
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
-    await institutionRepository.create({ name, region, country });
-    const institutions = await institutionRepository.findAll();
+    const institution = await institutionRepository.create({
+      name,
+      region,
+      country,
+    });
     return res.status(201).json({
       message: "Institution successfully created",
       data: institutions,

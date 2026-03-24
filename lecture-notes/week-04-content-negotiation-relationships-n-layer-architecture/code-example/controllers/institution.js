@@ -3,11 +3,10 @@ import institutionRepository from "../repositories/institution.js";
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
-    await institutionRepository.create({ name, region, country });
-    const institutions = await institutionRepository.findAll();
+    const institution = await institutionRepository.create({ name, region, country });
     return res.status(201).json({
       message: "Institution successfully created",
-      data: institutions,
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({

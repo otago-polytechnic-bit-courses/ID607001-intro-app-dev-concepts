@@ -42,11 +42,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(201);
 
-    // Find an institution by name in the response body
-    const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[1].name // "Otago Polytechnic"
-    );
-    institutionOneId = newInstitution.id; // Store the institution ID for later use
+    institutionOneId = res.body.data.id; // Store the institution ID for later use
   });
 
   it("should create institution two", async () => {
@@ -56,10 +52,8 @@ describe("Institution CRUD", () => {
       .send(institutionData[2]);
 
     expect(res.status).to.equal(201);
-    const newInstitution = res.body.data.find(
-      (institution) => institution.name === institutionData[2].name // "Southern Institute of Technology"
-    );
-    institutionTwoId = newInstitution.id;
+    
+    institutionTwoId = res.body.data.id;
   });
 
   it("should get all institutions", async () => {
@@ -84,7 +78,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionTwoId} successfully updated`
+      `Institution with the id: ${institutionTwoId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(institutionData[0].name);
   });
@@ -94,7 +88,7 @@ describe("Institution CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Institution with the id: ${institutionOneId} successfully deleted`
+      `Institution with the id: ${institutionOneId} successfully deleted`,
     );
   });
 

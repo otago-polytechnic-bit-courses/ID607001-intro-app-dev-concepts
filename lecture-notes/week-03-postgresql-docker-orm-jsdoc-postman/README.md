@@ -274,15 +274,13 @@ const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
 
-    await prisma.institution.create({
+    const institution = await prisma.institution.create({
       data: { name, region, country },
     });
 
-    const institutions = await prisma.institution.findMany();
-
     return res.status(201).json({
       message: "Institution successfully created",
-      data: institutions,
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });

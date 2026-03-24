@@ -40,10 +40,8 @@ describe("Department CRUD", () => {
     });
 
     expect(res.status).to.equal(201);
-    const newDepartment = res.body.data.find(
-      (department) => department.name === departmentData[0].name // "Information Technology"
-    );
-    departmentOneId = newDepartment.id;
+
+    departmentOneId = res.body.data.id;
   });
 
   it("should get all departments", async () => {

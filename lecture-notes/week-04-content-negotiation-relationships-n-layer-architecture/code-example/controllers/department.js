@@ -3,11 +3,10 @@ import departmentRepository from "../repositories/department.js";
 const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
-    await departmentRepository.create({ name, institutionId });
-    const departments = await departmentRepository.findAll();
+    const department = await departmentRepository.create({ name, institutionId });
     return res.status(201).json({
       message: "Department successfully created",
-      data: departments,
+      data: department,
     });
   } catch (err) {
     return res.status(500).json({

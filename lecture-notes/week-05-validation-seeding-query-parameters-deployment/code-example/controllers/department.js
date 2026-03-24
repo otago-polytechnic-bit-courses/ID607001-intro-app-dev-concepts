@@ -3,11 +3,13 @@ import departmentRepository from "../repositories/department.js";
 const createDepartment = async (req, res) => {
   try {
     const { name, institutionId } = req.body;
-    await departmentRepository.create({ name, institutionId });
-    const departments = await departmentRepository.findAll();
+    const department = await departmentRepository.create({
+      name,
+      institution: { connect: { id: institutionId } },
+    });
     return res.status(201).json({
       message: "Department successfully created",
-      data: departments,
+      data: department,
     });
   } catch (err) {
     return res.status(500).json({
@@ -61,7 +63,10 @@ const updateDepartment = async (req, res) => {
         message: `No department with the id: ${id} found`,
       });
     }
-    const updatedDepartment = await departmentRepository.update(id, { name, institutionId });
+    const updatedDepartment = await departmentRepository.update(id, {
+      name,
+      institution: { connect: { id: institutionId } },
+    });
     return res.status(200).json({
       message: `Department with the id: ${id} successfully updated`,
       data: updatedDepartment,
