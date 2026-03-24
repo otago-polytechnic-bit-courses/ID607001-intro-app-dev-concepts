@@ -696,7 +696,7 @@ Create a `User` model with the following fields:
 | `lastName`     | String   |                           |
 | `emailAddress` | String   | Unique                    |
 | `createdAt`    | DateTime | Default now               |
-| `updatedAt`    | DateTime | Updated at                |
+| `updatedAt`    | DateTime | `@updatedAt`              |
 
 > **Remember:** Create and apply a migration after updating `schema.prisma`.
 
