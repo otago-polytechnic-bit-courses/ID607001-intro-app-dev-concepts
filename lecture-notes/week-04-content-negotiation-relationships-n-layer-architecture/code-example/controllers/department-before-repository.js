@@ -88,7 +88,7 @@ const updateDepartment = async (req, res) => {
     }
 
     // Update the department
-    department = await prisma.department.update({
+    const updatedDepartment = await prisma.department.update({
       where: { id },
       data: {
         // Data to be updated
@@ -99,7 +99,7 @@ const updateDepartment = async (req, res) => {
 
     return res.status(200).json({
       message: `Department with the id: ${id} successfully updated`,
-      data: department,
+      data: updatedDepartment,
     });
   } catch (err) {
     return res.status(500).json({

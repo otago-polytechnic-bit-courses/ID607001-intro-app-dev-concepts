@@ -61,10 +61,10 @@ const updateDepartment = async (req, res) => {
         message: `No department with the id: ${id} found`,
       });
     }
-    department = await departmentRepository.update(id, { name, institutionId });
+    const updatedDepartment = await departmentRepository.update(id, { name, institutionId });
     return res.status(200).json({
       message: `Department with the id: ${id} successfully updated`,
-      data: department,
+      data: updatedDepartment,
     });
   } catch (err) {
     return res.status(500).json({

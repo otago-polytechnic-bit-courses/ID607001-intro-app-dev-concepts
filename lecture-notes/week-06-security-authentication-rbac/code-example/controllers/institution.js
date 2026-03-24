@@ -95,14 +95,14 @@ const updateInstitution = async (req, res) => {
         message: `No institution with the id: ${id} found`,
       });
     }
-    institution = await institutionRepository.update(id, {
+    const updatedInstitution = await institutionRepository.update(id, {
       name,
       region,
       country,
     });
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
-      data: institution,
+      data: updatedInstitution,
     });
   } catch (err) {
     return res.status(500).json({
