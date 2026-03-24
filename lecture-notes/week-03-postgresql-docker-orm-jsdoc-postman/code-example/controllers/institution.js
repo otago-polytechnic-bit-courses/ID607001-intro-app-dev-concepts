@@ -74,7 +74,7 @@ const updateInstitution = async (req, res) => {
     const { id } = req.params;
     const { name, region, country } = req.body;
     // Find the institution by id
-    let institution = await prisma.institution.findUnique({
+    const institution = await prisma.institution.findUnique({
       where: { id },
     });
 
@@ -86,7 +86,7 @@ const updateInstitution = async (req, res) => {
     }
 
     // Update the institution
-    institution = await prisma.institution.update({
+    const updatedInstitution = await prisma.institution.update({
       where: { id },
       data: {
         // Data to be updated
@@ -98,7 +98,7 @@ const updateInstitution = async (req, res) => {
 
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
-      data: institution,
+      data: updatedInstitution,
     });
   } catch (err) {
     return res.status(500).json({

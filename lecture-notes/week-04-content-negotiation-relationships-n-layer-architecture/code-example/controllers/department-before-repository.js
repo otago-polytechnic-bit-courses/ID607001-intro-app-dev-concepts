@@ -73,7 +73,7 @@ const updateDepartment = async (req, res) => {
     const { id } = req.params;
     const { name, institutionId } = req.body;
     // Find the department by id
-    let department = await prisma.department.findUnique({
+    const department = await prisma.department.findUnique({
       where: { id },
     });
 

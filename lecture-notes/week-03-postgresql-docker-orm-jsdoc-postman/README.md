@@ -336,7 +336,7 @@ const updateInstitution = async (req, res) => {
     const { id } = req.params;
     const { name, region, country } = req.body;
 
-    let institution = await prisma.institution.findUnique({ where: { id } });
+    const institution = await prisma.institution.findUnique({ where: { id } });
 
     if (!institution) {
       return res.status(404).json({
@@ -344,14 +344,14 @@ const updateInstitution = async (req, res) => {
       });
     }
 
-    institution = await prisma.institution.update({
+    const updatedInstitution = await prisma.institution.update({
       where: { id },
       data: { name, region, country },
     });
 
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
-      data: institution,
+      data: updatedInstitution,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });

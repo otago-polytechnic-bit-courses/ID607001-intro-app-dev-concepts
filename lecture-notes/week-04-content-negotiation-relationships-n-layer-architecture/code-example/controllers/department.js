@@ -54,7 +54,7 @@ const updateDepartment = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, institutionId } = req.body;
-    let department = await departmentRepository.findById(id);
+    const department = await departmentRepository.findById(id);
     if (!department) {
       return res.status(404).json({
         message: `No department with the id: ${id} found`,

@@ -88,7 +88,7 @@ const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, region, country } = req.body;
-    let institution = await institutionRepository.findById(id);
+    const institution = await institutionRepository.findById(id);
     if (!institution) {
       return res.status(404).json({
         message: `No institution with the id: ${id} found`,
