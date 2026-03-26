@@ -282,7 +282,7 @@ In `backend-documentation.md`, include the following:
 
 ## Assessment Requirements - Frontend Application using SvelteKit
 
-The frontend application marking rubric is available (here)(./marking-rubrics/frontend-marking-rubric.md).
+The frontend application marking rubric is available [here](./marking-rubrics/frontend-marking-rubric.md).
 
 ---
 
