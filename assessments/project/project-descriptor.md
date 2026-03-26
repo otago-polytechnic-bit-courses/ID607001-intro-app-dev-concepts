@@ -157,7 +157,7 @@ Here is an example of how to break down your work into sprints and tasks:
 - Implement four relationships between models:
   - At least one one-to-one relationship
   - At least two one-to-many relationship
-  - One additional relationship of any type
+  - One additional relationship of any type above
 
 ---
 
