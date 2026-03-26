@@ -139,10 +139,10 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // At least one field must be provided
 
-  const { error } = institutionSchema.validate(
-    { ...req.body },
-    { abortEarly: false, convert: false },
-  );
+  const { error } = institutionSchema.validate(req.body, {
+    abortEarly: false,
+    convert: false,
+  });
 
   if (error) {
     const formattedErrors = error.details.map(({ message, type }) => ({
