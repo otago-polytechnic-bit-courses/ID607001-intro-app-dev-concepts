@@ -139,9 +139,8 @@ const validatePutInstitution = (req, res, next) => {
     }),
   }).min(1); // At least one field must be provided
 
-  const { name, region, country } = req.body;
   const { error } = institutionSchema.validate(
-    { name, region, country },
+    { ...req.body },
     { abortEarly: false, convert: false },
   );
 
