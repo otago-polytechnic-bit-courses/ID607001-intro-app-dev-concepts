@@ -1,7 +1,6 @@
 import request from "supertest";
 
 import app from "../../app.js";
-import { cleanupDatabase } from "./db.js";
 
 const setupTestAuth = async () => {
   const BASE_URL = "/api/auth";
@@ -13,8 +12,6 @@ const setupTestAuth = async () => {
     password: "janedoe123",
     role: "ADMIN",
   };
-
-  await cleanupDatabase();
 
   await request(app).post(`${BASE_URL}/register`).send(user);
 

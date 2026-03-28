@@ -54,20 +54,6 @@ The test suite needs to point at port `5433` rather than `5432`. This is done by
 "test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit"
 ```
 
-> **Windows users:** The inline environment variable syntax above works on macOS and Linux. On Windows, use `cross-env`:
->
-> ```bash
-> npm install cross-env --save-dev
-> ```
->
-> Then prefix each script with `cross-env`:
->
-> ```json
-> "test": "cross-env DATABASE_URL=postgresql://... mocha tests --recursive --timeout 10000 --exit"
-> ```
-
-This means no `.env.test` file is needed — the correct URL is injected at the point the script is run. The `DATABASE_URL` set here overrides whatever is in your `.env` file for the duration of the test run only, leaving your development database untouched.
-
 ---
 
 ### 1.3 Setup
@@ -110,7 +96,8 @@ root/
 └── tests/
     ├── helpers/
     │   ├── auth.js
-    │   └── db.js
+    │   ├── db.js
+    │   └── hook.js
     ├── 00-institution.test.js
     └── 01-department.test.js
 ```
@@ -156,8 +143,6 @@ const setupTestAuth = async () => {
     role: "ADMIN",
   };
 
-  await cleanupDatabase();
-
   await request(app).post(`${BASE_URL}/register`).send(user);
 
   const res = await request(app).post(`${BASE_URL}/login`).send({
@@ -195,7 +180,11 @@ describe("Institution CRUD", () => {
       region: "Canterbury",
       country: "New Zealand",
     },
-    { name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
+    {
+      name: "Otago Polytechnic",
+      region: "Otago",
+      country: "New Zealand",
+    },
     {
       name: "Southern Institute of Technology",
       region: "Southland",
@@ -203,6 +192,7 @@ describe("Institution CRUD", () => {
     },
   ];
 
+  // Setup the test authentication before running the tests
   before(async () => {
     token = await setupTestAuth();
   });
@@ -210,7 +200,7 @@ describe("Institution CRUD", () => {
   it("should create institution one", async () => {
     const res = await request(app)
       .post(BASE_URL)
-      .set("Authorization", `Bearer ${token}`)
+      .set("Authorization", `Bearer ${token}`) // Set the Authorization header with the token
       .send(institutionData[1]);
 
     expect(res.status).to.equal(201);
@@ -225,6 +215,7 @@ describe("Institution CRUD", () => {
       .send(institutionData[2]);
 
     expect(res.status).to.equal(201);
+    
     institutionTwoId = res.body.data.id;
   });
 
@@ -232,14 +223,14 @@ describe("Institution CRUD", () => {
     const res = await request(app).get(BASE_URL);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.length).to.be.at.least(2);
+    expect(res.body.data.length).to.be.at.least(2); // Check that there are at least 2 institutions
   });
 
   it("should get institution one by ID", async () => {
     const res = await request(app).get(`${BASE_URL}/${institutionOneId}`);
 
     expect(res.status).to.equal(200);
-    expect(res.body.data.name).to.equal(institutionData[1].name);
+    expect(res.body.data.name).to.equal(institutionData[1].name); // "Otago Polytechnic"
   });
 
   it("should update institution two", async () => {
@@ -265,7 +256,7 @@ describe("Institution CRUD", () => {
   });
 
   after(() => {
-    global.testInstitutionId = institutionTwoId; // Pass institution ID to department tests
+    global.testInstitutionId = institutionTwoId; // Store the institution ID for later use in 01-department.test.js
   });
 });
 ```
@@ -288,21 +279,36 @@ describe("Department CRUD", () => {
   let departmentOneId;
 
   const departmentData = [
-    { name: "Information Technology" },
-    { name: "Nursing" },
-    { name: "Business" },
+    {
+      name: "Information Technology",
+    },
+    {
+      name: "Nursing",
+    },
+    {
+      name: "Business",
+    },
   ];
 
+  // Set up the institution ID before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
   });
 
+  // Clean up the database and disconnect Prisma after running the tests
+  after(async () => {
+    await cleanupDatabase();
+    await disconnectPrisma();
+  });
+
   it("should create department one", async () => {
-    const res = await request(app)
-      .post(BASE_URL)
-      .send({ name: departmentData[0].name, institutionId });
+    const res = await request(app).post(BASE_URL).send({
+      name: departmentData[0].name,
+      institutionId: institutionId,
+    });
 
     expect(res.status).to.equal(201);
+
     departmentOneId = res.body.data.id;
   });
 
@@ -321,13 +327,14 @@ describe("Department CRUD", () => {
   });
 
   it("should update department one", async () => {
-    const res = await request(app)
-      .put(`${BASE_URL}/${departmentOneId}`)
-      .send({ name: departmentData[1].name, institutionId });
+    const res = await request(app).put(`${BASE_URL}/${departmentOneId}`).send({
+      name: departmentData[1].name,
+      institutionId: institutionId,
+    });
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`,
+      `Department with the id: ${departmentOneId} successfully updated`
     );
     expect(res.body.data.name).to.equal(departmentData[1].name);
   });
@@ -337,13 +344,8 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`,
+      `Department with the id: ${departmentOneId} successfully deleted`
     );
-  });
-
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
   });
 });
 ```

@@ -40,7 +40,7 @@ This assessment is criterion-referenced (CRA) with a cumulative pass mark of 50%
 You must submit all application files via GitHub Classroom.
 
 - Repository URL: [https://classroom.github.com/a/8sCyquQ_](https://classroom.github.com/a/8sCyquQ_)
-- Branch: Switch to the Project branch using the following command: `git switch project`
+- Branch: Switch to the Project branch using the following command: `git checkout -b project`
 - Git Ignore: If you do not have one, create a .gitignore using this resource - [Node.gitignore](https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore)
 - Due Date: Sunday at 11.59 PM
 - Late Penalty: 10% per day, rolling over at 12.00 AM
