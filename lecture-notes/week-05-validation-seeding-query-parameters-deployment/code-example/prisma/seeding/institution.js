@@ -26,7 +26,7 @@ const validateInstitution = (institution) => {
   }
 };
 
-export const seedInstitutions(). = async () => {
+export const seedInstitutions = async () => {
   const startTime = Date.now();
   const errors = [];
 

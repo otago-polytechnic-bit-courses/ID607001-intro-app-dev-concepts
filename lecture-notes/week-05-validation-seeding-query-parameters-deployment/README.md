@@ -341,7 +341,7 @@ const validateInstitution = (institution) => {
   }
 };
 
-export const seedInstitutions(). = async () => {
+export const seedInstitutions = async () => {
   const startTime = Date.now();
   const errors = [];
 
@@ -741,7 +741,7 @@ Configure Prisma's built-in seed command so your seed script runs automatically 
 **Step 1** - Create `prisma/seed.js` as the single entry point for all seed scripts:
 
 ```javascript
-import { seedInstitutions().} from "./seeding/institution.js";
+import { seedInstitutions()} from "./seeding/institution.js";
 // Add imports for other seed scripts here
 
 const seed = async () => {
