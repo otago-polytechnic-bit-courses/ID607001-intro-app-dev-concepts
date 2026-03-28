@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "npx prisma migrate reset --force && mocha tests --recursive --timeout 10000 --exit",
-    "test:coverage": "npx prisma migrate reset --force && c8 mocha tests --recursive --timeout 10000 --exit",
+    "test": "mocha",
+    "test:coverage": "c8 mocha",
     "test:coverage:report": "c8 report --reporter=html && open coverage/index.html",
     "dev": "nodemon app.js",
     "format:check": "prettier --check .",
@@ -16,6 +16,7 @@
     "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
     "docker:run:test": "docker run --name id607001-db-test -e POSTGRES_PASSWORD=HelloWorld123 -p 5433:5432 -d postgres",
     "env:copy": "cp .env.example .env || copy .env.example .env",
+    "env:test:copy": "cp .env.test.example .env || copy .env.test.example .env",
     "prisma:migrate": "npx prisma migrate dev",
     "prisma:reset": "npx prisma migrate reset --force",
     "prisma:seed-institutions": "node ./prisma/seeding/seed-institutions.js",

@@ -45,34 +45,75 @@ The test container runs on port `5433` to avoid conflicting with the development
 
 ---
 
-### 1.2 Connecting to the Test Database
-
-The test suite needs to point at port `5433` rather than `5432`. This is done by overriding `DATABASE_URL` directly in the `test` and `test:coverage` scripts in `package.json`:
-
-```json
-"test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit",
-"test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit"
-```
-
----
-
-### 1.3 Setup
+### 1.2 Setup
 
 ```bash
-npm install chai mocha supertest --save-dev
+npm install chai mocha supertest dotenv --save-dev
 ```
 
 ---
 
-### 1.4 Test File Ordering
+### 1.3 Environment Configuration
 
-Test files are run in alphabetical order. The numeric prefixes (`00-`, `01-`) enforce a deliberate sequence — institution tests run before department tests. This matters because the department tests depend on an institution ID created during the institution tests, which is passed between files via `global.testInstitutionId`.
+Instead of hardcoding the test database URL directly in `package.json` scripts, we use a dedicated `.env.test` file. This keeps configuration in one place and makes it easy to change values without touching your scripts.
+
+**Create `.env.test.example`** (commit this to version control as a reference template):
+
+```dotenv
+NODE_ENV=test
+PORT=3000
+API_BASE_URL=http://localhost
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres
+JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
+JWT_LIFETIME=1h
+```
+
+**Create `.env.test`** (add this to `.gitignore` — it holds real values):
+
+```dotenv
+NODE_ENV=test
+PORT=3000
+API_BASE_URL=http://localhost
+DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres
+JWT_SECRET=MySuperSecretKeyChangeInProduction256Bits
+JWT_LIFETIME=1h
+```
+
+> `.env.test` is loaded automatically by the Mocha hook (see section 1.6). You no longer need to prefix scripts with `DATABASE_URL=...`.
+
+---
+
+### 1.4 Mocha Configuration - `.mocharc.json`
+
+Create `.mocharc.json` in the project root. This file centralises all Mocha options so you don't need to pass flags on the command line:
+
+```json
+{
+  "require": ["tests/helpers/hooks.js"],
+  "spec": "tests/**/*.test.js",
+  "timeout": 10000,
+  "exit": true
+}
+```
+
+| Option    | Purpose                                                         |
+| --------- | --------------------------------------------------------------- |
+| `require` | Loads `hooks.js` before any test file runs — sets up env and DB |
+| `spec`    | Glob pattern that tells Mocha which files are tests             |
+| `timeout` | Maximum milliseconds a single test may take before it fails     |
+| `exit`    | Forces Mocha to exit after all tests complete                   |
+
+---
+
+### 1.5 Test File Ordering
+
+Test files are matched by the `spec` glob and run in alphabetical order. The numeric prefixes (`00-`, `01-`) enforce a deliberate sequence — institution tests run before department tests. This matters because the department tests depend on an institution ID created during the institution tests, which is passed between files via `global.testInstitutionId`.
 
 If you add new test files, prefix them with the next number in the sequence.
 
 ---
 
-### 1.5 Mocha Lifecycle Hooks
+### 1.6 Mocha Lifecycle Hooks
 
 Mocha provides four lifecycle hooks for setup and teardown:
 
@@ -83,28 +124,59 @@ Mocha provides four lifecycle hooks for setup and teardown:
 | `beforeEach()` | Before every individual test                |
 | `afterEach()`  | After every individual test                 |
 
-In this project, `before()` is used to set up authentication tokens and retrieve shared IDs before tests run, and `after()` is used to clean up the database and close the Prisma connection once all tests in a block are complete.
-
-> `after()` with `cleanupDatabase()` and `disconnectPrisma()` should only appear in the **last** test file — placing it earlier would wipe data that subsequent test files still need.
+In addition to per-file hooks, Mocha supports **root-level hooks** via `mochaHooks` exports. These run once across the entire test suite and are the right place for global setup and teardown — such as loading environment variables and cleaning the database.
 
 ---
 
-### 1.6 Directory Structure
+### 1.7 Directory Structure
 
 ```
 root/
+├── .env.test
+├── .env.test.example
+├── .mocharc.json
 └── tests/
     ├── helpers/
     │   ├── auth.js
     │   ├── db.js
-    │   └── hook.js
+    │   └── hooks.js
     ├── 00-institution.test.js
     └── 01-department.test.js
 ```
 
 ---
 
-### 1.7 Helper - Database (`helpers/db.js`)
+### 1.8 Helper - Hooks (`helpers/hooks.js`)
+
+This file is loaded by Mocha before any test runs (via the `require` field in `.mocharc.json`). It loads `.env.test` so every test file and helper has access to the correct environment variables, and it handles global database cleanup.
+
+```javascript
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env.test", override: true });
+
+const { cleanupDatabase, disconnectPrisma } = await import("./db.js");
+
+export const mochaHooks = {
+  async beforeAll() {
+    console.log(`Connecting to database: ${process.env.DATABASE_URL}`);
+    await cleanupDatabase();
+    console.log("Database cleaned up");
+  },
+  async afterAll() {
+    await disconnectPrisma();
+    console.log(`Disconnected from database: ${process.env.DATABASE_URL}`);
+  },
+};
+```
+
+> `dotenv.config` is called with `override: true` so `.env.test` values always win over any existing environment variables — useful if you have a `.env` file loaded by your shell.
+
+> The `db.js` import uses a dynamic `await import()` because `dotenv.config` must run first to set `DATABASE_URL` before Prisma initialises its connection.
+
+---
+
+### 1.9 Helper - Database (`helpers/db.js`)
 
 ```javascript
 import prisma from "../../prisma/db.js";
@@ -124,13 +196,12 @@ export { cleanupDatabase, disconnectPrisma };
 
 ---
 
-### 1.8 Helper - Auth (`helpers/auth.js`)
+### 1.10 Helper - Auth (`helpers/auth.js`)
 
 ```javascript
 import request from "supertest";
 
 import app from "../../app.js";
-import { cleanupDatabase } from "./db.js";
 
 const setupTestAuth = async () => {
   const BASE_URL = "/api/auth";
@@ -158,7 +229,21 @@ export default setupTestAuth;
 
 ---
 
-### 1.9 Institution CRUD Tests (`00-institution.test.js`)
+### 1.11 Test Scripts - `package.json`
+
+With `.mocharc.json` in place, the scripts become much simpler — no flags needed on the command line:
+
+```json
+"test": "mocha",
+"test:coverage": "c8 mocha",
+"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
+```
+
+All Mocha options (`--recursive`, `--timeout`, `--exit`, `--require`) are now read from `.mocharc.json`, and the database URL comes from `.env.test` via `hooks.js`.
+
+---
+
+### 1.12 Institution CRUD Tests (`00-institution.test.js`)
 
 ```javascript
 import { expect } from "chai";
@@ -215,7 +300,7 @@ describe("Institution CRUD", () => {
       .send(institutionData[2]);
 
     expect(res.status).to.equal(201);
-    
+
     institutionTwoId = res.body.data.id;
   });
 
@@ -263,14 +348,13 @@ describe("Institution CRUD", () => {
 
 ---
 
-### 1.10 Department CRUD Tests (`01-department.test.js`)
+### 1.13 Department CRUD Tests (`01-department.test.js`)
 
 ```javascript
 import { expect } from "chai";
 import request from "supertest";
 
 import app from "../app.js";
-import { cleanupDatabase, disconnectPrisma } from "./helpers/db.js";
 
 describe("Department CRUD", () => {
   const BASE_URL = "/api/departments";
@@ -293,12 +377,6 @@ describe("Department CRUD", () => {
   // Set up the institution ID before running the tests
   before(async () => {
     institutionId = global.testInstitutionId;
-  });
-
-  // Clean up the database and disconnect Prisma after running the tests
-  after(async () => {
-    await cleanupDatabase();
-    await disconnectPrisma();
   });
 
   it("should create department one", async () => {
@@ -334,7 +412,7 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully updated`
+      `Department with the id: ${departmentOneId} successfully updated`,
     );
     expect(res.body.data.name).to.equal(departmentData[1].name);
   });
@@ -344,27 +422,13 @@ describe("Department CRUD", () => {
 
     expect(res.status).to.equal(200);
     expect(res.body.message).to.equal(
-      `Department with the id: ${departmentOneId} successfully deleted`
+      `Department with the id: ${departmentOneId} successfully deleted`,
     );
   });
 });
 ```
 
----
-
-### 1.11 Test Script
-
-Add the following to your `scripts` block in `package.json`:
-
-```json
-"test": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres mocha tests --recursive --timeout 10000 --exit"
-```
-
-| Flag              | Purpose                                       |
-| ----------------- | --------------------------------------------- |
-| `--recursive`     | Runs tests in subdirectories                  |
-| `--timeout 10000` | Sets a 10-second timeout per test             |
-| `--exit`          | Forces Mocha to exit after all tests complete |
+> Notice that `cleanupDatabase` and `disconnectPrisma` are no longer called here. That responsibility has moved to the root-level `mochaHooks` in `hooks.js`, which runs once after the entire suite finishes.
 
 ---
 
@@ -419,16 +483,7 @@ Create `.c8rc` in the project root:
 
 ---
 
-### 2.3 Scripts - `package.json`
-
-```json
-"test:coverage": "DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5433/postgres c8 mocha tests --recursive --timeout 10000 --exit",
-"test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
-```
-
----
-
-### 2.4 Reading the Terminal Report
+### 2.3 Reading the Terminal Report
 
 Running `npm run test:coverage` prints a table like this:
 
@@ -458,7 +513,7 @@ Lines highlighted in the HTML report indicate:
 
 ---
 
-### 2.5 What Low Coverage Reveals
+### 2.4 What Low Coverage Reveals
 
 Low branch coverage is often more telling than low line coverage. Consider this controller:
 
@@ -484,7 +539,7 @@ This function has **three branches** - the `404` path, the `200` path, and the `
 
 ---
 
-### 2.6 Ignoring Code from Coverage
+### 2.5 Ignoring Code from Coverage
 
 ```javascript
 /* c8 ignore next */
@@ -672,6 +727,8 @@ jobs:
 ```
 
 > The `options` block tells GitHub Actions to wait until Postgres is ready before starting your job steps.
+
+> In CI, environment variables are injected via the workflow's `env` block — the `.env.test` file is not present on the runner. `hooks.js` calls `dotenv.config` with `override: true`, but because `DATABASE_URL` is already set in the environment, `dotenv` leaves it untouched and the workflow values take effect.
 
 ---
 
@@ -868,14 +925,15 @@ To configure:
 
 ## 10. Best Practices
 
-| Practice                                | Why it matters                                     |
-| --------------------------------------- | -------------------------------------------------- |
-| Pin action versions with `@v6`          | Prevents breaking changes from upstream actions    |
-| Use `npm ci` not `npm install`          | Reproducible installs                              |
-| Cache `node_modules`                    | Reduces workflow run time                          |
-| Store secrets in GitHub Secrets         | Masked in logs and encrypted at rest               |
-| Use `needs` to chain jobs               | Prevents tests running if linting fails            |
-| Add health checks to service containers | Ensures the database is ready before tests connect |
+| Practice                                    | Why it matters                                       |
+| ------------------------------------------- | ---------------------------------------------------- |
+| Pin action versions with `@v6`              | Prevents breaking changes from upstream actions      |
+| Use `npm ci` not `npm install`              | Reproducible installs                                |
+| Cache `node_modules`                        | Reduces workflow run time                            |
+| Store secrets in GitHub Secrets             | Masked in logs and encrypted at rest                 |
+| Use `needs` to chain jobs                   | Prevents tests running if linting fails              |
+| Add health checks to service containers     | Ensures the database is ready before tests connect   |
+| Commit `.env.test.example`, not `.env.test` | Documents required variables without leaking secrets |
 
 ---
 

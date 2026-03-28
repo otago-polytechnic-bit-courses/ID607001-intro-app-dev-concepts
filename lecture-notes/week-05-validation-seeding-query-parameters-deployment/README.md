@@ -487,7 +487,11 @@ async findAll(
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
-    const institution = await institutionRepository.create({ name, region, country });
+    const institution = await institutionRepository.create({
+      name,
+      region,
+      country,
+    });
     return res.status(201).json({
       message: "Institution successfully created",
       data: institution,
@@ -644,7 +648,7 @@ Sign up at [dashboard.render.com/register](https://dashboard.render.com/register
    - **Build Command:** `npm run build:render`
    - **Start Command:** `node app.js`
    - **Instance Type:** Free
-4. Add an environment variable: `DATABASE_URL` = the External Database URL
+4. Add an environment variable: `DATABASE_URL` = the **External Database URL**
 5. Click **Deploy Web Service**
 
 > **Note:** Update the Branch field to match the current week's branch as you progress.
