@@ -233,31 +233,15 @@ export default setupTestAuth;
 
 ### 1.11 Test Scripts - `package.json`
 
-Add the following scripts to your `package.json`:
+With `.mocharc.json` in place, the scripts become much simpler — no flags needed on the command line:
 
 ```json
-"env:test:copy": "cp .env.test.example .env.test || copy .env.test.example .env.test",
-"test": "npx prisma migrate reset --force && node --import tsx/esm node_modules/.bin/mocha",
-"test:coverage": "npx prisma migrate reset --force && c8 node --import tsx/esm node_modules/.bin/mocha",
+"test": "mocha",
+"test:coverage": "c8 mocha",
 "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
-| Script                 | Purpose                                                                               |
-| ---------------------- | ------------------------------------------------------------------------------------- |
-| `env:test:copy`        | Copies `.env.test.example` to `.env.test` — run this once when setting up the project |
-| `test`                 | Resets the test DB, then runs Mocha via the TSX/ESM loader                            |
-| `test:coverage`        | Same as `test` but wrapped with `c8` to collect coverage data                         |
-| `test:coverage:report` | Generates and opens the HTML coverage report                                          |
-
-The `env:test:copy` script uses `cp` on macOS/Linux and falls back to `copy` on Windows, so new contributors can get their `.env.test` file in place with a single command:
-
-```bash
-npm run env:test:copy
-```
-
-> The `||` means if `cp` succeeds the `copy` command is never run, and vice versa — only one will execute depending on the OS.
-
-The Mocha flags (`--timeout`, `--exit`, `--require`) are read from `.mocharc.json` rather than listed in the script, keeping the scripts readable. `npx prisma migrate reset --force` wipes and re-applies all migrations before each run, guaranteeing a clean schema regardless of what the previous run left behind.
+All Mocha options (`--recursive`, `--timeout`, `--exit`, `--require`) are now read from `.mocharc.json`, and the database URL comes from `.env.test` via `hooks.js`.
 
 ---
 
@@ -955,6 +939,10 @@ To configure:
 
 ---
 
+Here's the updated exercises section for Week 07, with new tasks covering auth, RBAC, validation, query params, and Prisma seeding:
+
+---
+
 ## Exercises
 
 ### AI Usage Guidelines
@@ -989,7 +977,71 @@ Create a test file for the `Course` resource covering these five scenarios:
 
 ---
 
-### Task 3 - Enable Coverage
+### Task 3 - Auth Tests
+
+Create `tests/02-auth.test.js` covering the following scenarios:
+
+1. **Register** - successfully register a new user and receive a `201` response
+2. **Register duplicate** - attempt to register with the same email address and expect a `409` response
+3. **Login** - successfully log in and receive a token in the response body
+4. **Login invalid email** - attempt to log in with an unregistered email and expect a `401` response
+5. **Login invalid password** - attempt to log in with a correct email but wrong password and expect a `401` response
+
+> Store the token returned from the login test in a variable and export it via `global.testAuthToken` for use in later test files.
+
+---
+
+### Task 4 - RBAC Tests
+
+Create `tests/03-rbac.test.js`. For each scenario, register and log in a user with the appropriate role to obtain a token, then test the following:
+
+1. **ADMIN can create** - a user with the `ADMIN` role can `POST /api/institutions` and receive a `201`
+2. **STAFF can create** - a user with the `STAFF` role can `POST /api/institutions` and receive a `201`
+3. **STUDENT cannot create** - a user with the `STUDENT` role attempts `POST /api/institutions` and receives a `403`
+4. **No token cannot create** - a request to `POST /api/institutions` with no `Authorization` header receives a `401`
+5. **ADMIN can delete** - a user with the `ADMIN` role can `DELETE /api/institutions/:id` and receive a `200`
+6. **STUDENT cannot delete** - a user with the `STUDENT` role attempts `DELETE /api/institutions/:id` and receives a `403`
+
+> You will need to create test institutions in a `before` hook to have valid IDs for the delete tests.
+
+---
+
+### Task 5 - Validation Tests
+
+Create `tests/04-validation.test.js` covering the following scenarios:
+
+**Institution POST validation:**
+
+1. Missing `name` field returns `409` with an error message referencing `name`
+2. `name` shorter than 3 characters returns `409` with a `string.min` error type
+3. Missing `region` and `country` fields in a single request returns `409` with two errors
+4. A fully valid body returns `201`
+
+**Institution PUT validation:**
+
+5. An empty body `{}` returns `409` with an `object.min` error type
+6. A `name` value of `"ab"` (too short) returns `409` with a `string.min` error type
+7. A valid partial body containing only `name` returns `200`
+
+> Use an institution created in a `before` hook for the PUT tests. These tests do not require authentication if your routes are configured to skip `jwtAuth` for PUT — adjust accordingly to match your actual route setup.
+
+---
+
+### Task 6 - Query Parameter Tests
+
+Create `tests/05-query-params.test.js`. Seed at least three institutions with known values in a `before` hook, then test:
+
+1. `?country=New Zealand` returns only institutions matching that country
+2. `?sortBy=name&sortOrder=asc` returns results in ascending alphabetical order by name
+3. `?sortOrder=desc` returns results in descending order
+4. `?page=1&pageSize=2` returns at most 2 results and includes a `pagination` object
+5. The `pagination` object contains `currentPage`, `pageSize`, `totalCount`, `totalPages`, `nextPage`, and `prevPage` keys
+6. `?page=2&pageSize=1` returns `nextPage` and `prevPage` values consistent with the page position
+7. A `?name=` filter with a value that matches no records returns `404`
+
+---
+
+### Task 8 - Enable Coverage
 
 1. Install `c8` and create a `.c8rc` configuration file
 2. Add a `test:coverage` script to `package.json`
@@ -999,7 +1051,7 @@ Create a test file for the `Course` resource covering these five scenarios:
 
 ---
 
-### Task 4 - Integration Test Workflow
+### Task 9 - Integration Test Workflow
 
 Create `.github/workflows/ci.yml` that:
 
@@ -1011,7 +1063,7 @@ Create `.github/workflows/ci.yml` that:
 
 ---
 
-### Task 5 - Format and Lint Workflow
+### Task 10 - Format and Lint Workflow
 
 Create `.github/workflows/lint.yml` with two steps:
 
@@ -1020,7 +1072,7 @@ Create `.github/workflows/lint.yml` with two steps:
 
 ---
 
-### Task 6 - Environment Variable Audit
+### Task 11 - Environment Variable Audit
 
 In `week-07-github-actions-considerations.md`, explain:
 
@@ -1029,7 +1081,7 @@ In `week-07-github-actions-considerations.md`, explain:
 
 ---
 
-### Task 7 - Full Pipeline
+### Task 12 - Full Pipeline
 
 Create `.github/workflows/pipeline.yml` with two chained jobs:
 
@@ -1038,13 +1090,13 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 8 - Branch Protection
+### Task 13 - Branch Protection
 
 Configure branch protection on `main` so that the `format-and-lint` and `test` jobs must pass before any pull request can be merged.
 
 ---
 
-### Task 9 - Workflow Status Badge
+### Task 14 - Workflow Status Badge
 
 Add a workflow status badge to your `README.md`:
 
@@ -1054,7 +1106,7 @@ Add a workflow status badge to your `README.md`:
 
 ---
 
-### Task 10 - Reach 80% Branch Coverage
+### Task 15 - Reach 80% Branch Coverage
 
 Using the HTML report, find all uncovered branches and add tests targeting:
 

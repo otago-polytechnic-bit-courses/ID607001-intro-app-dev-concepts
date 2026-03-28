@@ -341,7 +341,7 @@ const validateInstitution = (institution) => {
   }
 };
 
-export const seedInstitutions = async () => {
+export const seedInstitutions(). = async () => {
   const startTime = Date.now();
   const errors = [];
 
@@ -406,13 +406,13 @@ seedInstitutions().then((report) => {
 ### 3.2 Add a Seed Script to `package.json`
 
 ```json
-"prisma:seed-institutions": "node ./prisma/seeding/institution.js"
+"prisma:seed:institution": "node ./prisma/seeding/institution.js"
 ```
 
 Run the seed script:
 
 ```bash
-npm run prisma:seed-institutions
+npm run prisma:seed:institution
 ```
 
 ---
@@ -731,6 +731,41 @@ Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 - Create realistic sample records
 - Maintain proper relationships
 - Be repeatable without causing duplicate data errors
+
+---
+
+### Task 6 - Prisma Seeding via `package.json`
+
+Configure Prisma's built-in seed command so your seed script runs automatically after migrations.
+
+**Step 1** - Create `prisma/seed.js` as the single entry point for all seed scripts:
+
+```javascript
+import { seedInstitutions().} from "./seeding/institution.js";
+import { seedDepartment } from "./seeding/department.js";
+
+const seed = async () => {
+  await seedInstitutions().);
+};
+
+seed();
+```
+
+**Step 2** - Add a `prisma` key to `package.json` alongside your `scripts`:
+
+```json
+"prisma": {
+  "seed": "node prisma/seed.js"
+}
+```
+
+**Step 3** - Run the seed command:
+
+```bash
+npx prisma db seed
+```
+
+> Prisma automatically calls `npx prisma db seed` at the end of `npx prisma migrate reset`. This means your database will always be seeded with realistic data after a reset, with no extra steps required.
 
 ---
 
