@@ -131,7 +131,7 @@ In addition to per-file hooks, Mocha supports **root-level hooks** via `mochaHoo
 ### 1.7 Directory Structure
 
 ```
-root/
+backend/
 ├── .env.test
 ├── .env.test.example
 ├── .mocharc.json
@@ -457,7 +457,7 @@ npm install c8 --save-dev
 
 ### 2.2 Configuration - `.c8rc`
 
-Create `.c8rc` in the project root:
+In `backend/`, create `.c8rc` to configure c8 options:
 
 ```json
 {
@@ -587,7 +587,7 @@ GitHub Actions is a CI/CD platform built into GitHub that lets you automate task
 All workflow files are YAML and live in `.github/workflows/`:
 
 ```
-root/
+backend/
 └── .github/
     └── workflows/
         ├── ci.yml
