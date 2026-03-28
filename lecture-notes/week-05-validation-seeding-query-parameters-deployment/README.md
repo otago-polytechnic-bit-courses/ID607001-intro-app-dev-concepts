@@ -742,10 +742,11 @@ Configure Prisma's built-in seed command so your seed script runs automatically 
 
 ```javascript
 import { seedInstitutions().} from "./seeding/institution.js";
-import { seedDepartment } from "./seeding/department.js";
+// Add imports for other seed scripts here
 
 const seed = async () => {
-  await seedInstitutions().);
+  await seedInstitutions();
+  // Add calls to other seed functions here
 };
 
 seed();

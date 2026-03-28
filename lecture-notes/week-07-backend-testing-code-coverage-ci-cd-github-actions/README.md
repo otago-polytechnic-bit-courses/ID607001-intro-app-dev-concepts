@@ -1041,7 +1041,7 @@ Create `tests/05-query-params.test.js`. Seed at least three institutions with kn
 
 ---
 
-### Task 8 - Enable Coverage
+### Task 7 - Enable Coverage
 
 1. Install `c8` and create a `.c8rc` configuration file
 2. Add a `test:coverage` script to `package.json`
@@ -1051,7 +1051,7 @@ Create `tests/05-query-params.test.js`. Seed at least three institutions with kn
 
 ---
 
-### Task 9 - Integration Test Workflow
+### Task 8 - Integration Test Workflow
 
 Create `.github/workflows/ci.yml` that:
 
@@ -1063,7 +1063,7 @@ Create `.github/workflows/ci.yml` that:
 
 ---
 
-### Task 10 - Format and Lint Workflow
+### Task 9 - Format and Lint Workflow
 
 Create `.github/workflows/lint.yml` with two steps:
 
@@ -1072,7 +1072,7 @@ Create `.github/workflows/lint.yml` with two steps:
 
 ---
 
-### Task 11 - Environment Variable Audit
+### Task 10 - Environment Variable Audit
 
 In `week-07-github-actions-considerations.md`, explain:
 
@@ -1081,7 +1081,7 @@ In `week-07-github-actions-considerations.md`, explain:
 
 ---
 
-### Task 12 - Full Pipeline
+### Task 11 - Full Pipeline
 
 Create `.github/workflows/pipeline.yml` with two chained jobs:
 
@@ -1090,13 +1090,13 @@ Create `.github/workflows/pipeline.yml` with two chained jobs:
 
 ---
 
-### Task 13 - Branch Protection
+### Task 12 - Branch Protection
 
 Configure branch protection on `main` so that the `format-and-lint` and `test` jobs must pass before any pull request can be merged.
 
 ---
 
-### Task 14 - Workflow Status Badge
+### Task 13 - Workflow Status Badge
 
 Add a workflow status badge to your `README.md`:
 
@@ -1106,7 +1106,7 @@ Add a workflow status badge to your `README.md`:
 
 ---
 
-### Task 15 - Reach 80% Branch Coverage
+### Task 14 - Reach 80% Branch Coverage
 
 Using the HTML report, find all uncovered branches and add tests targeting:
 
