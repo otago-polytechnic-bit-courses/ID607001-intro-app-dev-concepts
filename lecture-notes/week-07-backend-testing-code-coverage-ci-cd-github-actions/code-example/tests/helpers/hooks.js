@@ -6,9 +6,11 @@ const { cleanupDatabase, disconnectPrisma } = await import("./db.js");
 
 export const mochaHooks = {
   async beforeAll() {
-    console.log(`Connecting to database: ${process.env.DATABASE_URL}`);
+    console.log(`Connected to database: ${process.env.DATABASE_URL}`);
     await cleanupDatabase();
-    console.log("Database cleaned up");
+    console.log(
+      `Cleaned up database: ${process.env.DATABASE_URL} before running tests`,
+    );
   },
   async afterAll() {
     await disconnectPrisma();

@@ -159,9 +159,11 @@ const { cleanupDatabase, disconnectPrisma } = await import("./db.js");
 
 export const mochaHooks = {
   async beforeAll() {
-    console.log(`Connecting to database: ${process.env.DATABASE_URL}`);
+    console.log(`Connected to database: ${process.env.DATABASE_URL}`);
     await cleanupDatabase();
-    console.log("Database cleaned up");
+    console.log(
+      `Cleaned up database: ${process.env.DATABASE_URL} before running tests`,
+    );
   },
   async afterAll() {
     await disconnectPrisma();
@@ -231,15 +233,31 @@ export default setupTestAuth;
 
 ### 1.11 Test Scripts - `package.json`
 
-With `.mocharc.json` in place, the scripts become much simpler — no flags needed on the command line:
+Add the following scripts to your `package.json`:
 
 ```json
-"test": "mocha",
-"test:coverage": "c8 mocha",
+"env:test:copy": "cp .env.test.example .env.test || copy .env.test.example .env.test",
+"test": "npx prisma migrate reset --force && node --import tsx/esm node_modules/.bin/mocha",
+"test:coverage": "npx prisma migrate reset --force && c8 node --import tsx/esm node_modules/.bin/mocha",
 "test:coverage:report": "c8 report --reporter=html && open coverage/index.html"
 ```
 
-All Mocha options (`--recursive`, `--timeout`, `--exit`, `--require`) are now read from `.mocharc.json`, and the database URL comes from `.env.test` via `hooks.js`.
+| Script                 | Purpose                                                                               |
+| ---------------------- | ------------------------------------------------------------------------------------- |
+| `env:test:copy`        | Copies `.env.test.example` to `.env.test` — run this once when setting up the project |
+| `test`                 | Resets the test DB, then runs Mocha via the TSX/ESM loader                            |
+| `test:coverage`        | Same as `test` but wrapped with `c8` to collect coverage data                         |
+| `test:coverage:report` | Generates and opens the HTML coverage report                                          |
+
+The `env:test:copy` script uses `cp` on macOS/Linux and falls back to `copy` on Windows, so new contributors can get their `.env.test` file in place with a single command:
+
+```bash
+npm run env:test:copy
+```
+
+> The `||` means if `cp` succeeds the `copy` command is never run, and vice versa — only one will execute depending on the OS.
+
+The Mocha flags (`--timeout`, `--exit`, `--require`) are read from `.mocharc.json` rather than listed in the script, keeping the scripts readable. `npx prisma migrate reset --force` wipes and re-applies all migrations before each run, guaranteeing a clean schema regardless of what the previous run left behind.
 
 ---
 
