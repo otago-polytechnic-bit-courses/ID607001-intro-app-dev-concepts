@@ -1,4 +1,4 @@
-# Week 06 - Security, Authentication and RBAC
+# Week 06 - Security, Authentication and Role-Based Access Control (RBAC)
 
 ## Navigation
 
