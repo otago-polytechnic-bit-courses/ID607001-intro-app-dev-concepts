@@ -1,4 +1,4 @@
-# Week 06 - Security, Authentication and Role-Based Access Control (RBAC)
+# Week 06 - Security, Authentication and R
 
 ## Navigation
 
@@ -107,6 +107,7 @@ model User {
   lastName String
   emailAddress String @unique
   password String
+  role Role
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
 }
