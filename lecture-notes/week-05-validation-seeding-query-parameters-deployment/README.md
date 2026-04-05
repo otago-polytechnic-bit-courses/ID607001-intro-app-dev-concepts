@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                                                   |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 04 - Relationships, N-Layer Architecture and Enums](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Previous     | [Week 04 - Relationships, N-Layer Architecture and Enums](../week-04-relationships-n-layer-architecture-enums/README.md) |
 | Code Example | [Code Example](code-example)                                                                                                           |
 | Next         | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md)                                       |
 
