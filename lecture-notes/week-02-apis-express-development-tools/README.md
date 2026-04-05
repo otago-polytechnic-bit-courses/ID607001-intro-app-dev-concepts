@@ -4,9 +4,9 @@
 
 |              | Link                                                                                                             |
 | ------------ | ---------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 01 - Git and JavaScript](../week-01-git-javascript-1/README.md)                                            |
+| Previous     | [Week 01 - Git and JavaScript](../week-01-git-javascript-1/README.md)                                            |
 | Code Example | [Code Example](code-example)                                                                                     |
-| → Next       | [Week 03 - PostgreSQL, Docker, ORM, JSDoc and Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
+| Next         | [Week 03 - PostgreSQL, Docker, ORM, JSDoc and Postman](../week-03-postgresql-docker-orm-jsdoc-postman/README.md) |
 
 ---
 
@@ -18,198 +18,102 @@ Open your repository in Visual Studio Code and switch to the Week 02 branch:
 git checkout -b w02-apis-express-dev-tools
 ```
 
-> **Tip:** Typing the code examples rather than copy-pasting is strongly recommended - it helps with retention. Read the comments in the code too.
+---
+
+## The big picture
+
+This week you'll build your first working API. Before writing any code, it helps to understand what an API actually is and how the web works under the hood - because these concepts will come up constantly when you're debugging and designing your own endpoints.
 
 ---
 
-## 1. Application Programming Interfaces (APIs)
+## 1. What is an API?
 
-You have encountered different interfaces before - Graphical User Interfaces (GUIs) and Command Line Interfaces (CLIs). An **API** is a set of rules and protocols that allows different software applications to communicate with each other.
+An **API (Application Programming Interface)** is a way for two pieces of software to talk to each other. When your SvelteKit frontend needs data, it asks your API for it. Your API finds or processes that data and sends it back.
 
-The rules and protocols of an API cover:
+You can think of it like ordering at a restaurant:
 
-- **Communication protocols** - The most common are HTTP and HTTPS, used to send and receive data between applications
-- **Request methods** - GET (retrieve), POST (create), PUT (update), DELETE (delete)
-- **Data formats** - JSON (JavaScript Object Notation) and XML (eXtensible Markup Language)
-- **Endpoint URLs** - Used to access resources, e.g. `/api/users`
-- **Authentication and authorisation** - Restricts access to certain resources
-- **Error handling** - Returns meaningful error messages when something goes wrong
+- **You** are the client (the browser or SvelteKit app)
+- **The kitchen** is the server (your Express API)
+- **The waiter** is the API - it takes your request, goes to the kitchen, and brings back a response
+
+The rules that govern how this conversation happens are what we call the API's **protocol**.
 
 ---
 
 ### 1.1 REST
 
-Representational State Transfer (REST) is an architectural style for designing networked applications, based on a set of principles that allow for scalable and maintainable web services.
+Your API will follow a style called **REST (Representational State Transfer)**. REST isn't a technology - it's a set of design principles for how APIs should behave. When an API follows these principles, it's called a **RESTful API**.
 
-| Principle                    | Description                                                                    |
-| ---------------------------- | ------------------------------------------------------------------------------ |
-| **Statelessness**            | Each request contains all the information needed to process it                 |
-| **Client-Server Separation** | The client and server are separate entities communicating over a network       |
-| **Cacheability**             | Responses can be cached by the client to improve performance                   |
-| **Layered System**           | The API can be composed of multiple layers, each with its own responsibilities |
-| **Uniform Interface**        | The API has a consistent and standardised way of interacting with resources    |
+The core ideas of REST are:
 
----
+- **Statelessness** - every request must include everything the server needs to respond. The server doesn't remember previous requests. Think of it as calling a helpline where the agent has no memory of your last call - you have to explain your situation each time.
+- **Client-server separation** - the frontend and backend are independent. They only communicate through the API. This means you could swap out the SvelteKit frontend for a mobile app and the API wouldn't need to change.
+- **Uniform interface** - the API works consistently. Resources have predictable URLs (`/users`, `/users/1`), and the same HTTP methods are used the same way everywhere.
 
-### 1.2 HTTP Versions
+These principles make APIs easier to build, maintain, and scale.
 
-HTTP (Hypertext Transfer Protocol) is the foundation of data communication for the World Wide Web.
-
-| Version      | Year | Key Features                                                                                                                                      |
-| ------------ | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **HTTP/0.9** | 1991 | Only supported GET requests; no headers, status codes, or error codes                                                                             |
-| **HTTP/1.0** | 1996 | Added request methods beyond GET, headers, status codes, and support for different content types. Each request required a separate TCP connection |
-| **HTTP/1.1** | 1997 | Reusable TCP connections, content streaming, better caching, virtual hosting support                                                              |
-| **HTTP/2**   | 2015 | Binary protocol, multiplexed requests over a single connection, compressed headers, request prioritisation, server push                           |
-| **HTTP/3**   | 2022 | Runs over UDP (not TCP), built-in encryption via QUIC, faster connections, connection migration support                                           |
-
-📖 Reference: [MDN - Evolution of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Evolution_of_HTTP)
+📖 Reference: [MDN - REST](https://developer.mozilla.org/en-US/docs/Glossary/REST)
 
 ---
 
-### 1.3 HTTP Request Methods
+### 1.2 HTTP Request Methods
 
-An HTTP request method indicates the desired action to perform on a resource. There are nine methods in total; this course uses **GET, POST, PUT, and DELETE**.
+HTTP requests use **methods** to tell the server what kind of action the client wants. In this course you'll use four:
 
-| Method    | Purpose                                               |
-| --------- | ----------------------------------------------------- |
-| `GET`     | Retrieve data - should never modify state             |
-| `HEAD`    | Like GET but returns only headers, no body            |
-| `POST`    | Submit data to create or update a resource            |
-| `PUT`     | Replace all current representations of a resource     |
-| `DELETE`  | Delete the specified resource                         |
-| `CONNECT` | Establish a tunnel to the server                      |
-| `OPTIONS` | Describe available communication options              |
-| `TRACE`   | Perform a loop-back test along the path to the server |
-| `PATCH`   | Apply partial modifications to a resource             |
+| Method   | Purpose         | Example                      |
+| -------- | --------------- | ---------------------------- |
+| `GET`    | Read data       | Fetch a list of users        |
+| `POST`   | Create new data | Submit a registration form   |
+| `PUT`    | Replace data    | Update an entire user record |
+| `DELETE` | Remove data     | Delete a user account        |
+
+A useful way to remember these is the acronym **CRUD** - Create, Read, Update, Delete. Almost every API you'll ever build is doing some version of CRUD.
+
+> **GET should never change data.** A GET request should be safe to call multiple times without side effects. If refreshing the page causes a record to be created or deleted, something is wrong.
 
 📖 Reference: [MDN - HTTP Methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods)
 
 ---
 
-### 1.4 Idempotency
+### 1.3 HTTP Status Codes
 
-An operation is **idempotent** if performing it multiple times has the same effect as performing it once.
+Every API response includes a **status code** - a three-digit number that tells the client whether the request succeeded and, if not, why.
 
-| Method   | Idempotent? | Reason                                                        |
-| -------- | ----------- | ------------------------------------------------------------- |
-| `GET`    | ✅ Yes      | Does not change state                                         |
-| `PUT`    | ✅ Yes      | Replaces the resource with the same result each time          |
-| `DELETE` | ✅ Yes      | Deleting an already-deleted resource has no additional effect |
-| `POST`   | ❌ No       | May create multiple resources if called multiple times        |
+| Range   | Meaning              | Common examples                                        |
+| ------- | -------------------- | ------------------------------------------------------ |
+| 200–299 | Success              | `200 OK`, `201 Created`                                |
+| 400–499 | Client made an error | `400 Bad Request`, `401 Unauthorized`, `404 Not Found` |
+| 500–599 | Server made an error | `500 Internal Server Error`                            |
 
-📖 Reference: [restfulapi.net - Idempotent REST APIs](https://restfulapi.net/idempotent-rest-apis)
+Status codes are how your API communicates clearly. Returning a `200 OK` when a record wasn't found, or a `500` when the real problem is a missing field in the request body, makes debugging much harder - for you and for anyone consuming your API.
 
----
-
-### 1.5 HATEOAS
-
-**Hypermedia As The Engine Of Application State (HATEOAS)** is a REST constraint where the server provides hypermedia links in its responses, allowing clients to discover available resources and actions dynamically - without needing prior knowledge of the API structure.
-
-For example, a `GET /api/users` response might include links to view, update, or delete each user.
-
-📖 Reference: [restfulapi.net - HATEOAS](https://restfulapi.net/hateoas)
-
----
-
-### 1.6 HTTP Status Codes
-
-Status codes indicate whether a request was successfully completed. They are grouped into five classes:
-
-| Range   | Category                |
-| ------- | ----------------------- |
-| 100–199 | Informational responses |
-| 200–299 | Successful responses    |
-| 300–399 | Redirection messages    |
-| 400–499 | Client error responses  |
-| 500–599 | Server error responses  |
+You'll return status codes explicitly in every route handler you write.
 
 📖 Reference: [MDN - HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status)
 
 ---
 
-### 1.7 HTTP Headers
+### 1.4 CORS
 
-HTTP headers carry additional information about a request or response. There are four header groups:
+When your SvelteKit app (running on `localhost:5173`) tries to fetch data from your Express API (running on `localhost:3000`), the browser will block it by default. This is a security feature called the **Same-Origin Policy** - browsers don't allow pages to make requests to a different origin (domain, port, or protocol) without explicit permission.
 
-1. **Request headers** - sent by the client
-2. **Response headers** - sent by the server
-3. **Representation headers** - describe the body's format
-4. **Payload headers** - describe the payload data
+**CORS (Cross-Origin Resource Sharing)** is how you grant that permission. Your server adds a header to its responses that tells the browser: "yes, this other origin is allowed to talk to me."
 
-📖 Reference: [MDN - HTTP Headers](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
-
----
-
-### 1.8 Cookies
-
-Cookies are small pieces of data sent from a server and stored on the client's computer. They are used to remember information (e.g. login state, preferences) and are sent with every subsequent HTTP request to the same domain.
-
-📖 Reference: [MDN - Cookies](https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies)
-
----
-
-### 1.9 CORS
-
-**Cross-Origin Resource Sharing (CORS)** is a browser security feature that prevents websites from making requests to a different domain than the one that served the page.
-
-Servers can explicitly permit cross-origin requests using a response header:
-
-```bash
-Access-Control-Allow-Origin: https://example.com
+```
+Access-Control-Allow-Origin: http://localhost:5173
 ```
 
-This allows a frontend at `https://example.com` to call an API at `https://api.example.com` without being blocked by the browser's same-origin policy.
+In your Express app you'll use the `cors` package to handle this automatically. Without it, your frontend and backend won't be able to communicate, even on your own machine.
 
 📖 Reference: [MDN - CORS](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS)
 
 ---
 
-### 1.10 Compression
-
-HTTP compression reduces the size of responses, improving performance by reducing data transferred over the network.
-
-| Type         | Description                          | Examples      |
-| ------------ | ------------------------------------ | ------------- |
-| **Lossless** | Reduces size without losing any data | gzip, deflate |
-| **Lossy**    | Reduces size by discarding some data | JPEG, MP3     |
-
-📖 Reference: [MDN - HTTP Compression](https://developer.mozilla.org/en-US/docs/Web/HTTP/Compression)
-
----
-
-### 1.11 HTTP Caching
-
-HTTP caching lets browsers store copies of resources (HTML, images, stylesheets) locally, avoiding unnecessary repeat requests to the server.
-
-| Type            | Description                                          |
-| --------------- | ---------------------------------------------------- |
-| **Client-side** | The browser stores and reuses cached resources       |
-| **Server-side** | The server caches resources and serves them directly |
-
-📖 Reference: [MDN - HTTP Caching](https://developer.mozilla.org/en-US/docs/Web/HTTP/Caching)
-
----
-
-### 1.12 TCP/IP
-
-TCP/IP (Transmission Control Protocol/Internet Protocol) is the foundational set of protocols governing how data is transmitted over the internet.
-
-📖 Reference: [MDN - TCP/IP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#underlying_protocols_tcpip)
-
----
-
-### 1.13 DNS
-
-The **Domain Name System (DNS)** translates human-readable domain names (e.g. `www.example.com`) into IP addresses (e.g. `192.0.2.1`), enabling browsers to locate resources on the internet.
-
-📖 Reference: [MDN - DNS](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview#domain_name_system_dns)
-
----
-
 ## 2. Node Package Manager (NPM)
 
-NPM is the package manager for Node.js, used to install, share, and distribute code.
+NPM is what you use to install third-party code (packages) into your project. When you run `npm install express`, NPM downloads Express and all of its dependencies into a `node_modules` folder, and records what you've installed in `package.json`.
+
+You'll use NPM throughout this course to manage your project's dependencies and run scripts.
 
 📖 Reference: [NPM docs](https://docs.npmjs.com/about-npm)
 
@@ -217,7 +121,9 @@ NPM is the package manager for Node.js, used to install, share, and distribute c
 
 ## 3. Express
 
-Express is a web application framework for Node.js - the de facto standard for building Node.js web applications and APIs.
+Express is a lightweight framework for building web servers and APIs in Node.js. It handles the plumbing of receiving HTTP requests and sending responses, so you can focus on writing your actual API logic.
+
+When a request comes in, Express matches it to the right route handler based on the method (`GET`, `POST`, etc.) and the URL (`/users`, `/users/1`). Your handler then does whatever work is needed and sends a response.
 
 📖 Reference: [expressjs.com](https://expressjs.com/)
 
@@ -225,7 +131,7 @@ Express is a web application framework for Node.js - the de facto standard for b
 
 ### 3.1 Setup
 
-In the root directory of your repository, create a new directory called `backend`, then run:
+In the root of your repository, create a new `backend` directory and initialise it:
 
 ```bash
 cd backend
@@ -234,23 +140,34 @@ npm install express cors compression
 npm install nodemon --save-dev
 ```
 
-| Command                                | Purpose                                                                     |
-| -------------------------------------- | --------------------------------------------------------------------------- |
-| `npm init -y`                          | Initialises a Node.js project with default values                           |
-| `npm install express cors compression` | Installs Express, CORS, and Compression modules                             |
-| `npm install nodemon --save-dev`       | Installs Nodemon as a dev dependency (auto-restarts server on file changes) |
+Here's what each package does and why you need it:
 
-After running these, you will see three new items in `backend/`:
+| Package       | What it does                                                              |
+| ------------- | ------------------------------------------------------------------------- |
+| `express`     | The web framework - handles routing and HTTP requests/responses           |
+| `cors`        | Allows your SvelteKit frontend to talk to this API across different ports |
+| `compression` | Compresses response payloads to reduce bandwidth                          |
+| `nodemon`     | Restarts the server automatically when you save a file - dev only         |
 
-- `node_modules/` - installed packages (add to `.gitignore`)
-- `package.json` - project metadata and dependencies
-- `package-lock.json` - locked dependency versions for reproducible installs
+After running these commands, you'll see:
+
+- `node_modules/` - the installed packages. **Add this to `.gitignore`** - it's large and can always be reinstalled with `npm install`
+- `package.json` - records your project's name, scripts, and dependencies
+- `package-lock.json` - locks the exact versions installed so the project builds consistently for everyone
 
 ---
 
-### 3.2 `package.json` Scripts
+### 3.2 `package.json` Configuration
 
-Add a `dev` script to your `scripts` block:
+Open `package.json` and make two changes.
+
+First, add `"type": "module"` to enable modern ES module syntax (`import`/`export` instead of `require`):
+
+```json
+"type": "module"
+```
+
+Second, add a `dev` script so you can start the server with `npm run dev`:
 
 ```json
 "scripts": {
@@ -259,25 +176,13 @@ Add a `dev` script to your `scripts` block:
 }
 ```
 
-The `dev` script starts the server using Nodemon, which automatically restarts it whenever you save changes.
-
 📖 Reference: [NPM Scripts](https://docs.npmjs.com/cli/v10/using-npm/scripts)
 
 ---
 
-### 3.3 ES Modules
+### 3.3 Your First Route (`app.js`)
 
-Update `package.json` to enable ES6 module syntax (`import`/`export` instead of `require`/`module.exports`):
-
-```json
-"type": "module"
-```
-
----
-
-### 3.4 Main File (`app.js`)
-
-Create `backend/app.js`:
+Create `backend/app.js`. This is the entry point of your API - it sets up Express, registers middleware, and defines routes.
 
 ```javascript
 import express from "express";
@@ -316,33 +221,43 @@ app.get("/progLangs", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(
-    `Server is listening on port ${PORT}. Visit http://localhost:${PORT}`,
+    `Server is listening on port ${PORT}. Visit ${API_BASE_URL}:${PORT}`,
   );
 });
 
 export default app;
 ```
 
-> **What is `process.env`?** It's a Node.js global object that provides access to environment variables - key-value pairs set outside the application (in the OS, shell, or deployment environment). Used to avoid hardcoding sensitive values like API keys, database URLs, or environment names. Access them via `process.env.VARIABLE_NAME`.
+A few things worth understanding here:
 
----
+- `app.use(cors())` and `app.use(compression())` are **middleware** - functions that run on every request before it reaches a route handler. Think of middleware as a pipeline: the request passes through each `app.use()` call in order.
+- `process.env.PORT` reads an environment variable. If it's not set, the `|| 3000` fallback is used. This lets the same code work on your local machine and on a hosting platform that assigns its own port.
+- `res.status(200).json(...)` sets the status code and sends a JSON response. You're chaining two methods on the response object.
 
-### 3.5 Running the Server
+Run the server:
 
 ```bash
 npm run dev
 ```
 
-Visit the following URLs in your browser to verify:
+Then visit:
 
-- `http://localhost:3000/` - returns the person info JSON
-- `http://localhost:3000/progLangs` - returns the programming languages array
+- `http://localhost:3000/` - should return the person info
+- `http://localhost:3000/progLangs` - should return the programming languages
 
 ---
 
-### 3.6 Controller
+### 3.4 Separating Concerns - Controllers and Routers
 
-Extract the route logic into `controllers/index.js`:
+Right now all your logic lives in `app.js`. That works for two routes, but as your API grows it becomes very hard to navigate and maintain. The solution is to split responsibilities across files:
+
+- **Controllers** contain the logic - what data to return, what to do with a request
+- **Routers** define the URL structure - which controller handles which URL
+- **`app.js`** just wires everything together
+
+This separation means when something breaks in the `/users` route, you know to look in the users controller - not hunt through a 500-line `app.js`.
+
+**Create `controllers/index.js`:**
 
 ```javascript
 const getPersonInfo = (req, res) => {
@@ -370,13 +285,7 @@ const getProgLangs = (req, res) => {
 export { getPersonInfo, getProgLangs };
 ```
 
-📖 Reference: [Express - Routing](https://expressjs.com/en/guide/routing.html)
-
----
-
-### 3.7 Router
-
-Create `routes/index.js`:
+**Create `routes/index.js`:**
 
 ```javascript
 import express from "express";
@@ -390,13 +299,12 @@ router.get("/progLangs", getProgLangs);
 export default router;
 ```
 
-Then update `app.js` to use the router:
+**Update `app.js`** to import and use the router instead of defining routes inline:
 
 ```javascript
 import express from "express";
 import cors from "cors";
 import compression from "compression";
-
 import indexRoutes from "./routes/index.js";
 
 const app = express();
@@ -417,11 +325,9 @@ app.listen(PORT, () => {
 export default app;
 ```
 
----
+Notice how much cleaner `app.js` is now. It has one job: configure the app and start the server.
 
-### 3.8 File Structure
-
-Your project should look like this:
+Your file structure should now look like this:
 
 ```
 backend/
@@ -435,17 +341,19 @@ backend/
 └── package-lock.json
 ```
 
-A clear file structure makes projects easier to navigate and maintain.
+📖 Reference: [Express - Routing](https://expressjs.com/en/guide/routing.html)
 
 ---
 
 ## 4. Development Tools
 
+These tools don't affect what your API does - they affect how you write and maintain the code. Consistent formatting and clean commit messages matter more as projects grow and as you collaborate with others.
+
 ---
 
 ### 4.1 Prettier
 
-Prettier is a code formatting tool that enforces a consistent code style by re-printing your code according to its own rules.
+Prettier automatically formats your code - indentation, spacing, quote style, trailing commas, and so on. This removes the need to think about formatting and makes code reviews easier because the diffs only show meaningful changes, not whitespace noise.
 
 **Install:**
 
@@ -453,7 +361,7 @@ Prettier is a code formatting tool that enforces a consistent code style by re-p
 npm install prettier --save-dev
 ```
 
-**Create `backend/.prettierrc.json`:**
+**Create `backend/.prettierrc.json`** to configure your formatting preferences:
 
 ```json
 {
@@ -465,32 +373,17 @@ npm install prettier --save-dev
 }
 ```
 
-| Option          | Purpose                                      |
-| --------------- | -------------------------------------------- |
-| `printWidth`    | Line length before Prettier wraps            |
-| `tabWidth`      | Spaces per indentation level                 |
-| `semi`          | Print semicolons at statement ends           |
-| `singleQuote`   | Use single quotes instead of double quotes   |
-| `trailingComma` | Add trailing commas in multi-line structures |
-
-**Add to `package.json` scripts:**
+**Add scripts to `package.json`:**
 
 ```json
 "format:check": "prettier --check .",
 "format:fix": "prettier --write ."
 ```
 
-**Run:**
+- `format:check` tells you what's not formatted correctly without changing anything - useful in CI pipelines
+- `format:fix` actually fixes the formatting
 
-```bash
-npm run format:check
-```
-
-If there are formatting issues, run:
-
-```bash
-npm run format:fix
-```
+Run `npm run format:fix` after setting this up to format your existing files.
 
 📖 Reference: [Prettier docs](https://prettier.io/docs/en/index.html)
 
@@ -498,7 +391,7 @@ npm run format:fix
 
 ### 4.2 ESLint
 
-ESLint identifies and fixes problems in JavaScript code, ensuring consistent style and catching common errors.
+ESLint analyses your code for problems - undefined variables, unused imports, unreachable code, and patterns that commonly cause bugs. Where Prettier handles _how your code looks_, ESLint handles _whether your code is correct_.
 
 **Initialise:**
 
@@ -506,7 +399,7 @@ ESLint identifies and fixes problems in JavaScript code, ensuring consistent sty
 npm init @eslint/config@latest
 ```
 
-Answer the prompts as follows:
+When prompted, answer:
 
 | Question                                             | Answer     |
 | ---------------------------------------------------- | ---------- |
@@ -519,7 +412,7 @@ Answer the prompts as follows:
 | Would you like to install required dependencies now? | Yes        |
 | Which package manager do you want to use?            | npm        |
 
-**Install Prettier integration:**
+Then install the Prettier integration so ESLint and Prettier don't conflict:
 
 ```bash
 npm install eslint-config-prettier eslint-plugin-prettier --save-dev
@@ -544,23 +437,11 @@ export default defineConfig([
 ]);
 ```
 
-**Add to `package.json` scripts:**
+**Add scripts to `package.json`:**
 
 ```json
 "lint:check": "eslint .",
 "lint:fix": "eslint --fix ."
-```
-
-**Run:**
-
-```bash
-npm run lint:check
-```
-
-If there are linting issues, run:
-
-```bash
-npm run lint:fix
 ```
 
 📖 Reference: [ESLint docs](https://eslint.org/docs/user-guide/getting-started)
@@ -569,7 +450,7 @@ npm run lint:fix
 
 ### 4.3 Commitizen
 
-Commitizen helps you write consistent, structured commit messages, making project history easier to understand.
+Commitizen guides you through writing structured commit messages in a consistent format. This makes your git history readable - especially useful when you're trying to track down when and why something changed.
 
 **Install:**
 
@@ -577,7 +458,7 @@ Commitizen helps you write consistent, structured commit messages, making projec
 npm install commitizen cz-conventional-changelog --save-dev
 ```
 
-**Add to `package.json`** (below the `scripts` block):
+**Add to `package.json`:**
 
 ```json
 "config": {
@@ -587,7 +468,7 @@ npm install commitizen cz-conventional-changelog --save-dev
 }
 ```
 
-Use `npx cz` instead of `git commit` - it walks you through a series of prompts to build a standardised commit message.
+Use `npx cz` instead of `git commit`. It will walk you through a short prompt to categorise and describe your change.
 
 📖 Reference: [Commitizen on GitHub](https://github.com/commitizen/cz-cli)
 
@@ -595,7 +476,7 @@ Use `npx cz` instead of `git commit` - it walks you through a series of prompts 
 
 ### 4.4 Complete `package.json` Scripts
 
-After all tools are set up, your `scripts` block should look like:
+At this point your scripts block should look like this:
 
 ```json
 "scripts": {
@@ -612,15 +493,9 @@ After all tools are set up, your `scripts` block should look like:
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
 
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
+If you use AI assistance, acknowledge it at the top of the file:
 
 ```javascript
 /**
@@ -629,24 +504,30 @@ AI tools are encouraged but use them critically:
  * @prompts
  * - "Your first prompt here"
  * - "Your second prompt here"
- * @usage Describe how you used the AI responses to help you with your work
+ * @usage Describe how you used the AI responses to help you
  */
 ```
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Build the Example API
 
-Implement all of the code examples covered above.
+Implement all of the code from the notes above. Once it's running, verify both routes return the correct data in your browser.
+
+Then answer these questions in a comment at the top of `app.js`:
+
+1. What happens if you remove `app.use(cors())`? Why?
+2. What status code would you return if a user requests a resource that doesn't exist?
+3. What is the difference between a router and a controller in this setup?
 
 ---
 
-### Task 2 - New Routes _(Easy)_
+### Task 2 - Your Own Routes
 
-Create two new GET routes with their own controllers and route files:
+Add two new GET routes. Each needs its own controller file and router file.
 
-- `GET http://localhost:3000/about` - return your learner ID, first name, last name, email address, and one thing you enjoy about IT
-- `GET http://localhost:3000/courses` - return an array of courses you are enrolled in this semester
+- `GET /about` - return your learner ID, first name, last name, email, and one thing you enjoy about IT
+- `GET /courses` - return an array of objects, one for each course you're enrolled in this semester. Each object should include the course code, course name, and your current grade (or `null` if no grade yet)
 
 Your file structure should look like:
 
@@ -656,7 +537,6 @@ backend/
 │   ├── about.js
 │   ├── course.js
 │   └── index.js
-├── node_modules/
 ├── routes/
 │   ├── about.js
 │   ├── course.js
@@ -666,11 +546,29 @@ backend/
 └── package-lock.json
 ```
 
+Think about the shape of your data before you write any code. What fields make sense? What type should each field be?
+
 ---
 
-### Task 3 - Smarter Formatting with `lint-staged` _(Medium)_
+### Task 3 - Status Codes Matter
 
-Running `npm run format:fix` formats every file in the project - including `node_modules` - which is slow and unnecessary. Use `lint-staged` to only format files staged for commit.
+You currently return `200` from every route. But what if someone requests a route that doesn't exist?
+
+Add a **404 handler** to `app.js` that catches any request to an undefined route and returns a `404` status with a helpful JSON message. In Express, this is done by adding a catch-all route _after_ all other routes:
+
+```javascript
+app.use((req, res) => {
+  // Your code here
+});
+```
+
+Test it by visiting `http://localhost:3000/nonexistent` in your browser.
+
+---
+
+### Task 4 - Smarter Formatting with `lint-staged`
+
+Running `npm run format:fix` formats every file in the project - including `node_modules` - which is slow and unnecessary. A better approach is to only format files you've actually changed and staged for commit.
 
 **Install:**
 
@@ -678,13 +576,13 @@ Running `npm run format:fix` formats every file in the project - including `node
 npm install lint-staged --save-dev
 ```
 
-**Update the `format` script in `package.json`:**
+**Add a script to `package.json`:**
 
 ```json
 "format:fix:staged": "lint-staged"
 ```
 
-**Add a `lint-staged` config to `package.json`** (below `scripts`):
+**Add a `lint-staged` config to `package.json`:**
 
 ```json
 "lint-staged": {
@@ -692,18 +590,12 @@ npm install lint-staged --save-dev
 }
 ```
 
-> To format additional file types, extend the pattern. For example: `"*.{js,json}": "prettier --write"`
-
 **Create `backend/.prettierignore`:**
 
 ```
 node_modules
 ```
 
-**Run:**
+Run `npm run format:fix:staged` and observe the difference in output compared to `npm run format:fix`.
 
-```bash
-npm run format:fix:staged
-```
-
-Only staged `.js` files will now be formatted.
+Why is this approach better for large projects?

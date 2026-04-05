@@ -1,70 +1,89 @@
-# Week 03 - PostgreSQL, Docker, JSDoc and Postman
+# Week 03 - PostgreSQL, Docker, Prisma and REST Client
 
 ## Navigation
 
 |              | Link                                                                                                                                                 |
 | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ← Previous   | [Week 02 - APIs, Express and Development Tools](../week-02-apis-express-development-tools/README.md)                                                 |
+| Previous     | [Week 02 - API, Express and Development Tools](../week-02-api-express-development-tools/README.md)                                                   |
 | Code Example | [Code Example](code-example)                                                                                                                         |
-| → Next       | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
+| Next         | [Week 04 - Content Negotiation, Relationships and N-Layer Architecture](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 
 ---
 
 ## Before We Start
 
-Open your repository in Visual Studio Code and switch to the Week 03 branch:
-
 ```bash
 git checkout -b w03-pg-docker-jsdoc-postman
 ```
 
-> **Tip:** There are many code examples this week. They do not include code from previous exercises. Typing them out rather than copy-pasting is strongly recommended - it helps with retention. Read the comments in the code too.
+---
+
+## The big picture
+
+Last week your API returned hardcoded data - the same response every time, no matter what. This week you'll connect it to a real database so your data can be created, read, updated, and deleted persistently.
+
+Here's how the pieces fit together:
+
+```
+SvelteKit frontend
+      ↓ HTTP request
+  Express API
+      ↓ query
+    Prisma ORM
+      ↓ SQL
+  PostgreSQL database (running in Docker)
+```
+
+Each layer has one job. Your Express routes don't write SQL. Your database doesn't know about HTTP. Prisma sits in the middle and translates between them.
 
 ---
 
 ## 1. PostgreSQL
 
-PostgreSQL (also known as Postgres) is a free, open-source relational database management system. It is powerful, highly extensible, and feature-rich.
+PostgreSQL is the database you'll use throughout this course. It stores data in **tables** - like spreadsheet tabs - where each row is a record and each column is a field.
 
-> **What is a relational database?** Relational databases store data in tables with rows and columns. SQL (Structured Query Language) is used to interact with them. Other database types include NoSQL, graph databases, and more.
+You won't write raw SQL in this course. Instead you'll use Prisma to interact with PostgreSQL, which generates and runs the SQL for you. But it's worth knowing PostgreSQL is what's actually storing and retrieving your data under the hood.
 
 ---
 
 ## 2. Docker
 
-Docker is a platform for developing, shipping, and running applications inside **containers** - standardised units of software that package code and all its dependencies, ensuring the application runs reliably across different environments.
+The challenge with databases is that installing and configuring them directly on your machine is fiddly, varies between operating systems, and can leave your system in a messy state. **Docker** solves this by running PostgreSQL inside a **container** - an isolated, self-contained environment that works the same way on every machine.
 
-We will use Docker to run a PostgreSQL container.
+Think of a container like a vending machine. Everything it needs is inside it. You plug it in, it works. You unplug it, nothing is left behind on your machine.
 
 📖 Reference: [Docker](https://www.docker.com)
 
 ---
 
-### 2.1 Getting Started
+### 2.1 Starting a PostgreSQL Container
 
-Open Docker Desktop and a terminal, then run:
+Make sure Docker Desktop is running, then run:
 
 ```bash
 docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres
 ```
 
-| Flag                                 | Purpose                                    |
-| ------------------------------------ | ------------------------------------------ |
-| `docker run`                         | Creates a new container                    |
-| `--name id607001-db-dev`             | Names the container                        |
-| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the PostgreSQL password               |
-| `-p 5432:5432`                       | Maps container port 5432 to host port 5432 |
-| `-d postgres`                        | Uses the official PostgreSQL image         |
+Breaking down what each part does:
 
-**Useful Docker commands:**
+| Flag                                 | What it does                                                         |
+| ------------------------------------ | -------------------------------------------------------------------- |
+| `--name id607001-db-dev`             | Gives the container a name so you can refer to it later              |
+| `-e POSTGRES_PASSWORD=HelloWorld123` | Sets the database password as an environment variable                |
+| `-p 5432:5432`                       | Connects port 5432 on your machine to port 5432 inside the container |
+| `-d postgres`                        | Uses the official PostgreSQL image and runs it in the background     |
+
+The `-p 5432:5432` flag is what lets your API (running on your machine) talk to PostgreSQL (running inside the container). Without it, they can't reach each other.
+
+**Other useful commands:**
 
 ```bash
-docker ps                    # List all running containers (ps = "process status")
+docker ps                    # List running containers
 docker stop id607001-db-dev  # Stop the container
-docker rm id607001-db-dev    # Remove the container
+docker rm id607001-db-dev    # Remove the container entirely
 ```
 
-**Add a shortcut script to `package.json`:**
+Add a shortcut to `package.json` so you don't have to remember the full command:
 
 ```json
 "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres"
@@ -72,21 +91,23 @@ docker rm id607001-db-dev    # Remove the container
 
 ---
 
-## 3. Object-Relational Mapper (ORM)
+## 3. Prisma
 
-An ORM is a layer between the database and the application that maps database tables to objects, letting developers work with objects instead of raw SQL.
+Writing raw SQL works, but it means your database logic is scattered through your code as strings, with no type safety, no autocomplete, and no easy way to track changes to your database structure over time.
 
-> **Popular Node.js ORMs:** Sequelize, TypeORM, Objection.js, and Prisma.
+**Prisma** solves all of this. It gives you:
+
+- A **schema file** where you define your data models in a clear, readable format
+- A **migration system** that tracks every change to your database structure
+- A **generated client** that gives you type-safe functions for querying your database
+
+> We use **Prisma 6.x** in this course. Prisma 7 was recently released but has breaking changes.
 
 ---
 
-### 3.1 Setup - Prisma
+### 3.1 Setup
 
-We will use **Prisma**, an open-source ORM for Node.js and TypeScript that supports PostgreSQL, MySQL, SQLite, and SQL Server.
-
-> **Note:** Prisma 7.0 was recently released, but we use **Prisma 6.12.0** for this course as it is more stable with JavaScript projects.
-
-Run the following once to set up Prisma:
+Run these commands from inside your `backend/` directory:
 
 ```bash
 npm install @prisma/client@^6.12.0
@@ -94,73 +115,47 @@ npm install prisma@^6.12.0 --save-dev
 npx prisma init
 ```
 
-| Command                         | Purpose                                                 |
-| ------------------------------- | ------------------------------------------------------- |
-| `npm install @prisma/client`    | Installs the Prisma Client (used to query the database) |
-| `npm install prisma --save-dev` | Installs the Prisma CLI (used for migrations)           |
-| `npx prisma init`               | Creates the `.env` file and `prisma/` directory         |
+`npx prisma init` creates two things:
+
+- A `.env` file for your environment variables (database URL, secrets, etc.)
+- A `prisma/` directory containing `schema.prisma` - where you'll define your data models
 
 ---
 
-### 3.2 The `.env` File
+### 3.2 Environment Variables
 
-The `.env` file stores sensitive environment variables like your database connection string. It is **not** committed to Git (the Node `.gitignore` excludes it).
+Your `.env` file holds values that change between environments (development, production) or that should never be committed to Git - things like passwords and database URLs.
 
-After running `npx prisma init`, you will see:
+Update the `DATABASE_URL` in `.env` to:
 
-```bash
-DATABASE_URL="postgresql://johndoe:randompassword@localhost:5432/mydb?schema=public"
 ```
-
-Update it to:
-
-```bash
 DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
----
+This URL tells Prisma: connect to PostgreSQL at `localhost:5432`, using the username `postgres` and password `HelloWorld123`, and use the `postgres` database.
 
-### 3.3 The `.env.example` File
+**Important:** `.env` should be in your `.gitignore`. Never commit it - it contains secrets.
 
-The `.env.example` file is a committed template that shows other developers which environment variables are required. Example:
+Instead, create a `.env.example` file that's safe to commit. It shows other developers which variables they need, without exposing the actual values:
 
-```bash
+```
 NODE_ENV=development
 PORT=3000
 API_BASE_URL=http://localhost
 DATABASE_URL=postgresql://postgres:HelloWorld123@localhost:5432/postgres
 ```
 
-Add a convenience script to `package.json`:
+Add a convenience script to `package.json` so new developers can get set up quickly:
 
 ```json
 "env:copy": "cp .env.example .env || copy .env.example .env"
 ```
 
-> The first command is for Linux/macOS; the second is for Windows. If the first fails, the second runs automatically.
-
 ---
 
-### 3.4 The `schema.prisma` File
+### 3.3 The Schema File
 
-After initialisation, `schema.prisma` looks like this:
-
-```javascript
-generator client {
-  provider = "prisma-client-js"
-  output   = "../generated/prisma"
-}
-
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
-}
-```
-
-- The `generator` block specifies the Prisma Client provider. 📖 [Generators docs](https://www.prisma.io/docs/orm/prisma-schema/overview/generators)
-- The `datasource` block specifies the database type and URL. 📖 [Data sources docs](https://www.prisma.io/docs/orm/prisma-schema/overview/data-sources)
-
-**Remove** the `output` line so the file looks like this:
+Open `prisma/schema.prisma`. Remove the `output` line from the `generator` block so it looks like this:
 
 ```javascript
 generator client {
@@ -173,11 +168,9 @@ datasource db {
 }
 ```
 
----
+The `generator` block tells Prisma what kind of client to generate. The `datasource` block tells it which database to connect to and where to find the connection URL.
 
-### 3.5 Generating the Prisma Client
-
-Delete the `prisma.config.ts` file (we won't be using it), then generate the client:
+Delete the `prisma.config.ts` file if it was created, then generate the Prisma client:
 
 ```bash
 npx prisma generate
@@ -185,11 +178,9 @@ npx prisma generate
 
 ---
 
-### 3.6 Defining a Model
+### 3.4 Defining Your First Model
 
-A **model** represents a database table - it defines the table's structure, fields, and data types.
-
-Add the following model below the `datasource db` block in `schema.prisma`:
+A **model** in Prisma describes a database table - its columns, their types, and any constraints. Add this below the `datasource` block in `schema.prisma`:
 
 ```javascript
 model Institution {
@@ -202,74 +193,75 @@ model Institution {
 }
 ```
 
-| Directive          | Purpose                                   |
-| ------------------ | ----------------------------------------- |
-| `@id`              | Marks the field as the primary key        |
-| `@default(uuid())` | Generates a UUID as the default value     |
-| `@unique`          | Enforces uniqueness on this field         |
-| `@default(now())`  | Defaults to the current date/time         |
-| `@updatedAt`       | Automatically updates on every row change |
+Each directive tells Prisma something about how to handle that field:
+
+| Directive          | What it does                                              |
+| ------------------ | --------------------------------------------------------- |
+| `@id`              | This is the primary key - every row has a unique one      |
+| `@default(uuid())` | Automatically generates a UUID when a new row is created  |
+| `@unique`          | No two institutions can have the same name                |
+| `@default(now())`  | Automatically sets the current date/time on creation      |
+| `@updatedAt`       | Automatically updates to the current time on every change |
+
+**Why UUIDs instead of 1, 2, 3?**
+
+Auto-incrementing integers are predictable. If your API returns a record with `id: 42`, an attacker knows that `id: 41` and `id: 43` probably also exist and can try to access them. UUIDs are 128-bit random values - practically impossible to guess.
+
+That said, UUIDs are an obscurity measure, not a substitute for authentication. You still need to control who can access what.
 
 📖 Reference: [Prisma - Models](https://www.prisma.io/docs/orm/prisma-schema/data-model/models)
 
 ---
 
-### 3.7 UUIDs vs. Auto-Increment IDs
+### 3.5 Migrations
 
-UUIDs offer better security than auto-increment IDs. With auto-increment IDs, an attacker can easily guess the next ID (e.g. if the last is `10`, the next is likely `11`). UUIDs have 128 bits of entropy - approximately 3.4 × 10³⁸ possible values - making them practically impossible to guess.
-
-> **Important:** UUIDs are an obscurity measure, not a security measure on their own. Always implement proper authentication and authorisation.
-
----
-
-### 3.8 Creating and Applying Migrations
-
-A **migration** is a file containing the SQL statements needed to create, update, or delete database tables. It keeps your database schema in sync with your application.
+Defining a model in `schema.prisma` doesn't change the database yet. You need to create and apply a **migration** - a file containing the SQL statements that update the database structure to match your schema.
 
 ```bash
 npx prisma migrate dev
 ```
 
-When prompted, name the migration: `00_create_institution_table`
+When prompted, name it: `00_create_institution_table`
 
-The migration file is saved in `prisma/migrations/`. Open it to see the generated SQL.
+Prisma will create a `prisma/migrations/` folder with a `.sql` file inside. This file is committed to Git - it's your database's change history. Anyone who clones your project can replay all migrations to get an identical database structure.
 
-> **Important:** Every time you change `schema.prisma`, you must create and apply a new migration.
-
----
-
-### 3.9 Migration Naming Conventions
-
-Use a consistent, descriptive naming convention:
+**Every time you change `schema.prisma`, you must create a new migration.** Use a naming convention that makes the history readable:
 
 ```
 00_create_institution_table
-01_add_region_to_institution_table
-02_remove_country_from_institution_table
+01_add_website_to_institution
+02_remove_fax_from_institution
 ```
 
----
-
-### 3.10 Resetting the Database
+To wipe the database and start fresh during development:
 
 ```bash
 npx prisma migrate reset --force
 ```
 
-> ⚠️ **Warning:** This deletes all data in the database. Use with caution.
+> ⚠️ This deletes all data. Only use it in development.
 
 ---
 
-### 3.11 Useful `package.json` Scripts
+### 3.6 The Prisma Client Singleton
 
-Add these to your `scripts` block for convenience:
+Create `prisma/db.js`:
 
-```json
-"prisma:migrate": "npx prisma migrate dev",
-"prisma:reset": "npx prisma migrate reset --force"
+```javascript
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
+
+export default prisma;
 ```
 
-Your complete `scripts` block should look like:
+This file creates a single shared instance of the Prisma client. You'll import `prisma` from here in every controller that needs database access.
+
+Why a single instance? Each `new PrismaClient()` opens a connection pool to the database. Creating one per request would exhaust your database connections very quickly. Sharing one instance across the app avoids that problem - this is the **Singleton Pattern**.
+
+---
+
+### 3.7 Complete `package.json` Scripts
 
 ```json
 "scripts": {
@@ -282,60 +274,66 @@ Your complete `scripts` block should look like:
   "docker:run:dev": "docker run --name id607001-db-dev -e POSTGRES_PASSWORD=HelloWorld123 -p 5432:5432 -d postgres",
   "env:copy": "cp .env.example .env || copy .env.example .env",
   "prisma:migrate": "npx prisma migrate dev",
-  "prisma:reset": "npx prisma migrate reset --force"
+  "prisma:reset": "npx prisma migrate reset --force",
+  "prisma:studio": "npx prisma studio"
 }
 ```
 
 ---
 
-### 3.12 Prisma Client Singleton
+## 4. The Institution CRUD API
 
-Create `prisma/db.js`:
+Now that the database is set up, you'll build the full CRUD API for institutions. Each operation follows the same pattern:
 
-```javascript
-import { PrismaClient } from "@prisma/client";
+1. Extract what you need from the request (`req.params`, `req.body`)
+2. Check if the record exists (for operations that require it)
+3. Run the database query via Prisma
+4. Return an appropriate status code and JSON response
+5. Catch any errors and return a `500`
 
-const prisma = new PrismaClient();
-
-export default prisma;
-```
-
-This uses the **Singleton Pattern** - a design pattern that ensures only one instance of the Prisma Client is created and reused throughout the application.
+Understanding this pattern is more important than memorising the code - you'll apply it to every resource you build.
 
 ---
 
-## 4. Institution Controller
-
-Create `controllers/institution.js`. Each function handles one CRUD operation.
-
-### Create
+### 4.1 Controller (`controllers/institution.js`)
 
 ```javascript
 import prisma from "../prisma/db.js";
 
+/**
+ * @file Manages all CRUD operations for institutions
+ * @author Your Name
+ */
+
+/**
+ * @description Creates a new institution
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} The created institution
+ */
 const createInstitution = async (req, res) => {
   try {
     const { name, region, country } = req.body;
 
-    await prisma.institution.create({
+    const institution = await prisma.institution.create({
       data: { name, region, country },
     });
 
-    const institutions = await prisma.institution.findMany();
-
     return res.status(201).json({
       message: "Institution successfully created",
-      data: institutions,
+      data: institution,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 };
-```
 
-### Read All
-
-```javascript
+/**
+ * @description Returns all institutions
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} Array of institutions
+ */
 const getInstitutions = async (req, res) => {
   try {
     const institutions = await prisma.institution.findMany();
@@ -349,11 +347,13 @@ const getInstitutions = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
-```
 
-### Read One
-
-```javascript
+/**
+ * @description Returns a single institution by ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} A single institution
+ */
 const getInstitution = async (req, res) => {
   try {
     const { id } = req.params;
@@ -371,17 +371,19 @@ const getInstitution = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
-```
 
-### Update
-
-```javascript
+/**
+ * @description Updates an institution by ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} The updated institution
+ */
 const updateInstitution = async (req, res) => {
   try {
     const { id } = req.params;
     const { name, region, country } = req.body;
 
-    let institution = await prisma.institution.findUnique({ where: { id } });
+    const institution = await prisma.institution.findUnique({ where: { id } });
 
     if (!institution) {
       return res.status(404).json({
@@ -389,24 +391,26 @@ const updateInstitution = async (req, res) => {
       });
     }
 
-    institution = await prisma.institution.update({
+    const updatedInstitution = await prisma.institution.update({
       where: { id },
       data: { name, region, country },
     });
 
     return res.status(200).json({
       message: `Institution with the id: ${id} successfully updated`,
-      data: institution,
+      data: updatedInstitution,
     });
   } catch (err) {
     return res.status(500).json({ message: err.message });
   }
 };
-```
 
-### Delete
-
-```javascript
+/**
+ * @description Deletes an institution by ID
+ * @param {object} req - The request object
+ * @param {object} res - The response object
+ * @returns {object} Confirmation message
+ */
 const deleteInstitution = async (req, res) => {
   try {
     const { id } = req.params;
@@ -428,11 +432,7 @@ const deleteInstitution = async (req, res) => {
     return res.status(500).json({ message: err.message });
   }
 };
-```
 
-### Exports
-
-```javascript
 export {
   createInstitution,
   getInstitutions,
@@ -442,50 +442,14 @@ export {
 };
 ```
 
----
-
-### 4.1 Default vs. Named Exports
-
-JavaScript has two export styles:
-
-**Default export** - one export per module, imported without curly braces:
-
-```javascript
-// controllers/institution.js
-export default {
-  createInstitution,
-  getInstitutions,
-  getInstitution,
-  updateInstitution,
-  deleteInstitution,
-};
-```
-
-```javascript
-// routes/institution.js
-import institutionController from "../controllers/institution.js";
-
-router.post("/", institutionController.createInstitution);
-router.get("/", institutionController.getInstitutions);
-// ...
-```
-
-**Named export** - multiple exports per module, imported with curly braces (used in this project - see the router below).
-
-| Use case                  | Export type    |
-| ------------------------- | -------------- |
-| Exporting a single value  | Default export |
-| Exporting multiple values | Named exports  |
+Notice that `createInstitution` returns `201 Created` while the others return `200 OK`. The distinction matters - `201` tells the client that something new was created, not just that the request succeeded. Using the right status code makes your API easier to consume and debug.
 
 ---
 
-## 5. Institution Router
-
-Create `routes/institution.js`:
+### 4.2 Router (`routes/institution.js`)
 
 ```javascript
 import express from "express";
-
 import {
   createInstitution,
   getInstitutions,
@@ -502,31 +466,27 @@ router.get("/:id", getInstitution);
 router.put("/:id", updateInstitution);
 router.delete("/:id", deleteInstitution);
 
-// You can also chain routes like this:
-// router.route("/").post(createInstitution).get(getInstitutions);
-
 export default router;
 ```
 
-> **Route parameters:** `:id` captures the value from the URL. For example, a request to `http://localhost:3000/api/institutions/some-uuid` will set `req.params.id` to `some-uuid`.
+The `:id` in the URL is a **route parameter** - a named placeholder that captures part of the URL. When a request comes in to `/api/institutions/some-uuid`, Express sets `req.params.id` to `some-uuid` and passes it to your controller.
 
 ---
 
-## 6. Main File (`app.js`)
+### 4.3 Registering Routes in `app.js`
 
-Register the institution routes in `app.js`:
+Add two middleware lines and the institution routes to `app.js`:
 
 ```javascript
 import institutionRoutes from "./routes/institution.js";
 
-// These must be declared before the routes
-app.use(express.urlencoded({ extended: false })); // Parses URL-encoded (form) data
+app.use(express.urlencoded({ extended: false })); // Parses form data
 app.use(express.json()); // Parses JSON request bodies
 
 app.use("/api/institutions", institutionRoutes);
 ```
 
-> Use `/api/institutions` (plural) as the base URL for all institution routes.
+These two `app.use` lines must come **before** your routes. Without `express.json()`, `req.body` will be `undefined` in POST and PUT requests - a very common source of confusion when first building APIs.
 
 <details>
 <summary>View complete <code>app.js</code></summary>
@@ -565,102 +525,149 @@ export default app;
 
 ---
 
-## 7. Postman
+## 5. Testing with REST Client
 
-Postman is a tool for testing APIs - it lets you send HTTP requests and inspect responses, making it ideal for testing and debugging.
-
----
-
-### 7.1 Getting Started
-
-Sign in at [identity.getpostman.com/login](https://identity.getpostman.com/login) using your GitHub account.
-
-Once signed in, create a new **Collection** (a group of requests). Use sub-folders to organise requests - e.g. `./lecture-notes/week-03` and `exercises`.
-
-> **Tip:** If you see a Postman Agent error on your first request, switch from **Cloud Agent** to **Browser Agent** in the agent selector.
+You now have a working API - but how do you test it without a frontend? You'll use the **REST Client** extension for VS Code. Unlike Postman, REST Client lets you write your HTTP requests as plain `.http` files that live inside your project. This means your test requests are version-controlled alongside your code, and anyone who clones the repo gets them too.
 
 ---
 
-### 7.2 Example Requests
+### 5.1 Setup
 
-**GET all institutions** - `GET http://localhost:3000/api/institutions`
+Install the extension in VS Code:
 
-The `data` field will be an empty array if no institutions exist yet.
+1. Open the Extensions panel (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. Search for **REST Client** by Huachao Mao
+3. Click **Install**
 
-**Create an institution** - `POST http://localhost:3000/api/institutions`
+Then create a folder in your `backend/` directory to hold your request files:
 
-In the **Body** tab, select **raw → JSON**, then send:
+```
+backend/
+└── rest/
+    └── institution.http
+```
 
-```json
+---
+
+### 5.2 How `.http` Files Work
+
+A `.http` file contains one or more HTTP requests written in plain text. Each request is separated by `###`. You run a request by clicking the **Send Request** link that appears above it in VS Code.
+
+The basic format is:
+
+```
+METHOD URL
+Header-Name: header-value
+
+{
+  "body": "goes here"
+}
+```
+
+---
+
+### 5.3 The Institution Request File
+
+Create `backend/rest/institution.http` with all five CRUD requests:
+
+```http
+### Get all institutions
+GET http://localhost:3000/api/institutions
+
+###
+
+### Create an institution
+POST http://localhost:3000/api/institutions
+Content-Type: application/json
+
 {
   "name": "Otago Polytechnic",
   "region": "Otago",
   "country": "New Zealand"
 }
+
+###
+
+### Get institution by ID
+# Replace the ID below with one returned from the POST request above
+GET http://localhost:3000/api/institutions/REPLACE-WITH-REAL-ID
+
+###
+
+### Update an institution
+PUT http://localhost:3000/api/institutions/REPLACE-WITH-REAL-ID
+Content-Type: application/json
+
+{
+  "name": "Otago Polytechnic Te Kura Matatini ki Otago",
+  "region": "Otago",
+  "country": "New Zealand"
+}
+
+###
+
+### Delete an institution
+DELETE http://localhost:3000/api/institutions/REPLACE-WITH-REAL-ID
 ```
 
-You should receive a `201` response with the newly created institution.
+---
 
-**Other operations** to test:
+### 5.4 Testing the Full CRUD Cycle
 
-- `GET /api/institutions/:id` - get by ID
-- `PUT /api/institutions/:id` - update by ID
-- `DELETE /api/institutions/:id` - delete by ID
+Make sure your server (`npm run dev`) and Docker container (`npm run docker:run:dev`) are both running, then work through the requests in order:
 
-> **Try it:** What happens if you request an institution ID that doesn't exist? Try it for GET, PUT, and DELETE.
+**Step 1** - Run **Get all institutions**. You should get a `404` with `"No institutions found"` - correct, the database is empty.
+
+**Step 2** - Run **Create an institution**. You should get a `201` response with the new record. Copy the `id` value from the response body.
+
+**Step 3** - Paste the `id` into the three requests that have `REPLACE-WITH-REAL-ID`, then run **Get institution by ID** to confirm it's there.
+
+**Step 4** - Run **Update an institution**. The response should show the updated name.
+
+**Step 5** - Run **Delete an institution**. Then run **Get institution by ID** one more time - you should now get a `404`, confirming the record is gone.
 
 ---
 
-## 8. JSDoc
+### 5.5 When Things Go Wrong
 
-JSDoc is a documentation standard for JavaScript. Comments written in JSDoc syntax can be parsed and converted into HTML documentation. We won't generate HTML docs here, but writing JSDoc comments is good practice.
+| Symptom                     | Likely cause                     | Fix                                                          |
+| --------------------------- | -------------------------------- | ------------------------------------------------------------ |
+| `ECONNREFUSED`              | Server isn't running             | Run `npm run dev`                                            |
+| `ECONNREFUSED` on port 5432 | Docker container not running     | Run `npm run docker:run:dev`                                 |
+| `500 Internal Server Error` | Database issue or missing `.env` | Check `DATABASE_URL` in `.env`                               |
+| `req.body` is undefined     | Missing body parser middleware   | Check `app.use(express.json())` is before your routes        |
+| `404` on a real-looking ID  | ID doesn't exist in the database | Run **Get all institutions** to find a valid ID              |
+| Response is HTML, not JSON  | Express route not matched        | Check the method and URL match your router exactly           |
+| No **Send Request** link    | File not saved as `.http`        | Make sure the file extension is `.http`, not `.txt` or `.js` |
 
 ---
 
-### 8.1 File Header
+## 6. JSDoc
 
-Add this at the top of each file:
+JSDoc is a way of documenting your code using structured comments. The comments you write above each function describe what it does, what parameters it expects, and what it returns. Good documentation makes your code easier to understand and maintain - for your future self as much as anyone else.
+
+You've already seen JSDoc used in the controller above. The format is:
 
 ```javascript
 /**
  * @file Manages all operations related to institutions
- * @author John Doe
+ * @author Your Name
  */
-```
 
-> `@fileoverview` or `@overview` can be used in place of `@file`.
-
----
-
-### 8.2 Function Comments
-
-```javascript
 /**
- * @description Creates a new institution
- * @param {object} req - The request object
- * @param {object} res - The response object
- * @returns {object} The response object
+ * @description What this function does
+ * @param {type} paramName - What this parameter is
+ * @returns {type} What gets returned
  */
-const createInstitution = async (req, res) => {
-  // ...
-};
 ```
 
-> **Note:** JSDoc is for documenting functions and files. For inline comments, use regular JavaScript `//` comments.
+Add JSDoc comments to every function you write from this week onwards.
 
 ---
 
 ## Exercises
 
-> **Note:** Complete as many tasks as you can. If short on time, prioritise earlier tasks.
-
 ### AI Usage Guidelines
-
-AI tools are encouraged but use them critically:
-
-- Refine your prompts - vague prompts yield vague responses
-- Validate AI output - don't trust it blindly
-- Acknowledge AI usage at the top of any AI-assisted file:
 
 ```javascript
 /**
@@ -669,81 +676,79 @@ AI tools are encouraged but use them critically:
  * @prompts
  * - "Your first prompt here"
  * - "Your second prompt here"
- * @usage Describe how you used the AI responses to help you with your work
+ * @usage Describe how you used the AI responses to help you
  */
 ```
 
 ---
 
-### Task 1 - Implement the Code Examples _(Easy)_
+### Task 1 - Build and Verify
 
-Implement all of the code examples covered above.
+Implement everything from the notes. Once it's running, use REST Client to complete the full CRUD cycle: create an institution, read it back, update it, then delete it.
+
+In a comment at the top of `controllers/institution.js`, answer:
+
+1. Why do we check if the institution exists before running `update` or `delete`? What would happen if we skipped that check?
+2. The `getInstitutions` controller returns a `404` when the array is empty. Some developers argue it should return `200` with an empty array instead. What do you think, and why?
 
 ---
 
-### Task 2 - Prisma Studio _(Easy)_
+### Task 2 - Optional Fields
 
-Prisma Studio is a visual editor for your database - you can view and edit records directly in the browser.
+Update the `Institution` model to add two optional fields - `website` and `emailAddress`:
 
-Add a new script to `package.json`:
-
-```json
-"prisma:studio": "npx prisma studio"
+```javascript
+model Institution {
+  // existing fields...
+  website      String?
+  emailAddress String?
+}
 ```
 
-📖 Reference: [Prisma Studio docs](https://www.prisma.io/docs/concepts/components/prisma-studio)
-
----
-
-### Task 3 - Optional Fields _(Easy)_
-
-Update the `Institution` model in `schema.prisma` to add two optional fields - `website` and `emailAddress`.
-
-> Optional fields in Prisma are defined by appending `?` to the type. E.g. `website String?`
+The `?` makes a field optional - Prisma will store `null` if no value is provided.
 
 After updating the schema:
 
-1. Create and apply a new migration with an appropriate name
-2. Update `controllers/institution.js` to handle `website` and `emailAddress`
-3. Test the updates in Postman
+1. Create and apply a migration with a descriptive name
+2. Update the controller to handle `website` and `emailAddress` in create and update operations
+3. Test using REST Client - verify you can create an institution with and without these fields
 
 ---
 
-### Task 4 - Selective Field Returns _(Easy)_
+### Task 3 - Selective Field Returns
 
-Prisma's `select` option lets you choose which fields are returned from a query.
-
-Update `createInstitution`, `getInstitutions`, `getInstitution`, and `updateInstitution` to exclude `createdAt` and `updatedAt` from responses. Example:
+Right now your API returns `createdAt` and `updatedAt` on every response. These are useful internally but often cluttered in API responses. Use Prisma's `select` option to return only the fields the client actually needs:
 
 ```javascript
-const institutions = await prisma.institution.findMany({
+const institution = await prisma.institution.findUnique({
+  where: { id },
   select: {
     id: true,
     name: true,
-    // add the fields you want here
+    // decide which fields to include
   },
 });
 ```
 
-Test in Postman - only your selected fields should appear in the response.
+Update `getInstitutions`, `getInstitution`, `createInstitution`, and `updateInstitution` to exclude `createdAt` and `updatedAt`.
+
+Think about: should `deleteInstitution` also use `select`? Why or why not?
 
 ---
 
-### Task 5 - Missing ID Handling _(Easy)_
+### Task 4 - Better Error Handling for Missing IDs
 
-Try sending a `PUT` or `DELETE` request to `http://localhost:3000/api/institutions/` without an ID. You'll see an unhelpful HTML error response.
+What happens right now if someone sends a `PUT` or `DELETE` request to `/api/institutions` without an ID? Try it using REST Client and observe the response.
 
-Fix this in `routes/institution.js` by adding fallback routes that return a proper JSON error:
+Add fallback routes in `routes/institution.js` to return a clear error in this case:
 
 ```javascript
-router.put("/:id", updateInstitution);
 router.put("/", (req, res) => {
   return res.status(400).json({
     message: "id is required in the URL parameter",
   });
 });
 
-router.delete("/:id", deleteInstitution);
 router.delete("/", (req, res) => {
   return res.status(400).json({
     message: "id is required in the URL parameter",
@@ -751,76 +756,18 @@ router.delete("/", (req, res) => {
 });
 ```
 
----
-
-### Task 6 - README Documentation _(Easy)_
-
-Update the `README.md` in your repository to document how to set up and run the project. Here's a suggested structure:
+These fallback routes must be placed **after** the `/:id` routes. Why does order matter here?
 
 ---
 
-# Project Title
+### Task 5 - Project README
 
-## Description
+Update the `README.md` at the root of your repository so that someone who has never seen your project can get it running. It should include:
 
-A brief description of the project.
+- A short description of what the project is
+- Prerequisites (Node.js, Docker)
+- Step-by-step setup instructions
+- How to run the development server
+- A table of all API endpoints with their method, URL, and description
 
-## Prerequisites
-
-- Node.js
-- Docker
-
-## Setup Instructions
-
-1. Clone the repository:
-
-   ```bash
-   git clone <repository-url>
-   ```
-
-2. Navigate to the project directory:
-
-   ```bash
-   cd <project-directory>
-   ```
-
-3. Install the dependencies:
-
-   ```bash
-   npm install
-   ```
-
-4. Copy the example environment variables file:
-
-   ```bash
-   npm run env:copy
-   ```
-
-5. Start the PostgreSQL Docker container:
-
-   ```bash
-   npm run docker:run:dev
-   ```
-
-6. Create and apply the database migrations:
-   ```bash
-   npm run prisma:migrate
-   ```
-
-## Running the Application
-
-```bash
-npm run dev
-```
-
-Navigate to `http://localhost:3000` in your browser.
-
-## API Endpoints
-
-| Method | Endpoint                | Description                 |
-| ------ | ----------------------- | --------------------------- |
-| POST   | `/api/institutions`     | Create a new institution    |
-| GET    | `/api/institutions`     | Get all institutions        |
-| GET    | `/api/institutions/:id` | Get an institution by ID    |
-| PUT    | `/api/institutions/:id` | Update an institution by ID |
-| DELETE | `/api/institutions/:id` | Delete an institution by ID |
+Write it for a developer who is competent but has no prior knowledge of your specific project.
