@@ -26,12 +26,12 @@ Here's how the pieces fit together:
 
 ```
 SvelteKit frontend
-      ↓ HTTP request
-  Express API
-      ↓ query
-    Prisma ORM
-      ↓ SQL
-  PostgreSQL database (running in Docker)
+  ↓ HTTP request
+Express API
+  ↓ query
+Prisma ORM
+  ↓ SQL
+PostgreSQL database (running in Docker)
 ```
 
 Each layer has one job. Your Express routes don't write SQL. Your database doesn't know about HTTP. Prisma sits in the middle and translates between them.

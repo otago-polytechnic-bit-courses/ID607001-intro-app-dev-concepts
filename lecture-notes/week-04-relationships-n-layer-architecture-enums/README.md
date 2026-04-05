@@ -120,35 +120,11 @@ const createDepartment = async (req, res) => {
 };
 
 const getDepartments = async (req, res) => {
-  try {
-    const departments = await prisma.department.findMany();
-
-    if (departments.length === 0) {
-      return res.status(404).json({ message: "No departments found" });
-    }
-
-    return res.status(200).json({ data: departments });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
+  // Same as getInstitutions - find all, return 404 if empty, then return data
 };
 
 const getDepartment = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const department = await prisma.department.findUnique({ where: { id } });
-
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-
-    return res.status(200).json({ data: department });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
+  // Same as getInstitution - find by ID, return 404 if not found, then return data
 };
 
 const updateDepartment = async (req, res) => {
@@ -182,25 +158,7 @@ const updateDepartment = async (req, res) => {
 };
 
 const deleteDepartment = async (req, res) => {
-  try {
-    const { id } = req.params;
-
-    const department = await prisma.department.findUnique({ where: { id } });
-
-    if (!department) {
-      return res.status(404).json({
-        message: `No department with the id: ${id} found`,
-      });
-    }
-
-    await prisma.department.delete({ where: { id } });
-
-    return res.status(200).json({
-      message: `Department with the id: ${id} successfully deleted`,
-    });
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
-  }
+  // Same as deleteInstitution - find by ID, return 404 if not found, then delete and return success message
 };
 
 export {
@@ -231,10 +189,7 @@ import {
 const router = express.Router();
 
 router.post("/", createDepartment);
-router.get("/", getDepartments);
-router.get("/:id", getDepartment);
-router.put("/:id", updateDepartment);
-router.delete("/:id", deleteDepartment);
+// Same pattern as institution routes - GET / for all, GET /:id for one, PUT /:id to update, DELETE /:id to delete
 
 export default router;
 ```
