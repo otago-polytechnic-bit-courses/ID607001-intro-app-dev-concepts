@@ -186,7 +186,7 @@ describe("Institution Controller", () => {
   // Reset all stubs after each test so they don't affect the next one
   afterEach(() => sinon.restore());
 
-  // ─── CREATE ───────────────────────────────────────────────────────────────
+  // Create
 
   describe("createInstitution", () => {
     it("should return 201 and the created institution", async () => {
@@ -223,7 +223,7 @@ describe("Institution Controller", () => {
     });
   });
 
-  // ─── READ ALL ─────────────────────────────────────────────────────────────
+  // Read all
 
   describe("getInstitutions", () => {
     it("should return 200 and all institutions", async () => {
@@ -282,7 +282,7 @@ describe("Institution Controller", () => {
     });
   });
 
-  // ─── READ ONE ─────────────────────────────────────────────────────────────
+  // Read one
 
   describe("getInstitution", () => {
     it("should return 200 and the matching institution", async () => {
@@ -313,7 +313,7 @@ describe("Institution Controller", () => {
     });
   });
 
-  // ─── UPDATE ───────────────────────────────────────────────────────────────
+  // Update
 
   describe("updateInstitution", () => {
     it("should return 200 and the updated institution", async () => {
@@ -349,7 +349,7 @@ describe("Institution Controller", () => {
     });
   });
 
-  // ─── DELETE ───────────────────────────────────────────────────────────────
+  // Delete
 
   describe("deleteInstitution", () => {
     it("should return 200 and a success message", async () => {

@@ -4,7 +4,7 @@
 
 |              | Link                                                                                                                                   |
 | ------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| Previous     | [Week 04 - Relationships, N-Layer Architecture and Enums](../week-04-relationships-n-layer-architecture-enums/README.md) |
+| Previous     | [Week 04 - Relationships, N-Layer Architecture and Enums](../week-04-content-negotiation-relationships-n-layer-architecture/README.md) |
 | Code Example | [Code Example](code-example)                                                                                                           |
 | Next         | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md)                                       |
 
@@ -20,7 +20,7 @@ git checkout -b w05-validation-seeding-query-params-deployment
 
 ## The big picture
 
-Your API currently trusts whatever the client sends. Send a POST with no body - it'll try to create a record with `undefined` fields. Send a number where a string belongs - Prisma might accept it, or throw a confusing 500.
+Your API currently trusts whatever the client sends. Send a POST with no body — it'll try to create a record with `undefined` fields. Send a number where a string belongs — Prisma might accept it, or throw a confusing 500.
 
 This week you'll add **validation** so bad data is caught and rejected before it reaches the database, **seeding** so you always have realistic data to work with during development, and **query parameters** so clients can filter and paginate results instead of receiving everything at once. You'll also **deploy** your API so it's accessible on the internet.
 
@@ -35,7 +35,7 @@ chmod +x application-setup.sh
 ./application-setup.sh
 ```
 
-It handles checking for dependencies, starting Docker, copying environment variables, installing packages, and running migrations - the sequence you'd otherwise run manually every time you set up a new machine.
+It handles checking for dependencies, starting Docker, copying environment variables, installing packages, and running migrations — the sequence you'd otherwise run manually every time you set up a new machine.
 
 ---
 
@@ -48,12 +48,12 @@ The flow is:
 ```
 Client sends request
       ↓
-Validation middleware - is the data valid?
+Validation middleware — is the data valid?
       ├── No  → 409 response with a clear error message, request stops here
       └── Yes → passes to the controller
 ```
 
-You'll use **Joi** - a popular schema-based validation library for Node.js.
+You'll use **Joi** — a popular schema-based validation library for Node.js.
 
 ```bash
 npm install joi
@@ -121,7 +121,7 @@ const validatePostInstitution = (req, res, next) => {
 };
 ```
 
-PUT validation is slightly different - none of the fields are required, but at least one must be provided:
+PUT validation is slightly different — none of the fields are required, but at least one must be provided:
 
 ```javascript
 /**
@@ -147,7 +147,7 @@ const validatePutInstitution = (req, res, next) => {
       "string.min": "country should have a minimum length of {#limit}",
       "string.max": "country should have a maximum length of {#limit}",
     }),
-  }).min(1); // Reject empty bodies - at least one field must be present
+  }).min(1); // Reject empty bodies — at least one field must be present
 
   const { error } = institutionSchema.validate(req.body, {
     abortEarly: false,
@@ -168,7 +168,7 @@ const validatePutInstitution = (req, res, next) => {
 export { validatePostInstitution, validatePutInstitution };
 ```
 
-Why `409 Conflict` and not `400 Bad Request`? Both are reasonable choices. `400` is more common for malformed requests, `409` signals a conflict with the current state. Your team or project brief will usually specify which to use - what matters most is being consistent across your API.
+Why `409 Conflict` and not `400 Bad Request`? Both are reasonable choices. `400` is more common for malformed requests, `409` signals a conflict with the current state. Your team or project brief will usually specify which to use — what matters most is being consistent across your API.
 
 ---
 
@@ -206,7 +206,7 @@ const someSchema = Joi.object({
 
 ### 2.3 Wiring Validation into the Router
 
-Validation middleware sits between the route definition and the controller - it runs first and either rejects the request or calls `next()` to continue.
+Validation middleware sits between the route definition and the controller — it runs first and either rejects the request or calls `next()` to continue.
 
 Update `routes/institution.js`:
 
@@ -274,13 +274,13 @@ Expected response for the first request (`409 Conflict`):
 }
 ```
 
-Notice that both errors are returned at once - that's `abortEarly: false` at work. Without it, only the first error would be returned, and the client would have to fix and resubmit repeatedly.
+Notice that both errors are returned at once — that's `abortEarly: false` at work. Without it, only the first error would be returned, and the client would have to fix and resubmit repeatedly.
 
 ---
 
 ## 3. Seeding
 
-Seeding populates your database with sample data. During development this is invaluable - instead of manually creating records through the API every time you reset the database, a seed script does it automatically.
+Seeding populates your database with sample data. During development this is invaluable — instead of manually creating records through the API every time you reset the database, a seed script does it automatically.
 
 ---
 
@@ -322,7 +322,7 @@ export const seedInstitutions = async () => {
 
     const institutionData = [
       {
-        country: "New Zealand", // Invalid - missing name and region (intentional for demo)
+        country: "New Zealand", // Invalid — missing name and region (intentional for demo)
       },
       {
         name: "Otago Polytechnic",
@@ -378,7 +378,7 @@ seedInstitutions().then((report) => {
 });
 ```
 
-The `validateInstitution` helper reuses your existing validation middleware by simulating the `req`, `res`, and `next` objects it expects. This means your seed data goes through the same validation rules as API requests - invalid records are skipped and logged rather than crashing the whole script.
+The `validateInstitution` helper reuses your existing validation middleware by simulating the `req`, `res`, and `next` objects it expects. This means your seed data goes through the same validation rules as API requests — invalid records are skipped and logged rather than crashing the whole script.
 
 ---
 
@@ -420,7 +420,7 @@ Add a `prisma` key to `package.json` (at the top level, alongside `scripts`):
 }
 ```
 
-Now `npx prisma db seed` runs all your seed scripts, and `npx prisma migrate reset` automatically seeds after resetting - no extra steps.
+Now `npx prisma db seed` runs all your seed scripts, and `npx prisma migrate reset` automatically seeds after resetting — no extra steps.
 
 ---
 
@@ -440,16 +440,11 @@ Multiple parameters are separated by `&`. The server reads them from `req.query`
 
 ### 4.1 Query Validation Middleware
 
-You can validate query parameters with Joi the same way you validate request bodies - the only differences are where you read from (`req.query` instead of `req.body`) and two important option changes.
+You can validate query parameters with Joi the same way you validate request bodies — the only differences are where you read from (`req.query` instead of `req.body`) and two important option changes.
 
-Create `middleware/validation/institutionQuery.js`:
+In
 
 ```javascript
-import Joi from "joi";
-
-/**
- * @description Validates query parameters for GET /api/institutions
- */
 const validateGetInstitutions = (req, res, next) => {
   const querySchema = Joi.object({
     name: Joi.string().min(3).max(100).optional(),
@@ -477,7 +472,7 @@ const validateGetInstitutions = (req, res, next) => {
 
   const { error } = querySchema.validate(req.query, {
     abortEarly: false,
-    convert: true, // Query params always arrive as strings - convert lets Joi coerce "2" → 2
+    convert: true,
   });
 
   if (error) {
@@ -490,16 +485,15 @@ const validateGetInstitutions = (req, res, next) => {
 
   next();
 };
-
-export default validateGetInstitutions;
 ```
 
 Two things differ from body validation:
 
-- **`convert: true`** - query params always arrive as strings, even numbers. `?page=2` gives you `"2"`, not `2`. With `convert: true`, Joi coerces `"2"` to `2` before validating, so `Joi.number()` works correctly. Body validation uses `convert: false` because a JSON body already has proper types.
-- **`400` instead of `409`** - a bad query param is a malformed request, not a conflict.
+- **`convert: true`** — query params always arrive as strings, even numbers. `?page=2` gives you `"2"`, not `2`. With `convert: true`, Joi coerces `"2"` to `2` before validating, so `Joi.number()` works correctly. Body validation uses `convert: false` because a JSON body already has proper types.
+- **`req.query = value`** — Joi returns the coerced output in `value`, but it does not mutate `req.query` automatically. Without reassigning it, `page` and `pageSize` would still be strings by the time the controller reads them, causing `skip` and `take` to receive `NaN`.
+- **`400` instead of `409`** — a bad query param is a malformed request, not a conflict.
 
-Using `.valid()` for `sortBy` and `sortOrder` means Joi handles the whitelist - you get a clear error message for invalid values rather than a silent fallback in the controller.
+Using `.valid()` for `sortBy` and `sortOrder` means Joi handles the whitelist — you get a clear error message for invalid values rather than a silent fallback in the controller.
 
 Wire it into the router:
 
@@ -517,57 +511,68 @@ The `findAll()` method needs to accept filter, sort, and pagination options and 
 
 ```javascript
 async findAll(
-  filters = {},
-  sortBy = "id",
-  sortOrder = "asc",
-  page = 1,
-  pageSize = 10
-) {
-  const totalCount = await prisma.institution.count({ where: filters });
-  const totalPages = Math.ceil(totalCount / pageSize);
-
-  // Build a dynamic WHERE clause - strings use partial match, other types use exact match
-  const where = {};
-  for (const [key, value] of Object.entries(filters)) {
-    if (value !== undefined && value !== null && value !== "") {
-      if (typeof value === "string") {
-        where[key] = { contains: value };
-      } else {
-        where[key] = { equals: value };
+    filters = {},
+    sortBy = "id",
+    sortOrder = "asc",
+    page = 1,
+    pageSize,
+  ) { 
+    // Build a dynamic WHERE clause - strings use partial match, other types use exact match
+    const where = {};
+    for (const [key, value] of Object.entries(filters)) {
+      if (value !== undefined && value !== null && value !== "") {
+        if (typeof value === "string") {
+          where[key] = { contains: value };
+        } else {
+          where[key] = { equals: value };
+        }
       }
     }
-  }
 
-  const institutions = await prisma.institution.findMany({
-    where,
-    orderBy: { [sortBy]: sortOrder },
-    skip: (page - 1) * pageSize,
-    take: pageSize,
-  });
+    const parsedPage = parseInt(page, 10);
+    const parsedPageSize = parseInt(pageSize, 10) || 10;
 
-  return {
-    data: institutions,
-    pagination: {
-      currentPage: page,
-      pageSize,
+    const institutions = await prisma.institution.findMany({
+      where,
+      orderBy: { [sortBy]: sortOrder },
+      skip: (parsedPage - 1) * parsedPageSize,
+      take: parsedPageSize,
+    });
+
+    const totalCount = await prisma.institution.count({ where });
+    const totalPages = Math.ceil(totalCount / parsedPageSize);
+
+    const pagination = {
+      currentPage: parsedPage,
+      pageSize: parsedPageSize,
       totalCount,
       totalPages,
-      nextPage: page < totalPages ? page + 1 : null,
-      prevPage: page > 1 ? page - 1 : null,
-    },
-  };
-}
+    };
+
+    if (parsedPage < totalPages) {
+      pagination.nextPage = parsedPage + 1;
+    }
+
+    if (parsedPage > 1) {
+      pagination.prevPage = parsedPage - 1;
+    }
+
+    return {
+      data: institutions,
+      pagination,
+    };
+  }
 ```
 
-`skip` and `take` are how Prisma handles pagination - skip the first N records, then take the next M. For page 2 with 10 results per page: skip 10, take 10.
+`skip` and `take` are how Prisma handles pagination — skip the first N records, then take the next M. For page 2 with 10 results per page: skip 10, take 10.
 
-Note that `page` and `pageSize` are now numbers, not strings - Joi's `convert: true` already handled the coercion before the request reaches the controller.
+Note that `page` and `pageSize` are now numbers, not strings — Joi's `convert: true` already handled the coercion before the request reaches the controller.
 
 ---
 
 ### 4.3 Update the Controller
 
-Because Joi now handles validation and type coercion, the controller is much cleaner - no whitelist logic needed:
+Because Joi now handles validation and type coercion, the controller is much cleaner — no whitelist logic needed:
 
 ```javascript
 const getInstitutions = async (req, res) => {
@@ -576,10 +581,10 @@ const getInstitutions = async (req, res) => {
       name,
       region,
       country,
-      sortBy = "id",
-      sortOrder = "asc",
-      page = 1,
-      pageSize = 10,
+      sortBy,
+      sortOrder,
+      page,
+      pageSize,
     } = req.query;
 
     const filters = {};
@@ -613,9 +618,9 @@ const getInstitutions = async (req, res) => {
 
 | Parameter   | Description                | Default | Example                |
 | ----------- | -------------------------- | ------- | ---------------------- |
-| `name`      | Partial match on name      | -       | `?name=otago`          |
-| `region`    | Partial match on region    | -       | `?region=Otago`        |
-| `country`   | Partial match on country   | -       | `?country=New Zealand` |
+| `name`      | Partial match on name      | —       | `?name=otago`          |
+| `region`    | Partial match on region    | —       | `?region=Otago`        |
+| `country`   | Partial match on country   | —       | `?country=New Zealand` |
 | `sortBy`    | Field to sort by           | `id`    | `?sortBy=name`         |
 | `sortOrder` | `asc` or `desc`            | `asc`   | `?sortOrder=desc`      |
 | `page`      | Page number (min 1)        | `1`     | `?page=2`              |
@@ -658,7 +663,6 @@ A paginated response includes a `pagination` object alongside the data:
     "totalCount": 5,
     "totalPages": 3,
     "nextPage": 2,
-    "prevPage": null
   }
 }
 ```
@@ -683,10 +687,10 @@ Note the difference between two Prisma migration commands:
 
 | Command                     | When to use                                                             |
 | --------------------------- | ----------------------------------------------------------------------- |
-| `npx prisma migrate dev`    | Development only - creates migration files and applies them             |
-| `npx prisma migrate deploy` | Production - applies existing migration files without creating new ones |
+| `npx prisma migrate dev`    | Development only — creates migration files and applies them             |
+| `npx prisma migrate deploy` | Production — applies existing migration files without creating new ones |
 
-In production you never want to generate new migrations - only apply the ones that already exist in your repository.
+In production you never want to generate new migrations — only apply the ones that already exist in your repository.
 
 ---
 
@@ -695,7 +699,7 @@ In production you never want to generate new migrations - only apply the ones th
 1. Sign up at [dashboard.render.com/register](https://dashboard.render.com/register) using your GitHub account
 2. Click **New +** → **PostgreSQL**
 3. Give it a name, leave Instance Type as **Free**, click **Create Database**
-4. Copy the **External Database URL** - you'll need it shortly
+4. Copy the **External Database URL** — you'll need it shortly
 
 ---
 
@@ -712,7 +716,7 @@ In production you never want to generate new migrations - only apply the ones th
 4. Under **Environment Variables**, add `DATABASE_URL` and paste the External Database URL from the previous step
 5. Click **Deploy Web Service**
 
-> The free tier spins down after inactivity. The first request after a period of quiet may take 30–60 seconds - this is normal.
+> The free tier spins down after inactivity. The first request after a period of quiet may take 30–60 seconds — this is normal.
 
 📖 Reference: [Render docs](https://render.com/docs)
 
@@ -770,7 +774,7 @@ Test it by sending a request to a non-existent route like `GET /api/nonexistent`
 
 ### Task 3 - Endpoints List
 
-Add a `GET /api/endpoints` route that returns a list of all available endpoints in your API - their HTTP methods and paths. Write the list by hand rather than introspecting Express's router.
+Add a `GET /api/endpoints` route that returns a list of all available endpoints in your API — their HTTP methods and paths. Write the list by hand rather than introspecting Express's router.
 
 Think about: where does this route belong? Is it a new controller and router file, or does it fit somewhere that already exists?
 
@@ -807,7 +811,7 @@ Create seed scripts for `Department`, `Course`, and `User`. Each script should:
 - Reuse your existing validation middleware to skip invalid records rather than crashing
 - Add itself to `prisma/seed.js` so it runs as part of the full seed
 
-Think about the order seeds need to run in - you can't seed departments before institutions exist.
+Think about the order seeds need to run in — you can't seed departments before institutions exist.
 
 ---
 

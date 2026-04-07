@@ -431,9 +431,9 @@ console.log(average); // 86.6
 ```javascript
 const fruits = ["apple", "banana", "apple", "orange", "banana", "apple"];
 
-const counts = fruits.reduce((tally, fruit) => {
-  tally[fruit] = (tally[fruit] || 0) + 1;
-  return tally;
+const counts = fruits.reduce((acc, fruit) => {
+  acc[fruit] = (acc[fruit] || 0) + 1;
+  return acc;
 }, {});
 
 console.log(counts); // { apple: 3, banana: 2, orange: 1 }
@@ -453,8 +453,8 @@ JavaScript handles waiting with **Promises**. `async/await` is the modern, reada
 
 ```javascript
 // This does NOT wait for the fetch to finish before logging
-const response = fetch("https://api.example.com/users");
-console.log(response); // Promise { <pending> } - not the data you wanted
+const res = fetch("https://api.example.com/users");
+console.log(res); // Promise { <pending> } - not the data you wanted
 ```
 
 **The solution - `async/await`:**
@@ -462,8 +462,8 @@ console.log(response); // Promise { <pending> } - not the data you wanted
 ```javascript
 // Mark the function as async
 const getUsers = async () => {
-  const response = await fetch("https://api.example.com/users"); // wait here
-  const data = await response.json(); // wait here too
+  const res = await fetch("https://api.example.com/users"); // wait here
+  const data = await res.json(); // wait here too
   console.log(data); // now this is the actual data
 };
 
@@ -475,11 +475,11 @@ getUsers();
 ```javascript
 const getUsers = async () => {
   try {
-    const response = await fetch("https://api.example.com/users");
-    const data = await response.json();
+    const res = await fetch("https://api.example.com/users");
+    const data = await res.json();
     return data;
-  } catch (error) {
-    console.error("Something went wrong:", error);
+  } catch (err) {
+    console.log(err);
   }
 };
 ```
