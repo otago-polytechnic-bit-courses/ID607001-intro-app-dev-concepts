@@ -2,11 +2,11 @@
 
 ## Navigation
 
-|              | Link                                                                                                 |
-| ------------ | ---------------------------------------------------------------------------------------------------- |
+|              | Link                                                                                             |
+| ------------ | ------------------------------------------------------------------------------------------------ |
 | Previous     | [Week 06 - Security, Authentication and RBAC](../week-06-security-authentication-rbac/README.md) |
-| Code Example | [Code Example](code-example)                                                                         |
-| Next         | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)           |
+| Code Example | [Code Example](code-example)                                                                     |
+| Next         | [Week 08 - Vite, SvelteKit and Deployment](../week-08-vite-sveltekit-deployment/README.md)       |
 
 ---
 
@@ -30,10 +30,10 @@ This week you'll automate that verification with **unit tests**. Instead of test
 
 You'll use three libraries together:
 
-| Library   | Role                                                              |
-| --------- | ----------------------------------------------------------------- |
-| **Mocha** | Test runner - organises tests into suites and runs them           |
-| **Chai**  | Assertion library - verifies that values match expectations       |
+| Library   | Role                                                               |
+| --------- | ------------------------------------------------------------------ |
+| **Mocha** | Test runner - organises tests into suites and runs them            |
+| **Chai**  | Assertion library - verifies that values match expectations        |
 | **Sinon** | Mocking library - replaces real dependencies with controlled fakes |
 
 ```bash
@@ -46,12 +46,12 @@ npm install chai mocha sinon --save-dev
 
 It's worth understanding the distinction before writing any code:
 
-| | Unit tests | Integration tests |
-|---|---|---|
+|                    | Unit tests                | Integration tests               |
+| ------------------ | ------------------------- | ------------------------------- |
 | **What they test** | One function in isolation | Multiple parts working together |
-| **Dependencies** | Mocked (fakes) | Real (actual database, server) |
-| **Speed** | Very fast | Slower |
-| **Setup needed** | None | Running database, migrations |
+| **Dependencies**   | Mocked (fakes)            | Real (actual database, server)  |
+| **Speed**          | Very fast                 | Slower                          |
+| **Setup needed**   | None                      | Running database, migrations    |
 
 Unit tests are what you'll write this week. Each test calls a single controller function and asserts the right response was sent - without a real database, without a running Express server, without Docker.
 
@@ -71,11 +71,11 @@ Create `.mocharc.json` in your `backend/` directory:
 }
 ```
 
-| Option    | Purpose                                                     |
-| --------- | ----------------------------------------------------------- |
-| `spec`    | Glob pattern that tells Mocha which files are tests         |
-| `timeout` | Maximum milliseconds a single test can take before failing  |
-| `exit`    | Forces Mocha to exit cleanly after all tests complete       |
+| Option    | Purpose                                                    |
+| --------- | ---------------------------------------------------------- |
+| `spec`    | Glob pattern that tells Mocha which files are tests        |
+| `timeout` | Maximum milliseconds a single test can take before failing |
+| `exit`    | Forces Mocha to exit cleanly after all tests complete      |
 
 Add a test script to `package.json`:
 
@@ -91,12 +91,12 @@ Add a test script to `package.json`:
 
 Mocha gives you hooks to run setup and teardown code around your tests:
 
-| Hook           | When it runs                                  |
-| -------------- | --------------------------------------------- |
-| `before()`     | Once before all tests in a `describe` block   |
-| `after()`      | Once after all tests in a `describe` block    |
-| `beforeEach()` | Before every individual `it()` test           |
-| `afterEach()`  | After every individual `it()` test            |
+| Hook           | When it runs                                |
+| -------------- | ------------------------------------------- |
+| `before()`     | Once before all tests in a `describe` block |
+| `after()`      | Once after all tests in a `describe` block  |
+| `beforeEach()` | Before every individual `it()` test         |
+| `afterEach()`  | After every individual `it()` test          |
 
 You'll use `beforeEach` to reset your mocks between tests, so one test's behaviour doesn't leak into the next.
 
@@ -122,14 +122,14 @@ This lets you test your controller logic independently of the database. You can 
 
 Sinon's key methods:
 
-| Method | What it does |
-|---|---|
-| `sinon.stub(obj, 'method')` | Replaces `obj.method` with a controllable fake |
-| `stub.resolves(value)` | Makes the stub return a resolved Promise with `value` |
-| `stub.rejects(error)` | Makes the stub return a rejected Promise |
-| `stub.restore()` | Puts the original function back |
-| `sinon.assert.calledOnce(stub)` | Asserts the stub was called exactly once |
-| `sinon.assert.calledWith(stub, arg)` | Asserts the stub was called with specific arguments |
+| Method                               | What it does                                          |
+| ------------------------------------ | ----------------------------------------------------- |
+| `sinon.stub(obj, 'method')`          | Replaces `obj.method` with a controllable fake        |
+| `stub.resolves(value)`               | Makes the stub return a resolved Promise with `value` |
+| `stub.rejects(error)`                | Makes the stub return a rejected Promise              |
+| `stub.restore()`                     | Puts the original function back                       |
+| `sinon.assert.calledOnce(stub)`      | Asserts the stub was called exactly once              |
+| `sinon.assert.calledWith(stub, arg)` | Asserts the stub was called with specific arguments   |
 
 ---
 
@@ -161,6 +161,7 @@ const mockRes = () => {
 Create `tests/00-institution.test.js`.
 
 The full pattern for every test is:
+
 1. Set up what the repository stub should return
 2. Call the controller with mock req and res
 3. Assert the right status code and response body were sent
@@ -173,7 +174,11 @@ import * as institutionController from "../controllers/institution.js";
 import institutionRepository from "../repositories/institution.js";
 
 // Helpers
-const mockReq = (body = {}, params = {}, query = {}) => ({ body, params, query });
+const mockReq = (body = {}, params = {}, query = {}) => ({
+  body,
+  params,
+  query,
+});
 
 const mockRes = () => {
   const res = {};
@@ -199,7 +204,11 @@ describe("Institution Controller", () => {
 
       sinon.stub(institutionRepository, "create").resolves(created);
 
-      const req = mockReq({ name: "Otago Polytechnic", region: "Otago", country: "New Zealand" });
+      const req = mockReq({
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      });
       const res = mockRes();
 
       await institutionController.createInstitution(req, res);
@@ -212,9 +221,15 @@ describe("Institution Controller", () => {
     });
 
     it("should return 500 when the repository throws", async () => {
-      sinon.stub(institutionRepository, "create").rejects(new Error("DB error"));
+      sinon
+        .stub(institutionRepository, "create")
+        .rejects(new Error("DB error"));
 
-      const req = mockReq({ name: "Otago Polytechnic", region: "Otago", country: "New Zealand" });
+      const req = mockReq({
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      });
       const res = mockRes();
 
       await institutionController.createInstitution(req, res);
@@ -228,8 +243,18 @@ describe("Institution Controller", () => {
   describe("getInstitutions", () => {
     it("should return 200 and all institutions", async () => {
       const institutions = [
-        { id: "abc-123", name: "Otago Polytechnic", region: "Otago", country: "New Zealand" },
-        { id: "def-456", name: "Southern Institute of Technology", region: "Southland", country: "New Zealand" },
+        {
+          id: "abc-123",
+          name: "Otago Polytechnic",
+          region: "Otago",
+          country: "New Zealand",
+        },
+        {
+          id: "def-456",
+          name: "Southern Institute of Technology",
+          region: "Southland",
+          country: "New Zealand",
+        },
       ];
 
       // findAll returns the shape your controller expects from the repository
@@ -259,7 +284,14 @@ describe("Institution Controller", () => {
     it("should return 404 when no institutions exist", async () => {
       sinon.stub(institutionRepository, "findAll").resolves({
         data: [],
-        pagination: { currentPage: 1, pageSize: 10, totalCount: 0, totalPages: 0, nextPage: null, prevPage: null },
+        pagination: {
+          currentPage: 1,
+          pageSize: 10,
+          totalCount: 0,
+          totalPages: 0,
+          nextPage: null,
+          prevPage: null,
+        },
       });
 
       const req = mockReq({}, {}, {});
@@ -271,7 +303,9 @@ describe("Institution Controller", () => {
     });
 
     it("should return 500 when the repository throws", async () => {
-      sinon.stub(institutionRepository, "findAll").rejects(new Error("DB error"));
+      sinon
+        .stub(institutionRepository, "findAll")
+        .rejects(new Error("DB error"));
 
       const req = mockReq({}, {}, {});
       const res = mockRes();
@@ -286,7 +320,12 @@ describe("Institution Controller", () => {
 
   describe("getInstitution", () => {
     it("should return 200 and the matching institution", async () => {
-      const institution = { id: "abc-123", name: "Otago Polytechnic", region: "Otago", country: "New Zealand" };
+      const institution = {
+        id: "abc-123",
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      };
 
       sinon.stub(institutionRepository, "findById").resolves(institution);
 
@@ -317,15 +356,23 @@ describe("Institution Controller", () => {
 
   describe("updateInstitution", () => {
     it("should return 200 and the updated institution", async () => {
-      const existing = { id: "abc-123", name: "Otago Polytechnic", region: "Otago", country: "New Zealand" };
-      const updated = { ...existing, name: "Otago Polytechnic Te Kura Matatini ki Otago" };
+      const existing = {
+        id: "abc-123",
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      };
+      const updated = {
+        ...existing,
+        name: "Otago Polytechnic Te Kura Matatini ki Otago",
+      };
 
       sinon.stub(institutionRepository, "findById").resolves(existing);
       sinon.stub(institutionRepository, "update").resolves(updated);
 
       const req = mockReq(
         { name: "Otago Polytechnic Te Kura Matatini ki Otago" },
-        { id: "abc-123" }
+        { id: "abc-123" },
       );
       const res = mockRes();
 
@@ -334,7 +381,9 @@ describe("Institution Controller", () => {
       expect(res.status.calledWith(200)).to.be.true;
 
       const body = res.json.firstCall.args[0];
-      expect(body.data.name).to.equal("Otago Polytechnic Te Kura Matatini ki Otago");
+      expect(body.data.name).to.equal(
+        "Otago Polytechnic Te Kura Matatini ki Otago",
+      );
     });
 
     it("should return 404 when the institution does not exist", async () => {
@@ -353,7 +402,12 @@ describe("Institution Controller", () => {
 
   describe("deleteInstitution", () => {
     it("should return 200 and a success message", async () => {
-      const existing = { id: "abc-123", name: "Otago Polytechnic", region: "Otago", country: "New Zealand" };
+      const existing = {
+        id: "abc-123",
+        name: "Otago Polytechnic",
+        region: "Otago",
+        country: "New Zealand",
+      };
 
       sinon.stub(institutionRepository, "findById").resolves(existing);
       sinon.stub(institutionRepository, "delete").resolves();
@@ -404,12 +458,12 @@ c8 uses Node's built-in V8 engine - no code changes or instrumentation needed.
 
 ### 4.1 Coverage Metrics
 
-| Metric         | What it measures                                            |
-| -------------- | ----------------------------------------------------------- |
-| **Statements** | Individual executable statements that were run              |
-| **Branches**   | Both sides of every `if/else`, ternary, and `&&`/`\|\|`    |
-| **Functions**  | Functions that were called at least once                    |
-| **Lines**      | Physical lines of code that were executed                   |
+| Metric         | What it measures                                        |
+| -------------- | ------------------------------------------------------- |
+| **Statements** | Individual executable statements that were run          |
+| **Branches**   | Both sides of every `if/else`, ternary, and `&&`/`\|\|` |
+| **Functions**  | Functions that were called at least once                |
+| **Lines**      | Physical lines of code that were executed               |
 
 **Branch coverage** is the most revealing metric. A controller with a `try/catch` has at least two branches - the happy path and the error path. If your tests never trigger the catch block, branch coverage will show it.
 
@@ -422,7 +476,11 @@ Create `backend/.c8rc`:
 ```json
 {
   "reporter": ["text", "html"],
-  "include": ["controllers/**/*.js", "middleware/**/*.js", "repositories/**/*.js"],
+  "include": [
+    "controllers/**/*.js",
+    "middleware/**/*.js",
+    "repositories/**/*.js"
+  ],
   "exclude": ["tests/**", "prisma/**", "node_modules/**"],
   "branches": 80,
   "lines": 80,

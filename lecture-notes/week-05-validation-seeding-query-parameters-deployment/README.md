@@ -442,7 +442,7 @@ Multiple parameters are separated by `&`. The server reads them from `req.query`
 
 You can validate query parameters with Joi the same way you validate request bodies — the only differences are where you read from (`req.query` instead of `req.body`) and two important option changes.
 
-In
+In `middleware/validation/institution.js`:
 
 ```javascript
 const validateGetInstitutions = (req, res, next) => {
@@ -490,7 +490,6 @@ const validateGetInstitutions = (req, res, next) => {
 Two things differ from body validation:
 
 - **`convert: true`** — query params always arrive as strings, even numbers. `?page=2` gives you `"2"`, not `2`. With `convert: true`, Joi coerces `"2"` to `2` before validating, so `Joi.number()` works correctly. Body validation uses `convert: false` because a JSON body already has proper types.
-- **`req.query = value`** — Joi returns the coerced output in `value`, but it does not mutate `req.query` automatically. Without reassigning it, `page` and `pageSize` would still be strings by the time the controller reads them, causing `skip` and `take` to receive `NaN`.
 - **`400` instead of `409`** — a bad query param is a malformed request, not a conflict.
 
 Using `.valid()` for `sortBy` and `sortOrder` means Joi handles the whitelist — you get a clear error message for invalid values rather than a silent fallback in the controller.
@@ -498,7 +497,10 @@ Using `.valid()` for `sortBy` and `sortOrder` means Joi handles the whitelist �
 Wire it into the router:
 
 ```javascript
-import validateGetInstitutions from "../middleware/validation/institutionQuery.js";
+import {
+  // Other imports
+  validateGetInstitutions,
+} from "../middleware/validation/institution.js";
 
 router.get("/", validateGetInstitutions, getInstitutions);
 ```
@@ -516,7 +518,7 @@ async findAll(
     sortOrder = "asc",
     page = 1,
     pageSize,
-  ) { 
+  ) {
     // Build a dynamic WHERE clause - strings use partial match, other types use exact match
     const where = {};
     for (const [key, value] of Object.entries(filters)) {
@@ -577,15 +579,8 @@ Because Joi now handles validation and type coercion, the controller is much cle
 ```javascript
 const getInstitutions = async (req, res) => {
   try {
-    const {
-      name,
-      region,
-      country,
-      sortBy,
-      sortOrder,
-      page,
-      pageSize,
-    } = req.query;
+    const { name, region, country, sortBy, sortOrder, page, pageSize } =
+      req.query;
 
     const filters = {};
     if (name) filters.name = name;
