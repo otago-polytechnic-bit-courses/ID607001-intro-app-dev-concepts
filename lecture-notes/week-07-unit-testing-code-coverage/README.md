@@ -65,7 +65,7 @@ Create `.mocharc.json` in your `backend/` directory:
 
 ```json
 {
-  "spec": "tests/**/*.test.js",
+  "spec": "tests/unit/**/*.test.js",
   "timeout": 10000,
   "exit": true
 }
@@ -107,10 +107,20 @@ You'll use `beforeEach` to reset your mocks between tests, so one test's behavio
 ```
 backend/
 ├── .mocharc.json
+├── .c8rc
 └── tests/
-    ├── 00-institution.test.js
-    └── 01-department.test.js
+    ├── mocks/
+    │   ├── institution.mock.js
+    │   └── department.mock.js
+    └── unit/
+        ├── 00-institution.test.js
+        ├── 01-department.test.js
+        ├── 02-auth.test.js
+        ├── 03-jwtAuth.test.js
+        └── 04-rbac.test.js
 ```
+
+The `mocks/` folder holds shared helpers - mock request/response factories and repository stubs - so you don't repeat them in every test file. The `unit/` folder holds the actual test suites. A future `integration/` folder will sit alongside `unit/` when you reach that stage.
 
 ---
 
@@ -156,9 +166,45 @@ const mockRes = () => {
 
 ---
 
+### 2.2 Shared Mock Helpers
+
+Rather than redefining `mockReq`, `mockRes`, and repository stubs in every test file, extract them into `tests/mocks/`. Each file in that folder owns the helpers for one domain.
+
+**`tests/mocks/institution.mock.js`**
+
+```javascript
+import sinon from "sinon";
+import institutionRepository from "../../repositories/institution.js";
+
+export const mockReq = (body = {}, params = {}, query = {}) => ({
+  body,
+  params,
+  query,
+});
+
+export const mockRes = () => {
+  const res = {};
+  res.status = sinon.stub().returns(res);
+  res.json = sinon.stub().returns(res);
+  return res;
+};
+
+export const stubInstitutionRepo = () => ({
+  create:   sinon.stub(institutionRepository, "create"),
+  findAll:  sinon.stub(institutionRepository, "findAll"),
+  findById: sinon.stub(institutionRepository, "findById"),
+  update:   sinon.stub(institutionRepository, "update"),
+  delete:   sinon.stub(institutionRepository, "delete"),
+});
+```
+
+Import from here in your test files instead of redeclaring the helpers each time.
+
+---
+
 ## 3. Institution Controller Tests
 
-Create `tests/00-institution.test.js`.
+Create `tests/unit/00-institution.test.js`.
 
 The full pattern for every test is:
 
@@ -170,22 +216,9 @@ The full pattern for every test is:
 import { expect } from "chai";
 import sinon from "sinon";
 
-import * as institutionController from "../controllers/institution.js";
-import institutionRepository from "../repositories/institution.js";
-
-// Helpers
-const mockReq = (body = {}, params = {}, query = {}) => ({
-  body,
-  params,
-  query,
-});
-
-const mockRes = () => {
-  const res = {};
-  res.status = sinon.stub().returns(res);
-  res.json = sinon.stub().returns(res);
-  return res;
-};
+import * as institutionController from "../../controllers/institution.js";
+import institutionRepository from "../../repositories/institution.js";
+import { mockReq, mockRes } from "../mocks/institution.mock.js";
 
 describe("Institution Controller", () => {
   // Reset all stubs after each test so they don't affect the next one
@@ -257,7 +290,6 @@ describe("Institution Controller", () => {
         },
       ];
 
-      // findAll returns the shape your controller expects from the repository
       sinon.stub(institutionRepository, "findAll").resolves({
         data: institutions,
         pagination: {
@@ -554,7 +586,7 @@ Use sparingly. Ignoring coverage is a way to hide gaps, not fix them.
 
 Implement the institution tests from the notes. Run `npm run test` and confirm all tests pass.
 
-Then in a comment at the top of `tests/00-institution.test.js`, answer:
+Then in a comment at the top of `tests/unit/00-institution.test.js`, answer:
 
 1. Why do we call `sinon.restore()` in `afterEach` rather than `after`?
 2. What would happen if two tests both stubbed `institutionRepository.findAll` but `restore()` was never called between them?
@@ -564,7 +596,7 @@ Then in a comment at the top of `tests/00-institution.test.js`, answer:
 
 ### Task 2 - Department Controller Tests
 
-Create `tests/01-department.test.js` covering all five CRUD operations for the Department controller. Follow the same pattern as the institution tests.
+Create `tests/unit/01-department.test.js` covering all five CRUD operations for the Department controller. Follow the same pattern as the institution tests, and extract your shared helpers into `tests/mocks/department.mock.js`.
 
 Think about: department creation requires an `institutionId`. How do you handle that in a unit test where there's no real database? You don't need a real institution - you just need the repository stub to behave as if one exists.
 
@@ -572,7 +604,7 @@ Think about: department creation requires an `institutionId`. How do you handle 
 
 ### Task 3 - Auth Controller Tests
 
-Create `tests/02-auth.test.js`. Stub `prisma` or the relevant repository methods to test:
+Create `tests/unit/02-auth.test.js`. Stub `prisma` or the relevant repository methods to test:
 
 1. **Register success** - user doesn't exist, returns `201` without a password field in the response
 2. **Register duplicate** - user already exists, returns `409`
@@ -585,7 +617,7 @@ Create `tests/02-auth.test.js`. Stub `prisma` or the relevant repository methods
 
 ### Task 4 - JWT Middleware Tests
 
-Create `tests/03-jwtAuth.test.js`. Import the middleware directly and call it with mock req/res/next objects.
+Create `tests/unit/03-jwtAuth.test.js`. Import the middleware directly and call it with mock req/res/next objects.
 
 Test:
 
@@ -600,7 +632,7 @@ For test 3, sign a real token using `jwt.sign()` with the same secret you use in
 
 ### Task 5 - RBAC Middleware Tests
 
-Create `tests/04-rbac.test.js`. Test the `rbac` middleware directly:
+Create `tests/unit/04-rbac.test.js`. Test the `rbac` middleware directly:
 
 1. `req.user` is undefined - returns `403`
 2. User has a role not in the allowed list - returns `403` with the user's role in the message
