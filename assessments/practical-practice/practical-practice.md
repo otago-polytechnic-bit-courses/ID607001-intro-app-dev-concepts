@@ -151,12 +151,11 @@ Your tests must cover:
 
 Create `tests/unit/01-category.test.js`. Use `afterEach(() => sinon.restore())`. Import your shared helpers from `tests/mocks/category.mock.js`.
 
-Your tests must cover all five CRUD operations:
+Your tests must cover the following CRUD operations:
 
 - **Create** - repository resolves with a new category, returns `201`.
 - **Read all** - repository resolves with a non-empty array, returns `200`; repository resolves with an empty array, returns `404`.
 - **Read by ID** - repository resolves with a category, returns `200`; repository resolves with `null`, returns `404`.
-- **Update** - existing category is found and updated, returns `200`; category is not found, returns `404`.
 - **Delete** - existing category is found and deleted, returns `200`; category is not found, returns `404`.
 
 ---
