@@ -65,7 +65,7 @@ Failure to do this may result in a mark of zero for this assessment.
 
 ## Policy on Submissions, Extensions, Resubmissions and Resits
 
-The school's process concerning submissions, extensions, resubmissions and resits complies with Otago Polytechnic policies. Learners can view policies on the Otago Polytechnic website located at (https://www.op.ac.nz/about-us/governance-and-management/policies)(https://www.op.ac.nz/about-us/governance-and-management/policies).
+The school's process concerning submissions, extensions, resubmissions and resits complies with Otago Polytechnic policies. Learners can view policies on the Otago Polytechnic website located at [https://www.op.ac.nz/about-us/governance-and-management/policies](https://www.op.ac.nz/about-us/governance-and-management/policies).
 
 ### Extensions
 
@@ -79,7 +79,7 @@ Resits and reassessments are not applicable in ID607001: Introductory Applicatio
 
 ## Assessment Requirements - Backend Application using Express
 
-The backend application marking rubric is available (here)(./marking-rubrics/backend-marking-rubric.md).
+The backend application marking rubric is available [here](./marking-rubrics/backend-marking-rubric.md).
 
 ---
 
@@ -89,7 +89,7 @@ Before you start the Design Phase, read through the Development Phase requiremen
 
 Once you understand the requirements, create a design document that outlines the structure of your application. This will help you plan your work effectively.
 
-To move onto the Development Phase, the course lecturer must approve your design document.
+**To move onto the Development Phase, the course lecturer must approve your design document.**
 
 ---
 
