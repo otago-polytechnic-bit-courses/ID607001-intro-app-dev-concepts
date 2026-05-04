@@ -43,6 +43,7 @@ backend/
 │   └── rbac.js
 ├── repositories/
 │   ├── category.js
+│   ├── question.js
 │   └── quiz.js
 └── tests/
     ├── mocks/
