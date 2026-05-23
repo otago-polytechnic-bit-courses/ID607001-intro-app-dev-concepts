@@ -1,0 +1,100 @@
+@baseUrl = http://localhost:3000/api
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJ0ZXN0dXNlciIsInJvbGUiOiJDUkVBVE9SIiwiaWF0IjoxNzc3MDc3MzM5LCJleHAiOjE3NzcwODA5Mzl9.JY3qgz4O9U4GYm2PUhhk1X4OoaPFS8yDyGtzW7AV7MQ
+
+### ============================================================
+### AUTH
+### ============================================================
+
+### Register
+POST {{baseUrl}}/auth/register
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123",
+  "role": "CREATOR"
+}
+
+###
+
+### Login
+POST {{baseUrl}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "testuser",
+  "password": "password123"
+}
+
+### ============================================================
+### CATEGORIES
+### ============================================================
+
+### Seed categories from OpenTDB
+POST {{baseUrl}}/categories
+Authorization: Bearer {{authToken}}
+
+###
+
+### Get all categories
+GET {{baseUrl}}/categories
+Authorization: Bearer {{authToken}}
+
+###
+
+### Get category by ID
+GET {{baseUrl}}/categories/9
+Authorization: Bearer {{authToken}}
+
+###
+
+### Delete category
+DELETE {{baseUrl}}/categories/9
+Authorization: Bearer {{authToken}}
+
+### ============================================================
+### QUIZZES
+### ============================================================
+
+### Create quiz (fetches questions from OpenTDB)
+POST {{baseUrl}}/quizzes
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Science Quiz",
+  "categoryId": 24,
+  "amount": 10,
+  "difficulty": "medium",
+  "type": "multiple"
+}
+
+###
+
+### Get all quizzes
+GET {{baseUrl}}/quizzes
+Authorization: Bearer {{authToken}}
+
+###
+
+### Get quiz by ID
+GET {{baseUrl}}/quizzes/1
+Authorization: Bearer {{authToken}}
+
+###
+
+### Update quiz
+PUT {{baseUrl}}/quizzes/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "title": "Updated Science Quiz",
+  "categoryId": 17
+}
+
+###
+
+### Delete quiz
+DELETE {{baseUrl}}/quizzes/1
+Authorization: Bearer {{authToken}}

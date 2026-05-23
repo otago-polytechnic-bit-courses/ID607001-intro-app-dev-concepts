@@ -1,8 +1,8 @@
-# Project
+# ID607001: Introductory Application Development Concepts
 
 <img src="../../resources (ignore)/img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
 
-# ID607001: Introductory Application Development Concepts
+# Project
 
 ## Assessment Information
 
@@ -22,10 +22,10 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date           | Learning Outcome |
-| ---------- | --------- | ------------------ | ---------------- |
-| Practical  | 20%       | 26 June at 4.59 PM | 1                |
-| Project    | 80%       | 26 June at 4.59 PM | 1                |
+| Assessment | Weighting | Due Date            | Learning Outcome |
+| ---------- | --------- | ------------------- | ---------------- |
+| Practical  | 20%       | 19 June at 11.59 PM | 1                |
+| Project    | 80%       | 26 June at 11.59 PM | 1                |
 
 ## Conditions of Assessment
 
