@@ -35,7 +35,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
-| The test stubs `global.fetch` to simulate the OpenTDB API response and stubs `categoryRepository.createMany`, calls the `createCategories` controller, and asserts a `201` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, fetch or repository not stubbed, or status code not asserted. |
+| The stub `categoryRepository.createMany`, calls the `createCategories` controller, and asserts a `201` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, fetch or repository not stubbed, or status code not asserted. |
 
 ### Read All (1 mark)
 
@@ -76,7 +76,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
-| One test stubs `categoryRepository.findById`, `global.fetch`, `quizRepository.create`, `questionRepository.createMany` and `quizRepository.findById` to simulate the full controller flow and asserts `201`. A second test stubs `categoryRepository.findById` to resolve with `null` and asserts `404`. | 1 | Both cases present and pass. | Either case missing, a test does not pass, or the stub chain for the success case is incomplete. |
+| One test stubs `categoryRepository.findById`, `quizRepository.create`, `questionRepository.createMany` and `quizRepository.findById` to simulate the full controller flow and asserts `201`. A second test stubs `categoryRepository.findById` to resolve with `null` and asserts `404`. | 1 | Both cases present and pass. | Either case missing, a test does not pass, or the stub chain for the success case is incomplete. |
 
 ### Read All (1 mark)
 
