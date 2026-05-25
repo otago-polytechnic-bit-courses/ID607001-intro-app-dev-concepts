@@ -180,7 +180,7 @@ Here is an example of how to break down your work into sprints and tasks:
 
 #### API Tests (4 marks)
 
-Implement API tests for the following:
+Implement unit tests for the following:
 
 - CRUD operations for each model
 - Register, login and logout
@@ -189,9 +189,7 @@ Implement API tests for the following:
 - Validation
 - Filtering, sorting and pagination
 - Permissions based on the user's role
-
-API tests must be able to run against both development and production environments.
-
+- 
 ---
 
 #### Scripts (2 marks)
