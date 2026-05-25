@@ -202,12 +202,11 @@ Include scripts in the package.json file to:
 - Format your code
 - Lint your code
 - Create and run a PostgreSQL database in development environment
-- Create and run a PostgreSQL database for API tests
 - Create a database migration
 - Reset the database
 - Seed the database with five records for each model
 - Build the application for production
-- Run the API tests
+- Run the unit tests
 
 ---
 
