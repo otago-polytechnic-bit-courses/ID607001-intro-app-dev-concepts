@@ -29,7 +29,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
 | `mockReq` accepts `body`, `params` and `query` as arguments each defaulting to `{}`, and returns an object with those three properties. `mockRes` implements `res.status` as a Sinon stub that returns `res` itself so that chained calls like `res.status(201).json(...)` work correctly. | 1 | All conditions met. | Either helper missing, `status` not chainable, or default parameters incorrect. |
-| `stubCategoryRepo` returns an object that stubs all five methods — `create`, `findAll`, `findById`, `update` and `delete` — directly on the imported `categoryRepository` module. | 1 | All five methods stubbed on the real module. | Factory missing, fewer than five methods stubbed, or stubs not attached to the real imported module. |
+| `stubCategoryRepo` returns an object that stubs all five methods — `createMany`, `findAll`, `findById`, and `delete` — directly on the imported `categoryRepository` module. | 1 | All four methods stubbed on the real module. | Factory missing, fewer than four methods stubbed, or stubs not attached to the real imported module. |
 
 ### Create (1 mark)
 
