@@ -1022,6 +1022,45 @@ Refactor your code to implement the following improvements:
 - **`BaseRepository`** - Create a base class with common CRUD methods that other repositories can extend
 - **`BaseController`** - Create a base class with common handler logic that other controllers can extend
 
+```js
+// repositories/BaseRepository.js
+
+import prisma from "../prisma/db.js";
+
+class BaseRepository {
+  constructor(modelName) {
+    this.model = prisma[modelName]; // The Prisma model name, e.g., "institution", "department", etc
+  }
+
+  async create(data) {
+    return await this.model.create({ data });
+  }
+
+  // Other functions
+}
+
+export default BaseRepository;
+```
+
+```js
+import BaseRepository from "./BaseRepository.js";
+
+import institutionRepository = new BaseRepository("institution");
+
+const createInstitution = async (req, res) => {
+  try {
+    const { name, region, country } = req.body;
+    const institution = await institutionRepository.create({ name, region, country });
+    return res.status(201).json({
+      message: "Institution successfully created",
+      data: institution,
+    });
+  } catch (err) {
+    return res.status(500).json({ message: err.message });
+  }
+};
+```
+
 ---
 
 ## README
