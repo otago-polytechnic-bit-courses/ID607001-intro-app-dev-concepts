@@ -1,10 +1,10 @@
-# Unit Tests - Marking Rubric (20 marks)
+# Unit Tests - Marking Rubric
 
 Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown. A fail awards zero for that criterion. Partial marks are not awarded.
 
 ---
 
-## Auth Controller Tests (4 marks)
+## Auth Controller Tests 
 
 ### Register (2 marks)
 
@@ -22,7 +22,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 ---
 
-## Category Controller Tests (8 marks)
+## Category Controller Tests 
 
 ### Shared Mock Helper — `tests/mocks/category.mock.js` (2 marks)
 
@@ -63,7 +63,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 ---
 
-## Quiz Controller Tests (8 marks)
+## Quiz Controller Tests 
 
 ### Shared Mock Helper — `tests/mocks/quiz.mock.js` (2 marks)
 
