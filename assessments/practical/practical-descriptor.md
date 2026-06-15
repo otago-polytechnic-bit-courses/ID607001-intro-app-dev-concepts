@@ -204,7 +204,7 @@ export const stubSomeRepo = () => ({
 
 ---
 
-### Auth Controller Tests (not marked)
+### Auth Controller Tests
 
 Create `tests/unit/00-auth.test.js`. Use `afterEach(() => sinon.restore())` to reset all stubs between tests.
 
@@ -217,30 +217,30 @@ Your tests must cover:
 
 ---
 
-### Category Controller Tests (4 marks)
+### Category Controller Tests
 
 Create `tests/unit/01-category.test.js`. Use `afterEach(() => sinon.restore())`. Import your shared helpers from `tests/mocks/category.mock.js`.
 
 Your tests must cover the following CRUD operations:
 
-- **Create** - repository resolves with a new category, returns `201`. (1 mark)
-- **Read all** - repository resolves with a non-empty array, returns `200`; repository resolves with an empty array, returns `404`. (1 mark)
-- **Read by ID** - repository resolves with a category, returns `200`; repository resolves with `null`, returns `404`. (1 mark)
-- **Delete** - existing category is found and deleted, returns `200`; category is not found, returns `404`. (1 mark)
+- **Create** - repository resolves with a new category, returns `201`. 
+- **Read all** - repository resolves with a non-empty array, returns `200`; repository resolves with an empty array, returns `404`. 
+- **Read by ID** - repository resolves with a category, returns `200`; repository resolves with `null`, returns `404`. 
+- **Delete** - existing category is found and deleted, returns `200`; category is not found, returns `404`.
 
 ---
 
-### Quiz Controller Tests (5 marks)
+### Quiz Controller Tests
 
 Create `tests/unit/02-quiz.test.js`. Use `afterEach(() => sinon.restore())`. Import your shared helpers from `tests/mocks/quiz.mock.js`.
 
 Your tests must cover all five CRUD operations following the same pattern as the category tests above. Note that a quiz belongs to a category. In your tests you do not need a real category - stub the repository so it behaves as if one exists.
 
-- **Create** - category exists and repository resolves with a new quiz, returns `201`; category does not exist, returns `404`. (1 mark)
-- **Read all** - repository resolves with a non-empty array, returns `200`; repository resolves with an empty array, returns `404`. (1 mark)
-- **Read by ID** - repository resolves with a quiz, returns `200`; repository resolves with `null`, returns `404`. (1 mark)
-- **Update** - existing quiz is found and updated, returns `200`; quiz is not found, returns `404`. (1 mark)
-- **Delete** - existing quiz is found and deleted, returns `200`; quiz is not found, returns `404`. (1 mark)
+- **Create** - category exists and repository resolves with a new quiz, returns `201`; category does not exist, returns `404`. 
+- **Read all** - repository resolves with a non-empty array, returns `200`; repository resolves with an empty array, returns `404`. 
+- **Read by ID** - repository resolves with a quiz, returns `200`; repository resolves with `null`, returns `404`. 
+- **Update** - existing quiz is found and updated, returns `200`; quiz is not found, returns `404`.
+- **Delete** - existing quiz is found and deleted, returns `200`; quiz is not found, returns `404`. 
 
 ---
 
