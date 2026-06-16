@@ -365,8 +365,8 @@ Here is an example of how to break down your work into sprints and tasks:
 
 - Integrate with your backend API to:
   - Handle user authentication (1 mark)
-  - Fetch and display data for all six models (1 mark)
-  - Create, update and delete records for all six models (1 mark)
+  - Fetch and display data for all at least two models (1 mark)
+  - Create, update and delete records for at least two models (1 mark)
   - Implement error handling for API requests (1 mark)
 
 ---
