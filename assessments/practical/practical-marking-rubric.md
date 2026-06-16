@@ -6,19 +6,16 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 ## Auth Controller Tests 
 
-### Register (2 marks)
-
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
-| The success test stubs all dependencies, calls the register controller, asserts a `201` status code, and explicitly verifies the response body does not include a `password` field. | 1 | All conditions met and test passes. | Test missing, does not pass, status code not asserted, or password exclusion not verified. |
-| The duplicate user test stubs the repository to indicate an existing user, calls the register controller, and asserts a `409` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, or status code not asserted. |
+| The success test stubs all dependencies used within the auth controller, calls the register function, asserts a `201` status code, and explicitly verifies the response body does not include a `password` field. | 1 | All conditions met and test passes. | Test missing, does not pass, status code not asserted, or password exclusion not verified. |
+| The duplicate user test stubs the dependency within the auth controller used to check for an existing user, calls the register function, and asserts a `409` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, or status code not asserted. |
 
 ### Login (2 marks)
-
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
-| The success test stubs all dependencies, calls the login controller, asserts a `200` status code, and explicitly verifies the response body includes a `token` field. | 1 | All conditions met and test passes. | Test missing, does not pass, status code not asserted, or token field not verified. |
-| At least one test stubs the repository or password comparison to simulate invalid credentials, calls the login controller, and asserts a `401` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, or status code not asserted. |
+| The success test stubs all dependencies used within the auth controller, calls the login function, asserts a `200` status code, and explicitly verifies the response body includes a `token` field. | 1 | All conditions met and test passes. | Test missing, does not pass, status code not asserted, or token field not verified. |
+| At least one test stubs the dependency within the auth controller used for credential lookup or password comparison to simulate invalid credentials, calls the login function, and asserts a `401` status code. | 1 | All conditions met and test passes. | Test missing, does not pass, or status code not asserted. |
 
 ---
 
