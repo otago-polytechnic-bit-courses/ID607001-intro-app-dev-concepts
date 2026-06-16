@@ -55,23 +55,23 @@
 | C    | 0.5-0.6 | Basic authentication working but with issues. Token management present but may have problems. Limited error handling.                                                                                  |
 | D/E  | 0-0.4   | Authentication integration broken or incomplete. Token management not working properly. Poor error handling.                                                                                           |
 
-#### Data Display for All Six Models (1 mark)
+#### Data Display (1 mark)
 
 | Band | Marks   | Criteria                                                                                                                                                                   |
 | ---- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| A    | 0.8-1   | Excellent integration fetching and displaying data from all six backend models. Data properly formatted and displayed. Good loading and error states. Efficient API calls. |
-| B    | 0.7     | Good data fetching for all models with minor display or state handling issues. Generally efficient API usage.                                                              |
-| C    | 0.5-0.6 | Basic data fetching from models but some may be incomplete or have issues. Limited state handling.                                                                         |
-| D/E  | 0-0.4   | Data fetching missing for some models or poorly implemented. Does not properly display data from all six models.                                                           |
+| A    | 0.8-1   | Excellent integration fetching and displaying data from at least two backend models. Data properly formatted and displayed. Good loading and error states. Efficient API calls. |
+| B    | 0.7     | Good data fetching for both models with minor display or state handling issues. Generally efficient API usage.                                                              |
+| C    | 0.5-0.6 | Basic data fetching from the two models but some may be incomplete or have issues. Limited state handling.                                                                         |
+| D/E  | 0-0.4   | Data fetching missing for one or both models or poorly implemented. Does not properly display data from at least two models.                                                           |
 
 #### CRUD Operations for All Six Models (1 mark)
 
 | Band | Marks   | Criteria                                                                                                                                                                                                                       |
 | ---- | ------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| A    | 0.8-1   | Excellent implementation of create, update and delete operations for all six models. All operations fully functional with proper API integration. Good feedback and error handling. UI updates appropriately after operations. |
-| B    | 0.7     | Good CRUD implementation for all models with minor issues. Most operations work correctly with basic feedback.                                                                                                                 |
-| C    | 0.5-0.6 | Basic CRUD present for all models but some operations may be incomplete or buggy. Limited feedback or error handling.                                                                                                          |
-| D/E  | 0-0.4   | CRUD operations missing for some models or poorly implemented. Operations don't work correctly or lack proper integration.                                                                                                     |
+| A    | 0.8-1   | Excellent implementation of create, update and delete operations for at least two models. All operations fully functional with proper API integration. Good feedback and error handling. UI updates appropriately after operations. |
+| B    | 0.7     | Good CRUD implementation for both models with minor issues. Most operations work correctly with basic feedback.                                                                                                                 |
+| C    | 0.5-0.6 | Basic CRUD present for the two models but some operations may be incomplete or buggy. Limited feedback or error handling.                                                                                                        |
+| D/E  | 0-0.4   | CRUD operations missing for one or both models or poorly implemented. Operations don't work correctly or lack proper integration.                                                                                                 |
 
 #### Error Handling and Token Management (1 mark)
 
