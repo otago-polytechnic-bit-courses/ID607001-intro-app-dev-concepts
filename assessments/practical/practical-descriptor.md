@@ -85,7 +85,7 @@ The unit test marking rubric is available [here](./marking-rubrics/practical-mar
 
 ---
 
-### Application Overview (not marked)
+### Application Overview 
 
 #### Domain Description
 
@@ -141,7 +141,7 @@ backend/
 
 ---
 
-### Setup (not marked)
+### Setup 
 
 1. Clone the provided starter repository and open it in Visual Studio Code.
 2. Install dependencies: `npm install`.
@@ -167,7 +167,7 @@ backend/
 
 ---
 
-### Shared Mock Helpers (not marked)
+### Shared Mock Helpers 
 
 Before writing any test suites, create shared mock helpers in the `tests/mocks/` directory. Each file must own the helpers for one domain and be imported into the corresponding test file rather than redefining the helpers each time.
 
