@@ -62,7 +62,7 @@ Each criterion is marked as **Pass** or **Fail**. A pass awards the marks shown.
 
 ## Quiz Controller Tests 
 
-### Shared Mock Helper — `tests/mocks/quiz.mock.js` (2 marks)
+### Shared Mock Helper — `tests/mocks/quiz.mock.js`
 
 | Criterion | Marks | Pass | Fail |
 | --------- | ----- | ---- | ---- |
