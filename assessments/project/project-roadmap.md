@@ -4,7 +4,7 @@
 
 ## Project Roadmap - Week 11 to Week 15
 
-**Due date:** Thursday, 26 June at 11:59 PM | **Branch:** `project`
+**Due date:** Friday, 26 June at 11:59 PM | **Branch:** `project`
 
 ---
 
@@ -90,4 +90,4 @@
 ### Submission Checklist
 - [ ] `README.md` includes AI tool prompts used and how responses were applied
 - [ ] Both deployment URLs documented in their respective documentation files
-- [ ] Final push to `project` branch before **Thursday, 26 June at 11:59 PM**
+- [ ] Final push to `project` branch before **Friday, 26 June at 11:59 PM**
