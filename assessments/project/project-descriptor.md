@@ -1,8 +1,6 @@
-# Project
-
-<img src="../../resources (ignore)/img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
-
 # ID607001: Introductory Application Development Concepts
+
+# Project
 
 ## Assessment Information
 
@@ -10,9 +8,11 @@
 | ----- | ------- | --------------- | --------- |
 | 6     | 15      | Individual      | 80%       |
 
-## Assessment Overview
+## Overview
 
-In this individual assessment, you will design and develop a backend application using Express and a frontend application using SvelteKit.
+You will design and build a full-stack application over the second half of the course. The weekly class content gives you everything you need - the project is where you apply it to your own idea.
+
+The emphasis is on **how you work**, not just what you produce. Planning, decision-making, iteration, and reflection are all assessed alongside the working application.
 
 ## Learning Outcome
 
@@ -22,432 +22,253 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date           | Learning Outcome |
-| ---------- | --------- | ------------------ | ---------------- |
-| Practical  | 20%       | 22 May at 4.59 PM  | 1                |
-| Project    | 80%       | 26 June at 4.59 PM | 1                |
-
-## Conditions of Assessment
-
-You will complete this assessment mostly during your learner-managed time. However, there will be time during class to discuss the requirements and your progress on this assessment. This assessment will need to be completed by 26 June at 4.59 PM.
-
-## Pass Criteria
-
-This assessment is criterion-referenced (CRA) with a cumulative pass mark of 50% across all assessments in ID607001: Introductory Application Development Concepts.
+| Assessment | Weighting | Due Date            | Learning Outcome |
+| ---------- | --------- | ------------------- | ---------------- |
+| Practical  | 20%       | 19 June at 11.59 PM | 1                |
+| Project    | 80%       | 26 June at 11.59 PM | 1                |
 
 ## Submission
 
-You must submit all application files via GitHub Classroom.
+- Repository: [https://classroom.github.com/a/8sCyquQ\_](https://classroom.github.com/a/8sCyquQ_)
+- Branch: `git checkout -b project`
+- Due: Sunday 26 June at 11.59 PM
+- Late penalty: 10% per day
 
-- Repository URL: (https://classroom.github.com/a/8sCyquQ\_)(https://classroom.github.com/a/8sCyquQ_)
-- Branch: Switch to the Project branch using the following command: `git switch project`
-- Git Ignore: If you do not have one, create a .gitignore using this resource - (Node.gitignore)(https://raw.githubusercontent.com/github/gitignore/main/Node.gitignore)
-- Due Date: Sunday at 11.59 PM
-- Late Penalty: 10% per day, rolling over at 12.00 AM
-
-The latest application files in the Project branch will be used to mark against the marking rubric. Please test your applications before you submit. Partial marks may be given for incomplete functionality.
-
-## Authenticity
-
-All parts of your submitted assessment must be completely your work. Do your best to complete this assessment without using AI tools. You need to demonstrate to the course lecturer that you can meet the learning outcome for this assessment.
-
-### AI Tools
-
-Learning to use AI tools is an important skill. While AI tools are powerful, you must be aware of the following:
-
-- If you provide an AI tool with a prompt that is not refined enough, it may generate a not-so-useful response
-- Do not trust the AI tool's responses blindly. You must still use your judgement and may need to do additional research to determine if the response is correct
-- Acknowledge what AI tool you have used. In the assessment's repository README.md file, please include what prompt(s) you provided to the AI tool and how you used the response(s) to help you with your work
-
-This also applies to code snippets retrieved from StackOverflow and GitHub.
-
-Failure to do this may result in a mark of zero for this assessment.
-
-## Policy on Submissions, Extensions, Resubmissions and Resits
-
-The school's process concerning submissions, extensions, resubmissions and resits complies with Otago Polytechnic policies. Learners can view policies on the Otago Polytechnic website located at (https://www.op.ac.nz/about-us/governance-and-management/policies)(https://www.op.ac.nz/about-us/governance-and-management/policies).
-
-### Extensions
-
-Familiarise yourself with the assessment due date. Extensions will only be granted if you are unable to complete the assessment by the due date because of unforeseen circumstances outside your control. The length of the extension granted will depend on the circumstances and must be negotiated with the course lecturer before the assessment due date. A medical certificate or support letter may be needed. Extensions will not be granted on the due date and for poor time management or pressure of other assessments.
-
-### Resits
-
-Resits and reassessments are not applicable in ID607001: Introductory Application Development Concepts.
+The latest files on the `project` branch will be marked. Test your application before submitting. Partial marks are available for partial work.
 
 ---
 
-## Assessment Requirements - Backend Application using Express
+## Authenticity and AI
 
-The backend application marking rubric is available (here)(./marking-rubrics/backend-marking-rubric.md).
+You are encouraged to use AI tools throughout this project. When you do:
 
----
-
-### Design Phase - Learning Outcome 1 (10 marks)
-
-Before you start the Design Phase, read through the Development Phase requirements below. This will help you understand what you need to build and ensure your design document is comprehensive.
-
-Once you understand the requirements, create a design document that outlines the structure of your application. This will help you plan your work effectively.
-
-To move onto the Development Phase, the course lecturer must approve your design document.
+- Include in your `README.md` which tool you used, what you asked it, and what you changed or verified
+- Be ready to walk through any part of your code and explain it
+- Submitting work you cannot explain may result in a mark of zero
 
 ---
 
-#### Entity Relationship Diagram (ERD) (5 marks)
+## How the Project Relates to the Weekly Content
 
-- Create an ERD using a digital tool of your choice that shows six models, their fields and relationships.
-- For each field, include its name, data type and constraints.
-- For enum fields, include the possible values.
+The project runs alongside the course. Each pair of weeks - one backend, one frontend - gives you the knowledge and practice to build the corresponding part of your project.
 
----
+| Week | Content                                    | Project milestone                     |
+| ---- | ------------------------------------------ | ------------------------------------- |
+| 2    | Backend: Express, routes, controllers      | Project set up, design work begun     |
+| 3    | Frontend: SvelteKit basics                 | Design approved, structure in place   |
+| 4    | Backend: PostgreSQL, Prisma, CRUD          | Models built, CRUD working            |
+| 5    | Frontend: Displaying real data             | List and detail pages for two models  |
+| 6    | Backend: Relationships, architecture       | Second model, relationships working   |
+| 7    | Frontend: Related data, second model       | All models represented in the UI      |
+| 8    | Backend: Validation, seeding, query params | Validation, filtering, and pagination |
+| 9    | Frontend: Filtering UI, form validation    | Forms with client-side validation     |
+| 10   | Backend: Auth, RBAC, rate limiting         | Auth working end-to-end               |
+| 11   | Frontend: Auth flows, protected pages      | Protected routes, role-based UI       |
 
-#### API Endpoints (5 marks)
-
-- In a table format, show the endpoints you will implement for your application.
-- For each endpoint, include:
-  - HTTP method
-  - Endpoint URL
-  - Brief description of what the endpoint does
-  - Authentication requirement (if applicable)
-  - Role-based access control requirement and roles
-  - Path parameters (if applicable)
-  - Query parameters (if applicable)
-  - Body parameters (if applicable)
-
-Here is an example of how to document an endpoint:
-
-| HTTP Method | Endpoint URL        | Description              | Authentication Required | Role-Based Access Control Required and Roles | Path Parameters | Query Parameters | Body Parameters                                                                |
-| ----------- | ------------------- | ------------------------ | ----------------------- | -------------------------------------------- | --------------- | ---------------- | ------------------------------------------------------------------------------ |
-| POST        | `/api/institutions` | Create a new institution | Yes                     | Yes. Admin                                   | None            | None             | name (string, required), region (string, required), country (string, required) |
+You do not have to wait for class to work on the project - use the notes from each week as your guide.
 
 ---
 
-### Development Phase - Learning Outcome 1 (25 marks)
+## Phase 1: Design
 
-Once the course lecturer has approved your design document, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
+> Complete this before Week 4. Your course lecturer must approve it before you start building.
 
----
+### Why design first?
 
-#### Project Management (2 marks)
-
-In this phase, you will use the Agile software development methodology.
-
-- You will decide the duration of your sprints and how to break down your work into sprints and tasks.
-- Create a GitHub Project to manage your work. The project must include columns for Backlog, In Progress and Done.
-- Create issues for each task and move them across the columns as you work on them.
-
-Here is an example of how to break down your work into sprints and tasks:
-
-| Sprint | Tasks                                                                                                                                                           |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| X      | Set up Express application, set up Prisma and PostgreSQL database, implement models, implement authentication endpoints, implement CRUD endpoints for one model |
+Designing before coding forces you to think about what you are building and why. It also gives you something concrete to reflect on later - comparing what you planned to what you actually built is one of the most useful learning exercises in this course.
 
 ---
 
-#### Database (1 mark)
+### Entity Relationship Diagram (ERD)
 
-- Use Prisma to interact with a PostgreSQL database in development, testing and production environments.
+Create an ERD using any digital tool (draw.io, Figma, dbdiagram.io, etc.) showing:
 
----
+- Each model, its fields, data types, and constraints
+- At least one enum field with all its values listed
+- Relationships between models, with multiplicity marked (e.g. one-to-many)
 
-#### Models (3 marks)
-
-- Implement six models with a minimum of four fields each excluding `id`, `createdAt`, and `updatedAt`.
-- Include two enum fields across your models, each with at least two values.
-- Implement four relationships between models:
-  - At least one one-to-one relationship
-  - At least one one-to-many relationship
-  - At least one many-to-many relationship
-  - One additional relationship of any type
+**Scope:** Three to five related models. Enough to support meaningful CRUD and relationships; not so many that you cannot build and test them well.
 
 ---
 
-#### CRUD (10 marks)
+### API Endpoint Plan
 
-- Implement the following endpoints: (4 marks)
-  - CRUD operations (create, read all, read by ID, update and delete) for each model
-  - Register, login and logout using token-based authentication
-  - Health check that verifies the application's status, database connectivity and uptime
-  - Catch-all endpoint
+Document your intended endpoints in a table:
 
-- Implement validation on create and update operations. (1 mark)
-- Implement filtering, sorting and pagination on read all operations. (1 mark)
-- Implement role-based access control with at least two roles. Each role must have distinct permissions. (1 mark)
-- Implement content negotiation middleware to return responses in JSON format. (1 mark)
-- Implement cache middleware for read all and read by ID operations for each model. (1 mark)
-- Implement rate limiting middleware based on the user's role. For example, users with the role "X" may have a higher rate limit than users with the role "Y". (1 mark)
+| HTTP Method | URL | Description | Auth Required | Roles | Body Parameters |
+| ----------- | --- | ----------- | ------------- | ----- | --------------- |
+
+For each endpoint, think about: who should be allowed to call it? What happens if they send bad data? What does the error response look like?
 
 ---
 
-#### API Tests (4 marks)
+### Wireframes
 
-Implement API tests for the following:
+Sketch wireframes for these pages (paper, Figma, Excalidraw - anything works):
 
-- CRUD operations for each model
-- Register, login and logout
-- Health check endpoint
-- Catch-all endpoint
-- Validation
-- Filtering, sorting and pagination
-- Permissions based on the user's role
+- Home page
+- Register and login pages
+- List page for two models
+- Detail page for two models
+- Create/edit form for two models
+- 404 page
 
-API tests must be able to run against both development and production environments.
-
----
-
-#### Scripts (2 marks)
-
-Include scripts in the package.json file to:
-
-- Run the application in development environment
-- Format your code
-- Lint your code
-- Create and run a PostgreSQL database in development environment
-- Create and run a PostgreSQL database for API tests
-- Create a database migration
-- Reset the database
-- Seed the database with five records for each model
-- Build the application for production
-- Run the API tests
+Show navigation, form fields, buttons, data areas, and how each page responds to error and empty states.
 
 ---
 
-#### Deployment (3 marks)
+### Design Reflection
 
-- Deploy the application to Render.
-- Verify that the deployed application is working correctly by testing the endpoints using Postman.
+Before approval, write a short paragraph (not a list) answering:
 
----
+1. What is your application and what is it for?
+2. Why did you choose these models? What real-world relationships connect them?
+3. What do you think will be hardest to build?
 
-### Code Quality and Best Practices - Learning Outcome 1 (15 marks)
-
-When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and secure.
-
----
-
-#### Code Organisation (3 marks)
-
-- Use a clear and logical project structure that implements separation of concerns.
-- Implement separation of concerns by keeping the presentation, service and data access layers seperate.
-- Write modular code by breaking down your application into smaller, reusable functions and modules.
+This is marked on evidence of thinking, not on being right.
 
 ---
 
-#### Code Style and Formatting (2 marks)
+## Phase 2: Build
 
-- Code must be linted using ESLint.
-- Code must be formatted using Prettier.
-- Follow naming conventions.
-- Use meaningful variable, function and class names that clearly describe their purpose.
+Build your backend and frontend in parallel with the weekly content. Use your design document as your plan - update it when things change, and note _why_ they changed.
 
----
+### Project management
 
-#### Error Handling (3 marks)
+Use a Kanban board (GitHub Projects, Trello, or similar) throughout. Break your work into small tasks - ideally one per sitting. Move cards as you work. By submission, your board should tell the story of how the project unfolded.
 
-- Handle errors gracefully and provide meaningful error messages.
-- Use appropriate HTTP status codes.
-- Return consistent error response format across all endpoints.
-- Handle database errors and validation errors appropriately.
+You will not be marked on whether the board is tidy. You will be marked on whether it shows genuine, ongoing use.
 
 ---
 
-#### Security (3 marks)
+### Backend requirements
 
-- Store sensitive data in environment variables.
-- Include a `.gitignore` file to prevent committing unnecessary files and directories to GitHub.
-- Implement password hashing using a secure algorithm.
-- Use secure JWT practices.
+#### Models
 
----
+- Implement your approved models, each with at least three fields (excluding `id`, `createdAt`, `updatedAt`)
+- At least one enum field with at least two values
+- At least two relationships between models, including at least one one-to-many
 
-#### Version Control (2 marks)
+#### Endpoints
 
-- Maintain a clean Git history with descriptive commit messages.
-- Use conventional commit messages.
-- Commit regularly with small, focused changes rather than large, monolithic commits.
+- Full CRUD for each model
+- Register, login, and logout
+- Health check (returns application status, database connectivity, and uptime)
+- Catch-all for unmatched routes (returns JSON 404, not HTML)
 
----
+#### Quality
 
-#### Documentation (2 marks)
+- Validation on all create and update operations
+- Filtering, sorting, and pagination on at least one read-all endpoint
+- Role-based access control with at least two roles, each with distinct permissions
+- Rate limiting based on user role
 
-In `backend-documentation.md`, include the following:
+#### Tests
 
-- Project description and purpose
-- Installation and setup instructions
-- Environment variable configuration
-- How to run the application in development environment
-- How to run the API tests in testing environment
-- Deployment URL
+Write unit tests covering:
 
----
-
-## Assessment Requirements - Frontend Application using SvelteKit
-
-The frontend application marking rubric is available (here)(./marking-rubrics/frontend-marking-rubric.md).
-
----
-
-### Design Phase - Learning Outcome 1 (5 marks)
-
-Before you start the Design Phase, read through the Development Phase requirements below. This will help you understand what you need to build and ensure your design document is comprehensive.
-
-Once you understand the requirements, create a design document that outlines the structure of your application. This will help you plan your work effectively.
-
-To move onto the Development Phase, the course lecturer must approve your design document.
+- CRUD for each model
+- Register, login, and logout
+- Health check and catch-all endpoints
+- Validation logic
+- Filtering, sorting, and pagination
+- Role-based permissions
 
 ---
 
-#### Wireframes (5 marks)
+### Frontend requirements
 
-- Create wireframes using a digital tool of your choice that show the layout and structure of your application.
-- Include wireframes for at least six different pages:
-  - Home page
-  - Authentication pages
-  - Dashboard page
-  - List page for at least one model
-  - Detail page for at least one model
-  - Create/edit form page for at least one model
-- For each wireframe, include:
-  - Page title and navigation elements
-  - Key components and their placement
-  - Form fields and buttons
-  - Data display areas
-  - Responsive layout considerations
+#### Pages
 
----
+- Home
+- Register and login
+- List page for two models
+- Detail page for two models
+- Create/edit form for two models
+- 404 page
 
-### Development Phase - Learning Outcome 1 (18 marks)
+#### Components
 
-Once the course lecturer has approved your design document, you can start developing your application. You should follow the requirements in your design document, but you can make changes as needed. If you make significant changes to your design document, please update it accordingly.
+Using a component library, implement at minimum:
 
----
+- Navigation (highlights current page)
+- Form component with client-side validation
+- Table component for lists
+- Loading state component
+- Alert component for success and error messages
 
-#### Project Management (2 marks)
+#### Integration
 
-In this phase, you will continue using the Agile software development methodology.
+- Full authentication flow (register, login, logout)
+- Fetch and display data for two models
+- Create, update, and delete records for two models
+- Error handling displayed to the user for all API calls
 
-- Use the same GitHub Project from the backend application.
-- Create issues for each task and move them across the columns as you work on them.
+#### Form behaviour
 
-Here is an example of how to break down your work into sprints and tasks:
-
-| Sprint | Tasks                                                                                                                          |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------ |
-| X      | Set up SvelteKit application, implement layout and navigation, implement authentication pages, create reusable form components |
+- Client-side validation that matches your backend rules
+- Fields repopulate after a failed submission
+- User feedback during and after submission
 
 ---
 
-#### Pages and Routing (4 marks)
+### Deployment
 
-- Implement at least eight pages/routes:
-  - Home page
-  - Login page
-  - Register page
-  - Dashboard page
-  - List page for at least two different models
-  - Detail page for at least two different models
-  - Create/edit form page for at least two different models
-  - 404 error page
+Deploy both backend and frontend. Verify the complete register → login → create → read → delete flow works in the deployed environment.
 
 ---
 
-#### Components (4 marks)
+### Code quality (both backend and frontend)
 
-- Implement at least eight reusable components:
-  - Navigation component
-  - Form input component(s)
-  - Table or list component
-  - Modal or dialog component
-  - Loading indicator component
-  - Alert component
-  - Card component
-  - At least one additional custom component relevant to your application
+| Area            | Expectation                                                                 |
+| --------------- | --------------------------------------------------------------------------- |
+| Structure       | Clear separation of concerns; files organised logically                     |
+| Style           | Linted and formatted consistently                                           |
+| Naming          | Variables, functions, and components named for what they do                 |
+| Error handling  | Errors caught and returned as consistent JSON; never silent                 |
+| Security        | Secrets in environment variables; passwords hashed; JWT used correctly      |
+| Version control | Descriptive conventional commits; committed regularly - not once at the end |
 
----
-
-#### API Integration (4 marks)
-
-- Integrate with your backend API to:
-  - Handle user authentication (1 mark)
-  - Fetch and display data for all six models (1 mark)
-  - Create, update and delete records for all six models (1 mark)
-  - Implement error handling for API requests (1 mark)
+> Your Git history is evidence of your process. A single commit on the due date communicates something very specific to a marker.
 
 ---
 
-#### Form Handling and Validation (2 marks)
+### Documentation
 
-- Implement client-side form validation that matches backend validation rules.
-- Display validation errors to users.
-- Provide user feedback during form submission.
+**`backend-documentation.md`** must include:
 
----
+- Project description
+- Setup instructions (including how to use the setup script)
+- Environment variable list
+- How to run in development
+- How to run tests
+- Deployed URL
 
-#### Deployment (2 marks)
+**`frontend-documentation.md`** must include:
 
-- Deploy the application to a hosting platform. (1 mark)
-- Verify that the deployed application is working correctly by testing core functionality. (1 mark)
-
----
-
-### Code Quality and Best Practices - Learning Outcome 1 (12 marks)
-
-When developing your application, you must follow best practices for code quality. This will help ensure that your code is maintainable, scalable and follows Svelte/SvelteKit conventions.
-
----
-
-#### Code Organisation (3 marks)
-
-- Use a clear and logical project structure following Svelte/SvelteKit conventions.
-- Organise components, pages and utilities in appropriate directories.
-- Keep components focused and single-purpose.
+- Project description
+- Setup instructions
+- Environment variable list
+- How to run in development
+- Deployed URL
 
 ---
 
-#### Code Style and Formatting (2 marks)
+## Phase 3: Reflect
 
-- Code must be linted using ESLint.
-- Code must be formatted using Prettier.
-- Follow Svelte/SvelteKit naming conventions.
-- Use meaningful variable, function and component names that clearly describe their purpose.
+Write a reflection as the final section of each documentation file. This is written after you have finished building.
 
----
+### Backend reflection (~400 words)
 
-#### Component Design (2 marks)
+1. **What changed from your design?** Name at least one specific change to your ERD or endpoint plan. What prompted it?
+2. **What was harder than expected?** One specific technical problem. What did you try? What worked?
+3. **What would you do differently?** One thing in design, one in development.
+4. **What are you most confident about?** One part of your backend that you feel best shows your understanding. Why?
 
-- Create reusable components that can be used across multiple pages.
-- Use props to make components flexible and configurable.
-- Avoid code duplication by extracting common functionality into shared components.
+### Frontend reflection (~300 words)
 
----
+1. **What was the hardest UI problem?** A specific moment where something did not work as expected. How did you fix it?
+2. **What did the frontend reveal about your backend?** Did building the frontend expose anything about your API design you had not noticed before?
+3. **Wireframes vs reality?** What is the biggest difference between your wireframes and what you built?
 
-#### Error Handling and User Feedback (2 marks)
-
-- Handle API errors gracefully and display meaningful error messages to users.
-- Provide clear feedback for user actions.
-- Implement proper error boundaries to prevent application crashes.
-
----
-
-#### Version Control (2 marks)
-
-- Maintain a clean Git history with descriptive commit messages.
-- Use conventional commit messages.
-- Commit regularly with small, focused changes rather than large, monolithic commits.
-
----
-
-#### Documentation (1 mark)
-
-In `frontend-documentation.md`, include the following:
-
-- Project description and purpose
-- Installation and setup instructions
-- Environment variable configuration
-- How to run the application in development environment
-- Deployment URL
-
----
-
-_Author: Grayson Orr_  
-_Course: ID607001: Introductory Application Development Concepts_
+Reflections are marked on specificity. "I learned a lot" scores nothing. "I originally designed a many-to-many relationship between X and Y, but discovered that..." scores marks.
