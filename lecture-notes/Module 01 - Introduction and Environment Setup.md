@@ -1,13 +1,5 @@
 # Module 01 - Introduction and Environment Setup
 
-## Navigation
-
-|      |                                                                                                |
-| ---- | ---------------------------------------------------------------------------------------------- |
-| Next | [Module 02 - Backend: Express, Routes and Controllers](../module-02-backend-express/README.md) |
-
----
-
 ## 1. JavaScript
 
 Before we talk about servers, browsers, or any of that, let's cover the actual language you'll be writing: **JavaScript**. If you've never written a line of code before, start here and don't skip ahead.
