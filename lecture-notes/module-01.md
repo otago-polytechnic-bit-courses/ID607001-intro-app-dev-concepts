@@ -8,7 +8,7 @@
 
 ---
 
-## 1. JavaScript Fundamentals
+## 1. JavaScript
 
 Before we talk about servers, browsers, or any of that, let's cover the actual language you'll be writing: **JavaScript**. If you've never written a line of code before, start here and don't skip ahead.
 
