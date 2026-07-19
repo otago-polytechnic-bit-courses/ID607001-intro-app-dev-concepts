@@ -8,16 +8,6 @@
 
 ---
 
-## What This Module Is For
-
-This course assumes you are new to full stack development. That's fine, everyone starts somewhere. This module is where we start: the basic building blocks of JavaScript, what actually happens when you visit a website, and the tools you'll use every day in this course.
-
-Nothing here assumes you've coded before. If a word looks unfamiliar the first time you see it, keep reading, it gets explained close to where it first appears.
-
-Take your time here. Students who skip this and jump straight into building things often get confused later, not because the code is hard, but because the environment and vocabulary around it never made sense in the first place.
-
----
-
 ## 1. JavaScript Fundamentals
 
 Before we talk about servers, browsers, or any of that, let's cover the actual language you'll be writing: **JavaScript**. If you've never written a line of code before, start here and don't skip ahead.
@@ -37,7 +27,7 @@ node
 This opens something called the **Node REPL**. REPL stands for Read-Eval-Print Loop, and it is a place where you can type a line of JavaScript and immediately see the result. Try typing:
 
 ```javascript
-2 + 2
+2 + 2;
 ```
 
 Press Enter. You'll see `4`. You just ran your first piece of JavaScript. Type `.exit` to leave.
@@ -65,15 +55,15 @@ In this example, `name` will never be reassigned, while `score` changes as the p
 
 Every value in JavaScript has a **type**. The main ones you'll use constantly:
 
-| Type          | Example                     | What it's for                                                          |
-| ------------- | ---------------------------- | ------------------------------------------------------------------------ |
-| **String**    | `"hello"`                   | Text, always in quotes                                                  |
-| **Number**    | `42`, `3.14`                 | Numbers, whole or decimal                                                |
-| **Boolean**   | `true`, `false`              | A yes or no, on or off value                                             |
-| **Array**     | `[1, 2, 3]`                 | An ordered list of values                                                |
+| Type          | Example                     | What it's for                                                                           |
+| ------------- | --------------------------- | --------------------------------------------------------------------------------------- |
+| **String**    | `"hello"`                   | Text, always in quotes                                                                  |
+| **Number**    | `42`, `3.14`                | Numbers, whole or decimal                                                               |
+| **Boolean**   | `true`, `false`             | A yes or no, on or off value                                                            |
+| **Array**     | `[1, 2, 3]`                 | An ordered list of values                                                               |
 | **Object**    | `{ name: "Alex", age: 25 }` | A collection of named values, similar to a labelled box that holds other labelled boxes |
-| **null**      | `null`                       | Deliberately nothing                                                     |
-| **undefined** | `undefined`                  | A value that hasn't been set yet                                        |
+| **null**      | `null`                      | Deliberately nothing                                                                    |
+| **undefined** | `undefined`                 | A value that hasn't been set yet                                                        |
 
 You'll use objects and arrays constantly in this course. They are how JSON is structured, which section 3 covers, and they are how data moves between your frontend and backend.
 
@@ -203,8 +193,8 @@ This request-response cycle is the foundation of the web. Every time your fronte
 
 Two terms you'll hear constantly in this course:
 
-| Term       | What it means in this course                                                                    |
-| ---------- | -------------------------------------------------------------------------------------------------- |
+| Term       | What it means in this course                                                                        |
+| ---------- | --------------------------------------------------------------------------------------------------- |
 | **Client** | The program the user directly interacts with, the browser. In this course, your SvelteKit frontend. |
 | **Server** | A program that listens for requests and sends back responses. In this course, your Express backend. |
 
@@ -252,16 +242,16 @@ Developers use the terminal because many of the tools you'll rely on in this cou
 
 ### Essential commands
 
-| Command      | What it does                              |
-| ------------ | ------------------------------------------ |
-| `pwd`        | Print the current directory, where am I    |
-| `ls`         | List files in the current directory        |
-| `cd name`    | Move into a directory called `name`        |
-| `cd ..`      | Move up one level                          |
-| `mkdir name` | Create a new directory called `name`       |
-| `cp a b`     | Copy file `a` to `b`                       |
-| `cat file`   | Print the contents of a file               |
-| `clear`      | Clear the terminal screen                  |
+| Command      | What it does                            |
+| ------------ | --------------------------------------- |
+| `pwd`        | Print the current directory, where am I |
+| `ls`         | List files in the current directory     |
+| `cd name`    | Move into a directory called `name`     |
+| `cd ..`      | Move up one level                       |
+| `mkdir name` | Create a new directory called `name`    |
+| `cp a b`     | Copy file `a` to `b`                    |
+| `cat file`   | Print the contents of a file            |
+| `clear`      | Clear the terminal screen               |
 
 ### Opening a terminal in VS Code
 
@@ -378,13 +368,13 @@ type: short description of what changed
 
 Common types:
 
-| Type       | When to use it                                    |
-| ---------- | ---------------------------------------------------- |
-| `feat`     | Adding new functionality                          |
-| `fix`      | Fixing a bug                                      |
-| `refactor` | Restructuring code without changing behaviour     |
-| `docs`     | Updating documentation                            |
-| `chore`    | Maintenance tasks, such as updating dependencies  |
+| Type       | When to use it                                   |
+| ---------- | ------------------------------------------------ |
+| `feat`     | Adding new functionality                         |
+| `fix`      | Fixing a bug                                     |
+| `refactor` | Restructuring code without changing behaviour    |
+| `docs`     | Updating documentation                           |
+| `chore`    | Maintenance tasks, such as updating dependencies |
 
 Examples:
 
@@ -405,11 +395,11 @@ An **environment variable** is a configuration value stored outside your actual 
 
 Why bother with this? Because some values need to change depending on where your code is running.
 
-| Value        | Development       | Production                              |
-| ------------ | ------------------ | ------------------------------------------ |
-| Database URL | `localhost:5432`  | `render.com:5432/abc123`                |
-| Port         | `3000`            | `10000`, assigned automatically by the host |
-| JWT secret   | anything           | a long random string                     |
+| Value        | Development      | Production                                  |
+| ------------ | ---------------- | ------------------------------------------- |
+| Database URL | `localhost:5432` | `render.com:5432/abc123`                    |
+| Port         | `3000`           | `10000`, assigned automatically by the host |
+| JWT secret   | anything         | a long random string                        |
 
 More importantly, some values are **secrets**, such as database passwords, API keys, and JWT secrets. A JWT, or JSON Web Token, is used later in this course to keep users logged in securely. These must never be committed to Git, because anyone who can see your repository would then have them too.
 
@@ -448,14 +438,14 @@ const dbUrl = process.env.DATABASE_URL;
 
 Install these extensions before starting Module 02.
 
-| Extension                     | Why                                                                          |
-| ------------------------------ | ------------------------------------------------------------------------------ |
-| **ESLint**                    | Shows linting errors, meaning common mistakes and style issues, inline as you type |
-| **Prettier - Code formatter** | Formats your code automatically on save                                     |
-| **REST Client**               | Sends HTTP requests directly from VS Code, for testing your backend         |
-| **Svelte for VS Code**        | Provides syntax highlighting for `.svelte` files, which are used from Module 03 onward |
+| Extension                     | Why                                                                                                     |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------- |
+| **ESLint**                    | Shows linting errors, meaning common mistakes and style issues, inline as you type                      |
+| **Prettier - Code formatter** | Formats your code automatically on save                                                                 |
+| **REST Client**               | Sends HTTP requests directly from VS Code, for testing your backend                                     |
+| **Svelte for VS Code**        | Provides syntax highlighting for `.svelte` files, which are used from Module 03 onward                  |
 | **Prisma**                    | Provides syntax highlighting and formatting for `.prisma` files, which are used once we reach databases |
-| **GitLens**                   | Provides enhanced Git history and blame views                               |
+| **GitLens**                   | Provides enhanced Git history and blame views                                                           |
 
 **Setting up format on save:** Open VS Code settings by pressing Ctrl and the comma key together, search for format on save, and enable it. Then search for default formatter and set it to Prettier. Your code will now format automatically every time you save a file, one less thing to think about manually.
 
@@ -665,11 +655,3 @@ Do not worry about correctness. This is a first draft. You will refine it once y
 #### Task 19 - Sketch a rough request flow
 
 Pick one feature of your project idea, for example a student viewing their enrolled courses. Sketch a simple diagram or numbered list showing the steps from the moment a user clicks something to the moment they see a result, using the client, server, request, and response concepts from section 2. Add it to your design document alongside Task 18.
-
----
-
-## What Comes Next
-
-Module 02 starts building the backend. You will create an Express server, define routes and controllers, and test your first API endpoints.
-
-Everything in that module assumes you have the tools working and understand the concepts covered here. If you are unsure about anything, revisit it now, since it is much easier to clarify it before the code starts than after.
