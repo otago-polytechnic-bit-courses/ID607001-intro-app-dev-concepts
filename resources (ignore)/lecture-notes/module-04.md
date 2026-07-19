@@ -1,4 +1,4 @@
-# Module 04 - Backend: PostgreSQL, Prisma and Real CRUD
+# Module 04 - Backend: PostgreSQL, Prisma and CRUD
 
 ## Navigation
 

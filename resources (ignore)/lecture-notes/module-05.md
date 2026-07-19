@@ -1,4 +1,4 @@
-# Module 05 - Frontend: Create, Update and Delete
+# Module 05 - Frontend: CRUD
 
 ## Navigation
 

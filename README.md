@@ -1,8 +1,6 @@
-# Course Directive
-
 <img src="./resources (ignore)/img/logo.jpg" alt="Otago Polytechnic Logo" width="200" height="auto" />
 
-# ID607001: Introductory Application Development Concepts
+# ID607001: Introductory Application Development Concepts - Course Directive
 
 ## Course Information
 
@@ -18,9 +16,9 @@
 
 ## Course Dates
 
-| Term 1 (7 weeks)       | Mid-Semester Break  | Term 2 (9 weeks)   |
-| ---------------------- | ------------------- | ------------------ |
-| 23 February - 10 April | 11 April - 27 April | 28 April - 03 July |
+| Term 1 (10 weeks)      | Mid-Semester Break        | Term 2 (6 weeks)         |
+| ---------------------- | ------------------------- | ------------------------ |
+| 20 July - 25 September | 28 September - 09 October | 12 October - 20 November |
 
 ## Aims
 
@@ -34,10 +32,10 @@ At the successful completion of this course, learners will be able to:
 
 ## Assessments
 
-| Assessment | Weighting | Due Date           | Learning Outcome |
-| ---------- | --------- | ------------------ | ---------------- |
-| Practical  | 20%       | 22 May at 4.59 PM  | 1                |
-| Project    | 80%       | 26 June at 4.59 PM | 1                |
+| Assessment | Weighting | Due Date                | Learning Outcome |
+| ---------- | --------- | ----------------------- | ---------------- |
+| Practical  | 20%       | 18 September at 4.59 PM | 1                |
+| Project    | 80%       | 13 November at 4.59 PM  | 1                |
 
 ## Grade Table - Criterion Referenced
 
@@ -57,25 +55,19 @@ At the successful completion of this course, learners will be able to:
 
 ## Provisional Schedule
 
-| Week             | Topics                                                                             |
-| ---------------- | ---------------------------------------------------------------------------------- |
-| 1/Tahi           | Git and JavaScript                                                               |
-| 2/Rua            | APIs, Express and Development Tools                                                |
-| 3/Toru           | PostgreSQL, Docker, ORM, JSDoc and Postman                                         |
-| 4/Whā            | Content Negotiation, Relationships and N-Layer Architecture                        |
-| 5/Rima           | Validation, Seeding, Query Parameters and Deployment                               |
-| 6/Ono            | Security, Authentication, Role-Based Access Control, API Testing and Code Coverage |
-| 7/Whitu          | CI/CD and GitHub Actions                                                           |
-| 8/Waru           | Vite, SvelteKit.js and Deployment                                    |
-|                  | Mid Semester Break                                                                 |
-| 9/Whitu          | API Integration and Content Delivery Networks                                      |
-| 10/Tekau         | Performance, UI/UX Design and AI-Assisted Coding                                   |
-| 11/Tekau mā tahi | Component Testing and End-To-End Testing                                           |
-| 12/Tekau mā rua  | Assessment Work                                                                    |
-| 13/Tekau mā toru | Assessment Work                                                                    |
-| 14/Tekau mā whā  | Assessment Work                                                                    |
-| 15/Tekau mā rima | Assessment Work                                                                    |
-| 16/Tekau mā ono  | Assessment Marking                                                                 |
+| Module           | Topics                                              |
+| ---------------- | --------------------------------------------------- |
+| 1/Tahi           | Introduction and Environment Setup                  |
+| 2/Rua            | Backend: Express, Routes and Controllers            |
+| 3/Toru           | Frontend: SvelteKit Basics                          |
+| 4/Whā            | Backend: PostgreSQL, Prisma and CRUD                |
+| 5/Rima           | Frontend: CRUD                                      |
+| 6/Ono            | Backend: Relationships and Architecture             |
+| 7/Whitu          | Frontend: Second Model and Related Data             |
+| 8/Waru           | Backend: Validation, Seeding and Query Parameters   |
+| 9/Whitu          | Frontend: Filtering, Pagination and Form Validation |
+| 10/Tekau         | Backend: Authentication, RBAC and Rate Limiting     |
+| 11/Tekau mā tahi | Frontend: Authentication and Protected Pages        |
 
 ## Resources
 
@@ -149,8 +141,3 @@ If you are concerned about any aspect of your assessment, approach the teaching 
 ### Other Documents
 
 Regulatory documents relating to this course can be found on the [Otago Polytechnic](https://www.op.ac.nz) website.
-
----
-
-_Author: Grayson Orr_  
-_Course: ID607001: Introductory Application Development Concepts_
