@@ -30,7 +30,7 @@ At the successful completion of this course, learners will be able to:
 ## Submission
 
 - Repository: [https://classroom.github.com/a/8sCyquQ\_](https://classroom.github.com/a/8sCyquQ_)
-- Branch: `git checkout -b project`
+- Branch: `git checkout project`
 - Due: Sunday 26 June at 11.59 PM
 - Late penalty: 10% per day
 
@@ -52,7 +52,7 @@ You are encouraged to use AI tools throughout this project. When you do:
 
 The project runs alongside the course. Each pair of weeks - one backend, one frontend - gives you the knowledge and practice to build the corresponding part of your project.
 
-| Week | Content                                    | Project milestone                     |
+| Module | Content                                    | Project milestone                     |
 | ---- | ------------------------------------------ | ------------------------------------- |
 | 2    | Backend: Express, routes, controllers      | Project set up, design work begun     |
 | 3    | Frontend: SvelteKit basics                 | Design approved, structure in place   |
@@ -81,11 +81,11 @@ Designing before coding forces you to think about what you are building and why.
 
 ### Entity Relationship Diagram (ERD)
 
-Create an ERD using any digital tool (draw.io, Figma, dbdiagram.io, etc.) showing:
+Create an ERD using any digital tool showing:
 
 - Each model, its fields, data types, and constraints
 - At least one enum field with all its values listed
-- Relationships between models, with multiplicity marked (e.g. one-to-many)
+- Relationships between models, with multiplicity marked, e.g. one-to-many
 
 **Scope:** Three to five related models. Enough to support meaningful CRUD and relationships; not so many that you cannot build and test them well.
 
@@ -104,7 +104,7 @@ For each endpoint, think about: who should be allowed to call it? What happens i
 
 ### Wireframes
 
-Sketch wireframes for these pages (paper, Figma, Excalidraw - anything works):
+Sketch wireframes using any digital tool for these pages:
 
 - Home page
 - Register and login pages
@@ -119,7 +119,7 @@ Show navigation, form fields, buttons, data areas, and how each page responds to
 
 ### Design Reflection
 
-Before approval, write a short paragraph (not a list) answering:
+Before approval, write a short paragraph answering:
 
 1. What is your application and what is it for?
 2. Why did you choose these models? What real-world relationships connect them?
@@ -131,11 +131,11 @@ This is marked on evidence of thinking, not on being right.
 
 ## Phase 2: Build
 
-Build your backend and frontend in parallel with the weekly content. Use your design document as your plan - update it when things change, and note _why_ they changed.
+Build your backend and frontend in parallel with the weekly content. Use your design document as your plan. Update it when things change, and note _why_ they changed.
 
 ### Project management
 
-Use a Kanban board (GitHub Projects, Trello, or similar) throughout. Break your work into small tasks - ideally one per sitting. Move cards as you work. By submission, your board should tell the story of how the project unfolded.
+Use a Kanban board (GitHub Projects, Trello, or similar) throughout. Break your work into small tasks. Move cards as you work. By submission, your board should tell the story of how the project unfolded.
 
 You will not be marked on whether the board is tidy. You will be marked on whether it shows genuine, ongoing use.
 
@@ -145,7 +145,7 @@ You will not be marked on whether the board is tidy. You will be marked on wheth
 
 #### Models
 
-- Implement your approved models, each with at least three fields (excluding `id`, `createdAt`, `updatedAt`)
+- Implement your approved models, each with at least three fields, excluding `id`, `createdAt`, `updatedAt`
 - At least one enum field with at least two values
 - At least two relationships between models, including at least one one-to-many
 
@@ -153,8 +153,8 @@ You will not be marked on whether the board is tidy. You will be marked on wheth
 
 - Full CRUD for each model
 - Register, login, and logout
-- Health check (returns application status, database connectivity, and uptime)
-- Catch-all for unmatched routes (returns JSON 404, not HTML)
+- Health check. Returns application status, database connectivity, and uptime
+- Catch-all for unmatched routes. Returns a 404 with a JSON error message.
 
 #### Quality
 
@@ -183,7 +183,7 @@ Write unit tests covering:
 - Home
 - Register and login
 - List page for two models
-- Detail page for two models
+- Detail page for two models. This page should allow the user to delete the record if they have permission.
 - Create/edit form for two models
 - 404 page
 
@@ -191,34 +191,34 @@ Write unit tests covering:
 
 Using a component library, implement at minimum:
 
-- Navigation (highlights current page)
-- Form component with client-side validation
-- Table component for lists
-- Loading state component
-- Alert component for success and error messages
+- Navigation component with links that change based on user role
+- Form component with validation and error display
+- Table component for displaying lists of records
+- Loading state component for when data is being fetched
+- Alert component for displaying success and error messages
 
 #### Integration
 
-- Full authentication flow (register, login, logout)
+- Full authentication flow: register → login → logout
 - Fetch and display data for two models
 - Create, update, and delete records for two models
 - Error handling displayed to the user for all API calls
 
 #### Form behaviour
 
-- Client-side validation that matches your backend rules
-- Fields repopulate after a failed submission
-- User feedback during and after submission
+- Client-side validation that matches backend validation
+- Fields repopulate after a failed submission, with errors displayed
+- User feedback for successful submissions, e.g., redirect, toast, or alert
 
 ---
 
 ### Deployment
 
-Deploy both backend and frontend. Verify the complete register → login → create → read → delete flow works in the deployed environment.
+Deploy both backend and frontend. Verify the complete register → login → create → read → update → delete flow works in the deployed environment.
 
 ---
 
-### Code quality (both backend and frontend)
+### Code quality
 
 | Area            | Expectation                                                                 |
 | --------------- | --------------------------------------------------------------------------- |
@@ -227,7 +227,7 @@ Deploy both backend and frontend. Verify the complete register → login → cre
 | Naming          | Variables, functions, and components named for what they do                 |
 | Error handling  | Errors caught and returned as consistent JSON; never silent                 |
 | Security        | Secrets in environment variables; passwords hashed; JWT used correctly      |
-| Version control | Descriptive conventional commits; committed regularly - not once at the end |
+| Version control | Descriptive conventional commits; committed regularly. Not once at the end |
 
 > Your Git history is evidence of your process. A single commit on the due date communicates something very specific to a marker.
 
@@ -256,7 +256,7 @@ Deploy both backend and frontend. Verify the complete register → login → cre
 
 ## Phase 3: Reflect
 
-Write a reflection as the final section of each documentation file. This is written after you have finished building.
+In **`reflection.md`**, write a reflection as the final section of each documentation file. This is written after you have finished building.
 
 ### Backend reflection (~400 words)
 
