@@ -1,4 +1,4 @@
-# Module 01 - How the Web Works and Setting Up Your Environment
+# Module 01 - Introduction and Environment Setup
 
 ## Navigation
 
