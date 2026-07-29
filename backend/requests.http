@@ -1,0 +1,22 @@
+### Health check
+GET http://localhost:3000/api/health
+
+###
+
+### Get all institutions
+GET http://localhost:3000/api/institutions
+
+###
+
+### Get one institution
+GET http://localhost:3000/api/institutions/1
+
+###
+
+### Get an institution that doesn't exist (expect 404)
+GET http://localhost:3000/api/institutions/999
+
+###
+
+### Hit a route that doesn't exist (expect 404 from catch-all)
+GET http://localhost:3000/api/nonexistent
