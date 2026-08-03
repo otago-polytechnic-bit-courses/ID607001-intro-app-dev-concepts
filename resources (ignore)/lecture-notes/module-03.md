@@ -1,14 +1,5 @@
 # Module 03 - Frontend: SvelteKit Basics
 
-## Navigation
-
-|          |                                                                                                |
-| -------- | ---------------------------------------------------------------------------------------------- |
-| Previous | [Module 02 - Backend: Express, Routes and Controllers](../module-02-backend-express/README.md) |
-| Next     | [Module 04 - Backend: PostgreSQL, Prisma and CRUD](../module-04-backend-database/README.md)    |
-
----
-
 ## Before We Start
 
 Your Module 02 backend must be running before any frontend code in this module will work.
