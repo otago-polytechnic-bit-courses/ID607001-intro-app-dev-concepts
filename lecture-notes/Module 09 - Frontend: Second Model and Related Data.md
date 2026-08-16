@@ -1,18 +1,9 @@
-# Module 07 - Frontend: Second Model and Related Data
-
-## Navigation
-
-|          |                                                                                                            |
-| -------- | ---------------------------------------------------------------------------------------------------------- |
-| Previous | [Module 06 - Backend: Relationships and Architecture](../module-06-backend-relationships/README.md)        |
-| Next     | [Module 08 - Backend: Validation, Seeding and Query Parameters](../module-08-backend-validation/README.md) |
-
----
+# Module 09 - Frontend: Second Model and Related Data
 
 ## Before We Start
 
 ```bash
-git checkout -b m07-frontend-second-model
+git checkout -b m09-frontend-second-model
 ./check.sh
 ```
 
@@ -30,17 +21,24 @@ If the database is empty: `cd backend && npm run prisma:seed`
 
 ---
 
-## What You're Building This Module
+## A Note on Authentication
 
-The backend now has two related models. This module builds the corresponding frontend pages for departments, and updates institution pages to show related data.
+Your API has required a token on every endpoint since Module 06, and the department routes you wrote in Module 08 are no exception. Every `load` function and every form action in this module therefore needs two things:
 
-By the end:
+```javascript
+import { requireAuth } from "$lib/server/auth.js";
 
-- `/departments` - list all departments (each showing its parent institution)
-- `/departments/[id]` - detail page for one department
-- `/departments/new` - create form with institution selector
-- `/departments/[id]/edit` - edit form
-- `/institutions/[id]` - updated to show the institution's departments
+export const load = async ({ cookies, fetch }) => {
+  const user = requireAuth(cookies);
+
+  const res = await fetch(`${API_BASE_URL}/api/departments`, {
+    headers: { Authorization: `Bearer ${cookies.get("token")}` },
+  });
+  // ...
+};
+```
+
+The code samples below leave these out to keep them readable. **You must add them.** If a page renders an empty list where you expect data, check the Network tab for a `401` before you check anything else - it is the most common cause by a wide margin from here on.
 
 ---
 
@@ -517,11 +515,21 @@ Add departments to `src/routes/+layout.svelte`:
 
 ## Exercises
 
-### Task 1 - Implement everything above
+#### Task 1 - Implement and test everything above
 
-Build all department pages and test the full flow: create → list → detail → edit → delete. Test the cascade: create a department linked to an institution, then delete the institution and confirm the department is gone.
+Build all department pages and the updated institution detail page. Test the full flow: create → list → detail → edit → delete.
 
-### Task 2 - Breadcrumbs
+Then test the cascade from the frontend: create a department linked to an institution, delete the institution from `/institutions`, and confirm the department has disappeared from `/departments`.
+
+Commit each page individually:
+
+```bash
+git commit -m "feat: add department list and detail pages"
+git commit -m "feat: add department create and edit forms"
+git commit -m "feat: show departments on institution detail page"
+```
+
+#### Task 2 - Breadcrumbs
 
 On the department detail page, add a breadcrumb trail:
 
@@ -529,15 +537,13 @@ On the department detail page, add a breadcrumb trail:
 Institutions > Otago Polytechnic > Information Technology
 ```
 
-The institution name should link to `/institutions/[id]`.
+The institution name should link to `/institutions/[id]`. The department name is the current page and should not be a link.
 
-### Task 3 - Link back from institutions
+#### Task 3 - Show department counts on the institution list
 
-On the institution list page, update each row to show a count of departments:
+Update each row of the institution list to show how many departments it has:
 
 ```svelte
-<!-- You'll need the backend to return department counts.
-     Either update the API, or fetch counts separately. -->
 <td>{institution._count?.departments ?? 0} departments</td>
 ```
 
@@ -552,16 +558,58 @@ async findAll() {
 }
 ```
 
-### Task 4 - Reflect
+Why `?? 0` rather than just `institution._count.departments`? Break it deliberately by removing the `include` and see what the page does.
 
-At the top of `src/routes/departments/new/+page.server.js`, answer:
+#### Task 4 - Handle the empty institution list
 
-1. The create form loads institutions in the `load` function. What would happen if there were no institutions yet - how should the form handle this?
-2. `Promise.all([...])` is used in the edit page's load function. What is the advantage over awaiting each fetch one at a time?
-3. The "Add department" link on the institution detail page passes `?institutionId=...` in the URL. How does the create page pick this up, and why is this a better UX than making the user select the institution manually?
+The department create form loads institutions so the user can pick one. Delete every institution from your database, then open `/departments/new`.
 
----
+What does the user see? An empty `<select>` with no explanation is a dead end. Add a check in the page that, when there are no institutions, hides the form and shows a message with a link to create an institution first.
 
-## What Comes Next
+#### Task 5 - Pre-select the institution
 
-Module 08 adds validation, realistic seed data, and filtering/pagination to the backend. Module 09 updates the frontend to use them.
+The "Add department" link on the institution detail page passes `?institutionId=...` in the URL. Make the create form read that parameter and pre-select the matching option.
+
+Then compare the two paths: arriving from an institution page, and arriving from `/departments/new` directly. Both need to work.
+
+#### Task 6 - Deliberately slow down a fetch
+
+The edit page's load function uses `Promise.all([...])` to fetch the department and the institution list at the same time. Rewrite it to await each fetch one after the other, and add an artificial delay to the backend:
+
+```javascript
+await new Promise((r) => setTimeout(r, 1000));
+```
+
+Load the page both ways and compare. Then remove the delay and restore `Promise.all`. Write a one-line comment recording the difference you measured.
+
+#### Task 7 - Handle a deleted parent
+
+Open a department edit page. In another tab, delete the institution that department belongs to. Now submit the edit form.
+
+What does the user see? Improve the error handling so the failure is explained rather than dumped as a raw server error.
+
+#### Task 8 - Filter departments by institution
+
+Add a dropdown at the top of `/departments` that filters the list to a single institution. Put the selection in the URL as a query parameter so the filtered view can be bookmarked and shared.
+
+You are building a simple version of what Module 11 does properly. Keep what you learn here - the URL-as-state idea is the whole point of that module.
+
+#### Task 9 - Extract a reusable form component
+
+The institution and department forms now share a lot of structure: a labelled input, an error message, a submit button. Extract a `src/lib/components/Field.svelte` component that takes a label, name, value and error as props.
+
+Refactor both forms to use it. Did the code get shorter? Did it get clearer? Those are not always the same question, and if the answer to the second is no, say so.
+
+#### Task 10 - Build the frontend for your second model
+
+On the `project` branch, build the full set of pages for the second model you added in Module 08:
+
+- A list page showing each record with its parent
+- A detail page
+- Create and edit forms, with the parent selected via a dropdown
+- The parent's detail page updated to show its related records
+
+```bash
+git checkout project
+git commit -m "feat: add pages for second model and related data"
+```

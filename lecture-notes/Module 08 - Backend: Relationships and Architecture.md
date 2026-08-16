@@ -1,35 +1,13 @@
-# Module 06 - Backend: Relationships and Architecture
-
-## Navigation
-
-|          |                                                                                                     |
-| -------- | --------------------------------------------------------------------------------------------------- |
-| Previous | [Module 05 - Frontend: Create, Update and Delete](../module-05-frontend-crud/README.md)             |
-| Next     | [Module 07 - Frontend: Second Model and Related Data](../module-07-frontend-second-model/README.md) |
-
----
+# Module 08 - Backend: Relationships and Architecture
 
 ## Before We Start
 
 ```bash
-git checkout -b m06-backend-relationships
+git checkout -b m08-backend-relationships
 ./check.sh
 ```
 
 If the check script reports any issues, run `./setup.sh backend` before continuing.
-
----
-
-## What You're Building This Module
-
-Most real applications have more than one model, and those models relate to each other. This module adds a `Department` model that belongs to an `Institution` - a one-to-many relationship.
-
-By the end:
-
-- Full CRUD for departments, each linked to an institution
-- Fetching an institution includes its departments
-- Deleting an institution automatically removes its departments
-- An enum field restricts one of your model fields to a fixed set of values
 
 ---
 
@@ -123,7 +101,7 @@ Create and apply the migration:
 npm run prisma:migrate
 ```
 
-Name it: `01_add_department_model_and_status_enum`
+Name it: `02_add_department_model_and_status_enum`
 
 ---
 
@@ -326,11 +304,45 @@ router.delete("/:id", deleteDepartment);
 export default router;
 ```
 
+Notice that this router has no protection on it. Every other write endpoint in your API has required a token since Module 06, and departments should be no different:
+
+```javascript
+import express from "express";
+import jwtAuth from "../middleware/jwtAuth.js";
+import rbac from "../middleware/rbac.js";
+import {
+  createDepartment,
+  getDepartments,
+  getDepartment,
+  updateDepartment,
+  deleteDepartment,
+} from "../controllers/department.js";
+
+const router = express.Router();
+
+router.post("/", jwtAuth, rbac(["ADMIN", "STAFF"]), createDepartment);
+router.get("/", jwtAuth, getDepartments);
+router.get("/:id", jwtAuth, getDepartment);
+router.put("/:id", jwtAuth, rbac(["ADMIN", "STAFF"]), updateDepartment);
+router.delete("/:id", jwtAuth, rbac("ADMIN"), deleteDepartment);
+
+export default router;
+```
+
+Add the four department rows to the permission matrix in your `README.md` before you move on. A new model is not finished when its routes work; it is finished when you have decided who may call them.
+
 Register in `app.js`:
 
 ```javascript
 import departmentRoutes from "./routes/department.js";
 app.use("/api/departments", departmentRoutes);
+```
+
+**Every request in your `requests.http` now needs an `Authorization` header.** Log in first, copy the token, and add it to each request:
+
+```http
+GET http://localhost:3000/api/departments
+Authorization: Bearer REPLACE_WITH_YOUR_TOKEN
 ```
 
 ---
@@ -345,6 +357,8 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 async function main() {
+  // Note: departments must be deleted before institutions, and users are left
+  // alone entirely - the admin account from Module 06 should survive a re-seed.
   await prisma.department.deleteMany();
   await prisma.institution.deleteMany();
 
@@ -438,11 +452,24 @@ Verify in Prisma Studio that after deleting an institution, its departments are 
 
 ## Exercises
 
-### Task 1 - Implement everything above
+#### Task 1 - Implement and test everything above
 
-Department model, migration, repository, controller, routes. Test all endpoints.
+Department model, migration, repository, controller, routes. Test every endpoint before moving on:
 
-### Task 2 - Status enum on institution update
+- Create a department linked to a real institution
+- `GET /api/departments` returns each department with its institution name
+- `GET /api/institutions/:id` now returns a nested `departments` array
+- Deleting an institution removes its departments (confirm in Prisma Studio)
+
+Commit at each stage - after the migration, after the repository, after the controller:
+
+```bash
+git commit -m "feat: add department model and migration"
+git commit -m "feat: add department repository"
+git commit -m "feat: add department controller and routes"
+```
+
+#### Task 2 - Status enum on institution update
 
 Update the institution controller to accept a `status` field on updates:
 
@@ -460,11 +487,11 @@ const updateInstitution = async (req, res) => {
 };
 ```
 
-Test: update an institution's status to `INACTIVE`. Try setting it to `INVALID` - what does Prisma return?
+Test: update an institution's status to `INACTIVE`. Then try setting it to `INVALID`. What does Prisma return, and what status code does your controller send back? Is that the right code for this kind of failure?
 
-### Task 3 - Filter by status
+#### Task 3 - Filter by status
 
-Update `findAll` in the institution repository to accept an optional `status` filter:
+Update `findAll` in the institution repository to accept an optional filter object:
 
 ```javascript
 async findAll(filters = {}) {
@@ -475,7 +502,7 @@ async findAll(filters = {}) {
 }
 ```
 
-Update the controller to pass `status` from query params:
+Update the controller to build that object from query parameters:
 
 ```javascript
 const { status } = req.query;
@@ -484,22 +511,59 @@ if (status) filters.status = status;
 const institutions = await institutionRepository.findAll(filters);
 ```
 
-Test: `GET /api/institutions?status=INACTIVE`
+Test: `GET /api/institutions?status=INACTIVE`. Then test with no query parameter at all - does it still return everything? This is the pattern Module 10 builds on properly.
 
-### Task 4 - Update seed data
+#### Task 4 - Break the foreign key
 
-Add more institutions and departments to your seed data. Include institutions with different statuses. The variety will be useful for testing filtering later.
+Send a `POST /api/departments` with an `institutionId` that is a valid UUID but does not exist in the database. What does Prisma throw, and what does your API return to the client?
 
-### Task 5 - Reflect
+Right now the answer is probably a 500 with a long Prisma message. Catch that specific case in the controller and return a `404` with a clear message instead - something a frontend developer could actually display to a user.
+
+#### Task 5 - Try `onDelete: Restrict`
+
+Change the `Department` relation from `onDelete: Cascade` to `onDelete: Restrict`, create the migration, then try to delete an institution that has departments.
+
+What happens? What would the frontend have to do differently to support this behaviour? Change it back to `Cascade` and write a two-line comment in the schema recording what you found.
+
+#### Task 6 - Update the seed data
+
+Add more institutions and departments to `prisma/seed.js`. Include institutions with different statuses, and at least one institution with no departments at all.
+
+The variety matters: filtering, pagination and empty-state handling in later modules are all much easier to test against realistic data than against three tidy records.
+
+#### Task 7 - Reason about the relationship
 
 In a comment at the top of `repositories/department.js`, answer:
 
-1. When you create a department, you use `institution: { connect: { id: institutionId } }`. What would happen if you used an `institutionId` that does not exist?
-2. `onDelete: Cascade` means deleting an institution deletes its departments. What is one situation where you would choose `onDelete: Restrict` instead?
-3. The institution `findById` now includes departments. The `findAll` does not. Why might it make sense to include departments for a single institution but not for a list?
+1. When you create a department you use `institution: { connect: { id: institutionId } }` rather than setting `institutionId` directly. What does `connect` give you that the direct assignment does not?
+2. `onDelete: Cascade` deletes departments along with their institution. Name one situation where `Restrict` would be the safer choice, and explain why.
+3. Institution `findById` includes departments. `findAll` does not. Why might it make sense to include related data for a single record but not for a list?
 
----
+#### Task 8 - Add a second level of nesting
 
-## What Comes Next
+Add a `Course` model that belongs to a `Department`, giving you `Institution → Department → Course`. Build the repository, controller and routes from memory.
 
-Module 07 builds the department pages in the frontend. You will also update the institution detail page to display the nested departments returned by the updated `findById`.
+Then make `GET /api/institutions/:id` return departments **and** the courses inside each one, using a nested `include`. Look at the size of the response. At what point does including everything become a problem?
+
+#### Task 9 - Explore `_count`
+
+Prisma can return the number of related records without returning the records themselves:
+
+```javascript
+include: { _count: { select: { departments: true } } },
+```
+
+Add this to the institution `findAll`. Compare the response size against a version that includes the full `departments` array. When would you choose each? You will use this again in Module 09.
+
+#### Task 10 - Add a relationship to your project
+
+On the `project` branch, add a second model to your own schema with a genuine relationship to your first model. It must be a relationship your app actually needs - not a second model bolted on to satisfy the requirement.
+
+Build the migration, repository, controller and routes. Seed both models with realistic data.
+
+```bash
+git checkout project
+git commit -m "feat: add second model with one-to-many relationship"
+```
+
+Record in your project notes which delete behaviour you chose and why. You will need that reasoning for your design documentation.

@@ -1,18 +1,9 @@
-# Module 09 - Frontend: Filtering, Pagination and Form Validation
-
-## Navigation
-
-|          |                                                                                                            |
-| -------- | ---------------------------------------------------------------------------------------------------------- |
-| Previous | [Module 08 - Backend: Validation, Seeding and Query Parameters](../module-08-backend-validation/README.md) |
-| Next     | [Module 10 - Backend: Authentication, RBAC and Rate Limiting](../module-10-backend-auth/README.md)         |
-
----
+# Module 11 - Frontend: Filtering, Pagination and Form Validation
 
 ## Before We Start
 
 ```bash
-git checkout -b m09-frontend-validation
+git checkout -b m11-frontend-validation
 ./check.sh
 ```
 
@@ -28,19 +19,6 @@ cd frontend && npm run dev
 # If the database is empty:
 cd backend && npm run prisma:seed
 ```
-
----
-
-## What You're Building This Module
-
-Module 08 gave the backend filtering, sorting, and pagination. This module adds the frontend UI for those features, plus client-side form validation that mirrors the backend rules.
-
-By the end:
-
-- Institution list page has filter inputs and pagination controls
-- Create and edit forms validate input before submitting
-- Backend validation errors display inline on the form
-- Filter state is preserved in the URL (bookmarkable, shareable)
 
 ---
 
@@ -435,27 +413,39 @@ Then in the page, display them:
 
 ## Exercises
 
-### Task 1 - Implement filtering and pagination
+#### Task 1 - Implement filtering and pagination
 
-Build the updated institution list page with filters and pagination. Test:
+Build the updated institution list page with filter inputs and pagination controls. Test each of these before moving on:
 
-- Filtering by country - results reduce correctly
-- Filtering by status - only matching statuses appear
-- Sorting - order changes as expected
-- Pagination - `page=1` and `page=2` return different records
-- Clear link - removes all filters
+- Filtering by country reduces the results correctly
+- Filtering by status shows only matching records
+- Sorting changes the order as expected
+- `page=1` and `page=2` return different records
+- The clear link removes all filters
+- Filters and page number survive a browser refresh
 
-### Task 2 - Client-side validation on edit forms
+Commit each piece separately:
 
-Apply the same validation approach to the edit form. The field rules should match exactly what the backend validates - you should not be able to save a name shorter than three characters.
+```bash
+git commit -m "feat: add filter form to institution list"
+git commit -m "feat: add pagination controls"
+```
 
-### Task 3 - Department filters
+#### Task 2 - Client-side validation on the edit form
 
-Add filtering to the departments list page. At minimum: filter by institution name (pass the search to the backend's `name` filter on departments, or filter client-side if the list is small).
+Apply the same validation approach to the edit form. The rules must match what the backend enforces exactly - it should be impossible to save a name shorter than the minimum from either side.
 
-### Task 4 - Pagination helper component
+Then confirm the backend still rejects it independently, using REST Client. The frontend check is a convenience; it is not the protection.
 
-Extract the pagination controls into a reusable component `src/lib/components/Pagination.svelte`:
+#### Task 3 - Add filters to the departments list
+
+Add filtering to `/departments`. At minimum, let the user filter by institution.
+
+Decide whether to filter on the backend (passing a query parameter) or in the browser (filtering the loaded array). Write one sentence in a comment justifying the choice, and note what would change your mind if the list grew to ten thousand departments.
+
+#### Task 4 - Extract a pagination component
+
+Move the pagination controls into `src/lib/components/Pagination.svelte`:
 
 ```svelte
 <script>
@@ -479,18 +469,76 @@ Extract the pagination controls into a reusable component `src/lib/components/Pa
 {/if}
 ```
 
-Note: this simplified version does not preserve filter params in the pagination links. For a complete solution, you would need to pass the current filters as a prop and include them in the href.
+This version has a bug: it drops the active filters when you change page. Reproduce it - filter by country, then click Next. Then fix it by passing the current filters in and including them in each link.
 
-### Task 5 - Reflect
+#### Task 5 - Test with JavaScript disabled
+
+Disable JavaScript (DevTools → Settings → Debugger → Disable JavaScript) and use the list page.
+
+- Does filtering still work?
+- Does pagination still work?
+- Does the create form still submit?
+- What happens to your client-side validation?
+
+Record the results in a comment. Anything that still works without JavaScript works because it is a plain form or link, and that is worth understanding rather than assuming.
+
+#### Task 6 - Handle the empty result
+
+Filter by a country that matches nothing. What does the page show?
+
+Your backend currently returns a `404` when the filtered list is empty. Is a `404` correct here? A missing record is not found; an empty search result is a successful search that matched nothing. Change the backend to return `200` with an empty array and the pagination metadata, then make the page display a clear "no results" message with a link to clear the filters.
+
+#### Task 7 - Reason about state in the URL
 
 At the top of `src/routes/institutions/+page.svelte`, answer:
 
-1. The filter form uses `method="GET"`. Why is `GET` correct here but `POST` was correct for create and delete?
-2. Client-side validation prevents the form from submitting. But what happens if a user disables JavaScript? Is the form still protected?
-3. After filtering by country, the URL becomes `/institutions?country=Australia`. If a user copies this URL and opens it in a new tab, will the filter be applied? Why?
+1. The filter form uses `method="GET"`. Why is `GET` correct here when `POST` was correct for create and delete?
+2. After filtering, the URL becomes `/institutions?country=Australia`. If a user copies that URL into a new tab, is the filter applied? Why?
+3. Client-side validation stops the form submitting. Name two ways a request could reach your backend without ever running that check.
 
----
+#### Task 8 - Debounced live search
 
-## What Comes Next
+Add a search box that updates the results as the user types, rather than on submit. Use a timer so the request only fires once the user pauses - around 300 milliseconds is a common choice.
 
-Module 10 adds authentication to the backend - register, login, JWT tokens, role-based access control, and rate limiting. Module 11 adds the corresponding login and protected pages to the frontend.
+Watch the Network tab while you type. How many requests fire with debouncing, and how many without? What breaks if you set the delay to 2000 milliseconds instead?
+
+#### Task 9 - Write your first backend tests
+
+This is the last module, and the piece your assessments still need. Install Vitest in the backend:
+
+```bash
+cd backend
+npm install vitest supertest --save-dev
+```
+
+Cover the cases most likely to break: a successful create, a validation failure, a request for a record that does not exist, a protected route called without a token, and an ADMIN-only route called by a STUDENT.
+
+Run them against a test database rather than your development one. Working out how to do that cleanly is part of the exercise, and it is the part that catches most people out.
+
+#### Task 10 - Write your first end-to-end test
+
+Install Playwright in the frontend and automate one complete journey: log in, create a record, filter the list to find it, edit it, delete it, log out.
+
+```bash
+cd frontend
+npm init playwright@latest
+```
+
+Run it with both servers going. When it fails, read the trace before changing any code - the trace usually shows you exactly which step broke and what the page looked like at the time.
+
+#### Task 11 - Add filtering, pagination and validation to your project
+
+On the `project` branch:
+
+- Add filter and sort controls to at least one list page, with state held in the URL
+- Add working pagination that preserves the active filters
+- Add client-side validation to your create and edit forms, matching your backend rules
+- Display backend validation errors inline against the correct field
+
+```bash
+git checkout project
+git commit -m "feat: add filtering and pagination to list page"
+git commit -m "feat: add form validation with inline errors"
+```
+
+Take screenshots of the filtered, empty and error states as you go. You will want them for your documentation, and they are much easier to capture now than to recreate later.

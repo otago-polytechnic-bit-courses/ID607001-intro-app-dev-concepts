@@ -1,38 +1,17 @@
-# Module 08 - Backend: Validation, Seeding and Query Parameters
-
-## Navigation
-
-|          |                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Previous | [Module 07 - Frontend: Second Model and Related Data](../module-07-frontend-second-model/README.md)           |
-| Next     | [Module 09 - Frontend: Filtering, Pagination and Form Validation](../module-09-frontend-validation/README.md) |
-
----
+# Module 10 - Backend: Validation, Seeding and Query Parameters
 
 ## Before We Start
 
 ```bash
-git checkout -b m08-backend-validation
+git checkout -b m10-backend-validation
 ./check.sh
 ```
 
 ---
 
-## What You're Building This Module
-
-Your API currently accepts anything. Send an empty name, a name of one character, or someone else's institution ID and it will be stored or will fail with a confusing Prisma error.
-
-This module adds three things:
-
-1. **Validation** - rules that check incoming data before it touches the database
-2. **Improved seeding** - realistic data that demonstrates filtering and pagination
-3. **Query parameters** - filtering, sorting, and pagination on the read-all endpoint
-
-Module 09 will build frontend UI for all three.
-
----
-
 ## 1. Why Validate?
+
+Your auth endpoints are validated. Nothing else is.
 
 Without validation, your API is fragile and insecure:
 
@@ -45,6 +24,10 @@ Validation sits between the request and the controller, catching bad data early 
 ---
 
 ## 2. Setting Up Joi
+
+You already have Joi installed, and you have already written validation middleware once - `middleware/validation/auth.js`, in Module 06. This module applies the same pattern to the rest of your API.
+
+If you are working from a fresh clone:
 
 ```bash
 cd backend
@@ -181,9 +164,27 @@ import {
   validatePutInstitution,
 } from "../middleware/validation/institution.js";
 
-router.post("/", validatePostInstitution, createInstitution);
-router.put("/:id", validatePutInstitution, updateInstitution);
+router.post(
+  "/",
+  validatePostInstitution,
+  jwtAuth,
+  rbac("ADMIN"),
+  createInstitution,
+);
+router.put(
+  "/:id",
+  validatePutInstitution,
+  jwtAuth,
+  rbac(["ADMIN", "STAFF"]),
+  updateInstitution,
+);
 ```
+
+**Where should validation sit relative to `jwtAuth`?** Above, it runs first, so a malformed request is rejected before you ever check the token. Swap them and an unauthenticated request with a bad body gets a `401` instead of a validation error.
+
+Both orders are defensible and real APIs use both. The argument for validating first is that it is cheap and tells the client about every problem at once. The argument for authenticating first is that you should not do work on behalf of someone you have not identified, and that detailed validation errors are information you may not want to hand to an anonymous caller.
+
+Pick one, apply it to every route, and be ready to say why. Task 7 comes back to this.
 
 ---
 
@@ -253,8 +254,20 @@ import {
   validatePutDepartment,
 } from "../middleware/validation/department.js";
 
-router.post("/", validatePostDepartment, createDepartment);
-router.put("/:id", validatePutDepartment, updateDepartment);
+router.post(
+  "/",
+  validatePostDepartment,
+  jwtAuth,
+  rbac(["ADMIN", "STAFF"]),
+  createDepartment,
+);
+router.put(
+  "/:id",
+  validatePutDepartment,
+  jwtAuth,
+  rbac(["ADMIN", "STAFF"]),
+  updateDepartment,
+);
 ```
 
 ---
@@ -578,15 +591,32 @@ Verify that:
 
 ## Exercises
 
-### Task 1 - Implement everything above
+#### Task 1 - Implement and test everything above
 
-Validation, seed data, filtering, sorting, and pagination. Test all cases with REST Client.
+Validation middleware, realistic seed data, filtering, sorting and pagination. Do not move on until every case in the testing section passes:
 
-### Task 2 - Validate department institutionId
+- Missing required field returns a structured error response
+- A name shorter than the minimum is rejected
+- An empty `PUT` body is rejected
+- `?country=` filters the list
+- `?sortBy=name&sortOrder=desc` reverses the order
+- `?page=2&pageSize=3` returns a different set from page 1
 
-Test what happens when you POST a department with a valid UUID format but a UUID that does not exist in the database. The validation will pass (it checks format, not existence), but what does the controller return? Is that the right status code and message?
+Commit in stages:
 
-### Task 3 - Search parameter
+```bash
+git commit -m "feat: add joi validation middleware for institutions"
+git commit -m "feat: add realistic seed data"
+git commit -m "feat: add filtering, sorting and pagination"
+```
+
+#### Task 2 - Validate the department endpoints
+
+Write the equivalent validation middleware for departments, then test the gap it does not close: `POST` a department with a well-formed UUID that does not exist in the database.
+
+Validation passes, because it checks format rather than existence. What does the controller return? Is that the right status code and message? Fix it if not.
+
+#### Task 3 - Add a search parameter
 
 Add a `search` parameter that does a partial match across both `name` and `region`:
 
@@ -599,18 +629,72 @@ if (search) {
 }
 ```
 
-Test: `GET /api/institutions?search=otago` - should return institutions whose name or region contains "otago".
+Test: `GET /api/institutions?search=otago` should return institutions whose name **or** region contains "otago". Then combine it with another filter - does `?search=otago&status=ACTIVE` behave the way you expect?
 
-### Task 4 - Reflect
+#### Task 4 - Attack your own sort parameter
+
+Temporarily remove the `allowedSortFields` whitelist and pass `req.query.sortBy` straight to Prisma. Then send:
+
+```http
+GET http://localhost:3000/api/institutions?sortBy=nonsense
+GET http://localhost:3000/api/institutions?sortBy=password
+```
+
+What happens in each case? Restore the whitelist. Write a comment above it explaining, in your own words, what you just demonstrated.
+
+#### Task 5 - Decide on your error status code
+
+The validation middleware currently returns a particular status code for a failed validation. Look it up in the table from Module 02 and decide whether it is the right one.
+
+`400 Bad Request` and `422 Unprocessable Entity` are both defensible for validation failures; `409 Conflict` normally means the request conflicts with existing state, such as a duplicate unique field. Pick a convention, apply it consistently across every validator, and record the decision in a comment. You will need to justify it later.
+
+#### Task 6 - Test the pagination edges
+
+Send each of these and record what comes back:
+
+```http
+GET http://localhost:3000/api/institutions?page=0
+GET http://localhost:3000/api/institutions?page=9999
+GET http://localhost:3000/api/institutions?pageSize=-5
+GET http://localhost:3000/api/institutions?pageSize=abc
+```
+
+Which of these does your current code already handle, and which produce something unhelpful? Fix any that return an error rather than a sensible empty result or a clamped value.
+
+#### Task 7 - Reason about validation
 
 In a comment at the top of `middleware/validation/institution.js`, answer:
 
-1. Validation middleware runs before the controller. What is the benefit of this versus validating inside the controller itself?
-2. POST validation makes all fields required; PUT validation makes all fields optional but requires at least one. Why the difference?
-3. You whitelist the `sortBy` field. What could go wrong if you passed `req.query.sortBy` directly to Prisma without checking it?
+1. Validation middleware runs before the controller. What does that buy you compared with validating inside the controller itself?
+2. `POST` validation makes every field required. `PUT` validation makes them all optional but requires at least one. Why the difference?
+3. Your API now validates input, but the database also has constraints such as `@unique` on institution name. Why keep both, when either alone would prevent the bad record?
+4. You chose an order for `validate` and `jwtAuth` on each route. State which you chose and give the strongest argument you can against it.
 
----
 
-## What Comes Next
+#### Task 8 - Share your validation rules
 
-Module 09 adds filter inputs, pagination controls, and client-side form validation to the frontend. The pagination response shape you implemented here (`data` + `pagination` object) is exactly what the frontend will consume.
+The minimum name length is currently written in your Joi schema, and Module 11 will write it again in the frontend. Two copies of the same rule will drift apart.
+
+Move the rules into a single exported object of constants, and have the Joi schema read from it. Then think about how the frontend could read the same values - could the backend expose them on an endpoint? Sketch the approach in a comment even if you do not build it.
+
+#### Task 9 - Generalise pagination
+
+Your pagination logic lives inside the institution repository. Write a helper that any repository can use, so adding pagination to departments does not mean copying the same twenty lines.
+
+Apply it to the department repository. Then ask the harder question: is this a genuine duplication of knowledge, or two things that happen to look alike right now? Justify your answer in a comment.
+
+#### Task 10 - Validate and filter your own API
+
+On the `project` branch:
+
+- Add validation middleware for every create and update endpoint
+- Add filtering, sorting and pagination to at least one list endpoint
+- Replace your placeholder seed data with at least twenty realistic records, enough that pagination is actually visible
+
+```bash
+git checkout project
+git commit -m "feat: add validation, filtering and pagination"
+git commit -m "chore: add realistic seed data"
+```
+
+Keep your `requests.http` up to date as you go. It is the fastest evidence you have that your API behaves the way you claim it does.

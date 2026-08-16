@@ -1,31 +1,11 @@
-# Module 10 - Backend: Authentication, RBAC and Rate Limiting
-
-## Navigation
-
-|          |                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------- |
-| Previous | [Module 09 - Frontend: Filtering, Pagination and Form Validation](../module-09-frontend-validation/README.md) |
-| Next     | [Module 11 - Frontend: Authentication and Protected Pages](../module-11-frontend-auth/README.md)              |
-
----
+# Module 06 - Backend: Authentication, RBAC and Rate Limiting
 
 ## Before We Start
 
 ```bash
-git checkout -b m10-backend-auth
+git checkout -b m06-backend-auth
 ./check.sh
 ```
-
----
-
-## What You're Building This Module
-
-Right now, anyone can call any endpoint - create, update, delete. This module adds:
-
-1. **Authentication** - verifying who someone is (register and login)
-2. **JWT middleware** - protecting routes so only logged-in users can access them
-3. **Role-based access control (RBAC)** - restricting what each role can do
-4. **Rate limiting** - preventing abuse by throttling request frequency
 
 ---
 
@@ -71,14 +51,15 @@ The JWT itself is a signed string. It encodes the user's ID and role. The **sign
 
 ```bash
 cd backend
-npm install bcryptjs jsonwebtoken express-rate-limit
+npm install bcryptjs jsonwebtoken express-rate-limit joi
 ```
 
-| Package              | Purpose                                |
-| -------------------- | -------------------------------------- |
-| `bcryptjs`           | Hash passwords and compare them safely |
-| `jsonwebtoken`       | Create and verify JWTs                 |
-| `express-rate-limit` | Throttle requests by IP address        |
+| Package              | Purpose                                                             |
+| -------------------- | ------------------------------------------------------------------- |
+| `bcryptjs`           | Hash passwords and compare them safely                              |
+| `jsonwebtoken`       | Create and verify JWTs                                              |
+| `express-rate-limit` | Throttle requests by IP address                                     |
+| `joi`                | Describe what valid data looks like, and check it against a request |
 
 Add to `backend/.env` and `backend/.env.example`:
 
@@ -93,7 +74,7 @@ JWT_LIFETIME=1h
 
 ## 4. User Model
 
-Add to `prisma/schema.prisma` and create the migration `02_add_user_model`:
+Add to `prisma/schema.prisma` and create the migration `01_add_user_model`:
 
 ```javascript
 enum Role {
@@ -116,7 +97,7 @@ model User {
 
 ```bash
 npm run prisma:migrate
-# Name it: 02_add_user_model
+# Name it: 01_add_user_model
 ```
 
 The `password` field stores a **hash**, not the actual password. You never store plain text passwords - if your database is ever compromised, hashes cannot be reversed into passwords.
@@ -267,7 +248,7 @@ Apply to any route that requires authentication:
 ```javascript
 import jwtAuth from "../middleware/jwtAuth.js";
 
-router.post("/", validatePostInstitution, jwtAuth, createInstitution);
+router.post("/", jwtAuth, createInstitution);
 ```
 
 ---
@@ -306,23 +287,11 @@ import jwtAuth from "../middleware/jwtAuth.js";
 import rbac from "../middleware/rbac.js";
 
 // ADMIN only
-router.post(
-  "/",
-  validatePostInstitution,
-  jwtAuth,
-  rbac("ADMIN"),
-  createInstitution,
-);
+router.post("/", jwtAuth, rbac("ADMIN"), createInstitution);
 router.delete("/:id", jwtAuth, rbac("ADMIN"), deleteInstitution);
 
 // ADMIN or STAFF
-router.put(
-  "/:id",
-  validatePutInstitution,
-  jwtAuth,
-  rbac(["ADMIN", "STAFF"]),
-  updateInstitution,
-);
+router.put("/:id", jwtAuth, rbac(["ADMIN", "STAFF"]), updateInstitution);
 
 // Any authenticated user
 router.get("/", jwtAuth, getInstitutions);
@@ -337,16 +306,42 @@ router.get("/:id", jwtAuth, getInstitution);
 | Read institutions  | ✅    | ✅    | ✅      |
 | Update institution | ✅    | ✅    | ❌      |
 | Delete institution | ✅    | ❌    | ❌      |
-| Create department  | ✅    | ✅    | ❌      |
-| Read departments   | ✅    | ✅    | ✅      |
-| Update department  | ✅    | ✅    | ❌      |
-| Delete department  | ✅    | ❌    | ❌      |
+| Create course      | ✅    | ✅    | ❌      |
+| Read courses       | ✅    | ✅    | ✅      |
+| Update course      | ✅    | ✅    | ❌      |
+| Delete course      | ✅    | ❌    | ❌      |
+
+Every model you add from here on gets a row in this table before it gets a route file. Module 08 adds departments, and the first question to ask then is which of these three roles may create one.
 
 Apply these consistently across all your routes.
 
 ---
 
 ## 8. Validation for Auth Endpoints
+
+Your register endpoint currently accepts anything. An empty password, a two-character one, an email address that is not an email address - all of it reaches `bcryptjs` and then the database.
+
+That is bad on any endpoint. On this one it is worse, because a weak password is not a data quality problem, it is an account someone else can get into.
+
+**Joi** lets you describe what valid data looks like as a schema, then check a request against it:
+
+```javascript
+import Joi from "joi";
+
+const schema = Joi.object({
+  emailAddress: Joi.string().email().required(),
+  password: Joi.string().min(8).required(),
+});
+
+const { error } = schema.validate(req.body, {
+  abortEarly: false, // collect every error, not just the first
+  convert: false, // do not coerce types
+});
+
+// error.details is an array of every validation failure
+```
+
+Written as middleware, this runs **before** the controller. The controller only ever sees data that has already passed. Module 10 applies the same pattern to the rest of your API - this is where it starts.
 
 Create `backend/middleware/validation/auth.js`:
 
@@ -553,11 +548,27 @@ Authorization: Bearer STUDENT_TOKEN
 
 ## Exercises
 
-### Task 1 - Implement everything above
+#### Task 1 - Implement and test everything above
 
-Auth controller, JWT middleware, RBAC, validation, and rate limiting. Test every scenario.
+User model, auth controller, JWT middleware, RBAC and rate limiting. Work through every scenario in the testing section:
 
-### Task 2 - Seed an admin user
+- Register a new user
+- Register the same email again and get a conflict
+- Log in and receive a token
+- Call a protected route without a token and get a `401`
+- Call it with the token and get a `200`
+- Call an ADMIN-only route as a STUDENT and get a `403`
+
+Commit in stages:
+
+```bash
+git commit -m "feat: add user model and migration"
+git commit -m "feat: add register and login endpoints"
+git commit -m "feat: add jwt auth middleware"
+git commit -m "feat: add role-based access control"
+```
+
+#### Task 2 - Seed an admin user
 
 Add an admin user to your seed script so you always have one available during development:
 
@@ -578,11 +589,19 @@ await prisma.user.upsert({
 });
 ```
 
-`upsert` creates the user if they do not exist, or does nothing if they do. This makes the seed script safe to run multiple times.
+`upsert` creates the user if they do not exist and does nothing if they do, which makes the seed script safe to run repeatedly.
 
-### Task 3 - Logout endpoint
+Seed one user per role. You will need all three in Module 07 to test the role-based UI.
 
-Logout for a JWT API is client-side - the client simply discards the token. However, it is still good practice to have a logout endpoint for logging or future token blacklisting:
+#### Task 3 - Document your permission matrix
+
+Fill in the full permission table for every endpoint in your API and add it to your `README.md`. Then check your route files against it, line by line.
+
+Most people find at least one endpoint that is protected differently from what they intended. That is the point of writing the table down.
+
+#### Task 4 - Add a logout endpoint
+
+Logging out of a JWT API is a client-side act - the client discards the token. An endpoint is still worth having, for logging and for future token revocation:
 
 ```javascript
 const logout = (req, res) => {
@@ -590,18 +609,58 @@ const logout = (req, res) => {
 };
 ```
 
-The real work happens in Module 11 when the frontend clears the cookie.
+Then answer the awkward question in a comment: if a user "logs out" but keeps a copy of their token, can they still call your API with it? What would it actually take to stop them?
 
-### Task 4 - Reflect
+#### Task 5 - Inspect a token
+
+Copy a token from a login response and paste it into `jwt.io`, or decode it yourself:
+
+```javascript
+console.log(JSON.parse(atob(token.split(".")[1])));
+```
+
+You can read the payload without the secret. Now change the role inside it, re-encode it, and send it to a protected route. What happens, and which part of the JWT stops you?
+
+Given the payload is readable by anyone holding the token, what must never be put in it?
+
+#### Task 6 - Test the rate limiter
+
+Send the same request repeatedly until the limiter trips. What status code comes back, and what headers are on the response?
+
+Then apply a much stricter limit to the login endpoint specifically than to your read endpoints, and explain in a comment why login deserves different treatment from `GET /api/institutions`.
+
+#### Task 7 - Reason about authentication
 
 In a comment at the top of `middleware/jwtAuth.js`, answer:
 
-1. The JWT payload contains the user's role. A user might try to change the role in the token. Why does this not work?
-2. Login returns the same error message whether the email is not found or the password is wrong. Why?
-3. Rate limiting is per IP address. What is a limitation of IP-based rate limiting?
+1. The token payload contains the user's role. Why can a user not simply edit it to `ADMIN`?
+2. Login returns the same error message whether the email does not exist or the password is wrong. What does this prevent?
+3. Rate limiting is per IP address. Name one situation where that unfairly blocks legitimate users, and one where it fails to stop an attacker.
 
----
+#### Task 8 - Ownership as well as role
 
-## What Comes Next
+Role-based access asks _what are you?_ Ownership asks _is this yours?_ Add a `createdById` field to one of your models, and write middleware that allows a STAFF user to edit only the records they created, while ADMIN can edit anything.
 
-Module 11 builds the frontend auth flows: register and login pages, cookie-based token storage, protected routes that redirect to login, and role-based UI.
+Where does this check have to live, and why can it not go in the same place as `rbac()`? The answer is that `rbac` runs before you have fetched the record, and that constraint is the interesting part of the exercise.
+
+#### Task 9 - Short-lived tokens and refresh
+
+Set your access token to expire after sixty seconds. Log in, wait, and call a protected route. Read about refresh tokens, then explain in a comment how a refresh token improves on simply setting a long expiry - and what new problem it introduces.
+
+#### Task 10 - Add authentication to your project
+
+On the `project` branch:
+
+- Add a `User` model with at least two roles that mean something in your app
+- Implement register and login
+- Protect every write endpoint with `jwtAuth`
+- Apply `rbac()` according to a permission matrix you have documented in your `README.md`
+- Add rate limiting, with a stricter limit on login
+
+```bash
+git checkout project
+git commit -m "feat: add user model and authentication"
+git commit -m "feat: protect write endpoints with rbac"
+```
+
+Confirm your `.env` is still ignored by Git and that your `JWT_SECRET` has never been committed. Check `git log -p` if you are not certain - a secret removed in a later commit is still in the history.

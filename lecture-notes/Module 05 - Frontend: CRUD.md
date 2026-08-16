@@ -1,14 +1,5 @@
 # Module 05 - Frontend: CRUD
 
-## Navigation
-
-|          |                                                                                                     |
-| -------- | --------------------------------------------------------------------------------------------------- |
-| Previous | [Module 04 - Backend: PostgreSQL, Prisma and CRUD](../module-04-backend-database/README.md)         |
-| Next     | [Module 06 - Backend: Relationships and Architecture](../module-06-backend-relationships/README.md) |
-
----
-
 ## Before We Start
 
 Your Module 04 backend must be running with the database connected.
@@ -36,18 +27,6 @@ cd backend && npm run dev
 # Terminal 2
 cd frontend && npm run dev
 ```
-
----
-
-## What You're Building This Module
-
-Module 03 made the frontend read-only. This module adds write operations - users can create, update, and delete institutions through the UI.
-
-By the end:
-
-- `/institutions` - list with a delete button per row and a link to create
-- `/institutions/new` - form to create an institution
-- `/institutions/[id]/edit` - form to update an institution
 
 ---
 
@@ -505,12 +484,6 @@ src/routes/
 
 ## Exercises
 
-Tasks are grouped into three tiers. **Core** tasks build the foundation. **Practice** tasks deepen your understanding. **Stretch** tasks are optional. The **Project** task directly advances your assessment.
-
----
-
-### Core
-
 #### Task 1 - Implement and test the full flow
 
 Build all four pages (list, detail, new, edit). Test the complete sequence:
@@ -523,15 +496,17 @@ Build all four pages (list, detail, new, edit). Test the complete sequence:
 
 If the database is empty: `cd backend && npm run prisma:seed`
 
-Commit after each page works.
+Commit after each page works - not all at once:
+
+```bash
+git commit -m "feat: add institution create form"
+git commit -m "feat: add institution edit form"
+git commit -m "feat: add institution delete action"
+```
 
 #### Task 2 - Courses pages
 
-Build the create/edit/delete flow for courses. Follow the exact same structure - do not look at the institution pages once you start; try to build from memory.
-
----
-
-### Practice
+Build the create, edit and delete flow for courses. Follow the exact same structure - but do not look at the institution pages once you start. Build from memory, and only look back if you are genuinely stuck.
 
 #### Task 3 - What happens on a failed submit
 
@@ -592,9 +567,7 @@ Apply the same pattern for "updated" after an edit redirect.
 
 What happens if you visit `/institutions/[id]/edit` but the institution was deleted in another browser tab between loading the edit page and submitting it? Test this manually: open the edit page, delete the institution from the list page, then submit the edit. What does the user see? Is the error message helpful? Improve it.
 
----
-
-### Stretch
+Then ask: which HTTP method does each of your forms use, and why is `POST` correct for create, update and delete but not for a search box?
 
 #### Task 8 - Inline delete without page reload
 
@@ -616,10 +589,6 @@ Test the difference in behaviour. Read the SvelteKit docs on `enhance` to unders
 
 With `enhance` you can update the UI before the server responds. When a user deletes an institution, remove it from the displayed list immediately, then undo if the server returns an error. Research how `use:enhance` with a custom submit function enables this, and implement it.
 
----
-
-### Project
-
 #### Task 10 - Build your project's create and edit forms
 
 On the `project` branch, build at minimum:
@@ -628,10 +597,9 @@ On the `project` branch, build at minimum:
 - An edit form for your first project model
 - Delete functionality on the list page
 
-Test the full flow. Commit each page as you complete it. Your project needs these pages to exist before you can demonstrate the create/update/delete assessment criteria.
+Test the full flow. Commit each page as you complete it. Your project needs these pages to exist before you can demonstrate the create, update and delete assessment criteria.
 
----
-
-## What Comes Next
-
-Module 06 adds a second model to the backend with a relationship to institutions. Module 07 builds the corresponding frontend pages.
+```bash
+git checkout project
+git commit -m "feat: add create and edit forms for first model"
+```

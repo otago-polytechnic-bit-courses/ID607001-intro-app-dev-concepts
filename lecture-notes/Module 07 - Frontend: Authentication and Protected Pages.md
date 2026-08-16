@@ -1,17 +1,9 @@
-# Module 11 - Frontend: Authentication and Protected Pages
-
-## Navigation
-
-|          |                                                                                                    |
-| -------- | -------------------------------------------------------------------------------------------------- |
-| Previous | [Module 10 - Backend: Authentication, RBAC and Rate Limiting](../module-10-backend-auth/README.md) |
-
----
+# Module 07 - Frontend: Authentication and Protected Pages
 
 ## Before We Start
 
 ```bash
-git checkout -b m11-frontend-auth
+git checkout -b m07-frontend-auth
 ./check.sh
 ```
 
@@ -26,20 +18,6 @@ cd frontend && npm run dev
 ```
 
 If the database is empty: `cd backend && npm run prisma:seed`
-
----
-
-## What You're Building This Module
-
-The backend now has authentication. This module adds the frontend flows:
-
-- Register and login pages
-- Token stored in a secure cookie after login
-- Pages that redirect to login if no token is present
-- Role-based UI - show or hide elements based on the logged-in user's role
-- Logout
-
-By the end, the complete auth flow works end to end.
 
 ---
 
@@ -485,9 +463,6 @@ Update `+layout.svelte` to use it:
   <a href="/institutions" class:active={page.url.pathname.startsWith("/institutions")}>
     Institutions
   </a>
-  <a href="/departments" class:active={page.url.pathname.startsWith("/departments")}>
-    Departments
-  </a>
 
   <div class="nav-right">
     {#if data.user}
@@ -546,40 +521,51 @@ A 401 from the backend means the token is invalid or expired. Clear the cookie a
 
 ## Exercises
 
-### Task 1 - Implement everything above
+#### Task 1 - Implement and test everything above
 
-Register, login, logout, protected pages, and role-based UI. Test the full flow.
+Register, login, logout, protected pages and role-based UI. Work through the whole checklist:
 
-Checklist:
+- Register a new user and confirm you are redirected to login with a success message
+- Log in and confirm the cookie is set (DevTools → Application → Cookies)
+- Visit a protected page and confirm you see data
+- Log out and confirm the cookie is gone
+- Visit the protected page again and confirm you are redirected to login
+- Log in as ADMIN and confirm the create, edit and delete controls appear
+- Log in as STUDENT and confirm only read access is visible
 
-- Register a new user → confirm you are redirected to login with a success message
-- Log in → confirm the token is set (check Application > Cookies in DevTools)
-- Visit a protected page → confirm you see data
-- Log out → confirm the cookie is gone
-- Try to visit the protected page again → confirm you are redirected to login
-- Register and log in as ADMIN → confirm create/edit/delete controls appear
-- Register and log in as STUDENT → confirm only read access is visible
+Commit each flow separately:
 
-### Task 2 - Redirect after login
+```bash
+git commit -m "feat: add register page"
+git commit -m "feat: add login page with cookie storage"
+git commit -m "feat: protect pages with requireAuth"
+git commit -m "feat: add role-based ui and logout"
+```
 
-After logging in, redirect the user to wherever they were trying to go (not always `/`). Pass the intended destination as a query parameter:
+#### Task 2 - Protect the create and edit routes
+
+The create and edit pages currently load for anyone; they only fail at submit time. Add `requireAuth` to the `load` functions of your create, edit and delete routes so unauthenticated users are redirected before they ever see the form.
+
+Test by logging out and navigating directly to `/institutions/new`.
+
+#### Task 3 - Redirect back after login
+
+After logging in, send the user where they were trying to go rather than always to `/`:
 
 ```javascript
 // When redirecting to login because of missing auth:
 redirect(303, `/auth/login?next=${encodeURIComponent(event.url.pathname)}`);
 
-// In the login action, after successful login:
+// In the login action, after a successful login:
 const next = url.searchParams.get("next") ?? "/";
 redirect(303, next);
 ```
 
-### Task 3 - Protect the create/edit routes
+Then try setting `next` to an external URL by hand, such as `?next=https://example.com`. Does your app follow it? An open redirect is a real vulnerability - restrict `next` to paths that start with a single `/`.
 
-Right now, the create and edit pages load even for unauthenticated users (they just fail when they try to submit). Add `requireAuth` to the `load` functions of create, edit, and delete so unauthenticated users are redirected before they see the form.
+#### Task 4 - Show the logged-in user's name
 
-### Task 4 - Show the user's full name
-
-The JWT payload only contains `id` and `role`. To show the full name, you need to fetch the user's profile from the backend. Add a `GET /api/auth/me` endpoint that returns the current user's details:
+The JWT payload only carries `id` and `role`. To display a name you need the user's profile. Add a `GET /api/auth/me` endpoint:
 
 ```javascript
 // In controllers/auth.js
@@ -603,24 +589,54 @@ const getMe = async (req, res) => {
 };
 ```
 
-Protect it with `jwtAuth`, then call it from `+layout.server.js` and display the name in the nav.
+Protect it with `jwtAuth`, call it from `+layout.server.js`, and show the name in the navigation. Note which fields the `select` deliberately leaves out, and why that matters.
 
-### Task 5 - Reflect
+#### Task 5 - Prove that hiding a button is not security
+
+Log in as a STUDENT. The delete button is hidden. Now open REST Client and send the delete request directly with the STUDENT's token.
+
+What happens, and which piece of code stopped you? Then comment out the `rbac()` call on that route and try again. Restore it immediately afterwards, and write down what you just demonstrated.
+
+#### Task 6 - Handle an expired token gracefully
+
+Set your backend's token expiry to sixty seconds and log in. Wait, then click around the app.
+
+What does the user experience look like? Being silently bounced to a login page with no explanation is confusing. Make the redirect carry a message such as "Your session expired, please log in again", and display it on the login page.
+
+#### Task 7 - Reason about token storage
 
 At the top of `src/lib/server/auth.js`, answer:
 
-1. The token is stored in an `httpOnly` cookie. What is the difference between this and storing it in `localStorage`? Why is `httpOnly` more secure?
-2. The layout's `load` function checks the token to get the current user. What happens if someone creates a fake cookie with a made-up JWT? Why does it not work?
-3. Hiding the delete button from STUDENT users is a UX decision, not a security decision. What would happen if a STUDENT found the API endpoint and called it directly? What actually prevents the deletion?
+1. The token lives in an `httpOnly` cookie. What can a script on your page do with a `localStorage` token that it cannot do with this one?
+2. What happens if someone hand-crafts a cookie containing a made-up JWT, and which line of code rejects it?
+3. `requireAuth` verifies the token in the SvelteKit server, and the backend verifies it again on every API call. Why is verifying it in both places not redundant work?
 
----
+#### Task 8 - A "remember me" option
 
-## What Comes Next
+Add a checkbox to the login form. When it is ticked, set the cookie with a long `maxAge`; when it is not, omit `maxAge` entirely so the cookie disappears when the browser closes.
 
-With all eleven modules complete, the application has:
+Test both paths by closing and reopening the browser. Then consider the security side: on a shared machine, which of these two behaviours would you want as the default, and is that the one you implemented?
 
-- A full backend with CRUD, relationships, validation, auth, and RBAC
-- A full frontend with data display, forms, filtering, pagination, and auth flows
-- Setup automation for quick onboarding
+#### Task 9 - Show who created a record
 
-The remaining work is **testing** - unit tests for your backend controllers and middleware, and end-to-end tests for the complete frontend flows. Refer to your assessment documentation for what tests are required and how they will be marked.
+Add a `createdById` field to your institution model, set it from `req.user.id` when a record is created, and display the creator's name on the detail page.
+
+The interesting part is what happens to your existing rows. A required field added to a table that already has data will fail the migration. Work out why, and decide between making the field optional, giving it a default, or clearing the table - then explain the choice in a comment.
+
+#### Task 10 - Add authentication to your project
+
+On the `project` branch, build the full auth flow for your own application:
+
+- Register and login pages
+- Token stored in an `httpOnly` cookie
+- Every page that needs protecting wrapped in `requireAuth`, including create and edit routes
+- UI shown and hidden by role, backed by real RBAC on your API
+- Logout
+
+```bash
+git checkout project
+git commit -m "feat: add register and login pages"
+git commit -m "feat: protect routes and add role-based ui"
+```
+
+Do this before you add any more models. Every model you add from here on will need its own permission rules, and it is far easier to write those as you go than to work out, in week ten, which of your fourteen endpoints are unprotected.
