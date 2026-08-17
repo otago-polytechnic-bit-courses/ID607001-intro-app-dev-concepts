@@ -260,7 +260,7 @@ Describe your app idea in **100 to 150 words**, covering:
 
 Your app should be your own idea, not a clone of a well-known application, and realistic for one semester alongside your other courses. A simple concept executed well is worth more here than an ambitious one left half-built.
 
-Your app must be able to support at least two related models and at least two user roles. If your idea cannot, it is too small - say so early and change it.
+Your app must be able to support at least four related models and at least two user roles. If your idea cannot, it is too small - say so early and change it.
 
 Your lecturer must approve your concept before you continue.
 
@@ -412,7 +412,7 @@ Implement the API required by your requirements.
 
 You must:
 
-- implement full CRUD for at least two related models;
+- implement full CRUD for at least four related models;
 - use the routes, controllers and repositories structure taught in the modules;
 - validate every create and update request before it reaches the database;
 - return correct status codes and a consistent JSON error shape across every endpoint;
