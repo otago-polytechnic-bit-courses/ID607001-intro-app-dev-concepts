@@ -1,4 +1,4 @@
-# Module 07 - Frontend: Authentication and Protected Pages
+# Module 08 - Frontend: Authentication and Protected Pages
 
 ## Before We Start
 
