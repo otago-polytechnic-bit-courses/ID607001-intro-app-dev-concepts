@@ -1,9 +1,9 @@
-# Module 08 - Backend: Relationships and Architecture
+# Module 07 - Backend: Relationships and Architecture
 
 ## Before We Start
 
 ```bash
-git checkout -b m08-backend-relationships
+git checkout -b m07-backend-relationships
 ./check.sh
 ```
 
