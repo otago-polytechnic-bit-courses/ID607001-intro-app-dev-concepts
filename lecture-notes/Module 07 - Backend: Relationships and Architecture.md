@@ -55,7 +55,7 @@ model Institution {
   region      String
   country     String
   status      Status       @default(ACTIVE)         // ← new enum field
-  departments Department[]                           // ← relation
+  departments Department[]                          // ← relation
   createdAt   DateTime     @default(now())
   updatedAt   DateTime     @updatedAt
 }
@@ -64,12 +64,7 @@ model Department {
   id            String      @id @default(uuid())
   name          String
   institutionId String
-  institution   Institution @relation(
-    fields:     [institutionId],
-    references: [id],
-    onDelete:   Cascade,
-    onUpdate:   Cascade
-  )
+  institution   Institution @relation(fields: [institutionId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt     DateTime    @default(now())
   updatedAt     DateTime    @updatedAt
 }
