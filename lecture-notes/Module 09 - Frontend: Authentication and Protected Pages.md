@@ -1,9 +1,9 @@
-# Module 09 - Frontend: Authentication and Protected Pages
+# Module 08 - Frontend: Authentication and Protected Pages
 
 ## Before We Start
 
 ```bash
-git checkout -b m09-frontend-auth
+git checkout -b m08-frontend-auth
 ./check.sh
 ```
 
