@@ -118,31 +118,33 @@ export const actions = {
     const region = formData.get("region");
     const country = formData.get("country");
 
+    let res, data;
+
     try {
-      const res = await fetch(`${API_BASE_URL}/api/institutions`, {
+      res = await fetch(`${API_BASE_URL}/api/institutions`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, region, country }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        // Send back what the user typed so the form can be repopulated
-        return fail(res.status, {
-          error: data.message,
-          values: { name, region, country },
-        });
-      }
-
-      // Success - redirect to the list
-      redirect(303, "/institutions");
+      data = await res.json();
     } catch (err) {
       return fail(500, {
         error: "Could not connect to the server.",
         values: { name, region, country },
       });
     }
+    
+    if (!res.ok) {
+      // Send back what the user typed so the form can be repopulated
+      return fail(res.status, {
+        error: data.message,
+        values: { name, region, country },
+      });
+    }
+
+    // Success - redirect to the list
+    redirect(303, "/institutions");
   },
 };
 ```
@@ -258,29 +260,31 @@ export const actions = {
     const region = formData.get("region");
     const country = formData.get("country");
 
+    let res, data;
+
     try {
-      const res = await fetch(`${API_BASE_URL}/api/institutions/${params.id}`, {
+      res = await fetch(`${API_BASE_URL}/api/institutions/${params.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, region, country }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        return fail(res.status, {
-          error: data.message,
-          values: { name, region, country },
-        });
-      }
-
-      redirect(303, `/institutions/${params.id}`);
+      data = await res.json();
     } catch (err) {
       return fail(500, {
         error: "Could not connect to the server.",
         values: { name, region, country },
       });
     }
+
+    if (!res.ok) {
+      return fail(res.status, {
+        error: data.message,
+        values: { name, region, country },
+      });
+    }
+
+    redirect(303, `/institutions/${params.id}`);
   },
 };
 ```
@@ -371,19 +375,20 @@ export const actions = {
     const formData = await request.formData();
     const id = formData.get("id");
 
+    let res;
+
     try {
-      const res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
+      res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
         method: "DELETE",
       });
-
-      if (!res.ok) {
-        const data = await res.json();
-        return fail(res.status, { error: data.message });
-      }
-
       return { deleted: true };
     } catch (err) {
       return fail(500, { error: "Could not delete institution." });
+    }
+
+    if (!res.ok) {
+      const data = await res.json();
+      return fail(res.status, { error: data.message });
     }
   },
 };

@@ -14,13 +14,13 @@
 
 # Practical Overview
 
-You will be given a small full-stack application: an Express API backed by PostgreSQL and Prisma, and a SvelteKit client. It starts. Some of it works. A good deal of it does not.
+You will be given a small Express API backed by PostgreSQL and Prisma. It starts. Some of it works. A good deal of it does not.
 
 Your task is to **diagnose what is wrong with it, repair it, and finish it**, using the patterns taught in Modules 01 to 08, and to justify the decisions you made.
 
-That scope includes authentication, role-based access control and validation, all of which you meet in Modules 06 and 07. It does not include filtering, pagination or client-side form validation, which come later in the course.
+That scope includes authentication and role-based access control, both of which you meet in Module 06. It does not include filtering, pagination or deployment, which come later in the course.
 
-You are not redesigning the application or inventing new features. Almost all of the marks are for making a partly-built application work correctly and for explaining why your version is right.
+You are not redesigning the application or inventing new features. Almost all of the marks are for making a partly-built API work correctly and for explaining why your version is right.
 
 Unlike the Project, which assesses the complete development process across a semester, the Practical assesses **your ability to work confidently in the stack within a controlled technical task**.
 
@@ -28,8 +28,7 @@ You will be assessed on your ability to:
 
 - read an unfamiliar codebase and identify what is broken or missing;
 - implement API endpoints that behave correctly, including their failure cases;
-- connect a SvelteKit frontend to an API and handle every state it can be in;
-- validate incoming data and protect routes by role;
+- protect routes by role;
 - follow software development best practices; and
 - justify your technical decisions.
 
@@ -49,10 +48,9 @@ This is the only learning outcome in the course. Both assessments are mapped to 
 | ------------------------------------------- | :----: | :--------------: | :---------: |
 | Diagnosis of faults in an existing codebase |   ✓    |        ✓         |      ✓      |
 | API implementation and error handling       |   ✓    |        ✓         |             |
-| Client implementation and state handling    |        |        ✓         |             |
-| Validation and route protection             |   ✓    |                  |             |
+| Route protection                            |   ✓    |                   |             |
 | Schema correction and migration             |        |        ✓         |             |
-| Software development best practices         |   ✓    |                  |      ✓      |
+| Software development best practices         |   ✓    |                   |      ✓      |
 | Justification of technical decisions        |   ✓    |        ✓         |      ✓      |
 
 ---
@@ -60,9 +58,9 @@ This is the only learning outcome in the course. Both assessments are mapped to 
 # Assessments
 
 | Assessment | Weighting | Due Date                | Learning Outcome |
-| ---------- | --------: | ----------------------- | ---------------- |
-| Practical  |       20% | 18 September at 4.59 PM | 1                |
-| Project    |       80% | 13 November at 4.59 PM  | 1                |
+| ---------- | --------: | ------------------------ | ----------------- |
+| Practical  |       20% | 24 September at 3.00 PM | 1                 |
+| Project    |       80% | 13 November at 4.59 PM  | 1                 |
 
 ---
 
@@ -72,9 +70,9 @@ This is the only learning outcome in the course. Both assessments are mapped to 
 
 **Branch:** `practical`
 
-**Opens:** 14 September at 9:00 AM
+**Opens:** 17 September at 3.00 PM
 
-**Practical Due:** 18 September at 4.59 PM
+**Practical Due:** 24 September at 3.00 PM
 
 ## Extensions and late submission
 
@@ -90,16 +88,16 @@ If you are unwell, follow the impaired performance process and contact the teach
 
 Five days is not long, and the brief asks for more than most students will complete to a high standard. That is deliberate.
 
-**Do less, well.** A working endpoint with correct status codes, sensible validation and a frontend that handles its empty and error states will outscore three endpoints that return data on the happy path and fall over on everything else.
+**Do less, well.** A working endpoint with correct status codes, sensible handling and proper error responses will outscore three endpoints that return data on the happy path and fall over on everything else.
 
-Budget time for Part 5 before you start. It carries 15 marks, it has to be recorded, and it is the part most often left unfinished.
+Budget time for Part 4 before you start. It carries 15 marks, it has to be recorded, and it is the part most often left unfinished.
 
 ## Checklist
 
 You are responsible for ensuring that:
 
 - your latest work has been committed and pushed;
-- both the API and the client build and run locally from a fresh clone;
+- the API builds and runs locally from a fresh clone;
 - `npm run prisma:migrate` and `npm run prisma:seed` succeed on an empty database;
 - `fault-report.md` is complete;
 - `presentation.md` contains a working link to your recording; and
@@ -113,20 +111,15 @@ You are responsible for ensuring that:
 
 **GigBoard** is a community noticeboard for live music: a set of venues, and the gigs each venue is hosting.
 
-As supplied, it is meant to let a visitor browse venues, open one venue and see its gigs, and let a logged-in organiser add, edit and remove a gig.
+As supplied, it is meant to let a visitor browse venues and gigs, and let a logged-in organiser add, edit and remove a gig.
 
 Run it before you change anything.
 
 ```bash
-./setup.sh
 cd backend && npm run prisma:migrate && npm run prisma:seed && npm run dev
 ```
 
-```bash
-cd frontend && npm run dev
-```
-
-Work through the application as a user would, with `requests.http` open alongside it. You cannot repair behaviour you have not observed.
+Work through the API with `requests.http` open. You cannot repair behaviour you have not observed.
 
 **A `requests.http` file is supplied** covering every endpoint the application is meant to have, including the ones that do not work yet. Treat it as the specification: each request has a comment stating the response it should produce. Where the application disagrees with that comment, the application is wrong.
 
@@ -136,20 +129,15 @@ Do not edit the comments describing expected behaviour. You may add requests of 
 
 # Module Coverage
 
-This Practical covers Modules 01 to 08. Every one of them is assessed somewhere below.
+This Practical covers the backend modules from 01 to 08.
 
-| Module                                               | Where it is assessed                                                      |
-| ---------------------------------------------------- | ------------------------------------------------------------------------- |
-| 01 - Introduction and Environment Setup              | Part 4 - Docker, `.env.example`, `.gitignore`, conventional commits       |
-| 02 - Backend: Express, Routes and Controllers        | Part 2 - routes, controllers, status codes, catch-all, `requests.http`    |
-| 03 - Frontend: SvelteKit Basics                      | Part 3 - routing, load functions, navigation layout, error page           |
-| 04 - Backend: PostgreSQL, Prisma and CRUD            | Part 2 - schema, migrations, repositories, CRUD; Part 4 - seed script     |
-| 05 - Frontend: CRUD                                  | Part 3 - form actions, create, edit, delete, progressive enhancement      |
-| 06 - Backend: Authentication, RBAC and Rate Limiting | Part 2 - token protection, role enforcement, validation                   |
-| 07 - Frontend: Authentication and Protected Pages    | Part 3 - redirecting unauthenticated users, role-aware UI                 |
-| 08 - Backend: Relationships and Architecture         | Part 2 - the venue and gig relationship, delete behaviour, the enum field |
-
-Modules 09 to 12 fall after this assessment closes and are **not** assessed here. Related-data pages, filtering, pagination, client-side form validation and deployment are all Project material. Your Practical is marked by running the application locally.
+| Module                                               | Where it is assessed                                                                         |
+| ----------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| 01 - Introduction and Environment Setup              | Part 3 - `.env.example`, `.gitignore`, conventional commits                                    |
+| 02 - Backend: Express, Routes and Controllers        | Part 2 - routes, controllers, status codes, catch-all, `requests.http`                          |
+| 04 - Backend: PostgreSQL, Prisma and CRUD            | Part 2 - schema, migrations, repositories, CRUD; Part 3 - seed script                            |
+| 06 - Backend: Authentication, RBAC and Rate Limiting | Part 2 - token protection, role enforcement                                                     |
+| 08 - Backend: Relationships and Architecture         | Part 2 - the venue and gig relationship, delete behaviour, the enum field                       |
 
 ---
 
@@ -159,7 +147,7 @@ Modules 09 to 12 fall after this assessment closes and are **not** assessed here
 
 Before changing anything, produce `fault-report.md` identifying **at least eight** distinct faults.
 
-A fault is any place where the application does the wrong thing, does nothing, or does the right thing in a way that will break. Missing functionality counts. So does functionality that works but is unsafe.
+A fault is any place where the API does the wrong thing, does nothing, or does the right thing in a way that will break. Missing functionality counts. So does functionality that works but is unsafe.
 
 For each fault, record:
 
@@ -169,36 +157,31 @@ For each fault, record:
 - how you found it; and
 - a severity of high, medium or low, with a one-line reason.
 
-Severity means impact on the user or on the integrity of the data, not how irritating the fix is. An endpoint returning `200` on a failed delete is more serious than a misaligned button.
+Severity means impact on the user or on the integrity of the data, not how irritating the fix is. An endpoint returning `200` on a failed delete is more serious than an inconsistent field name.
 
 At least six of your eight must be faults you go on to fix. You may list faults you decide not to fix, provided you say so and explain the decision.
 
-Describing symptoms rather than causes will score in the lower band. "The venue page is broken" is a symptom. "The load function does not check `res.ok`, so a 404 from the API is parsed as JSON and rendered as an empty venue rather than triggering the error page" is a diagnosis.
+Describing symptoms rather than causes will score in the lower band. "The venue endpoint is broken" is a symptom. "The `getVenue` controller returns status 200 when the venue is not found, so a client cannot distinguish a missing record from a successful one" is a diagnosis.
 
 ---
 
 # 2. The API
 
-**30 marks**
+**45 marks**
 
 Repair and complete the Express API so that every request in the supplied `requests.http` produces the response its comment describes.
 
 You must:
 
-| Area              | Expectation                                                                                      |
-| ----------------- | ------------------------------------------------------------------------------------------------ |
-| **CRUD**          | Full create, read, update and delete for both models                                             |
-| **Status codes**  | Correct codes for success, client error and server error, applied consistently                   |
-| **Relationships** | A gig belongs to a venue; fetching a venue returns its gigs, and the delete behaviour is correct |
-| **Catch-all**     | An unknown route returns a `404` in your standard error shape, not an HTML stack trace           |
-| **Validation**    | Create and update requests validated before they reach the database                              |
-| **Errors**        | A consistent JSON error shape across every endpoint, safe to display to a user                   |
-| **Protection**    | Write endpoints require a valid token and an appropriate role                                    |
-| **Roles**         | The supplied permission matrix is enforced, not merely documented                                |
-
-You met Joi in Module 06, applied to the register and login endpoints. Extending that same pattern to the venue and gig endpoints is part of this assessment.
-
-Filtering and pagination are **not** required. They are taught in Module 10, after this assessment closes. If you add them anyway, they will not earn marks and they will cost you time you need for Part 5.
+| Area              | Expectation                                                                                       |
+| ----------------- | --------------------------------------------------------------------------------------------------- |
+| **CRUD**          | Full create, read, update and delete for both models                                                |
+| **Status codes**  | Correct codes for success, client error and server error, applied consistently                      |
+| **Relationships** | A gig belongs to a venue; fetching a venue returns its gigs, and the delete behaviour is correct     |
+| **Catch-all**     | An unknown route returns a `404` in your standard error shape, not an HTML stack trace               |
+| **Errors**        | A consistent JSON error shape across every endpoint, safe to display to a user                       |
+| **Protection**    | Write endpoints require a valid token and an appropriate role                                        |
+| **Roles**         | The supplied permission matrix is enforced, not merely documented                                    |
 
 The supplied schema has at least one modelling error, and one field that is stored as free text when it should be constrained to a fixed set of values. Finding both is part of the assessment, and correcting them will require migrations.
 
@@ -210,37 +193,13 @@ Marks here are for behaviour, not volume. An endpoint that returns the right dat
 
 ---
 
-# 3. The Client
+# 3. Data and Professional Practice
 
 **25 marks**
 
-Repair and complete the SvelteKit client so a user can carry out every task the application claims to support.
-
-You must:
-
-- make the venue list, venue detail and gig pages load and display correctly;
-- repair the shared navigation layout and the error page, so an unknown URL gives the user something usable;
-- implement the create, edit and delete flows using form actions, so that creating and deleting still work with JavaScript disabled;
-- handle **all four states** on every page that fetches data: loading, success, empty and error;
-- display validation errors from the API against the field that caused them, without losing what the user typed;
-- redirect unauthenticated users away from pages that require a login; and
-- hide controls the current user's role does not permit them to use.
-
-Hiding a control is not protection. If your client hides the delete button but the API still accepts the request from that role, that is a fault in Part 2 and will be marked there. Both halves have to be right.
-
-The supplied client fails at least one of these badly enough to lose data. Finding that one first is a good use of your time.
-
-At least one form also depends on JavaScript for something it should not. Disabling JavaScript in DevTools and using the application for two minutes is the fastest way to find it.
-
----
-
-# 4. Data and Professional Practice
-
-**15 marks**
-
 ## Seed data
 
-The supplied seed script is thin and partly broken. Replace it with data that is realistic enough to exercise the application: enough venues that pagination does something visible, venues with several gigs, at least one venue with none, and a user for each role.
+The supplied seed script is thin and partly broken. Replace it with data that is realistic enough to exercise the API: enough venues and gigs to test the relationships, at least one venue with no gigs, and a user for each role.
 
 Your seed script must be safe to run repeatedly against an existing database.
 
@@ -249,22 +208,18 @@ Your seed script must be safe to run repeatedly against an existing database.
 Assessed across the whole submission:
 
 | Area                | Expectation                                                                |
-| ------------------- | -------------------------------------------------------------------------- |
-| **Security**        | No secret or credential committed; secrets read from environment variables |
-| **Version control** | A `.gitignore` covering environment files, dependencies and build output   |
-| **Structure**       | Routes, controllers and repositories kept separate, as taught              |
-| **Naming**          | Clear and consistent within each language's conventions                    |
-| **Error handling**  | Failures handled and surfaced, not swallowed by an empty `catch`           |
-| **Style**           | Consistent formatting, produced by Prettier rather than by hand            |
-| **Commits**         | Small, descriptive, conventional, and made throughout the five days        |
+| ------------------- | --------------------------------------------------------------------------- |
+| **Security**        | No secret or credential committed; secrets read from environment variables  |
+| **Version control** | A `.gitignore` covering environment files, dependencies and build output    |
+| **Structure**       | Routes, controllers and repositories kept separate, as taught               |
+| **Naming**          | Clear and consistent within JavaScript conventions                          |
+| **Error handling**  | Failures handled and surfaced, not swallowed by an empty `catch`            |
 
 The starter code violates several of these on purpose. **At least two are not listed anywhere in this document**, and finding them is part of the assessment.
 
-A single commit on the final afternoon communicates something very specific to a marker, and it is not in your favour.
-
 ---
 
-# 5. Justification
+# 4. Justification
 
 **15 marks**
 
@@ -291,7 +246,7 @@ Show it on screen. Explain what was wrong, how you found it, why you rated it as
 
 ### 2. A decision that had more than one defensible answer
 
-Show one place where you had to choose: a status code, where to put a piece of logic, whether to validate on the client, the server, or both. Say what you chose, what you rejected, and why.
+Show one place where you had to choose: a status code, where to put a piece of logic, how strict to make a rule. Say what you chose, what you rejected, and why.
 
 "There was only one way to do it" is not an answer to this question, and if you genuinely believe it of every decision you made, that is worth examining before you record.
 
@@ -303,7 +258,7 @@ A well-argued omission scores as well as a well-argued fix.
 
 ### 4. Your error handling
 
-Pick one endpoint and one page. Walk through what happens when things go wrong: what the API returns, what the client does with it, and what the user ends up seeing.
+Pick one endpoint. Walk through what happens when things go wrong: a missing token, a wrong role, a missing record, and the happy path. Show each case in `requests.http` and confirm the response matches what the comment says it should be.
 
 ## What is being assessed
 
@@ -319,9 +274,9 @@ Marks are lost for describing what the code does rather than why you chose it, s
 
 This is not a rule about honesty. It is advice about what will actually get you the marks.
 
-An AI tool will repair much of this codebase for you, quickly, and the result may look reasonable. What it cannot do is the part being assessed. Parts 1 and 5 are worth **30 of the 100 marks** and both ask for something only you can supply: which faults _you_ found, how _you_ found them, which fix _you_ judged worth the time, and which one you deliberately left alone.
+An AI tool will repair much of this codebase for you, quickly, and the result may look reasonable. What it cannot do is the part being assessed. Parts 1 and 4 are worth **30 of the 100 marks** and both ask for something only you can supply: which faults _you_ found, how _you_ found them, which fix _you_ judged worth the time, and which one you deliberately left alone.
 
-Part 5 makes this concrete. You will be talking, unscripted, over code on screen. Explaining code you did not write is difficult, and it is obvious to a marker when it is happening. Where your recording and your code disagree, the recording is treated as the more reliable evidence of your understanding.
+Part 4 makes this concrete. You will be talking, unscripted, over code on screen. Explaining code you did not write is difficult, and it is obvious to a marker when it is happening. Where your recording and your code disagree, the recording is treated as the more reliable evidence of your understanding.
 
 This assessment is also your best chance to find out whether you can work in this stack unaided, while it is worth 20% rather than 80%. If you cannot yet, that is genuinely useful to discover in September.
 

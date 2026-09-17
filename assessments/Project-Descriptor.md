@@ -84,7 +84,7 @@ No part of this Project sits outside that outcome. If you find yourself doing wo
 
 | Assessment | Weighting | Due Date                | Learning Outcome |
 | ---------- | --------: | ----------------------- | ---------------- |
-| Practical  |       20% | 18 September at 4.59 PM | 1                |
+| Practical  |       20% | 24 September at 3.00 PM | 1                |
 | Project    |       80% | 13 November at 4.59 PM  | 1                |
 
 The Practical gives you an early, focused check on whether you can work in the stack unaided.

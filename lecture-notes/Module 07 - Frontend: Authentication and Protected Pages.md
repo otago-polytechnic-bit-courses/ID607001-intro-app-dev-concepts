@@ -56,30 +56,33 @@ export const actions = {
     const emailAddress = formData.get("emailAddress");
     const password = formData.get("password");
 
+    let res, data;
+
     try {
-      const res = await fetch(`${API_BASE_URL}/api/auth/register`, {
+      res = await fetch(`${API_BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ firstName, lastName, emailAddress, password }),
       });
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        return fail(res.status, {
-          error: data.message,
-          errors: data.errors,
-          values: { firstName, lastName, emailAddress },
-        });
-      }
-
-      redirect(303, "/auth/login?registered=true");
+      data = await res.json();
+      
     } catch (err) {
       return fail(500, {
         error: "Could not connect to the server.",
         values: { firstName, lastName, emailAddress },
       });
     }
+
+    if (!res.ok) {
+      return fail(res.status, {
+        error: data.message,
+        errors: data.errors,
+        values: { firstName, lastName, emailAddress },
+      });
+    }
+
+    redirect(303, "/auth/login?registered=true");
   },
 };
 ```
