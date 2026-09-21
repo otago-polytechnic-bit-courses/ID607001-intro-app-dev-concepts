@@ -371,7 +371,7 @@ export const load = async () => {
 };
 
 export const actions = {
-  delete: async ({ request }) => {
+  delete: async ({ request, cookies }) => {
     const formData = await request.formData();
     const id = formData.get("id");
 
@@ -381,7 +381,6 @@ export const actions = {
       res = await fetch(`${API_BASE_URL}/api/institutions/${id}`, {
         method: "DELETE",
       });
-      return { deleted: true };
     } catch (err) {
       return fail(500, { error: "Could not delete institution." });
     }
@@ -390,6 +389,8 @@ export const actions = {
       const data = await res.json();
       return fail(res.status, { error: data.message });
     }
+
+    return { deleted: true };
   },
 };
 ```
