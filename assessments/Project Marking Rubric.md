@@ -34,23 +34,21 @@ A criterion that is absent scores 0 regardless of the quality of the rest of the
 | 6. Design Reflection                 |       2 |
 | **Phase 2: Build**                   |  **47** |
 | Project Management                   |       4 |
-| Express API Implementation           |      10 |
-| SvelteKit Client Implementation      |      10 |
+| Express API Implementation           |      13 |
+| SvelteKit Client Implementation      |      13 |
 | Authentication and Access Control    |       6 |
-| Testing                              |       8 |
 | Releases and Deployment              |       5 |
-| Code Quality and Version Control     |       2 |
-| Documentation                        |       2 |
+| Code Quality and Version Control     |       3 |
+| Documentation                        |       3 |
 | **Phase 3: Reflect**                 |  **16** |
-| Design and Implementation Reflection |       7 |
-| Testing Reflection                   |       5 |
-| Final Reflection                     |       4 |
+| Design and Implementation Reflection |      10 |
+| Final Reflection                     |       6 |
 | **Phase 4: Present**                 |  **13** |
 | **Total**                            | **100** |
 
 Scaled to 80% of the course.
 
-Fabricated test results, coverage figures, bug reports or evidence are handled under the academic integrity process rather than by deduction under this rubric.
+Fabricated evidence, such as invented bug reports or results, is handled under the academic integrity process rather than by deduction under this rubric.
 
 ---
 
@@ -179,36 +177,36 @@ This section is assessed on the quality of the reasoning, not on whether the pre
 
 # Express API Implementation
 
-**10 marks**
+**13 marks**
 
 ## Marking Rubric
 
 | Criterion                                         | A                                                                                                                                                                                | B                                                                                     | C                                                                                            | D/E                                                                             |
 | ------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| **CRUD and relationships** (2)                    | Full CRUD works for two related models. Relationships and nested data are handled appropriately, and the behaviour matches the API design or a documented revision of it.        | CRUD works for both models, with minor deviations from the design or a thin relationship. | Full CRUD for one model only, or the relationship is not exercised by the API.               | CRUD largely missing or non-functional.                                         |
+| **CRUD and relationships** (3)                    | Full CRUD works for two related models. Relationships and nested data are handled appropriately, and the behaviour matches the API design or a documented revision of it.        | CRUD works for both models, with minor deviations from the design or a thin relationship. | Full CRUD for one model only, or the relationship is not exercised by the API.               | CRUD largely missing or non-functional.                                         |
 | **Architecture** (1)                              | Routes, controllers and repositories are cleanly separated as taught, with logic in the right layer.                                                                             | Sound separation with isolated lapses.                                                | Layers blurred in several places.                                                            | No separation.                                                                  |
 | **Validation** (1)                                | Every create and update request is validated before it reaches the database, and failures return field-level detail.                                                             | Most requests validated; one gap or vague error detail.                               | Some validation, with invalid input reaching the database in places.                         | No meaningful validation.                                                       |
-| **Status codes, error shape and catch-all** (2)   | Codes are correct and consistent. One JSON error shape is used by every endpoint, and an unknown route returns a `404` in that shape. No stack trace or HTML reaches the client. | Consistent, with one or two wrong codes or a minor shape deviation.                   | Shape varies between endpoints, or the catch-all is missing or leaks framework defaults.     | Errors returned inconsistently, or as raw stack traces or HTML.                 |
+| **Status codes, error shape and catch-all** (3)   | Codes are correct and consistent. One JSON error shape is used by every endpoint, and an unknown route returns a `404` in that shape. No stack trace or HTML reaches the client. | Consistent, with one or two wrong codes or a minor shape deviation.                   | Shape varies between endpoints, or the catch-all is missing or leaks framework defaults.     | Errors returned inconsistently, or as raw stack traces or HTML.                 |
 | **Filtering, sorting and pagination** (1)         | At least one list endpoint supports filtering, sorting and pagination together, handles invalid parameters, and returns enough metadata for a client to paginate.               | Works, with invalid parameters or metadata handled loosely.                           | One of the three is missing, or the parameters work only on the happy path.                  | Not implemented.                                                                |
 | **Seed script** (1)                               | Safe to run repeatedly, with enough realistic data to demonstrate the features.                                                                                                  | Repeatable or realistic, with one gap.                                                | Runs once cleanly but duplicates data on a second run, or the data is thin.                  | Seed absent or fails.                                                           |
 | **`requests.http`** (1)                           | Covers every endpoint including its failure cases, and a marker running it gets the documented responses.                                                                        | Covers most endpoints and some failure cases.                                         | Covers the happy path only.                                                                  | Absent, or requests do not match the API.                                       |
-| **Schema evolution and migrations** (1)           | Every schema change after the first arrived as a new migration and the history shows the model evolving. `prisma:migrate` and `prisma:seed` succeed on an empty database. Any reset is declared and explained. | Migrations run cleanly, with a slightly untidy history.                               | Migration history flattened or regenerated without explanation, or a manual step is needed.  | Migrations fail on an empty database.                                           |
+| **Schema evolution and migrations** (2)           | Every schema change after the first arrived as a new migration and the history shows the model evolving. `prisma:migrate` and `prisma:seed` succeed on an empty database. Any reset is declared and explained. | Migrations run cleanly, with a slightly untidy history.                               | Migration history flattened or regenerated without explanation, or a manual step is needed.  | Migrations fail on an empty database.                                           |
 
 ---
 
 # SvelteKit Client Implementation
 
-**10 marks**
+**13 marks**
 
 ## Marking Rubric
 
 | Criterion                                         | A                                                                                                                                                                       | B                                                                                       | C                                                                                   | D/E                                                             |
 | ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| **Requirement implementation** (2)                | Every backlog requirement that has a user interface is implemented in the client and works end to end against the API.                                                  | Most requirements implemented and working; one or two are partial.                      | Around half the requirements are implemented, or several work only partially.       | Few requirements implemented, or the client does not run.       |
+| **Requirement implementation** (3)                | Every backlog requirement that has a user interface is implemented in the client and works end to end against the API.                                                  | Most requirements implemented and working; one or two are partial.                      | Around half the requirements are implemented, or several work only partially.       | Few requirements implemented, or the client does not run.       |
 | **Fidelity to wireframes** (1)                    | The client follows the wireframes, and every significant departure is documented and justified.                                                                         | Follows closely; a departure is documented but lightly justified.                       | Noticeable departures with little or no documentation.                              | Implementation bears little relationship to the wireframes.     |
 | **Navigation and error page** (1)                 | A shared navigation layout marks the current page on every page, and an error page gives a usable result for an unknown URL and for a failed load.                      | Navigation and error page present, with a minor gap.                                    | Navigation inconsistent, or the error page shows raw errors in some cases.          | No shared navigation or no error page.                          |
-| **UI states and user feedback** (2)               | Loading, empty, error and success states are handled on every page that fetches data, and clear, timely feedback is given for every action, including failures.         | States handled on most pages, with gaps in less-used paths; feedback mostly clear.      | Only some states handled; failures or empty data are visibly unhandled in places.   | States not handled; the app breaks or hangs on error or empty data. |
-| **Form actions and progressive enhancement** (2)  | Create, update and delete all use form actions, and create and delete still work with JavaScript disabled.                                                              | Form actions used throughout, with one operation depending on JavaScript.               | Some operations use client-side `fetch` where form actions were required.           | Form actions not used.                                          |
+| **UI states and user feedback** (3)               | Loading, empty, error and success states are handled on every page that fetches data, and clear, timely feedback is given for every action, including failures.         | States handled on most pages, with gaps in less-used paths; feedback mostly clear.      | Only some states handled; failures or empty data are visibly unhandled in places.   | States not handled; the app breaks or hangs on error or empty data. |
+| **Form actions and progressive enhancement** (3)  | Create, update and delete all use form actions, and create and delete still work with JavaScript disabled.                                                              | Form actions used throughout, with one operation depending on JavaScript.               | Some operations use client-side `fetch` where form actions were required.           | Form actions not used.                                          |
 | **Validation and inline errors** (1)              | Client validation matches the API rules, and server-side validation errors appear inline against the correct field without losing what the user typed.                  | Validation present with one gap, such as input lost on error or errors not field-level. | Validation on the client only, or errors shown generically.                         | No validation feedback.                                         |
 | **URL state** (1)                                 | Filter and pagination state lives in the URL and survives refresh, sharing and the back button.                                                                         | State in the URL, with one behaviour not preserved.                                     | Some state in the URL, some held in component state.                                | State not reflected in the URL.                                 |
 
@@ -230,24 +228,6 @@ This section is assessed on the quality of the reasoning, not on whether the pre
 
 ---
 
-# Testing
-
-**8 marks**
-
-## Marking Rubric
-
-Coverage of the cases that matter is assessed, not the number of tests.
-
-| Criterion                                        | A                                                                                                                                                                                                   | B                                                                                        | C                                                                                           | D/E                                                                  |
-| ------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| **Unit tests** (2)                               | API tests cover a successful create, a validation failure, a request for a record that does not exist, an unauthenticated request to a protected route, and a request from a forbidden role, and they pass. | Four of the five cases covered and passing, or all five with one thinly tested.          | Two or three of the cases, mostly happy path.                                               | No tests, or tests that do not run.                                  |
-| **End-to-end tests** (2)                         | At least two complete user journeys through the client, one involving login, run against the client and passing.                                                                                    | Two journeys, with one shallow, or both complete but neither involving failure handling. | One journey, or journeys that stop short of completion.                                     | No end-to-end tests, or tests that do not run.                       |
-| **Test environment and runnability** (1)         | Tests run against a test database separate from development, with a single documented command that works from a clean clone.                                                                        | Separate database and a documented command, with a minor setup gap.                      | Tests share the development database, or the command is undocumented.                       | Tests cannot be run from the documentation.                          |
-| **Manual test evidence** (2)                     | Each of the eight requirements records pass or fail for every acceptance criterion, with the evidence located (a test name or a described manual check). Failures are recorded honestly.            | Recorded for every requirement, with evidence thin in places.                            | A table of results with little evidence, or criteria omitted.                               | Missing, or ticks a marker can disprove.                             |
-| **Quality of coverage** (1)                      | The tests target cases that matter and each can fail for a real reason. There is no padding with repeated happy-path assertions.                                                                    | Mostly meaningful, with some redundancy.                                                 | Many tests assert the same happy path in different words.                                   | Tests would pass regardless of whether the application works.        |
-
----
-
 # Releases and Deployment
 
 **5 marks**
@@ -265,31 +245,31 @@ Coverage of the cases that matter is assessed, not the number of tests.
 
 # Code Quality and Version Control
 
-**2 marks**
+**3 marks**
 
 ## Marking Rubric
 
 | Band    |    Marks | Descriptor                                                                                                                                                                                                                                                                                  |
 | ------- | -------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A**   |   1.75-2 | Clear separation of concerns, Prettier and ESLint configured in both projects with npm scripts and demonstrably run, descriptive naming, consistent and visible error handling, and no secret in the repository or its history. Regular conventional commits linked to issues spread across the whole project. |
-| **B**   | 1.25-1.5 | Sound structure and style with isolated lapses. Commit history is regular and descriptive with occasional gaps or vague messages.                                                                                                                                                           |
-| **C**   |        1 | Structure or naming is inconsistent, linting is configured but not run, error handling is patchy, or the commit history clusters around deadlines.                                                                                                                                          |
-| **D/E** |   0-0.75 | Disorganised code, a secret committed to the repository, or a history of very few large commits.                                                                                                                                                                                            |
+| **A**   |    2.5-3 | Clear separation of concerns, Prettier and ESLint configured in both projects with npm scripts and demonstrably run, descriptive naming, consistent and visible error handling, and no secret in the repository or its history. Regular conventional commits linked to issues spread across the whole project. |
+| **B**   |   2-2.25 | Sound structure and style with isolated lapses. Commit history is regular and descriptive with occasional gaps or vague messages.                                                                                                                                                           |
+| **C**   | 1.5-1.75 | Structure or naming is inconsistent, linting is configured but not run, error handling is patchy, or the commit history clusters around deadlines.                                                                                                                                          |
+| **D/E** |   0-1.25 | Disorganised code, a secret committed to the repository, or a history of very few large commits.                                                                                                                                                                                            |
 
 ---
 
 # Documentation
 
-**2 marks**
+**3 marks**
 
 ## Marking Rubric
 
 | Band    |    Marks | Descriptor                                                                                                                                                                                                                                                                                                              |
 | ------- | -------: | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **A**   |   1.75-2 | `README.md` contains every required item (description, setup for both projects from a fresh clone, environment variables with a matching `.env.example`, development and test instructions, permission matrix, release notes, AI acknowledgement) and `api-documentation.md` gives an example request and response per endpoint. Both are accurate against the submitted code, follow from a clean machine, and show evidence of being maintained during development. |
-| **B**   | 1.25-1.5 | Both documents present and largely complete, with one required item thin or slightly out of date.                                                                                                                                                                                                                       |
-| **C**   |        1 | One document missing or several required items absent, setup instructions fail at a step, or documentation was clearly written entirely at the end.                                                                                                                                                                      |
-| **D/E** |   0-0.75 | Documentation missing, or so inaccurate that the project cannot be set up from it.                                                                                                                                                                                                                                      |
+| **A**   |    2.5-3 | `README.md` contains every required item (description, setup for both projects from a fresh clone, environment variables with a matching `.env.example`, development instructions, permission matrix, release notes, AI acknowledgement) and `api-documentation.md` gives an example request and response per endpoint. Both are accurate against the submitted code, follow from a clean machine, and show evidence of being maintained during development. |
+| **B**   |   2-2.25 | Both documents present and largely complete, with one required item thin or slightly out of date.                                                                                                                                                                                                                       |
+| **C**   | 1.5-1.75 | One document missing or several required items absent, setup instructions fail at a step, or documentation was clearly written entirely at the end.                                                                                                                                                                      |
+| **D/E** |   0-1.25 | Documentation missing, or so inaccurate that the project cannot be set up from it.                                                                                                                                                                                                                                      |
 
 ---
 
@@ -297,7 +277,7 @@ Coverage of the cases that matter is assessed, not the number of tests.
 
 **16 marks**
 
-Reflections must draw on specific evidence from the project: commits, tests, issues and code. Generic statements such as "I learned a lot" score in the lowest band regardless of length.
+Reflections must draw on specific evidence from the project: commits, issues and code. Generic statements such as "I learned a lot" score in the lowest band regardless of length.
 
 The passage at the end of `reflection.md` recording one instance where an AI tool helped and one where it misled the student is not a separate criterion. A specific, honest account of a tool being wrong supports the A band wherever it is used as evidence, in the same way as any other project evidence. A missing declaration is handled under the academic integrity process rather than by deduction.
 
@@ -305,7 +285,7 @@ The passage at the end of `reflection.md` recording one instance where an AI too
 
 # Design and Implementation Reflection
 
-**7 marks**
+**10 marks**
 
 **Approximately 400 words**
 
@@ -313,34 +293,16 @@ The passage at the end of `reflection.md` recording one instance where an AI too
 
 | Criterion                                         | A                                                                                                                                                                                           | B                                                                    | C                                                                                 | D/E                                                     |
 | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| **What changed** (2)                              | Identifies a specific change to the data model, API design or wireframes and explains what forced it and what it cost, with reference to the updated design document and the commit history. | Identifies a specific change and gives a sound reason for it.        | Describes a change in general terms, or asserts a cause without support.          | No specific change identified.                          |
-| **What was harder than expected** (2)             | One technical problem described in detail: what happened, what was tried, what worked, what did not, and what is now understood that was not before.                                        | Problem described with most of those elements covered.               | Problem named but the account is thin, or the failed attempts are omitted.        | Not addressed, or described only in generalities.       |
-| **A decision to make differently** (2)            | Identifies one specific design or implementation decision, explains what would be done instead and why, and supports the account with evidence from the project.                            | Identifies a decision with a reasonable alternative and brief reasoning. | Names a decision but the alternative or reasoning is thin.                        | Not addressed.                                          |
+| **What changed** (3)                              | Identifies a specific change to the data model, API design or wireframes and explains what forced it and what it cost, with reference to the updated design document and the commit history. | Identifies a specific change and gives a sound reason for it.        | Describes a change in general terms, or asserts a cause without support.          | No specific change identified.                          |
+| **What was harder than expected** (3)             | One technical problem described in detail: what happened, what was tried, what worked, what did not, and what is now understood that was not before.                                        | Problem described with most of those elements covered.               | Problem named but the account is thin, or the failed attempts are omitted.        | Not addressed, or described only in generalities.       |
+| **A decision to make differently** (3)            | Identifies one specific design or implementation decision, explains what would be done instead and why, and supports the account with evidence from the project.                            | Identifies a decision with a reasonable alternative and brief reasoning. | Names a decision but the alternative or reasoning is thin.                        | Not addressed.                                          |
 | **What you are most confident about** (1)         | Identifies a specific part of the project and explains why it is good rather than merely finished.                                                                                          | Identifies a specific part with a reasonable explanation.            | Names a part of the project with little explanation.                              | Not addressed.                                          |
-
----
-
-# Testing Reflection
-
-**5 marks**
-
-**Approximately 300 words**
-
-## Marking Rubric
-
-| Criterion                                         | A                                                                                                                                                                | B                                                            | C                                                                            | D/E            |
-| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------- | -------------- |
-| **What was tested and what was left** (1)         | Explains how testing was prioritised and what was deliberately left untested, with reasons tied to risk in this project.                                         | Explains both, with reasons for one side stronger than the other. | Lists what was tested without saying why, or omits what was left untested.   | Not addressed. |
-| **What the tests caught** (1)                     | Names a specific bug or regression the tests caught that would otherwise have shipped, with reference to the test and the fix. Honestly states that none did, if that is the case, and why. | Names a real catch with limited detail.                      | Asserts that tests "found bugs" without a specific example.                  | Not addressed. |
-| **What the tests missed** (1)                     | Identifies a specific bug found by using the application rather than by testing it, and says what test would have caught it.                                     | Identifies a missed bug with a brief account of what would have caught it. | Notes that tests missed things in general terms.                             | Not addressed. |
-| **Acceptance criteria and testability** (1)      | Evaluates honestly how well the Phase 1 acceptance criteria became tests, naming criteria that turned out too vague to test and what was done about them.        | Evaluates the translation with one specific example.         | Comments on the criteria in general terms.                                   | Not addressed. |
-| **Doing it again** (1)                            | Identifies specific, realistic changes to the testing approach and explains why they would help.                                                                 | Identifies realistic changes with brief reasoning.           | Offers generic suggestions such as "more tests".                             | Not addressed. |
 
 ---
 
 # Final Reflection
 
-**4 marks**
+**6 marks**
 
 **Approximately 250 words**
 
@@ -348,9 +310,9 @@ The passage at the end of `reflection.md` recording one instance where an AI too
 
 | Criterion                                      | A                                                                                                                                                                | B                                                            | C                                                                        | D/E            |
 | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------------------ | -------------- |
-| **Design versus implementation** (1)           | Identifies the most significant difference between the Phase 1 design and what was built and explains why it happened, using a concrete example.                 | Identifies a significant difference and explains it soundly. | Notes that things changed without saying what mattered most or why.      | Not addressed. |
+| **Design versus implementation** (2)           | Identifies the most significant difference between the Phase 1 design and what was built and explains why it happened, using a concrete example.                 | Identifies a significant difference and explains it soundly. | Notes that things changed without saying what mattered most or why.      | Not addressed. |
 | **What the client revealed about the API** (2) | Draws a specific, well-evidenced insight about the API design from building the client, such as a shape, payload or error case the client exposed as wrong.      | Draws a plausible insight with a supporting example.         | Comments on the API in general terms without a specific insight.         | Not addressed. |
-| **Process improvement** (1)                    | Identifies a single significant improvement to how the student worked and justifies it against what happened in this project.                                    | Identifies a realistic improvement with brief justification. | Offers a generic improvement such as starting earlier, unjustified.      | Not addressed. |
+| **Process improvement** (2)                    | Identifies a single significant improvement to how the student worked and justifies it against what happened in this project.                                    | Identifies a realistic improvement with brief justification. | Offers a generic improvement such as starting earlier, unjustified.      | Not addressed. |
 
 ---
 
@@ -363,8 +325,7 @@ The passage at the end of `reflection.md` recording one instance where an AI too
 | Criterion                        | A                                                                                                                                                                                                                                | B                                                                                                  | C                                                                                                                         | D/E                                                                      |
 | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | **Project overview** (2)         | Concept, backlog and prioritisation, and sprint plan are conveyed clearly and concisely within roughly two minutes.                                                                                                              | All three covered clearly, slightly over or under time.                                            | One element is skipped, or the overview runs long at the expense of later sections.                                       | Overview missing or too unclear to follow.                               |
-| **Feature demonstration** (3)    | The application is demonstrated against the deployed URL and works as described, and at least one thing is shown failing gracefully (a validation error, a permission denial or an empty state). If the deployment is unavailable, the student falls back to the latest local release and says what happened. | Demonstrated against the deployed URL, with the graceful failure shown briefly or a minor fault handled well. | No graceful failure shown, or the demonstration relies on screenshots, or a fallback to local is not acknowledged.        | No working demonstration.                                                |
-| **Code walkthrough** (3)         | One part of the student's own implementation is walked through in detail and unscripted, explaining what it does, why it is structured that way and what was considered and rejected. The part is one the student made real decisions about, not a controller identical to the module notes. | Walkthrough is sound, with one of those three points covered only briefly.                         | The explanation is largely descriptive, the choice is a module-notes example, or the reasoning is recited rather than understood. | No walkthrough, or the presenter cannot explain their own code.          |
-| **Testing** (2)                  | Tests are shown running. The student explains what they cover, what they do not, and what they caught, including unflattering findings.                                                                                          | Tests shown and explained, with one of those points brief.                                         | Tests shown but little said about coverage or findings.                                                                   | Not covered, or presents an implausibly clean account.                   |
+| **Feature demonstration** (4)    | The application is demonstrated against the deployed URL and works as described, and at least one thing is shown failing gracefully (a validation error, a permission denial or an empty state). If the deployment is unavailable, the student falls back to the latest local release and says what happened. | Demonstrated against the deployed URL, with the graceful failure shown briefly or a minor fault handled well. | No graceful failure shown, or the demonstration relies on screenshots, or a fallback to local is not acknowledged.        | No working demonstration.                                                |
+| **Code walkthrough** (4)         | One part of the student's own implementation is walked through in detail and unscripted, explaining what it does, why it is structured that way and what was considered and rejected. The part is one the student made real decisions about, not a controller identical to the module notes. | Walkthrough is sound, with one of those three points covered only briefly.                         | The explanation is largely descriptive, the choice is a module-notes example, or the reasoning is recited rather than understood. | No walkthrough, or the presenter cannot explain their own code.          |
 | **Final takeaway** (1)           | Identifies one significant, specific insight about building full-stack applications and grounds it in the project.                                                                                                               | Identifies a specific insight with brief grounding.                                                | Offers a generic takeaway.                                                                                                | Not covered.                                                             |
 | **Delivery** (2)                 | Pitched appropriately for a technical lead or client, well paced, within 10-15 minutes, and clearly not a reading of the written reflections.                                                                                    | Well delivered and within time, with minor pacing issues.                                          | Noticeably over or under time, or leans heavily on reading prepared text.                                                 | Reads the reflections aloud, or is substantially outside the time limit. |
